@@ -5,13 +5,24 @@ using UnityEngine;
 public class ScriptManager : MonoBehaviour
 {
 
-    private Dictionary<string, string> lines = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
 
-    public string resourceFile = "script.en";
+    private string resourceFile = "script";
+
+    public string defaultLanguage = "en";
+
+    public string overrideLanguage = "";
 
     private void Awake()
     {
-        var textAsset = Resources.Load<TextAsset>(resourceFile);
+        var countryCode = LanguageHelper.Get2LetterISOCodeFromSystemLanguage();
+        if(!string.IsNullOrEmpty(overrideLanguage))
+        {
+            countryCode = overrideLanguage;
+        }
+
+        string scriptFileName = resourceFile + "." + countryCode;
+        var textAsset = Resources.Load<TextAsset>(scriptFileName);
         var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
 
         foreach(var t in voText.lines)
@@ -20,13 +31,13 @@ public class ScriptManager : MonoBehaviour
         }
     }
 
-    public string GetText(string textKey)
+    public string[] GetText(string textKey)
     {
-        string tmp = "";
+        string[] tmp = new string[] { };
         if (lines.TryGetValue(textKey, out tmp))
             return tmp;
         else
-            return string.Empty;
+            return new string[] { "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>" };
     }
 
     public void TalkControl(string talkKey)

@@ -4,5 +4,5 @@
 public class SubtitleHolder
 {
     public string key;
-    public string line;
+    public string[] line;
 }

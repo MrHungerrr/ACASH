@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     private string actText;
     [HideInInspector]
     public GameObject playerCam;
-
+    private SubtitleManager SubMan;
 
     private void Awake()
     {
@@ -37,6 +37,7 @@ public class PlayerScript : MonoBehaviour
         inManager = GetComponent<InputManager>();
         charController = GetComponent<CharacterController>();
         camControl = playerCam.GetComponent<CameraController>();
+        SubMan = GameObject.FindObjectOfType<SubtitleManager>();
     }
 
     private void Start()
@@ -121,6 +122,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void Shout()
+    {
+        SubMan.PlaySubtitle("big-red-button");
+    }
 
    public void DisableControl(bool status)
     {

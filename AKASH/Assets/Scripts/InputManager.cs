@@ -80,6 +80,12 @@ public class InputManager : MonoBehaviour
                 pScript.doing = false;
                 pScript.act = false;
             }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                pScript.Shout();
+            }
+
         }
         else
         {
