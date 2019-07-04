@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SubtitlePlay : MonoBehaviour
 {
 
-    public Text textBox;
-    public Text textBoxVillian;
+    public TextMeshProUGUI textBox;
+    public TextMeshProUGUI textBoxVillian;
 
     public void Clear()
     {

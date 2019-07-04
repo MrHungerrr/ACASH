@@ -1,19 +1,53 @@
 {
-	"lines":
-	[
-		{
-			"key":"big-red-button",
-			"line":["The notice above the big red button says “Push the big red button”.",
-			"It’s fairly obvious when you think about it.",
-			"I mean, it’s a BIG RED BUTTON."]
-		},
-		{
-			"key":"detecting-lifeform",
-			"line":["I’m detecting a life form up ahead..."]
-		},
-		{
-			"key":"junk-pile",
-			"line":["I can’t see anything of value in this junk pile."]
-		}
-	]
+    "lines":
+    [
+        {
+            "key":"Shout_1",
+            "line":["Shut up!"]
+        },
+        {
+            "key":"Shout_2",
+            "line":["Not a word! Or you will end ..."]
+        },
+        {
+            "key":"Remark_1",
+            "line":["What's this? Calculator?"]
+        },
+        {
+            "key":"Kirgiz_1",
+            "line":["Эй, эй, эй","Эй ДиДжей","У тебя что за ___ играет?","Ты че, ___?","","Да","ДиДжей ___",""]
+        },
+        {
+            "key":"Shout_22",
+            "line":["123"]
+        },
+        {
+            "key":"Shout_223",
+            "line":["123"]
+        },
+        {
+            "key":"Remark_13",
+            "line":["12"]
+        },
+        {
+            "key":"Kirgiz_14",
+            "line":["12"]
+        },
+        {
+            "key":"Fuck",
+            "line":["Shut up!"]
+        },
+        {
+            "key":"You",
+            "line":["Not a word! Or you will end ..."]
+        },
+        {
+            "key":"Mother",
+            "line":["What's this? Calculator?"]
+        },
+        {
+            "key":"Fucker",
+            "line":["Hey hear you! Yes you!","Аre you Bogd ..."]
+        }
+    ]
 }

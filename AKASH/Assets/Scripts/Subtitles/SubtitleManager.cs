@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SubtitleManager : MonoBehaviour
 {
-    private ScriptManager ScriptMan;
-    private SubtitlePlay SubPlay;
+    private ScriptManager scriptMan;
+    private SubtitlePlay subPlay;
 
 
     private void Awake()
     {
-        ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
-        SubPlay = GameObject.FindObjectOfType<SubtitlePlay>();
+        scriptMan = GameObject.FindObjectOfType<ScriptManager>();
+        subPlay = GameObject.FindObjectOfType<SubtitlePlay>();
     }
 
 
@@ -27,27 +27,35 @@ public class SubtitleManager : MonoBehaviour
 
     public IEnumerator PlaySub(string name)
     {
-        var script = ScriptMan.GetText(name);
+        int i = 0;
+        var script = scriptMan.GetText(name);
+        var duration = scriptMan.GetFloat(name);
+        FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
+
         foreach ( var line in script)
         {
             yield return new WaitForSeconds(0.05f);
-            SubPlay.SetText(line);
-            yield return new WaitForSeconds(1f);
-            SubPlay.Clear();
+            subPlay.SetText(line);
+            yield return new WaitForSeconds(duration[i]);
+            subPlay.Clear();
+            i++;
         }
-        Debug.Log("SubtitleMan");
     }
 
     private IEnumerator PlaySubVillian(string name)
     {
-        var script = ScriptMan.GetText(name);
+        int i = 0;
+        var script = scriptMan.GetText(name);
+        var duration = scriptMan.GetFloat(name);
+        FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
+
         foreach (var line in script)
         {
             yield return new WaitForSeconds(0.05f);
-            SubPlay.SetTextVillian(line);
-            yield return new WaitForSeconds(1f);
-            SubPlay.ClearVillian();
+            subPlay.SetTextVillian(line);
+            yield return new WaitForSeconds(duration[i]);
+            subPlay.ClearVillian();
+            i++;
         }
-        Debug.Log("SubtitleMan");
     }
 }

@@ -29,6 +29,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerCam;
     private SubtitleManager SubMan;
 
+    private string key = "teacher_";
+
     private void Awake()
     {
         playerCam = GameObject.FindWithTag("PlayerCamera");
@@ -124,10 +126,33 @@ public class PlayerScript : MonoBehaviour
 
     public void Shout()
     {
-        SubMan.PlaySubtitle("big-red-button");
+        if(actReady)
+        {
+            string name = "shout_1";
+            SubMan.PlaySubtitle(key + name);
+
+            switch (actTag)
+            {
+                case "asshole":
+                    var scholar = actObject.GetComponent<Asshole>();
+                    scholar.Bulling(name,true);
+                    break;
+            }
+        }
     }
 
-   public void DisableControl(bool status)
+    public int RemarkInt(string remark_string)
+    {
+        switch (remark_string)
+        {
+            case "shout": return 0;
+            case "warning": return 1;
+        }
+        Debug.Log("<color=#ff00ff> Scholar.RemarkInt(" + remark_string + ") ERROR.</color>");
+        return 666;
+    }
+
+    public void DisableControl(bool status)
     {
         inManager.disPlayer = status;
         playerCam.SetActive(!status);

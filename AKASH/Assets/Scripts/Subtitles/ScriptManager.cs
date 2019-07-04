@@ -2,33 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ScriptManager : MonoBehaviour
 {
 
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, string[]> linesDuration = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
 
-    private string resourceFile = "script";
+    private string resourceFile = "Script";
+    private string resourceFileDuration = "AudioDuration";
+    [HideInInspector]
+    public string voicePath;
 
-    public string defaultLanguage = "en";
+    private string textLanguage = "ru";
 
-    public string overrideLanguage = "";
+    private string voiceLanguage = "ru";
+
 
     private void Awake()
     {
-        var countryCode = LanguageHelper.Get2LetterISOCodeFromSystemLanguage();
-        if(!string.IsNullOrEmpty(overrideLanguage))
-        {
-            countryCode = overrideLanguage;
-        }
-
-        string scriptFileName = resourceFile + "." + countryCode;
-        var textAsset = Resources.Load<TextAsset>(scriptFileName);
-        var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
-
-        foreach(var t in voText.lines)
-        {
-            lines[t.key] = t.line;
-        }
+        //var countryCode = LanguageHelper.Get2LetterISOCodeFromSystemLanguage();
+        SwitchLanguageText(textLanguage);
+        SwitchLanguageVoice(voiceLanguage);
     }
 
     public string[] GetText(string textKey)
@@ -40,9 +35,52 @@ public class ScriptManager : MonoBehaviour
             return new string[] { "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>" };
     }
 
-    public void TalkControl(string talkKey)
+
+    public float[] GetFloat(string textKey)
     {
-       //ScriptMan.GetText(talkKey);
-       //AudioSource
+        string[] tmp = new string[] { };
+        if (linesDuration.TryGetValue(textKey, out tmp))
+        {
+            float[] res = new float[tmp.Length];
+            for (int i = 0; i < tmp.Length; i++)
+                res[i] = float.Parse(tmp[i]);
+
+            return res;
+        }
+        else
+        {
+            Debug.Log("<color=#ff00ff>Missing value for '" + textKey + "'</color>");
+            return new float[] {0};
+        }
+
+    }
+
+
+    public void SwitchLanguageText(string lang)
+    {
+        textLanguage = lang;
+        string scriptFileName = resourceFile + "." + lang;
+        var textAsset = Resources.Load<TextAsset>(scriptFileName);
+        var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
+
+        foreach (var t in voText.lines)
+        {
+            lines[t.key] = t.line;
+        }
+    }
+
+    public void SwitchLanguageVoice(string lang)
+    {
+        voiceLanguage = lang;
+        voicePath = "event:/" + lang + "/";
+
+        string scriptFileName = resourceFileDuration + "." + lang;
+        var textAsset = Resources.Load<TextAsset>(scriptFileName);
+        var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
+
+        foreach (var t in voText.lines)
+        {
+            linesDuration[t.key] = t.line;
+        }
     }
 }
