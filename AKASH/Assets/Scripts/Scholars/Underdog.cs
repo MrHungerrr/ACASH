@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asshole : Scholar
+public class Underdog : Scholar
 {
 
     void Awake()
     {
-        this.tag = "Asshole";
+        this.tag = "Underdog";
         key += this.tag + "_";
     }
 

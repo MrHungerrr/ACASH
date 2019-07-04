@@ -6,15 +6,25 @@ using TMPro;
 public class Scholar : MonoBehaviour
 {
     [HideInInspector]
-    public int panic;
+    public int stress;
     [HideInInspector]
     public bool cheating;
     [HideInInspector]
     public TextBoxScholar textBox;
     [HideInInspector]
-    public string key = "scholar_";
+    public string key = "Scholar_";
     private double rnd;
-
+    [HideInInspector]
+    public byte behaviourType;
+    [HideInInspector]
+    public int IQ_start;
+    [HideInInspector]
+    public int test;
+    [HideInInspector]
+    public double test_buf;
+    [HideInInspector]
+    public float test_bufTime;
+    
     public bool[] remarks = new bool[2]; 
 
     private void Awake()
@@ -23,13 +33,13 @@ public class Scholar : MonoBehaviour
     }
 
 
-    public void PanicUp(int value)
+    public void Stress(int value)
     {
-        panic += value;
-        if (panic > 100)
-            panic = 100;
-        if (panic < 100)
-            panic = 0;
+        stress += value;
+        if (stress > 100)
+            stress = 100;
+        if (stress < 0)
+            stress = 0;
     }
 
     public bool RandomBool(double a)
@@ -42,12 +52,22 @@ public class Scholar : MonoBehaviour
             return false;
     }
 
+    public void TestPlus(int value)
+    {
+        test += value;
+    }
+
     public void Continue()
+    {
+        
+    }
+
+    public void Stop()
     {
 
     }
 
-    public void Stop()
+    public void StartWrite()
     {
 
     }
