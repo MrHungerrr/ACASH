@@ -7,79 +7,90 @@ public class TextBoxScholar : MonoBehaviour
 {
 
     private TextMeshProUGUI textBox;
-    private ScriptManager scriptMan = GameObject.FindObjectOfType<ScriptManager>();
+    private ScriptManager scriptMan;
     private bool saying = false;
     private bool question = false;
+    private bool act = false;
     private bool filled = false;
-    private float time_N;
-    private float time = 0;
+    private float timeClear_N;
+    private float timeClear = 0;
 
 
-    public TextBoxScholar(TextMeshProUGUI box)
+    private void Start()
     {
-        textBox = box;
+        scriptMan = GameObject.FindObjectOfType<ScriptManager>();
+        textBox = GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
     {
         if(filled && !question)
         {
-            time += Time.deltaTime;
-            if(time>=time_N)
+            timeClear += Time.deltaTime;
+            if(timeClear>=timeClear_N)
             {
                 Clear();
             }
         }
 
-        if(saying)
+        if (act)
         {
-            //Звук говорения
-        }
-        else
-        {
-            //Минус звук говорения
+            if (saying)
+            {
+                //Звук говорения
+            }
+            else
+            {
+                //Минус звук говорения
+            }
         }
     }
 
-    public void Say(string name)
+    public void Say(string key)
     {
-        StopAllCoroutines();
+        if(act)
+            StopCoroutine("PlaySub");
         Clear();
-        StartCoroutine(PlaySay(name));
-        time_N = 1f;
+        StartCoroutine(PlaySub(key));
+        timeClear_N = 1f;
         question = false;
     }
 
-    public void Say(string name, float t)
+    public void Say(string key, float t)
     {
-        StopAllCoroutines();
+        if (act)
+            StopCoroutine("PlaySub");
         Clear();
-        StartCoroutine(PlaySay(name));
+        StartCoroutine(PlaySub(key));
         question = false;
-        time_N = t;
+        timeClear_N = t;
     }
 
-    public void Question(string name)
+    public void Question(string key)
     {
-        StopAllCoroutines();
+        if (act)
+            StopCoroutine("PlaySub");
         Clear();
-        StartCoroutine(PlaySay(name));
+        StartCoroutine(PlaySub(key));
         question = true;
     }
 
     public void Clear()
     {
         textBox.text = "";
+        act = false;
         filled = false;
         saying = false;
-        time = 0;
+        timeClear = 0;
     }
 
-    private IEnumerator PlaySay(string name)
+    private IEnumerator PlaySub(string key)
     {
-        var script = scriptMan.GetText(name);
+        act = true;
+        var script = scriptMan.GetText(key);
         foreach (var line in script)
         {
+            
             saying = true;
             int quant = line.Length;
             for(int i = 0; i<quant; i++)
@@ -93,7 +104,7 @@ public class TextBoxScholar : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         filled = true;
+        act = false;
+        yield break;
     }
-
-
 }

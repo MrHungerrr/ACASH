@@ -30,8 +30,8 @@ public class SubtitleManager : MonoBehaviour
         int i = 0;
         var script = scriptMan.GetText(name);
         var duration = scriptMan.GetFloat(name);
-        FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
-
+        //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
+        Debug.Log("PlaySub");
         foreach ( var line in script)
         {
             yield return new WaitForSeconds(0.05f);

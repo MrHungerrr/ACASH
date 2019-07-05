@@ -50,7 +50,7 @@ public class ScriptManager : MonoBehaviour
         else
         {
             Debug.Log("<color=#ff00ff>Missing value for '" + textKey + "'</color>");
-            return new float[] {0};
+            return new float[] {2};
         }
 
     }

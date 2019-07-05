@@ -28,8 +28,7 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector]
     public GameObject playerCam;
     private SubtitleManager SubMan;
-
-    private string key = "teacher_";
+    private string keyWord = "Teacher_";
 
     private void Awake()
     {
@@ -128,28 +127,26 @@ public class PlayerScript : MonoBehaviour
     {
         if(actReady)
         {
-            string name = "shout_1";
-            SubMan.PlaySubtitle(key + name);
+            string key = "Shout_1";
+            SubMan.PlaySubtitle(keyWord + key);
 
             switch (actTag)
             {
-                case "asshole":
-                    var scholar = actObject.GetComponent<Asshole>();
-                    scholar.Bulling(name,true);
-                    break;
+                case "Asshole":
+                    {
+                        var scholar = actObject.GetComponent<Asshole>();
+                        scholar.Bulling(key, true);
+                        break;
+                    }
+                case "Dumb":
+                    {
+                        Debug.Log("Dumb");
+                        var scholar = actObject.GetComponent<Dumb>();
+                        scholar.Bulling(key, true);
+                        break;
+                    }    
             }
         }
-    }
-
-    public int RemarkInt(string remark_string)
-    {
-        switch (remark_string)
-        {
-            case "shout": return 0;
-            case "warning": return 1;
-        }
-        Debug.Log("<color=#ff00ff> Scholar.RemarkInt(" + remark_string + ") ERROR.</color>");
-        return 666;
     }
 
     public void DisableControl(bool status)

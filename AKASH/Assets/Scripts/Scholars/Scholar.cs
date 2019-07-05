@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using System;
 
 public class Scholar : MonoBehaviour
 {
@@ -10,9 +10,11 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public bool cheating;
     [HideInInspector]
-    public TextBoxScholar textBox;
+    public TextBoxScholar TextBox;
     [HideInInspector]
-    public string key = "Scholar_";
+    public ActionsScholar Action;
+    [HideInInspector]
+    public string keyWord = "Scholar_";
     private double rnd;
     [HideInInspector]
     public byte behaviourType;
@@ -24,14 +26,30 @@ public class Scholar : MonoBehaviour
     public double test_buf;
     [HideInInspector]
     public float test_bufTime;
-    
-    public bool[] remarks = new bool[2]; 
-
-    private void Awake()
+    [HideInInspector]
+    public bool writing;
+    [HideInInspector]
+    public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
     {
-        textBox = new TextBoxScholar(transform.Find("Text Box").GetComponent<TextMeshProUGUI>());
+        { "pen", false },
+        { "talking", false },
+        { "calculator", false }
+    };
+
+    public void Continue()
+    {
+        writing = true;
     }
 
+    public void Stop()
+    {
+        writing = false;
+    }
+
+    public void StartWrite()
+    {
+        writing = true;
+    }
 
     public void Stress(int value)
     {
@@ -42,9 +60,9 @@ public class Scholar : MonoBehaviour
             stress = 0;
     }
 
-    public bool RandomBool(double a)
+    public bool Probability(double a)
     {
-        rnd = Random.value;
+        rnd = UnityEngine.Random.value;
 
         if (a >= rnd)
             return true;
@@ -52,23 +70,18 @@ public class Scholar : MonoBehaviour
             return false;
     }
 
-    public void TestPlus(int value)
+    public void WritingTest(float value)
     {
-        test += value;
-    }
-
-    public void Continue()
-    {
-        
-    }
-
-    public void Stop()
-    {
-
-    }
-
-    public void StartWrite()
-    {
-
+        if (test_bufTime > 0)
+        {
+            test_buf += value * Time.deltaTime;
+            test_bufTime -= Time.deltaTime;
+        }
+        else
+        {
+            test += Convert.ToInt32(test_buf);
+            test_bufTime = 1f;
+            test_buf = 0;
+        }
     }
 }

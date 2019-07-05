@@ -7,8 +7,9 @@ public class Underdog : Scholar
 
     void Awake()
     {
+        TextBox = transform.Find("Text/Text Box").GetComponent<TextBoxScholar>();
         this.tag = "Underdog";
-        key += this.tag + "_";
+        keyWord += this.tag + "_";
     }
 
 
@@ -23,13 +24,13 @@ public class Underdog : Scholar
         {
             Stress(10);
             Stop();
-            textBox.Say(key + bullType);
+            TextBox.Say(keyWord + bullType);
             Continue();
         }
         else
         {
             Stop();
-            textBox.Say(key + bullType);
+            TextBox.Say(keyWord + bullType);
             Continue();
         }
     }
