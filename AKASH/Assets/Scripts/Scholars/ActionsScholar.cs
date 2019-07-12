@@ -42,7 +42,15 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Toilet_1()
     {
-
-        yield return new WaitForSeconds();
+        destonation = toilet;
+        agent.SetDestination(destonation);
+        while(!IsHere())
+            yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
+        destonation = home;
+        agent.SetDestination(destonation);
+        while (!IsHere())
+            yield return new WaitForSeconds(1f);
+        doing = false;
     }
 }
