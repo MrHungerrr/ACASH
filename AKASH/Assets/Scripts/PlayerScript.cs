@@ -28,7 +28,10 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector]
     public GameObject playerCam;
     private SubtitleManager SubMan;
+    private ScriptManager ScriptMan;
     private string keyWord = "Teacher_";
+
+
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class PlayerScript : MonoBehaviour
         charController = GetComponent<CharacterController>();
         camControl = playerCam.GetComponent<CameraController>();
         SubMan = GameObject.FindObjectOfType<SubtitleManager>();
+        ScriptMan= GameObject.FindObjectOfType<ScriptManager>();
     }
 
     private void Start()
@@ -125,28 +129,85 @@ public class PlayerScript : MonoBehaviour
 
     public void Shout()
     {
-        if(actReady)
-        {
-            string key = "Shout_1";
-            SubMan.PlaySubtitle(keyWord + key);
+        if(!act)
+            StartCoroutine(Shouting());
+    }
 
-            switch (actTag)
-            {
-                case "Asshole":
-                    {
-                        var scholar = actObject.GetComponent<Asshole>();
-                        scholar.Bulling(key, true);
-                        break;
-                    }
-                case "Dumb":
-                    {
-                        Debug.Log("Dumb");
-                        var scholar = actObject.GetComponent<Dumb>();
-                        scholar.Bulling(key, true);
-                        break;
-                    }    
-            }
+    public IEnumerator Shouting()
+    {
+        act = true;
+        string key = "Shout_";
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+        SubMan.PlaySubtitle(keyWord + key);
+        yield return new WaitForSeconds(1f);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(1f);
         }
+
+        act = false;
+    }
+
+    public void Bull(bool strong)
+    {
+        if (!act && actReady)
+            StartCoroutine(Bulling(strong));
+    }
+
+    public IEnumerator Bulling(bool strong)
+    {
+        act = true;
+        string key;
+
+        if (strong)
+            key = "Bull_";
+        else
+            key = "Joke_";
+
+
+        switch (actTag)
+        {
+            case "Asshole":
+                {
+                    //Debug.Log("Орем на мудака");
+                    var scholar = actObject.GetComponent<Asshole>();
+                    key += scholar.view;
+                    int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+                    key += nomber;
+
+                    SubMan.PlaySubtitle(keyWord + key);
+                    yield return new WaitForSeconds(1f);
+
+                    while (SubMan.act)
+                    {
+                        yield return new WaitForSeconds(1f);
+                    }
+                    scholar.Bulling(key, strong);
+                    break;
+                }
+            case "Dumb":
+                {
+                    //Debug.Log("Орем на тупицу");
+                    var scholar = actObject.GetComponent<Dumb>();
+                    key += scholar.view;
+                    int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+                    key += nomber;
+
+                    SubMan.PlaySubtitle(keyWord + key);
+                    yield return new WaitForSeconds(1f);
+
+                    while (SubMan.act)
+                    {
+                        yield return new WaitForSeconds(1f);
+                    }
+                    scholar.Bulling(key, strong);
+                    break;
+                }
+        }
+
+        act = false;
     }
 
     public void DisableControl(bool status)

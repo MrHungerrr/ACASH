@@ -6,6 +6,8 @@ public class SubtitleManager : MonoBehaviour
 {
     private ScriptManager scriptMan;
     private SubtitlePlay subPlay;
+    [HideInInspector]
+    public bool act;
 
 
     private void Awake()
@@ -25,12 +27,14 @@ public class SubtitleManager : MonoBehaviour
         StartCoroutine(PlaySubVillian(name));
     }
 
-    public IEnumerator PlaySub(string name)
+    private IEnumerator PlaySub(string name)
     {
+        act = true;
         int i = 0;
         var script = scriptMan.GetText(name);
         var duration = scriptMan.GetFloat(name);
         //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
+
         Debug.Log("PlaySub");
         foreach ( var line in script)
         {
@@ -40,10 +44,12 @@ public class SubtitleManager : MonoBehaviour
             subPlay.Clear();
             i++;
         }
+        act = false;
     }
 
     private IEnumerator PlaySubVillian(string name)
     {
+        act = true;
         int i = 0;
         var script = scriptMan.GetText(name);
         var duration = scriptMan.GetFloat(name);
@@ -57,5 +63,6 @@ public class SubtitleManager : MonoBehaviour
             subPlay.ClearVillian();
             i++;
         }
+        act = false;
     }
 }
