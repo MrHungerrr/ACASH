@@ -72,6 +72,7 @@ public class Scholar : MonoBehaviour
 
     public void WritingTest(float value)
     {
+        Debug.Log("Пишу тест");
         if (test_bufTime > 0)
         {
             test_buf += value * Time.deltaTime;

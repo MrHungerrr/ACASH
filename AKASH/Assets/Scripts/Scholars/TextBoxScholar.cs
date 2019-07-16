@@ -6,7 +6,7 @@ using TMPro;
 public class TextBoxScholar : MonoBehaviour
 {
 
-    private TextMeshProUGUI textBox;
+    private TextMeshPro textBox;
     private ScriptManager scriptMan;
     private bool saying = false;
     private bool question = false;
@@ -19,7 +19,7 @@ public class TextBoxScholar : MonoBehaviour
     private void Start()
     {
         scriptMan = GameObject.FindObjectOfType<ScriptManager>();
-        textBox = GetComponent<TextMeshProUGUI>();
+        textBox = GetComponent<TextMeshPro>();
     }
 
     private void Update()
@@ -106,5 +106,10 @@ public class TextBoxScholar : MonoBehaviour
         filled = true;
         act = false;
         yield break;
+    }
+
+    public bool IsTalking()
+    {
+            return (act || filled);
     }
 }
