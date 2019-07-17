@@ -1,10 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
 
 public class CheatingScript : MonoBehaviour
 {
-    float stress;
+
+    [Header("Класс Ученика")]
+   
+    [Range(0,100)]
+    
+    public float stress;
+
+    public bool Mudak;
+    public bool Terpila;
+    public bool Daun;
+
+    static int SOMEBODYisCheating;
+
+    public bool isUnderTeacherSupervision;
+
+    
+
+    void RS()
+    {
+        stress = Random.Range(0f, 100f);
+    }
 
     void Start()
     {
@@ -15,7 +37,8 @@ public class CheatingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        isUnderTeacherSupervision = !isUnderTeacherSupervision;
+        Debug.Log(isUnderTeacherSupervision);
     }
 
     IEnumerator CheatingCoroutine()
@@ -34,7 +57,27 @@ public class CheatingScript : MonoBehaviour
 
     public bool Cheating(float stress)
     {
-       bool cheat = false;
-       return cheat;
+        bool cheat = false;
+
+        if (SOMEBODYisCheating < 1)
+        {
+            if (isUnderTeacherSupervision)
+            {
+                if (Random.Range(1,100) <= 10)
+                {
+
+                }
+            }
+            else
+            {
+
+            }
+        }
+    /*    else
+        {
+            cheat = false;
+        }
+    */
+        return cheat;
     }
 }
