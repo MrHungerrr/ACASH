@@ -8,8 +8,20 @@ public class ScriptManager : MonoBehaviour
 
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
     private Dictionary<string, string[]> linesDuration = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
+    public Dictionary<string, int> linesQuantity = new Dictionary<string, int>()
+    {
+        { "Teacher_Shout_", 9},
+        { "Teacher_Bull_Talking_", 2},
+        { "Teacher_Bull_Cheating_", 2},
+        { "Teacher_Bull_Nothing_", 2},
+        { "Teacher_Bull_Walking_", 2},
+        { "Teacher_Joke_Talking_", 2},
+        { "Teacher_Joke_Cheating_", 2},
+        { "Teacher_Joke_Nothing_", 2},
+        { "Teacher_Joke_Walking_", 2},
+    };
 
-    private string resourceFile = "Script";
+private string resourceFile = "Script";
     private string resourceFileDuration = "AudioDuration";
     [HideInInspector]
     public string voicePath;

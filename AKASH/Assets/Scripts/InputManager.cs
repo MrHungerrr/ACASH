@@ -12,8 +12,6 @@ public class InputManager : MonoBehaviour
     [HideInInspector]
     public bool cutScene;
     [HideInInspector]
-    public bool death;
-    [HideInInspector]
     public bool disPlayer;
     private PlayerScript pScript;
     private CameraController cControl;
@@ -25,7 +23,6 @@ public class InputManager : MonoBehaviour
     {
         game = true;
         cutScene = false;
-        death = false;
         disPlayer = false;
         pScript = GameObject.FindObjectOfType<PlayerScript>();
         cControl = GameObject.FindObjectOfType<CameraController>();
@@ -60,7 +57,7 @@ public class InputManager : MonoBehaviour
         if (!cutScene)
         {
             //Посмотреть ближе
-            if (Input.GetMouseButton(1))
+            if (Input.GetKey(KeyCode.Q))
             {
                 cControl.zoom = true;
                 cControl.zooming = true;
@@ -86,18 +83,25 @@ public class InputManager : MonoBehaviour
                 pScript.Shout();
             }
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                pScript.Bull(true);
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                pScript.Bull(false);
+            }
+
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-            }
         }
 
         //Меню
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (true)
+            if (false)
             {
                 //Записка
             }
@@ -114,15 +118,6 @@ public class InputManager : MonoBehaviour
 
     private void MenuInput()
     {
-        if (death)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Application.LoadLevel(0);
-            }
-        }
-        else
-        {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Time.timeScale = 1;
@@ -135,6 +130,5 @@ public class InputManager : MonoBehaviour
                 Time.timeScale = 1;
                 game = true;
             }
-        }
     }
 }

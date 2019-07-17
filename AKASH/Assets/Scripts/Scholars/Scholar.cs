@@ -35,6 +35,7 @@ public class Scholar : MonoBehaviour
         { "talking", false },
         { "calculator", false }
     };
+    public string view = "Nothing_";
 
     public void Continue()
     {
