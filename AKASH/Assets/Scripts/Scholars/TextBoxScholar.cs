@@ -26,10 +26,13 @@ public class TextBoxScholar : MonoBehaviour
     {
         if(filled && !question)
         {
-            timeClear += Time.deltaTime;
             if(timeClear>=timeClear_N)
             {
                 Clear();
+            }
+            else
+            {
+                timeClear += Time.deltaTime;
             }
         }
 
@@ -48,8 +51,6 @@ public class TextBoxScholar : MonoBehaviour
 
     public void Say(string key)
     {
-        if(act)
-            StopCoroutine("PlaySub");
         Clear();
         StartCoroutine(PlaySub(key));
         timeClear_N = 1f;
@@ -58,8 +59,6 @@ public class TextBoxScholar : MonoBehaviour
 
     public void Say(string key, float t)
     {
-        if (act)
-            StopCoroutine("PlaySub");
         Clear();
         StartCoroutine(PlaySub(key));
         question = false;
@@ -68,8 +67,6 @@ public class TextBoxScholar : MonoBehaviour
 
     public void Question(string key)
     {
-        if (act)
-            StopCoroutine("PlaySub");
         Clear();
         StartCoroutine(PlaySub(key));
         question = true;
@@ -77,12 +74,16 @@ public class TextBoxScholar : MonoBehaviour
 
     public void Clear()
     {
+        if (act)
+            StopAllCoroutines();
         textBox.text = "";
         act = false;
         filled = false;
         saying = false;
         timeClear = 0;
     }
+
+
 
     private IEnumerator PlaySub(string key)
     {

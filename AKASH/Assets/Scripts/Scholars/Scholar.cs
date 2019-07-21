@@ -14,7 +14,9 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ActionsScholar Action;
     [HideInInspector]
-    public string keyWord = "Scholar_";
+    public Emotions Emotions;
+    [HideInInspector]
+    public string keyWord;
     private double rnd;
     [HideInInspector]
     public byte behaviourType;
@@ -27,15 +29,20 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public float test_bufTime;
     [HideInInspector]
+    public string view = "Nothing_";
+    [HideInInspector]
     public bool writing;
     [HideInInspector]
     public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
     {
-        { "pen", false },
-        { "talking", false },
-        { "calculator", false }
+        { "Pen_", false },
+        { "Calculator_", false },
+        { "Talking_", false },
+        { "Cheating_", false },
+        { "Walking_", false },
+        { "Nothing_", false }
     };
-    public string view = "Nothing_";
+
 
     public void Continue()
     {
@@ -73,7 +80,7 @@ public class Scholar : MonoBehaviour
 
     public void WritingTest(float value)
     {
-        Debug.Log("Пишу тест");
+        //Debug.Log("Пишу тест");
         if (test_bufTime > 0)
         {
             test_buf += value * Time.deltaTime;
@@ -86,4 +93,5 @@ public class Scholar : MonoBehaviour
             test_buf = 0;
         }
     }
+
 }

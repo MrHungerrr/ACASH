@@ -6,6 +6,7 @@ public class SubtitleManager : MonoBehaviour
 {
     private ScriptManager scriptMan;
     private SubtitlePlay subPlay;
+    private string lastKey;
     [HideInInspector]
     public bool act;
 
@@ -17,23 +18,39 @@ public class SubtitleManager : MonoBehaviour
     }
 
 
-    public void PlaySubtitle(string name)
+    public void PlaySubtitle(string key)
     {
-        StartCoroutine(PlaySub(name));
+        StartCoroutine(PlaySub(key));
     }
 
-    public void PlaySubtitleVillian(string name)
+    public void PlaySubtitleVillian(string key)
     {
-        StartCoroutine(PlaySubVillian(name));
+        StartCoroutine(PlaySubVillian(key));
     }
 
-    private IEnumerator PlaySub(string name)
+    public void StopSubtitile()
+    {
+        if (lastKey != string.Empty)
+        {
+            StopAllCoroutines();
+            Debug.Log(lastKey);
+        }
+        Debug.Log("Da");
+        subPlay.Clear();
+        //Остановка аудиозаписи
+    }
+
+
+
+    private IEnumerator PlaySub(string key)
     {
         act = true;
+        lastKey = key;
         int i = 0;
-        var script = scriptMan.GetText(name);
-        var duration = scriptMan.GetFloat(name);
+        var script = scriptMan.GetText(key);
+        var duration = scriptMan.GetFloat(key);
         //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
+
 
         Debug.Log("PlaySub");
         foreach ( var line in script)
@@ -47,13 +64,13 @@ public class SubtitleManager : MonoBehaviour
         act = false;
     }
 
-    private IEnumerator PlaySubVillian(string name)
+    private IEnumerator PlaySubVillian(string key)
     {
         act = true;
         int i = 0;
-        var script = scriptMan.GetText(name);
-        var duration = scriptMan.GetFloat(name);
-        FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
+        var script = scriptMan.GetText(key);
+        var duration = scriptMan.GetFloat(key);
+        FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + key);
 
         foreach (var line in script)
         {

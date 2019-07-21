@@ -10,15 +10,24 @@ public class ScriptManager : MonoBehaviour
     private Dictionary<string, string[]> linesDuration = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
     public Dictionary<string, int> linesQuantity = new Dictionary<string, int>()
     {
-        { "Teacher_Shout_", 9},
-        { "Teacher_Bull_Talking_", 2},
-        { "Teacher_Bull_Cheating_", 2},
-        { "Teacher_Bull_Nothing_", 2},
-        { "Teacher_Bull_Walking_", 2},
-        { "Teacher_Joke_Talking_", 2},
-        { "Teacher_Joke_Cheating_", 2},
-        { "Teacher_Joke_Nothing_", 2},
-        { "Teacher_Joke_Walking_", 2},
+        { "Teacher_Shout_", 10},
+        { "Teacher_Bull_Talking_", 3},
+        { "Teacher_Bull_Cheating_", 3},
+        { "Teacher_Bull_Nothing_", 3},
+        { "Teacher_Bull_Walking_", 3},
+        { "Teacher_Joke_Talking_", 3},
+        { "Teacher_Joke_Cheating_", 3},
+        { "Teacher_Joke_Nothing_", 3},
+        { "Teacher_Joke_Walking_", 3},
+        { "Teacher_Bull_Talking_Sec_", 3},
+        { "Teacher_Bull_Cheating_Sec_", 3},
+        { "Teacher_Bull_Nothing_Sec_", 3},
+        { "Teacher_Bull_Walking_Sec_", 3},
+        { "Teacher_Joke_Talking_Sec_", 3},
+        { "Teacher_Joke_Cheating_Sec_", 3},
+        { "Teacher_Joke_Nothing_Sec_", 3},
+        { "Teacher_Joke_Walking_Sec_", 3},
+        { "Teacher_Thinking_", 5},
     };
 
 private string resourceFile = "Script";
@@ -37,7 +46,7 @@ private string resourceFile = "Script";
         SwitchLanguageText(textLanguage);
         SwitchLanguageVoice(voiceLanguage);
     }
-
+    
     public string[] GetText(string textKey)
     {
         string[] tmp = new string[] { };

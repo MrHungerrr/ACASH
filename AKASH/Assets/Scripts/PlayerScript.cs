@@ -13,11 +13,12 @@ public class PlayerScript : MonoBehaviour
     private LayerMask actLayerMask;
     private InputManager inManager;
     private CameraController camControl;
-    private bool disPlayer; 
+    private bool disPlayer;
 
     //Действия
     [HideInInspector]
     public bool doing;
+    private bool think;
     [HideInInspector]
     public bool act;
     private bool actReady;
@@ -27,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     private string actText;
     [HideInInspector]
     public GameObject playerCam;
-    private SubtitleManager SubMan;
+    public SubtitleManager SubMan;
     private ScriptManager ScriptMan;
     private string keyWord = "Teacher_";
 
@@ -42,7 +43,7 @@ public class PlayerScript : MonoBehaviour
         charController = GetComponent<CharacterController>();
         camControl = playerCam.GetComponent<CameraController>();
         SubMan = GameObject.FindObjectOfType<SubtitleManager>();
-        ScriptMan= GameObject.FindObjectOfType<ScriptManager>();
+        ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
     }
 
     private void Start()
@@ -76,7 +77,7 @@ public class PlayerScript : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, actRange, actLayerMask) && !act)
+        if (Physics.Raycast(ray, out hit, actRange, actLayerMask))
         {
             if (actObject != hit.collider.gameObject)
             {
@@ -129,21 +130,23 @@ public class PlayerScript : MonoBehaviour
 
     public void Shout()
     {
-        if(!act)
+        if (!act)
             StartCoroutine(Shouting());
     }
 
     public IEnumerator Shouting()
     {
+        StopThinking();
         act = true;
         string key = "Shout_";
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
         SubMan.PlaySubtitle(keyWord + key);
         yield return new WaitForSeconds(1f);
-
+        Debug.Log(act);
         while (SubMan.act)
         {
+            Debug.Log(act);
             yield return new WaitForSeconds(1f);
         }
 
@@ -153,11 +156,13 @@ public class PlayerScript : MonoBehaviour
     public void Bull(bool strong)
     {
         if (!act && actReady)
-            StartCoroutine(Bulling(strong));
+            if(actTag == "Asshole" || actTag == "Dumb")
+                StartCoroutine(Bulling(strong));
     }
 
     public IEnumerator Bulling(bool strong)
     {
+        StopThinking();
         act = true;
         string key;
 
@@ -174,6 +179,11 @@ public class PlayerScript : MonoBehaviour
                     //Debug.Log("Орем на мудака");
                     var scholar = actObject.GetComponent<Asshole>();
                     key += scholar.view;
+                    if (scholar.remarks[scholar.view])
+                        key += "Sec_";
+                    else
+                        scholar.remarks[scholar.view] = true;
+
                     int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
                     key += nomber;
 
@@ -182,9 +192,20 @@ public class PlayerScript : MonoBehaviour
 
                     while (SubMan.act)
                     {
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(0.1f);
                     }
                     scholar.Bulling(key, strong);
+                    act = false;
+
+                    while (scholar.TextBox.IsTalking() && !act)
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                    }
+
+                    //Добавить вероятность + взгляд
+                    if (!act)
+                        SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
+
                     break;
                 }
             case "Dumb":
@@ -192,6 +213,11 @@ public class PlayerScript : MonoBehaviour
                     //Debug.Log("Орем на тупицу");
                     var scholar = actObject.GetComponent<Dumb>();
                     key += scholar.view;
+                    if (scholar.remarks[scholar.view])
+                        key += "Sec_";
+                    else
+                        scholar.remarks[scholar.view] = true;
+
                     int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
                     key += nomber;
 
@@ -200,14 +226,36 @@ public class PlayerScript : MonoBehaviour
 
                     while (SubMan.act)
                     {
-                        yield return new WaitForSeconds(1f);
+                        yield return new WaitForSeconds(0.1f);
                     }
                     scholar.Bulling(key, strong);
+                    act = false;
+
+                    while (scholar.TextBox.IsTalking() && !act)
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                    }
+
+                    //Добавить вероятность + взгляд
+                    if (!act)
+                        SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
+
                     break;
                 }
         }
 
-        act = false;
+
+
+    }
+
+
+
+
+
+    private void StopThinking()
+    {
+        if(SubMan.act)
+            SubMan.StopSubtitile();
     }
 
     public void DisableControl(bool status)
