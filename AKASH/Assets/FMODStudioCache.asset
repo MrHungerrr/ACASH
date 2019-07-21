@@ -78,7 +78,7 @@ MonoBehaviour:
   Path: event:/ru/Shout_2
   guid: 7148fc7052e90848a463d6d4221c2e04
   Banks:
-  - {fileID: -9161966314129527612}
+  - {fileID: 9057325415684608657}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -122,7 +122,7 @@ MonoBehaviour:
   - {fileID: -9161966314129527612}
   EditorEvents: []
   MasterBanks:
-  - {fileID: -9161966314129527612}
+  - {fileID: 9057325415684608657}
   StringsBanks:
   - {fileID: -436253487540605581}
   stringsBankWriteTime: 636991331838738766
@@ -142,7 +142,7 @@ MonoBehaviour:
   Path: event:/ru/Kirgiz_1
   guid: 5696a5ca7bc2404290aba5b2ec0aa2a9
   Banks:
-  - {fileID: -9161966314129527612}
+  - {fileID: 9057325415684608657}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -187,7 +187,7 @@ MonoBehaviour:
   Path: event:/ru/Remark_1
   guid: cc244308bca4454381f9b39a648d761b
   Banks:
-  - {fileID: -9161966314129527612}
+  - {fileID: 9057325415684608657}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -217,3 +217,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 242337
+--- !u!114 &9057325415684608657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: F:\Bogdan\NBH\AKASH\AKASH\FMOD\Build\Desktop\Master Bank.bank
+  lastModified: 636989090073718558
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 9022016
+  Exists: 1
