@@ -72,7 +72,7 @@ public class InputManager : MonoBehaviour
             {
                 pScript.doing = true;
             }
-            else
+            else if(pScript.doing)
             {
                 pScript.doing = false;
                 pScript.act = false;

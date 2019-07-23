@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.bank
   m_EditorClassIdentifier: 
   Path: D:\Creativity\GitHub\AKASH_git\AKASH\FMOD\Build\Desktop\Master Bank.bank
-  lastModified: 636974857787893242
+  lastModified: 636991331838688915
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 9022016
+    Value: 12474
   Exists: 1
 --- !u!114 &-6658567983528354259
 MonoBehaviour:
@@ -99,11 +99,11 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
   Path: FMOD\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636989090073728640
+  lastModified: 636991331838738766
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 810
+    Value: 672
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -119,16 +119,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -436253487540605581}
-  - {fileID: 9057325415684608657}
-  EditorEvents:
-  - {fileID: -1893233265749586399}
-  - {fileID: 7807602623229647281}
-  - {fileID: 824249255680841915}
+  - {fileID: -9161966314129527612}
+  EditorEvents: []
   MasterBanks:
   - {fileID: 9057325415684608657}
   StringsBanks:
   - {fileID: -436253487540605581}
-  stringsBankWriteTime: 636989090073728640
+  stringsBankWriteTime: 636991331838738766
   cacheVersion: 3
 --- !u!114 &824249255680841915
 MonoBehaviour:

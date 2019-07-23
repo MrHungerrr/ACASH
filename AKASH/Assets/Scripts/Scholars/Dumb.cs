@@ -11,9 +11,10 @@ public class Dumb : Scholar
     void Awake()
     {
         TextBox = transform.Find("Text Box").GetComponent<TextBoxScholar>();
+        Emotions = transform.Find("Face").GetComponent<Emotions>();
         Action = GetComponent<ActionsScholar>();
         this.tag = "Dumb";
-        keyWord += this.tag + "_";
+        keyWord = this.tag + "_";
         IQ_start = 0;
         StartWrite();
     }
@@ -33,11 +34,13 @@ public class Dumb : Scholar
         {
             Debug.Log("Учитель наезжает");
             Stress(10);
+            Emotions.ChageEmotion("sad", 1f);
             StartCoroutine(Say(keyWord + bullType));
         }
         else
         {
             Debug.Log("Учитель прикалывается");
+            Emotions.ChageEmotion("happy", 1f);
             StartCoroutine(Say(keyWord + bullType));
         }
     }
