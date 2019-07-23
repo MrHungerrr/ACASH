@@ -17,67 +17,204 @@ public class CheatingScript : MonoBehaviour
     public bool Terpila;
     public bool Daun;
 
-    static int SOMEBODYisCheating;
-
     public bool isUnderTeacherSupervision;
-
-    
-
-    void RS()
-    {
-        stress = Random.Range(0f, 100f);
-    }
 
     void Start()
     {
         stress = Random.Range(0f, 15f);
-        StartCoroutine(CheatingCoroutine());
+        if (Mudak)
+        { 
+            StartCoroutine(CheatingCoroutineForMudak());
+        }
+        else if (Terpila)
+        {
+            StartCoroutine(CheatingCoroutineForTerpila());
+        }
+        else if(Daun)
+        {
+            StartCoroutine(CheatingCoroutineForDaun());
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        isUnderTeacherSupervision = !isUnderTeacherSupervision;
-        Debug.Log(isUnderTeacherSupervision);
-    }
 
-    IEnumerator CheatingCoroutine()
+    //Мудаккод
+
+    IEnumerator CheatingCoroutineForMudak()
     {
         float deltatime;
         WaitForSeconds wait;
         while (true)
         {
-            deltatime = Random.Range(5f, 20f);
+            deltatime = Random.Range(3f, 10f);
             wait = new WaitForSeconds(deltatime);
-            Debug.Log(deltatime);
+            //  Debug.Log(deltatime + " Mudak");
             yield return wait;
-            Cheating(stress);
+            if (CheatingMudak(stress))
+            {
+                CheatHelper.cheatingCount++;
+                wait = new WaitForSeconds(10f);
+                yield return wait;
+                CheatHelper.cheatingCount--;
+            }
         }
     }
 
-    public bool Cheating(float stress)
+    public bool CheatingMudak(float stress)
     {
-        bool cheat = false;
-
-        if (SOMEBODYisCheating < 1)
+        if (CheatHelper.allowcheating)
         {
             if (isUnderTeacherSupervision)
             {
                 if (Random.Range(1,100) <= 10)
                 {
-
+                    return ChanceMudak(stress);
+                }
+                else
+                {
+                    return false;
                 }
             }
             else
             {
-
+                return ChanceMudak(stress);
             }
         }
-    /*    else
+        return false;
+    }
+
+    bool ChanceMudak(float stress)
+    {
+        double y;
+        float x = stress;
+        y = 0.0001793981 * Mathf.Pow(x, 3) - 0.0382936508f * Mathf.Pow(x, 2) + 2.9857804233 * x + 4.8015873016;
+        if (Random.Range(1f, 100f) <= y)
         {
-            cheat = false;
+            return true; 
         }
-    */
-        return cheat;
+        else
+        {
+            return false; 
+        }
+    }
+
+    //Терпилакод
+
+    IEnumerator CheatingCoroutineForTerpila()
+    {
+        float deltatime;
+        WaitForSeconds wait;
+        while (true)
+        {
+            deltatime = Random.Range(10f, 20f);
+            wait = new WaitForSeconds(deltatime);
+            // Debug.Log(deltatime + "Terpila");
+            yield return wait;
+            if (CheatingTerpila(stress))        
+            {
+                CheatHelper.cheatingCount++;
+                wait = new WaitForSeconds(10f);
+                yield return wait;
+                CheatHelper.cheatingCount--;
+            }
+        }
+    }
+
+    public bool CheatingTerpila(float stress)
+    {
+        if (CheatHelper.allowcheating)
+        {
+            if (isUnderTeacherSupervision)
+            {
+                if (Random.Range(1, 100) <= 10)
+                {
+                    return ChanceTerpila(stress);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return ChanceTerpila(stress);
+            }
+        }
+
+        return false;
+    }
+
+    bool ChanceTerpila(float stress)
+    {
+        double y;
+        float x = stress;
+        y = -0.0003334574 * Mathf.Pow(x, 3) + 0.0719518695 * Mathf.Pow(x, 2) - 5.0795904240 * x + 122.7986723721;
+        if (Random.Range(1f, 100f) <= y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //Даункод
+
+    IEnumerator CheatingCoroutineForDaun()
+    {
+        float deltatime;
+        WaitForSeconds wait;
+        while (true)
+        {
+            deltatime = Random.Range(0f, 1f);
+            wait = new WaitForSeconds(deltatime);
+            //  Debug.Log(deltatime + "Daun");
+            yield return wait;
+            if (CheatingDaun())
+            {
+                CheatHelper.cheatingCount++;
+                wait = new WaitForSeconds(10f);
+                yield return wait;
+                CheatHelper.cheatingCount--;
+            }
+        }
+    }
+
+    public bool CheatingDaun()
+    {
+        if (CheatHelper.allowcheating)
+        {
+            if (isUnderTeacherSupervision)
+            {
+                if (Random.Range(1, 100) <= 10)
+                {
+
+                    return ChanceDaun();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return ChanceDaun();
+            }
+        }
+        return false;
+    }
+
+    bool ChanceDaun()
+    {
+        float y;
+        y = 50 + Random.Range(-20f, 20f);
+        if (Random.Range(1f, 100f) <= y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

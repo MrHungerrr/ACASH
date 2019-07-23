@@ -6,18 +6,35 @@ using UnityEditor;
 [CustomEditor(typeof(CheatingScript))]
 public class CheatEditor : Editor
 {
+    CheatingScript _CheatingScript;
 
-
+    public void OnEnable()
+    {
+        _CheatingScript = target as CheatingScript;
+    }
 
     public override void OnInspectorGUI()
     {
-        var _CheatingScript = target as CheatingScript;
+        GUIStyle b = new GUIStyle();
+        b.fontStyle = FontStyle.Bold;
 
-        _CheatingScript.isUnderTeacherSupervision = EditorGUILayout.Toggle("PALIVO", _CheatingScript.isUnderTeacherSupervision);
+        EditorGUILayout.LabelField("Факторы: ", b);
+        //_CheatingScript.isUnderTeacherSupervision = EditorGUILayout.Toggle("PALIVO", _CheatingScript.isUnderTeacherSupervision);
+
+        if (!_CheatingScript.Daun)
         _CheatingScript.stress = EditorGUILayout.Slider("Stress", _CheatingScript.stress, 0, 100);
+        _CheatingScript.isUnderTeacherSupervision = EditorGUILayout.Toggle("VsevidisheeOKO", _CheatingScript.isUnderTeacherSupervision);
 
         
-        if (_CheatingScript.Mudak)
+        EditorGUILayout.LabelField("Класс Ученика: ", b);
+
+        if (!_CheatingScript.Mudak && !_CheatingScript.Terpila && !_CheatingScript.Daun)
+        {
+            _CheatingScript.Mudak = EditorGUILayout.Toggle("Mudak", _CheatingScript.Mudak);
+            _CheatingScript.Terpila = EditorGUILayout.Toggle("Terpila", _CheatingScript.Terpila);
+            _CheatingScript.Daun = EditorGUILayout.Toggle("Daun", _CheatingScript.Daun);
+        }
+        else if(_CheatingScript.Mudak)
         {
             _CheatingScript.Mudak = EditorGUILayout.Toggle("Mudak", _CheatingScript.Mudak);
         }
@@ -29,14 +46,8 @@ public class CheatEditor : Editor
         {
             _CheatingScript.Daun = EditorGUILayout.Toggle("Daun", _CheatingScript.Daun);
         }
-        else if (!_CheatingScript.Mudak || !_CheatingScript.Terpila || !_CheatingScript.Daun)
-        {
-            _CheatingScript.Mudak = EditorGUILayout.Toggle("Mudak", _CheatingScript.Mudak);
-            _CheatingScript.Terpila = EditorGUILayout.Toggle("Terpila", _CheatingScript.Terpila);
-            _CheatingScript.Daun = EditorGUILayout.Toggle("Daun", _CheatingScript.Daun);
-        }
 
-
+       // DrawDefaultInspector();
         serializedObject.ApplyModifiedProperties();
     }
 }
