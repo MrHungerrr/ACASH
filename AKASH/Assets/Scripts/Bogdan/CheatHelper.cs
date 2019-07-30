@@ -8,7 +8,8 @@ public class CheatHelper : MonoBehaviour
     CheatingScript[] student = new CheatingScript[32];
     
     public static int cheatingCount = 0;
-    public int cheatingCountonLevel;
+    [Range(0, 32)]
+    public int cheatingCountonLevel; 
     public static bool allowcheating = true;
 
     void Start()
