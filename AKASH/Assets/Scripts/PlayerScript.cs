@@ -31,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     public SubtitleManager SubMan;
     private ScriptManager ScriptMan;
     private string keyWord = "Teacher_";
+    private string key;
 
 
 
@@ -138,7 +139,7 @@ public class PlayerScript : MonoBehaviour
     {
         StopThinking();
         act = true;
-        string key = "Shout_";
+        key = "Shout_";
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
         SubMan.PlaySubtitle(keyWord + key);
@@ -147,7 +148,7 @@ public class PlayerScript : MonoBehaviour
         while (SubMan.act)
         {
             Debug.Log(act);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         act = false;
@@ -156,99 +157,103 @@ public class PlayerScript : MonoBehaviour
     public void Bull(bool strong)
     {
         if (!act && actReady)
-            if(actTag == "Asshole" || actTag == "Dumb")
-                StartCoroutine(Bulling(strong));
-    }
-
-    public IEnumerator Bulling(bool strong)
-    {
-        StopThinking();
-        act = true;
-        string key;
-
-        if (strong)
-            key = "Bull_";
-        else
-            key = "Joke_";
-
-
-        switch (actTag)
         {
-            case "Asshole":
-                {
-                    //Debug.Log("Орем на мудака");
-                    var scholar = actObject.GetComponent<Asshole>();
-                    key += scholar.view;
-                    if (scholar.remarks[scholar.view])
-                        key += "Sec_";
-                    else
-                        scholar.remarks[scholar.view] = true;
+            StopThinking();
+            act = true;
 
-                    int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-                    key += nomber;
+            if (strong)
+                key = "Bull_";
+            else
+                key = "Joke_";
 
-                    SubMan.PlaySubtitle(keyWord + key);
-                    yield return new WaitForSeconds(1f);
-
-                    while (SubMan.act)
+            //Наезды абсолютно одинаковые, switch тут для того, чтобы обращаться к разным скриптам.
+            switch (actTag)
+            {
+                case "Asshole":
                     {
-                        yield return new WaitForSeconds(0.1f);
+                        var scholar = actObject.GetComponent<Asshole>();
+                        StartCoroutine(Bulling(scholar, strong));
+                        break;
                     }
-                    scholar.Bulling(key, strong);
-                    act = false;
-
-                    while (scholar.TextBox.IsTalking() && !act)
+                case "Dumb":
                     {
-                        yield return new WaitForSeconds(0.1f);
+                        var scholar = actObject.GetComponent<Dumb>();
+                        StartCoroutine(Bulling(scholar, strong));
+                        break;
                     }
-
-                    //Добавить вероятность + взгляд
-                    if (!act)
-                        SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
-
-                    break;
-                }
-            case "Dumb":
-                {
-                    //Debug.Log("Орем на тупицу");
-                    var scholar = actObject.GetComponent<Dumb>();
-                    key += scholar.view;
-                    if (scholar.remarks[scholar.view])
-                        key += "Sec_";
-                    else
-                        scholar.remarks[scholar.view] = true;
-
-                    int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-                    key += nomber;
-
-                    SubMan.PlaySubtitle(keyWord + key);
-                    yield return new WaitForSeconds(1f);
-
-                    while (SubMan.act)
-                    {
-                        yield return new WaitForSeconds(0.1f);
-                    }
-                    scholar.Bulling(key, strong);
-                    act = false;
-
-                    while (scholar.TextBox.IsTalking() && !act)
-                    {
-                        yield return new WaitForSeconds(0.1f);
-                    }
-
-                    //Добавить вероятность + взгляд
-                    if (!act)
-                        SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
-
-                    break;
-                }
+            }
         }
 
-
-
     }
 
 
+    //Наезд на мудака
+    public IEnumerator Bulling(Asshole scholar, bool strong)
+    {
+        key += scholar.view;
+
+        if (scholar.remarks[scholar.view])
+            key += "Sec_";
+        else
+            scholar.remarks[scholar.view] = true;
+
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+
+        SubMan.PlaySubtitle(keyWord + key);
+        yield return new WaitForSeconds(1f);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        scholar.Bulling(key, strong);
+        act = false;
+
+        while (scholar.TextBox.IsTalking() && !act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        //Добавить вероятность + взгляд
+        if (!act && scholar.Probability(0.1))
+            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
+    }
+
+
+    //Наезд на тупицу
+    public IEnumerator Bulling(Dumb scholar, bool strong)
+    {
+        key += scholar.view;
+
+        if (scholar.remarks[scholar.view])
+            key += "Sec_";
+        else
+            scholar.remarks[scholar.view] = true;
+
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+
+        SubMan.PlaySubtitle(keyWord + key);
+        yield return new WaitForSeconds(1f);
+        scholar.HearBulling(strong);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        scholar.Bulling(key, strong);
+        act = false;
+
+        while (scholar.TextBox.IsTalking() && !act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        //Добавить вероятность + взгляд
+        if (!act && scholar.Probability(0.1))
+            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
+    }
 
 
 

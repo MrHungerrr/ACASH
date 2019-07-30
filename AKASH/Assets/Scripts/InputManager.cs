@@ -83,12 +83,12 @@ public class InputManager : MonoBehaviour
                 pScript.Shout();
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(1))
             {
                 pScript.Bull(true);
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 pScript.Bull(false);
             }

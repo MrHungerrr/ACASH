@@ -16,6 +16,10 @@ public class Dumb : Scholar
         this.tag = "Dumb";
         keyWord = this.tag + "_";
         IQ_start = 0;
+    }
+
+    private void Start()
+    {
         StartWrite();
     }
 
@@ -27,41 +31,94 @@ public class Dumb : Scholar
             WritingTest(UnityEngine.Random.value * 100);
     }
 
+
+    public void HearBulling(bool strong)
+    {
+        if (strong)
+        {
+            Emotions.ChangeEmotion("suprised");
+        }
+        else
+        {
+            Emotions.ChangeEmotion("suprised");
+        }
+    }
+
     public void Bulling(string bullType, bool strong)
     {
-
-        if(strong)
+        if (strong)
         {
             Debug.Log("Учитель наезжает");
             Stress(10);
-            Emotions.ChageEmotion("sad", 1f);
-            StartCoroutine(Say(keyWord + bullType));
+            if (IsTeacherBullingRight())
+            {
+                StartCoroutine(Say(keyWord + bullType + "_Yes", 0));
+            }
+            else
+            {
+                StartCoroutine(Say(keyWord + bullType + "_No", 1));
+            }
+            Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
             Debug.Log("Учитель прикалывается");
-            Emotions.ChageEmotion("happy", 1f);
-            StartCoroutine(Say(keyWord + bullType));
+            if (IsTeacherBullingRight())
+            {
+                StartCoroutine(Say(keyWord + bullType + "_Yes", 0));
+            }
+            else
+            {
+                StartCoroutine(Say(keyWord + bullType + "_No", 1));
+            }
+            Emotions.ChangeEmotion("happy", "smile", 4f);
         }
     }
 
+    private bool IsTeacherBullingRight()
+    {
+        switch(view)
+        {
+            case "Cheating_":
+                {
+                    if (cheating)
+                        return true;
+                    else
+                        return false;
+                }
+            case "Talking_":
+                {
+                    if (talking)
+                        return true;
+                    else
+                        return false;
+                }
+            case "Walking_":
+                {
+                    if (walkingAnswer)
+                        return true;
+                    else
+                        return false;
+                }
+        }
+        return false;
+    }
 
-
-    IEnumerator Say(string key)
+    IEnumerator Say(string key, double probability)
     {
         Stop();
         TextBox.Say(key);
-        Debug.Log("Я начал говорить с учителем");
+        //Debug.Log("Я начал говорить");
         yield return new WaitForSeconds(1f);
 
         while (TextBox.IsTalking())
         {
-            Debug.Log("Я говорю с учителем");
+            //Debug.Log("Я говорю");
             yield return new WaitForSeconds(1f);
         }
 
-        Debug.Log("Я закончил говорить с учителем");
-        if (Probability(0.5))
+        //Debug.Log("Я закончил говорить");
+        if (Probability(probability))
             Continue();
         else
             StartWrite();

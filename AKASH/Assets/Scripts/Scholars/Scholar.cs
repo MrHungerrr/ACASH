@@ -10,6 +10,12 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public bool cheating;
     [HideInInspector]
+    public bool walking;
+    [HideInInspector]
+    public bool talking;
+    [HideInInspector]
+    public bool walkingAnswer;
+    [HideInInspector]
     public TextBoxScholar TextBox;
     [HideInInspector]
     public ActionsScholar Action;
@@ -21,6 +27,12 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public byte behaviourType;
     [HideInInspector]
+    public byte moodType;
+    [HideInInspector]
+    public int threshold_1 = 33;
+    [HideInInspector]
+    public int threshold_2 = 66;
+    [HideInInspector]
     public int IQ_start;
     [HideInInspector]
     public int test;
@@ -29,7 +41,7 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public float test_bufTime;
     [HideInInspector]
-    public string view = "Nothing_";
+    public string view = "Cheating_";
     [HideInInspector]
     public bool writing;
     [HideInInspector]
@@ -42,6 +54,9 @@ public class Scholar : MonoBehaviour
         { "Walking_", false },
         { "Nothing_", false }
     };
+
+
+
 
 
     public void Continue()
@@ -66,6 +81,18 @@ public class Scholar : MonoBehaviour
             stress = 100;
         if (stress < 0)
             stress = 0;
+
+        ChangeMoodType();
+    }
+
+    private void ChangeMoodType()
+    {
+        if (stress < threshold_1)
+            moodType = 0;
+        else if (stress < threshold_2)
+            moodType = 1;
+        else
+            moodType = 2;
     }
 
     public bool Probability(double a)
