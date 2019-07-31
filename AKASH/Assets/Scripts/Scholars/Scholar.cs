@@ -22,6 +22,8 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public Emotions Emotions;
     [HideInInspector]
+    public GameManager GameMan;
+    [HideInInspector]
     public string keyWord;
     private double rnd;
     [HideInInspector]
@@ -74,6 +76,7 @@ public class Scholar : MonoBehaviour
         writing = true;
     }
 
+
     public void Stress(int value)
     {
         stress += value;
@@ -85,6 +88,7 @@ public class Scholar : MonoBehaviour
         ChangeMoodType();
     }
 
+
     private void ChangeMoodType()
     {
         if (stress < threshold_1)
@@ -95,6 +99,7 @@ public class Scholar : MonoBehaviour
             moodType = 2;
     }
 
+
     public bool Probability(double a)
     {
         rnd = UnityEngine.Random.value;
@@ -104,6 +109,7 @@ public class Scholar : MonoBehaviour
         else
             return false;
     }
+
 
     public void WritingTest(float value)
     {
@@ -121,4 +127,63 @@ public class Scholar : MonoBehaviour
         }
     }
 
+
+    public IEnumerator Say(string key, double probability)
+    {
+        Stop();
+        TextBox.Say(key);
+        //Debug.Log("Я начал говорить");
+        yield return new WaitForSeconds(1f);
+
+        while (TextBox.IsTalking())
+        {
+            //Debug.Log("Я говорю");
+            yield return new WaitForSeconds(1f);
+        }
+
+        //Debug.Log("Я закончил говорить");
+        if (Probability(probability))
+            Continue();
+        else
+            StartWrite();
+    }
+
+
+    public bool IsTeacherBullingRight()
+    {
+        switch (view)
+        {
+            case "Cheating_":
+                {
+                    if (cheating)
+                        return true;
+                    else
+                        return false;
+                }
+            case "Talking_":
+                {
+                    if (talking)
+                        return true;
+                    else
+                        return false;
+                }
+            case "Walking_":
+                {
+                    if (walkingAnswer)
+                        return true;
+                    else
+                        return false;
+                }
+        }
+        return false;
+    }
+
+
+    public bool IsTeacherBullingRight(string obj)
+    {
+        if (GameMan.banned[obj])
+            return true;
+        else
+            return false;
+    }
 }

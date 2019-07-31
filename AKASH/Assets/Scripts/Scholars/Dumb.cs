@@ -12,6 +12,7 @@ public class Dumb : Scholar
     {
         TextBox = transform.Find("Text Box").GetComponent<TextBoxScholar>();
         Emotions = transform.Find("Face").GetComponent<Emotions>();
+        GameMan = GameObject.FindObjectOfType<GameManager>();
         Action = GetComponent<ActionsScholar>();
         this.tag = "Dumb";
         keyWord = this.tag + "_";
@@ -44,7 +45,7 @@ public class Dumb : Scholar
         }
     }
 
-    public void Bulling(string bullType, bool strong)
+    public void Bulling(string bullKey, bool strong)
     {
         if (strong)
         {
@@ -52,11 +53,11 @@ public class Dumb : Scholar
             Stress(10);
             if (IsTeacherBullingRight())
             {
-                StartCoroutine(Say(keyWord + bullType + "_Yes", 0));
+                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
             }
             else
             {
-                StartCoroutine(Say(keyWord + bullType + "_No", 1));
+                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
             }
             Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
@@ -65,63 +66,45 @@ public class Dumb : Scholar
             Debug.Log("Учитель прикалывается");
             if (IsTeacherBullingRight())
             {
-                StartCoroutine(Say(keyWord + bullType + "_Yes", 0));
+                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
             }
             else
             {
-                StartCoroutine(Say(keyWord + bullType + "_No", 1));
+                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
             }
             Emotions.ChangeEmotion("happy", "smile", 4f);
         }
     }
 
-    private bool IsTeacherBullingRight()
+    public void Bulling(string bullKey, bool strong, string obj)
     {
-        switch(view)
+        if (strong)
         {
-            case "Cheating_":
-                {
-                    if (cheating)
-                        return true;
-                    else
-                        return false;
-                }
-            case "Talking_":
-                {
-                    if (talking)
-                        return true;
-                    else
-                        return false;
-                }
-            case "Walking_":
-                {
-                    if (walkingAnswer)
-                        return true;
-                    else
-                        return false;
-                }
+            Debug.Log("Учитель наезжает");
+            Stress(10);
+            if (IsTeacherBullingRight(obj))
+            {
+                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
+            }
+            else
+            {
+                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
+            }
+            Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
-        return false;
-    }
-
-    IEnumerator Say(string key, double probability)
-    {
-        Stop();
-        TextBox.Say(key);
-        //Debug.Log("Я начал говорить");
-        yield return new WaitForSeconds(1f);
-
-        while (TextBox.IsTalking())
-        {
-            //Debug.Log("Я говорю");
-            yield return new WaitForSeconds(1f);
-        }
-
-        //Debug.Log("Я закончил говорить");
-        if (Probability(probability))
-            Continue();
         else
-            StartWrite();
+        {
+            Debug.Log("Учитель прикалывается");
+            if (IsTeacherBullingRight(obj))
+            {
+                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
+            }
+            else
+            {
+                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
+            }
+            Emotions.ChangeEmotion("happy", "smile", 4f);
+        }
     }
 
 
