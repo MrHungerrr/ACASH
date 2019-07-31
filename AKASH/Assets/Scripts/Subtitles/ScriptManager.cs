@@ -27,6 +27,10 @@ public class ScriptManager : MonoBehaviour
         { "Teacher_Joke_Cheating_Sec_", 3},
         { "Teacher_Joke_Nothing_Sec_", 3},
         { "Teacher_Joke_Walking_Sec_", 3},
+        { "Teacher_Bull_Pen_", 3},
+        { "Teacher_Bull_Pen_Sec_", 3},
+        { "Teacher_Joke_Pen_", 3},
+        { "Teacher_Joke_Pen_Sec_", 3},
         { "Teacher_Thinking_", 5},
     };
 

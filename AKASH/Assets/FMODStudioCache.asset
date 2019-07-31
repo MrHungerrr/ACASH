@@ -37,7 +37,7 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 12474
-  Exists: 1
+  Exists: 0
 --- !u!114 &-6658567983528354259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,11 +118,30 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
   Path: FMOD\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636995326205868113
+  lastModified: 636991331838738766
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 672
+  Exists: 1
+--- !u!114 &-207484033345563805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: D:\Creativity\GitHub\AKASH_git\AKASH\FMOD\Build\Desktop\Master Bank.bank
+  lastModified: 636991331838688915
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 12474
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -138,13 +157,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -436253487540605581}
-  - {fileID: -6958562577434569259}
+  - {fileID: -207484033345563805}
   EditorEvents: []
   MasterBanks:
   - {fileID: 9057325415684608657}
+  - {fileID: -207484033345563805}
   StringsBanks:
   - {fileID: -436253487540605581}
-  stringsBankWriteTime: 636995326205868113
+  stringsBankWriteTime: 636991331838738766
   cacheVersion: 3
 --- !u!114 &824249255680841915
 MonoBehaviour:

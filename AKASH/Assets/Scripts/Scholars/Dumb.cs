@@ -33,6 +33,9 @@ public class Dumb : Scholar
     }
 
 
+
+    //Преждевременная реакция на услышынное
+
     public void HearBulling(bool strong)
     {
         if (strong)
@@ -45,36 +48,36 @@ public class Dumb : Scholar
         }
     }
 
+
+    //Наезд учителя за списывание/поведение
+
     public void Bulling(string bullKey, bool strong)
     {
         if (strong)
         {
             Debug.Log("Учитель наезжает");
             Stress(10);
-            if (IsTeacherBullingRight())
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
-            }
-            else
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
-            }
             Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
             Debug.Log("Учитель прикалывается");
-            if (IsTeacherBullingRight())
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
-            }
-            else
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
-            }
             Emotions.ChangeEmotion("happy", "smile", 4f);
         }
+
+        if (IsTeacherBullingRight())
+        {
+            StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
+        }
+        else
+        {
+            StartCoroutine(Say(keyWord + bullKey + "_No", 1));
+        }
     }
+
+
+
+    //Наезд учителя за какие-то предметы
 
     public void Bulling(string bullKey, bool strong, string obj)
     {
@@ -82,33 +85,22 @@ public class Dumb : Scholar
         {
             Debug.Log("Учитель наезжает");
             Stress(10);
-            if (IsTeacherBullingRight(obj))
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
-            }
-            else
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
-            }
             Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
             Debug.Log("Учитель прикалывается");
-            if (IsTeacherBullingRight(obj))
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
-            }
-            else
-            {
-                StartCoroutine(Say(keyWord + bullKey + "_No", 1));
-            }
             Emotions.ChangeEmotion("happy", "smile", 4f);
         }
+
+        if (IsTeacherBullingRight(obj))
+        {
+            StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
+        }
+        else
+        {
+            StartCoroutine(Say(keyWord + bullKey + "_No", 1));
+        }
     }
-
-
-
-
 
 }

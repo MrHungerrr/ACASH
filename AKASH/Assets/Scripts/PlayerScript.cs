@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     private string verticalInputName;
     [SerializeField]
     private float movementSpeed = 6;
+    private double rnd;
     private CharacterController charController;
     private LayerMask actLayerMask;
     private InputManager inManager;
@@ -109,23 +110,21 @@ public class PlayerScript : MonoBehaviour
         if (doing && actReady && !act)
         {
             Debug.Log("Мы хотим что-то сделать");
-            /*
-            if (actTag == "Note")
+
+            switch (actTag)
             {
-                Debug.Log("Читаем записку");
-                actObject.GetComponent<Note>().StartLook();
+                case "Computer":
+                    {
+                        //actObject.GetComponent<Computer>().Enable();
+                        break;
+                    }
+                case "HandCamera":
+                    {
+
+                        break;
+                    }
             }
 
-            if(actTag == "CodeLock")
-            {
-                actObject.GetComponentInParent<CodeLock>().SetValue(actObject.name);
-            }
-
-            if (actTag == "Door")
-            {
-                actObject.GetComponent<Door>().DoorInteract(transform.rotation.eulerAngles.y);
-            }
-            */
 
             act = true;
         }
@@ -181,6 +180,11 @@ public class PlayerScript : MonoBehaviour
                         thisIsObj = true;
                         break;
                     }
+                default:
+                    {
+                        thisIsObj = false;
+                        break;
+                    }
             }
 
 
@@ -191,7 +195,7 @@ public class PlayerScript : MonoBehaviour
                     {
                         var scholar = goalObject.GetComponent<Asshole>();
                         if (thisIsObj)
-                            StartCoroutine(BullingForAction(scholar, strong));
+                            StartCoroutine(BullingForObj(scholar, strong));
                         else
                             StartCoroutine(BullingForAction(scholar, strong));
                         break;
@@ -200,7 +204,7 @@ public class PlayerScript : MonoBehaviour
                     {
                         var scholar = goalObject.GetComponent<Dumb>();
                         if (thisIsObj)
-                            StartCoroutine(BullingForAction(scholar, strong));
+                            StartCoroutine(BullingForObj(scholar, strong));
                         else
                             StartCoroutine(BullingForAction(scholar, strong));
                         break;
@@ -212,61 +216,83 @@ public class PlayerScript : MonoBehaviour
     }
 
 
+
+    //--------------------------------------------------------------------------------------------------------
+    //Осторожно, разновидности одного и того же кода. Отличаются лишь скриптами, к которым обращаются.
+    //--------------------------------------------------------------------------------------------------------
+
+
+
     //Наезд на мудака
+
     public IEnumerator BullingForAction(Asshole scholar, bool strong)
     {
         key += scholar.view;
 
         if (scholar.remarks[scholar.view])
-            key += "Sec_";
+        {
+            if (Probability(0.5))
+                key += "Sec_";
+        }
         else
             scholar.remarks[scholar.view] = true;
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
-
         SubMan.PlaySubtitle(keyWord + key);
+
         yield return new WaitForSeconds(1f);
 
-        while (SubMan.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-        scholar.Bulling(key, strong);
-        act = false;
-
-        while (scholar.TextBox.IsTalking() && !act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        //Добавить вероятность + взгляд
-        if (!act && scholar.Probability(0.1))
-            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
-    }
-
-
-    //Наезд на тупицу
-    public IEnumerator BullingForAction(Dumb scholar, bool strong)
-    {
-        key += scholar.view;
-
-        if (scholar.remarks[scholar.view])
-            key += "Sec_";
-        else
-            scholar.remarks[scholar.view] = true;
-
-        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        key += nomber;
-
-        SubMan.PlaySubtitle(keyWord + key);
-        yield return new WaitForSeconds(1f);
         scholar.HearBulling(strong);
 
         while (SubMan.act)
         {
             yield return new WaitForSeconds(0.1f);
         }
+
+        scholar.Bulling(key, strong);
+        act = false;
+
+        while (scholar.TextBox.IsTalking() && !act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+
+        //Добавить вероятность + взгляд
+        if (!act && Probability(0.1))
+            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
+    }
+
+
+
+    //Наезд на тупицу
+
+    public IEnumerator BullingForAction(Dumb scholar, bool strong)
+    {
+        key += scholar.view;
+
+        if (scholar.remarks[scholar.view])
+        {
+            if (Probability(0.5))
+                key += "Sec_";
+        }
+        else
+            scholar.remarks[scholar.view] = true;
+
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+        SubMan.PlaySubtitle(keyWord + key);
+
+        yield return new WaitForSeconds(1f);
+
+        scholar.HearBulling(strong);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
         scholar.Bulling(key, strong);
         act = false;
 
@@ -276,29 +302,39 @@ public class PlayerScript : MonoBehaviour
         }
 
         //Добавить вероятность + взгляд
-        if (!act && scholar.Probability(0.1))
+        if (!act && Probability(0.1))
             SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
     }
 
-    public IEnumerator BullingForObject(Asshole scholar, bool strong)
+
+
+    //Наезд за предмет у мудака
+
+    public IEnumerator BullingForObj(Asshole scholar, bool strong)
     {
 
         if (scholar.remarks[typeOfObj])
-            key += "Sec_";
+        {
+            if(Probability(0.5))
+                key += "Sec_";
+        }
         else
             scholar.remarks[typeOfObj] = true;
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
-
         SubMan.PlaySubtitle(keyWord + key);
+
         yield return new WaitForSeconds(1f);
+
+        scholar.HearBulling(strong);
 
         while (SubMan.act)
         {
             yield return new WaitForSeconds(0.1f);
         }
-        scholar.Bulling(key, strong, typeOfObj);
+
+        scholar.Bulling(key, strong);
         act = false;
 
         while (scholar.TextBox.IsTalking() && !act)
@@ -306,30 +342,41 @@ public class PlayerScript : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+
         //Добавить вероятность + взгляд
-        if (!act && scholar.Probability(0.1))
+        if (!act && Probability(0.1))
             SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
     }
 
-    public IEnumerator BullingForObject(Dumb scholar, bool strong)
+
+
+    //Наезд за предмет у тупицы
+
+    public IEnumerator BullingForObj(Dumb scholar, bool strong)
     {
 
         if (scholar.remarks[typeOfObj])
-            key += "Sec_";
+        {
+            if (Probability(0.5))
+                key += "Sec_";
+        }
         else
             scholar.remarks[typeOfObj] = true;
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
-
         SubMan.PlaySubtitle(keyWord + key);
+
         yield return new WaitForSeconds(1f);
+
+        scholar.HearBulling(strong);
 
         while (SubMan.act)
         {
             yield return new WaitForSeconds(0.1f);
         }
-        scholar.Bulling(key, strong, typeOfObj);
+
+        scholar.Bulling(key, strong);
         act = false;
 
         while (scholar.TextBox.IsTalking() && !act)
@@ -337,10 +384,17 @@ public class PlayerScript : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+
         //Добавить вероятность + взгляд
-        if (!act && scholar.Probability(0.1))
+        if (!act && Probability(0.1))
             SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
     }
+
+
+
+    //--------------------------------------------------------------------------------------------------------
+    //Конец разновидностей одного и того же кода.
+    //--------------------------------------------------------------------------------------------------------
 
     private void StopThinking()
     {
@@ -352,5 +406,19 @@ public class PlayerScript : MonoBehaviour
     {
         inManager.disPlayer = status;
         playerCam.SetActive(!status);
+    }
+
+
+
+    //Вероятность
+
+    public bool Probability(double a)
+    {
+        rnd = Random.value;
+
+        if (a >= rnd)
+            return true;
+        else
+            return false;
     }
 }

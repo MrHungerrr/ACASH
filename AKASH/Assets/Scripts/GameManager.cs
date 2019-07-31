@@ -12,16 +12,4 @@ public class GameManager : MonoBehaviour
         { "Cheating_", false },
         { "Walking_", false },
     };
-
-
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        
-    }
 }
