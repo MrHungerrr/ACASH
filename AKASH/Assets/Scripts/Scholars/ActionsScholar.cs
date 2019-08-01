@@ -9,8 +9,8 @@ public class ActionsScholar : MonoBehaviour
     private NavMeshAgent agent;
     private bool doing;
     private string keyWord;
-    public Vector3 toilet;
-    private Vector3 destonation;
+    public Transform toilet;
+    private Vector3 destination;
     private Vector3 home;
 
 
@@ -20,21 +20,18 @@ public class ActionsScholar : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
-    {
-
-    }
 
     public void Doing(string key)
     {
+        Debug.Log("Я начал делать" + key);
         doing = true;
+        StartCoroutine(key);
         keyWord = key;
-        StartCoroutine(keyWord);
     }
 
     private bool IsHere()
     {
-        if (transform.position == destonation)
+        if ((transform.position - destination).magnitude <= 0.01)
             return true;
         else
             return false;
@@ -42,15 +39,30 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Toilet_1()
     {
-        destonation = toilet;
-        agent.SetDestination(destonation);
-        while(!IsHere())
-            yield return new WaitForSeconds(1f);
-        yield return new WaitForSeconds(5f);
-        destonation = home;
-        agent.SetDestination(destonation);
+        SetDestination(toilet.position);
+
         while (!IsHere())
             yield return new WaitForSeconds(1f);
+        Debug.Log("Я дошел");
+
+        yield return new WaitForSeconds(5f);
+
+        SetDestination(home);
+        Debug.Log("Я пошел домой");
+
+        while (!IsHere())
+            yield return new WaitForSeconds(1f);
+        Debug.Log("Я дома");
+
         doing = false;
     }
+
+
+    private void SetDestination(Vector3 goal)
+    {
+        destination = new Vector3 (goal.x, transform.position.y, goal.z);
+        agent.SetDestination(destination);
+    }
+
+
 }

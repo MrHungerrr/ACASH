@@ -58,6 +58,7 @@ public class Dumb : Scholar
             Debug.Log("Учитель наезжает");
             Stress(10);
             Emotions.ChangeEmotion("upset", "ussual", 4f);
+            Action.Doing("Toilet_1");
         }
         else
         {
