@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -33,8 +32,8 @@ public class PlayerScript : MonoBehaviour
     private ScriptManager ScriptMan;
     private string keyWord = "Teacher_";
     private string key;
-    private string typeOfObj;
-    private bool thisIsObj;
+    private bool objectIsGoal;
+    private GameObject exObject;
 
 
 
@@ -105,6 +104,7 @@ public class PlayerScript : MonoBehaviour
 
 
 
+
     private void Action()
     {
         if (doing && actReady && !act)
@@ -129,6 +129,9 @@ public class PlayerScript : MonoBehaviour
             act = true;
         }
     }
+
+
+
 
     public void Shout()
     {
@@ -155,6 +158,9 @@ public class PlayerScript : MonoBehaviour
         act = false;
     }
 
+
+
+
     public void Bull(bool strong)
     {
         if (!act && actReady)
@@ -169,24 +175,6 @@ public class PlayerScript : MonoBehaviour
             else
                 key = "Joke_";
 
-            switch (goalTag)
-            {
-                case "Pen":
-                    {
-                        typeOfObj = goalTag + "_";
-                        key += typeOfObj;
-                        goalObject = goalObject.transform.parent.transform.parent.gameObject;
-                        goalTag = goalObject.tag;
-                        thisIsObj = true;
-                        break;
-                    }
-                default:
-                    {
-                        thisIsObj = false;
-                        break;
-                    }
-            }
-
 
             //Наезды абсолютно одинаковые, switch тут для того, чтобы обращаться к разным скриптам.
             switch (goalTag)
@@ -194,19 +182,13 @@ public class PlayerScript : MonoBehaviour
                 case "Asshole":
                     {
                         var scholar = goalObject.GetComponent<Asshole>();
-                        if (thisIsObj)
-                            StartCoroutine(BullingForObj(scholar, strong));
-                        else
-                            StartCoroutine(BullingForAction(scholar, strong));
+                        StartCoroutine(BullingForAction(scholar, strong));
                         break;
                     }
                 case "Dumb":
                     {
                         var scholar = goalObject.GetComponent<Dumb>();
-                        if (thisIsObj)
-                            StartCoroutine(BullingForObj(scholar, strong));
-                        else
-                            StartCoroutine(BullingForAction(scholar, strong));
+                        StartCoroutine(BullingForAction(scholar, strong));
                         break;
                     }
     
@@ -308,93 +290,97 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    //Наезд за предмет у мудака
-
-    public IEnumerator BullingForObj(Asshole scholar, bool strong)
-    {
-
-        if (scholar.remarks[typeOfObj])
-        {
-            if(Probability(0.5))
-                key += "Sec_";
-        }
-        else
-            scholar.remarks[typeOfObj] = true;
-
-        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        key += nomber;
-        SubMan.PlaySubtitle(keyWord + key);
-
-        yield return new WaitForSeconds(1f);
-
-        scholar.HearBulling(strong);
-
-        while (SubMan.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        scholar.Bulling(key, strong);
-        act = false;
-
-        while (scholar.TextBox.IsTalking() && !act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-
-        //Добавить вероятность + взгляд
-        if (!act && Probability(0.1))
-            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
-    }
-
-
-
-    //Наезд за предмет у тупицы
-
-    public IEnumerator BullingForObj(Dumb scholar, bool strong)
-    {
-
-        if (scholar.remarks[typeOfObj])
-        {
-            if (Probability(0.5))
-                key += "Sec_";
-        }
-        else
-            scholar.remarks[typeOfObj] = true;
-
-        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        key += nomber;
-        SubMan.PlaySubtitle(keyWord + key);
-
-        yield return new WaitForSeconds(1f);
-
-        scholar.HearBulling(strong);
-
-        while (SubMan.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        scholar.Bulling(key, strong);
-        act = false;
-
-        while (scholar.TextBox.IsTalking() && !act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-
-        //Добавить вероятность + взгляд
-        if (!act && Probability(0.1))
-            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
-    }
-
-
-
     //--------------------------------------------------------------------------------------------------------
     //Конец разновидностей одного и того же кода.
     //--------------------------------------------------------------------------------------------------------
+
+
+    public void Execute()
+    {
+        if (!act && actReady)
+        {
+            StopThinking();
+            act = true;
+            string goalTag = actTag;
+            GameObject goalObject = actObject;
+
+            key = "Execute_";
+
+            if(goalTag == "ScholarsObject")
+            {
+                //Че-то еще про предмет.
+                key += goalObject.name + "_";
+                exObject = goalObject;
+                goalObject = goalObject.GetComponent<ScholarsObject>().owner;
+                goalTag = goalObject.tag;
+                objectIsGoal = true;
+            }
+            else
+            {
+                objectIsGoal = false;
+                //Реализовать выбор(За что выгонять?) Через execute = true  и замедление времени
+            }
+
+            //Добавить удаление предметов не школьника
+
+
+            switch (goalTag)
+            {
+                case "Asshole":
+                    {
+                        break;
+                    }
+                case "Dumb":
+                    {
+                        var scholar = goalObject.GetComponent<Dumb>();
+                        StartCoroutine(Execute(scholar));
+                        break;
+                    }
+
+            }
+        }
+    }
+
+
+
+
+    public IEnumerator Execute(Dumb scholar)
+    {
+
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+        SubMan.PlaySubtitle(keyWord + key);
+
+        yield return new WaitForSeconds(1f);
+
+        scholar.HearBulling(true);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (objectIsGoal)
+        {
+            exObject.GetComponent<ScholarsObject>().Execute();
+            scholar.Bulling(key, true);
+        }
+        else
+        {
+            scholar.Execute(key);
+        }
+
+        act = false;
+
+        while (scholar.TextBox.IsTalking() && !act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        SubMan.PlaySubtitle(keyWord + "Thinking_" + key);
+    }
+
+
 
     private void StopThinking()
     {

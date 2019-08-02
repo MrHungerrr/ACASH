@@ -106,4 +106,9 @@ public class Dumb : Scholar
         }
     }
 
+
+    public void Execute(string key)
+    {
+        gameObject.SetActive(false);
+    }
 }

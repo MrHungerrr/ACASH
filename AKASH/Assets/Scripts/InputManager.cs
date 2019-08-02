@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -93,6 +94,11 @@ public class InputManager : MonoBehaviour
                 pScript.Bull(false);
             }
 
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                pScript.Execute();
+            }
+
         }
         else
         {
@@ -126,7 +132,7 @@ public class InputManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Application.LoadLevel(0);
+                SceneManager.LoadScene(0);
                 Time.timeScale = 1;
                 game = true;
             }
