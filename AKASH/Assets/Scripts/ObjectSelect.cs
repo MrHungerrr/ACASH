@@ -9,7 +9,7 @@ public class ObjectSelect : MonoBehaviour
 
 
 
-    public void Awake()
+    private void Awake()
     {
         if (!notSelectable)
         {

@@ -8,16 +8,17 @@ public class Dumb : Scholar
 {
 
 
-    void Awake()
+    private void Awake()
     {
-        TextBox = transform.Find("Text Box").GetComponent<TextBoxScholar>();
-        Emotions = transform.Find("Face").GetComponent<Emotions>();
+        TextBox = transform.parent.GetComponentInChildren<TextBoxScholar>();
+        Emotions = transform.parent.GetComponentInChildren<Emotions>();
         GameMan = GameObject.FindObjectOfType<GameManager>();
-        Action = GetComponent<ActionsScholar>();
+        Action = transform.GetComponentInParent<ActionsScholar>();
         this.tag = "Dumb";
         keyWord = this.tag + "_";
         IQ_start = 0;
     }
+
 
     private void Start()
     {
@@ -28,7 +29,8 @@ public class Dumb : Scholar
 
     void Update()
     {
-        if(writing)
+
+        if (writing)
             WritingTest(UnityEngine.Random.value * 100);
     }
 

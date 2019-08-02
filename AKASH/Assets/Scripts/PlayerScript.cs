@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour
     private string actText;
     [HideInInspector]
     public GameObject playerCam;
-    public SubtitleManager SubMan;
+    private SubtitleManager SubMan;
     private ScriptManager ScriptMan;
     private string keyWord = "Teacher_";
     private string key;
