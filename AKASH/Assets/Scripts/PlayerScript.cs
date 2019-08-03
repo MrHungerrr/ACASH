@@ -30,6 +30,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerCam;
     private SubtitleManager SubMan;
     private ScriptManager ScriptMan;
+    private ScholarManager ScholarMan;
     private string keyWord = "Teacher_";
     private string key;
 
@@ -45,6 +46,7 @@ public class PlayerScript : MonoBehaviour
         camControl = playerCam.GetComponent<CameraController>();
         SubMan = GameObject.FindObjectOfType<SubtitleManager>();
         ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
+        ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
     }
 
     private void Start()
@@ -137,16 +139,15 @@ public class PlayerScript : MonoBehaviour
     public IEnumerator Shouting()
     {
         StopThinking();
+        ScholarMan.Stress(10);
         act = true;
         key = "Shout_";
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
         SubMan.PlaySubtitle(keyWord + key);
         yield return new WaitForSeconds(1f);
-        Debug.Log(act);
         while (SubMan.act)
         {
-            Debug.Log(act);
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -274,7 +275,7 @@ public class PlayerScript : MonoBehaviour
                     }
                 case "ScholarsSubject":
                     {
-                        var subject = goalObject.GetComponent<ScholarsSubject>();
+                        var subject = goalObject.GetComponent<ScholarSubject>();
                         Debug.Log("Fuck");
                         StartCoroutine(Execute(subject));
                         break;
@@ -325,7 +326,7 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    private IEnumerator Execute(ScholarsSubject subject)
+    private IEnumerator Execute(ScholarSubject subject)
     {
         key += subject.name;
         key += Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);

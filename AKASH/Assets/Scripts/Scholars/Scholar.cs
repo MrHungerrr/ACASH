@@ -68,15 +68,19 @@ public class Scholar : MonoBehaviour
     public void Continue()
     {
         writing = true;
+        Debug.Log("Продолжаем");
         Action.Continue();
     }
 
     public void Stop()
     {
-        writing = false;
-        StopAllCoroutines();
-        Action.Stop();
-        TextBox.Clear();
+        if (!executed)
+        {
+            writing = false;
+            StopAllCoroutines();
+            Action.Stop();
+            TextBox.Clear();
+        }
     }
 
     public void StartWrite()
@@ -94,6 +98,7 @@ public class Scholar : MonoBehaviour
             stress = 0;
 
         ChangeMoodType();
+        Action.Doing("Toilet_1");
     }
 
 
@@ -136,9 +141,8 @@ public class Scholar : MonoBehaviour
     }
 
 
-    public IEnumerator Say(string key, double probability)
+    public IEnumerator Say(string key, double probabilitOfContinue)
     {
-        Stop();
         view = "Talking_";
         talking = true;
         TextBox.Say(key);
@@ -154,8 +158,8 @@ public class Scholar : MonoBehaviour
 
         talking = false;
 
-        //Debug.Log("Я закончил говорить");
-        if (Probability(probability))
+        Debug.Log("Я закончил говорить");
+        if (Probability(probabilitOfContinue))
             Continue();
         else
             StartWrite();
@@ -206,10 +210,10 @@ public class Scholar : MonoBehaviour
     //Исключение
     public IEnumerator Execute()
     {
+        executed = true;
         yield return new WaitForSeconds(1f);
 
         Stop();
         Emotions.ChangeEmotion("dead");
-        executed = true;
     }
 }

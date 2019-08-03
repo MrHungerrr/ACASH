@@ -9,9 +9,11 @@ public class ActionsScholar : MonoBehaviour
     private NavMeshAgent agent;
     private bool doing;
     private string keyWord;
+    private int actionNo;
     public Transform toilet;
     private Vector3 destination;
     private Vector3 home;
+
 
 
     private void Awake()
@@ -25,13 +27,14 @@ public class ActionsScholar : MonoBehaviour
     {
         Debug.Log("Я начал делать" + key);
         doing = true;
+        actionNo = 0;
         StartCoroutine(key);
         keyWord = key;
     }
 
     private bool IsHere()
     {
-        if ((transform.position - destination).magnitude <= 0.01)
+        if ((transform.position - destination).magnitude <= 0.001)
             return true;
         else
             return false;
@@ -39,21 +42,36 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Toilet_1()
     {
-        SetDestination(toilet.position);
+        if (actionNo == 0)
+        {
+            SetDestination(toilet.position);
 
-        while (!IsHere())
-            yield return new WaitForSeconds(1f);
-        Debug.Log("Я дошел");
+            while (!IsHere())
+                yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(5f);
+            Debug.Log("Я дошел");
+            actionNo++;
+        }
 
-        SetDestination(home);
-        Debug.Log("Я пошел домой");
+        if (actionNo == 1)
+        {
+            yield return new WaitForSeconds(5f);
+            Debug.Log("Я подождал");
+            actionNo++;
+        }
 
-        while (!IsHere())
-            yield return new WaitForSeconds(1f);
-        Debug.Log("Я дома");
+        if (actionNo == 2)
+        {
+            SetDestination(home);
+            Debug.Log("Я пошел домой");
 
+            while (!IsHere())
+                yield return new WaitForSeconds(1f);
+
+            Debug.Log("Я дома");
+            actionNo++;
+        }
+        keyWord = null;
         doing = false;
     }
 
@@ -66,12 +84,17 @@ public class ActionsScholar : MonoBehaviour
 
     public void Stop()
     {
-        StopAllCoroutines();
+        StopCoroutine(keyWord);
+        SetDestination(transform.position);
         doing = false;
     }
 
     public void Continue()
     {
-
+        if (keyWord != null)
+        {
+            StartCoroutine(keyWord);
+            doing = true;
+        }
     }
 }

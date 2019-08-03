@@ -758,8 +758,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831374132}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.05}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1177392094}
@@ -850,7 +850,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177392093}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.67200005}
+  m_LocalPosition: {x: 0, y: 0, z: -1.722}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 831374133}
@@ -1175,7 +1175,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 095867f6b961aaa49bb82977dffb08be,
         type: 3}
       propertyPath: m_TagString
-      value: Dumb
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -6503013856791272049, guid: 095867f6b961aaa49bb82977dffb08be,
         type: 3}
@@ -1417,7 +1417,7 @@ GameObject:
   - component: {fileID: 1392533285}
   m_Layer: 0
   m_Name: Scholar
-  m_TagString: Dumb
+  m_TagString: Scholar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2019,7 +2019,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 5000
-  field of view: 49.90219
+  field of view: 49.90011
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2124,6 +2124,7 @@ GameObject:
   - component: {fileID: 1701181774}
   - component: {fileID: 1701181773}
   - component: {fileID: 1701181777}
+  - component: {fileID: 1701181778}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2196,6 +2197,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e61ebb95747e54141a10066be691ef76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1701181778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701181772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66536129bf1f9ee439e66aad34de14cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1724831489
@@ -2701,7 +2714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37da0a168aa75d84f89c8619ede3c3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
   zoom: 0
   zooming: 0
 --- !u!114 &2139181251
@@ -2725,7 +2737,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 49.90219
+    FieldOfView: 49.90011
     OrthographicSize: 10
     NearClipPlane: 0.03
     FarClipPlane: 5000

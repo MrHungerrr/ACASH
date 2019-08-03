@@ -7,7 +7,6 @@ public class Emotions : MonoBehaviour
 {
 
     private TextMeshPro face;
-    private bool canChange = true;
 
 
 
@@ -94,21 +93,15 @@ public class Emotions : MonoBehaviour
 
     private IEnumerator EmotionForTime(string emotion, float time)
     {
-        canChange = false;
         yield return new WaitForSeconds(time);
-        canChange = true;
         ChangeEmotion(emotion);
     }
 
     private IEnumerator EmotionForTime(string emotion, string emotion_sec, float time)
     {
-        canChange = false;
         yield return new WaitForSeconds(1f);
-        canChange = true;
         ChangeEmotion(emotion);
-        canChange = false;
         yield return new WaitForSeconds(time);
-        canChange = true;
         ChangeEmotion(emotion_sec);
     }
 

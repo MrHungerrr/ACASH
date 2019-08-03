@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScholarsSubject : Subject
+public class ScholarSubject : Subject
 {
     [HideInInspector]
     public GameObject owner;
@@ -12,6 +12,7 @@ public class ScholarsSubject : Subject
         owner = transform.parent.transform.parent.transform.Find("Scholar").transform.Find("Model").gameObject;
         this.tag = "ScholarsSubject";
     }
+
 
     public void Execute(string key)
     {

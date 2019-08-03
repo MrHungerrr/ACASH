@@ -68,9 +68,11 @@ public class Dumb : Scholar
             Emotions.ChangeEmotion("happy", "smile", 4f);
         }
 
+        Stop();
+
         if (IsTeacherBullingRight())
         {
-            StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
+            StartCoroutine(Say(keyWord + bullKey + "_Yes", 1));
         }
         else
         {
@@ -89,6 +91,7 @@ public class Dumb : Scholar
         Stress(10);
         Emotions.ChangeEmotion("upset", "ussual", 4f);
 
+        Stop();
         if (IsTeacherBullingRight(obj))
         {
             StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));

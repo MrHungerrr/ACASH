@@ -6,7 +6,7 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     private string mouseXInputName, mouseYInputName;
-    [SerializeField] private float mouseSensitivity;
+    private float mouseSensitivity = 100;
 
     private Transform playerBody;
     private CinemachineVirtualCamera cineCam;
