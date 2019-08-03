@@ -836,8 +836,8 @@ GameObject:
   - component: {fileID: 1177392095}
   - component: {fileID: 1177392099}
   m_Layer: 9
-  m_Name: Pen
-  m_TagString: Untagged
+  m_Name: Pen_
+  m_TagString: ScholarsSubject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1313,7 +1313,9 @@ MonoBehaviour:
   Action: {fileID: 0}
   Emotions: {fileID: 0}
   GameMan: {fileID: 0}
+  Player: {fileID: 0}
   keyWord: 
+  executed: 0
   behaviourType: 0
   moodType: 0
   threshold_1: 33
@@ -2017,7 +2019,7 @@ Camera:
     height: 1
   near clip plane: 0.03
   far clip plane: 5000
-  field of view: 40.13649
+  field of view: 49.90219
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2121,6 +2123,7 @@ GameObject:
   - component: {fileID: 1701181775}
   - component: {fileID: 1701181774}
   - component: {fileID: 1701181773}
+  - component: {fileID: 1701181777}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2183,6 +2186,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1701181777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701181772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61ebb95747e54141a10066be691ef76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1724831489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2688,7 +2703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   zoom: 0
-  zooming: 1
+  zooming: 0
 --- !u!114 &2139181251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2710,7 +2725,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40.13649
+    FieldOfView: 49.90219
     OrthographicSize: 10
     NearClipPlane: 0.03
     FarClipPlane: 5000

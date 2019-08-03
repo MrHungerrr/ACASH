@@ -32,8 +32,6 @@ public class PlayerScript : MonoBehaviour
     private ScriptManager ScriptMan;
     private string keyWord = "Teacher_";
     private string key;
-    private bool objectIsGoal;
-    private GameObject exObject;
 
 
 
@@ -124,9 +122,6 @@ public class PlayerScript : MonoBehaviour
                         break;
                     }
             }
-
-
-            act = true;
         }
     }
 
@@ -179,16 +174,16 @@ public class PlayerScript : MonoBehaviour
             //Наезды абсолютно одинаковые, switch тут для того, чтобы обращаться к разным скриптам.
             switch (goalTag)
             {
-                case "Asshole":
-                    {
-                        var scholar = goalObject.GetComponent<Asshole>();
-                        StartCoroutine(BullingForAction(scholar, strong));
-                        break;
-                    }
                 case "Dumb":
                     {
                         var scholar = goalObject.GetComponent<Dumb>();
-                        StartCoroutine(BullingForAction(scholar, strong));
+                        if (!scholar.executed)
+                            StartCoroutine(BullingForAction(scholar, strong));
+                        break;
+                    }
+                default:
+                    {
+                        act = false;
                         break;
                     }
     
@@ -206,45 +201,6 @@ public class PlayerScript : MonoBehaviour
 
 
     //Наезд на мудака
-
-    public IEnumerator BullingForAction(Asshole scholar, bool strong)
-    {
-        key += scholar.view;
-
-        if (scholar.remarks[scholar.view])
-        {
-            if (Probability(0.5))
-                key += "Sec_";
-        }
-        else
-            scholar.remarks[scholar.view] = true;
-
-        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        key += nomber;
-        SubMan.PlaySubtitle(keyWord + key);
-
-        yield return new WaitForSeconds(1f);
-
-        scholar.HearBulling(strong);
-
-        while (SubMan.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        scholar.Bulling(key, strong);
-        act = false;
-
-        while (scholar.TextBox.IsTalking() && !act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-
-        //Добавить вероятность + взгляд
-        if (!act && Probability(0.1))
-            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
-    }
 
 
 
@@ -306,34 +262,32 @@ public class PlayerScript : MonoBehaviour
 
             key = "Execute_";
 
-            if(goalTag == "ScholarsObject")
-            {
-                //Че-то еще про предмет.
-                key += goalObject.name + "_";
-                exObject = goalObject;
-                goalObject = goalObject.GetComponent<ScholarsObject>().owner;
-                goalTag = goalObject.tag;
-                objectIsGoal = true;
-            }
-            else
-            {
-                objectIsGoal = false;
-                //Реализовать выбор(За что выгонять?) Через execute = true  и замедление времени
-            }
-
-            //Добавить удаление предметов не школьника
-
 
             switch (goalTag)
             {
-                case "Asshole":
-                    {
-                        break;
-                    }
                 case "Dumb":
                     {
                         var scholar = goalObject.GetComponent<Dumb>();
-                        StartCoroutine(Execute(scholar));
+                        if (!scholar.executed)
+                            StartCoroutine(Execute(scholar));
+                        break;
+                    }
+                case "ScholarsSubject":
+                    {
+                        var subject = goalObject.GetComponent<ScholarsSubject>();
+                        Debug.Log("Fuck");
+                        StartCoroutine(Execute(subject));
+                        break;
+                    }
+                case "Subject":
+                    {
+                        var subject = goalObject.GetComponent<Subject>();
+                        StartCoroutine(Execute(subject));
+                        break;
+                    }
+                default:
+                    {
+                        act = false;
                         break;
                     }
 
@@ -344,41 +298,67 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    public IEnumerator Execute(Dumb scholar)
+    private IEnumerator Execute(Dumb scholar)
     {
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
+
         SubMan.PlaySubtitle(keyWord + key);
 
         yield return new WaitForSeconds(1f);
 
         scholar.HearBulling(true);
 
+        yield return new WaitForSeconds(1f);
+
+        scholar.Execute(key);
+
+        while (!scholar.executed && !act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        act = false;
+
+        SubMan.PlaySubtitle(keyWord + "Thinking_" + key);
+    }
+
+
+    private IEnumerator Execute(ScholarsSubject subject)
+    {
+        key += subject.name;
+        key += Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        SubMan.PlaySubtitle(keyWord + key);
+        subject.Execute(key);
+
+        yield return new WaitForSeconds(1f);
+
         while (SubMan.act)
         {
             yield return new WaitForSeconds(0.1f);
         }
 
-        if (objectIsGoal)
-        {
-            exObject.GetComponent<ScholarsObject>().Execute();
-            scholar.Bulling(key, true);
-        }
-        else
-        {
-            scholar.Execute(key);
-        }
-
         act = false;
+    }
 
-        while (scholar.TextBox.IsTalking() && !act)
+    private IEnumerator Execute(Subject subject)
+    {
+        key += subject.name;
+        key += Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        SubMan.PlaySubtitle(keyWord + key);
+        subject.Execute();
+
+        yield return new WaitForSeconds(1f);
+
+        while (SubMan.act)
         {
             yield return new WaitForSeconds(0.1f);
         }
 
-        SubMan.PlaySubtitle(keyWord + "Thinking_" + key);
+        act = false;
     }
+
 
 
 

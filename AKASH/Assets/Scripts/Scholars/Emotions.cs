@@ -20,80 +20,74 @@ public class Emotions : MonoBehaviour
 
     public void ChangeEmotion(string emotion)
     {
-        if (canChange)
+        StopAllCoroutines();
+
+        switch (emotion)
         {
-            switch (emotion)
-            {
-                case "ussual":
-                    {
-                        //Сделать обычное лицо
-                        face.text = ":|";
-                        break;
-                    }
-                case "upset":
-                    {
-                        //Расстроиться/Обидеться
-                        face.text = ":(";
-                        break;
-                    }
-                case "sad":
-                    {
-                        //Сделать печальное лицо
-                        face.text = ":[";
-                        break;
-                    }
-                case "smile":
-                    {
-                        //Улыбнуться
-                        face.text = ":)";
-                        break;
-                    }
-                case "happy":
-                    {
-                        //Сделать счастливое лицо
-                        face.text = ":]";
-                        break;
-                    }
-                case "suprised":
-                    {
-                        //Сделать удивленное лицо
-                        face.text = ":O";
-                        break;
-                    }
-            }
+            case "ussual":
+                {
+                    //Сделать обычное лицо
+                    face.text = ":|";
+                    break;
+                }
+            case "upset":
+                {
+                    //Расстроиться/Обидеться
+                    face.text = ":(";
+                    break;
+                }
+            case "sad":
+                {
+                    //Сделать печальное лицо
+                    face.text = ":[";
+                    break;
+                }
+            case "smile":
+                {
+                    //Улыбнуться
+                    face.text = ":)";
+                    break;
+                }
+            case "happy":
+                {
+                    //Сделать счастливое лицо
+                    face.text = ":]";
+                    break;
+                }
+            case "suprised":
+                {
+                    //Сделать удивленное лицо
+                    face.text = ":O";
+                    break;
+                }
+            case "dead":
+                {
+                    //Сделать мертвое лицо
+                    face.text = "X";
+                    break;
+                }
         }
+
     }
 
 
 
     public void ChangeEmotion(string emotion, string emotion_sec, float time)
     {
-        if (canChange)
-        {
             ChangeEmotion(emotion);
-            StopAllCoroutines();
             StartCoroutine(EmotionForTime(emotion_sec, time));
-        }
     }
 
     public void ChangeEmotion(string emotion_flash, string emotion, string emotion_sec, float time)
     {
-        if (canChange)
-        {
             ChangeEmotion(emotion_flash);
-            StopAllCoroutines();
             StartCoroutine(EmotionForTime(emotion, emotion_sec, time));
-        }
     }
 
     public void ChangeEmotion(string emotion_flash, string emotion)
     {
-        if (canChange)
-        {
             ChangeEmotion(emotion_flash);
-            StopAllCoroutines();
             StartCoroutine(EmotionForTime(emotion, 1f));
-        }
     }
 
 

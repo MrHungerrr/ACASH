@@ -64,5 +64,14 @@ public class ActionsScholar : MonoBehaviour
         agent.SetDestination(destination);
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+        doing = false;
+    }
 
+    public void Continue()
+    {
+
+    }
 }

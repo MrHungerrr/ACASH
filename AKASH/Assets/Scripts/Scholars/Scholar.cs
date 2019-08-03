@@ -24,7 +24,11 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public GameManager GameMan;
     [HideInInspector]
+    public PlayerScript Player;
+    [HideInInspector]
     public string keyWord;
+    [HideInInspector]
+    public bool executed;
     private double rnd;
     [HideInInspector]
     public byte behaviourType;
@@ -64,11 +68,15 @@ public class Scholar : MonoBehaviour
     public void Continue()
     {
         writing = true;
+        Action.Continue();
     }
 
     public void Stop()
     {
         writing = false;
+        StopAllCoroutines();
+        Action.Stop();
+        TextBox.Clear();
     }
 
     public void StartWrite()
@@ -131,8 +139,11 @@ public class Scholar : MonoBehaviour
     public IEnumerator Say(string key, double probability)
     {
         Stop();
+        view = "Talking_";
+        talking = true;
         TextBox.Say(key);
         //Debug.Log("Я начал говорить");
+
         yield return new WaitForSeconds(1f);
 
         while (TextBox.IsTalking())
@@ -140,6 +151,8 @@ public class Scholar : MonoBehaviour
             //Debug.Log("Я говорю");
             yield return new WaitForSeconds(1f);
         }
+
+        talking = false;
 
         //Debug.Log("Я закончил говорить");
         if (Probability(probability))
@@ -181,9 +194,22 @@ public class Scholar : MonoBehaviour
 
     public bool IsTeacherBullingRight(string obj)
     {
+        Debug.Log(obj);
         if (GameMan.banned[obj])
             return true;
         else
             return false;
+    }
+
+
+
+    //Исключение
+    public IEnumerator Execute()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Stop();
+        Emotions.ChangeEmotion("dead");
+        executed = true;
     }
 }

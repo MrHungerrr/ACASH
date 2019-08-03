@@ -14,6 +14,7 @@ public class Dumb : Scholar
         Emotions = transform.parent.GetComponentInChildren<Emotions>();
         GameMan = GameObject.FindObjectOfType<GameManager>();
         Action = transform.GetComponentInParent<ActionsScholar>();
+        Player = GameObject.FindObjectOfType<PlayerScript>();   
         this.tag = "Dumb";
         keyWord = this.tag + "_";
         IQ_start = 0;
@@ -60,7 +61,6 @@ public class Dumb : Scholar
             Debug.Log("Учитель наезжает");
             Stress(10);
             Emotions.ChangeEmotion("upset", "ussual", 4f);
-            Action.Doing("Toilet_1");
         }
         else
         {
@@ -82,19 +82,12 @@ public class Dumb : Scholar
 
     //Наезд учителя за какие-то предметы
 
-    public void Bulling(string bullKey, bool strong, string obj)
+    public void BullingForSubjects(string bullKey, string obj)
     {
-        if (strong)
-        {
-            Debug.Log("Учитель наезжает");
-            Stress(10);
-            Emotions.ChangeEmotion("upset", "ussual", 4f);
-        }
-        else
-        {
-            Debug.Log("Учитель прикалывается");
-            Emotions.ChangeEmotion("happy", "smile", 4f);
-        }
+
+        Debug.Log("Учитель наезжает");
+        Stress(10);
+        Emotions.ChangeEmotion("upset", "ussual", 4f);
 
         if (IsTeacherBullingRight(obj))
         {
@@ -109,6 +102,8 @@ public class Dumb : Scholar
 
     public void Execute(string key)
     {
-        gameObject.SetActive(false);
+        Stop();
+        TextBox.Say(keyWord + key);
+        StartCoroutine(Execute());
     }
 }

@@ -32,6 +32,8 @@ public class ScriptManager : MonoBehaviour
         { "Teacher_Joke_Pen_", 3},
         { "Teacher_Joke_Pen_Sec_", 3},
         { "Teacher_Thinking_", 5},
+        { "Teacher_Execute_", 3},
+        { "Teacher_Execute_Pen_", 3},
     };
 
 private string resourceFile = "Script";
