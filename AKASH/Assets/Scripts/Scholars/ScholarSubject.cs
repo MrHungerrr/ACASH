@@ -5,11 +5,11 @@ using UnityEngine;
 public class ScholarSubject : Subject
 {
     [HideInInspector]
-    public GameObject owner;
+    public Scholar owner;
 
     private void Start()
     {
-        owner = transform.parent.transform.parent.transform.Find("Scholar").transform.Find("Model").gameObject;
+        owner = transform.parent.transform.parent.transform.Find("Scholar").transform.GetComponentInChildren<Scholar>();
         this.tag = "ScholarsSubject";
     }
 
@@ -24,15 +24,7 @@ public class ScholarSubject : Subject
     {
         yield return new WaitForSeconds(Random.Range(1.5f, 3f));
 
-        switch (owner.tag)
-        {
-            case "Dumb":
-                {
-                    var scholar = owner.GetComponent<Dumb>();
-                    if (!scholar.executed)
-                        scholar.BullingForSubjects(key, this.name);
-                    break;
-                }
-        }
+        if (!owner.executed)
+            owner.BullingForSubjects(key, this.name);
     }
 }

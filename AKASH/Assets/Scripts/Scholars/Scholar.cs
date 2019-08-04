@@ -3,37 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class Scholar : MonoBehaviour
 {
-    [HideInInspector]
-    public int stress;
-    [HideInInspector]
-    public bool cheating;
-    [HideInInspector]
-    public bool walking;
-    [HideInInspector]
-    public bool talking;
-    [HideInInspector]
-    public bool walkingAnswer;
+    private int stress;
+    private bool cheating;
+    private bool talking;
+    private bool walkingAnswer;
+    private bool asking;
+
     [HideInInspector]
     public TextBoxScholar TextBox;
     [HideInInspector]
     public ActionsScholar Action;
     [HideInInspector]
     public Emotions Emotions;
-    [HideInInspector]
-    public GameManager GameMan;
-    [HideInInspector]
-    public PlayerScript Player;
-    [HideInInspector]
-    public string keyWord;
+    private GameManager GameMan;
+    private PlayerScript Player;
+    private ScholarAgent Agent;
+
+
     [HideInInspector]
     public bool executed;
     private double rnd;
-    [HideInInspector]
-    public byte behaviourType;
-    [HideInInspector]
-    public byte moodType;
+    private byte moodType;
+    private string type;
+    private string keyWord;
     [HideInInspector]
     public int threshold_1 = 33;
     [HideInInspector]
@@ -61,9 +56,46 @@ public class Scholar : MonoBehaviour
         { "Nothing_", false }
     };
 
+    public enum list_scholarType
+    {
+        Dumb,
+        Asshole,
+        Underdog
+    }
+
+    public list_scholarType scholarType;
 
 
 
+    private void Awake()
+    {
+        this.tag = "Scholar";
+        type = scholarType.ToString();
+
+        TextBox = transform.parent.GetComponentInChildren<TextBoxScholar>();
+        Emotions = transform.parent.GetComponentInChildren<Emotions>();
+        Action = transform.GetComponentInParent<ActionsScholar>();
+        GameMan = GameObject.FindObjectOfType<GameManager>();
+        Player = GameObject.FindObjectOfType<PlayerScript>();
+        Agent = new ScholarAgent(type, this);
+
+        keyWord = type + "_";
+        IQ_start = 0;
+    }
+
+    private void Start()
+    {
+        StartWrite();
+    }
+
+
+
+    void Update()
+    {
+
+        if (writing)
+            WritingTest(UnityEngine.Random.value * 100);
+    }
 
     public void Continue()
     {
@@ -89,6 +121,10 @@ public class Scholar : MonoBehaviour
     }
 
 
+
+    //--------------------------------------------------------------------------------------------------------
+    //Поднятие стресса
+
     public void Stress(int value)
     {
         stress += value;
@@ -98,9 +134,7 @@ public class Scholar : MonoBehaviour
             stress = 0;
 
         ChangeMoodType();
-        Action.Doing("Toilet_1");
     }
-
 
     private void ChangeMoodType()
     {
@@ -112,16 +146,6 @@ public class Scholar : MonoBehaviour
             moodType = 2;
     }
 
-
-    public bool Probability(double a)
-    {
-        rnd = UnityEngine.Random.value;
-
-        if (a >= rnd)
-            return true;
-        else
-            return false;
-    }
 
 
     public void WritingTest(float value)
@@ -141,7 +165,17 @@ public class Scholar : MonoBehaviour
     }
 
 
-    public IEnumerator Say(string key, double probabilitOfContinue)
+
+    //--------------------------------------------------------------------------------------------------------
+    //Ученик говорит
+
+    public void Say(string key, double probability_of_continue)
+    {
+        Stop();
+        StartCoroutine(Saying(key, probability_of_continue));
+    }
+
+    private IEnumerator Saying(string key, double probability_of_continue)
     {
         view = "Talking_";
         talking = true;
@@ -159,12 +193,64 @@ public class Scholar : MonoBehaviour
         talking = false;
 
         Debug.Log("Я закончил говорить");
-        if (Probability(probabilitOfContinue))
+        if (Probability(probability_of_continue))
             Continue();
         else
             StartWrite();
     }
 
+
+
+    //--------------------------------------------------------------------------------------------------------
+    //Ответ учителю
+
+    public void Answer(string key, double prob_cont_right, double prob_cont_false)
+    {
+        if (IsTeacherBullingRight())
+        {
+            Say(key + "_Yes", prob_cont_right);
+        }
+        else
+        {
+            Say(key + "_No", prob_cont_false);
+        }
+    }
+
+    public void Answer(string key, string obj, double prob_cont_right, double prob_cont_false)
+    {
+        if (IsTeacherBullingRight(obj))
+        {
+            Say(key + "_Yes", prob_cont_right);
+        }
+        else
+        {
+            Say(key + "_No", prob_cont_false);
+        }
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------
+    //Наезд на ученика
+
+    public void HearBulling(bool strong)
+    {
+        Agent.HearBulling(strong);
+    }
+
+    public void Bulling(string bullKey, bool strong)
+    {
+        Agent.Bulling(keyWord + bullKey, strong);
+    }
+
+    public void BullingForSubjects(string bullKey, string obj)
+    {
+        Agent.BullingForSubjects(keyWord + bullKey, obj);
+    }
+
+
+
+    //--------------------------------------------------------------------------------------------------------
+    //Прав ли учитель?
 
     public bool IsTeacherBullingRight()
     {
@@ -195,7 +281,6 @@ public class Scholar : MonoBehaviour
         return false;
     }
 
-
     public bool IsTeacherBullingRight(string obj)
     {
         Debug.Log(obj);
@@ -207,8 +292,17 @@ public class Scholar : MonoBehaviour
 
 
 
+    //--------------------------------------------------------------------------------------------------------
     //Исключение
-    public IEnumerator Execute()
+
+    public void Execute(string key)
+    {
+        Stop();
+        TextBox.Say(keyWord + key);
+        StartCoroutine(Execute());
+    }
+
+    private IEnumerator Execute()
     {
         executed = true;
         yield return new WaitForSeconds(1f);
@@ -216,4 +310,21 @@ public class Scholar : MonoBehaviour
         Stop();
         Emotions.ChangeEmotion("dead");
     }
+
+
+
+    //--------------------------------------------------------------------------------------------------------
+    //Вероятность
+
+    public bool Probability(double a)
+    {
+        rnd = UnityEngine.Random.value;
+
+        if (a >= rnd)
+            return true;
+        else
+            return false;
+    }
+
+
 }

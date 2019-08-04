@@ -4,38 +4,15 @@ using UnityEngine;
 using System;
 using TMPro;
 
-public class Dumb : Scholar
+public class Dumb : MonoBehaviour
 {
+    [HideInInspector]
+    public Scholar parent;
 
-
-    private void Awake()
+    public Dumb(Scholar p)
     {
-        TextBox = transform.parent.GetComponentInChildren<TextBoxScholar>();
-        Emotions = transform.parent.GetComponentInChildren<Emotions>();
-        GameMan = GameObject.FindObjectOfType<GameManager>();
-        Action = transform.GetComponentInParent<ActionsScholar>();
-        Player = GameObject.FindObjectOfType<PlayerScript>();   
-        this.tag = "Dumb";
-        keyWord = this.tag + "_";
-        IQ_start = 0;
+        parent = p;
     }
-
-
-    private void Start()
-    {
-        StartWrite();
-    }
-
-
-
-    void Update()
-    {
-
-        if (writing)
-            WritingTest(UnityEngine.Random.value * 100);
-    }
-
-
 
     //Преждевременная реакция на услышынное
 
@@ -43,70 +20,43 @@ public class Dumb : Scholar
     {
         if (strong)
         {
-            Emotions.ChangeEmotion("suprised");
+            parent.Emotions.ChangeEmotion("suprised");
         }
         else
         {
-            Emotions.ChangeEmotion("suprised");
+            parent.Emotions.ChangeEmotion("suprised");
         }
     }
 
 
     //Наезд учителя за списывание/поведение
 
-    public void Bulling(string bullKey, bool strong)
+    public void Bulling(string key, bool strong)
     {
         if (strong)
         {
             Debug.Log("Учитель наезжает");
-            Stress(10);
-            Emotions.ChangeEmotion("upset", "ussual", 4f);
+            parent.Stress(10);
+            parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
             Debug.Log("Учитель прикалывается");
-            Emotions.ChangeEmotion("happy", "smile", 4f);
+            parent.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
 
-        Stop();
-
-        if (IsTeacherBullingRight())
-        {
-            StartCoroutine(Say(keyWord + bullKey + "_Yes", 1));
-        }
-        else
-        {
-            StartCoroutine(Say(keyWord + bullKey + "_No", 1));
-        }
+        parent.Answer(key, 0, 1);
     }
 
 
 
     //Наезд учителя за какие-то предметы
 
-    public void BullingForSubjects(string bullKey, string obj)
+    public void BullingForSubjects(string key, string obj)
     {
-
         Debug.Log("Учитель наезжает");
-        Stress(10);
-        Emotions.ChangeEmotion("upset", "ussual", 4f);
-
-        Stop();
-        if (IsTeacherBullingRight(obj))
-        {
-            StartCoroutine(Say(keyWord + bullKey + "_Yes", 0));
-        }
-        else
-        {
-            StartCoroutine(Say(keyWord + bullKey + "_No", 1));
-        }
-    }
-
-
-    public void Execute(string key)
-    {
-        Stop();
-        TextBox.Say(keyWord + key);
-        StartCoroutine(Execute());
+        parent.Stress(10);
+        parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        parent.Answer(key, obj, 0, 1);
     }
 }

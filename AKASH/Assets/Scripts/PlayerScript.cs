@@ -175,9 +175,9 @@ public class PlayerScript : MonoBehaviour
             //Наезды абсолютно одинаковые, switch тут для того, чтобы обращаться к разным скриптам.
             switch (goalTag)
             {
-                case "Dumb":
+                case "Scholar":
                     {
-                        var scholar = goalObject.GetComponent<Dumb>();
+                        var scholar = goalObject.GetComponent<Scholar>();
                         if (!scholar.executed)
                             StartCoroutine(BullingForAction(scholar, strong));
                         break;
@@ -207,7 +207,7 @@ public class PlayerScript : MonoBehaviour
 
     //Наезд на тупицу
 
-    public IEnumerator BullingForAction(Dumb scholar, bool strong)
+    public IEnumerator BullingForAction(Scholar scholar, bool strong)
     {
         key += scholar.view;
 
@@ -266,9 +266,9 @@ public class PlayerScript : MonoBehaviour
 
             switch (goalTag)
             {
-                case "Dumb":
+                case "Scholar":
                     {
-                        var scholar = goalObject.GetComponent<Dumb>();
+                        var scholar = goalObject.GetComponent<Scholar>();
                         if (!scholar.executed)
                             StartCoroutine(Execute(scholar));
                         break;
@@ -299,7 +299,7 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    private IEnumerator Execute(Dumb scholar)
+    private IEnumerator Execute(Scholar scholar)
     {
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);

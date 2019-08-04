@@ -6,7 +6,7 @@ using TMPro;
 public class TextBoxScholar : MonoBehaviour
 {
 
-    private TextMeshPro textBox;
+    private TextMeshPro[] textBox;
     private ScriptManager scriptMan;
     private bool saying = false;
     private bool question = false;
@@ -19,7 +19,8 @@ public class TextBoxScholar : MonoBehaviour
     private void Start()
     {
         scriptMan = GameObject.FindObjectOfType<ScriptManager>();
-        textBox = GetComponent<TextMeshPro>();
+        textBox = transform.GetComponentsInChildren<TextMeshPro>();
+
     }
 
     private void Update()
@@ -76,7 +77,7 @@ public class TextBoxScholar : MonoBehaviour
     {
         if (act)
             StopAllCoroutines();
-        textBox.text = "";
+        Text("");
         act = false;
         filled = false;
         saying = false;
@@ -97,11 +98,11 @@ public class TextBoxScholar : MonoBehaviour
             for(int i = 0; i<quant; i++)
             {
                 
-                textBox.text += line[i];
+                TextPlus(line[i]);
                 yield return new WaitForSeconds(0.02f);
             }
             saying = false;
-            textBox.text += " ";
+            TextPlus(' ');
             yield return new WaitForSeconds(1f);
         }
         filled = true;
@@ -112,5 +113,21 @@ public class TextBoxScholar : MonoBehaviour
     public bool IsTalking()
     {
             return (act || filled);
+    }
+
+    private void Text(string text)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            textBox[i].text = text;
+        }
+    }
+
+    private void TextPlus(char symbol)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            textBox[i].text += symbol;
+        }
     }
 }

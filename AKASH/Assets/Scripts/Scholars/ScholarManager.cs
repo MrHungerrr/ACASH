@@ -5,39 +5,13 @@ using UnityEngine;
 public class ScholarManager : MonoBehaviour
 {
 
-    private GameObject[] scholar;
-    private Dictionary<int, Dumb> dumb = new Dictionary<int, Dumb>();
-    private Dictionary<string, int> scholar_quantity = new Dictionary<string, int>()
-    {
-        { "All", 0},
-        { "Dumb", 0},
-    };
+    private Scholar[] scholar;
+
 
 
     private void Awake()
     {
-        scholar = GameObject.FindGameObjectsWithTag("Scholar");
-
-        scholar_quantity["All"] = scholar.Length;
-
-        for (int i = 0; i < scholar_quantity["All"]; i++)
-        {
-            scholar[i] = scholar[i].transform.Find("Scholar").transform.Find("Model").gameObject;
-            scholar_quantity[scholar[i].tag]++;
-        }
-
-        for (int i = 0; i < scholar_quantity["All"]; i++)
-        {
-            switch(scholar[i].tag)
-            {
-                case "Dumb":
-                    {
-                        dumb.Add(i, scholar[i].GetComponent<Dumb>());
-                        break;
-                    }
-            }
-        }
-
+        scholar = GameObject.FindObjectsOfType<Scholar>();
     }
 
 
@@ -49,9 +23,9 @@ public class ScholarManager : MonoBehaviour
 
     public void Stress(int value)
     {
-        foreach (var student in dumb.Values)
+        for( int i = 0; i< scholar.Length; i++)
         {
-            student.Stress(value);
+            scholar[i].Stress(value);
         }
     }
 }
