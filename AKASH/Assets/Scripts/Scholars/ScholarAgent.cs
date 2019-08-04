@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 
-public class ScholarAgent : MonoBehaviour
+public class ScholarAgent
 {
     private string type;
     private Dumb dumb;

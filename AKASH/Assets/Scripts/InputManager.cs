@@ -81,22 +81,36 @@ public class InputManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                pScript.Shout();
+                if(!pScript.act)
+                    pScript.Shout();
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                pScript.Bull(true);
+                if (!pScript.act && pScript.actReady && pScript.actTag == "Scholar")
+                {
+                    if (pScript.asked)
+                        pScript.Answer(false);
+                    else
+                        pScript.Bull(true);
+                }
             }
 
             if (Input.GetMouseButtonDown(0))
             {
-                pScript.Bull(false);
+                if (!pScript.act && pScript.actReady && pScript.actTag == "Scholar")
+                {
+                    if (pScript.asked)
+                        pScript.Answer(true);
+                    else
+                        pScript.Bull(false);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.X))
             {
-                pScript.Execute();
+                if (!pScript.act && pScript.actReady)
+                    pScript.Execute();
             }
 
         }

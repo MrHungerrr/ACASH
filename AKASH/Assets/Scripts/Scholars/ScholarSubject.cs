@@ -9,7 +9,7 @@ public class ScholarSubject : Subject
 
     private void Start()
     {
-        owner = transform.parent.transform.parent.transform.Find("Scholar").transform.GetComponentInChildren<Scholar>();
+        owner = transform.parent.transform.parent.transform.Find("Scholar Holder").transform.GetComponentInChildren<Scholar>();
         this.tag = "ScholarsSubject";
     }
 

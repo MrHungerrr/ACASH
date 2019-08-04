@@ -6,7 +6,8 @@ using TMPro;
 
 public class ActionsScholar : MonoBehaviour
 {
-    private NavMeshAgent agent;
+    private NavMeshAgent Agent;
+    private Scholar Scholar;
     private bool doing;
     private string keyWord;
     private int actionNo;
@@ -19,7 +20,8 @@ public class ActionsScholar : MonoBehaviour
     private void Awake()
     {
         home = transform.position;
-        agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
+        Scholar = transform.GetComponentInChildren<Scholar>();
     }
 
 
@@ -79,7 +81,7 @@ public class ActionsScholar : MonoBehaviour
     private void SetDestination(Vector3 goal)
     {
         destination = new Vector3 (goal.x, transform.position.y, goal.z);
-        agent.SetDestination(destination);
+        Agent.SetDestination(destination);
     }
 
     public void Stop()

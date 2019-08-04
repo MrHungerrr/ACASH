@@ -10,7 +10,13 @@ public class Scholar : MonoBehaviour
     private bool cheating;
     private bool talking;
     private bool walkingAnswer;
-    private bool asking;
+    [HideInInspector]
+    public bool question;
+    [HideInInspector]
+    public string quest;
+    [HideInInspector]
+    public bool asking;
+    private bool teacher_answer;
 
     [HideInInspector]
     public TextBoxScholar TextBox;
@@ -19,6 +25,7 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public Emotions Emotions;
     private GameManager GameMan;
+    private ScriptManager ScriptMan;
     private PlayerScript Player;
     private ScholarAgent Agent;
 
@@ -75,6 +82,7 @@ public class Scholar : MonoBehaviour
         TextBox = transform.parent.GetComponentInChildren<TextBoxScholar>();
         Emotions = transform.parent.GetComponentInChildren<Emotions>();
         Action = transform.GetComponentInParent<ActionsScholar>();
+        ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         GameMan = GameObject.FindObjectOfType<GameManager>();
         Player = GameObject.FindObjectOfType<PlayerScript>();
         Agent = new ScholarAgent(type, this);
@@ -86,6 +94,7 @@ public class Scholar : MonoBehaviour
     private void Start()
     {
         StartWrite();
+
     }
 
 
@@ -175,24 +184,29 @@ public class Scholar : MonoBehaviour
         StartCoroutine(Saying(key, probability_of_continue));
     }
 
+    public void Say(string key)
+    {
+        Stop();
+        StartCoroutine(Saying(key, 0));
+    }
+
     private IEnumerator Saying(string key, double probability_of_continue)
     {
         view = "Talking_";
         talking = true;
+        Selectable(false);
         TextBox.Say(key);
-        //Debug.Log("Я начал говорить");
 
         yield return new WaitForSeconds(1f);
 
         while (TextBox.IsTalking())
         {
-            //Debug.Log("Я говорю");
             yield return new WaitForSeconds(1f);
         }
 
+        Selectable(true);
         talking = false;
 
-        Debug.Log("Я закончил говорить");
         if (Probability(probability_of_continue))
             Continue();
         else
@@ -293,6 +307,49 @@ public class Scholar : MonoBehaviour
 
 
     //--------------------------------------------------------------------------------------------------------
+    //Вопросы и ответы
+
+    public void TeacherPermission(bool answer)
+    {
+        teacher_answer = true;
+
+        if (answer)
+        {
+            Say(keyWord + quest + "_Yes", 1);
+            asking = false;
+        }
+        else
+        {
+            Say(keyWord + quest + "_No", 0);
+            question = false;
+            teacher_answer = false;
+        }
+    }
+
+    public void TeacherAnswer(bool answer)
+    {
+        string buf = "Answer_";
+
+        if (answer)
+        {
+            buf += "Yes_";
+            buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
+            Say(keyWord + buf, 1);
+        }
+        else
+        {
+            buf += "No_";
+            buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
+            Say(keyWord + buf, 0);
+            teacher_answer = false;
+        }
+
+        question = false;
+    }
+
+
+
+    //--------------------------------------------------------------------------------------------------------
     //Исключение
 
     public void Execute(string key)
@@ -304,6 +361,7 @@ public class Scholar : MonoBehaviour
 
     private IEnumerator Execute()
     {
+        Selectable(false);
         executed = true;
         yield return new WaitForSeconds(1f);
 
@@ -327,4 +385,15 @@ public class Scholar : MonoBehaviour
     }
 
 
+
+    //--------------------------------------------------------------------------------------------------------
+    //Возможность выбрать объект
+
+    private void Selectable(bool u)
+    {
+        if (u)
+            this.gameObject.layer = 9;
+        else
+            this.gameObject.layer = 10;
+    }
 }

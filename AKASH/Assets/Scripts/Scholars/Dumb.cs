@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
-using TMPro;
 
-public class Dumb : MonoBehaviour
+public class Dumb
 {
     [HideInInspector]
     public Scholar parent;

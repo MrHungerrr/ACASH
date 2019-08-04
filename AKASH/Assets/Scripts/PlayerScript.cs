@@ -9,10 +9,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private float movementSpeed = 6;
     private double rnd;
-    private CharacterController charController;
+    private CharacterController CharController;
     private LayerMask actLayerMask;
-    private InputManager inManager;
-    private CameraController camControl;
+    private InputManager InputMan;
+    private CameraController CamControl;
     private bool disPlayer;
 
     //Действия
@@ -20,10 +20,14 @@ public class PlayerScript : MonoBehaviour
     public bool doing;
     private bool think;
     [HideInInspector]
+    public bool asked;
+    [HideInInspector]
     public bool act;
-    private bool actReady;
+    [HideInInspector]
+    public bool actReady;
     private float actRange = 4f;
-    private string actTag;
+    [HideInInspector]
+    public string actTag;
     private GameObject actObject;
     private string actText;
     [HideInInspector]
@@ -41,9 +45,9 @@ public class PlayerScript : MonoBehaviour
         playerCam = GameObject.FindWithTag("PlayerCamera");
         horizontalInputName = "Horizontal";
         verticalInputName = "Vertical";
-        inManager = GetComponent<InputManager>();
-        charController = GetComponent<CharacterController>();
-        camControl = playerCam.GetComponent<CameraController>();
+        InputMan = GetComponent<InputManager>();
+        CharController = GetComponent<CharacterController>();
+        CamControl = playerCam.GetComponent<CameraController>();
         SubMan = GameObject.FindObjectOfType<SubtitleManager>();
         ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
@@ -57,9 +61,11 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         PlayerMovement();
-        Watching();
+        if(!act)
+            Watching();
         Action();
     }
+
 
 
     private void PlayerMovement()
@@ -70,7 +76,7 @@ public class PlayerScript : MonoBehaviour
         Vector3 forwardMovement = transform.forward * vertInput;
         Vector3 rightMovement = transform.right * horizInput;
 
-        charController.SimpleMove(forwardMovement + rightMovement);
+        CharController.SimpleMove(forwardMovement + rightMovement);
     }
 
 
@@ -92,6 +98,8 @@ public class PlayerScript : MonoBehaviour
                 actTag = hit.collider.tag;
                 actReady = true;
                 actObject.GetComponent<ObjectSelect>().Select();
+                
+                WhatISee();
             }
         }
         else if (actReady && actObject != null)
@@ -99,6 +107,27 @@ public class PlayerScript : MonoBehaviour
             actObject.GetComponent<ObjectSelect>().Deselect();
             actObject = null;
             actReady = false;
+        }
+    }
+
+
+
+    private void WhatISee()
+    {
+        switch (actTag)
+        {
+            case "Scholar":
+                {
+                    if (actObject.GetComponent<Scholar>().question)
+                    {
+                        asked = true;
+                    }
+                    else
+                    {
+                        asked = false;
+                    }
+                    break;
+                }
         }
     }
 
@@ -132,11 +161,10 @@ public class PlayerScript : MonoBehaviour
 
     public void Shout()
     {
-        if (!act)
-            StartCoroutine(Shouting());
+        StartCoroutine(Shouting());
     }
 
-    public IEnumerator Shouting()
+    private IEnumerator Shouting()
     {
         StopThinking();
         ScholarMan.Stress(10);
@@ -144,7 +172,7 @@ public class PlayerScript : MonoBehaviour
         key = "Shout_";
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
-        SubMan.PlaySubtitle(keyWord + key);
+        SubMan.Say(keyWord + key);
         yield return new WaitForSeconds(1f);
         while (SubMan.act)
         {
@@ -156,40 +184,78 @@ public class PlayerScript : MonoBehaviour
 
 
 
+    public void Answer(bool answer)
+    {
+        StopThinking();
+        act = true;
+
+        key = "Answer_";
+
+        var scholar = actObject.GetComponent<Scholar>();
+
+        if (scholar.asking)
+            StartCoroutine(Permission(scholar, answer));
+        else
+            StartCoroutine(Answering(scholar, answer));
+    }
+
+    private IEnumerator Permission(Scholar scholar, bool answer)
+    {
+        key += "Permission_";
+
+        if (answer)
+            key += "Yes_";
+        else
+            key += "No_";
+
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+        SubMan.Say(keyWord + key);
+
+        yield return new WaitForSeconds(0.5f);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        scholar.TeacherPermission(answer);
+        act = false;
+    }
+
+    private IEnumerator Answering(Scholar scholar, bool answer)
+    {
+        key += scholar.quest;
+
+        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
+        key += nomber;
+        SubMan.Say(keyWord + key);
+
+        yield return new WaitForSeconds(1f);
+
+        while (SubMan.act)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        scholar.TeacherAnswer(answer);
+        act = false;
+    }
 
     public void Bull(bool strong)
     {
-        if (!act && actReady)
-        {
-            StopThinking();
-            act = true;
-            string goalTag = actTag;
-            GameObject goalObject = actObject;
+        StopThinking();
+        act = true;
 
-            if (strong)
-                key = "Bull_";
-            else
-                key = "Joke_";
+        if (strong)
+            key = "Bull_";
+        else
+            key = "Joke_";
 
+        var scholar = actObject.GetComponent<Scholar>();
 
-            //Наезды абсолютно одинаковые, switch тут для того, чтобы обращаться к разным скриптам.
-            switch (goalTag)
-            {
-                case "Scholar":
-                    {
-                        var scholar = goalObject.GetComponent<Scholar>();
-                        if (!scholar.executed)
-                            StartCoroutine(BullingForAction(scholar, strong));
-                        break;
-                    }
-                default:
-                    {
-                        act = false;
-                        break;
-                    }
-    
-            }
-        }
+        if (!scholar.executed)
+            StartCoroutine(BullingForAction(scholar, strong));
 
     }
 
@@ -207,7 +273,7 @@ public class PlayerScript : MonoBehaviour
 
     //Наезд на тупицу
 
-    public IEnumerator BullingForAction(Scholar scholar, bool strong)
+    private IEnumerator BullingForAction(Scholar scholar, bool strong)
     {
         key += scholar.view;
 
@@ -221,7 +287,7 @@ public class PlayerScript : MonoBehaviour
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
-        SubMan.PlaySubtitle(keyWord + key);
+        SubMan.Say(keyWord + key);
 
         yield return new WaitForSeconds(1f);
 
@@ -242,7 +308,7 @@ public class PlayerScript : MonoBehaviour
 
         //Добавить вероятность + взгляд
         if (!act && Probability(0.1))
-            SubMan.PlaySubtitle(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
+            SubMan.Say(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptMan.linesQuantity[keyWord + "Thinking_"]));
     }
 
 
@@ -254,45 +320,41 @@ public class PlayerScript : MonoBehaviour
 
     public void Execute()
     {
-        if (!act && actReady)
+        StopThinking();
+        act = true;
+        string goalTag = actTag;
+        GameObject goalObject = actObject;
+
+        key = "Execute_";
+
+
+        switch (goalTag)
         {
-            StopThinking();
-            act = true;
-            string goalTag = actTag;
-            GameObject goalObject = actObject;
-
-            key = "Execute_";
-
-
-            switch (goalTag)
-            {
-                case "Scholar":
-                    {
-                        var scholar = goalObject.GetComponent<Scholar>();
-                        if (!scholar.executed)
-                            StartCoroutine(Execute(scholar));
-                        break;
-                    }
-                case "ScholarsSubject":
-                    {
-                        var subject = goalObject.GetComponent<ScholarSubject>();
-                        Debug.Log("Fuck");
-                        StartCoroutine(Execute(subject));
-                        break;
-                    }
-                case "Subject":
-                    {
-                        var subject = goalObject.GetComponent<Subject>();
-                        StartCoroutine(Execute(subject));
-                        break;
-                    }
-                default:
-                    {
-                        act = false;
-                        break;
-                    }
-
-            }
+            case "Scholar":
+                {
+                    var scholar = goalObject.GetComponent<Scholar>();
+                    if (!scholar.executed)
+                        StartCoroutine(Execute(scholar));
+                    break;
+                }
+            case "ScholarsSubject":
+                {
+                    var subject = goalObject.GetComponent<ScholarSubject>();
+                    Debug.Log("Fuck");
+                    StartCoroutine(Execute(subject));
+                    break;
+                }
+            case "Subject":
+                {
+                    var subject = goalObject.GetComponent<Subject>();
+                    StartCoroutine(Execute(subject));
+                    break;
+                }
+            default:
+                {
+                    act = false;
+                    break;
+                }
         }
     }
 
@@ -305,7 +367,7 @@ public class PlayerScript : MonoBehaviour
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
 
-        SubMan.PlaySubtitle(keyWord + key);
+        SubMan.Say(keyWord + key);
 
         yield return new WaitForSeconds(1f);
 
@@ -322,15 +384,15 @@ public class PlayerScript : MonoBehaviour
 
         act = false;
 
-        SubMan.PlaySubtitle(keyWord + "Thinking_" + key);
+        SubMan.Say(keyWord + "Thinking_" + key);
     }
 
 
     private IEnumerator Execute(ScholarSubject subject)
     {
-        key += subject.name;
+        key += subject.name + "_";
         key += Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        SubMan.PlaySubtitle(keyWord + key);
+        SubMan.Say(keyWord + key);
         subject.Execute(key);
 
         yield return new WaitForSeconds(1f);
@@ -345,9 +407,9 @@ public class PlayerScript : MonoBehaviour
 
     private IEnumerator Execute(Subject subject)
     {
-        key += subject.name;
+        key += subject.name + "_";
         key += Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        SubMan.PlaySubtitle(keyWord + key);
+        SubMan.Say(keyWord + key);
         subject.Execute();
 
         yield return new WaitForSeconds(1f);
@@ -361,8 +423,6 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-
-
     private void StopThinking()
     {
         if(SubMan.act)
@@ -371,7 +431,7 @@ public class PlayerScript : MonoBehaviour
 
     public void DisableControl(bool status)
     {
-        inManager.disPlayer = status;
+        InputMan.disPlayer = status;
         playerCam.SetActive(!status);
     }
 

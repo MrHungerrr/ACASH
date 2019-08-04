@@ -18,7 +18,7 @@ public class SubtitleManager : MonoBehaviour
     }
 
 
-    public void PlaySubtitle(string key)
+    public void Say(string key)
     {
         StartCoroutine(PlaySub(key));
     }
