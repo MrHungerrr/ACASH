@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PC_Script : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
+public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
     private Vector3 startPosition;
@@ -23,7 +23,7 @@ public class PC_Script : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (Vector3.Distance(startPosition, transform.position) < minDist) 
+        if (Vector3.Distance(startPosition, transform.position) < minDist)
         {
             transform.position = startPosition;
         }

@@ -12,16 +12,20 @@ public class CheatHelper : MonoBehaviour
     public int cheatingCountonLevel; 
     public static bool allowcheating = true;
 
+
     void Start()
     {
-        //Какой то общий сбор учеников;
+        student = FindObjectsOfType<CheatingScript>();
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.Log(student[i].gameObject + " " + student[i].stress);
+        }
     }
-
 
 
     void Update()
     {
-        Debug.Log(cheatingCount);
+        //Debug.Log(cheatingCount);
         if (cheatingCount < cheatingCountonLevel)
         {
             allowcheating = true;
@@ -29,7 +33,12 @@ public class CheatHelper : MonoBehaviour
         else
         {
             allowcheating = false;
-            Debug.Log("Вас и так слишком много! ");
+            //Debug.Log("Пока списывающих достаточно! ");
         }
+    }
+
+    void StressCollection()
+    {
+        
     }
 }
