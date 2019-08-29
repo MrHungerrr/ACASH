@@ -28,4 +28,18 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             transform.position = startPosition;
         }
     }
+
+    private void OnEnable()
+    {
+
+        if (this.gameObject.name == "Tension_window")
+        {
+
+
+            for (int i = 0; i < GameObject.FindObjectOfType<CheatHelper>().studentcount; i++)
+            {
+                Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/Tension_Slider"), this.gameObject.transform);
+            }
+        }
+    }
 }

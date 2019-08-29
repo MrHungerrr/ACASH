@@ -6,6 +6,7 @@ public class CheatHelper : MonoBehaviour
 {
 
     CheatingScript[] student = new CheatingScript[32];
+    public int studentcount = 0;
     
     public static int cheatingCount = 0;
     [Range(0, 32)]
@@ -16,9 +17,12 @@ public class CheatHelper : MonoBehaviour
     void Start()
     {
         student = FindObjectsOfType<CheatingScript>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < student.Length; i++)
         {
-            Debug.Log(student[i].gameObject + " " + student[i].stress);
+            if (student[i] != null)
+            {
+                studentcount++;
+            }
         }
     }
 
@@ -37,8 +41,12 @@ public class CheatHelper : MonoBehaviour
         }
     }
 
-    void StressCollection()
-    {
-        
+     public void StressCollection()
+     {
+        /*for (int i = 0; i < cheatingCountonLevel; i++)
+        {
+            Debug.Log(student[i].gameObject + " " + student[i].stress);
+        }
+        */
     }
 }
