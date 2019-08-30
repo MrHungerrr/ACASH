@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CheatHelper : MonoBehaviour
 {
-
-    CheatingScript[] student = new CheatingScript[32];
+    [HideInInspector]
+    public CheatingScript[] student = new CheatingScript[32];
     public int studentcount = 0;
     
     public static int cheatingCount = 0;
@@ -16,6 +16,12 @@ public class CheatHelper : MonoBehaviour
 
     void Start()
     {
+        
+    }
+
+    public int StudentCount()
+    {
+        studentcount = 0;
         student = FindObjectsOfType<CheatingScript>();
         for (int i = 0; i < student.Length; i++)
         {
@@ -24,6 +30,7 @@ public class CheatHelper : MonoBehaviour
                 studentcount++;
             }
         }
+        return studentcount;
     }
 
 
@@ -48,5 +55,6 @@ public class CheatHelper : MonoBehaviour
             Debug.Log(student[i].gameObject + " " + student[i].stress);
         }
         */
-    }
+     }
+
 }

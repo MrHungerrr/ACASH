@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -34,12 +35,32 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         if (this.gameObject.name == "Tension_window")
         {
+            CheatHelper ch = FindObjectOfType<CheatHelper>();
+            int sc = ch.StudentCount();
 
-
-            for (int i = 0; i < GameObject.FindObjectOfType<CheatHelper>().studentcount; i++)
+            for (int i = 0; i < sc; i++)
             {
-                Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/Tension_Slider"), this.gameObject.transform);
+                GameObject gm;
+                gm = Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/Tension_Slider"), this.gameObject.transform.GetChild(0).transform);
+                gm.GetComponent<Slider>().value = ch.student[i].stress;
+                gm.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().SetText(ch.student[i].gameObject.name);
+
             }
         }
     }
+
+    private void OnDisable()
+    {
+        if (this.gameObject.name == "Tension_window")
+        {
+            CheatHelper ch = FindObjectOfType<CheatHelper>();
+            int sc = ch.StudentCount();
+
+            for (int i = 0; i < sc; i++)
+            {
+                Destroy(this.gameObject.transform.GetChild(0).GetChild(i).gameObject);
+            }
+        }
+    }
+
 }
