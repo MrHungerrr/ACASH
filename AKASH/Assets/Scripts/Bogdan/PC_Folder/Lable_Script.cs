@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MyComputer_Script : MonoBehaviour, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Lable_Script : MonoBehaviour, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Image image;
     int click = 0;
@@ -14,7 +14,7 @@ public class MyComputer_Script : MonoBehaviour, IPointerExitHandler, IPointerCli
     private float minDist = 70;
 
     // public GameObject mycomputer;
-    public GameObject pc;
+    public GameObject lable;
 
     void Start()
     {
@@ -26,8 +26,8 @@ public class MyComputer_Script : MonoBehaviour, IPointerExitHandler, IPointerCli
         click++;
         if (click == 2)
         {
-            pc.SetActive(true);
-            StartCoroutine(dubleclick());
+            lable.SetActive(true);
+            click = 0;
         }
         else
         {
@@ -58,13 +58,13 @@ public class MyComputer_Script : MonoBehaviour, IPointerExitHandler, IPointerCli
             transform.position = startPosition;
         }
 
-        if (transform.position.x < 50) 
+        if (transform.position.x < 50)
         {
             transform.position = new Vector2(70, transform.position.y);
         }
-        if (transform.position.x > Screen.width-50)
+        if (transform.position.x > Screen.width - 50)
         {
-            transform.position = new Vector2( Screen.width - 70, transform.position.y);
+            transform.position = new Vector2(Screen.width - 70, transform.position.y);
         }
         if (transform.position.y < 50)
         {
@@ -79,7 +79,20 @@ public class MyComputer_Script : MonoBehaviour, IPointerExitHandler, IPointerCli
 
     IEnumerator dubleclick()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         click = 0;
+    }
+
+
+
+
+
+
+
+    // Напряжение
+
+    void Tension(float[] studentsstress)
+    {
+
     }
 }

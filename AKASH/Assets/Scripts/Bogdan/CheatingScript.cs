@@ -19,9 +19,16 @@ public class CheatingScript : MonoBehaviour
 
     public bool isUnderTeacherSupervision;
 
-    void Start()
+
+    private void Awake()
     {
         stress = Random.Range(0f, 15f);
+    }
+
+    void Start()
+    {
+        
+
         if (Mudak)
         { 
             StartCoroutine(CheatingCoroutineForMudak());
@@ -86,7 +93,7 @@ public class CheatingScript : MonoBehaviour
     {
         double y;
         float x = stress;
-        y = 0.0001793981 * Mathf.Pow(x, 3) - 0.0382936508f * Mathf.Pow(x, 2) + 2.9857804233 * x + 4.8015873016;
+        y = 0.0001793981f * Mathf.Pow(x, 3) - 0.0382936508f * Mathf.Pow(x, 2) + 2.9857804233f * x + 4.8015873016f;
         if (Random.Range(1f, 100f) <= y)
         {
             return true; 
