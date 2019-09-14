@@ -6,9 +6,15 @@ using System;
 
 public class Scholar : MonoBehaviour
 {
-    private int stress;
+    [HideInInspector]
+    public int stress;
     private bool cheating;
-    private bool talking;
+    [HideInInspector]
+    public int nomber;
+    [HideInInspector]
+    public bool cheatNeed;
+    [HideInInspector]
+    public bool talking;
     private bool walkingAnswer;
     [HideInInspector]
     public bool question;
@@ -16,7 +22,10 @@ public class Scholar : MonoBehaviour
     public string quest;
     [HideInInspector]
     public bool asking;
-    private bool teacher_answer;
+    [HideInInspector]
+    public bool teacher_answer;
+    [HideInInspector]
+    public bool greeneyes;
 
     [HideInInspector]
     public TextBoxScholar TextBox;
@@ -27,7 +36,9 @@ public class Scholar : MonoBehaviour
     private GameManager GameMan;
     private ScriptManager ScriptMan;
     private PlayerScript Player;
-    private ScholarAgent Agent;
+    [HideInInspector]
+    public ScholarAgent Agent;
+    private ScholarManager ScholarMan;
 
 
     [HideInInspector]
@@ -52,6 +63,7 @@ public class Scholar : MonoBehaviour
     public string view = "Cheating_";
     [HideInInspector]
     public bool writing;
+
     [HideInInspector]
     public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
     {
@@ -62,6 +74,16 @@ public class Scholar : MonoBehaviour
         { "Walking_", false },
         { "Nothing_", false }
     };
+
+    [HideInInspector]
+    public Dictionary<string, bool> reason = new Dictionary<string, bool>()
+    {
+        { "Walking_", false },
+        { "Talking_", false },
+        { "Cheating_", false },
+    };
+
+
 
     public enum list_scholarType
     {
@@ -74,14 +96,17 @@ public class Scholar : MonoBehaviour
 
 
 
+
+
     private void Awake()
     {
         this.tag = "Scholar";
         type = scholarType.ToString();
 
-        TextBox = transform.parent.GetComponentInChildren<TextBoxScholar>();
-        Emotions = transform.parent.GetComponentInChildren<Emotions>();
-        Action = transform.GetComponentInParent<ActionsScholar>();
+        TextBox = transform.parent.transform.parent.GetComponentInChildren<TextBoxScholar>();
+        Emotions = transform.parent.transform.parent.GetComponentInChildren<Emotions>();
+        Action = transform.parent.transform.GetComponentInParent<ActionsScholar>();
+        ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
         ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         GameMan = GameObject.FindObjectOfType<GameManager>();
         Player = GameObject.FindObjectOfType<PlayerScript>();
@@ -91,33 +116,37 @@ public class Scholar : MonoBehaviour
         IQ_start = 0;
     }
 
+
     private void Start()
     {
         StartWrite();
-
+        Action.Doing("Toilet_1");
     }
 
 
 
     void Update()
     {
-
         if (writing)
-            WritingTest(UnityEngine.Random.value * 100);
+            Agent.Writing();
+    }
+
+    private void FixedUpdate()
+    {
+        if (!cheatNeed)
+            Agent.CheatNeed();
     }
 
     public void Continue()
     {
-        writing = true;
-        Debug.Log("Продолжаем");
         Action.Continue();
+        Debug.Log("Продолжаем");
     }
 
     public void Stop()
     {
         if (!executed)
         {
-            writing = false;
             StopAllCoroutines();
             Action.Stop();
             TextBox.Clear();
@@ -126,12 +155,12 @@ public class Scholar : MonoBehaviour
 
     public void StartWrite()
     {
-        writing = true;
+        Action.StartWriting();
     }
 
 
 
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
     //Поднятие стресса
 
     public void Stress(int value)
@@ -175,7 +204,7 @@ public class Scholar : MonoBehaviour
 
 
 
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
     //Ученик говорит
 
     public void Say(string key, double probability_of_continue)
@@ -190,6 +219,11 @@ public class Scholar : MonoBehaviour
         StartCoroutine(Saying(key, 0));
     }
 
+    public void SayWithoutContinue(string key)
+    {
+        StartCoroutine(SayingWithoutContinue(key));
+    }
+
     private IEnumerator Saying(string key, double probability_of_continue)
     {
         view = "Talking_";
@@ -197,11 +231,11 @@ public class Scholar : MonoBehaviour
         Selectable(false);
         TextBox.Say(key);
 
-        yield return new WaitForSeconds(1f);
 
         while (TextBox.IsTalking())
         {
-            yield return new WaitForSeconds(1f);
+            Action.Watch(Player.transform.position);
+            yield return new WaitForEndOfFrame();
         }
 
         Selectable(true);
@@ -213,9 +247,26 @@ public class Scholar : MonoBehaviour
             StartWrite();
     }
 
+    private IEnumerator SayingWithoutContinue(string key)
+    {
+        view = "Talking_";
+        talking = true;
+        Selectable(false);
+        TextBox.Say(key);
+
+        while (TextBox.IsTalking())
+        {
+            Action.Watch(Player.transform.position);
+            yield return new WaitForEndOfFrame();
+        }
+
+        Selectable(true);
+        talking = false;
+    }
 
 
-    //--------------------------------------------------------------------------------------------------------
+
+    //========================================================================================================
     //Ответ учителю
 
     public void Answer(string key, double prob_cont_right, double prob_cont_false)
@@ -243,12 +294,14 @@ public class Scholar : MonoBehaviour
     }
 
 
-    //--------------------------------------------------------------------------------------------------------
+
+    //========================================================================================================
     //Наезд на ученика
 
     public void HearBulling(bool strong)
     {
         Agent.HearBulling(strong);
+        StartCoroutine(WatchingTeacher());
     }
 
     public void Bulling(string bullKey, bool strong)
@@ -261,9 +314,18 @@ public class Scholar : MonoBehaviour
         Agent.BullingForSubjects(keyWord + bullKey, obj);
     }
 
+    private IEnumerator WatchingTeacher()
+    {
+        while (!talking)
+        {
+            Action.Watch(Player.transform.position);
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
 
-    //--------------------------------------------------------------------------------------------------------
+
+    //========================================================================================================
     //Прав ли учитель?
 
     public bool IsTeacherBullingRight()
@@ -306,50 +368,87 @@ public class Scholar : MonoBehaviour
 
 
 
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
     //Вопросы и ответы
+
+    public void Question(string q)
+    {
+        quest = keyWord + q;
+        teacher_answer = false;
+        asking = true;
+        question = true;
+        StartCoroutine(Asking(q));
+    }
+
+    private IEnumerator Asking(string key)
+    {
+        view = "Talking_";
+        talking = true;
+        Selectable(false);
+        TextBox.Question(key);
+
+        yield return new WaitForSeconds(1f);
+
+        while (TextBox.IsTalking())
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        Debug.Log("Мы задали вопрос");
+        Selectable(true);
+        talking = false;
+    }
 
     public void TeacherPermission(bool answer)
     {
-        teacher_answer = true;
+        string pKey = keyWord + quest;
 
         if (answer)
         {
-            Say(keyWord + quest + "_Yes", 1);
-            asking = false;
+            pKey += "_Yes";
         }
         else
         {
-            Say(keyWord + quest + "_No", 0);
+            pKey += "_No";
             question = false;
-            teacher_answer = false;
         }
+
+        Agent.TeacherPermission(pKey, answer);
+        asking = false;
     }
 
     public void TeacherAnswer(bool answer)
     {
         string buf = "Answer_";
+        buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
+        buf = keyWord + buf;
 
         if (answer)
         {
-            buf += "Yes_";
-            buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
-            Say(keyWord + buf, 1);
+            buf += "_Yes";
+            teacher_answer = true;
         }
         else
         {
-            buf += "No_";
-            buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
-            Say(keyWord + buf, 0);
-            teacher_answer = false;
+            buf += "_No";
         }
 
+        Agent.TeacherAnswer(buf, answer);
         question = false;
     }
 
 
 
-    //--------------------------------------------------------------------------------------------------------
+    //=================================================================================================================================================
+    //Учитель кричит на ученика
+
+    public void Shout()
+    {
+
+    }
+
+
+
+    //=================================================================================================================================================
     //Исключение
 
     public void Execute(string key)
@@ -371,7 +470,7 @@ public class Scholar : MonoBehaviour
 
 
 
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
     //Вероятность
 
     public bool Probability(double a)
@@ -386,7 +485,18 @@ public class Scholar : MonoBehaviour
 
 
 
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
+    //Присвоить номер ученику
+
+    public void SetNomber(int i)
+    {
+        nomber = i;
+        Action.desk = ScholarMan.desks[i].position;
+    }
+
+
+
+    //========================================================================================================
     //Возможность выбрать объект
 
     private void Selectable(bool u)
@@ -396,4 +506,7 @@ public class Scholar : MonoBehaviour
         else
             this.gameObject.layer = 10;
     }
+
+
+
 }

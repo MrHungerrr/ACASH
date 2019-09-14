@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     public bool zoom;
     [HideInInspector]
     public bool zooming;
-    private float normFOV = 50;
+    private float normFOV = 90;
     private float zoomFOV = 15;
     private float FOV;
 
@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
         xAxisClamp = 0.0f;
         
         cineCam = GetComponent<CinemachineVirtualCamera>();
+        cineCam.m_Lens.FieldOfView = normFOV;
     }
 
     private void Start()

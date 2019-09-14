@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     public bool disPlayer;
     private PlayerScript pScript;
     private CameraController cControl;
+    private Menu menu;
     
 
     //private ParticleSystem.VelocityOverLifetimeModule vel;
@@ -27,6 +28,8 @@ public class InputManager : MonoBehaviour
         disPlayer = false;
         pScript = GameObject.FindObjectOfType<PlayerScript>();
         cControl = GameObject.FindObjectOfType<CameraController>();
+        //menu = GameObject.FindObjectOfType<Menu>();
+        //menu.SwitchMenu(false);
     }
 
 
@@ -129,6 +132,7 @@ public class InputManager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 game = false;
+               //menu.SwitchMenu(true);
             }
         }
 
@@ -142,6 +146,7 @@ public class InputManager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 game = true;
+                //menu.SwitchMenu(false);
             }
 
             if (Input.GetKeyDown(KeyCode.R))

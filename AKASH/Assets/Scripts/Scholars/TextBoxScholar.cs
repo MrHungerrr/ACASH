@@ -7,18 +7,20 @@ public class TextBoxScholar : MonoBehaviour
 {
 
     private TextMeshPro[] textBox;
-    private ScriptManager scriptMan;
+    private ScriptManager ScriptMan;
     private bool saying = false;
     private bool question = false;
     private bool act = false;
     private bool filled = false;
     private float timeClear_N;
     private float timeClear = 0;
+    private float timeUnselectable_N;
+    private float timeUnselectable = 0;
 
 
-    private void Start()
+    private void Awake()
     {
-        scriptMan = GameObject.FindObjectOfType<ScriptManager>();
+        ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         textBox = transform.GetComponentsInChildren<TextMeshPro>();
 
     }
@@ -31,9 +33,13 @@ public class TextBoxScholar : MonoBehaviour
             {
                 Clear();
             }
-            else
+            else if (timeUnselectable >= timeUnselectable_N)
             {
                 timeClear += Time.deltaTime;
+            }
+            else
+            {
+                timeUnselectable += Time.deltaTime;
             }
         }
 
@@ -89,7 +95,7 @@ public class TextBoxScholar : MonoBehaviour
     private IEnumerator PlaySub(string key)
     {
         act = true;
-        var script = scriptMan.GetText(key);
+        var script = ScriptMan.GetText(key);
         foreach (var line in script)
         {
             
@@ -112,6 +118,9 @@ public class TextBoxScholar : MonoBehaviour
 
     public bool IsTalking()
     {
+        if(question)
+            return (act);
+        else
             return (act || filled);
     }
 

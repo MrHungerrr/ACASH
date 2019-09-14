@@ -58,5 +58,88 @@ public class ScholarAgent
         }
     }
 
+    public void TeacherPermission(string key, bool answer)
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.TeacherPermission(key, answer);
+                    break;
+                }
+        }
+    }
+
+    public void TeacherAnswer(string key, bool answer)
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.TeacherAnswer(key, answer);
+                    break;
+                }
+        }
+    }
+
+    public void Writing()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.Writing();
+                    break;
+                }
+        }
+    }
+
+    public void CheatNeed()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.CheatNeed();
+                    break;
+                }
+        }
+    }
+
+    public void CanCheat()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.CanCheat(Convert.ToInt32(UnityEngine.Random.Range(0, 5)));
+                    break;
+                }
+        }
+    }
+
+    public void CheatingSelection()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.CheatingSelection(Convert.ToInt32(UnityEngine.Random.Range(0, 5)));
+                    break;
+                }
+        }
+    }
+
+    public void RandomAction()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.RandomAction(Convert.ToInt32(UnityEngine.Random.Range(0, 5)));
+                    break;
+                }
+        }
+    }
 }
 

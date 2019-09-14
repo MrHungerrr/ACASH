@@ -5,13 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerCamera
-  - Asshole
-  - Dumb
-  - Underdog
   - Computer
-  - ScholarsSubject
   - Subject
   - Scholar
+  - ScholarSubject
+  - ScholarDesk
   layers:
   - Default
   - TransparentFX
@@ -23,7 +21,7 @@ TagManager:
   - 
   - PostProcessing
   - Selectable
-  - 
+  - Not Selectable
   - 
   - 
   - 
