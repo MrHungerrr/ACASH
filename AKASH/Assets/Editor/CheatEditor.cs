@@ -23,6 +23,7 @@ public class CheatEditor : Editor
 
         if (!_CheatingScript.Daun)
         _CheatingScript.stress = EditorGUILayout.Slider("Stress", _CheatingScript.stress, 0, 100);
+
         _CheatingScript.isUnderTeacherSupervision = EditorGUILayout.Toggle("VsevidisheeOKO", _CheatingScript.isUnderTeacherSupervision);
 
         

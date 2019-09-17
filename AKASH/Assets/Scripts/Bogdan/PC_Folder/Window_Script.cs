@@ -41,9 +41,11 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             for (int i = 0; i < sc; i++)
             {
                 GameObject gm;
-                gm = Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/Tension_Slider"), this.gameObject.transform.GetChild(0).transform);
-                gm.GetComponent<Slider>().value = ch.student[i].stress;
-                gm.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().SetText(ch.student[i].gameObject.name);
+                gm = Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/TensionOfStudent"), this.gameObject.transform.GetChild(0).transform);
+                gm.GetComponent<Transform>().localScale = new Vector3(ch.student[i].stress / 100, 1, 1);
+                gm.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().SetText(ch.student[i].gameObject.name);
+                gm.transform.GetChild(0).GetComponent<Transform>().transform.localScale = new Vector3(1 / (ch.student[i].stress / 100), 1, 1);
+                gm.transform.GetChild(1).GetComponent<Transform>().transform.localScale = new Vector3(1 / (ch.student[i].stress / 100), 1, 1);
 
             }
         }
