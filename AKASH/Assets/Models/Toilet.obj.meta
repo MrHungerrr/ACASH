@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: b592c437965f2eb4db17d4bb4efd3bd4
+guid: 0251e9e18a4237f4981d1987d7875b23
 ModelImporter:
-  serializedVersion: 25
+  serializedVersion: 26
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Parta_UchenikaMat
+      name: ToiletMat
     second: {fileID: 2100000, guid: 91d4d0a0d77e93c41a71fd95cae2ae62, type: 2}
   materials:
     importMaterials: 1
@@ -39,10 +39,11 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.01
+    globalScale: 0.00175
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -85,7 +86,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 0.00175
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

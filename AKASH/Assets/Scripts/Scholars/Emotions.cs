@@ -9,7 +9,6 @@ public class Emotions : MonoBehaviour
     private TextMeshPro face;
 
 
-
     void Start()
     {
         face = GetComponent<TextMeshPro>();
@@ -68,6 +67,7 @@ public class Emotions : MonoBehaviour
         }
 
     }
+
 
 
 

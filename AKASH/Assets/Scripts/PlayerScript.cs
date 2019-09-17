@@ -35,6 +35,7 @@ public class PlayerScript : MonoBehaviour
     private SubtitleManager SubMan;
     private ScriptManager ScriptMan;
     private ScholarManager ScholarMan;
+    private ScoreSystem Score;
     private string keyWord = "Teacher_";
     private string key;
 
@@ -46,6 +47,7 @@ public class PlayerScript : MonoBehaviour
         horizontalInputName = "Horizontal";
         verticalInputName = "Vertical";
         InputMan = GetComponent<InputManager>();
+        Score = GameObject.FindObjectOfType<ScoreSystem>();
         CharController = GetComponent<CharacterController>();
         CamControl = playerCam.GetComponent<CameraController>();
         SubMan = GameObject.FindObjectOfType<SubtitleManager>();
@@ -202,17 +204,20 @@ public class PlayerScript : MonoBehaviour
     private IEnumerator Permission(Scholar scholar, bool answer)
     {
         key += "Permission_";
-
-        if (answer)
-            key += "Yes_";
-        else
-            key += "No_";
-
+        
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
+
+        if (answer)
+            key += "_Yes";
+        else
+            key += "_No";
+
         SubMan.Say(keyWord + key);
 
         yield return new WaitForSeconds(0.5f);
+         
+        scholar.HearBulling(!answer);
 
         while (SubMan.act)
         {
@@ -227,11 +232,16 @@ public class PlayerScript : MonoBehaviour
     {
         key += scholar.quest;
 
-        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        key += nomber;
+        if (answer)
+            key += "_Yes";
+        else
+            key += "_No";
+
         SubMan.Say(keyWord + key);
 
         yield return new WaitForSeconds(1f);
+
+        scholar.HearBulling(!answer);
 
         while (SubMan.act)
         {
@@ -255,26 +265,18 @@ public class PlayerScript : MonoBehaviour
         var scholar = actObject.GetComponent<Scholar>();
 
         if (!scholar.executed)
-            StartCoroutine(BullingForAction(scholar, strong));
-
+            StartCoroutine(Bulling(scholar, strong));
     }
 
 
 
-    //--------------------------------------------------------------------------------------------------------
-    //Осторожно, разновидности одного и того же кода. Отличаются лишь скриптами, к которым обращаются.
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
+    //Наезд на школьника
 
-
-
-    //Наезд на мудака
-
-
-
-    //Наезд на тупицу
-
-    private IEnumerator BullingForAction(Scholar scholar, bool strong)
+    private IEnumerator Bulling(Scholar scholar, bool strong)
     {
+        Score.BullScore(scholar, strong);
+
         key += scholar.view;
 
         if (scholar.remarks[scholar.view])
@@ -292,6 +294,7 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         scholar.HearBulling(strong);
+
 
         while (SubMan.act)
         {
@@ -313,9 +316,8 @@ public class PlayerScript : MonoBehaviour
 
 
 
-    //--------------------------------------------------------------------------------------------------------
-    //Конец разновидностей одного и того же кода.
-    //--------------------------------------------------------------------------------------------------------
+    //========================================================================================================
+    //Наезд на школьника
 
 
     public void Execute()
@@ -340,7 +342,6 @@ public class PlayerScript : MonoBehaviour
             case "ScholarsSubject":
                 {
                     var subject = goalObject.GetComponent<ScholarSubject>();
-                    Debug.Log("Fuck");
                     StartCoroutine(Execute(subject));
                     break;
                 }

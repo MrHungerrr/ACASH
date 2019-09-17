@@ -11,6 +11,8 @@ public class Dumb
         parent = p;
     }
 
+
+
     //Преждевременная реакция на услышынное
 
     public void HearBulling(bool strong)
@@ -24,6 +26,7 @@ public class Dumb
             parent.Emotions.ChangeEmotion("suprised");
         }
     }
+
 
 
     //Наезд учителя за списывание/поведение
@@ -55,5 +58,127 @@ public class Dumb
         parent.Stress(10);
         parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
         parent.Answer(key, obj, 0, 1);
+    }
+
+
+
+
+    public void TeacherPermission(string key, bool answer)
+    {
+        if (answer)
+        {
+            parent.SayWithoutContinue(key);
+            parent.Emotions.ChangeEmotion("happy", "smile", 4f);
+        }
+        else
+        {
+            parent.SayWithoutContinue(key);
+            parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        }
+    }
+
+    public void TeacherAnswer(string key, bool answer)
+    {
+        if (answer)
+        {
+            parent.SayWithoutContinue(key);
+            parent.Emotions.ChangeEmotion("happy", "smile", 4f);
+        }
+        else
+        {
+            parent.SayWithoutContinue(key);
+            parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        }
+    }
+
+    public void Writing()
+    {
+        parent.WritingTest(UnityEngine.Random.value * 100);
+    }
+
+    public void CheatNeed()
+    {
+        parent.cheatNeed = true;
+    }
+
+    public void CanCheat(int buf)
+    {
+        switch (buf)
+        {
+            case 0:
+                {
+                    break;
+                }
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+        }
+    }
+
+    public void CheatingSelection(int buf)
+    {
+        switch (buf)
+        {
+            case 0:
+                {
+                    break;
+                }
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+            case 5:
+                {
+                    break;
+                }
+        }
+    }
+
+    public void RandomAction(int buf)
+    {
+        switch (buf)
+        {
+            case 0:
+                {
+                    break;
+                }
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+            case 5:
+                {
+                    break;
+                }
+        }
     }
 }

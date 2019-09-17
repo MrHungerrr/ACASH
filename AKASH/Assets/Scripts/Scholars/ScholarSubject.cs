@@ -9,9 +9,10 @@ public class ScholarSubject : Subject
 
     private void Start()
     {
-        owner = transform.parent.transform.parent.transform.Find("Scholar Holder").transform.GetComponentInChildren<Scholar>();
-        this.tag = "ScholarsSubject";
+        owner = transform.parent.transform.parent.transform.Find("Scholar Holder").transform.Find("Script Holder").transform.GetComponentInChildren<Scholar>();
+        this.tag = "ScholarSubject";
     }
+
 
 
     public void Execute(string key)
@@ -20,11 +21,12 @@ public class ScholarSubject : Subject
         Execute();
     }
 
+
     private IEnumerator Ex(string key)
     {
-        yield return new WaitForSeconds(Random.Range(1.5f, 3f));
+        yield return new WaitForSeconds(Random.Range(0.5f, 3f));
 
         if (!owner.executed)
-            owner.BullingForSubjects(key, this.name);
+            owner.BullingForSubjects(key, this.name + "_");
     }
 }
