@@ -6,27 +6,50 @@ using System;
 
 public class Scholar : MonoBehaviour
 {
-    [HideInInspector]
-    public int stress;
-    private bool cheating;
+    //Тип ученика
+    public enum list_scholarType
+    {
+        Dumb,
+        Asshole,
+        Underdog
+    }
+
+    public list_scholarType scholarType;
+
+
+    //Базовое
+    public bool isLiving;
     [HideInInspector]
     public int nomber;
     [HideInInspector]
-    public bool cheatNeed;
+    public string type;
+    private string keyWord;
     [HideInInspector]
-    public bool talking;
-    private bool walkingAnswer;
-    [HideInInspector]
-    public bool question;
-    [HideInInspector]
-    public string quest;
-    [HideInInspector]
-    public bool asking;
-    [HideInInspector]
-    public bool teacher_answer;
+    public bool executed;
     [HideInInspector]
     public bool greeneyes;
 
+
+    [HideInInspector]
+    public bool talking;
+    private bool cheating;
+    [HideInInspector]
+    public bool cheatNeed;
+    [HideInInspector]
+    public string view;
+    [HideInInspector]
+    public bool writing;
+
+    //Вопросы
+    private bool walkingAnswer;
+    [HideInInspector]
+    public bool asking;
+    [HideInInspector]
+    public string questionKey;
+    [HideInInspector]
+    public bool teacher_answer;
+
+    //Доп инструмент ы
     [HideInInspector]
     public TextBoxScholar TextBox;
     [HideInInspector]
@@ -41,16 +64,20 @@ public class Scholar : MonoBehaviour
     private ScholarManager ScholarMan;
 
 
-    [HideInInspector]
-    public bool executed;
+
     private double rnd;
-    private byte moodType;
-    private string type;
-    private string keyWord;
+
+    //Стресс и настроение
+    [HideInInspector]
+    public int stress;
     [HideInInspector]
     public int threshold_1 = 33;
     [HideInInspector]
     public int threshold_2 = 66;
+    private byte moodType;
+
+
+    //Написание теста
     [HideInInspector]
     public int IQ_start;
     [HideInInspector]
@@ -59,11 +86,9 @@ public class Scholar : MonoBehaviour
     public double test_buf;
     [HideInInspector]
     public float test_bufTime;
-    [HideInInspector]
-    public string view = "Cheating_";
-    [HideInInspector]
-    public bool writing;
 
+
+    //Список замечаний, которые уже были сделаны.
     [HideInInspector]
     public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
     {
@@ -75,6 +100,8 @@ public class Scholar : MonoBehaviour
         { "Nothing_", false }
     };
 
+
+    //Список причин, по которым можно удалить ученика
     [HideInInspector]
     public Dictionary<string, bool> reason = new Dictionary<string, bool>()
     {
@@ -85,14 +112,7 @@ public class Scholar : MonoBehaviour
 
 
 
-    public enum list_scholarType
-    {
-        Dumb,
-        Asshole,
-        Underdog
-    }
 
-    public list_scholarType scholarType;
 
 
 
@@ -101,7 +121,6 @@ public class Scholar : MonoBehaviour
     private void Awake()
     {
         this.tag = "Scholar";
-        type = scholarType.ToString();
 
         TextBox = transform.parent.transform.parent.GetComponentInChildren<TextBoxScholar>();
         Emotions = transform.parent.transform.parent.GetComponentInChildren<Emotions>();
@@ -110,16 +129,16 @@ public class Scholar : MonoBehaviour
         ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         GameMan = GameObject.FindObjectOfType<GameManager>();
         Player = GameObject.FindObjectOfType<PlayerScript>();
-        Agent = new ScholarAgent(type, this);
 
-        keyWord = type + "_";
+        ChangeType(scholarType.ToString());
         IQ_start = 0;
     }
 
 
     private void Start()
     {
-        StartWrite();
+        //StartWrite();
+        view = "Cheating_";
         Action.Doing("Toilet_1");
     }
 
@@ -182,6 +201,31 @@ public class Scholar : MonoBehaviour
             moodType = 1;
         else
             moodType = 2;
+    }
+
+
+
+    public string GetMoodType()
+    {
+        switch(moodType)
+        {
+            case 0:
+                {
+                    return "chill";
+                }
+            case 1:
+                {
+                    return "normal";
+                }
+            case 2:
+                {
+                    return "panic";
+                }
+            default:
+                {
+                    return "";
+                }
+        }
     }
 
 
@@ -373,10 +417,9 @@ public class Scholar : MonoBehaviour
 
     public void Question(string q)
     {
-        quest = keyWord + q;
+        questionKey = keyWord + q;
         teacher_answer = false;
         asking = true;
-        question = true;
         StartCoroutine(Asking(q));
     }
 
@@ -398,42 +441,24 @@ public class Scholar : MonoBehaviour
         talking = false;
     }
 
-    public void TeacherPermission(bool answer)
-    {
-        string pKey = keyWord + quest;
-
-        if (answer)
-        {
-            pKey += "_Yes";
-        }
-        else
-        {
-            pKey += "_No";
-            question = false;
-        }
-
-        Agent.TeacherPermission(pKey, answer);
-        asking = false;
-    }
-
     public void TeacherAnswer(bool answer)
     {
-        string buf = "Answer_";
-        buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
-        buf = keyWord + buf;
+        //string buf = "Answer_";
+        //buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
+        string key = keyWord + questionKey;
 
         if (answer)
         {
-            buf += "_Yes";
+            key += "_Yes";
             teacher_answer = true;
         }
         else
         {
-            buf += "_No";
+            key += "_No";
         }
 
-        Agent.TeacherAnswer(buf, answer);
-        question = false;
+        Agent.TeacherAnswer(key, answer);
+        asking = false;
     }
 
 
@@ -491,7 +516,8 @@ public class Scholar : MonoBehaviour
     public void SetNomber(int i)
     {
         nomber = i;
-        Action.desk = ScholarMan.desks[i].position;
+        Action.desk = ScholarMan.desks[0, i].position;
+        Action.home = ScholarMan.desks[1,i].position;
     }
 
 
@@ -507,6 +533,18 @@ public class Scholar : MonoBehaviour
             this.gameObject.layer = 10;
     }
 
+
+
+    //========================================================================================================
+    //Изменение типа ученика
+
+    public void ChangeType(string t)
+    {
+        type = t;
+        Debug.Log(t);
+        Agent = new ScholarAgent(type, this);
+        keyWord = type + "_";
+    }
 
 
 }

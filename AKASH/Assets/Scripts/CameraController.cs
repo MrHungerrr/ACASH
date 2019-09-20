@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     public bool zoom;
     [HideInInspector]
     public bool zooming;
-    private float normFOV = 90;
+    private float normFOV = 70;
     private float zoomFOV = 15;
     private float FOV;
 

@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     public bool act;
     [HideInInspector]
     public bool actReady;
-    private float actRange = 4f;
+    private float actRange = 0.5f;
     [HideInInspector]
     public string actTag;
     private GameObject actObject;
@@ -120,7 +120,7 @@ public class PlayerScript : MonoBehaviour
         {
             case "Scholar":
                 {
-                    if (actObject.GetComponent<Scholar>().question)
+                    if (actObject.GetComponent<Scholar>().asking)
                     {
                         asked = true;
                     }
@@ -149,12 +149,14 @@ public class PlayerScript : MonoBehaviour
                         //actObject.GetComponent<Computer>().Enable();
                         break;
                     }
-                case "HandCamera":
+                case "Door":
                     {
-
+                        actObject.GetComponent<Door>().DoorInteract(transform.rotation.eulerAngles.y);
                         break;
                     }
             }
+
+            act = true;
         }
     }
 
@@ -195,42 +197,14 @@ public class PlayerScript : MonoBehaviour
 
         var scholar = actObject.GetComponent<Scholar>();
 
-        if (scholar.asking)
-            StartCoroutine(Permission(scholar, answer));
-        else
-            StartCoroutine(Answering(scholar, answer));
+        StartCoroutine(Answering(scholar, answer));
     }
 
-    private IEnumerator Permission(Scholar scholar, bool answer)
-    {
-        key += "Permission_";
-        
-        int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
-        key += nomber;
 
-        if (answer)
-            key += "_Yes";
-        else
-            key += "_No";
-
-        SubMan.Say(keyWord + key);
-
-        yield return new WaitForSeconds(0.5f);
-         
-        scholar.HearBulling(!answer);
-
-        while (SubMan.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        scholar.TeacherPermission(answer);
-        act = false;
-    }
 
     private IEnumerator Answering(Scholar scholar, bool answer)
     {
-        key += scholar.quest;
+        key += scholar.questionKey;
 
         if (answer)
             key += "_Yes";
