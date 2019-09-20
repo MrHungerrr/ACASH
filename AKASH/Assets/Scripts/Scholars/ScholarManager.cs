@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScholarManager : MonoBehaviour
 {
-
-    private Scholar[] scholars;
+    [HideInInspector]
+    public Scholar[] scholars;
 
     [HideInInspector]
     public Transform[,] desks;

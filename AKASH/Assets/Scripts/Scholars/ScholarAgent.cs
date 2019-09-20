@@ -58,18 +58,6 @@ public class ScholarAgent
         }
     }
 
-    public void TeacherPermission(string key, bool answer)
-    {
-        switch (type)
-        {
-            case "Dumb":
-                {
-                    dumb.TeacherPermission(key, answer);
-                    break;
-                }
-        }
-    }
-
     public void TeacherAnswer(string key, bool answer)
     {
         switch (type)

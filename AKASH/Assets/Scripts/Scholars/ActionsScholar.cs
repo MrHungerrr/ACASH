@@ -106,8 +106,7 @@ public class ActionsScholar : MonoBehaviour
 
     public void Stop()
     {
-        if(keyAction != null)
-            StopCoroutine(keyAction);
+        StopAllCoroutines();
 
 
 
@@ -115,6 +114,7 @@ public class ActionsScholar : MonoBehaviour
             keyAction = "Writing";
 
         SetDestination(transform.position);
+        Anim.SetInteger("AnimNom", animations["Nothing"]);
         Scholar.writing = false;
         keyAction_now = "Nothing";
         doing = false;
@@ -140,6 +140,8 @@ public class ActionsScholar : MonoBehaviour
                 doing = true;
             }
         }
+
+        Debug.Log(keyAction);
     }
 
 
@@ -152,7 +154,7 @@ public class ActionsScholar : MonoBehaviour
         SetDestination(home);
 
         while (!IsHere())
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForEndOfFrame();
 
         StartCoroutine(Watching(desk));
 
@@ -241,10 +243,7 @@ public class ActionsScholar : MonoBehaviour
 
     public void Watch(Vector3 target)
     {
-        Vector3 direct = target - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direct);
-        targetRotation.z = transform.rotation.z;
-        targetRotation.x = transform.rotation.x;
+        Quaternion targetRotation = GetQuaternionTo(target);
         targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
         transform.rotation = targetRotation;
     }
@@ -252,10 +251,7 @@ public class ActionsScholar : MonoBehaviour
 
     public bool WatchBool(Vector3 target)
     {
-        Vector3 direct = target - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direct);
-        targetRotation.z = transform.rotation.z;
-        targetRotation.x = transform.rotation.x;
+        Quaternion targetRotation = GetQuaternionTo(target);
         targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
         transform.rotation = targetRotation;
 
@@ -266,6 +262,15 @@ public class ActionsScholar : MonoBehaviour
         }
         else
             return false;
+    }
+
+    private Quaternion GetQuaternionTo(Vector3 target)
+    {
+        Vector3 direct = target - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direct);
+        targetRotation.z = transform.rotation.z;
+        targetRotation.x = transform.rotation.x;
+        return targetRotation;
     }
 
 
@@ -297,7 +302,7 @@ public class ActionsScholar : MonoBehaviour
 
         while (Scholar.asking || Scholar.talking)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForEndOfFrame();
             Debug.Log("Я жду разрешения");
         }
 
@@ -340,10 +345,8 @@ public class ActionsScholar : MonoBehaviour
             while (!IsHere())
                 yield return new WaitForSeconds(1f);
 
-            while (WatchBool(ScholarMan.GetSightGoal("toilet",0)))
-            {
-                yield return new WaitForEndOfFrame();
-            }
+            Watch(ScholarMan.GetSightGoal("toilet",0));
+         
 
             Debug.Log("Я дошел");
             actionNo++;
@@ -395,6 +398,17 @@ public class ActionsScholar : MonoBehaviour
         keyAction = null;
         doing = false;
         StartWriting();
+    }
+
+
+    private IEnumerator Execute()
+    {
+        Scholar.Selectable(false);
+        Scholar.executed = true;
+        yield return new WaitForSeconds(1f);
+
+        Scholar.Stop();
+        Scholar.Emotions.ChangeEmotion("dead");
     }
 }
 

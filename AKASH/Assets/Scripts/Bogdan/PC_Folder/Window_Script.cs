@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -9,6 +10,12 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Vector3 startPosition;
     private Vector3 offset;
     private float minDist = 30;
+    CheatHelper ch;
+
+    private void Start()
+    {
+        ch = GameObject.FindObjectOfType<CheatHelper>();
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -29,6 +36,7 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
+
     private void OnEnable()
     {
 
@@ -36,7 +44,10 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             for (int i = 0; i < GameObject.FindObjectOfType<CheatHelper>().studentcount; i++)
             {
-                Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/Tension_Slider"), this.gameObject.transform);
+                GameObject gm;
+                gm = Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/Tension_Slider"), this.gameObject.transform.GetChild(0).transform);
+                gm.GetComponent<Slider>().value = ch.student[i].stress;
+                gm.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().SetText(ch.student[i].gameObject.name);
             }
         }
     }

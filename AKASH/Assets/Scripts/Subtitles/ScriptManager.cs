@@ -61,7 +61,10 @@ private string resourceFile = "Script";
         if (lines.TryGetValue(textKey, out tmp))
             return tmp;
         else
+        {
+            //Сделать пустоту и нулевое время
             return new string[] { "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>" };
+        }
     }
 
 

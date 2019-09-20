@@ -66,6 +66,7 @@ public class Scholar : MonoBehaviour
 
 
     private double rnd;
+    private bool selectable = true;
 
     //Стресс и настроение
     [HideInInspector]
@@ -434,7 +435,8 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            yield return new WaitForSeconds(1f);
+            Action.Watch(Player.transform.position);
+            yield return new WaitForEndOfFrame();
         }
         Debug.Log("Мы задали вопрос");
         Selectable(true);
@@ -445,7 +447,7 @@ public class Scholar : MonoBehaviour
     {
         //string buf = "Answer_";
         //buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
-        string key = keyWord + questionKey;
+        string key = questionKey;
 
         if (answer)
         {
@@ -480,18 +482,10 @@ public class Scholar : MonoBehaviour
     {
         Stop();
         TextBox.Say(keyWord + key);
-        StartCoroutine(Execute());
+        Action.Doing("Execute");
     }
 
-    private IEnumerator Execute()
-    {
-        Selectable(false);
-        executed = true;
-        yield return new WaitForSeconds(1f);
 
-        Stop();
-        Emotions.ChangeEmotion("dead");
-    }
 
 
 
@@ -525,12 +519,30 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Возможность выбрать объект
 
-    private void Selectable(bool u)
+    public void Selectable(bool u)
     {
+
         if (u)
-            this.gameObject.layer = 9;
+        {
+            selectable = true;
+            StartCoroutine(SetSelectable());
+        }
         else
+        {
             this.gameObject.layer = 10;
+            selectable = false;
+        }
+    }
+
+
+
+    private IEnumerator SetSelectable()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (selectable)
+        {
+            this.gameObject.layer = 9;
+        }
     }
 
 

@@ -4,11 +4,11 @@ using System;
 public class Dumb
 {
     [HideInInspector]
-    public Scholar parent;
+    public Scholar scholar;
 
     public Dumb(Scholar p)
     {
-        parent = p;
+        scholar = p;
     }
 
 
@@ -19,11 +19,11 @@ public class Dumb
     {
         if (strong)
         {
-            parent.Emotions.ChangeEmotion("suprised");
+            scholar.Emotions.ChangeEmotion("suprised");
         }
         else
         {
-            parent.Emotions.ChangeEmotion("suprised");
+            scholar.Emotions.ChangeEmotion("suprised");
         }
     }
 
@@ -36,16 +36,16 @@ public class Dumb
         if (strong)
         {
             Debug.Log("Учитель наезжает");
-            parent.Stress(10);
-            parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
+            scholar.Stress(10);
+            scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
             Debug.Log("Учитель прикалывается");
-            parent.Emotions.ChangeEmotion("happy", "smile", 4f);
+            scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
 
-        parent.Answer(key, 0, 1);
+        scholar.Answer(key, 1, 1);
     }
 
 
@@ -55,9 +55,9 @@ public class Dumb
     public void BullingForSubjects(string key, string obj)
     {
         Debug.Log("Учитель наезжает");
-        parent.Stress(10);
-        parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
-        parent.Answer(key, obj, 0, 1);
+        scholar.Stress(10);
+        scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        scholar.Answer(key, obj, 0, 1);
     }
 
 
@@ -67,13 +67,13 @@ public class Dumb
     {
         if (answer)
         {
-            parent.SayWithoutContinue(key);
-            parent.Emotions.ChangeEmotion("happy", "smile", 4f);
+            scholar.SayWithoutContinue(key);
+            scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
         else
         {
-            parent.SayWithoutContinue(key);
-            parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
+            scholar.SayWithoutContinue(key);
+            scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
     }
 
@@ -81,24 +81,24 @@ public class Dumb
     {
         if (answer)
         {
-            parent.SayWithoutContinue(key);
-            parent.Emotions.ChangeEmotion("happy", "smile", 4f);
+            scholar.SayWithoutContinue(key);
+            scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
         else
         {
-            parent.SayWithoutContinue(key);
-            parent.Emotions.ChangeEmotion("upset", "ussual", 4f);
+            scholar.SayWithoutContinue(key);
+            scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
     }
 
     public void Writing()
     {
-        parent.WritingTest(UnityEngine.Random.value * 100);
+        scholar.WritingTest(UnityEngine.Random.value * 100);
     }
 
     public void CheatNeed()
     {
-        parent.cheatNeed = true;
+        scholar.cheatNeed = true;
     }
 
     public void CanCheat(int buf)

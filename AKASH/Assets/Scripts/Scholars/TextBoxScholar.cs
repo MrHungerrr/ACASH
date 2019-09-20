@@ -96,20 +96,23 @@ public class TextBoxScholar : MonoBehaviour
     {
         act = true;
         var script = ScriptMan.GetText(key);
-        foreach (var line in script)
+        if (script != null)
         {
-            
-            saying = true;
-            int quant = line.Length;
-            for(int i = 0; i<quant; i++)
+            foreach (var line in script)
             {
-                
-                TextPlus(line[i]);
-                yield return new WaitForSeconds(0.02f);
+
+                saying = true;
+                int quant = line.Length;
+                for (int i = 0; i < quant; i++)
+                {
+
+                    TextPlus(line[i]);
+                    yield return new WaitForSeconds(0.02f);
+                }
+                saying = false;
+                TextPlus(' ');
+                yield return new WaitForSeconds(1f);
             }
-            saying = false;
-            TextPlus(' ');
-            yield return new WaitForSeconds(1f);
         }
         filled = true;
         act = false;

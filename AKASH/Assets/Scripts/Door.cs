@@ -12,22 +12,30 @@ public class Door : MonoBehaviour
     private Quaternion commonRot;
     private Quaternion targetRot;
     private Transform trans;
+    private Vector3 door_position;
     private const float close_distance = 1f;
     private float close_time;
     private const float close_time_cd = 3f;
     private float last_angle;
     private Transform player;
+    private ScholarManager ScholarMan;
+    private int scholar_nom;
+    private bool scholar_open;
+    private bool in_range;
+    private float scholar_open_cd;
     
 
 
     void Start()
     {
-
+        ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
         player = GameObject.FindWithTag("Player").transform;
+        door_position = transform.parent.parent.position;
         commonRot = transform.parent.transform.rotation;
         trans = transform.parent.transform;
         close_time = close_time_cd;
         this.tag = "Door";
+        in_range = false;
 
         if (commonRot.eulerAngles.y == 0)
         {
@@ -52,6 +60,8 @@ public class Door : MonoBehaviour
     {
         if (act)
             DoorRot();
+
+        ScholarOpen();
     }
 
     public void DoorInteract(float angle)
@@ -109,7 +119,7 @@ public class Door : MonoBehaviour
                 {
                     close_time -= Time.deltaTime;
                 }
-                else if(Vector3.Distance(trans.position, player.position) > close_distance)
+                else if(Vector3.Distance(door_position, player.position) > close_distance)
                 {
                     close_time = close_time_cd;
                     DoorInteract(last_angle);
@@ -119,6 +129,34 @@ public class Door : MonoBehaviour
             {
                 act = false;
             }
+        }
+    }
+
+
+
+    private void ScholarOpen()
+    {
+        int i;
+        in_range = false;
+
+        for(i = 0; i < ScholarMan.scholars.Length; i++)
+        {
+            if(Vector3.Distance(door_position, ScholarMan.scholars[i].transform.position) < 0.4f)
+            {
+                in_range = true;
+                break;
+            }
+        }
+
+        if (in_range && !open && !scholar_open)
+        {
+            DoorInteract(ScholarMan.scholars[i].Action.transform.rotation.eulerAngles.y);
+            scholar_open = true;
+        }
+        else if (!in_range && open && scholar_open)
+        {
+            DoorInteract(0);
+            scholar_open = false;
         }
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CheatHelper : MonoBehaviour
 {
-
-    CheatingScript[] student = new CheatingScript[32];
+    [HideInInspector]
+    public CheatingScript[] student = new CheatingScript[32];
     public int studentcount = 0;
     
     public static int cheatingCount = 0;
