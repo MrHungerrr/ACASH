@@ -516,8 +516,8 @@ public class Scholar : MonoBehaviour
     public void SetNomber(int i)
     {
         nomber = i;
-        Action.desk = ScholarMan.desks[0, i].position;
-        Action.home = ScholarMan.desks[1,i].position;
+        Action.home = ScholarMan.desks[0, i].position;
+        Action.desk = ScholarMan.desks[1, i].position;
     }
 
 

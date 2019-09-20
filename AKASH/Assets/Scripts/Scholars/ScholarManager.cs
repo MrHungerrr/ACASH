@@ -164,8 +164,8 @@ public class ScholarManager : MonoBehaviour
 
         for (int i = 0; i < desks_count; i++)
         {
-            desks[0,i].name = "Desk_" + i;
-            Debug.Log(desks[0, i].position);
+            desks[1,i].name = "Desk_" + i;
+            Debug.Log(desks[1, i].position);
         }
     }
 
