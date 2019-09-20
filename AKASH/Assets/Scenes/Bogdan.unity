@@ -2763,8 +2763,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9216cf7e2f616a48bcd51e8ea004490, type: 3}
-<<<<<<< HEAD
-=======
 --- !u!1 &1575850390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,7 +2862,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575850390}
   m_CullTransparentMesh: 0
->>>>>>> parent of 123f522... stresscheking 1.35
 --- !u!1 &1616659002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2290638008656234463, guid: e9216cf7e2f616a48bcd51e8ea004490,
