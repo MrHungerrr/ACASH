@@ -129,17 +129,17 @@ public class TextBoxScholar : MonoBehaviour
 
     private void Text(string text)
     {
-        for (int i = 0; i < 2; i++)
-        {
-            textBox[i].text = text;
-        }
+            textBox[0].text = text;
     }
 
     private void TextPlus(char symbol)
     {
-        for (int i = 0; i < 2; i++)
-        {
-            textBox[i].text += symbol;
-        }
+            textBox[0].text += symbol;
     }
+
+    public void Number(int num)
+    {
+        textBox[1].text = num.ToString();
+    }
+
 }
