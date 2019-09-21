@@ -20,7 +20,7 @@ public class Scholar : MonoBehaviour
     //Базовое
     public bool isLiving;
     [HideInInspector]
-    public int nomber;
+    public int number;
     [HideInInspector]
     public string type;
     private string keyWord;
@@ -279,7 +279,7 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            Action.Watch(Player.transform.position);
+            Action.SightTo(Player.transform.position);
             yield return new WaitForEndOfFrame();
         }
 
@@ -301,7 +301,7 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            Action.Watch(Player.transform.position);
+            Action.SightTo(Player.transform.position);
             yield return new WaitForEndOfFrame();
         }
 
@@ -363,7 +363,7 @@ public class Scholar : MonoBehaviour
     {
         while (!talking)
         {
-            Action.Watch(Player.transform.position);
+            Action.SightTo(Player.transform.position);
             yield return new WaitForEndOfFrame();
         }
     }
@@ -435,7 +435,7 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            Action.Watch(Player.transform.position);
+            Action.SightTo(Player.transform.position);
             yield return new WaitForEndOfFrame();
         }
         Debug.Log("Мы задали вопрос");
@@ -507,11 +507,12 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Присвоить номер ученику
 
-    public void SetNomber(int i)
+    public void SetNumber(int i)
     {
-        nomber = i;
+        number = i;
         Action.home = ScholarMan.desks[0, i].position;
         Action.desk = ScholarMan.desks[1, i].position;
+        TextBox.Number(i);
     }
 
 

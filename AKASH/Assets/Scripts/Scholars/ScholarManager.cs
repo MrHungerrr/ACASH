@@ -187,7 +187,7 @@ public class ScholarManager : MonoBehaviour
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].SetNomber(i);
+            scholars[i].SetNumber(i);
         }
     }
 

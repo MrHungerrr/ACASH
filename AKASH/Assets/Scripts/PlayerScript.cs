@@ -151,7 +151,7 @@ public class PlayerScript : MonoBehaviour
                     }
                 case "Door":
                     {
-                        actObject.GetComponent<Door>().DoorInteract(transform.rotation.eulerAngles.y);
+                        actObject.GetComponent<Door>().DoorInteract(transform.position);
                         break;
                     }
             }

@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
     private const float close_distance = 1f;
     private float close_time;
     private const float close_time_cd = 3f;
-    private float last_angle;
+    private Vector3 last_pos;
     private Transform player;
     private ScholarManager ScholarMan;
     private int scholar_nom;
@@ -37,11 +37,11 @@ public class Door : MonoBehaviour
         this.tag = "Door";
         in_range = false;
 
-        if (commonRot.eulerAngles.y == 0)
+        if (transform.parent.parent.rotation.eulerAngles.y == 0)
         {
             ninety = false;
         }
-        else if (commonRot.eulerAngles.y == 90)
+        else if (transform.parent.parent.rotation.eulerAngles.y == 0)
         {
             ninety = true;
         }
@@ -64,7 +64,7 @@ public class Door : MonoBehaviour
         ScholarOpen();
     }
 
-    public void DoorInteract(float angle)
+    public void DoorInteract(Vector3 pos)
     {
         if (!locked)
         {
@@ -74,7 +74,17 @@ public class Door : MonoBehaviour
             {
                 if (ninety)
                 {
-                    if (angle > 90 && angle < 270)
+                    /*if (angle > 90 && angle < 270)
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
+                    }
+                    else
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 90, commonRot.eulerAngles.z);
+                    }
+                    */
+
+                    if (trans.position.z > pos.z)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
                     }
@@ -85,7 +95,17 @@ public class Door : MonoBehaviour
                 }
                 else
                 {
-                    if(angle < 180)
+                   /* if(angle < 180)
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
+                    }
+                    else
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 90, commonRot.eulerAngles.z);
+                    }
+                    */
+
+                    if (trans.position.x > pos.x)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
                     }
@@ -100,7 +120,7 @@ public class Door : MonoBehaviour
                 targetRot = commonRot;
             }
 
-            last_angle = angle;
+            last_pos = pos;
             act = true;
         }
     }
@@ -122,7 +142,7 @@ public class Door : MonoBehaviour
                 else if(Vector3.Distance(door_position, player.position) > close_distance)
                 {
                     close_time = close_time_cd;
-                    DoorInteract(last_angle);
+                    DoorInteract(last_pos);
                 }
             }
             else
@@ -150,12 +170,12 @@ public class Door : MonoBehaviour
 
         if (in_range && !open && !scholar_open)
         {
-            DoorInteract(ScholarMan.scholars[i].Action.transform.rotation.eulerAngles.y);
+            DoorInteract(ScholarMan.scholars[i].Action.transform.position);
             scholar_open = true;
         }
         else if (!in_range && open && scholar_open)
         {
-            DoorInteract(0);
+            DoorInteract(last_pos);
             scholar_open = false;
         }
     }
