@@ -108,7 +108,7 @@ public class ScholarManager : MonoBehaviour
 
     void Start()
     {
-        ScholarNomberRandomer();
+        ScholarNumberRandomer();
     }
 
 
@@ -138,9 +138,9 @@ public class ScholarManager : MonoBehaviour
 
 
 
-    public int GetStress(int scholarNom)
+    public int GetStress(int scholarNum)
     {
-        return scholars[scholarNom].stress;
+        return scholars[scholarNum].stress;
     }
 
 
@@ -171,7 +171,7 @@ public class ScholarManager : MonoBehaviour
 
 
 
-    private void ScholarNomberRandomer()
+    private void ScholarNumberRandomer()
     {
         for (int i = 0; i < scholars.Length; i++)
         {

@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
     private float normFOV = 70;
     private float zoomFOV = 15;
     private float FOV;
+    public bool disPlayer = false;
 
 
 
@@ -25,7 +26,7 @@ public class CameraController : MonoBehaviour
     {
         mouseXInputName = "Mouse X";
         mouseYInputName = "Mouse Y";
-        LockCursor();
+        LockCursor(true);
         xAxisClamp = 0.0f;
         
         cineCam = GetComponent<CinemachineVirtualCamera>();
@@ -38,16 +39,24 @@ public class CameraController : MonoBehaviour
     }
 
 
-    private void LockCursor()
+    public void LockCursor(bool status)
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if (status)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+        
+            Cursor.lockState = CursorLockMode.None;
+            
     }
 
     private void Update()
     {
-        CameraRotation();
-        if (zoom || zooming)
-            Zoom();
+        if (!disPlayer)
+        {
+            CameraRotation();
+            if (zoom || zooming)
+                Zoom();
+        }
     }
 
     private void CameraRotation()
