@@ -51,7 +51,7 @@ public class PlayerScript : MonoBehaviour
         playerCam = GameObject.FindWithTag("PlayerCamera");
         horizontalInputName = "Horizontal";
         verticalInputName = "Vertical";
-        InputMan = GetComponent<InputManager>();
+        InputMan = GameObject.FindObjectOfType<InputManager>();
         Score = GameObject.FindObjectOfType<ScoreSystem>();
         CharController = GetComponent<CharacterController>();
         CamControl = playerCam.GetComponent<CameraController>();
@@ -68,10 +68,15 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        PlayerMovement();
+        if(!disPlayer)
+        {
+            PlayerMovement();
+            Action();
+        }
+            
         if(!act)
             Watching();
-        Action();
+       
     }
 
 
@@ -189,7 +194,8 @@ public class PlayerScript : MonoBehaviour
             {
                 case "Computer":
                     {
-                        //actObject.GetComponent<Computer>().Enable();
+                        DisableControl(true);
+                        actObject.GetComponent<Computer_Power>().SwitchPower();
                         break;
                     }
                 case "Door":
@@ -451,8 +457,9 @@ public class PlayerScript : MonoBehaviour
 
     public void DisableControl(bool status)
     {
+        disPlayer = status;
         InputMan.disPlayer = status;
-        playerCam.SetActive(!status);
+        playerCam.GetComponent<CameraController>().disPlayer = status;
     }
 
 

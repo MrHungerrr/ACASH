@@ -13,17 +13,12 @@ public class CheatHelper : MonoBehaviour
     public int cheatingCountonLevel; 
     public static bool allowcheating = true;
 
+    private ScholarManager sm;
 
     void Start()
     {
-        student = FindObjectsOfType<CheatingScript>();
-        for (int i = 0; i < student.Length; i++)
-        {
-            if (student[i] != null)
-            {
-                studentcount++;
-            }
-        }
+        sm = GameObject.FindObjectOfType<ScholarManager>();
+        studentcount = sm.scholars.Length;
     }
 
 
