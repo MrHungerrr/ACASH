@@ -31,7 +31,7 @@ public class CheatingScript : MonoBehaviour
 
         if (Mudak)
         { 
-            StartCoroutine(CheatingCoroutineForMudak());
+
         }
         else if (Terpila)
         {
@@ -46,24 +46,14 @@ public class CheatingScript : MonoBehaviour
 
     //Мудаккод
 
-    IEnumerator CheatingCoroutineForMudak()
+    private void CheatingCoroutineForMudak()
     {
-        float deltatime;
-        WaitForSeconds wait;
-        while (true)
+        if (CheatingMudak(stress))
         {
-            deltatime = Random.Range(3f, 10f);
-            wait = new WaitForSeconds(deltatime);
-            //  Debug.Log(deltatime + " Mudak");
-            yield return wait;
-            if (CheatingMudak(stress))
-            {
-                CheatHelper.cheatingCount++;
-                wait = new WaitForSeconds(10f);
-                yield return wait;
-                CheatHelper.cheatingCount--;
-            }
+            CheatHelper.cheatingCount++;
+            CheatHelper.cheatingCount--;
         }
+
     }
 
     public bool CheatingMudak(float stress)

@@ -100,7 +100,7 @@ public class ScholarAgent
         {
             case "Dumb":
                 {
-                    dumb.CanCheat(Convert.ToInt32(UnityEngine.Random.Range(0, 5)));
+                    dumb.CanCheat();
                     break;
                 }
         }
@@ -112,19 +112,31 @@ public class ScholarAgent
         {
             case "Dumb":
                 {
-                    dumb.CheatingSelection(Convert.ToInt32(UnityEngine.Random.Range(0, 5)));
+                    dumb.CheatingSelection();
                     break;
                 }
         }
     }
 
-    public void RandomAction()
+    public void RandomSimpleAction()
     {
         switch (type)
         {
             case "Dumb":
                 {
-                    dumb.RandomAction(Convert.ToInt32(UnityEngine.Random.Range(0, 5)));
+                    dumb.RandomSimpleAction();
+                    break;
+                }
+        }
+    }
+
+    public void RandomSpecialAction()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.RandomSpecialAction();
                     break;
                 }
         }

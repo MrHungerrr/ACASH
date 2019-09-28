@@ -63,11 +63,13 @@ public class InputManager : MonoBehaviour
             //Посмотреть ближе
             if (Input.GetKey(KeyCode.Q))
             {
+                pScript.look_closer = true;
                 cControl.zoom = true;
                 cControl.zooming = true;
             }
             else
             {
+                pScript.look_closer = false;
                 cControl.zoom = false;
             }
 

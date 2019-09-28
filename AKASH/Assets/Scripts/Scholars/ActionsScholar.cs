@@ -14,13 +14,21 @@ public class ActionsScholar : MonoBehaviour
     private ScholarManager ScholarMan;
 
 
-    private bool doing;
+    [HideInInspector]
+    public bool ready;
+    [HideInInspector]
+    public bool doing;
     private bool watching;
     private bool complete_before_end;
+    private bool ready_for_cheat;
+    [HideInInspector]
+    public string cheat_string;
     private int actionNo;
     [HideInInspector]
     public string keyAction;
+    [HideInInspector]
     public string keyAction_now;
+    private const string anim = "AnimNumber";
 
 
     private Vector3 destination;
@@ -36,7 +44,6 @@ public class ActionsScholar : MonoBehaviour
         { "Walking", 1},
         { "Writing", 2},
         { "Cheating", 3},
-
     };
 
 
@@ -51,7 +58,7 @@ public class ActionsScholar : MonoBehaviour
 
     private void Start()
     {
-        Anim.SetInteger("AnimNom", animations["Nothing"]);
+        Anim.SetInteger(anim, animations["Nothing"]);
         home = desk + Vector3.back;
     }
 
@@ -87,6 +94,17 @@ public class ActionsScholar : MonoBehaviour
         keyAction_now = key;
     }
 
+    public void SimpleDoing(string key)
+    {
+        Stop();
+        Debug.Log("Я начал делать" + key);
+        actionNo = 0;
+        complete_before_end = false;
+        StartCoroutine(key);
+        keyAction = key;
+        keyAction_now = key;
+    }
+
 
 
     //=========================================================================================================================================================
@@ -94,29 +112,38 @@ public class ActionsScholar : MonoBehaviour
 
     public void StartWriting()
     {
-        Stop();
-        Debug.Log("Я начал делать Writing");
-        keyAction = "Writing";
-        keyAction_now = "Writing";
-        actionNo = 0;
-        complete_before_end = false;
-        StartCoroutine(keyAction);
+        if (!Scholar.executed && Scholar.isLiving)
+        {
+            Stop();
+            Debug.Log("Я начал делать Writing");
+            keyAction = "Writing";
+            keyAction_now = "Writing";
+            actionNo = 0;
+            complete_before_end = false;
+            StartCoroutine(keyAction);
+        }
     }
-
-
 
     //=========================================================================================================================================================
     //Остановиться
 
     public void Stop()
     {
-        StopCoroutine(keyAction);
+        if (keyAction != null)
+            StopCoroutine(keyAction);
 
         if (complete_before_end)
             keyAction = "Writing";
 
+        if (Scholar.cheating)
+        {
+            ScholarMan.cheating_count--;
+            Scholar.cheating = false;
+            Scholar.cheatNeed = false;
+        }
+
         SetDestination(transform.position);
-        Anim.SetInteger("AnimNom", animations["Nothing"]);
+        Anim.SetInteger(anim, animations["Nothing"]);
         Scholar.writing = false;
         keyAction_now = "Nothing";
         doing = false;
@@ -160,62 +187,55 @@ public class ActionsScholar : MonoBehaviour
 
         Scholar.writing = true;
 
-        Debug.Log("Я думаю");
-        Anim.SetInteger("AnimNom", animations["Nothing"]);
+        //Debug.Log("Я думаю");
+        Anim.SetInteger(anim, animations["Nothing"]);
 
         yield return new WaitForSeconds(UnityEngine.Random.Range(4, 5));
-        Debug.Log("Я пишу");
+        //Debug.Log("Я пишу");
 
-        Anim.SetInteger("AnimNom", animations["Writing"]);
+        Anim.SetInteger(anim, animations["Writing"]);
 
         yield return new WaitForSeconds(UnityEngine.Random.Range(2, 7));
 
+        WhatToDoNext();
+    }
 
-        StartWriting();
-       /* if (Scholar.cheatNeed)
-		{
+
+    private void WhatToDoNext()
+    {
+        if (Scholar.cheatNeed)
+        {
             Scholar.Agent.CanCheat();
         }
         else
         {
-            if (Probability(Scholar.stress/100))
-            {
-                Scholar.Agent.RandomAction();
-            }
-            else
+            if (ScholarMan.Probability((Scholar.stress / 100) + 0.25))
             {
                 StartWriting();
             }
+            else
+            {
+                Scholar.Agent.RandomSimpleAction();
+            }
         }
-        */
     }
-
-
 
 
     //=========================================================================================================================================================
     //Вероятность
-
-    public bool Probability(double a)
-    {
-        float rnd = UnityEngine.Random.value;
-
-        if (a >= rnd)
-            return true;
-        else
-            return false;
-    }
 
 
 
     //=========================================================================================================================================================
     //Перемещение и повороты
 
+
     private void SetDestination(Vector3 goal)
     {
         destination = new Vector3(goal.x, transform.position.y, goal.z);
         NavAgent.SetDestination(destination);
-        Anim.SetInteger("AnimNom", animations["Walking"]);
+        Anim.SetInteger(anim, animations["Walking"]);
+        Scholar.walking = true;
     }
 
 
@@ -223,7 +243,8 @@ public class ActionsScholar : MonoBehaviour
     {
         if ((transform.position - destination).magnitude <= 0.001)
         {
-            Anim.SetInteger("AnimNom", animations["Nothing"]);
+            Anim.SetInteger(anim, animations["Nothing"]);
+            Scholar.walking = false;
             return true;
         }
         else
@@ -254,7 +275,18 @@ public class ActionsScholar : MonoBehaviour
     }
 
 
-    public bool WatchBool(Vector3 target)
+
+    private Quaternion GetQuaternionTo(Vector3 target)
+    {
+        Vector3 direct = target - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direct);
+        targetRotation.z = transform.rotation.z;
+        targetRotation.x = transform.rotation.x;
+        return targetRotation;
+    }
+
+
+   /* public bool WatchBool(Vector3 target)
     {
         Quaternion targetRotation = GetQuaternionTo(target);
         targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
@@ -269,14 +301,9 @@ public class ActionsScholar : MonoBehaviour
             return false;
     }
 
-    private Quaternion GetQuaternionTo(Vector3 target)
-    {
-        Vector3 direct = target - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direct);
-        targetRotation.z = transform.rotation.z;
-        targetRotation.x = transform.rotation.x;
-        return targetRotation;
-    }
+    */
+
+
 
 
     //=========================================================================================================================================================
@@ -302,14 +329,11 @@ public class ActionsScholar : MonoBehaviour
             if (!Scholar.asking)
             {
                 Scholar.Question("Question_Permission_1");
-
-                Debug.Log("Я спросил");
             }
 
             while (Scholar.asking || Scholar.talking)
             {
                 yield return new WaitForEndOfFrame();
-                Debug.Log("Я жду разрешения");
             }
 
             if (Scholar.teacher_answer)
@@ -327,14 +351,11 @@ public class ActionsScholar : MonoBehaviour
             if (!Scholar.asking)
             {
                 Scholar.Question("Question_Toilet_1");
-
-                Debug.Log("Я спросил");
             }
 
             while (Scholar.asking || Scholar.asking || Scholar.talking)
             {
-                yield return new WaitForSeconds(1f);
-                Debug.Log("Я жду разрешения");
+                yield return new WaitForEndOfFrame();
             }
 
             if (Scholar.teacher_answer)
@@ -363,32 +384,210 @@ public class ActionsScholar : MonoBehaviour
         if (actionNo == 3)
         {
             yield return new WaitForSeconds(5f);
-            Debug.Log("Я подождал");
+            Debug.Log("Сделал свои дела");
             actionNo++;
         }
 
         if (actionNo == 4)
         {
-            StartWriting();
-         /*   SetDestination(home);
-            Debug.Log("Я пошел домой");
+            SetDestination(home);
 
             while (!IsHere())
                 yield return new WaitForSeconds(1f);
 
-            Debug.Log("Я дома");
             actionNo++;
-            */
         }
 
-      /*  if (actionNo == 5)
+        if (actionNo == 5)
         {
-            keyAction = null;
             doing = false;
             StartWriting();
         }
-        */
+    }
 
+
+
+
+    //=========================================================================================================================================================
+    //Выход в туалет
+
+    private IEnumerator Sink_1()
+    {
+
+        if (actionNo == 0)
+        {
+            if (!Scholar.asking)
+            {
+                Scholar.Question("Question_Sink_1");
+            }
+
+            while (Scholar.asking || Scholar.asking || Scholar.talking)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (Scholar.teacher_answer)
+            {
+                actionNo++;
+            }
+            else
+            {
+                StartWriting();
+            }
+        }
+
+        if (actionNo == 1)
+        {
+            SetDestination(ScholarMan.GetPlace("sink", 0));
+
+            while (!IsHere())
+                yield return new WaitForSeconds(1f);
+
+            Watch(ScholarMan.GetSightGoal("sink", 0));
+
+            Debug.Log("Я дошел");
+            actionNo++;
+        }
+
+        if (actionNo == 2)
+        {
+            yield return new WaitForSeconds(5f);
+            Debug.Log("Сделал свои дела");
+            actionNo++;
+        }
+
+        if (actionNo == 3)
+        {
+            SetDestination(home);
+
+            while (!IsHere())
+                yield return new WaitForSeconds(1f);
+
+            actionNo++;
+        }
+
+        if (actionNo == 4)
+        {
+            doing = false;
+            StartWriting();
+        }
+    }
+
+
+
+    //=========================================================================================================================================================
+    //Выход подышать воздухом
+
+    private IEnumerator Air_1()
+    {
+        if (actionNo == 0)
+        {
+            if (!Scholar.asking)
+            {
+                Scholar.Question("Question_Air_1");
+            }
+
+            while (Scholar.asking || Scholar.talking)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (Scholar.teacher_answer)
+            {
+                actionNo++;
+            }
+            else
+            {
+                StartWriting();
+            }
+        }
+
+
+        if (actionNo == 1)
+        {
+            SetDestination(ScholarMan.GetPlace("outside", 0));
+
+            while (!IsHere())
+                yield return new WaitForSeconds(1f);
+
+            Watch(ScholarMan.GetSightGoal("outside", 0));
+
+            Debug.Log("Я дошел");
+            actionNo++;
+        }
+
+        if (actionNo == 2)
+        {
+            yield return new WaitForSeconds(5f);
+            Debug.Log("Сделал свои дела");
+            actionNo++;
+        }
+
+        if (actionNo == 3)
+        {
+            SetDestination(home);
+
+            while (!IsHere())
+                yield return new WaitForSeconds(1f);
+
+            actionNo++;
+        }
+
+        if (actionNo == 4)
+        {
+            doing = false;
+            StartWriting();
+        }
+    }
+
+
+
+
+    //=========================================================================================================================================================
+    //Списывание
+
+    private IEnumerator Cheating_1()
+    {
+        ScholarMan.special_actions_count++;
+        Scholar.cheating = true;
+        complete_before_end = true;
+
+        Anim.SetInteger(anim, animations["Cheating"]);
+
+        yield return new WaitForSeconds(5f);
+        Debug.Log("Сделал свои дела");
+
+        doing = false;
+        Scholar.cheatNeed = false;
+        Scholar.cheating = false;
+
+        ScholarMan.cheating_count--;
+        StartWriting();
+    }
+
+
+    private IEnumerator Cheating_Check_1()
+    {
+        ready_for_cheat = true;
+        complete_before_end = true;
+
+        Anim.SetInteger(anim, animations["Cheating"]);
+        Scholar.SayThoughts("I WANT CHEAT");
+
+        yield return new WaitForSeconds(5f);
+
+        doing = false;
+
+        CheatingContinue();
+    }
+
+
+    private void CheatingContinue()
+    {
+        if (ready_for_cheat)
+            Doing(cheat_string);
+        else
+            StartWriting();
     }
 
 
@@ -400,22 +599,45 @@ public class ActionsScholar : MonoBehaviour
     {
         complete_before_end = true;
 
-        Anim.SetInteger("AnimNom", animations["Guesses"]);
+        Anim.SetInteger(anim, animations["Guesses"]);
 
         yield return new WaitForSeconds(5f);
 
 
-        Anim.SetInteger("AnimNom", animations["HasGuessed"]);
+        Anim.SetInteger(anim, animations["HasGuessed"]);
 
         Debug.Log("Я догодалася");
 
         yield return new WaitForSeconds(1f);
 
         keyAction = null;
-        doing = false;
         StartWriting();
     }
 
+
+    //=========================================================================================================================================================
+    //Домой
+
+
+
+    private IEnumerator Go_Home()
+    {
+        SetDestination(home);
+
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
+
+        Watch(desk);
+
+        ready = true;
+        keyAction = null;
+        doing = false;
+    }
+
+
+
+    //=========================================================================================================================================================
+    //Исключение
 
     private IEnumerator Execute()
     {
@@ -425,6 +647,12 @@ public class ActionsScholar : MonoBehaviour
 
         Scholar.Emotions.ChangeEmotion("dead");
         Scholar.Stop();
+    }
+
+    private IEnumerator Delay_Start()
+    {
+        yield return new WaitForSeconds(1f);
+        StartWriting();
     }
 }
 

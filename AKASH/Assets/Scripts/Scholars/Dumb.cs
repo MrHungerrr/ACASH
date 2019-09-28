@@ -5,6 +5,7 @@ public class Dumb
 {
     [HideInInspector]
     public Scholar scholar;
+    private string cheat_check;
 
     public Dumb(Scholar p)
     {
@@ -98,85 +99,125 @@ public class Dumb
 
     public void CheatNeed()
     {
-        scholar.cheatNeed = true;
+        if (CheatProbability())
+        {
+            scholar.cheatNeed = true;
+            scholar.ScholarMan.cheating_count++;
+            CheatingSelection();
+            Debug.Log("Я хочу списать");
+        }
+        else
+        {
+            Debug.Log("Я не хочу списывать");
+        }
     }
 
-    public void CanCheat(int buf)
+    public bool CheatProbability()
     {
-        switch (buf)
+        switch (scholar.GetMoodTypeTime())
         {
             case 0:
                 {
+                    if (scholar.ScholarMan.Probability(0.75))
+                        return true;
                     break;
                 }
             case 1:
                 {
+                    if (scholar.ScholarMan.Probability(0.5))
+                        return true;
                     break;
                 }
             case 2:
                 {
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("<color=#ff00ff>Ошибка настроения ученика</color>");
+                    break;
+                }
+        }
+
+        return false;
+    }
+
+
+    public void CanCheat()
+    {
+        switch (cheat_check)
+        {
+            case "outside":
+                {
+                    int buf = UnityEngine.Random.Range(0, 1);
+
+                    switch (buf)
+                    {
+                        case 0:
+                            {
+                                scholar.Do("Cheating_Check_1");
+                                break;
+                            }
+                    }
+                    break;
+                }
+        }
+
+    }
+
+
+    public void CheatingSelection()
+    {
+        int buf = UnityEngine.Random.Range(0, 1);
+
+        switch (buf)
+        {
+            case 0:
+                {
+                    scholar.Action.cheat_string = "Cheating_1";
+                    cheat_check = "outside";
                     break;
                 }
         }
     }
 
-    public void CheatingSelection(int buf)
+    public void RandomSimpleAction()
     {
+        int buf = UnityEngine.Random.Range(0, 1);
+
         switch (buf)
         {
             case 0:
                 {
-                    break;
-                }
-            case 1:
-                {
-                    break;
-                }
-            case 2:
-                {
-                    break;
-                }
-            case 3:
-                {
-                    break;
-                }
-            case 4:
-                {
-                    break;
-                }
-            case 5:
-                {
+                    Debug.Log("Рандомное действие");
+                    scholar.StartWrite();
                     break;
                 }
         }
     }
 
-    public void RandomAction(int buf)
+    public void RandomSpecialAction()
     {
+        int buf = UnityEngine.Random.Range(0, 3);
+
         switch (buf)
         {
             case 0:
                 {
+                    Debug.Log("Рандомное Специальное действие");
+                    scholar.Do("Toilet_1");
                     break;
                 }
             case 1:
                 {
+                    Debug.Log("Рандомное Специальное действие");
+                    scholar.Do("Sink_1");
                     break;
                 }
             case 2:
                 {
-                    break;
-                }
-            case 3:
-                {
-                    break;
-                }
-            case 4:
-                {
-                    break;
-                }
-            case 5:
-                {
+                    Debug.Log("Рандомное Специальное действие");
+                    scholar.Do("Air_1");
                     break;
                 }
         }

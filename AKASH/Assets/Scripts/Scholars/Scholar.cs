@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
 public class Scholar : MonoBehaviour
@@ -32,11 +32,12 @@ public class Scholar : MonoBehaviour
 
     [HideInInspector]
     public bool talking;
-    private bool cheating;
+    [HideInInspector]
+    public bool walking;
+    [HideInInspector]
+    public bool cheating;
     [HideInInspector]
     public bool cheatNeed;
-    [HideInInspector]
-    public string view;
     [HideInInspector]
     public bool writing;
 
@@ -49,6 +50,26 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public bool teacher_answer;
 
+
+    //T - это Teacher
+    private float T_angle_x;
+    private float T_angle_y;
+    private float T_distance;
+    private float T_look_time;
+    private float T_look_near_time;
+    [HideInInspector]
+    public bool T_look_at_us;
+    [HideInInspector]
+    public bool T_look_near_at_us;
+    private int T_look_coef;
+    private float angle_to_teacher;
+    private bool T_here;
+    private float T_vanish_time;
+    private const float T_vanish_time_const = 4f;
+
+
+
+
     //Доп инструмент ы
     [HideInInspector]
     public TextBoxScholar TextBox;
@@ -59,13 +80,14 @@ public class Scholar : MonoBehaviour
     private GameManager GameMan;
     private ScriptManager ScriptMan;
     private PlayerScript Player;
+    private Transform Camera;
     [HideInInspector]
     public ScholarAgent Agent;
-    private ScholarManager ScholarMan;
+    [HideInInspector]
+    public ScholarManager ScholarMan;
 
 
 
-    private double rnd;
     private bool selectable = true;
 
     //Стресс и настроение
@@ -76,6 +98,14 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public int threshold_2 = 66;
     private byte moodType;
+    [HideInInspector]
+    public float[] moodType_time = new float[3];
+    private string[] moodType_string = new string[]
+    {
+        "chill",
+        "normal",
+        "panic"
+    };
 
 
     //Написание теста
@@ -93,12 +123,9 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
     {
-        { "Pen_", false },
-        { "Calculator_", false },
         { "Talking_", false },
         { "Cheating_", false },
         { "Walking_", false },
-        { "Nothing_", false }
     };
 
 
@@ -122,7 +149,7 @@ public class Scholar : MonoBehaviour
     private void Awake()
     {
         this.tag = "Scholar";
-
+ 
         TextBox = transform.parent.transform.parent.GetComponentInChildren<TextBoxScholar>();
         Emotions = transform.parent.transform.parent.GetComponentInChildren<Emotions>();
         Action = transform.parent.transform.GetComponentInParent<ActionsScholar>();
@@ -130,31 +157,37 @@ public class Scholar : MonoBehaviour
         ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         GameMan = GameObject.FindObjectOfType<GameManager>();
         Player = GameObject.FindObjectOfType<PlayerScript>();
+        Camera = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
+        cheatNeed = false;
 
         ChangeType(scholarType.ToString());
+        Selectable(true);
         IQ_start = 0;
     }
 
 
     private void Start()
     {
-        //StartWrite();
-        view = "Cheating_";
-        Action.Doing("Toilet_1");
     }
 
 
 
     void Update()
     {
-        if (writing)
-            Agent.Writing();
+        if (!executed)
+        {
+            if (writing)
+                Agent.Writing();
+
+            TeacherCalculate();
+            LookingForTeacher();
+        }
     }
 
     private void FixedUpdate()
     {
-        if (!cheatNeed)
-            Agent.CheatNeed();
+        if(!executed)
+            MoodTypeTime();
     }
 
     public void Continue()
@@ -165,17 +198,24 @@ public class Scholar : MonoBehaviour
 
     public void Stop()
     {
-        if (!executed)
-        {
             StopAllCoroutines();
             Action.Stop();
             TextBox.Clear();
-        }
     }
 
     public void StartWrite()
     {
         Action.StartWriting();
+    }
+
+    public void Do(string key)
+    {
+        Action.Doing(key);
+    }
+
+    public void SimpleDo(string key)
+    {
+        Action.SimpleDoing(key);
     }
 
 
@@ -208,24 +248,47 @@ public class Scholar : MonoBehaviour
 
     public string GetMoodType()
     {
-        switch(moodType)
+        return moodType_string[moodType];
+    }
+
+
+    private void MoodTypeTime()
+    {
+         moodType_time[moodType] += Time.fixedDeltaTime;
+    }
+
+    public void ZeroingMoodTypeTime()
+    {
+        for(int i = 0; i < 3; i++)
         {
-            case 0:
-                {
-                    return "chill";
-                }
-            case 1:
-                {
-                    return "normal";
-                }
-            case 2:
-                {
-                    return "panic";
-                }
-            default:
-                {
-                    return "";
-                }
+            moodType_time[i] = 0;
+        }
+    }
+
+    public int GetMoodTypeTime()
+    {
+        float buf_time = 0;
+
+        for (int i = 0; i < 3; i++)
+        {
+            buf_time += moodType_time[i];
+        }
+
+        buf_time *= UnityEngine.Random.value;
+        moodType_time[1] += moodType_time[0];
+
+
+        if(buf_time <= moodType_time[0])
+        {
+            return 0;
+        }
+        else if(buf_time < moodType_time[1])
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
         }
     }
 
@@ -269,9 +332,13 @@ public class Scholar : MonoBehaviour
         StartCoroutine(SayingWithoutContinue(key));
     }
 
+    public void SayThoughts(string key)
+    {
+        StartCoroutine(SayingThoughts(key));
+    }
+
     private IEnumerator Saying(string key, double probability_of_continue)
     {
-        view = "Talking_";
         talking = true;
         Selectable(false);
         TextBox.Say(key);
@@ -286,7 +353,7 @@ public class Scholar : MonoBehaviour
         Selectable(true);
         talking = false;
 
-        if (Probability(probability_of_continue))
+        if (ScholarMan.Probability(probability_of_continue))
             Continue();
         else
             StartWrite();
@@ -294,7 +361,6 @@ public class Scholar : MonoBehaviour
 
     private IEnumerator SayingWithoutContinue(string key)
     {
-        view = "Talking_";
         talking = true;
         Selectable(false);
         TextBox.Say(key);
@@ -306,6 +372,19 @@ public class Scholar : MonoBehaviour
         }
 
         Selectable(true);
+        talking = false;
+    }
+
+    private IEnumerator SayingThoughts(string key)
+    {
+        talking = true;
+        TextBox.Say(key);
+
+        while (TextBox.IsTalking())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
         talking = false;
     }
 
@@ -375,7 +454,7 @@ public class Scholar : MonoBehaviour
 
     public bool IsTeacherBullingRight()
     {
-        switch (view)
+        switch (GetView())
         {
             case "Cheating_":
                 {
@@ -426,7 +505,6 @@ public class Scholar : MonoBehaviour
 
     private IEnumerator Asking(string key)
     {
-        view = "Talking_";
         talking = true;
         Selectable(false);
         TextBox.Question(key);
@@ -475,6 +553,29 @@ public class Scholar : MonoBehaviour
 
 
 
+
+
+    //=================================================================================================================================================
+    //Как выглядит то что делает ученик
+
+    public string GetView()
+    {
+        if (talking)
+        {
+            return "Talking_";
+        }
+        else if (walking)
+        {
+            return "Walking_";
+        }
+        else
+        {
+            return "Cheating_";
+        }
+    }
+
+
+
     //=================================================================================================================================================
     //Исключение
 
@@ -482,7 +583,7 @@ public class Scholar : MonoBehaviour
     {
         Stop();
         TextBox.Say(keyWord + key);
-        Action.Doing("Execute");
+        Do("Execute");
     }
 
 
@@ -492,15 +593,7 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Вероятность
 
-    public bool Probability(double a)
-    {
-        rnd = UnityEngine.Random.value;
 
-        if (a >= rnd)
-            return true;
-        else
-            return false;
-    }
 
 
 
@@ -554,10 +647,108 @@ public class Scholar : MonoBehaviour
     public void ChangeType(string t)
     {
         type = t;
-        Debug.Log(t);
         Agent = new ScholarAgent(type, this);
         keyWord = type + "_";
     }
 
+
+
+    //========================================================================================================
+    //Вычесления связанные с учителем
+
+    private void TeacherCalculate()
+    {
+        if (Player.look_closer)
+            T_look_coef = 2;
+        else
+            T_look_coef = 1;
+
+
+        T_angle_y = LookingAngle(Action.transform.position, Player.transform);
+        T_angle_x = (Camera.transform.rotation.eulerAngles.x+30) % 360;
+
+        T_distance = (Player.transform.position - Action.transform.position).magnitude;
+
+        angle_to_teacher = LookingAngle(Player.transform.position, Action.transform);
+
+        // Debug.Log("X: " + teacher_angle_x + ";   Y: " + teacher_angle_y);
+        // Debug.Log("Magnitude: " + teacher_distance);
+
+
+        if (T_angle_y < (48/(T_look_coef*T_look_coef)) && T_angle_x < 80)
+        {
+            T_look_near_at_us = true;
+        }
+        else
+        {
+            T_look_near_at_us = false;
+        }
+
+
+        if (T_look_at_us)
+        {
+            T_look_time += Time.deltaTime * T_look_coef;
+        }
+        else
+        {
+            T_look_time = 0;
+        }
+
+        if (T_look_near_at_us)
+        {
+            T_look_near_time += Time.deltaTime * T_look_coef;
+        }
+        else
+        {
+            T_look_near_time = 0;
+        }
+
+        T_look_at_us = false;
+    }
+
+    private float LookingAngle(Vector3 lookingTo, Transform Who)
+    {
+        lookingTo.y = Who.transform.position.y;
+        lookingTo = lookingTo - Who.transform.position;
+        return Vector3.Angle(lookingTo, Who.forward);
+    }
+
+    public void Hear(float distance)
+    {
+        if(T_distance <= distance)
+        {
+            T_here = true;
+        }
+    }
+
+    private void LookingForTeacher()
+    {
+
+        if(angle_to_teacher >70 && T_distance>0.5)
+        {
+            if(T_vanish_time > 0)
+            {
+                T_vanish_time -= Time.deltaTime;
+            }
+            else
+            {
+                T_here = false;
+                T_vanish_time = T_vanish_time_const;
+            }
+        }
+        else
+        {
+            T_here = true;
+        }
+
+        if(T_here)
+        {
+            Debug.Log("Ты туууут!");
+        }
+        else
+        {
+            Debug.Log("Неееет");
+        }
+    }
 
 }

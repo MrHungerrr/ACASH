@@ -11,9 +11,12 @@ public class PlayerScript : MonoBehaviour
     private double rnd;
     private CharacterController CharController;
     private LayerMask actLayerMask;
+    private LayerMask sightLayerMask;
     private InputManager InputMan;
     private CameraController CamControl;
     private bool disPlayer;
+    [HideInInspector]
+    public bool look_closer;
 
     //Действия
     [HideInInspector]
@@ -25,10 +28,12 @@ public class PlayerScript : MonoBehaviour
     public bool act;
     [HideInInspector]
     public bool actReady;
-    private float actRange = 0.5f;
+    private float actMaxRange = 1f;
+    private float actMinRange = 0.4f;
     [HideInInspector]
     public string actTag;
     private GameObject actObject;
+    private GameObject selected_scholar;
     private string actText;
     [HideInInspector]
     public GameObject playerCam;
@@ -58,6 +63,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         actLayerMask = LayerMask.GetMask("Selectable");
+        sightLayerMask = LayerMask.GetMask("Sight Layer");
     }
 
     private void Update()
@@ -77,10 +83,12 @@ public class PlayerScript : MonoBehaviour
 
         Vector3 forwardMovement = transform.forward * vertInput;
         Vector3 rightMovement = transform.right * horizInput;
-
-        CharController.SimpleMove(forwardMovement + rightMovement);
+        if (forwardMovement != Vector3.zero || rightMovement != Vector3.zero)
+        {
+            CharController.SimpleMove(forwardMovement + rightMovement);
+            ScholarMan.Hear(3);
+        }
     }
-
 
 
     private void Watching()
@@ -88,20 +96,44 @@ public class PlayerScript : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, actRange, actLayerMask))
+
+        if (Physics.Raycast(ray, out hit, actMaxRange, actLayerMask))
         {
-            if (actObject != hit.collider.gameObject)
+            if (hit.collider.tag == "Scholar")
             {
-                if (actObject != null)
+                if (actObject != hit.collider.gameObject)
                 {
-                    actObject.GetComponent<ObjectSelect>().Deselect();
+                    if (actObject != null)
+                    {
+                        actObject.GetComponent<ObjectSelect>().Deselect();
+                    }
+                    actObject = hit.collider.gameObject;
+                    actTag = hit.collider.tag;
+                    actReady = true;
+                    actObject.GetComponent<ObjectSelect>().Select();
+
+                    WhatISee();
                 }
-                actObject = hit.collider.gameObject;
-                actTag = hit.collider.tag;
-                actReady = true;
-                actObject.GetComponent<ObjectSelect>().Select();
-                
-                WhatISee();
+            }
+            else if((hit.transform.position - transform.position).magnitude < actMinRange)
+            {
+                if (actObject != hit.collider.gameObject)
+                {
+                    if (actObject != null)
+                    {
+                        actObject.GetComponent<ObjectSelect>().Deselect();
+                    }
+                    actObject = hit.collider.gameObject;
+                    actTag = hit.collider.tag;
+                    actReady = true;
+                    actObject.GetComponent<ObjectSelect>().Select();
+                }
+            }
+            else if (actReady && actObject != null)
+            {
+                actObject.GetComponent<ObjectSelect>().Deselect();
+                actObject = null;
+                actReady = false;
             }
         }
         else if (actReady && actObject != null)
@@ -110,27 +142,38 @@ public class PlayerScript : MonoBehaviour
             actObject = null;
             actReady = false;
         }
+
+        
+
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(ray, 20, sightLayerMask);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            
+            if (hits[i].transform != null)
+            {
+                Scholar obj = hits[i].transform.parent.GetComponentInChildren<Scholar>();
+                obj.T_look_at_us = true;
+            }
+        }
+        
     }
 
 
 
     private void WhatISee()
     {
-        switch (actTag)
+
+        if (actObject.GetComponent<Scholar>().asking)
         {
-            case "Scholar":
-                {
-                    if (actObject.GetComponent<Scholar>().asking)
-                    {
-                        asked = true;
-                    }
-                    else
-                    {
-                        asked = false;
-                    }
-                    break;
-                }
+            asked = true;
         }
+        else
+        {
+            asked = false;
+        }
+
     }
 
 
@@ -159,6 +202,8 @@ public class PlayerScript : MonoBehaviour
             act = true;
         }
     }
+
+
 
 
 
@@ -251,15 +296,15 @@ public class PlayerScript : MonoBehaviour
     {
         Score.BullScore(scholar, strong);
 
-        key += scholar.view;
+        key += scholar.GetView();
 
-        if (scholar.remarks[scholar.view])
+        if (scholar.remarks[scholar.GetView()])
         {
             if (Probability(0.5))
                 key += "Sec_";
         }
         else
-            scholar.remarks[scholar.view] = true;
+            scholar.remarks[scholar.GetView()] = true;
 
         int nomber = Random.Range(0, ScriptMan.linesQuantity[keyWord + key]);
         key += nomber;
