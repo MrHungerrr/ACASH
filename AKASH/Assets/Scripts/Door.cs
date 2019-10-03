@@ -74,16 +74,6 @@ public class Door : MonoBehaviour
             {
                 if (ninety)
                 {
-                    /*if (angle > 90 && angle < 270)
-                    {
-                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
-                    }
-                    else
-                    {
-                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 90, commonRot.eulerAngles.z);
-                    }
-                    */
-
                     if (trans.position.z > pos.z)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
@@ -95,16 +85,6 @@ public class Door : MonoBehaviour
                 }
                 else
                 {
-                   /* if(angle < 180)
-                    {
-                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
-                    }
-                    else
-                    {
-                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 90, commonRot.eulerAngles.z);
-                    }
-                    */
-
                     if (trans.position.x > pos.x)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
@@ -114,6 +94,8 @@ public class Door : MonoBehaviour
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 90, commonRot.eulerAngles.z);
                     }
                 }
+
+                ScholarMan.SpecialHear(door_position);
             }
             else
             {

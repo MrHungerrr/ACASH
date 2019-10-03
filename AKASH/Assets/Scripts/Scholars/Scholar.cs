@@ -675,7 +675,7 @@ public class Scholar : MonoBehaviour
         // Debug.Log("Magnitude: " + teacher_distance);
 
 
-        if (T_angle_y < (48/(T_look_coef*T_look_coef)) && T_angle_x < 80)
+        if ((T_angle_y < (48/(T_look_coef*T_look_coef)) && T_angle_x < 80) || (T_distance<=0.5))
         {
             T_look_near_at_us = true;
         }
@@ -719,6 +719,13 @@ public class Scholar : MonoBehaviour
         {
             T_here = true;
         }
+    }
+
+    public void SpecialHear(Vector3 pos)
+    {
+        //Вероятность нужна тут
+        Debug.Log("Я услышал");
+        Action.SpecialWatch(pos);
     }
 
     private void LookingForTeacher()

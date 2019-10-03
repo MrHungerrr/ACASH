@@ -158,6 +158,7 @@ public class ActionsScholar : MonoBehaviour
     {
         if (keyAction != null)
         {
+            Debug.Log(keyAction);
             if (keyAction == "Writing")
             {
                 StartWriting();
@@ -265,6 +266,19 @@ public class ActionsScholar : MonoBehaviour
             buf -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public void SpecialWatch(Vector3 target)
+    {
+        Stop();
+        StartCoroutine(SpecialWatching(target));
+    }
+
+    private IEnumerator SpecialWatching(Vector3 target)
+    {
+        StartCoroutine(Watching(target));
+        yield return new WaitForSeconds(2f);
+        Continue();
     }
 
     public void SightTo(Vector3 target)

@@ -120,7 +120,7 @@ public class ScholarManager : MonoBehaviour
 
     void Start()
     {
-        ScholarNomberRandomer();
+        ScholarNumberRandomer();
         StartCoroutine(PrepareForTest());
     }
 
@@ -356,12 +356,12 @@ public class ScholarManager : MonoBehaviour
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (!scholars[a].Action.doing && scholars)
+            if (!scholars[a].Action.doing && !scholars[a].executed)
                 break;
             a = (a + 1) % scholars.Length;
         }
 
-        if (!scholars[a].Action.doing)
+        if (!scholars[a].Action.doing && !scholars[a].executed)
         {
             scholars[a].Agent.RandomSpecialAction();
             special_actions_count++;
@@ -439,6 +439,14 @@ public class ScholarManager : MonoBehaviour
         for (int i = 0; i < scholars.Length; i++)
         {
             scholars[i].Hear(distance);
+        }
+    }
+
+    public void SpecialHear(Vector3 pos)
+    {
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            scholars[i].SpecialHear(pos);
         }
     }
 }
