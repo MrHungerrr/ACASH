@@ -28,6 +28,10 @@ public class Scholar : MonoBehaviour
     public bool executed;
     [HideInInspector]
     public bool greeneyes;
+    private const float peripheral_vision_angle = 140f;
+    private const float central_vision_angle = 30f;
+    private const float vision_distance = 5f;
+
 
 
     [HideInInspector]
@@ -54,8 +58,10 @@ public class Scholar : MonoBehaviour
     //T - это Teacher
     private float T_angle_x;
     private float T_angle_y;
+    private Vector3 T_direction;
     private float T_distance;
     private float T_look_time;
+    private bool T_behind_wall;
     private float T_look_near_time;
     [HideInInspector]
     public bool T_look_at_us;
@@ -63,7 +69,9 @@ public class Scholar : MonoBehaviour
     public bool T_look_near_at_us;
     private int T_look_coef;
     private float angle_to_teacher;
-    private bool T_here;
+    [HideInInspector]
+    public bool T_here;
+    private bool T_in_sight;
     private float T_vanish_time;
     private const float T_vanish_time_const = 4f;
 
@@ -180,7 +188,7 @@ public class Scholar : MonoBehaviour
                 Agent.Writing();
 
             TeacherCalculate();
-            LookingForTeacher();
+            WhereTeacher();
         }
     }
 
@@ -663,11 +671,25 @@ public class Scholar : MonoBehaviour
         else
             T_look_coef = 1;
 
+        T_behind_wall = true;
 
         T_angle_y = LookingAngle(Action.transform.position, Player.transform);
         T_angle_x = (Camera.transform.rotation.eulerAngles.x+30) % 360;
 
-        T_distance = (Player.transform.position - Action.transform.position).magnitude;
+        T_direction = new Vector3(Player.transform.position.x - Action.transform.position.x, Action.transform.position.y, Player.transform.position.z - Action.transform.position.z);
+        T_distance = T_direction.magnitude;
+
+        RaycastHit hit;
+        Debug.DrawRay(Action.transform.position + transform.up.normalized * 0.3f, T_direction.normalized, Color.red);
+        if (Physics.Raycast(Action.transform.position + transform.up.normalized*0.3f, T_direction.normalized, out hit, vision_distance))
+        {
+            if(hit.collider.tag == "Player")
+            {
+                T_behind_wall = false;
+            }
+        }
+
+
 
         angle_to_teacher = LookingAngle(Player.transform.position, Action.transform);
 
@@ -718,6 +740,7 @@ public class Scholar : MonoBehaviour
         if(T_distance <= distance)
         {
             T_here = true;
+            T_vanish_time = T_vanish_time_const;
         }
     }
 
@@ -728,25 +751,52 @@ public class Scholar : MonoBehaviour
         Action.SpecialWatch(pos);
     }
 
-    private void LookingForTeacher()
+    private void WhereTeacher()
     {
+        Debug.Log(T_distance);
 
-        if(angle_to_teacher >70 && T_distance>0.5)
+        if (!T_behind_wall)
         {
-            if(T_vanish_time > 0)
+            if (T_distance > 0.5)
+            {
+                if ((angle_to_teacher <= peripheral_vision_angle*0.5f && T_here) || (angle_to_teacher <= central_vision_angle * 0.5f && !T_here))
+                {
+                    T_in_sight = true;
+                }
+                else
+                {
+                    T_in_sight = false;
+                }
+            }
+            else
+            {
+                T_in_sight = true;
+            }
+        }
+        else
+        {
+            T_in_sight = false;
+        }
+
+
+        if(T_in_sight)
+        {
+            T_here = true;
+
+            T_vanish_time = T_vanish_time_const;
+        }
+        else
+        {
+            if (T_vanish_time > 0)
             {
                 T_vanish_time -= Time.deltaTime;
             }
             else
             {
                 T_here = false;
-                T_vanish_time = T_vanish_time_const;
             }
         }
-        else
-        {
-            T_here = true;
-        }
+        
 
         if(T_here)
         {

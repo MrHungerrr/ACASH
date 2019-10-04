@@ -31,7 +31,7 @@ public class ActionsTest : MonoBehaviour
     private string[] actions = new string[]
     {
         "Toilet_1",
-        "Delete",
+        "Cheating_1",
     };
 
 

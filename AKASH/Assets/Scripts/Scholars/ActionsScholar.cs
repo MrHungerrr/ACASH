@@ -257,8 +257,14 @@ public class ActionsScholar : MonoBehaviour
         StartCoroutine(Watching(target));
     }
 
+    private void Watch(float angle)
+    {
+        StartCoroutine(Watching(angle));
+    }
+
     private IEnumerator Watching(Vector3 target)
     {
+        watching = true;
         float buf = 2f;
         while (buf > 0)
         {
@@ -266,6 +272,22 @@ public class ActionsScholar : MonoBehaviour
             buf -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        watching = false;
+    }
+
+    private IEnumerator Watching(float angle)
+    {
+        watching = true;
+        float buf = 2f;
+        Quaternion target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + angle, transform.rotation.eulerAngles.z);
+
+        while (buf > 0)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        watching = false;
     }
 
     public void SpecialWatch(Vector3 target)
@@ -288,7 +310,11 @@ public class ActionsScholar : MonoBehaviour
         transform.rotation = targetRotation;
     }
 
-
+    public void SightTo(Quaternion target)
+    {
+        target = Quaternion.Slerp(transform.rotation, target, 3f * Time.deltaTime);
+        transform.rotation = target;
+    }
 
     private Quaternion GetQuaternionTo(Vector3 target)
     {
@@ -297,6 +323,43 @@ public class ActionsScholar : MonoBehaviour
         targetRotation.z = transform.rotation.z;
         targetRotation.x = transform.rotation.x;
         return targetRotation;
+    }
+
+
+    private IEnumerator LookingForTeacher()
+    {
+        watching = true;
+        float buf = 2f;
+        Quaternion target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 120, transform.rotation.eulerAngles.z);
+
+        while (buf > 0 && !Scholar.T_here)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        buf = 2f;
+        target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 120, transform.rotation.eulerAngles.z);
+
+        while (buf > 0 && !Scholar.T_here)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        buf = 2f;
+        target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 120, transform.rotation.eulerAngles.z);
+
+        while (buf > 0 && !Scholar.T_here)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        watching = false;
     }
 
 
@@ -562,12 +625,12 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Cheating_1()
     {
+
         ScholarMan.special_actions_count++;
         Scholar.cheating = true;
         complete_before_end = true;
 
         Anim.SetInteger(anim, animations["Cheating"]);
-
         yield return new WaitForSeconds(5f);
         Debug.Log("Сделал свои дела");
 
@@ -580,20 +643,44 @@ public class ActionsScholar : MonoBehaviour
     }
 
 
+
     private IEnumerator Cheating_Check_1()
     {
         ready_for_cheat = true;
         complete_before_end = true;
 
-        Anim.SetInteger(anim, animations["Cheating"]);
         Scholar.SayThoughts("I WANT CHEAT");
 
-        yield return new WaitForSeconds(5f);
 
-        doing = false;
+        if (!Scholar.T_here)
+        {
+            StartCoroutine(LookingForTeacher());
+            yield return new WaitForEndOfFrame();
+            while (watching)
+            {
+                Debug.Log("Ищууу");
+                yield return new WaitForEndOfFrame();
+            }
+
+
+            doing = false;
+
+            if (Scholar.T_here)
+            {
+                ready_for_cheat = false;
+                Debug.Log("Нихуя");
+                Scholar.Emotions.ChangeEmotion("suprised", "upset", 1f);
+                yield return new WaitForSeconds(0.7f);
+            }
+        }
+        else
+        {
+            ready_for_cheat = false;
+        }
 
         CheatingContinue();
     }
+
 
 
     private void CheatingContinue()

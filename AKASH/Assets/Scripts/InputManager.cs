@@ -121,6 +121,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
+
         }
 
         //Меню
