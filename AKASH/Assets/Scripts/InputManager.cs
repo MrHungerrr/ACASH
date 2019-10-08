@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     [HideInInspector]
     public bool game;
     [HideInInspector]
+    public bool computer;
+    [HideInInspector]
     public bool cutScene;
     [HideInInspector]
     public bool disPlayer;
@@ -58,8 +60,10 @@ public class InputManager : MonoBehaviour
 
     private void GameInput()
     {
-        if (!cutScene)
+        if (disPlayer)
         {
+
+
             //Посмотреть ближе
             if (Input.GetKey(KeyCode.Q))
             {
@@ -118,27 +122,51 @@ public class InputManager : MonoBehaviour
                     pScript.Execute();
             }
 
+            //Меню
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (false)
+                {
+                    //Записка
+                }
+                else
+                {
+                    Time.timeScale = 0;
+                    game = false;
+                    //menu.SwitchMenu(true);
+                }
+            }
+
+
         }
         else
         {
-
-        }
-
-        //Меню
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (false)
+            if(computer) //Компьютер
             {
-                //Записка
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+
+
+                }
             }
-            else
+            else //Кат-Сцена
             {
-                Time.timeScale = 0;
-                game = false;
-               //menu.SwitchMenu(true);
+                //Меню
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    if (false)
+                    {
+                        //Записка
+                    }
+                    else
+                    {
+                        Time.timeScale = 0;
+                        game = false;
+                        //menu.SwitchMenu(true);
+                    }
+                }
             }
         }
-
 
 
     }

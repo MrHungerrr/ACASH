@@ -76,7 +76,6 @@ public class PlayerScript : MonoBehaviour
             
         if(!act)
             Watching();
-       
     }
 
 
