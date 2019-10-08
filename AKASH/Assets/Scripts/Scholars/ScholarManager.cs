@@ -7,6 +7,18 @@ public class ScholarManager : MonoBehaviour
     [HideInInspector]
     public Scholar[] scholars;
 
+    public int cheating_count;
+    private int cheating_limit = 2;
+    private float special_actions_per_minute = 10;
+    public int special_actions_count;
+
+
+    private float time_passed;
+    private float time_left;
+    [HideInInspector]
+    public float time_test;
+
+
     [HideInInspector]
     public Transform[,] desks;
     [HideInInspector]
@@ -56,7 +68,7 @@ public class ScholarManager : MonoBehaviour
 
 
         var buf = GameObject.FindGameObjectsWithTag("Sink");
-        sinks = new Transform[2,buf.Length];
+        sinks = new Transform[2, buf.Length];
         sinks_busy = new bool[buf.Length];
         sinks_count = buf.Length;
 
@@ -68,7 +80,7 @@ public class ScholarManager : MonoBehaviour
 
 
         buf = GameObject.FindGameObjectsWithTag("Toilet");
-        toilets = new Transform[2,buf.Length];
+        toilets = new Transform[2, buf.Length];
         toilets_busy = new bool[buf.Length];
         toilets_count = buf.Length;
 
@@ -109,13 +121,21 @@ public class ScholarManager : MonoBehaviour
     void Start()
     {
         ScholarNumberRandomer();
+        StartCoroutine(PrepareForTest());
+    }
+
+
+
+    private void Update()
+    {
+        Timer();
     }
 
 
 
     public void Stress(int value)
     {
-        for( int i = 0; i< scholars.Length; i++)
+        for (int i = 0; i < scholars.Length; i++)
         {
             scholars[i].Stress(value);
         }
@@ -164,8 +184,8 @@ public class ScholarManager : MonoBehaviour
 
         for (int i = 0; i < desks_count; i++)
         {
-            desks[1,i].name = "Desk_" + i;
-            Debug.Log(desks[1, i].position);
+            desks[1, i].name = "Desk_" + i;
+            //Debug.Log(desks[1, i].position);
         }
     }
 
@@ -193,7 +213,7 @@ public class ScholarManager : MonoBehaviour
 
     public int IsFree(string place, int a)
     {
-        switch(place)
+        switch (place)
         {
             case "toilet":
                 {
@@ -277,4 +297,159 @@ public class ScholarManager : MonoBehaviour
     }
 
 
+
+
+    private IEnumerator ScholarsCheat(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        Debug.Log("Проверка на желание списать");
+        ScholarsWantCheat();
+
+        StartCoroutine(ScholarsCheat(10));
+    }
+
+
+    public void ScholarsWantCheat()
+    {
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if (IsCheatFree())
+            {
+                scholars[i].Agent.CheatNeed();
+                scholars[i].ZeroingMoodTypeTime();
+            }
+            else
+            {
+                scholars[i].ZeroingMoodTypeTime();
+            }
+        }
+    }
+
+    public bool IsCheatFree()
+    {
+        if (cheating_count < cheating_limit)
+            return true;
+        else
+            return false;
+    }
+
+
+
+
+    private IEnumerator ScholarsSpecialAction(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if ((special_actions_per_minute / 60) > (special_actions_count / time_passed))
+        {
+            Debug.Log("Проверка на радномное специальное действие!");
+            if (Probability(0.6))
+            {
+                ScholarsRandomSpecialAction();
+                Debug.Log("опа, рандомное действие");
+            }
+        }
+        StartCoroutine(ScholarsSpecialAction(Random.Range(5,15)));
+    }
+
+    private void ScholarsRandomSpecialAction()
+    {
+        int a = Random.Range(0, scholars.Length);
+
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if (scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
+                break;
+            a = (a + 1) % scholars.Length;
+        }
+
+        if (scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
+        {
+            scholars[a].Agent.RandomSpecialAction();
+            special_actions_count++;
+        }
+    }
+
+
+    private IEnumerator PrepareForTest()
+    {
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            scholars[i].Action.ready = false;
+            scholars[i].Do("Go_Home");
+        }
+
+        while(true)
+        {
+            yield return new WaitForSeconds(1f);
+            float buf = 0;
+
+            for (int i = 0; i < scholars.Length; i++)
+            {
+                if (scholars[i].Action.ready)
+                    buf++;
+            }
+
+            if (buf == scholars.Length)
+                break;
+        }
+
+        StartTest();
+    }
+
+
+
+    private void StartTest()
+    {
+        StartCoroutine(ScholarsCheat(10));
+        StartCoroutine(ScholarsSpecialAction(5));
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            scholars[i].StartWrite();
+        }
+
+        time_left = time_test;
+        time_passed = 0;
+        special_actions_count = 0;
+    }
+
+
+
+    private void Timer()
+    {
+        time_passed += Time.deltaTime;
+        time_left = time_test - time_passed;
+    }
+
+
+
+    public bool Probability(double a)
+    {
+        double rnd = Random.value;
+
+        if (a >= rnd)
+            return true;
+        else
+            return false;
+    }
+
+
+    public void Hear(float distance)
+    {
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            scholars[i].Hear(distance);
+        }
+    }
+
+    public void SpecialHear(Vector3 pos)
+    {
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            scholars[i].SpecialHear(pos);
+        }
+    }
 }

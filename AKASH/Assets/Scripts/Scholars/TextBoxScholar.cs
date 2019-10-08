@@ -139,7 +139,7 @@ public class TextBoxScholar : MonoBehaviour
 
     public void Number(int num)
     {
-        textBox[1].text = num.ToString();
+        textBox[1].text = (num+1).ToString();
     }
 
 }

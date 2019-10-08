@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1073235050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073235051}
+  - component: {fileID: 1073235052}
+  m_Layer: 11
+  m_Name: Sight Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073235051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073235050}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1998094684035422940}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1073235052
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073235050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.4, z: 0.15}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &395473408644336016
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395473408644336016}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1998094684035422940}
@@ -69,6 +113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c170669f637de94aa19adde34ce0452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ready: 0
+  doing: 0
+  can_i_do_smth_else: 0
+  cheat_string: 
+  actionNo: 0
+  actionNoPlus: 0
   keyAction: 
   keyAction_now: 
   home: {x: 0, y: 0, z: 0}
@@ -130,24 +180,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scholarType: 0
-  isLiving: 0
+  isLiving: 1
   number: 0
   type: 
   executed: 0
   greeneyes: 0
   talking: 0
+  walking: 0
+  cheating: 0
   cheatNeed: 0
-  view: Cheating_
   writing: 0
   asking: 0
   questionKey: 
   teacher_answer: 0
+  T_look_at_us: 0
+  T_look_near_at_us: 0
+  T_here: 0
   TextBox: {fileID: 0}
   Action: {fileID: 0}
   Emotions: {fileID: 0}
+  ScholarMan: {fileID: 0}
   stress: 0
   threshold_1: 33
   threshold_2: 66
+  moodType_time:
+  - 0
+  - 0
+  - 0
   IQ_start: 0
   test: 0
   test_buf: 0
@@ -263,8 +322,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18212532e95722e48a79b1e16c04e758, type: 2}
@@ -469,8 +526,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u041F\u0440\u0438\u0432\u0435\u0442 \u0443\u0447\u0438\u0442\u0435\u043B\u044C)
     \u042F \u0445\u043E\u0447\u0443 \u0432 \u0442\u0443\u0430\u043B\u0435\u0442. \u041E\u0442\u043F\u0443\u0441\u0442\u0438,
     \u043F\u043B\u0438\u0437."
@@ -678,8 +733,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: :)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18212532e95722e48a79b1e16c04e758, type: 2}
@@ -906,8 +959,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1610493129049765957, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
         type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1610493129049765957, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
+        type: 3}
       propertyPath: m_Name
       value: Script Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: -1610493129049765957, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Scholar
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
         type: 3}
@@ -964,9 +1027,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -6057140222963153312, guid: 4e4b5c05d986e4c49b6652b52f7792b5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e4b5c05d986e4c49b6652b52f7792b5, type: 3}
+--- !u!1 &3306188994778360015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6827488138644861382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3992015841961358973 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1610493129049765957, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
@@ -976,12 +1044,6 @@ GameObject:
 --- !u!4 &1998094684035422940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
-    type: 3}
-  m_PrefabInstance: {fileID: 6827488138644861382}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3306188994778360015 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4e4b5c05d986e4c49b6652b52f7792b5,
     type: 3}
   m_PrefabInstance: {fileID: 6827488138644861382}
   m_PrefabAsset: {fileID: 0}

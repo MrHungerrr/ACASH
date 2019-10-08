@@ -7,7 +7,6 @@ public class ActionsTest : MonoBehaviour
 {
 
     public Scholar Scholar;
-    private ActionsScholar ActScholar;
     private TextMeshProUGUI text_set_type;
     private TextMeshProUGUI text_set_action;
     private TextMeshProUGUI text_type;
@@ -32,14 +31,13 @@ public class ActionsTest : MonoBehaviour
     private string[] actions = new string[]
     {
         "Toilet_1",
-        "Delete",
+        "Cheating_1",
     };
 
 
 
     void Start()
     {
-        ActScholar = Scholar.transform.parent.transform.parent.GetComponent<ActionsScholar>();
         text_set_type = transform.Find("Text").transform.Find("Set Menu").transform.Find("Type Text").GetComponent<TextMeshProUGUI>();
         text_set_action = transform.Find("Text").transform.Find("Set Menu").transform.Find("Action Text").GetComponent<TextMeshProUGUI>();
 
@@ -51,6 +49,7 @@ public class ActionsTest : MonoBehaviour
 
         act_nom = 0;
         Text();
+        help.SetActive(false);
     }
 
 
@@ -79,7 +78,7 @@ public class ActionsTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ActScholar.Doing(actions[act_nom]);
+            Scholar.Do(actions[act_nom]);
         }
 
 
@@ -201,7 +200,7 @@ public class ActionsTest : MonoBehaviour
     {
         text_type.text = Scholar.type;
         text_stress.text = Scholar.stress.ToString();
-        text_action.text = ActScholar.keyAction_now;
+        text_action.text = Scholar.Action.keyAction_now;
         text_mood.text = Scholar.GetMoodType();
     }
 }
