@@ -753,7 +753,6 @@ public class Scholar : MonoBehaviour
 
     private void WhereTeacher()
     {
-        Debug.Log(T_distance);
 
         if (!T_behind_wall)
         {
@@ -798,14 +797,16 @@ public class Scholar : MonoBehaviour
         }
         
 
+        /*
         if(T_here)
         {
-            Debug.Log("Ты туууут!");
+            //Debug.Log("Ты туууут!");
         }
         else
         {
-            Debug.Log("Неееет");
+            //Debug.Log("Неееет");
         }
+        */
     }
 
 }

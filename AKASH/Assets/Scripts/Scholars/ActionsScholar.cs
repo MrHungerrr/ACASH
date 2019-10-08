@@ -18,12 +18,20 @@ public class ActionsScholar : MonoBehaviour
     public bool ready;
     [HideInInspector]
     public bool doing;
+    [HideInInspector]
+    public bool can_i_do_smth_else;
+    private float doing_t;
+    private const float doing_const_t = 10f;
     private bool watching;
     private bool complete_before_end;
     private bool ready_for_cheat;
     [HideInInspector]
     public string cheat_string;
+    private bool answering;
+    [SerializeField]
     private int actionNo;
+    [SerializeField]
+    private int actionNoPlus;
     [HideInInspector]
     public string keyAction;
     [HideInInspector]
@@ -59,10 +67,13 @@ public class ActionsScholar : MonoBehaviour
     private void Start()
     {
         Anim.SetInteger(anim, animations["Nothing"]);
-        home = desk + Vector3.back;
+        doing_t = doing_const_t;
     }
 
-
+    private void Update()
+    {
+        CanIDoSomethingElse();
+    }
 
 
     //=========================================================================================================================================================
@@ -74,7 +85,9 @@ public class ActionsScholar : MonoBehaviour
         Stop();
         Debug.Log("Я начал делать" + key);
         doing = true;
+        can_i_do_smth_else = false;
         actionNo = 0;
+        actionNoPlus = 0;
         complete_before_end = false;
         StartCoroutine(key);
         keyAction = key;
@@ -87,7 +100,9 @@ public class ActionsScholar : MonoBehaviour
         Stop();
         Debug.Log("Я начал делать" + key);
         doing = true;
+        can_i_do_smth_else = false;
         actionNo = 0;
+        actionNoPlus = 0;
         complete_before_end = false;
         StartCoroutine(key,i);
         keyAction = key;
@@ -99,6 +114,7 @@ public class ActionsScholar : MonoBehaviour
         Stop();
         Debug.Log("Я начал делать" + key);
         actionNo = 0;
+        actionNoPlus = 0;
         complete_before_end = false;
         StartCoroutine(key);
         keyAction = key;
@@ -118,7 +134,6 @@ public class ActionsScholar : MonoBehaviour
             Debug.Log("Я начал делать Writing");
             keyAction = "Writing";
             keyAction_now = "Writing";
-            actionNo = 0;
             complete_before_end = false;
             StartCoroutine(keyAction);
         }
@@ -131,6 +146,7 @@ public class ActionsScholar : MonoBehaviour
     {
         if (keyAction != null)
             StopCoroutine(keyAction);
+
 
         if (complete_before_end)
             keyAction = "Writing";
@@ -165,6 +181,7 @@ public class ActionsScholar : MonoBehaviour
             }
             else
             {
+                actionNoPlus = 0;
                 StartCoroutine(keyAction);
                 keyAction_now = keyAction;
                 doing = true;
@@ -220,10 +237,6 @@ public class ActionsScholar : MonoBehaviour
             }
         }
     }
-
-
-    //=========================================================================================================================================================
-    //Вероятность
 
 
 
@@ -363,23 +376,64 @@ public class ActionsScholar : MonoBehaviour
     }
 
 
-   /* public bool WatchBool(Vector3 target)
-    {
-        Quaternion targetRotation = GetQuaternionTo(target);
-        targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
-        transform.rotation = targetRotation;
 
-        if (transform.rotation == targetRotation)
+    /* public bool WatchBool(Vector3 target)
+     {
+         Quaternion targetRotation = GetQuaternionTo(target);
+         targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
+         transform.rotation = targetRotation;
+
+         if (transform.rotation == targetRotation)
+         {
+             Debug.Log("O daaa");
+             return true;
+         }
+         else
+             return false;
+     }
+
+     */
+
+
+
+
+    //=========================================================================================================================================================
+    //Дополнительные функции
+
+    private bool CanIContinue()
+    {
+        if(actionNo == actionNoPlus)
         {
-            Debug.Log("O daaa");
+            actionNoPlus++;
             return true;
         }
         else
+        {
+            actionNoPlus++;
             return false;
+        }
     }
 
-    */
 
+    private void CanIDoSomethingElse()
+    {
+        if (!can_i_do_smth_else && !doing)
+        {
+            if (doing_t > 0)
+            {
+                doing_t -= Time.deltaTime;
+            }
+            else
+            {
+                can_i_do_smth_else = true;
+                doing_t = doing_const_t;
+            }
+        }
+        else
+        {
+            doing_t = doing_const_t;
+        }
+    }
 
 
 
@@ -401,8 +455,39 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Toilet_1()
     {
-        if (actionNo == 0)
+        if (CanIContinue())
         {
+            if (!Scholar.T_here)
+            {
+
+                StartCoroutine(LookingForTeacher());
+                yield return new WaitForEndOfFrame();
+                while (watching)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (Scholar.T_here)
+                {
+                    actionNo++;
+                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
+                    yield return new WaitForSeconds(0.7f);
+                }
+                else
+                {
+                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
+                    StartWriting();
+                }
+            }
+            else
+            {
+                actionNo++;
+            }
+        }
+
+        if (CanIContinue())
+        {
+
             if (!Scholar.asking)
             {
                 Scholar.Question("Question_Permission_1");
@@ -423,7 +508,7 @@ public class ActionsScholar : MonoBehaviour
             }
         }
 
-        if (actionNo == 1)
+        if (CanIContinue())
         {
             if (!Scholar.asking)
             {
@@ -445,8 +530,9 @@ public class ActionsScholar : MonoBehaviour
             }
         }
 
-        if (actionNo == 2)
+        if (CanIContinue())
         {
+            Debug.Log("пошел");
             SetDestination(ScholarMan.GetPlace("toilet",0));
 
             while (!IsHere())
@@ -458,14 +544,14 @@ public class ActionsScholar : MonoBehaviour
             actionNo++;
         }
 
-        if (actionNo == 3)
+        if (CanIContinue())
         {
             yield return new WaitForSeconds(5f);
             Debug.Log("Сделал свои дела");
             actionNo++;
         }
 
-        if (actionNo == 4)
+        if (CanIContinue())
         {
             SetDestination(home);
 
@@ -475,7 +561,7 @@ public class ActionsScholar : MonoBehaviour
             actionNo++;
         }
 
-        if (actionNo == 5)
+        if (CanIContinue())
         {
             doing = false;
             StartWriting();
@@ -490,8 +576,38 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Sink_1()
     {
+        if (CanIContinue())
+        {
+            if (!Scholar.T_here)
+            {
 
-        if (actionNo == 0)
+                StartCoroutine(LookingForTeacher());
+                yield return new WaitForEndOfFrame();
+                while (watching)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (Scholar.T_here)
+                {
+                    actionNo++;
+                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
+                    yield return new WaitForSeconds(0.7f);
+                }
+                else
+                {
+                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
+                    StartWriting();
+                }
+            }
+            else
+            {
+                actionNo++;
+            }
+        }
+
+
+        if (CanIContinue())
         {
             if (!Scholar.asking)
             {
@@ -513,8 +629,9 @@ public class ActionsScholar : MonoBehaviour
             }
         }
 
-        if (actionNo == 1)
+        if (CanIContinue())
         {
+            Debug.Log("пошел");
             SetDestination(ScholarMan.GetPlace("sink", 0));
 
             while (!IsHere())
@@ -526,14 +643,14 @@ public class ActionsScholar : MonoBehaviour
             actionNo++;
         }
 
-        if (actionNo == 2)
+        if (CanIContinue())
         {
             yield return new WaitForSeconds(5f);
             Debug.Log("Сделал свои дела");
             actionNo++;
         }
 
-        if (actionNo == 3)
+        if (CanIContinue())
         {
             SetDestination(home);
 
@@ -543,7 +660,7 @@ public class ActionsScholar : MonoBehaviour
             actionNo++;
         }
 
-        if (actionNo == 4)
+        if (CanIContinue())
         {
             doing = false;
             StartWriting();
@@ -557,7 +674,38 @@ public class ActionsScholar : MonoBehaviour
 
     private IEnumerator Air_1()
     {
-        if (actionNo == 0)
+        if (CanIContinue())
+        {
+            if (!Scholar.T_here)
+            {
+
+                StartCoroutine(LookingForTeacher());
+                yield return new WaitForEndOfFrame();
+                while (watching)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (Scholar.T_here)
+                {
+                    actionNo++;
+                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
+                    yield return new WaitForSeconds(0.7f);
+                }
+                else
+                {
+                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
+                    StartWriting();
+                }
+            }
+            else
+            {
+                actionNo++;
+            }
+        }
+
+
+        if (CanIContinue())
         {
             if (!Scholar.asking)
             {
@@ -580,8 +728,9 @@ public class ActionsScholar : MonoBehaviour
         }
 
 
-        if (actionNo == 1)
+        if (CanIContinue())
         {
+            Debug.Log("пошел");
             SetDestination(ScholarMan.GetPlace("outside", 0));
 
             while (!IsHere())
@@ -589,18 +738,17 @@ public class ActionsScholar : MonoBehaviour
 
             Watch(ScholarMan.GetSightGoal("outside", 0));
 
-            Debug.Log("Я дошел");
             actionNo++;
         }
 
-        if (actionNo == 2)
+        if (CanIContinue())
         {
             yield return new WaitForSeconds(5f);
             Debug.Log("Сделал свои дела");
             actionNo++;
         }
 
-        if (actionNo == 3)
+        if (CanIContinue())
         {
             SetDestination(home);
 
@@ -610,11 +758,9 @@ public class ActionsScholar : MonoBehaviour
             actionNo++;
         }
 
-        if (actionNo == 4)
-        {
-            doing = false;
-            StartWriting();
-        }
+
+        doing = false;
+        StartWriting();
     }
 
 
@@ -658,7 +804,6 @@ public class ActionsScholar : MonoBehaviour
             yield return new WaitForEndOfFrame();
             while (watching)
             {
-                Debug.Log("Ищууу");
                 yield return new WaitForEndOfFrame();
             }
 

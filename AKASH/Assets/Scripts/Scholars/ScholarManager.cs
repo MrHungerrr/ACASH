@@ -339,14 +339,17 @@ public class ScholarManager : MonoBehaviour
 
     private IEnumerator ScholarsSpecialAction(float time)
     {
-        Debug.Log("Проверка на радномное специальное действие!");
         yield return new WaitForSeconds(time);
-        Debug.Log("Проверка на желание списать");
 
-        if((special_actions_per_minute/60) > (special_actions_count/time_passed))
-            if(Probability(0.1))
+        if ((special_actions_per_minute / 60) > (special_actions_count / time_passed))
+        {
+            Debug.Log("Проверка на радномное специальное действие!");
+            if (Probability(0.6))
+            {
                 ScholarsRandomSpecialAction();
-
+                Debug.Log("опа, рандомное действие");
+            }
+        }
         StartCoroutine(ScholarsSpecialAction(Random.Range(5,15)));
     }
 
@@ -356,12 +359,12 @@ public class ScholarManager : MonoBehaviour
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (!scholars[a].Action.doing && !scholars[a].executed)
+            if (scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
                 break;
             a = (a + 1) % scholars.Length;
         }
 
-        if (!scholars[a].Action.doing && !scholars[a].executed)
+        if (scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
         {
             scholars[a].Agent.RandomSpecialAction();
             special_actions_count++;
