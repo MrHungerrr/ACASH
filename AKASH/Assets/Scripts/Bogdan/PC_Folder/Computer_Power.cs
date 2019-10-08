@@ -12,8 +12,8 @@ public class Computer_Power : MonoBehaviour
     }
 
     public void SwitchPower()
-    {       
-        var pc = this.gameObject.transform.GetChild(0).gameObject;
+    {
+        var pc = transform.GetChild(0).gameObject;
         pc.SetActive(!pc.activeSelf);// !false/true
         cc.LockCursor(!pc.activeSelf);//!true/false
     }

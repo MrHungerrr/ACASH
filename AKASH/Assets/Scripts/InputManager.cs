@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     private PlayerScript pScript;
     private CameraController cControl;
     private Menu menu;
+    private Computer_Power[] comp;
     
 
     //private ParticleSystem.VelocityOverLifetimeModule vel;
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour
         disPlayer = false;
         pScript = GameObject.FindObjectOfType<PlayerScript>();
         cControl = GameObject.FindObjectOfType<CameraController>();
+        comp = GameObject.FindObjectsOfType<Computer_Power>();
         //menu = GameObject.FindObjectOfType<Menu>();
         //menu.SwitchMenu(false);
     }
@@ -144,10 +146,19 @@ public class InputManager : MonoBehaviour
     {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Time.timeScale = 1;
-                game = true;
-                //menu.SwitchMenu(false);
-            }
+                if (disPlayer)
+                {
+                    pScript.DisableControl(false);
+                    
+                }
+            else
+                {
+                    Time.timeScale = 1;
+                    game = true;
+                    //menu.SwitchMenu(false);
+                }
+
+        }
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -155,5 +166,7 @@ public class InputManager : MonoBehaviour
                 Time.timeScale = 1;
                 game = true;
             }
+
+            
     }
 }
