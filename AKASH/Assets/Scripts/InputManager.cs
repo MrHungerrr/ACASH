@@ -32,6 +32,7 @@ public class InputManager : MonoBehaviour
         pScript = GameObject.FindObjectOfType<PlayerScript>();
         cControl = GameObject.FindObjectOfType<CameraController>();
         comp = GameObject.FindObjectsOfType<Computer_Power>();
+        computer = false;
         //menu = GameObject.FindObjectOfType<Menu>();
         //menu.SwitchMenu(false);
     }
@@ -62,7 +63,7 @@ public class InputManager : MonoBehaviour
 
     private void GameInput()
     {
-        if (disPlayer)
+        if (!disPlayer)
         {
 
 
@@ -147,8 +148,8 @@ public class InputManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
-
-
+                    Computer_Power.SwitchPower(Computer_Power.activepc);
+                    pScript.DisableControl(false);
                 }
             }
             else //Кат-Сцена
@@ -179,8 +180,7 @@ public class InputManager : MonoBehaviour
             {
                 if (disPlayer)
                 {
-                    pScript.DisableControl(false);
-                    
+                    pScript.DisableControl(false);                 
                 }
             else
                 {

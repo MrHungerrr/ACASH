@@ -15,10 +15,12 @@ public class Lable_Script : MonoBehaviour, IPointerExitHandler, IPointerClickHan
 
     // public GameObject mycomputer;
     public GameObject lable;
+    AntiCheatCamera acc;
 
     void Start()
     {
         image = GetComponent<Image>();
+        acc = FindObjectOfType<AntiCheatCamera>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -26,8 +28,13 @@ public class Lable_Script : MonoBehaviour, IPointerExitHandler, IPointerClickHan
         click++;
         if (click == 2)
         {
+
             lable.SetActive(true);
             click = 0;
+            if(this.gameObject.name == "Camers_label")
+            {
+                acc.AсtiveAntiCheatCamers();
+            }
         }
         else
         {
@@ -85,14 +92,4 @@ public class Lable_Script : MonoBehaviour, IPointerExitHandler, IPointerClickHan
 
 
 
-
-
-
-
-    // Напряжение
-
-    void Tension(float[] studentsstress)
-    {
-
-    }
 }
