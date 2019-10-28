@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using N_BH;
 
 
-public class ScriptManager : MonoBehaviour
+public class ScriptManager : Singleton<ScriptManager>
 {
 
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);

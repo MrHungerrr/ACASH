@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using N_BH;
 
-public class SubtitleManager : MonoBehaviour
+
+
+public class SubtitleManager : Singleton<SubtitleManager>
 {
     private ScriptManager scriptMan;
     private SubtitlePlay subPlay;

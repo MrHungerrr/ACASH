@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class Scholar : MonoBehaviour
@@ -31,6 +32,7 @@ public class Scholar : MonoBehaviour
     private const float peripheral_vision_angle = 140f;
     private const float central_vision_angle = 30f;
     private const float vision_distance = 5f;
+    private LayerMask visible_layerMask;
 
 
 
@@ -42,6 +44,8 @@ public class Scholar : MonoBehaviour
     public bool cheating;
     [HideInInspector]
     public bool cheatNeed;
+    [HideInInspector]
+    public int cheat_finish_type;
     [HideInInspector]
     public bool writing;
 
@@ -55,6 +59,7 @@ public class Scholar : MonoBehaviour
     public bool teacher_answer;
 
 
+
     //T - это Teacher
     private float T_angle_x;
     private float T_angle_y;
@@ -63,6 +68,8 @@ public class Scholar : MonoBehaviour
     private float T_look_time;
     private bool T_behind_wall;
     private float T_look_near_time;
+    private float T_look_vanish_time;
+    private const float T_look_vanish_time_const = 0.1f;
     [HideInInspector]
     public bool T_look_at_us;
     [HideInInspector]
@@ -85,9 +92,6 @@ public class Scholar : MonoBehaviour
     public ActionsScholar Action;
     [HideInInspector]
     public Emotions Emotions;
-    private GameManager GameMan;
-    private ScriptManager ScriptMan;
-    private PlayerScript Player;
     private Transform Camera;
     [HideInInspector]
     public ScholarAgent Agent;
@@ -162,9 +166,6 @@ public class Scholar : MonoBehaviour
         Emotions = transform.parent.transform.parent.GetComponentInChildren<Emotions>();
         Action = transform.parent.transform.GetComponentInParent<ActionsScholar>();
         ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
-        ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
-        GameMan = GameObject.FindObjectOfType<GameManager>();
-        Player = GameObject.FindObjectOfType<PlayerScript>();
         Camera = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
         cheatNeed = false;
 
@@ -176,6 +177,7 @@ public class Scholar : MonoBehaviour
 
     private void Start()
     {
+        visible_layerMask = LayerMask.GetMask("ScholarEye Layer");
     }
 
 
@@ -189,6 +191,9 @@ public class Scholar : MonoBehaviour
 
             TeacherCalculate();
             WhereTeacher();
+
+            if (cheating)
+                CheatingFinish();
         }
     }
 
@@ -354,7 +359,7 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            Action.SightTo(Player.transform.position);
+            Action.SightTo(Player.get.transform.position);
             yield return new WaitForEndOfFrame();
         }
 
@@ -375,7 +380,7 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            Action.SightTo(Player.transform.position);
+            Action.SightTo(Player.get.transform.position);
             yield return new WaitForEndOfFrame();
         }
 
@@ -450,7 +455,7 @@ public class Scholar : MonoBehaviour
     {
         while (!talking)
         {
-            Action.SightTo(Player.transform.position);
+            Action.SightTo(Player.get.transform.position);
             yield return new WaitForEndOfFrame();
         }
     }
@@ -492,7 +497,7 @@ public class Scholar : MonoBehaviour
     public bool IsTeacherBullingRight(string obj)
     {
         Debug.Log(obj);
-        if (GameMan.banned[obj])
+        if (GameManager.get.banned[obj])
             return true;
         else
             return false;
@@ -521,7 +526,7 @@ public class Scholar : MonoBehaviour
 
         while (TextBox.IsTalking())
         {
-            Action.SightTo(Player.transform.position);
+            Action.SightTo(Player.get.transform.position);
             yield return new WaitForEndOfFrame();
         }
         Debug.Log("Мы задали вопрос");
@@ -548,8 +553,6 @@ public class Scholar : MonoBehaviour
         Agent.TeacherAnswer(key, answer);
         asking = false;
     }
-
-
 
     //=================================================================================================================================================
     //Учитель кричит на ученика
@@ -593,15 +596,6 @@ public class Scholar : MonoBehaviour
         TextBox.Say(keyWord + key);
         Do("Execute");
     }
-
-
-
-
-
-    //========================================================================================================
-    //Вероятность
-
-
 
 
 
@@ -664,40 +658,47 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Вычесления связанные с учителем
 
+    public void ISeeYou()
+    {
+        T_look_at_us = true;
+        T_look_vanish_time = T_look_vanish_time_const;
+    }
+
     private void TeacherCalculate()
     {
-        if (Player.look_closer)
+        if (Player.get.look_closer)
             T_look_coef = 2;
         else
             T_look_coef = 1;
 
         T_behind_wall = true;
 
-        T_angle_y = LookingAngle(Action.transform.position, Player.transform);
-        T_angle_x = (Camera.transform.rotation.eulerAngles.x+30) % 360;
+        T_angle_y = LookingAngle(Action.transform.position, Player.get.transform);
+        T_angle_x = (Camera.transform.rotation.eulerAngles.x + 30) % 360;
 
-        T_direction = new Vector3(Player.transform.position.x - Action.transform.position.x, Action.transform.position.y, Player.transform.position.z - Action.transform.position.z);
-        T_distance = T_direction.magnitude;
+        T_direction = new Vector3(Player.get.transform.position.x - Action.transform.position.x, Action.transform.position.y, Player.get.transform.position.z - Action.transform.position.z).normalized;
+
+        T_distance = Action.GetHearDistance(Player.get.transform.position);
+
 
         RaycastHit hit;
-        Debug.DrawRay(Action.transform.position + transform.up.normalized * 0.3f, T_direction.normalized, Color.red);
-        if (Physics.Raycast(Action.transform.position + transform.up.normalized*0.3f, T_direction.normalized, out hit, vision_distance))
+        Debug.DrawRay(Action.transform.position + transform.up.normalized * 0.3f, T_direction, Color.red);
+        if (Physics.Raycast(Action.transform.position + transform.up.normalized * 0.3f, T_direction, out hit, vision_distance, visible_layerMask))
         {
-            if(hit.collider.tag == "Player")
+            if (hit.collider.tag == "Player")
             {
                 T_behind_wall = false;
             }
         }
 
 
-
-        angle_to_teacher = LookingAngle(Player.transform.position, Action.transform);
+        angle_to_teacher = LookingAngle(Player.get.transform.position, Action.transform);
 
         // Debug.Log("X: " + teacher_angle_x + ";   Y: " + teacher_angle_y);
         // Debug.Log("Magnitude: " + teacher_distance);
 
 
-        if ((T_angle_y < (48/(T_look_coef*T_look_coef)) && T_angle_x < 80) || (T_distance<=0.5))
+        if ((T_angle_y < (48 / (T_look_coef * T_look_coef)) && T_angle_x < 80) || (T_distance <= 0.5))
         {
             T_look_near_at_us = true;
         }
@@ -725,8 +726,19 @@ public class Scholar : MonoBehaviour
             T_look_near_time = 0;
         }
 
-        T_look_at_us = false;
+
+        if (T_look_vanish_time > 0)
+        {
+            T_look_vanish_time -= Time.deltaTime;
+        }
+        else
+        { 
+            T_look_at_us = false;
+        }
     }
+
+
+
 
     private float LookingAngle(Vector3 lookingTo, Transform Who)
     {
@@ -734,6 +746,8 @@ public class Scholar : MonoBehaviour
         lookingTo = lookingTo - Who.transform.position;
         return Vector3.Angle(lookingTo, Who.forward);
     }
+
+
 
     public void Hear(float distance)
     {
@@ -744,12 +758,60 @@ public class Scholar : MonoBehaviour
         }
     }
 
+
+
+    private void CheatingFinish()
+    {
+
+        // Обозначения переменных для завершения списывания
+        //  1 - Звук от учителя
+        //  2 - Я вижу учителя
+        //  3 - Учитель возможно смотрит на меня
+        //  4 - Учитель точно смотрит на меня
+
+        switch (cheat_finish_type)
+        {
+            case 1:
+                {
+                    if (T_here)
+                        Action.StopCheating();
+
+                    break;
+                }
+            case 2:
+                {
+                    if (T_in_sight)
+                        Action.StopCheating();
+
+                    break;
+                }
+            case 3:
+                {
+                    if (T_in_sight && T_look_near_at_us)
+                        Action.StopCheating();
+
+                    break;
+                }
+            case 4:
+                {
+                    if (T_in_sight && T_look_at_us)
+                        Action.StopCheating();
+
+                    break;
+                }
+        }
+    }
+
+
+
     public void SpecialHear(Vector3 pos)
     {
         //Вероятность нужна тут
         Debug.Log("Я услышал");
         Action.SpecialWatch(pos);
     }
+
+
 
     private void WhereTeacher()
     {
@@ -808,5 +870,7 @@ public class Scholar : MonoBehaviour
         }
         */
     }
+
+
 
 }

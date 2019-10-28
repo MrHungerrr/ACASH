@@ -61,10 +61,7 @@ public class Dumb
         scholar.Answer(key, obj, 0, 1);
     }
 
-
-
-
-    public void TeacherPermission(string key, bool answer)
+    public void TeacherAnswer(string key, bool answer)
     {
         if (answer)
         {
@@ -78,18 +75,12 @@ public class Dumb
         }
     }
 
-    public void TeacherAnswer(string key, bool answer)
+    public void StopQuestion()
     {
-        if (answer)
-        {
-            scholar.SayWithoutContinue(key);
-            scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
-        }
-        else
-        {
-            scholar.SayWithoutContinue(key);
-            scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
-        }
+        scholar.asking = false;
+        scholar.TextBox.Clear();
+        scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        scholar.StartWrite();
     }
 
     public void Writing()
@@ -147,7 +138,7 @@ public class Dumb
     {
         switch (cheat_check)
         {
-            case "outside":
+            case "Outside":
                 {
                     int buf = UnityEngine.Random.Range(0, 1);
 
@@ -175,7 +166,8 @@ public class Dumb
             case 0:
                 {
                     scholar.Action.cheat_string = "Cheating_1";
-                    cheat_check = "outside";
+                    cheat_check = "Outside";
+                    scholar.cheat_finish_type = 1;
                     break;
                 }
         }
@@ -189,7 +181,6 @@ public class Dumb
         {
             case 0:
                 {
-                    Debug.Log("Рандомное действие");
                     scholar.StartWrite();
                     break;
                 }
@@ -199,24 +190,22 @@ public class Dumb
     public void RandomSpecialAction()
     {
         int buf = UnityEngine.Random.Range(0, 3);
+        Debug.Log("Рандомное Специальное действие");
 
         switch (buf)
         {
             case 0:
                 {
-                    Debug.Log("Рандомное Специальное действие");
                     scholar.Do("Toilet_1");
                     break;
                 }
             case 1:
                 {
-                    Debug.Log("Рандомное Специальное действие");
                     scholar.Do("Sink_1");
                     break;
                 }
             case 2:
                 {
-                    Debug.Log("Рандомное Специальное действие");
                     scholar.Do("Air_1");
                     break;
                 }

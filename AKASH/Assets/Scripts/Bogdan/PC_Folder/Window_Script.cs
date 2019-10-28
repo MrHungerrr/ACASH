@@ -10,12 +10,6 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Vector3 startPosition;
     private Vector3 offset;
     private float minDist = 30;
-    ScholarManager sm;
-
-    private void Start()
-    {
-        sm = GameObject.FindObjectOfType<ScholarManager>();
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -43,12 +37,11 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (this.gameObject.name == "Tension_window")
         {
 
-            sm = GameObject.FindObjectOfType<ScholarManager>();
-            for (int i = 0; i < sm.scholars.Length; i++)
+            for (int i = 0; i < ScholarManager.get.scholars.Length; i++)
             {
                 GameObject gm;
                 gm = Instantiate<GameObject>(Resources.Load<GameObject>("PC_Prefabs/TensionOfStudent"), this.gameObject.transform.GetChild(0).transform);
-                gm.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(sm.GetStress(i) / 100f, 1, 1);
+                gm.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(ScholarManager.get.GetStress(i) / 100f, 1, 1);
                 gm.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().SetText((i+1).ToString());
             }
             StartCoroutine(TensionUpdate());
@@ -57,11 +50,11 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     IEnumerator TensionUpdate()
     {
-        for (int i = 0; i < sm.scholars.Length; i++)
+        for (int i = 0; i < ScholarManager.get.scholars.Length; i++)
         {
             GameObject gm;
             gm = this.transform.GetChild(0).GetChild(i).gameObject;
-            gm.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(sm.GetStress(i) / 100f, 1, 1);
+            gm.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(ScholarManager.get.GetStress(i) / 100f, 1, 1);
             gm.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>().SetText((i + 1).ToString());
         }
         yield return new WaitForSeconds(1f);
@@ -72,10 +65,7 @@ public class Window_Script : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this.gameObject.name == "Tension_window")
         {
-
-            sm = GameObject.FindObjectOfType<ScholarManager>();
-            if(sm!=null)
-            for (int i = 0; i < sm.scholars.Length; i++)
+            for (int i = 0; i < ScholarManager.get.scholars.Length; i++)
             {
                 GameObject gm;
                 gm = this.transform.GetChild(0).GetChild(i).gameObject;

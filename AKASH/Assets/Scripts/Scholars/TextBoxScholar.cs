@@ -7,7 +7,6 @@ public class TextBoxScholar : MonoBehaviour
 {
 
     private TextMeshPro[] textBox;
-    private ScriptManager ScriptMan;
     private bool saying = false;
     private bool question = false;
     private bool act = false;
@@ -20,7 +19,6 @@ public class TextBoxScholar : MonoBehaviour
 
     private void Awake()
     {
-        ScriptMan = GameObject.FindObjectOfType<ScriptManager>();
         textBox = transform.GetComponentsInChildren<TextMeshPro>();
 
     }
@@ -95,7 +93,7 @@ public class TextBoxScholar : MonoBehaviour
     private IEnumerator PlaySub(string key)
     {
         act = true;
-        var script = ScriptMan.GetText(key);
+        var script = ScriptManager.get.GetText(key);
         if (script != null)
         {
             foreach (var line in script)

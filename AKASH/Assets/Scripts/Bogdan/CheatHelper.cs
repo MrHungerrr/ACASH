@@ -13,12 +13,9 @@ public class CheatHelper : MonoBehaviour
     public int cheatingCountonLevel; 
     public static bool allowcheating = true;
 
-    private ScholarManager sm;
-
     void Start()
     {
-        sm = GameObject.FindObjectOfType<ScholarManager>();
-        studentcount = sm.scholars.Length;
+        studentcount = ScholarManager.get.scholars.Length;
     }
 
 

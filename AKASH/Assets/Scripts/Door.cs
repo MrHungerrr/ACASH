@@ -17,19 +17,13 @@ public class Door : MonoBehaviour
     private float close_time;
     private const float close_time_cd = 3f;
     private Vector3 last_pos;
-    private Transform player;
-    private ScholarManager ScholarMan;
-    private int scholar_nom;
     private bool scholar_open;
     private bool in_range;
-    private float scholar_open_cd;
     
 
 
     void Start()
     {
-        ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
-        player = GameObject.FindWithTag("Player").transform;
         door_position = transform.parent.parent.position;
         commonRot = transform.parent.transform.rotation;
         trans = transform.parent.transform;
@@ -95,7 +89,7 @@ public class Door : MonoBehaviour
                     }
                 }
 
-                ScholarMan.SpecialHear(door_position);
+                ScholarManager.get.SpecialHear(door_position);
             }
             else
             {
@@ -121,7 +115,7 @@ public class Door : MonoBehaviour
                 {
                     close_time -= Time.deltaTime;
                 }
-                else if(Vector3.Distance(door_position, player.position) > close_distance)
+                else if(Vector3.Distance(door_position, Player.get.transform.position) > close_distance)
                 {
                     close_time = close_time_cd;
                     DoorInteract(last_pos);
@@ -141,18 +135,29 @@ public class Door : MonoBehaviour
         int i;
         in_range = false;
 
-        for(i = 0; i < ScholarMan.scholars.Length; i++)
+        for(i = 0; i < ScholarManager.get.scholars.Length; i++)
         {
-            if(Vector3.Distance(door_position, ScholarMan.scholars[i].transform.position) < 0.4f)
+            if (Vector3.Distance(door_position, ScholarManager.get.scholars[i].transform.position) < 0.4f)
             {
-                in_range = true;
-                break;
+                if (!open)
+                {
+                    if (Mathf.Abs(ScholarManager.get.scholars[i].Action.GetQuaternionTo(door_position).eulerAngles.y - ScholarManager.get.scholars[i].Action.transform.rotation.eulerAngles.y) < 45)
+                    {
+                        in_range = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    in_range = true;
+                    break;
+                }
             }
         }
 
         if (in_range && !open && !scholar_open)
         {
-            DoorInteract(ScholarMan.scholars[i].Action.transform.position);
+            DoorInteract(ScholarManager.get.scholars[i].Action.transform.position);
             scholar_open = true;
         }
         else if (!in_range && open && scholar_open)

@@ -70,6 +70,18 @@ public class ScholarAgent
         }
     }
 
+    public void StopQuestion()
+    {
+        switch (type)
+        {
+            case "Dumb":
+                {
+                    dumb.StopQuestion();
+                    break;
+                }
+        }
+    }
+
     public void Writing()
     {
         switch (type)
