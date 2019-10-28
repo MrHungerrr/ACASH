@@ -219,7 +219,8 @@ public class Player : Singleton<Player>
                 case "Computer":
                     {
                         DisableControl(true);
-                        actObject.GetComponent<Computer_Power>().SwitchPower();
+                        //actObject.GetComponent<Computer_Power>().SwitchPower();
+                        Computer_Power.SwitchPower(actObject.transform.GetChild(0).gameObject);
                         break;
                     }
                 case "Door":
