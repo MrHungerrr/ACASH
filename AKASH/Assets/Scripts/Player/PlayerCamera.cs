@@ -6,8 +6,9 @@ using N_BH;
 
 public class PlayerCamera : Singleton<PlayerCamera>
 {
-    private float mouseSensitivity = 10;
-    private float gamepadSensitivity = 120; 
+    private float coefSensitivity = 5;
+    private float mouseSensitivity = 2;
+    private float gamepadSensitivity = 20; 
 
     private Transform playerBody;
     private CinemachineVirtualCamera cineCam;
@@ -66,12 +67,12 @@ public class PlayerCamera : Singleton<PlayerCamera>
         {
             case "keyboard":
                 {
-                    rotate = rotateInput * Time.deltaTime * mouseSensitivity;
+                    rotate = rotateInput * Time.deltaTime * mouseSensitivity * coefSensitivity;
                     break;
                 }
             default:
                 {
-                    rotate = rotateInput * Time.deltaTime * gamepadSensitivity;
+                    rotate = rotateInput * Time.deltaTime * gamepadSensitivity * coefSensitivity;
                     break;
                 }
         }
@@ -122,5 +123,10 @@ public class PlayerCamera : Singleton<PlayerCamera>
         {
             zooming = false;
         }
+    }
+
+    public void Sensitivity(int coef)
+    {
+        coefSensitivity = coef;
     }
 }

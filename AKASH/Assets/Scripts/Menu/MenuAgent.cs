@@ -14,6 +14,7 @@ public class MenuAgent : Singleton<MenuAgent>
 
         menu_types.Add("Pause", transform.Find("Pause").gameObject);
         menu_types.Add("Settings", transform.Find("Settings").gameObject);
+        menu_types.Add("Sound", transform.Find("Sound").gameObject);
 
         foreach (KeyValuePair<string, GameObject> valuePair in menu_types)
         {
@@ -33,7 +34,8 @@ public class MenuAgent : Singleton<MenuAgent>
             case "Settings":
                 {
                     Disable("Pause");
-                    Set("Options");
+                    Set("Settings");
+                    SettingsManager.get.BackUp();
                     break;
                 }
             case "Main Menu":
@@ -53,6 +55,14 @@ public class MenuAgent : Singleton<MenuAgent>
                 }
             case "Accept Settings":
                 {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Sound":
+                {
+                    Disable("Settings");
+                    Set("Sound");
+                    SettingsManager.get.BackUp();
                     break;
                 }
 
@@ -68,10 +78,16 @@ public class MenuAgent : Singleton<MenuAgent>
                     InputManager.get.MenuResume();
                     break;
                 }
-            case "Options":
+            case "Settings":
                 {
-                    Disable("Options");
+                    Disable("Settings");
                     Set("Pause");
+                    break;
+                }
+            case "Sound":
+                {
+                    Disable("Sound");
+                    Set("Settings");
                     break;
                 }
         }

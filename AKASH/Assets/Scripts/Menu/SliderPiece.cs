@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
@@ -6,7 +7,7 @@ using UnityEngine.EventSystems;
 public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     private SliderController slider;
-    private SpriteRenderer render;
+    private Image image;
     [HideInInspector]
     public int nomber;
     [HideInInspector]
@@ -15,7 +16,7 @@ public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     private void Awake()
     {
         slider = transform.GetComponentInParent<SliderController>();
-        render = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -41,11 +42,11 @@ public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     {
         if (u)
         {
-            render.color = new Color(1f, 1f, 1f, 1f);
+            image.color = new Color(1f, 1f, 1f, 1f);
         }
         else
         {
-            render.color = new Color(0.7f, 0.7f, 0.7f, 1f);
+            image.color = new Color(0.7f, 0.7f, 0.7f, 1f);
         }
     }
 

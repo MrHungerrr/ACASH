@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: bank:/Master Bank.strings.bank
   m_EditorClassIdentifier: 
   Path: FMOD\Build\Desktop\Master Bank.strings.bank
-  lastModified: 637046841353015920
+  lastModified: 636991331838738766
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -214,14 +214,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -436253487540605581}
-  - {fileID: 154654253656918243}
+  - {fileID: 8307877916244788152}
   EditorEvents: []
   MasterBanks:
   - {fileID: 9057325415684608657}
-  - {fileID: 154654253656918243}
+  - {fileID: 8307877916244788152}
   StringsBanks:
   - {fileID: -436253487540605581}
-  stringsBankWriteTime: 637046841353015920
+  stringsBankWriteTime: 636991331838738766
   cacheVersion: 3
 --- !u!114 &154654253656918243
 MonoBehaviour:
@@ -310,6 +310,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 302288
+--- !u!114 &8307877916244788152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: D:\Creativity\GitHub\AKASH_git\AKASH\FMOD\Build\Desktop\Master Bank.bank
+  lastModified: 636991331838688915
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 12474
+  Exists: 1
 --- !u!114 &8764606694870779706
 MonoBehaviour:
   m_ObjectHideFlags: 0

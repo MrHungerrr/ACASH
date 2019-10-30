@@ -9,8 +9,6 @@ public class Menu : Singleton<Menu>
 
     private const float dof_coef = 0.25f;
 
-    [HideInInspector]
-    public SliderController slider;
     private MenuSelectable[] menu_objects;
     private int count_row;
     //private int count_column;
@@ -20,12 +18,12 @@ public class Menu : Singleton<Menu>
     [HideInInspector]
     public string current_menu;
     private bool settings;
-    private string type_of_setting;
 
     [HideInInspector]
     public Vector2 moveInput;
     private Vector2 move;
-    private int move_cd;
+    [HideInInspector]
+    public int move_cd;
     private const int move_const_keyboard_cd = 12;
     private const int move_const_gamepad_cd = 12;
 
@@ -119,6 +117,9 @@ public class Menu : Singleton<Menu>
             menu_objects[i].Select(false);
         }
 
+        if(settings)
+            SettingsManager.get.settings_menu = name;
+
         select_name = null;
         Select(0);
     }
@@ -153,19 +154,7 @@ public class Menu : Singleton<Menu>
                     Select(buf);
                 }
 
-                switch(InputManager.get.inputType)
-                {
-                    case "keyboard":
-                        {
-                            move_cd = move_const_keyboard_cd;
-                            break;
-                        }
-                    default:
-                        {
-                            move_cd = move_const_gamepad_cd;
-                            break;
-                        }
-                }
+                MoveCD();
 
             }
         }
@@ -192,53 +181,31 @@ public class Menu : Singleton<Menu>
 
                 if (moveInput.x > 0)
                 {
-                    //+1
+                    SettingsManager.get.SwtichSettings(true);
                 }
                 else
                 {
-                    //-1
+                    SettingsManager.get.SwtichSettings(false);
                 }
 
-                switch (InputManager.get.inputType)
-                {
-                    case "keyboard":
-                        {
-                            move_cd = move_const_keyboard_cd;
-                            break;
-                        }
-                    default:
-                        {
-                            move_cd = move_const_gamepad_cd;
-                            break;
-                        }
-                }
 
+                MoveCD();
             }
-        }
-        else if (moveInput == Vector2.zero)
-        {
-            move_cd = 0;
-        }
-
-        if (move_cd > 0)
-        {
-            move_cd--;
         }
     }
 
-
-
-
-    private void SwtichSettings()
+    public void MoveCD()
     {
-        switch(type_of_setting)
+        switch (InputManager.get.inputType)
         {
-            case "slider":
+            case "keyboard":
                 {
+                    move_cd = move_const_keyboard_cd;
                     break;
                 }
-            case "selector":
+            default:
                 {
+                    move_cd = move_const_gamepad_cd;
                     break;
                 }
         }

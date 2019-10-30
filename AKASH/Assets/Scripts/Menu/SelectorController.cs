@@ -2,10 +2,11 @@
 using System.Collections;
 
 
-public class SliderController: MonoBehaviour
+public class SelectorController: MonoBehaviour
 {
     private SliderPiece[] pieces = new SliderPiece[10];
     private Arrow[] arrows = new Arrow[2];
+    [SerializeField]
     private int nomber = 0;
 
     private void Awake()
@@ -16,37 +17,40 @@ public class SliderController: MonoBehaviour
             pieces[i].nomber = i;
         }
 
+
         arrows[0] = transform.Find("Left_Arrow").GetComponent<Arrow>();
         arrows[0].plus = false;
 
         arrows[1] = transform.Find("Right_Arrow").GetComponent<Arrow>();
         arrows[1].plus = true;
 
+
         Enable(false);
     }
 
     public void Enable(bool u)
     {
+
         if (u)
         {
-            SettingsManager.get.slider = this;
-            SettingsManager.get.type_of_setting = "slider";
+            SettingsManager.get.selector = this;
+            SettingsManager.get.type_of_setting = "selector";
             Arrows(true);
         }
         else
         {
-            SettingsManager.get.slider = null;
+            SettingsManager.get.selector = null;
             SettingsManager.get.type_of_setting = null;
             Select();
             Arrows(false);
         }
+
     }
 
     public void Set(int nom)
     {
         nomber = nom;
         Select(nom);
-
         Debug.Log("Значение = " + nomber);
         //Применить настройки;
     }

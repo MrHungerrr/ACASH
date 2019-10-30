@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuSelectable : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
@@ -14,11 +15,26 @@ public class MenuSelectable : MonoBehaviour, IPointerEnterHandler, IPointerClick
     public bool settings;
     [SerializeField]
     private SliderController slider;
+    [SerializeField]
+    private SelectorController selector;
+    private Image select_image;
+
+
 
     private void Awake()
     {
+        select_image = GetComponent<Image>();
         text = transform.parent.GetComponent<TextMeshProUGUI>();
         topic = text.name;
+
+        if (slider == null && selector == null)
+        {
+            settings = false;
+        }
+        else
+        {
+            settings = true;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -28,7 +44,8 @@ public class MenuSelectable : MonoBehaviour, IPointerEnterHandler, IPointerClick
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Menu.get.Enter();
+        if(!settings)
+            Menu.get.Enter();
     }
 
 
@@ -36,23 +53,41 @@ public class MenuSelectable : MonoBehaviour, IPointerEnterHandler, IPointerClick
     {
         if (u)
         {
-            text.color = new Color(0.7f, 0.7f, 0.7f);
-            text.fontStyle = FontStyles.Underline;
+            //text.color = new Color(0.7f, 0.7f, 0.7f);
+            select_image.color = new Color(1f, 1f, 1f, 0.3f);
 
-            if (slider != null)
+            if (settings)
             {
-                slider.Enable(true);
+                if (slider != null)
+                {
+                    slider.Enable(true);
+                }
+
+                if (selector != null)
+                {
+                    selector.Enable(true);
+                }
             }
         }
         else
         {
-            text.color = new Color(1f, 1f, 1f);
-            text.fontStyle = FontStyles.Normal;
+            //text.color = new Color(1f, 1f, 1f);
+            select_image.color = new Color(1f, 1f, 1f, 0f);
 
-            if (slider != null)
+            if (settings)
             {
-                slider.Enable(false);
+                if (slider != null)
+                {
+                    slider.Enable(false);
+                }
+
+                if (selector != null)
+                {
+                    selector.Enable(false);
+                }
             }
         }
     }
+
+
 }

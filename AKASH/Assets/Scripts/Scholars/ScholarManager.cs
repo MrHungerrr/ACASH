@@ -7,6 +7,8 @@ public class ScholarManager : Singleton<ScholarManager>
 {
     [HideInInspector]
     public Scholar[] scholars;
+    [SerializeField]
+    private bool withoutScholars;
 
     public int cheating_count;
     private int cheating_limit = 2;
@@ -114,7 +116,7 @@ public class ScholarManager : Singleton<ScholarManager>
             desks[0, i] = buf[i].transform.parent.transform.Find("Destonation");
         }
 
-        ScholarDeskSort();
+        DeskSort();
     }
 
 
@@ -166,7 +168,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
 
-    private void ScholarDeskSort()
+    private void DeskSort()
     {
         for (int i = 0; i < (desks_count - 1); i++)
             for (int i2 = 0; i2 < (desks_count - 1 - i); i2++)
