@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 
 
-public class Arrow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler
+public class Arrow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [HideInInspector]
     public bool plus;
@@ -25,13 +25,9 @@ public class Arrow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         Select(false);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (Menu.get.move_cd <= 0)
-        {
-            SettingsManager.get.SwtichSettings(plus);
-            Menu.get.MoveCD();
-        }
+        SettingsManager.get.SwtichSettings(plus);
     }
 
 

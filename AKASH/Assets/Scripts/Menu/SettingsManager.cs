@@ -17,8 +17,7 @@ public class SettingsManager : Singleton<SettingsManager>
 
     public Dictionary<string, string[]> settings = new Dictionary<string, string[]>();
 
-    [HideInInspector]
-    public string[] settings_name = new string[]
+    private static string[] settings_name = new string[]
     {
       /*00*/  "Resolution",
       /*01*/  "Volume General",
@@ -26,55 +25,92 @@ public class SettingsManager : Singleton<SettingsManager>
       /*03*/  "Volume Music",
       /*04*/  "Volume SFX",
       /*05*/  "Sensitivity",
-      /*06*/  "Screen Type",
+      /*06*/  "Screen Mode",
+      /*07*/  "Language",
+      /*08*/  "Voice Language",
+      /*09*/  "Subtitles",
     };
 
     public Dictionary<string, int> settings_current = new Dictionary<string, int>()
     {
-        {"Resolution", 8},
-        {"Volume General", 9},
-        {"Volume Voice", 9},
-        {"Volume Music", 9},
-        {"Volume SFX", 9},
-        {"Sensitivity", 9},
-        {"Screen Type", 0},
+        {settings_name[0], 4},
+        {settings_name[1], 10},
+        {settings_name[2], 10},
+        {settings_name[3], 10},
+        {settings_name[4], 10},
+        {settings_name[5], 5},
+        {settings_name[6], 0},
+        {settings_name[7], 0},
+        {settings_name[8], 0},
+        {settings_name[9], 0},
+
+
     };
 
     public Dictionary<string, int> settings_new = new Dictionary<string, int>()
     {
-        {"Resolution", 1},
-        {"Volume General", 1},
-        {"Volume Voice", 1},
-        {"Volume Music", 1},
-        {"Volume SFX", 1},
-        {"Sensitivity", 1},
-        {"Screen Type", 0},
+        {settings_name[0], 1},
+        {settings_name[1], 1},
+        {settings_name[2], 1},
+        {settings_name[3], 1},
+        {settings_name[4], 1},
+        {settings_name[5], 1},
+        {settings_name[6], 0},
+        {settings_name[7], 0},
+        {settings_name[8], 0},
+        {settings_name[9], 0},
+    };
+
+    public Dictionary<string, int> settings_standart = new Dictionary<string, int>()
+    {
+        {settings_name[0], 4},
+        {settings_name[1], 10},
+        {settings_name[2], 10},
+        {settings_name[3], 10},
+        {settings_name[4], 10},
+        {settings_name[5], 5},
+        {settings_name[6], 0},
+        {settings_name[7], 0},
+        {settings_name[8], 0},
+        {settings_name[9], 0},
     };
 
     private string[] resolution = new string[]
         {
-          /*00*/  "1024×768",
+          /*00*/  "1024×576",
           /*01*/  "1280×720",
-          /*02*/  "1280x1024",
-          /*03*/  "1366×768",
-          /*04*/  "1440×900",
-          /*05*/  "1440×1080",
-          /*06*/  "1600×900",
-          /*07*/  "1600×1200",
-          /*08*/  "1920×1080",
-          /*09*/  "1920×1200",
-          /*10*/  "1920×1440",
-          /*11*/  "2560×1440",
-          /*12*/  "2560×1600",
-          /*13*/  "3840×2160",
-          /*14*/  "7680x4320",
+          /*02*/  "1366×768",
+          /*03*/  "1600×900",
+          /*04*/  "1920×1080",
+          /*05*/  "2560×1440",
+          /*06*/  "3840×2160",
+          /*07*/  "7680x4320",
         };
 
-    private string[] screen_type = new string[]
+    private string[] screen_mode = new string[]
     {
           /*00*/  "FullScreen",
           /*01*/  "Windowed",
     };
+
+    private string[] language = new string[]
+    {
+          /*00*/  "Rus",
+          /*01*/  "Eng",
+    };
+
+    private string[] voice_language = new string[]
+    {
+          /*00*/  "Rus",
+          /*01*/  "Eng",
+    };
+
+    private string[] subtitles = new string[]
+    {
+          /*00*/  "Yes",
+          /*01*/  "No",
+    };
+
 
 
 
@@ -85,7 +121,10 @@ public class SettingsManager : Singleton<SettingsManager>
     private void Awake()
     {
         settings.Add("Resolution", resolution);
-        settings.Add("Screen Type", screen_type);
+        settings.Add("Screen Mode", screen_mode);
+        settings.Add("Language", language);
+        settings.Add("Voice Language", voice_language);
+        settings.Add("Subtitles", subtitles);
 
         BackUp();
     }
@@ -112,12 +151,37 @@ public class SettingsManager : Singleton<SettingsManager>
 
     public void AcceptSettings()
     {
-        settings_current = settings_new;
+        Debug.Log("Настройки приняты!");
+        settings_menu = Menu.get.current_menu;
+
+        foreach(string i in settings_name)
+        {
+            settings_current[i] = settings_new[i];
+        }
+
         SettingsBlanks.Set(settings_menu);
     }
 
+
     public void BackUp()
     {
-        settings_new = settings_current;
+        foreach (string i in settings_name)
+        {
+            settings_new[i] = settings_standart[i];
+        }
+    }
+
+    public void Reset()
+    {
+        foreach (string i in settings_name)
+        {
+            settings_current[i] = settings_standart[i];
+            settings_new[i] = settings_standart[i];
+        }
+
+        SettingsBlanks.Set("Menu");
+        SettingsBlanks.Set("Gameplay");
+        SettingsBlanks.Set("Sound");
+        SettingsBlanks.Set("Video");
     }
 }

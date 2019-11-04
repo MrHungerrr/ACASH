@@ -45,14 +45,28 @@ public static class SettingsBlanks
 
     private static void Main()
     {
-
-
-
+        Language(SettingsManager.get.settings_current["Language"]);
+        VoiceLanguage(SettingsManager.get.settings_current["Voice Language"]);
+        Subtitles(SettingsManager.get.settings_current["Subtitles"]);
     }
 
+    private static void Language(int option)
+    {
+        Debug.Log("Язык - " + SettingsManager.get.settings["Language"][option]);
+    }
 
+    private static void VoiceLanguage(int option)
+    {
+        Debug.Log("Язык озвучки - " + SettingsManager.get.settings["Voice Language"][option]);
+    }
 
-
+    private static void Subtitles(int option)
+    {
+        if (option == 0)
+            SubtitleManager.get.Enable(true);
+        else
+            SubtitleManager.get.Enable(false);
+    }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Gameplay Settings 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -83,6 +97,7 @@ public static class SettingsBlanks
         VolumeMusic(SettingsManager.get.settings_current["Volume Music"]);
         VolumeSFX(SettingsManager.get.settings_current["Volume SFX"]);
     }
+
     private static void VolumeGeneral(int option)
     {
         Debug.Log("Общая громкость = " + option);
@@ -118,17 +133,18 @@ public static class SettingsBlanks
     private static void Video()
     {
         SetResolution(SettingsManager.get.settings_current["Resolution"]);
-        ScreenType(SettingsManager.get.settings_current["Screen Type"]);
+        ScreenType(SettingsManager.get.settings_current["Screen Mode"]);
     }
 
     private static void SetResolution(int option)
     {
-        switch(option)
+
+        switch (option)
         {
 
             case 0:
                 {
-                    Screen.SetResolution(1024, 768, Screen.fullScreen);
+                    Screen.SetResolution(1024, 576, Screen.fullScreen);
                     break;
                 }
             case 1:
@@ -138,70 +154,37 @@ public static class SettingsBlanks
                 }
             case 2:
                 {
-                    Screen.SetResolution(1280, 1024, Screen.fullScreen);
+                    Screen.SetResolution(1366, 768, Screen.fullScreen);
                     break;
                 }
             case 3:
                 {
-                    Screen.SetResolution(1366, 768, Screen.fullScreen);
+                    Screen.SetResolution(1600, 900, Screen.fullScreen);
                     break;
                 }
             case 4:
                 {
-                    Screen.SetResolution(1440, 900, Screen.fullScreen);
+                    Screen.SetResolution(1920, 1080, Screen.fullScreen);
                     break;
                 }
             case 5:
                 {
-                    Screen.SetResolution(1440, 1080, Screen.fullScreen);
+                    Screen.SetResolution(2560, 1440, Screen.fullScreen);
                     break;
                 }
             case 6:
                 {
-                    Screen.SetResolution(1600, 900, Screen.fullScreen);
+                    Screen.SetResolution(3840, 2160, Screen.fullScreen);
                     break;
                 }
             case 7:
                 {
-                    Screen.SetResolution(1600, 1200, Screen.fullScreen);
-                    break;
-                }
-            case 8:
-                {
-                    Screen.SetResolution(1920, 1080, Screen.fullScreen);
-                    break;
-                }
-            case 9:
-                {
-                    Screen.SetResolution(1920, 1200, Screen.fullScreen);
-                    break;
-                }
-            case 10:
-                {
-                    Screen.SetResolution(1920, 1440, Screen.fullScreen);
-                    break;
-                }
-            case 11:
-                {
-                    Screen.SetResolution(2560, 1440, Screen.fullScreen);
-                    break;
-                }
-            case 12:
-                {
-                    Screen.SetResolution(2560, 1600, Screen.fullScreen);
-                    break;
-                }
-            case 13:
-                {
-                    Screen.SetResolution(3840, 2160, Screen.fullScreen);
-                    break;
-                }
-            case 14:
-                {
                     Screen.SetResolution(7680, 4320, Screen.fullScreen);
                     break;
-                }
+                } 
         }
+
+
     }
 
     private static void ScreenType(int option)

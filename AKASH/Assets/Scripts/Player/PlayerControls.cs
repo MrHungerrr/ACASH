@@ -276,7 +276,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e212f5a5-2434-4efa-ac4c-c0bc89f16fbc"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -732,7 +732,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Сursor"",
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""2266eddb-6e96-43c4-9c5a-1b34cf10871d"",
                     ""expectedControlType"": ""Vector2"",
@@ -743,6 +743,14 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Escape"",
                     ""type"": ""Button"",
                     ""id"": ""309e9e5e-ebbc-4d75-b331-3b96c33cfa8e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fast"",
+                    ""type"": ""Button"",
+                    ""id"": ""6da5e121-2954-40d3-96eb-f4700ecc3b13"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -789,18 +797,29 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Сursor"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""d18d4ff7-1be8-48ba-810c-fbe5088d63b6"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Сursor"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3a21670-8cb5-4d79-83cc-81532b1e09d4"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -823,6 +842,17 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb2c0acc-d177-4cba-b5d4-443300b08d8c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -916,7 +946,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""53abcb70-68af-49a9-85c8-4659a05f21f4"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1146,7 +1176,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3c26544e-bb7f-4520-87fb-506671a6ed00"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1531,7 +1561,29 @@ public class PlayerControls : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Basic"",
+            ""bindingGroup"": ""Basic"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Pointer>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
@@ -1556,8 +1608,9 @@ public class PlayerControls : IInputActionCollection, IDisposable
         m_Computer = asset.FindActionMap("Computer", throwIfNotFound: true);
         m_Computer_Select = m_Computer.FindAction("Select", throwIfNotFound: true);
         m_Computer_Menu = m_Computer.FindAction("Menu", throwIfNotFound: true);
-        m_Computer_Сursor = m_Computer.FindAction("Сursor", throwIfNotFound: true);
+        m_Computer_Move = m_Computer.FindAction("Move", throwIfNotFound: true);
         m_Computer_Escape = m_Computer.FindAction("Escape", throwIfNotFound: true);
+        m_Computer_Fast = m_Computer.FindAction("Fast", throwIfNotFound: true);
         // Cutscene
         m_Cutscene = asset.FindActionMap("Cutscene", throwIfNotFound: true);
         m_Cutscene_Menu = m_Cutscene.FindAction("Menu", throwIfNotFound: true);
@@ -1789,16 +1842,18 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private IComputerActions m_ComputerActionsCallbackInterface;
     private readonly InputAction m_Computer_Select;
     private readonly InputAction m_Computer_Menu;
-    private readonly InputAction m_Computer_Сursor;
+    private readonly InputAction m_Computer_Move;
     private readonly InputAction m_Computer_Escape;
+    private readonly InputAction m_Computer_Fast;
     public struct ComputerActions
     {
         private PlayerControls m_Wrapper;
         public ComputerActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_Computer_Select;
         public InputAction @Menu => m_Wrapper.m_Computer_Menu;
-        public InputAction @Сursor => m_Wrapper.m_Computer_Сursor;
+        public InputAction @Move => m_Wrapper.m_Computer_Move;
         public InputAction @Escape => m_Wrapper.m_Computer_Escape;
+        public InputAction @Fast => m_Wrapper.m_Computer_Fast;
         public InputActionMap Get() { return m_Wrapper.m_Computer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1814,12 +1869,15 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 Menu.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
                 Menu.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
                 Menu.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
-                Сursor.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnСursor;
-                Сursor.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnСursor;
-                Сursor.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnСursor;
+                Move.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
+                Move.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
+                Move.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
                 Escape.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnEscape;
                 Escape.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnEscape;
                 Escape.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnEscape;
+                Fast.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
+                Fast.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
+                Fast.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
             }
             m_Wrapper.m_ComputerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1830,12 +1888,15 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 Menu.started += instance.OnMenu;
                 Menu.performed += instance.OnMenu;
                 Menu.canceled += instance.OnMenu;
-                Сursor.started += instance.OnСursor;
-                Сursor.performed += instance.OnСursor;
-                Сursor.canceled += instance.OnСursor;
+                Move.started += instance.OnMove;
+                Move.performed += instance.OnMove;
+                Move.canceled += instance.OnMove;
                 Escape.started += instance.OnEscape;
                 Escape.performed += instance.OnEscape;
                 Escape.canceled += instance.OnEscape;
+                Fast.started += instance.OnFast;
+                Fast.performed += instance.OnFast;
+                Fast.canceled += instance.OnFast;
             }
         }
     }
@@ -1938,6 +1999,15 @@ public class PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public InputTypeActions @InputType => new InputTypeActions(this);
+    private int m_BasicSchemeIndex = -1;
+    public InputControlScheme BasicScheme
+    {
+        get
+        {
+            if (m_BasicSchemeIndex == -1) m_BasicSchemeIndex = asset.FindControlSchemeIndex("Basic");
+            return asset.controlSchemes[m_BasicSchemeIndex];
+        }
+    }
     public interface IGameplayActions
     {
         void OnExecute(InputAction.CallbackContext context);
@@ -1963,8 +2033,9 @@ public class PlayerControls : IInputActionCollection, IDisposable
     {
         void OnSelect(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnСursor(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
+        void OnFast(InputAction.CallbackContext context);
     }
     public interface ICutsceneActions
     {

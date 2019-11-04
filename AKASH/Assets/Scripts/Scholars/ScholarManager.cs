@@ -116,6 +116,8 @@ public class ScholarManager : Singleton<ScholarManager>
             desks[0, i] = buf[i].transform.parent.transform.Find("Destonation");
         }
 
+
+
         DeskSort();
     }
 
@@ -123,6 +125,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
     void Start()
     {
+        Debug.Log(scholars.Length);
         ScholarNumberRandomer();
         StartCoroutine(PrepareForTest());
     }
@@ -306,7 +309,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
 
         yield return new WaitForSeconds(time);
-        Debug.Log("Проверка на желание списать");
+        //Debug.Log("Проверка на желание списать");
         ScholarsWantCheat();
 
         StartCoroutine(ScholarsCheat(10));
@@ -346,11 +349,11 @@ public class ScholarManager : Singleton<ScholarManager>
 
         if ((special_actions_per_minute / 60) > (special_actions_count / time_passed))
         {
-            Debug.Log("Проверка на радномное специальное действие!");
+            //Debug.Log("Проверка на радномное специальное действие!");
             if (Probability(0.6))
             {
                 ScholarsRandomSpecialAction();
-                Debug.Log("опа, рандомное действие");
+                //Debug.Log("опа, рандомное действие");
             }
         }
         StartCoroutine(ScholarsSpecialAction(Random.Range(5,15)));
@@ -367,7 +370,7 @@ public class ScholarManager : Singleton<ScholarManager>
             a = (a + 1) % scholars.Length;
         }
 
-        if (scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
+        if (!withoutScholars && scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
         {
             scholars[a].Agent.RandomSpecialAction();
             special_actions_count++;

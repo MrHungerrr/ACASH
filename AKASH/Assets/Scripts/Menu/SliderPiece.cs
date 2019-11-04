@@ -4,37 +4,30 @@ using UnityEngine.EventSystems;
 
 
 
-public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
-    private SliderController slider;
+    [HideInInspector]
+    public SliderController slider;
     private Image image;
     [HideInInspector]
     public int nomber;
-    [HideInInspector]
-    public bool settings;
 
     private void Awake()
     {
-        slider = transform.GetComponentInParent<SliderController>();
+        slider = null;
         image = GetComponent<Image>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(settings)
-            slider.Select(nomber);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (settings)
-            slider.Select();
+        if(slider != null)
+            slider.Select(nomber+1);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (settings)
-            slider.Set(nomber);
+        if (slider != null)
+            slider.ClickSelect(nomber+1);
     }
 
 
@@ -46,7 +39,7 @@ public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         }
         else
         {
-            image.color = new Color(0.7f, 0.7f, 0.7f, 1f);
+            image.color = new Color(1f, 1f, 1f, 0.3f);
         }
     }
 

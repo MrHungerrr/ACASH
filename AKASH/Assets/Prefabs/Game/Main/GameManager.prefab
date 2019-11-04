@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6132918696476860146}
   - component: {fileID: 6132918696476860147}
   - component: {fileID: 6132918696476860148}
+  - component: {fileID: 911437710}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -78,6 +79,8 @@ MonoBehaviour:
   game: 0
   cutScene: 0
   disPlayer: 0
+  inputType: 
+  gameType: 
 --- !u!114 &6132918696476860145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,8 +105,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66536129bf1f9ee439e66aad34de14cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toilets: []
-  desks: []
+  scholars: []
+  withoutScholars: 1
+  cheating_count: 0
+  special_actions_count: 0
+  time_test: 0
+  outside: []
+  toilets_count: 0
+  outside_count: 0
+  sinks_count: 0
+  desks_count: 0
+  teacher_room: {fileID: 0}
+  teacher_room_busy: 0
 --- !u!114 &6132918696476860147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2fc355e05339541a198206eb046952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &911437710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132918696476860140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5e064e5eec35347911305c6ebb6c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings_menu: 
+  type_of_setting: 
+  slider: {fileID: 0}
+  selector: {fileID: 0}

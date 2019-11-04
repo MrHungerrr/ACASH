@@ -6,7 +6,7 @@ public class SubtitlePlay : MonoBehaviour
 {
 
     public TextMeshProUGUI textBox;
-    public TextMeshProUGUI textBoxVillian;
+    private bool active;
 
     public void Clear()
     {
@@ -15,15 +15,20 @@ public class SubtitlePlay : MonoBehaviour
 
     public void SetText(string text)
     {
-        textBox.text = text;
-    }
-    public void ClearVillian()
-    {
-        textBoxVillian.text = string.Empty;
+        if(active)
+            textBox.text = text;
     }
 
-    public void SetTextVillian(string text)
+    public void Enable(bool option)
     {
-        textBoxVillian.text = text;
+        if (option)
+        {
+            textBox.color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            textBox.color = new Color(1f, 1f, 1f, 0f);
+        }
+
     }
 }

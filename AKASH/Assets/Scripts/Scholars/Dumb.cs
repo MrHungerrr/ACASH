@@ -93,7 +93,7 @@ public class Dumb
         if (CheatProbability())
         {
             scholar.cheatNeed = true;
-            scholar.ScholarMan.cheating_count++;
+            ScholarManager.get.cheating_count++;
             CheatingSelection();
             Debug.Log("Я хочу списать");
         }
@@ -109,13 +109,13 @@ public class Dumb
         {
             case 0:
                 {
-                    if (scholar.ScholarMan.Probability(0.75))
+                    if (ScholarManager.get.Probability(0.75))
                         return true;
                     break;
                 }
             case 1:
                 {
-                    if (scholar.ScholarMan.Probability(0.5))
+                    if (ScholarManager.get.Probability(0.5))
                         return true;
                     break;
                 }

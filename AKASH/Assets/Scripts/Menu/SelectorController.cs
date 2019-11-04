@@ -1,22 +1,26 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 
-public class SelectorController: MonoBehaviour
+public class SelectorController: MonoBehaviour, IPointerEnterHandler
 {
-    private SliderPiece[] pieces = new SliderPiece[10];
     private Arrow[] arrows = new Arrow[2];
+    private TextMeshProUGUI text;
+    private string[] values;
+    private int number = 0;
+
+
+    private Image select_image;
     [SerializeField]
-    private int nomber = 0;
+    private MenuSection section;
+
 
     private void Awake()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            pieces[i] = transform.Find("Piece_" + i).GetComponent<SliderPiece>();
-            pieces[i].nomber = i;
-        }
-
+        text = transform.GetComponentInChildren<TextMeshProUGUI>();
 
         arrows[0] = transform.Find("Left_Arrow").GetComponent<Arrow>();
         arrows[0].plus = false;
@@ -24,79 +28,76 @@ public class SelectorController: MonoBehaviour
         arrows[1] = transform.Find("Right_Arrow").GetComponent<Arrow>();
         arrows[1].plus = true;
 
+        select_image = GetComponent<Image>();
+
+        section.selector = this;
+        values = SettingsManager.get.settings[section.name];
 
         Enable(false);
     }
 
+    private void OnEnable()
+    {
+        number = SettingsManager.get.settings_current[section.name];
+        Select();
+    }
+
     public void Enable(bool u)
     {
-
         if (u)
         {
+            select_image.enabled = false;
             SettingsManager.get.selector = this;
             SettingsManager.get.type_of_setting = "selector";
             Arrows(true);
         }
         else
         {
-            SettingsManager.get.selector = null;
+            select_image.enabled = true;
+            SettingsManager.get.slider = null;
             SettingsManager.get.type_of_setting = null;
             Select();
             Arrows(false);
         }
-
     }
 
-    public void Set(int nom)
-    {
-        nomber = nom;
-        Select(nom);
-        Debug.Log("Значение = " + nomber);
-        //Применить настройки;
-    }
-
-    public void Select(int nom)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            if (i < nom)
-                pieces[i].Select(true);
-            else
-                pieces[i].Select(false);
-        }
-    }
 
     public void Select()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            if (i < nomber)
-                pieces[i].Select(true);
-            else
-                pieces[i].Select(false);
-        }
+        text.text = values[number];
+        SettingsManager.get.settings_new[section.name] = number;
     }
+
 
     public void SwitchSelect(bool plus)
     {
         if (plus)
         {
-            nomber++;
-            if (nomber > 9)
-                nomber = 9;
+            number++;
+            if (number >= values.Length)
+                number = 0;
         }
         else
         {
-            nomber--;
-            if (nomber < 0)
-                nomber = 0;
+            number--;
+            if (number < 0)
+                number = values.Length-1;
         }
+
         Select();
     }
+
 
     private void Arrows(bool enable)
     {
         arrows[0].gameObject.SetActive(enable);
         arrows[1].gameObject.SetActive(enable);
+    }
+
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (select_image.enabled)
+            Menu.get.Select(section.menu_number);
     }
 }

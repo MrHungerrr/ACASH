@@ -22,8 +22,10 @@ public class InputManager : Singleton<InputManager>
 
     [HideInInspector]
     public string inputType;
+    [HideInInspector]
     public string gameType;
-
+    [HideInInspector]
+    public string gameType_last;
 
     //private ParticleSystem.VelocityOverLifetimeModule vel;
     //private ParticleSystem.ShapeModule shape;
@@ -55,6 +57,14 @@ public class InputManager : Singleton<InputManager>
         Controls.Menu.Escape.started += ctx => MenuEscape();
         Controls.Menu.Resume.started += ctx => MenuResume();
 
+        Controls.Computer.Move.performed += ctx => ComputerController.get.mouseInput = ctx.ReadValue<Vector2>();
+        Controls.Computer.Move.canceled += ctx => ComputerController.get.mouseInput = Vector2.zero;
+        Controls.Computer.Fast.started += ctx => ComputerFast(true);
+        Controls.Computer.Fast.canceled += ctx => ComputerFast(false);
+        Controls.Computer.Select.started += ctx => ComputerSelect();
+        Controls.Computer.Escape.started += ctx => ComputerEscape();
+        Controls.Computer.Menu.started += ctx => ComputerMenu();
+
 
         Controls.InputType.Keyboard.performed += ctx => TypeOfInput("keyboard");
         Controls.InputType.PlayStation.performed += ctx => TypeOfInput("playstation");
@@ -73,6 +83,9 @@ public class InputManager : Singleton<InputManager>
         SwitchGameInput("gameplay");
         TypeOfInput("keyboard");
         Controls.InputType.Enable();
+
+
+        SwitchGameInput("computer");
 
     }
 
@@ -107,10 +120,11 @@ public class InputManager : Singleton<InputManager>
                     break;
                 }
         }
+        gameType_last = gameType;
         gameType = type;
         CameraManager.get.GameplayType();
 
-        Debug.Log("Тип управления - " + type);
+        //Debug.Log("Тип управления - " + type);
     }
 
 
@@ -233,7 +247,7 @@ public class InputManager : Singleton<InputManager>
 
     private void GameMenu()
     {
-        Time.timeScale = 0;
+
         Menu.get.MenuEnable(true);
         SwitchGameInput("menu");
     }
@@ -249,9 +263,8 @@ public class InputManager : Singleton<InputManager>
     {
         if (game)
         {
-            Time.timeScale = 1;
             Menu.get.MenuEnable(false);
-            SwitchGameInput("gameplay");
+            SwitchGameInput(gameType_last);
         }
     }
 
@@ -269,6 +282,33 @@ public class InputManager : Singleton<InputManager>
 
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Gameplay Input
+    //Computer Input
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void ComputerSelect()
+    {
+        ComputerController.get.Select();    
+    }
+
+    private void ComputerEscape()
+    {
+        ComputerController.get.Escape();
+    }
+
+    private void ComputerFast(bool option)
+    {
+        ComputerController.get.fast = option;
+    }
+
+    private void ComputerMenu()
+    {
+        Menu.get.MenuEnable(true);
+        SwitchGameInput("menu");
+    }
+
+
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Cutscene Input
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

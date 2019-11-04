@@ -60,6 +60,7 @@ public class Player : Singleton<Player>
         actLayerMask = LayerMask.GetMask("Selectable");
         sightLayerMask = LayerMask.GetMask("Sight Layer");
         SwitchMove("normal");
+
     }
 
     private void Update()
@@ -101,8 +102,6 @@ public class Player : Singleton<Player>
                     break;
                 }
         }
-
-        Debug.Log(type);
     }
 
     private void PlayerMovement()
@@ -213,7 +212,7 @@ public class Player : Singleton<Player>
         if (doing && actReady && !act)
         {
             Debug.Log("Мы хотим что-то сделать");
-
+            /*
             switch (actTag)
             {
                 case "Computer":
@@ -229,7 +228,11 @@ public class Player : Singleton<Player>
                         break;
                     }
             }
+            */
 
+            ComputerController.get.desktop_num = 1;
+            ComputerController.get.Enable(true);
+            InputManager.get.SwitchGameInput("computer");
             act = true;
         }
     }

@@ -7,7 +7,6 @@ using N_BH;
 
 public class SubtitleManager : Singleton<SubtitleManager>
 {
-    private ScriptManager scriptMan;
     private SubtitlePlay subPlay;
     private string lastKey;
     [HideInInspector]
@@ -16,7 +15,6 @@ public class SubtitleManager : Singleton<SubtitleManager>
 
     private void Awake()
     {
-        scriptMan = GameObject.FindObjectOfType<ScriptManager>();
         subPlay = GameObject.FindObjectOfType<SubtitlePlay>();
     }
 
@@ -24,11 +22,6 @@ public class SubtitleManager : Singleton<SubtitleManager>
     public void Say(string key)
     {
         StartCoroutine(PlaySub(key));
-    }
-
-    public void PlaySubtitleVillian(string key)
-    {
-        StartCoroutine(PlaySubVillian(key));
     }
 
     public void StopSubtitile()
@@ -50,8 +43,8 @@ public class SubtitleManager : Singleton<SubtitleManager>
         act = true;
         lastKey = key;
         int i = 0;
-        var script = scriptMan.GetText(key);
-        var duration = scriptMan.GetFloat(key);
+        var script = ScriptManager.get.GetText(key);
+        var duration = ScriptManager.get.GetFloat(key);
         //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
 
 
@@ -67,22 +60,8 @@ public class SubtitleManager : Singleton<SubtitleManager>
         act = false;
     }
 
-    private IEnumerator PlaySubVillian(string key)
+    public void Enable(bool option)
     {
-        act = true;
-        int i = 0;
-        var script = scriptMan.GetText(key);
-        var duration = scriptMan.GetFloat(key);
-        FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + key);
-
-        foreach (var line in script)
-        {
-            yield return new WaitForSeconds(0.05f);
-            subPlay.SetTextVillian(line);
-            yield return new WaitForSeconds(duration[i]);
-            subPlay.ClearVillian();
-            i++;
-        }
-        act = false;
+        subPlay.Enable(option);
     }
 }

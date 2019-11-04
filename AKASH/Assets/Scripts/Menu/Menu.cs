@@ -9,7 +9,7 @@ public class Menu : Singleton<Menu>
 
     private const float dof_coef = 0.25f;
 
-    private MenuSelectable[] menu_objects;
+    private MenuSection[] menu_sections;
     private int count_row;
     //private int count_column;
     private int select_row;
@@ -17,7 +17,8 @@ public class Menu : Singleton<Menu>
     private string select_name;
     [HideInInspector]
     public string current_menu;
-    private bool settings;
+    [HideInInspector]
+    public bool settings;
 
     [HideInInspector]
     public Vector2 moveInput;
@@ -65,15 +66,15 @@ public class Menu : Singleton<Menu>
     public void Select(int row)
     {
         if (select_name != null)
-            menu_objects[select_row].Select(false);
+            menu_sections[select_row].Select(false);
 
-        Debug.Log(row);
-
-        select_name = menu_objects[row].topic;
-        menu_objects[row].Select(true);
+        select_name = menu_sections[row].name;
+        menu_sections[row].Select(true);
         select_row = row;
 
-        Debug.Log("Выбранное меню: " + select_name);
+        settings = menu_sections[row].settings;
+
+        //Debug.Log("Выбранное меню: " + select_name);
     }
 
 
@@ -81,14 +82,7 @@ public class Menu : Singleton<Menu>
 
     public void Enter()
     {
-        if (settings)
-        {
-            MenuAgent.get.Enter("Accept Settings");
-        }
-        else
-        {
-            MenuAgent.get.Enter(select_name);
-        }
+        MenuAgent.get.Enter(select_name);
     }
 
 
@@ -100,25 +94,20 @@ public class Menu : Singleton<Menu>
 
 
 
-    public void Set(MenuSelectable[] objects, string name, bool set)
+    public void Set(MenuSection[] sections, string name)
     {
-        settings = set;
         current_menu = name;
-        count_row = objects.Length;
-        menu_objects = new MenuSelectable[count_row];
+        count_row = sections.Length;
+        menu_sections = new MenuSection[count_row];
 
-        Debug.Log("Название меню: " + name + ". Количество элементов = " + count_row);
+        //Debug.Log("Название меню: " + name + ". Количество элементов = " + count_row);
 
         for (int i = 0; i < count_row; i++)
         {
-            Debug.Log(objects[i].topic);
-            menu_objects[i] = objects[i];
-            menu_objects[i].menu_nomber = i;
-            menu_objects[i].Select(false);
+            menu_sections[i] = sections[i];
+            menu_sections[i].menu_number = i;
+            menu_sections[i].Select(false);
         }
-
-        if(settings)
-            SettingsManager.get.settings_menu = name;
 
         select_name = null;
         Select(0);
@@ -215,6 +204,8 @@ public class Menu : Singleton<Menu>
 
     private IEnumerator MenuOn()
     {
+        Time.timeScale = 0;
+
         state = true;
         float dof = PostProcessManager.get.GetDOF();
         MenuAgent.get.Set("Pause");
@@ -227,6 +218,7 @@ public class Menu : Singleton<Menu>
             PostProcessManager.get.DOF(dof);
             yield return new WaitForEndOfFrame();
         }
+
     }
 
 
@@ -234,6 +226,8 @@ public class Menu : Singleton<Menu>
 
     private IEnumerator MenuOff()
     {
+        Time.timeScale = 1;
+
         state = false;
         float dof = PostProcessManager.get.GetDOF();
         Cursor.lockState = CursorLockMode.Locked;

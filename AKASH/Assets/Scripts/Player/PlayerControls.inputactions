@@ -263,7 +263,7 @@
                 {
                     "name": "",
                     "id": "e212f5a5-2434-4efa-ac4c-c0bc89f16fbc",
-                    "path": "<Mouse>/delta",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -719,7 +719,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Сursor",
+                    "name": "Move",
                     "type": "Value",
                     "id": "2266eddb-6e96-43c4-9c5a-1b34cf10871d",
                     "expectedControlType": "Vector2",
@@ -730,6 +730,14 @@
                     "name": "Escape",
                     "type": "Button",
                     "id": "309e9e5e-ebbc-4d75-b331-3b96c33cfa8e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fast",
+                    "type": "Button",
+                    "id": "6da5e121-2954-40d3-96eb-f4700ecc3b13",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -776,18 +784,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Сursor",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "d18d4ff7-1be8-48ba-810c-fbe5088d63b6",
-                    "path": "<Mouse>/delta",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Сursor",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3a21670-8cb5-4d79-83cc-81532b1e09d4",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -810,6 +829,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb2c0acc-d177-4cba-b5d4-443300b08d8c",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -903,7 +933,7 @@
                 {
                     "name": "",
                     "id": "53abcb70-68af-49a9-85c8-4659a05f21f4",
-                    "path": "<Mouse>/delta",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1133,7 +1163,7 @@
                 {
                     "name": "",
                     "id": "3c26544e-bb7f-4520-87fb-506671a6ed00",
-                    "path": "<Mouse>/delta",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1518,5 +1548,27 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Basic",
+            "bindingGroup": "Basic",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Pointer>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

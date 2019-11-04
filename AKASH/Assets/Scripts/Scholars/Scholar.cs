@@ -23,6 +23,10 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public int number;
     [HideInInspector]
+    public string name_1 = "Akim";
+    [HideInInspector]
+    public string name_2 = "Akimov";
+    [HideInInspector]
     public string type;
     private string keyWord;
     [HideInInspector]
@@ -92,11 +96,8 @@ public class Scholar : MonoBehaviour
     public ActionsScholar Action;
     [HideInInspector]
     public Emotions Emotions;
-    private Transform Camera;
     [HideInInspector]
     public ScholarAgent Agent;
-    [HideInInspector]
-    public ScholarManager ScholarMan;
 
 
 
@@ -165,10 +166,10 @@ public class Scholar : MonoBehaviour
         TextBox = transform.parent.transform.parent.GetComponentInChildren<TextBoxScholar>();
         Emotions = transform.parent.transform.parent.GetComponentInChildren<Emotions>();
         Action = transform.parent.transform.GetComponentInParent<ActionsScholar>();
-        ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
-        Camera = GameObject.FindGameObjectWithTag("PlayerCamera").transform;
         cheatNeed = false;
 
+        stress = 50;
+        ChangeMoodType();
         ChangeType(scholarType.ToString());
         Selectable(true);
         IQ_start = 0;
@@ -366,7 +367,7 @@ public class Scholar : MonoBehaviour
         Selectable(true);
         talking = false;
 
-        if (ScholarMan.Probability(probability_of_continue))
+        if (ScholarManager.get.Probability(probability_of_continue))
             Continue();
         else
             StartWrite();
@@ -605,8 +606,8 @@ public class Scholar : MonoBehaviour
     public void SetNumber(int i)
     {
         number = i;
-        Action.home = ScholarMan.desks[0, i].position;
-        Action.desk = ScholarMan.desks[1, i].position;
+        Action.home = ScholarManager.get.desks[0, i].position;
+        Action.desk = ScholarManager.get.desks[1, i].position;
         TextBox.Number(i);
     }
 
@@ -674,7 +675,7 @@ public class Scholar : MonoBehaviour
         T_behind_wall = true;
 
         T_angle_y = LookingAngle(Action.transform.position, Player.get.transform);
-        T_angle_x = (Camera.transform.rotation.eulerAngles.x + 30) % 360;
+        T_angle_x = (PlayerCamera.get.transform.rotation.eulerAngles.x + 30) % 360;
 
         T_direction = new Vector3(Player.get.transform.position.x - Action.transform.position.x, Action.transform.position.y, Player.get.transform.position.z - Action.transform.position.z).normalized;
 

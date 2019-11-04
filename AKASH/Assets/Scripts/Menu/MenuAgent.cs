@@ -11,14 +11,12 @@ public class MenuAgent : Singleton<MenuAgent>
 
     private void Awake()
     {
+        GameObject[] topics = GameObject.FindGameObjectsWithTag("MenuTopic");
 
-        menu_types.Add("Pause", transform.Find("Pause").gameObject);
-        menu_types.Add("Settings", transform.Find("Settings").gameObject);
-        menu_types.Add("Sound", transform.Find("Sound").gameObject);
-
-        foreach (KeyValuePair<string, GameObject> valuePair in menu_types)
+        foreach(GameObject i in topics)
         {
-            valuePair.Value.SetActive(false);
+            menu_types.Add(i.name, i);
+            i.SetActive(false);
         }
     }
 
@@ -35,7 +33,6 @@ public class MenuAgent : Singleton<MenuAgent>
                 {
                     Disable("Pause");
                     Set("Settings");
-                    SettingsManager.get.BackUp();
                     break;
                 }
             case "Main Menu":
@@ -53,21 +50,101 @@ public class MenuAgent : Singleton<MenuAgent>
                     Escape(Menu.get.current_menu);
                     break;
                 }
-            case "Accept Settings":
+            case "Main":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    Disable("Settings");
+                    Set("Main");
+                    break;
+                }
+            case "Gameplay":
+                {
+                    Disable("Settings");
+                    Set("Gameplay");
                     break;
                 }
             case "Sound":
                 {
                     Disable("Settings");
                     Set("Sound");
-                    SettingsManager.get.BackUp();
+                    break;
+                }
+            case "Video":
+                {
+                    Disable("Settings");
+                    Set("Video");
+                    break;
+                }
+            case "Reset":
+                {
+                    SettingsManager.get.Reset();
                     break;
                 }
 
+
+            //-----------------------------------------------------------------------------------------------------------------
+            //Settings_Accept
+            //-----------------------------------------------------------------------------------------------------------------
+
+            case "Language":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Voice Language":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Subtitles":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Sensitivity":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Accept Settings":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Volume General":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Volume Voice":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Volume Music":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Volume SFX":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Resolution":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
+            case "Screen Mode":
+                {
+                    SettingsManager.get.AcceptSettings();
+                    break;
+                }
         }
     }
+
+
+
 
     public void Escape(string type)
     {
@@ -84,9 +161,31 @@ public class MenuAgent : Singleton<MenuAgent>
                     Set("Pause");
                     break;
                 }
+            case "Main":
+                {
+                    SettingsManager.get.BackUp();
+                    Disable("Main");
+                    Set("Settings");
+                    break;
+                }
+            case "Gameplay":
+                {
+                    SettingsManager.get.BackUp();
+                    Disable("Gameplay");
+                    Set("Settings");
+                    break;
+                }
             case "Sound":
                 {
+                    SettingsManager.get.BackUp();
                     Disable("Sound");
+                    Set("Settings");
+                    break;
+                }
+            case "Video":
+                {
+                    SettingsManager.get.BackUp();
+                    Disable("Video");
                     Set("Settings");
                     break;
                 }
@@ -98,10 +197,6 @@ public class MenuAgent : Singleton<MenuAgent>
         menu_types[type].SetActive(true);
     }
 
-    public void Settings()
-    {
-
-    }
 
     public void Disable(string type)
     {

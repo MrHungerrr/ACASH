@@ -15,6 +15,9 @@ TagManager:
   - Toilet
   - Outside
   - Camera
+  - MenuTopic
+  - Window
+  - ComputerUIObject
   layers:
   - Default
   - TransparentFX
@@ -29,8 +32,8 @@ TagManager:
   - Not Selectable
   - Sight Layer
   - ScholarEye Layer
-  - 
-  - 
+  - Computer
+  - Not Visible
   - 
   - 
   - 

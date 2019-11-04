@@ -7,8 +7,8 @@ using N_BH;
 public class PlayerCamera : Singleton<PlayerCamera>
 {
     private float coefSensitivity = 5;
-    private float mouseSensitivity = 2;
-    private float gamepadSensitivity = 20; 
+    private const float mouseSensitivity = 2;
+    private const float gamepadSensitivity = 35; 
 
     private Transform playerBody;
     private CinemachineVirtualCamera cineCam;
@@ -23,12 +23,14 @@ public class PlayerCamera : Singleton<PlayerCamera>
     private float normFOV = 70;
     private float zoomFOV = 15;
     private float FOV;
+    [HideInInspector]
     public bool disPlayer = false;
 
 
 
     private void Awake()
     {
+        disPlayer = false;
         LockCursor(true);
         xAxisClamp = 0.0f;
         
@@ -67,12 +69,12 @@ public class PlayerCamera : Singleton<PlayerCamera>
         {
             case "keyboard":
                 {
-                    rotate = rotateInput * Time.deltaTime * mouseSensitivity * coefSensitivity;
+                    rotate = rotateInput * Time.deltaTime * (mouseSensitivity + (mouseSensitivity * coefSensitivity));
                     break;
                 }
             default:
                 {
-                    rotate = rotateInput * Time.deltaTime * gamepadSensitivity * coefSensitivity;
+                    rotate = rotateInput * Time.deltaTime * (gamepadSensitivity + (gamepadSensitivity * coefSensitivity));
                     break;
                 }
         }
