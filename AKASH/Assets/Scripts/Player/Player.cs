@@ -22,9 +22,13 @@ public class Player : Singleton<Player>
     private CharacterController CharController;
     private LayerMask actLayerMask;
     private LayerMask sightLayerMask;
-    private bool disPlayer;
     [HideInInspector]
     public bool look_closer;
+
+
+    [HideInInspector]
+    public bool draw;
+    private bool draw_option;
 
     //Действия
     [HideInInspector]
@@ -41,6 +45,7 @@ public class Player : Singleton<Player>
     [HideInInspector]
     public string actTag;
     private GameObject actObject;
+    private bool actSpecialOption;
     private GameObject selected_scholar;
     private string actText;
     private ScholarManager ScholarMan;
@@ -53,6 +58,7 @@ public class Player : Singleton<Player>
     {
         CharController = GetComponent<CharacterController>();
         ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
+        draw = false;
     }
 
     private void Start()
@@ -65,14 +71,16 @@ public class Player : Singleton<Player>
 
     private void Update()
     {
-        if(!disPlayer)
-        {
-            PlayerMovement();
-            Action();
-        }
+
+        PlayerMovement();
+        Action();
+
             
         if(!act)
             Watching();
+
+        if (draw && actTag == "DeskBlock")
+            Drawing(draw_option);
     }
 
 
@@ -123,10 +131,13 @@ public class Player : Singleton<Player>
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
+        ObjectSelect obj_select;
 
 
+        //Рейкаст интерактивных объектов
         if (Physics.Raycast(ray, out hit, actMaxRange, actLayerMask))
         {
+            //Школьники
             if (hit.collider.tag == "Scholar")
             {
                 if (actObject != hit.collider.gameObject)
@@ -143,32 +154,46 @@ public class Player : Singleton<Player>
                     WhatISee();
                 }
             }
+            //Все остальное
             else if((hit.transform.position - transform.position).magnitude < actMinRange)
             {
                 if (actObject != hit.collider.gameObject)
                 {
                     if (actObject != null)
                     {
-                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        if(actObject.TryGetComponent<ObjectSelect>(out obj_select))
+                            obj_select.Deselect();
                     }
                     actObject = hit.collider.gameObject;
                     actTag = hit.collider.tag;
                     actReady = true;
-                    actObject.GetComponent<ObjectSelect>().Select();
+
+                    if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
+                        //Специальное условие для компьютеров
+                        if (hit.collider.tag != "Computer")
+                        {
+                            obj_select.Select();
+                        }
                 }
             }
             else if (actReady && actObject != null)
             {
-                actObject.GetComponent<ObjectSelect>().Deselect();
+                if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
+                    obj_select.Deselect();
+
                 actObject = null;
                 actReady = false;
+                actTag = null;
             }
         }
         else if (actReady && actObject != null)
         {
-            actObject.GetComponent<ObjectSelect>().Deselect();
+            if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
+                obj_select.Deselect();
+
             actObject = null;
             actReady = false;
+            actTag = null;
         }
 
         
@@ -190,6 +215,14 @@ public class Player : Singleton<Player>
 
 
 
+    private float LookingAngle(Vector3 lookingTo, Transform Who)
+    {
+        lookingTo.y = Who.transform.position.y;
+        lookingTo = lookingTo - Who.transform.position;
+        return Vector3.Angle(lookingTo, Who.forward);
+    }
+
+
     private void WhatISee()
     {
 
@@ -209,36 +242,54 @@ public class Player : Singleton<Player>
 
     private void Action()
     {
-        if (doing && actReady && !act)
+        if (actReady && !act)
         {
-            Debug.Log("Мы хотим что-то сделать");
-            /*
-            switch (actTag)
-            {
-                case "Computer":
-                    {
-                        DisableControl(true);
-                        //actObject.GetComponent<Computer_Power>().SwitchPower();
-                        Computer_Power.SwitchPower(actObject.transform.GetChild(0).gameObject);
-                        break;
-                    }
-                case "Door":
-                    {
-                        actObject.GetComponent<Door>().DoorInteract(transform.position);
-                        break;
-                    }
-            }
-            */
 
-            ComputerController.get.desktop_num = 1;
-            ComputerController.get.Enable(true);
-            InputManager.get.SwitchGameInput("computer");
-            act = true;
+            if (actTag == "Computer")
+                ActionAngleRelation();
+
+            if (doing)
+            {
+                Debug.Log("Мы хотим что-то сделать");
+
+                act = true;
+
+                switch (actTag)
+                {
+                    case "Computer":
+                        {
+                            if (actSpecialOption)
+                            {
+                                actObject.GetComponent<ComputerController>().Enable(true);
+                                act = false;
+                            }
+                            break;
+                        }
+                    case "Door":
+                        {
+                            actObject.GetComponent<Door>().DoorInteract(transform.position);
+                            break;
+                        }
+                }
+            }
         }
     }
 
 
-
+    private void ActionAngleRelation()
+    {
+        Debug.Log(LookingAngle(transform.position, actObject.transform));
+        if (LookingAngle(transform.position, actObject.transform) < 70)
+        {
+            actObject.GetComponent<ObjectSelect>().Select();
+            actSpecialOption = true;
+        }
+        else
+        {
+            actObject.GetComponent<ObjectSelect>().Deselect();
+            actSpecialOption = false;
+        }
+    }
 
 
 
@@ -484,14 +535,7 @@ public class Player : Singleton<Player>
         if(SubtitleManager.get.act)
             SubtitleManager.get.StopSubtitile();
     }
-
-    public void DisableControl(bool status)
-    {
-        disPlayer = status;
-        InputManager.get.disPlayer = status;
-        PlayerCamera.get.disPlayer = status;
-    }
-
+    
 
 
     //Вероятность
@@ -504,5 +548,25 @@ public class Player : Singleton<Player>
             return true;
         else
             return false;
+    }
+
+
+    public void Draw(bool option)
+    {
+        draw = option;
+        draw_option = true;
+    }
+
+    public void UnDraw(bool option)
+    {
+        draw = option;
+        draw_option = false;
+    }
+
+
+    private void Drawing(bool option)
+    {
+        if (actTag == "DeskBlock")
+            actObject.GetComponent<DeskBlock>().Draw(option);
     }
 }

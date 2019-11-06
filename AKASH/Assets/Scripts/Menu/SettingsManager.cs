@@ -29,6 +29,7 @@ public class SettingsManager : Singleton<SettingsManager>
       /*07*/  "Language",
       /*08*/  "Voice Language",
       /*09*/  "Subtitles",
+      /*10*/  "Crouch",
     };
 
     public Dictionary<string, int> settings_current = new Dictionary<string, int>()
@@ -43,7 +44,7 @@ public class SettingsManager : Singleton<SettingsManager>
         {settings_name[7], 0},
         {settings_name[8], 0},
         {settings_name[9], 0},
-
+        {settings_name[10], 0},
 
     };
 
@@ -59,6 +60,7 @@ public class SettingsManager : Singleton<SettingsManager>
         {settings_name[7], 0},
         {settings_name[8], 0},
         {settings_name[9], 0},
+        {settings_name[10], 0},
     };
 
     public Dictionary<string, int> settings_standart = new Dictionary<string, int>()
@@ -73,6 +75,7 @@ public class SettingsManager : Singleton<SettingsManager>
         {settings_name[7], 0},
         {settings_name[8], 0},
         {settings_name[9], 0},
+        {settings_name[10], 0},
     };
 
     private string[] resolution = new string[]
@@ -111,6 +114,12 @@ public class SettingsManager : Singleton<SettingsManager>
           /*01*/  "No",
     };
 
+    private string[] crouch = new string[]
+{
+          /*00*/  "Hold",
+          /*01*/  "Press",
+};
+
 
 
 
@@ -125,8 +134,9 @@ public class SettingsManager : Singleton<SettingsManager>
         settings.Add("Language", language);
         settings.Add("Voice Language", voice_language);
         settings.Add("Subtitles", subtitles);
-
-        BackUp();
+        settings.Add("Crouch", crouch);
+        Reset();
+        //BackUp();
     }
 
 

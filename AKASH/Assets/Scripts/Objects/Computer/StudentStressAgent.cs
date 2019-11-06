@@ -5,16 +5,11 @@ using UnityEngine.EventSystems;
 using N_BH;
 
 
-public class StudentStress : Singleton<StudentStress>
+public class StudentStressAgent : MonoBehaviour
 {
     private StressCell[] cells;
 
-    private void Awake()
-    {
-        Set();
-    }
-
-    private void Set()
+    public void Set()
     {
         int buf;
         GameObject[] ss = new GameObject[]

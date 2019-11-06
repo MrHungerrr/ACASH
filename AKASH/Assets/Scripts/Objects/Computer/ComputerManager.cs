@@ -1,0 +1,140 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
+using N_BH;
+
+
+public class ComputerManager : Singleton<ComputerManager>
+{
+    private float mouseSensitivity = 0.02f;
+    private float gamepadSensitivity = 0.07f;
+    private float mouseCameraSensitivity = 3f;
+    private float gamepadCameraSensitivity = 60f;
+    [HideInInspector]
+    public Vector2 mouseInput;
+    [HideInInspector]
+    public Vector2 mouse;
+
+    private ComputerController CompControl;
+    private bool active;
+    [HideInInspector]
+    public bool fast;
+
+
+    private Vector2 position;
+    public bool normalize;
+
+
+    [HideInInspector]
+    public int desktop_num;
+    [HideInInspector]
+    public string desktop;
+    [HideInInspector]
+    public string current_window;
+
+
+    private void Awake()
+    {
+        active = false;
+    }
+
+
+    public void Set(ComputerController comp)
+    {
+        CompControl = comp;
+        active = true;
+        InputManager.get.SwitchGameInput("computer");
+    }
+
+    public void Disable()
+    {
+        active = false;
+        CompControl = null;
+    }
+
+    private void Update()
+    {
+        if (active)
+        {
+            Move();
+        }
+    }
+
+    private void Move()
+    {
+        if (CompControl.zoom)
+        {
+            switch (InputManager.get.inputType)
+            {
+                case "keyboard":
+                    {
+                        mouseInput *= mouseCameraSensitivity * Time.deltaTime;
+                        break;
+                    }
+                default:
+                    {
+                        mouseInput *= gamepadCameraSensitivity * Time.deltaTime;
+                        break;
+                    }
+            }
+
+            mouse = new Vector3(-mouseInput.y, mouseInput.x, 0);
+        }
+        else
+        {
+            switch (InputManager.get.inputType)
+            {
+                case "keyboard":
+                    {
+                        mouseInput *= mouseSensitivity * Time.deltaTime;
+                        break;
+                    }
+                default:
+                    {
+                        mouseInput = mouseInput.normalized * gamepadSensitivity * Time.deltaTime;
+
+                        if (fast)
+                            mouseInput *= 3f;
+                        break;
+                    }
+            }
+
+            mouse = new Vector3(mouseInput.x, mouseInput.y, 0);
+        }
+
+
+        CompControl.Move(mouse);
+    }
+
+    public void Zoom(bool option)
+    {
+        if(option)
+        {
+            CompControl.zoom = true;
+            CompControl.zooming = true;
+            CompControl.moving = true;
+        }
+        else
+        {
+            CompControl.zoom = false;
+        }
+    }
+
+
+    public void Select()
+    {
+        CompControl.Select();
+    }
+
+    public void Exit()
+    {
+        CompControl.Enable(false);
+        Disable();
+    }
+
+
+
+}

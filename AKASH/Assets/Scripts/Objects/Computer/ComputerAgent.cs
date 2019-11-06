@@ -3,63 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using N_BH;
 
-public class ComputerAgent : Singleton<ComputerAgent>
+public class ComputerAgent : MonoBehaviour
 {
 
-    [HideInInspector]
     private Dictionary<string, GameObject> windows = new Dictionary<string, GameObject>();
-    private LayerMask visible_layerMask;
-    private LayerMask not_visible_layerMask;
+    [HideInInspector]
+    public ComputerController CompControl;
 
     private void Awake()
     {
-        GameObject[] comp_windows = GameObject.FindGameObjectsWithTag("Window");
+        GameObject[] comp_windows = new GameObject[transform.childCount];
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            comp_windows[i] = transform.GetChild(i).gameObject;
+        }
 
         foreach (GameObject i in comp_windows)
         {
             windows.Add(i.name, i);
+            Debug.Log(i.name);
             i.SetActive(false);
         }
     }
 
-
-
     public void Enter(string type)
     {
-        switch(type)
+        switch (type)
         {
             case "Student Stress":
                 {
-                    Disable(ComputerController.get.desktop);
-                    ComputerController.get.SetProgram(type);
+                    Disable(CompControl.desktop);
+                    CompControl.SetProgram(type);
                     StudentStress.get.Refresh();
                     Set(type);
-
                     break;
                 }
             case "Overwatch":
                 {
-                    Disable(ComputerController.get.desktop);
-                    ComputerController.get.SetProgram(type);
+                    Disable(CompControl.desktop);
+                    CompControl.SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Info":
                 {
-                    Disable(ComputerController.get.desktop);
-                    ComputerController.get.SetProgram(type);
+                    Disable(CompControl.desktop);
+                    CompControl.SetProgram(type);
                     Set(type);
+                    break;
+                }
+            case "Refresh":
+                {
+                    StudentStress.get.Refresh();
                     break;
                 }
             case "Close":
                 {
-                    Escape(ComputerController.get.current_window);
+                    Escape(CompControl.current_window);
                     break;
                 }
             case "Exit":
                 {
-                    ComputerController.get.Exit();
+                    //
                     break;
                 }
         }
@@ -73,37 +79,22 @@ public class ComputerAgent : Singleton<ComputerAgent>
             case "Student Stress":
                 {
                     Disable(type);
-                    ComputerController.get.CloseProgram();
-                    Set("Desktop_" + ComputerController.get.desktop_num);
+                    CompControl.CloseProgram();
+                    Set("Desktop_" + CompControl.desktop_num);
                     break;
                 }
             case "Overwatch":
                 {
                     Disable(type);
-                    ComputerController.get.CloseProgram();
-                    Set("Desktop_" + ComputerController.get.desktop_num);
+                    CompControl.CloseProgram();
+                    Set("Desktop_" + CompControl.desktop_num);
                     break;
                 }
             case "Info":
                 {
                     Disable(type);
-                    ComputerController.get.CloseProgram();
-                    Set("Desktop_" + ComputerController.get.desktop_num);
-                    break;
-                }
-            case "Desktop_1":
-                {
-                    ComputerController.get.Exit();
-                    break;
-                }
-            case "Desktop_2":
-                {
-                    ComputerController.get.Exit();
-                    break;
-                }
-            case "Desktop_3":
-                {
-                    ComputerController.get.Exit();
+                    CompControl.CloseProgram();
+                    Set("Desktop_" + CompControl.desktop_num);
                     break;
                 }
         }
@@ -111,8 +102,9 @@ public class ComputerAgent : Singleton<ComputerAgent>
 
     public void Set(string window)
     {
+        Debug.Log(window);
         windows[window].SetActive(true);
-        ComputerController.get.current_window = window;
+        CompControl.current_window = window;
     }
 
 

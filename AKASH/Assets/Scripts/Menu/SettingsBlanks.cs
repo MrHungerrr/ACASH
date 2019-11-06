@@ -36,8 +36,6 @@ public static class SettingsBlanks
     }
 
 
-
-
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Main Settings 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,6 +73,7 @@ public static class SettingsBlanks
     private static void Gameplay()
     {
         Sensitivity(SettingsManager.get.settings_current["Sensitivity"]);
+        Crouch(SettingsManager.get.settings_current["Crouch"]);
     }
 
     private static void Sensitivity(int option)
@@ -82,7 +81,13 @@ public static class SettingsBlanks
         PlayerCamera.get.Sensitivity(option);
     }
 
-
+    private static void Crouch(int option)
+    {
+        if (option == 0)
+            InputManager.get.hold_crouch = true;
+        else
+            InputManager.get.hold_crouch = false;
+    }
 
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------

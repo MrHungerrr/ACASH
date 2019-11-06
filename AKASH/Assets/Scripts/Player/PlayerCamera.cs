@@ -23,14 +23,11 @@ public class PlayerCamera : Singleton<PlayerCamera>
     private float normFOV = 70;
     private float zoomFOV = 15;
     private float FOV;
-    [HideInInspector]
-    public bool disPlayer = false;
 
 
 
     private void Awake()
     {
-        disPlayer = false;
         LockCursor(true);
         xAxisClamp = 0.0f;
         
@@ -54,51 +51,49 @@ public class PlayerCamera : Singleton<PlayerCamera>
 
     private void Update()
     {
-        if (!disPlayer)
-        {
-            CameraRotation();
-            if (zoom || zooming)
-                Zoom();
-        }
+        CameraRotation();
+        if (zoom || zooming)
+            Zoom();
     }
 
     private void CameraRotation()
     {
-
-        switch (InputManager.get.inputType)
+        if (rotateInput != Vector2.zero)
         {
-            case "keyboard":
-                {
-                    rotate = rotateInput * Time.deltaTime * (mouseSensitivity + (mouseSensitivity * coefSensitivity));
-                    break;
-                }
-            default:
-                {
-                    rotate = rotateInput * Time.deltaTime * (gamepadSensitivity + (gamepadSensitivity * coefSensitivity));
-                    break;
-                }
+            switch (InputManager.get.inputType)
+            {
+                case "keyboard":
+                    {
+                        rotate = rotateInput * Time.deltaTime * (mouseSensitivity + (mouseSensitivity * coefSensitivity));
+                        break;
+                    }
+                default:
+                    {
+                        rotate = rotateInput * Time.deltaTime * (gamepadSensitivity + (gamepadSensitivity * coefSensitivity));
+                        break;
+                    }
+            }
+
+
+
+            xAxisClamp += rotate.y;
+
+            if (xAxisClamp > 90.0f)
+            {
+                xAxisClamp = 90.0f;
+                rotate.y = 0.0f;
+                ClampXAxisRotationToValue(270.0f);
+            }
+            else if (xAxisClamp < -90.0f)
+            {
+                xAxisClamp = -90.0f;
+                rotate.y = 0.0f;
+                ClampXAxisRotationToValue(90.0f);
+            }
+
+            transform.Rotate(Vector3.left * rotate.y);
+            playerBody.Rotate(Vector3.up * rotate.x);
         }
-
-
-
-
-        xAxisClamp += rotate.y;
-
-        if (xAxisClamp > 90.0f)
-        {
-            xAxisClamp = 90.0f;
-            rotate.y = 0.0f;
-            ClampXAxisRotationToValue(270.0f);
-        }
-        else if (xAxisClamp < -90.0f)
-        {
-            xAxisClamp = -90.0f;
-            rotate.y = 0.0f;
-            ClampXAxisRotationToValue(90.0f);
-        }
-
-        transform.Rotate(Vector3.left * rotate.y);
-        playerBody.Rotate(Vector3.up * rotate.x);
     }
 
     private void ClampXAxisRotationToValue(float value)
@@ -130,5 +125,10 @@ public class PlayerCamera : Singleton<PlayerCamera>
     public void Sensitivity(int coef)
     {
         coefSensitivity = coef;
+    }
+
+    public void Enable(bool option)
+    {
+        cineCam.enabled = option;
     }
 }

@@ -439,7 +439,7 @@
                 {
                     "name": "",
                     "id": "9a53950b-ddc8-4385-b9cd-845ae162e5d6",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -688,7 +688,7 @@
                 {
                     "name": "",
                     "id": "239bef5a-e8f2-43a3-9674-adfcfc7cb3ed",
-                    "path": "<Keyboard>/backspace",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -727,7 +727,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Escape",
+                    "name": "Exit",
                     "type": "Button",
                     "id": "309e9e5e-ebbc-4d75-b331-3b96c33cfa8e",
                     "expectedControlType": "",
@@ -738,6 +738,14 @@
                     "name": "Fast",
                     "type": "Button",
                     "id": "6da5e121-2954-40d3-96eb-f4700ecc3b13",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Button",
+                    "id": "3633efd6-7ed3-4238-b5b0-20cb71dae8f1",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -770,6 +778,17 @@
                     "name": "",
                     "id": "4dcee167-ccac-4fe1-8d78-710bf312f865",
                     "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07dbe872-403a-4193-ac0e-0dc25f7f0300",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -817,29 +836,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Escape",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c202aa8c-f8cd-4ef2-bf25-35364a981d32",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Escape",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "eb2c0acc-d177-4cba-b5d4-443300b08d8c",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Fast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "335b521e-e48a-4214-a2de-33ceb205483e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6927b316-6d9b-4882-9d68-56ae9607236f",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

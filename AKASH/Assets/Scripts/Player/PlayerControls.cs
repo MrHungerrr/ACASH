@@ -452,7 +452,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9a53950b-ddc8-4385-b9cd-845ae162e5d6"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -701,7 +701,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""239bef5a-e8f2-43a3-9674-adfcfc7cb3ed"",
-                    ""path"": ""<Keyboard>/backspace"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -740,7 +740,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Escape"",
+                    ""name"": ""Exit"",
                     ""type"": ""Button"",
                     ""id"": ""309e9e5e-ebbc-4d75-b331-3b96c33cfa8e"",
                     ""expectedControlType"": """",
@@ -751,6 +751,14 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Fast"",
                     ""type"": ""Button"",
                     ""id"": ""6da5e121-2954-40d3-96eb-f4700ecc3b13"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""3633efd6-7ed3-4238-b5b0-20cb71dae8f1"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -783,6 +791,17 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""4dcee167-ccac-4fe1-8d78-710bf312f865"",
                     ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07dbe872-403a-4193-ac0e-0dc25f7f0300"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -830,29 +849,51 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Escape"",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""c202aa8c-f8cd-4ef2-bf25-35364a981d32"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Escape"",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""eb2c0acc-d177-4cba-b5d4-443300b08d8c"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""335b521e-e48a-4214-a2de-33ceb205483e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6927b316-6d9b-4882-9d68-56ae9607236f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1609,8 +1650,9 @@ public class PlayerControls : IInputActionCollection, IDisposable
         m_Computer_Select = m_Computer.FindAction("Select", throwIfNotFound: true);
         m_Computer_Menu = m_Computer.FindAction("Menu", throwIfNotFound: true);
         m_Computer_Move = m_Computer.FindAction("Move", throwIfNotFound: true);
-        m_Computer_Escape = m_Computer.FindAction("Escape", throwIfNotFound: true);
+        m_Computer_Exit = m_Computer.FindAction("Exit", throwIfNotFound: true);
         m_Computer_Fast = m_Computer.FindAction("Fast", throwIfNotFound: true);
+        m_Computer_Zoom = m_Computer.FindAction("Zoom", throwIfNotFound: true);
         // Cutscene
         m_Cutscene = asset.FindActionMap("Cutscene", throwIfNotFound: true);
         m_Cutscene_Menu = m_Cutscene.FindAction("Menu", throwIfNotFound: true);
@@ -1843,8 +1885,9 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Computer_Select;
     private readonly InputAction m_Computer_Menu;
     private readonly InputAction m_Computer_Move;
-    private readonly InputAction m_Computer_Escape;
+    private readonly InputAction m_Computer_Exit;
     private readonly InputAction m_Computer_Fast;
+    private readonly InputAction m_Computer_Zoom;
     public struct ComputerActions
     {
         private PlayerControls m_Wrapper;
@@ -1852,8 +1895,9 @@ public class PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_Computer_Select;
         public InputAction @Menu => m_Wrapper.m_Computer_Menu;
         public InputAction @Move => m_Wrapper.m_Computer_Move;
-        public InputAction @Escape => m_Wrapper.m_Computer_Escape;
+        public InputAction @Exit => m_Wrapper.m_Computer_Exit;
         public InputAction @Fast => m_Wrapper.m_Computer_Fast;
+        public InputAction @Zoom => m_Wrapper.m_Computer_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_Computer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1872,12 +1916,15 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 Move.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
                 Move.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
                 Move.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
-                Escape.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnEscape;
-                Escape.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnEscape;
-                Escape.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnEscape;
+                Exit.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
+                Exit.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
+                Exit.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
                 Fast.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
                 Fast.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
                 Fast.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
+                Zoom.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
+                Zoom.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
+                Zoom.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_ComputerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1891,12 +1938,15 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 Move.started += instance.OnMove;
                 Move.performed += instance.OnMove;
                 Move.canceled += instance.OnMove;
-                Escape.started += instance.OnEscape;
-                Escape.performed += instance.OnEscape;
-                Escape.canceled += instance.OnEscape;
+                Exit.started += instance.OnExit;
+                Exit.performed += instance.OnExit;
+                Exit.canceled += instance.OnExit;
                 Fast.started += instance.OnFast;
                 Fast.performed += instance.OnFast;
                 Fast.canceled += instance.OnFast;
+                Zoom.started += instance.OnZoom;
+                Zoom.performed += instance.OnZoom;
+                Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -2034,8 +2084,9 @@ public class PlayerControls : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnEscape(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
         void OnFast(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
     public interface ICutsceneActions
     {

@@ -27,6 +27,10 @@ public class InputManager : Singleton<InputManager>
     [HideInInspector]
     public string gameType_last;
 
+
+    [HideInInspector]
+    public bool hold_crouch;
+
     //private ParticleSystem.VelocityOverLifetimeModule vel;
     //private ParticleSystem.ShapeModule shape;
 
@@ -44,9 +48,12 @@ public class InputManager : Singleton<InputManager>
         Controls.Gameplay.Zoom.canceled += ctx => GameZoom(false);
         Controls.Gameplay.Run.started += ctx => GameRun(true);
         Controls.Gameplay.Run.canceled += ctx => GameRun(false);
-        Controls.Gameplay.Crouch.started += ctx => GameCrouch();
-        Controls.Gameplay.Bull.started += ctx => GameBull();
-        Controls.Gameplay.Joke.started += ctx => GameJoke();
+        Controls.Gameplay.Crouch.started += ctx => GameCrouch(true);
+        Controls.Gameplay.Crouch.canceled += ctx => GameCrouch(false);
+        Controls.Gameplay.Bull.started += ctx => GameBull(true);
+        Controls.Gameplay.Joke.started += ctx => GameJoke(true);
+        Controls.Gameplay.Bull.canceled += ctx => GameBull(false);
+        Controls.Gameplay.Joke.canceled += ctx => GameJoke(false);
         Controls.Gameplay.Shout.started += ctx => GameShout();
         Controls.Gameplay.Execute.started += ctx => GameExecute();
         Controls.Gameplay.Menu.started += ctx => GameMenu();
@@ -57,12 +64,14 @@ public class InputManager : Singleton<InputManager>
         Controls.Menu.Escape.started += ctx => MenuEscape();
         Controls.Menu.Resume.started += ctx => MenuResume();
 
-        Controls.Computer.Move.performed += ctx => ComputerController.get.mouseInput = ctx.ReadValue<Vector2>();
-        Controls.Computer.Move.canceled += ctx => ComputerController.get.mouseInput = Vector2.zero;
+        Controls.Computer.Move.performed += ctx => ComputerManager.get.mouseInput = ctx.ReadValue<Vector2>();
+        Controls.Computer.Move.canceled += ctx => ComputerManager.get.mouseInput = Vector2.zero;
         Controls.Computer.Fast.started += ctx => ComputerFast(true);
         Controls.Computer.Fast.canceled += ctx => ComputerFast(false);
+        Controls.Computer.Zoom.started += ctx => ComputerZoom(true);
+        Controls.Computer.Zoom.canceled += ctx => ComputerZoom(false);
         Controls.Computer.Select.started += ctx => ComputerSelect();
-        Controls.Computer.Escape.started += ctx => ComputerEscape();
+        Controls.Computer.Exit.started += ctx => ComputerExit();
         Controls.Computer.Menu.started += ctx => ComputerMenu();
 
 
@@ -83,10 +92,6 @@ public class InputManager : Singleton<InputManager>
         SwitchGameInput("gameplay");
         TypeOfInput("keyboard");
         Controls.InputType.Enable();
-
-
-        SwitchGameInput("computer");
-
     }
 
 
@@ -202,34 +207,77 @@ public class InputManager : Singleton<InputManager>
         */
     }
 
-    private void GameCrouch()
+    private void GameCrouch(bool option)
     {
-        if (Player.get.typeOfMovement != "crouch")
-            Player.get.SwitchMove("crouch");
-        else
-            Player.get.SwitchMove("normal");
-
-    }
-
-    private void GameJoke()
-    {
-        if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+        if(option)
         {
-            if (Player.get.asked)
-                Player.get.Answer(true);
+            if (hold_crouch)
+            {
+                Player.get.SwitchMove("crouch");
+            }
             else
-                Player.get.Bull(false);
+            {
+                if (Player.get.typeOfMovement != "crouch")
+                    Player.get.SwitchMove("crouch");
+                else
+                    Player.get.SwitchMove("normal");
+            }
+        }
+        else
+        {
+            if (hold_crouch)
+            {
+                Player.get.SwitchMove("normal");
+            }
         }
     }
 
-    private void GameBull()
+    private void GameJoke(bool option)
     {
-        if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+        if (option)
         {
-            if (Player.get.asked)
-                Player.get.Answer(false);
-            else
-                Player.get.Bull(true);
+            if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+            {
+                if (Player.get.asked)
+                    Player.get.Answer(true);
+                else
+                    Player.get.Bull(false);
+            }
+
+            if (!Player.get.draw && Player.get.actReady && Player.get.actTag == "DeskBlock")
+            {         
+                Player.get.Draw(true);
+            }
+        }
+        else
+        {
+            if(Player.get.draw)
+                Player.get.Draw(false);
+        }
+    }
+
+    private void GameBull(bool option)
+    {
+        if (option)
+        {
+            if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+            {
+                if (Player.get.asked)
+                    Player.get.Answer(false);
+                else
+                    Player.get.Bull(true);
+            }
+
+
+            if (!Player.get.draw && Player.get.actReady && Player.get.actTag == "DeskBlock")
+            {
+                Player.get.UnDraw(true);
+            }
+        }
+        else
+        {
+            if (Player.get.draw)
+                Player.get.UnDraw(false);
         }
     }
 
@@ -287,17 +335,23 @@ public class InputManager : Singleton<InputManager>
 
     public void ComputerSelect()
     {
-        ComputerController.get.Select();    
+        ComputerManager.get.Select();    
     }
 
-    private void ComputerEscape()
+    private void ComputerExit()
     {
-        ComputerController.get.Escape();
+        ComputerManager.get.Exit();
+        SwitchGameInput("gameplay");
     }
 
     private void ComputerFast(bool option)
     {
-        ComputerController.get.fast = option;
+        ComputerManager.get.fast = option;
+    }
+
+    private void ComputerZoom(bool option)
+    {
+        ComputerManager.get.Zoom(option);
     }
 
     private void ComputerMenu()
