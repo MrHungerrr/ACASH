@@ -105,25 +105,25 @@ public static class SettingsBlanks
 
     private static void VolumeGeneral(int option)
     {
-        Debug.Log("Общая громкость = " + option);
+        //Debug.Log("Общая громкость = " + option);
         //SetVolume()
     }
 
     private static void VolumeVoice(int option)
     {
-        Debug.Log("Громкость голоса = " + option);
+        //Debug.Log("Громкость голоса = " + option);
         //SetVolume()
     }
 
     private static void VolumeMusic(int option)
     {
-        Debug.Log("Громкость музыки = " + option);
+        //Debug.Log("Громкость музыки = " + option);
         //SetVolume()
     }
 
     private static void VolumeSFX(int option)
     {
-        Debug.Log("Громкость эффектов = " + option);
+        //Debug.Log("Громкость эффектов = " + option);
         //SetVolume()
     }
 

@@ -278,7 +278,6 @@ public class Player : Singleton<Player>
 
     private void ActionAngleRelation()
     {
-        Debug.Log(LookingAngle(transform.position, actObject.transform));
         if (LookingAngle(transform.position, actObject.transform) < 70)
         {
             actObject.GetComponent<ObjectSelect>().Select();

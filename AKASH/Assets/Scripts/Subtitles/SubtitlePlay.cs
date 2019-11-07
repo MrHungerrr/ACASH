@@ -6,18 +6,18 @@ public class SubtitlePlay : MonoBehaviour
 {
 
     public TextMeshProUGUI textBox;
-    private bool active;
 
     public void Clear()
     {
         textBox.text = string.Empty;
     }
 
+
     public void SetText(string text)
     {
-        if(active)
             textBox.text = text;
     }
+
 
     public void Enable(bool option)
     {

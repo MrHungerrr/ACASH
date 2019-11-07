@@ -125,7 +125,6 @@ public class ScholarManager : Singleton<ScholarManager>
 
     void Start()
     {
-        Debug.Log(scholars.Length);
         ScholarNumberRandomer();
         StartCoroutine(PrepareForTest());
     }

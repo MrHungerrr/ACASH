@@ -80,13 +80,26 @@ public class ComputerController : MonoBehaviour
 
     public void Enable(bool option)
     {
+        if (option)
+        {
+            comp_cam.transform.rotation = normRotation;
+            FOV = normFOV;
+            comp_cam.m_Lens.FieldOfView = FOV;
+            ComputerManager.get.Set(this);
+        }
+        else
+        {
+            moving = false;
+            zooming = false;
+        }
+
         active = option;
         comp_col.enabled = option;
         PlayerCamera.get.Enable(!option);
         comp_cam.enabled = option;
 
-        if(option)
-            ComputerManager.get.Set(this);           
+
+
     }
 
 

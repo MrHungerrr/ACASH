@@ -113,14 +113,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c170669f637de94aa19adde34ce0452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NavAgent: {fileID: 0}
   ready: 0
   doing: 0
   can_i_do_smth_else: 0
-  cheat_string: 
   actionNo: 0
   actionNoPlus: 0
   keyAction: 
   keyAction_now: 
+  cheat_string: 
   home: {x: 0, y: 0, z: 0}
   desk: {x: 0, y: 0, z: 0}
 --- !u!95 &8528953402558323764
@@ -155,18 +156,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0010052592, y: 0.003681597, z: 0.0006000005}
   m_Center: {x: 0.0000010408088, y: 0.0018407991, z: 1.862645e-10}
---- !u!114 &752571082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3992015841961358973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abb4b19280d5f34abf82ecf4188e52c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &752571083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +171,8 @@ MonoBehaviour:
   scholarType: 0
   isLiving: 1
   number: 0
+  name_1: Akim
+  name_2: Akimov
   type: 
   executed: 0
   greeneyes: 0
@@ -189,6 +180,7 @@ MonoBehaviour:
   walking: 0
   cheating: 0
   cheatNeed: 0
+  cheat_finish_type: 0
   writing: 0
   asking: 0
   questionKey: 
@@ -199,7 +191,6 @@ MonoBehaviour:
   TextBox: {fileID: 0}
   Action: {fileID: 0}
   Emotions: {fileID: 0}
-  ScholarMan: {fileID: 0}
   stress: 0
   threshold_1: 33
   threshold_2: 66
@@ -211,6 +202,21 @@ MonoBehaviour:
   test: 0
   test_buf: 0
   test_bufTime: 0
+--- !u!114 &645300545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992015841961358973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abb4b19280d5f34abf82ecf4188e52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers: []
+  texts:
+  - {fileID: 8528953401602627030}
 --- !u!1 &8528953401450440751
 GameObject:
   m_ObjectHideFlags: 0

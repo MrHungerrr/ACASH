@@ -23,7 +23,7 @@ public class DeskBlock : MonoBehaviour
         {
             if (mat != null)
             {
-                mat.SetColor("_EmissionColor", new Color(1f, 1f, 1f));
+                mat.SetColor("_EmissionColor", SelectManager.get.col);
             }
         }
         else

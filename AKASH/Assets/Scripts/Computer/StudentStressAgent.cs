@@ -66,9 +66,9 @@ public class StudentStressAgent : MonoBehaviour
 
         for (int i = 0; i<cells.Length; i++)
         {
-            Debug.Log(buf + "_Cell_" + i);
+            //Debug.Log(buf + "_Cell_" + i);
             cells[i] = GameObject.Find(buf + "_Cell_" + i).GetComponent<StressCell>();
-            Debug.Log("Название ячейки - " + cells[i].name);
+            //Debug.Log("Название ячейки - " + cells[i].name);
 
             try
             {

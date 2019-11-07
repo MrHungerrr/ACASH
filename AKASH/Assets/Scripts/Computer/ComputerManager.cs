@@ -52,7 +52,6 @@ public class ComputerManager : Singleton<ComputerManager>
     public void Disable()
     {
         active = false;
-        CompControl = null;
     }
 
     private void Update()
@@ -131,6 +130,7 @@ public class ComputerManager : Singleton<ComputerManager>
 
     public void Exit()
     {
+        Zoom(false);
         CompControl.Enable(false);
         Disable();
     }

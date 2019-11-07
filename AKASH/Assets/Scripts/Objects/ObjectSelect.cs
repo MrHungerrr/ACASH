@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class ObjectSelect : MonoBehaviour
 {
@@ -8,43 +9,47 @@ public class ObjectSelect : MonoBehaviour
     private Material[] mats;
     [SerializeField]
     private Renderer[] renderers;
-
+    [SerializeField]
+    private TextMeshPro[] texts;
 
 
     private void Awake()
     {
         Renderer buf;
 
-        if(TryGetComponent<Renderer>(out buf))
+        if (TryGetComponent<Renderer>(out buf))
             mat = buf.material;
 
         if (renderers != null)
         {
             mats = new Material[renderers.Length];
 
-            for (int i = 0; i< renderers.Length; i++)
+            for (int i = 0; i < renderers.Length; i++)
             {
                 mats[i] = renderers[i].material;
             }
         }
 
-        Debug.Log(renderers.Length);
         Deselect();
     }
+
+
 
     public void Select()
     {
         if (mat != null)
         {
-            mat.SetColor("_EmissionColor", new Color(0.55f, 0.55f, 0.55f));
+            mat.SetColor("_EmissionColor", SelectManager.get.select_col);
         }
 
-        if (mats != null)
+        for (int i = 0; i < mats.Length; i++)
         {
-            foreach(Material material in mats)
-            {
-                material.SetColor("_EmissionColor", new Color(0.55f, 0.55f, 0.55f));
-            }
+            mats[i].SetColor("_EmissionColor", SelectManager.get.select_col);
+        }
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            texts[i].color = SelectManager.get.select_col;
         }
     }
 
@@ -52,15 +57,18 @@ public class ObjectSelect : MonoBehaviour
     {
         if (mat != null)
         {
-            mat.SetColor("_EmissionColor", new Color(1.5f, 1.5f, 1.5f));
+            mat.SetColor("_EmissionColor", SelectManager.get.col);
         }
 
-        if (mats != null)
+        for (int i = 0; i < mats.Length; i++)
         {
-            foreach (Material material in mats)
-            {
-                material.SetColor("_EmissionColor", new Color(1.5f, 1.5f, 1.5f));
-            }
+            mats[i].SetColor("_EmissionColor", SelectManager.get.col);
         }
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            texts[i].color = SelectManager.get.col;
+        }
+
     }
 }

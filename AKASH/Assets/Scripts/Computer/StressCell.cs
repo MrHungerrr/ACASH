@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class StressCell : MonoBehaviour
 {
+    private bool active = false;
     private Scholar scholar;
     private TextMeshProUGUI emotion;
     private TextMeshProUGUI scholar_name;
@@ -21,18 +22,20 @@ public class StressCell : MonoBehaviour
 
     public void Set(Scholar s)
     {
+        active = true;
         scholar = s;
         scholar_name.text = scholar.name_1 + " " + scholar.name_2;
-        Debug.Log("Имя чувака - " + scholar.name_1 + " " + scholar.name_2);
-        Debug.Log("Стресс чувака - " + scholar.name_1 + " " + scholar.name_2);
     }
 
     public void Refresh()
     {
-        stress = scholar.stress;
-        Debug.Log("Стресс чувака - " + stress/10);
-        slider.Select(stress / 10);
-        Mood(scholar.GetMoodType());
+        if (active)
+        {
+            stress = scholar.stress;
+            //Debug.Log("Стресс чувака - " + stress/10);
+            slider.Select(stress / 10);
+            Mood(scholar.GetMoodType());
+        }
     }
 
     private void Mood(string mood)
