@@ -1,21 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using N_BH;
 
 public class CameraManager : Singleton<CameraManager>
 {
-    private CrossHair CrossHair;
 
-    private void Awake()
+    public void Cross(bool option)
     {
-        CrossHair = GameObject.FindObjectOfType<CrossHair>();
-    }
-
-
-    public void Cross(bool u)
-    {
-        CrossHair.enabled = u;
+        CrossHair.get.Enable(option);
     }
 
 
@@ -35,6 +29,11 @@ public class CameraManager : Singleton<CameraManager>
                     break;
                 }
             case "computer":
+                {
+                    Cross(false);
+                    break;
+                }
+            case "doorlock":
                 {
                     Cross(false);
                     break;

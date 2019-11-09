@@ -6,8 +6,6 @@ public class ComputerSelect : MonoBehaviour
 {
     [SerializeField]
     private Image[] images;
-    [SerializeField]
-    private TextMeshProUGUI[] texts;
 
     private Color[] colors = new Color[2]
     {
@@ -33,11 +31,5 @@ public class ComputerSelect : MonoBehaviour
         {
             images[i].color = colors[buf];
         }
-
-        for (int i = 0; i < texts.Length; i++)
-        {
-            texts[i].color = colors[buf];
-        }
-
     }
 }

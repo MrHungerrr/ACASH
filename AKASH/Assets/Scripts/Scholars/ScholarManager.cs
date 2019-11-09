@@ -16,12 +16,6 @@ public class ScholarManager : Singleton<ScholarManager>
     public int special_actions_count;
 
 
-    private float time_passed;
-    private float time_left;
-    [HideInInspector]
-    public float time_test;
-
-
     [HideInInspector]
     public Transform[,] desks;
     [HideInInspector]
@@ -128,14 +122,6 @@ public class ScholarManager : Singleton<ScholarManager>
         ScholarNumberRandomer();
         StartCoroutine(PrepareForTest());
     }
-
-
-
-    private void Update()
-    {
-        Timer();
-    }
-
 
 
     public void Stress(int value)
@@ -346,7 +332,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         yield return new WaitForSeconds(time);
 
-        if ((special_actions_per_minute / 60) > (special_actions_count / time_passed))
+        if ((special_actions_per_minute / 60) > (special_actions_count / TimeManager.get.time_passed))
         {
             //Debug.Log("Проверка на радномное специальное действие!");
             if (Probability(0.6))
@@ -416,17 +402,8 @@ public class ScholarManager : Singleton<ScholarManager>
             scholars[i].StartWrite();
         }
 
-        time_left = time_test;
-        time_passed = 0;
+        TimeManager.get.Enable();
         special_actions_count = 0;
-    }
-
-
-
-    private void Timer()
-    {
-        time_passed += Time.deltaTime;
-        time_left = time_test - time_passed;
     }
 
 

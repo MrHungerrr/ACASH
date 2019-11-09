@@ -74,6 +74,13 @@ public class InputManager : Singleton<InputManager>
         Controls.Computer.Exit.started += ctx => ComputerExit();
         Controls.Computer.Menu.started += ctx => ComputerMenu();
 
+        Controls.DoorLock.Camera.performed += ctx => DoorLockManager.get.rotInput = ctx.ReadValue<Vector2>();
+        Controls.DoorLock.Camera.canceled += ctx => DoorLockManager.get.rotInput = Vector2.zero;
+        Controls.DoorLock.Zoom.started += ctx => DoorLockZoom(true);
+        Controls.DoorLock.Zoom.canceled += ctx => DoorLockZoom(false);
+        Controls.DoorLock.Exit.started += ctx => DoorLockExit();
+        Controls.DoorLock.Menu.started += ctx => DoorLockMenu();
+
 
         Controls.InputType.Keyboard.performed += ctx => TypeOfInput("keyboard");
         Controls.InputType.PlayStation.performed += ctx => TypeOfInput("playstation");
@@ -117,6 +124,11 @@ public class InputManager : Singleton<InputManager>
             case "computer":
                 {
                     Controls.Computer.Enable();
+                    break;
+                }
+            case "doorlock":
+                {
+                    Controls.DoorLock.Enable();
                     break;
                 }
             case "cutscene":
@@ -360,6 +372,29 @@ public class InputManager : Singleton<InputManager>
         SwitchGameInput("menu");
     }
 
+
+
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //DoorLock Input
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void DoorLockExit()
+    {
+        DoorLockManager.get.Exit();
+        SwitchGameInput("gameplay");
+    }
+
+    private void DoorLockZoom(bool option)
+    {
+        DoorLockManager.get.Zoom(option);
+    }
+
+    private void DoorLockMenu()
+    {
+        Menu.get.MenuEnable(true);
+        SwitchGameInput("menu");
+    }
 
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------

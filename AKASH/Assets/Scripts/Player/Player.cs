@@ -40,7 +40,7 @@ public class Player : Singleton<Player>
     public bool act;
     [HideInInspector]
     public bool actReady;
-    private float actMaxRange = 1f;
+    private float actMaxRange = 2f;
     private float actMinRange = 0.4f;
     [HideInInspector]
     public string actTag;
@@ -196,7 +196,7 @@ public class Player : Singleton<Player>
             actTag = null;
         }
 
-        
+        CrossHair.get.SelectHair(actTag);
 
         RaycastHit[] hits;
         hits = Physics.RaycastAll(ray, 20, sightLayerMask);
@@ -267,7 +267,16 @@ public class Player : Singleton<Player>
                         }
                     case "Door":
                         {
-                            actObject.GetComponent<Door>().DoorInteract(transform.position);
+                            if(typeOfMovement != "crouch")
+                                actObject.GetComponent<Door>().DoorInteract(transform.position);
+                            else
+                                actObject.GetComponent<Door>().DoorQuietInteract(transform.position);
+                            break;
+                        }
+                    case "DoorHandle":
+                        {
+                            actObject.GetComponent<DoorLock>().Enable(true);
+                            act = false;
                             break;
                         }
                 }

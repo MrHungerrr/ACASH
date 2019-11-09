@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
     private bool open = false;
     public bool locked;
     private bool ninety;
-    private bool act = false;
+    private bool active = false;
     private Quaternion commonRot;
     private Quaternion targetRot;
     private Transform trans;
@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
         {
             ninety = false;
         }
-        else if (transform.parent.parent.rotation.eulerAngles.y == 0)
+        else if (transform.parent.parent.rotation.eulerAngles.y == 90)
         {
             ninety = true;
         }
@@ -44,15 +44,14 @@ public class Door : MonoBehaviour
             Debug.Log("Не правильно поставлена дверь!");
         }
 
-
-
+        active = false;
     }
 
     
 
     void Update()
     {
-        if (act)
+        if (active)
             DoorRot();
 
         ScholarOpen();
@@ -97,7 +96,48 @@ public class Door : MonoBehaviour
             }
 
             last_pos = pos;
-            act = true;
+            active = true;
+        }
+    }
+
+    public void DoorQuietInteract(Vector3 pos)
+    {
+        if (!locked)
+        {
+            open = !open;
+
+            if (open)
+            {
+                if (ninety)
+                {
+                    if (trans.position.z > pos.z)
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 50, commonRot.eulerAngles.z);
+                    }
+                    else
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 50, commonRot.eulerAngles.z);
+                    }
+                }
+                else
+                {
+                    if (trans.position.x > pos.x)
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 50, commonRot.eulerAngles.z);
+                    }
+                    else
+                    {
+                        targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y - 50, commonRot.eulerAngles.z);
+                    }
+                }
+            }
+            else
+            {
+                targetRot = commonRot;
+            }
+
+            last_pos = pos;
+            active = true;
         }
     }
 
@@ -123,7 +163,7 @@ public class Door : MonoBehaviour
             }
             else
             {
-                act = false;
+                active = false;
             }
         }
     }

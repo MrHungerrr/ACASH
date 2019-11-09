@@ -66,6 +66,7 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   typeOfMovement: 
   look_closer: 0
+  draw: 0
   doing: 0
   asked: 0
   act: 0
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 49.90743
+    FieldOfView: 70
     OrthographicSize: 10
     NearClipPlane: 0.03
     FarClipPlane: 5000
@@ -198,7 +199,6 @@ MonoBehaviour:
   rotateInput: {x: 0, y: 0}
   zoom: 0
   zooming: 0
-  disPlayer: 0
 --- !u!114 &6384746390788808964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,4 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052ad34185c687f42838d477686adfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crossHair: {fileID: 2800000, guid: d6404e7229f14f84385e9b93ca4b42cb, type: 3}
+  crossSimple: {fileID: 2800000, guid: d6404e7229f14f84385e9b93ca4b42cb, type: 3}
+  crossAction: {fileID: 2800000, guid: 646f25ccfcffa944f94bb7000832d8bb, type: 3}
+  crossSpeak: {fileID: 2800000, guid: b408da2dc8eaf10459efaf70bc3d4de2, type: 3}
+  crossExecute: {fileID: 2800000, guid: 7c71400016d26e048b54d66101e92912, type: 3}
+  crossEye: {fileID: 2800000, guid: dde9191ad001d574b877e8acc8bb53c6, type: 3}

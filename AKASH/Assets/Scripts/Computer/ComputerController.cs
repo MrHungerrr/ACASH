@@ -22,10 +22,14 @@ public class ComputerController : MonoBehaviour
     public bool zooming;
     [HideInInspector]
     public bool moving;
+    private const float y_delta = 10;
+    private const float x_delta = 15;
     private Quaternion normRotation;
     private float normFOV = 60;
     private float zoomFOV = 20;
     private float FOV;
+
+
         
 
     private string mouse_collision;
@@ -97,9 +101,6 @@ public class ComputerController : MonoBehaviour
         comp_col.enabled = option;
         PlayerCamera.get.Enable(!option);
         comp_cam.enabled = option;
-
-
-
     }
 
 
@@ -114,8 +115,6 @@ public class ComputerController : MonoBehaviour
             if (!zoom && moving)
                 CameraMove();
         }
-
-
     }
 
     public void Move(Vector3 movement)
@@ -139,14 +138,14 @@ public class ComputerController : MonoBehaviour
 
             comp_cam.transform.Rotate(movement);
 
-            if (Mathf.Abs(comp_cam.transform.localEulerAngles.y - 180) > 10)
+            if (Mathf.Abs(comp_cam.transform.localEulerAngles.y - 180) > y_delta)
             {
-                ClampYAxisRotationToValue(180 + Mathf.Sign(comp_cam.transform.localEulerAngles.y - 180)*10);
+                ClampYAxisRotationToValue(180 + Mathf.Sign(comp_cam.transform.localEulerAngles.y - 180)*y_delta);
             }
 
-            if (comp_cam.transform.localEulerAngles.x > 15 && comp_cam.transform.localEulerAngles.x < 345 )
+            if (comp_cam.transform.localEulerAngles.x > x_delta && comp_cam.transform.localEulerAngles.x < (360 - x_delta) )
             {
-                ClampXAxisRotationToValue((((int)comp_cam.transform.localEulerAngles.x / 180) * -30) + 15);
+                ClampXAxisRotationToValue((((int)comp_cam.transform.localEulerAngles.x / 180) * -(x_delta*2)) + x_delta);
             }
 
 
@@ -180,7 +179,7 @@ public class ComputerController : MonoBehaviour
     private void CameraMove()
     {
         
-        comp_cam.transform.rotation = Quaternion.Slerp(comp_cam.transform.rotation, normRotation, 0.03f);
+        comp_cam.transform.rotation = Quaternion.Slerp(comp_cam.transform.rotation, normRotation, 4f * Time.deltaTime);
 
         if (comp_cam.transform.rotation == normRotation)
         {

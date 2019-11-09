@@ -24,10 +24,6 @@ public class ComputerManager : Singleton<ComputerManager>
     public bool fast;
 
 
-    private Vector2 position;
-    public bool normalize;
-
-
     [HideInInspector]
     public int desktop_num;
     [HideInInspector]

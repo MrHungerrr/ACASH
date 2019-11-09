@@ -1174,6 +1174,145 @@ public class PlayerControls : IInputActionCollection, IDisposable
             ]
         },
         {
+            ""name"": ""DoorLock"",
+            ""id"": ""d052db79-5551-47cf-bf41-df72790b0895"",
+            ""actions"": [
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""Value"",
+                    ""id"": ""577290e8-789e-4964-b8b2-ad05b6b7682d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""11b29b9b-8266-461c-9b11-d06070456097"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""f85e337d-4c78-4416-aeed-4a6d2269f43e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d031f19-bdb8-4ce9-b3e9-480bb3079448"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2621c2cb-0291-421b-a726-95d963b00718"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39ae8e24-c428-40b7-a173-9a2a31eb2e35"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5883b31-a0cc-4fdb-a40b-738dabfb9c99"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d592ca8-0145-44eb-b280-d80de7f3427e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53138e19-2ef3-4a4b-a652-b617154cbbf3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3e16322-481e-4f44-908d-b2b7424b99b4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11467611-7076-42e7-b10f-5c872c7d9704"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73134e6e-6774-483f-b342-086de705918b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f638a83-a474-449f-b09f-46ca0bf975ef"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""InputType"",
             ""id"": ""9b58f85a-2cec-4c22-87d0-b05973490161"",
             ""actions"": [
@@ -1658,6 +1797,12 @@ public class PlayerControls : IInputActionCollection, IDisposable
         m_Cutscene_Menu = m_Cutscene.FindAction("Menu", throwIfNotFound: true);
         m_Cutscene_Skip = m_Cutscene.FindAction("Skip", throwIfNotFound: true);
         m_Cutscene_Hint = m_Cutscene.FindAction("Hint", throwIfNotFound: true);
+        // DoorLock
+        m_DoorLock = asset.FindActionMap("DoorLock", throwIfNotFound: true);
+        m_DoorLock_Camera = m_DoorLock.FindAction("Camera", throwIfNotFound: true);
+        m_DoorLock_Exit = m_DoorLock.FindAction("Exit", throwIfNotFound: true);
+        m_DoorLock_Menu = m_DoorLock.FindAction("Menu", throwIfNotFound: true);
+        m_DoorLock_Zoom = m_DoorLock.FindAction("Zoom", throwIfNotFound: true);
         // InputType
         m_InputType = asset.FindActionMap("InputType", throwIfNotFound: true);
         m_InputType_Keyboard = m_InputType.FindAction("Keyboard", throwIfNotFound: true);
@@ -2001,6 +2146,63 @@ public class PlayerControls : IInputActionCollection, IDisposable
     }
     public CutsceneActions @Cutscene => new CutsceneActions(this);
 
+    // DoorLock
+    private readonly InputActionMap m_DoorLock;
+    private IDoorLockActions m_DoorLockActionsCallbackInterface;
+    private readonly InputAction m_DoorLock_Camera;
+    private readonly InputAction m_DoorLock_Exit;
+    private readonly InputAction m_DoorLock_Menu;
+    private readonly InputAction m_DoorLock_Zoom;
+    public struct DoorLockActions
+    {
+        private PlayerControls m_Wrapper;
+        public DoorLockActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Camera => m_Wrapper.m_DoorLock_Camera;
+        public InputAction @Exit => m_Wrapper.m_DoorLock_Exit;
+        public InputAction @Menu => m_Wrapper.m_DoorLock_Menu;
+        public InputAction @Zoom => m_Wrapper.m_DoorLock_Zoom;
+        public InputActionMap Get() { return m_Wrapper.m_DoorLock; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DoorLockActions set) { return set.Get(); }
+        public void SetCallbacks(IDoorLockActions instance)
+        {
+            if (m_Wrapper.m_DoorLockActionsCallbackInterface != null)
+            {
+                Camera.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
+                Camera.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
+                Camera.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
+                Exit.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
+                Exit.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
+                Exit.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
+                Menu.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
+                Menu.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
+                Menu.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
+                Zoom.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
+                Zoom.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
+                Zoom.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
+            }
+            m_Wrapper.m_DoorLockActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                Camera.started += instance.OnCamera;
+                Camera.performed += instance.OnCamera;
+                Camera.canceled += instance.OnCamera;
+                Exit.started += instance.OnExit;
+                Exit.performed += instance.OnExit;
+                Exit.canceled += instance.OnExit;
+                Menu.started += instance.OnMenu;
+                Menu.performed += instance.OnMenu;
+                Menu.canceled += instance.OnMenu;
+                Zoom.started += instance.OnZoom;
+                Zoom.performed += instance.OnZoom;
+                Zoom.canceled += instance.OnZoom;
+            }
+        }
+    }
+    public DoorLockActions @DoorLock => new DoorLockActions(this);
+
     // InputType
     private readonly InputActionMap m_InputType;
     private IInputTypeActions m_InputTypeActionsCallbackInterface;
@@ -2093,6 +2295,13 @@ public class PlayerControls : IInputActionCollection, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnSkip(InputAction.CallbackContext context);
         void OnHint(InputAction.CallbackContext context);
+    }
+    public interface IDoorLockActions
+    {
+        void OnCamera(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
     public interface IInputTypeActions
     {
