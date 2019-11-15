@@ -41,14 +41,13 @@ public class Player : Singleton<Player>
     [HideInInspector]
     public bool actReady;
     private float actMaxRange = 2f;
-    private float actMinRange = 0.4f;
+    private float actMinRange = 0.6f;
     [HideInInspector]
     public string actTag;
     private GameObject actObject;
     private bool actSpecialOption;
     private GameObject selected_scholar;
     private string actText;
-    private ScholarManager ScholarMan;
     private string keyWord = "Teacher_";
     private string key;
 
@@ -57,7 +56,6 @@ public class Player : Singleton<Player>
     private void Awake()
     {
         CharController = GetComponent<CharacterController>();
-        ScholarMan = GameObject.FindObjectOfType<ScholarManager>();
         draw = false;
     }
 
@@ -66,7 +64,6 @@ public class Player : Singleton<Player>
         actLayerMask = LayerMask.GetMask("Selectable");
         sightLayerMask = LayerMask.GetMask("Sight Layer");
         SwitchMove("normal");
-
     }
 
     private void Update()
@@ -309,7 +306,7 @@ public class Player : Singleton<Player>
     private IEnumerator Shouting()
     {
         StopThinking();
-        ScholarMan.Stress(10);
+        ScholarManager.get.Stress(10);
         act = true;
         key = "Shout_";
         int nomber = Random.Range(0, ScriptManager.get.linesQuantity[keyWord + key]);

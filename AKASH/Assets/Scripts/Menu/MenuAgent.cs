@@ -29,20 +29,39 @@ public class MenuAgent : Singleton<MenuAgent>
                     InputManager.get.MenuResume();
                     break;
                 }
+            case "Restart":
+                {
+                    GameManager.get.Restart();
+                    break;
+                }
             case "Settings":
                 {
-                    Disable("Pause");
+                    if (GameManager.get.game)
+                        Disable("Pause");
+                    else
+                        Disable("Main Menu");
+
                     Set("Settings");
                     break;
                 }
             case "Main Menu":
                 {
-                    Application.Quit();
+                    GameManager.get.MainMenu();
+                    break;
+                }
+            case "New Game":
+                {
+                    GameManager.get.NewGame();
+                    break;
+                }
+            case "Continue Story":
+                {
+                    GameManager.get.Continue();
                     break;
                 }
             case "Exit":
                 {
-                    Application.Quit();
+                    GameManager.get.Quit();
                     break;
                 }
             case "Back":
@@ -158,7 +177,15 @@ public class MenuAgent : Singleton<MenuAgent>
             case "Settings":
                 {
                     Disable("Settings");
-                    Set("Pause");
+                    if (GameManager.get.game)
+                        Set("Pause");
+                    else
+                        Set("Main Menu");
+                    break;
+                }
+            case "Main Menu":
+                {
+                    GameManager.get.Quit();
                     break;
                 }
             case "Main":
@@ -195,6 +222,8 @@ public class MenuAgent : Singleton<MenuAgent>
     public void Set(string type)
     {
         menu_types[type].SetActive(true);
+        Debug.Log(menu_types[type].name);
+        Debug.Log(type);
     }
 
 

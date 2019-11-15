@@ -8,7 +8,16 @@ public class SelectManager : Singleton<SelectManager>
     public Material mat;
     public Material select_mat;
     [HideInInspector]
-    public Color col = new Color(0.7f, 0.7f, 0.7f);
+    public Color col;
     [HideInInspector]
-    public Color select_col = new Color(3f, 3f, 3f);
+    public Color select_col;
+    [HideInInspector]
+    public Color select_text;
+
+    private void Awake()
+    {
+        col = new Color(0.7f, 0.7f, 0.7f);
+        select_col = new Color(2f, 2f, 2f);
+        select_text = new Color(1f, 1f, 1f);
+    }
 }

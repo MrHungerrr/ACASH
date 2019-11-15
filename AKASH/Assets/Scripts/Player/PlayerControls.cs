@@ -656,17 +656,6 @@ public class PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e4c8b688-6233-470d-a9b3-874afeadd62b"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5bb6fc98-bdb3-4d68-b882-1cc23d425685"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",

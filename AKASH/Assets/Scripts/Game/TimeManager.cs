@@ -23,7 +23,7 @@ public class TimeManager : Singleton<TimeManager>
         time_left = 0;
         time_passed = time_test;
 
-        timers = FindObjectsOfType<Timer>();
+
     }
 
     private void Update()
@@ -36,6 +36,7 @@ public class TimeManager : Singleton<TimeManager>
 
     public void Enable()
     {
+        timers = FindObjectsOfType<Timer>();
         time_left = time_test;
         time_passed = 0;
         active = true;

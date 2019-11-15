@@ -40,7 +40,7 @@ public class MenuSection : MonoBehaviour
     {
         if (u)
         {
-            select.image.color = new Color(1f, 1f, 1f, 0.3f);
+            select.image.color = new Color(1f, 1f, 1f, 0.1f);
 
             if (settings)
             {

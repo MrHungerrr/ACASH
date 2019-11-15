@@ -43,6 +43,10 @@ public class CameraManager : Singleton<CameraManager>
                     Cross(false);
                     break;
                 }
+            default:
+                {
+                    break;
+                }
         }
     }
 }

@@ -498,7 +498,7 @@ public class Scholar : MonoBehaviour
     public bool IsTeacherBullingRight(string obj)
     {
         Debug.Log(obj);
-        if (GameManager.get.banned[obj])
+        if (ExamManager.get.banned[obj])
             return true;
         else
             return false;

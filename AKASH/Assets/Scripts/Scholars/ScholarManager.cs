@@ -7,7 +7,6 @@ public class ScholarManager : Singleton<ScholarManager>
 {
     [HideInInspector]
     public Scholar[] scholars;
-    [SerializeField]
     private bool withoutScholars;
 
     public int cheating_count;
@@ -57,13 +56,8 @@ public class ScholarManager : Singleton<ScholarManager>
     };
 
 
-
-
-    private void Awake()
+    public void SetLevel()
     {
-        scholars = GameObject.FindObjectsOfType<Scholar>();
-
-
         var buf = GameObject.FindGameObjectsWithTag("Sink");
         sinks = new Transform[2, buf.Length];
         sinks_busy = new bool[buf.Length];
@@ -109,16 +103,16 @@ public class ScholarManager : Singleton<ScholarManager>
             desks[1, i] = buf[i].transform;
             desks[0, i] = buf[i].transform.parent.transform.Find("Destonation");
         }
-
-
-
-        DeskSort();
     }
 
-
-
-    void Start()
+    public void SetScholars()
     {
+        scholars = GameObject.FindObjectsOfType<Scholar>();
+
+        withoutScholars = (scholars.Length == 0);
+
+        DeskSort();
+        StudentStress.get.Set();
         ScholarNumberRandomer();
         StartCoroutine(PrepareForTest());
     }

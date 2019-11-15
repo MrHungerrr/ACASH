@@ -23,11 +23,13 @@ public class SubtitlePlay : MonoBehaviour
     {
         if (option)
         {
-            textBox.color = new Color(1f, 1f, 1f, 1f);
+            textBox.faceColor = new Color(0f, 0f, 0f, 1f);
+            textBox.outlineColor = new Color(1f, 1f, 1f, 1f);
         }
         else
         {
-            textBox.color = new Color(1f, 1f, 1f, 0f);
+            textBox.faceColor = new Color(0f, 0f, 0f, 0f);
+            textBox.outlineColor = new Color(1f, 1f, 1f, 0f);
         }
 
     }

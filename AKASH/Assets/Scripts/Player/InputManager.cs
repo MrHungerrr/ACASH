@@ -10,13 +10,6 @@ using N_BH;
 public class InputManager : Singleton<InputManager>
 {
 
-    [HideInInspector]
-    public bool game;
-    [HideInInspector]
-    public bool cutScene;
-    [HideInInspector]
-    public bool disPlayer;
-
     private PlayerControls Controls;
 
 
@@ -89,15 +82,10 @@ public class InputManager : Singleton<InputManager>
 
     private void Start()
     {
-        game = true;
-        cutScene = false;
-        disPlayer = false;
-
         //menu = GameObject.FindObjectOfType<Menu>();
         //menu.SwitchMenu(false);
-
-        SwitchGameInput("gameplay");
-        TypeOfInput("keyboard");
+        //SwitchGameInput("menu");
+        //TypeOfInput("keyboard");
         Controls.InputType.Enable();
     }
 
@@ -134,6 +122,15 @@ public class InputManager : Singleton<InputManager>
             case "cutscene":
                 {
                     Controls.Gameplay.Enable();
+                    break;
+                }
+            case "disable":
+                {
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("<color=red>Input Manager</color> Не правильно введен тип управления");
                     break;
                 }
         }
@@ -307,7 +304,6 @@ public class InputManager : Singleton<InputManager>
 
     private void GameMenu()
     {
-
         Menu.get.MenuEnable(true);
         SwitchGameInput("menu");
     }
@@ -321,7 +317,7 @@ public class InputManager : Singleton<InputManager>
 
     public void MenuResume()
     {
-        if (game)
+        if (GameManager.get.game)
         {
             Menu.get.MenuEnable(false);
             SwitchGameInput(gameType_last);

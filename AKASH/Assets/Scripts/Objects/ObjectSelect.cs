@@ -49,7 +49,7 @@ public class ObjectSelect : MonoBehaviour
 
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].color = SelectManager.get.select_col;
+            texts[i].color = SelectManager.get.select_text;
         }
     }
 

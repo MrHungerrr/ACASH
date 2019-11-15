@@ -71,7 +71,7 @@ public class ScoreManager: Singleton<ScoreManager>
 
     public void QuestionScore(string topic, bool answer)
     {
-        if ((GameManager.get.banned[topic] || !answer) && (!GameManager.get.banned[topic] || answer))
+        if ((ExamManager.get.banned[topic] || !answer) && (!ExamManager.get.banned[topic] || answer))
             Score(10);
         else
             Score(-25);
@@ -79,7 +79,7 @@ public class ScoreManager: Singleton<ScoreManager>
 	
 	public void SubjectScore(string subject)
 	{
-		if(GameManager.get.banned[subject])
+		if(ExamManager.get.banned[subject])
             Score(10);
         else
             Score(-25);

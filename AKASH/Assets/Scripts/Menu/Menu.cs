@@ -31,10 +31,6 @@ public class Menu : Singleton<Menu>
 
     void Awake()
     {
-    }
-
-    private void Start()
-    {
         MenuEnable(false);
     }
 
@@ -58,6 +54,16 @@ public class Menu : Singleton<Menu>
         {
             StartCoroutine(MenuOff());
         }
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 0;
+
+        state = true;
+        MenuAgent.get.Set("Main Menu");
+
+        InputType();
     }
 
 
@@ -233,7 +239,10 @@ public class Menu : Singleton<Menu>
         Cursor.lockState = CursorLockMode.Locked;
 
         if (current_menu != null)
+        {
             MenuAgent.get.Disable(current_menu);
+            Debug.Log("Disabled - " + current_menu);
+        }
 
         while (dof < 32)
         {
@@ -253,11 +262,6 @@ public class Menu : Singleton<Menu>
         {
             switch (InputManager.get.inputType)
             {
-                case "keyboard":
-                    {
-                        Cursor.lockState = CursorLockMode.None;
-                        break;
-                    }
                 case "playstation":
                     {
                         Cursor.lockState = CursorLockMode.Locked;
@@ -266,6 +270,11 @@ public class Menu : Singleton<Menu>
                 case "xbox":
                     {
                         Cursor.lockState = CursorLockMode.Locked;
+                        break;
+                    }
+                default:
+                    {
+                        Cursor.lockState = CursorLockMode.None;
                         break;
                     }
 
