@@ -7,7 +7,7 @@ public class Menu : Singleton<Menu>
 {
     private bool state;
 
-    private const float dof_coef = 0.25f;
+
 
     private MenuSection[] menu_sections;
     private int count_row;
@@ -22,7 +22,6 @@ public class Menu : Singleton<Menu>
 
     [HideInInspector]
     public Vector2 moveInput;
-    private Vector2 move;
     [HideInInspector]
     public int move_cd;
     private const int move_const_keyboard_cd = 12;
@@ -44,15 +43,26 @@ public class Menu : Singleton<Menu>
 
 
 
-    public void MenuEnable(bool u)
+    public void MenuEnable(bool option)
     {
-        if (u)
+        state = option;
+        PostProcessManager.get.Blur(option);
+
+        if (option)
         {
-            StartCoroutine(MenuOn());
+            Time.timeScale = 0;
+            MenuAgent.get.Set("Pause");
+            InputType();
         }
         else
         {
-            StartCoroutine(MenuOff());
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            if (current_menu != null)
+            {
+                MenuAgent.get.Disable(current_menu);
+            }
         }
     }
 
@@ -134,7 +144,7 @@ public class Menu : Singleton<Menu>
                     int buf = select_row - 1;
 
                     if (buf < 0)
-                        buf = count_row - 1;
+                        buf = 0;
 
 
                     Select(buf);
@@ -144,7 +154,7 @@ public class Menu : Singleton<Menu>
                     int buf = select_row + 1;
 
                     if (buf >= count_row)
-                        buf = 0;
+                        buf = count_row - 1;
 
                     Select(buf);
                 }
@@ -205,54 +215,6 @@ public class Menu : Singleton<Menu>
                 }
         }
     }
-
-
-
-    private IEnumerator MenuOn()
-    {
-        Time.timeScale = 0;
-
-        state = true;
-        float dof = PostProcessManager.get.GetDOF();
-        MenuAgent.get.Set("Pause");
-
-        InputType();
-
-        while (dof > 0.1)
-        {
-            dof -= (dof / 2) * dof_coef;
-            PostProcessManager.get.DOF(dof);
-            yield return new WaitForEndOfFrame();
-        }
-
-    }
-
-
-
-
-    private IEnumerator MenuOff()
-    {
-        Time.timeScale = 1;
-
-        state = false;
-        float dof = PostProcessManager.get.GetDOF();
-        Cursor.lockState = CursorLockMode.Locked;
-
-        if (current_menu != null)
-        {
-            MenuAgent.get.Disable(current_menu);
-            Debug.Log("Disabled - " + current_menu);
-        }
-
-        while (dof < 32)
-        {
-            dof += ((33 - dof) / 2) * dof_coef;
-            PostProcessManager.get.DOF(dof);
-            yield return new WaitForEndOfFrame();
-        }
-
-    }
-
 
 
 

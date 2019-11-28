@@ -39,17 +39,17 @@ public class ObjectSelect : MonoBehaviour
     {
         if (mat != null)
         {
-            mat.SetColor("_EmissionColor", SelectManager.get.select_col);
+            mat.SetColor("_EmissionColor", SelectHelper.select_col);
         }
 
         for (int i = 0; i < mats.Length; i++)
         {
-            mats[i].SetColor("_EmissionColor", SelectManager.get.select_col);
+            mats[i].SetColor("_EmissionColor", SelectHelper.select_col);
         }
 
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].color = SelectManager.get.select_text;
+            texts[i].color = SelectHelper.select_text;
         }
     }
 
@@ -57,17 +57,17 @@ public class ObjectSelect : MonoBehaviour
     {
         if (mat != null)
         {
-            mat.SetColor("_EmissionColor", SelectManager.get.col);
+            mat.SetColor("_EmissionColor", SelectHelper.col);
         }
 
         for (int i = 0; i < mats.Length; i++)
         {
-            mats[i].SetColor("_EmissionColor", SelectManager.get.col);
+            mats[i].SetColor("_EmissionColor", SelectHelper.col);
         }
 
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].color = SelectManager.get.col;
+            texts[i].color = SelectHelper.col;
         }
 
     }

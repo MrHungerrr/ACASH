@@ -6,27 +6,38 @@ using N_BH;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    private string activeLevel;
+    private string current_level;
 
     public void Load(string sceneName)
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)
         {
             SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            activeLevel = sceneName;
+            if (sceneName != "Elevator")
+                current_level = sceneName;
         }
     }
 
     public void LoadFast(string sceneName)
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)
+        {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+
+            if(sceneName != "Elevator")
+                current_level = sceneName;
+        }
     }
 
     public void Unload(string sceneName)
     {
         if (SceneManager.GetSceneByName(sceneName).isLoaded)
             SceneManager.UnloadSceneAsync(sceneName); 
+    }
+
+    public bool IsLoad()
+    {
+        return SceneManager.GetSceneByName(current_level).isLoaded;
     }
 
     public bool IsLoad(string sceneName)

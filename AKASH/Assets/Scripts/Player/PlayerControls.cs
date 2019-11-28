@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class PlayerControls : IInputActionCollection, IDisposable
+public class @PlayerControls : IInputActionCollection, IDisposable
 {
     private InputActionAsset asset;
-    public PlayerControls()
+    public @PlayerControls()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerControls"",
@@ -102,6 +102,14 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""ec650a98-f2f5-425a-86ef-085347f0f5ab"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""HUD"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2167fb3-4bed-4a2d-af97-6e99bea23743"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -457,6 +465,28 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9001581b-551c-47cb-852f-a53e11d8dab4"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HUD"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c38ef94-3d97-401d-bf2a-86aaf52b9236"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HUD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1728,6 +1758,211 @@ public class PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Execute"",
+            ""id"": ""7253f2fa-c780-421f-97b3-e927cf637524"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""bd34d4fb-f662-40f9-9b79-e021a2cccbed"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""62117a6e-7f5b-4fb9-aa57-b3a6e9ebf2f0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Accept"",
+                    ""type"": ""Button"",
+                    ""id"": ""4447bb11-684a-4045-9596-b81d67e651b8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""d87b29cd-8289-4f66-846a-4a459347af1a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Computer"",
+                    ""id"": ""8d6bc9a5-016e-442a-8f9f-e5530ac51739"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""30d7e642-1c3c-4ae4-8f5c-c59d2746f6f1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a26d59f6-1ffc-4c5b-b3ff-e14ffd3604b3"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""aa15e0ca-3ac9-4a24-9acd-1a554b2d6211"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b3afb0a6-bda0-45c0-b54f-3884aa1c10e4"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""5a460c60-bb83-4cf8-8aaa-63d32df7678e"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""D-pad"",
+                    ""id"": ""f4d13446-a3de-4dd9-802b-13ec7e44105f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""bedf27fa-5a3c-4603-bd96-954ff85012c3"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""fd5b2965-4732-44ef-93da-ef3a92dfd761"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b97322a-6782-4c98-8b1d-4e110df0ca7e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07985ebe-0ef8-4c9b-8ded-bbf987a50aee"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbdf49e0-92bf-4396-a03a-159161f69d56"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12058dca-ab27-44a5-8ee5-7273ad5180e1"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08d25a6c-d9e5-4712-916d-afc2a8de4960"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e490fe5-ec21-4029-b7a3-ec92adcbee2a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1767,6 +2002,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Run = m_Gameplay.FindAction("Run", throwIfNotFound: true);
         m_Gameplay_Crouch = m_Gameplay.FindAction("Crouch", throwIfNotFound: true);
+        m_Gameplay_HUD = m_Gameplay.FindAction("HUD", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
@@ -1797,6 +2033,12 @@ public class PlayerControls : IInputActionCollection, IDisposable
         m_InputType_Keyboard = m_InputType.FindAction("Keyboard", throwIfNotFound: true);
         m_InputType_Xbox = m_InputType.FindAction("Xbox", throwIfNotFound: true);
         m_InputType_PlayStation = m_InputType.FindAction("PlayStation", throwIfNotFound: true);
+        // Execute
+        m_Execute = asset.FindActionMap("Execute", throwIfNotFound: true);
+        m_Execute_Move = m_Execute.FindAction("Move", throwIfNotFound: true);
+        m_Execute_Back = m_Execute.FindAction("Back", throwIfNotFound: true);
+        m_Execute_Accept = m_Execute.FindAction("Accept", throwIfNotFound: true);
+        m_Execute_Menu = m_Execute.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1857,10 +2099,11 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Run;
     private readonly InputAction m_Gameplay_Crouch;
+    private readonly InputAction m_Gameplay_HUD;
     public struct GameplayActions
     {
-        private PlayerControls m_Wrapper;
-        public GameplayActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Execute => m_Wrapper.m_Gameplay_Execute;
         public InputAction @Zoom => m_Wrapper.m_Gameplay_Zoom;
         public InputAction @Action => m_Wrapper.m_Gameplay_Action;
@@ -1872,6 +2115,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Run => m_Wrapper.m_Gameplay_Run;
         public InputAction @Crouch => m_Wrapper.m_Gameplay_Crouch;
+        public InputAction @HUD => m_Wrapper.m_Gameplay_HUD;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1881,76 +2125,82 @@ public class PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                Execute.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExecute;
-                Execute.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExecute;
-                Execute.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExecute;
-                Zoom.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
-                Zoom.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
-                Zoom.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
-                Action.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAction;
-                Action.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAction;
-                Action.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAction;
-                Shout.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShout;
-                Shout.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShout;
-                Shout.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShout;
-                Joke.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoke;
-                Joke.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoke;
-                Joke.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoke;
-                Bull.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBull;
-                Bull.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBull;
-                Bull.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBull;
-                Menu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
-                Menu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
-                Menu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
-                Camera.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
-                Camera.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
-                Camera.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
-                Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                Run.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
-                Run.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
-                Run.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
-                Crouch.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
-                Crouch.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
-                Crouch.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
+                @Execute.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExecute;
+                @Execute.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExecute;
+                @Execute.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnExecute;
+                @Zoom.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnZoom;
+                @Action.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAction;
+                @Shout.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShout;
+                @Shout.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShout;
+                @Shout.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShout;
+                @Joke.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoke;
+                @Joke.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoke;
+                @Joke.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoke;
+                @Bull.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBull;
+                @Bull.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBull;
+                @Bull.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBull;
+                @Menu.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMenu;
+                @Camera.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCamera;
+                @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
+                @Run.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRun;
+                @Crouch.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
+                @HUD.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHUD;
+                @HUD.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHUD;
+                @HUD.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnHUD;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Execute.started += instance.OnExecute;
-                Execute.performed += instance.OnExecute;
-                Execute.canceled += instance.OnExecute;
-                Zoom.started += instance.OnZoom;
-                Zoom.performed += instance.OnZoom;
-                Zoom.canceled += instance.OnZoom;
-                Action.started += instance.OnAction;
-                Action.performed += instance.OnAction;
-                Action.canceled += instance.OnAction;
-                Shout.started += instance.OnShout;
-                Shout.performed += instance.OnShout;
-                Shout.canceled += instance.OnShout;
-                Joke.started += instance.OnJoke;
-                Joke.performed += instance.OnJoke;
-                Joke.canceled += instance.OnJoke;
-                Bull.started += instance.OnBull;
-                Bull.performed += instance.OnBull;
-                Bull.canceled += instance.OnBull;
-                Menu.started += instance.OnMenu;
-                Menu.performed += instance.OnMenu;
-                Menu.canceled += instance.OnMenu;
-                Camera.started += instance.OnCamera;
-                Camera.performed += instance.OnCamera;
-                Camera.canceled += instance.OnCamera;
-                Move.started += instance.OnMove;
-                Move.performed += instance.OnMove;
-                Move.canceled += instance.OnMove;
-                Run.started += instance.OnRun;
-                Run.performed += instance.OnRun;
-                Run.canceled += instance.OnRun;
-                Crouch.started += instance.OnCrouch;
-                Crouch.performed += instance.OnCrouch;
-                Crouch.canceled += instance.OnCrouch;
+                @Execute.started += instance.OnExecute;
+                @Execute.performed += instance.OnExecute;
+                @Execute.canceled += instance.OnExecute;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
+                @Shout.started += instance.OnShout;
+                @Shout.performed += instance.OnShout;
+                @Shout.canceled += instance.OnShout;
+                @Joke.started += instance.OnJoke;
+                @Joke.performed += instance.OnJoke;
+                @Joke.canceled += instance.OnJoke;
+                @Bull.started += instance.OnBull;
+                @Bull.performed += instance.OnBull;
+                @Bull.canceled += instance.OnBull;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
+                @HUD.started += instance.OnHUD;
+                @HUD.performed += instance.OnHUD;
+                @HUD.canceled += instance.OnHUD;
             }
         }
     }
@@ -1965,8 +2215,8 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Menu_Resume;
     public struct MenuActions
     {
-        private PlayerControls m_Wrapper;
-        public MenuActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public MenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Menu_Move;
         public InputAction @Select => m_Wrapper.m_Menu_Select;
         public InputAction @Escape => m_Wrapper.m_Menu_Escape;
@@ -1980,34 +2230,34 @@ public class PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MenuActionsCallbackInterface != null)
             {
-                Move.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
-                Move.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
-                Move.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
-                Select.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelect;
-                Select.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelect;
-                Select.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelect;
-                Escape.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
-                Escape.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
-                Escape.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
-                Resume.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnResume;
-                Resume.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnResume;
-                Resume.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnResume;
+                @Move.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove;
+                @Select.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnSelect;
+                @Escape.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
+                @Resume.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnResume;
+                @Resume.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnResume;
+                @Resume.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnResume;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Move.started += instance.OnMove;
-                Move.performed += instance.OnMove;
-                Move.canceled += instance.OnMove;
-                Select.started += instance.OnSelect;
-                Select.performed += instance.OnSelect;
-                Select.canceled += instance.OnSelect;
-                Escape.started += instance.OnEscape;
-                Escape.performed += instance.OnEscape;
-                Escape.canceled += instance.OnEscape;
-                Resume.started += instance.OnResume;
-                Resume.performed += instance.OnResume;
-                Resume.canceled += instance.OnResume;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
+                @Resume.started += instance.OnResume;
+                @Resume.performed += instance.OnResume;
+                @Resume.canceled += instance.OnResume;
             }
         }
     }
@@ -2024,8 +2274,8 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Computer_Zoom;
     public struct ComputerActions
     {
-        private PlayerControls m_Wrapper;
-        public ComputerActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public ComputerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Select => m_Wrapper.m_Computer_Select;
         public InputAction @Menu => m_Wrapper.m_Computer_Menu;
         public InputAction @Move => m_Wrapper.m_Computer_Move;
@@ -2041,46 +2291,46 @@ public class PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_ComputerActionsCallbackInterface != null)
             {
-                Select.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnSelect;
-                Select.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnSelect;
-                Select.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnSelect;
-                Menu.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
-                Menu.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
-                Menu.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
-                Move.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
-                Move.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
-                Move.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
-                Exit.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
-                Exit.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
-                Exit.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
-                Fast.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
-                Fast.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
-                Fast.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
-                Zoom.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
-                Zoom.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
-                Zoom.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
+                @Select.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnSelect;
+                @Menu.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMenu;
+                @Move.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnMove;
+                @Exit.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnExit;
+                @Fast.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
+                @Fast.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
+                @Fast.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnFast;
+                @Zoom.started -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_ComputerActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_ComputerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Select.started += instance.OnSelect;
-                Select.performed += instance.OnSelect;
-                Select.canceled += instance.OnSelect;
-                Menu.started += instance.OnMenu;
-                Menu.performed += instance.OnMenu;
-                Menu.canceled += instance.OnMenu;
-                Move.started += instance.OnMove;
-                Move.performed += instance.OnMove;
-                Move.canceled += instance.OnMove;
-                Exit.started += instance.OnExit;
-                Exit.performed += instance.OnExit;
-                Exit.canceled += instance.OnExit;
-                Fast.started += instance.OnFast;
-                Fast.performed += instance.OnFast;
-                Fast.canceled += instance.OnFast;
-                Zoom.started += instance.OnZoom;
-                Zoom.performed += instance.OnZoom;
-                Zoom.canceled += instance.OnZoom;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
+                @Fast.started += instance.OnFast;
+                @Fast.performed += instance.OnFast;
+                @Fast.canceled += instance.OnFast;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -2094,8 +2344,8 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Cutscene_Hint;
     public struct CutsceneActions
     {
-        private PlayerControls m_Wrapper;
-        public CutsceneActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public CutsceneActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Menu => m_Wrapper.m_Cutscene_Menu;
         public InputAction @Skip => m_Wrapper.m_Cutscene_Skip;
         public InputAction @Hint => m_Wrapper.m_Cutscene_Hint;
@@ -2108,28 +2358,28 @@ public class PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_CutsceneActionsCallbackInterface != null)
             {
-                Menu.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnMenu;
-                Menu.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnMenu;
-                Menu.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnMenu;
-                Skip.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnSkip;
-                Skip.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnSkip;
-                Skip.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnSkip;
-                Hint.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnHint;
-                Hint.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnHint;
-                Hint.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnHint;
+                @Menu.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnMenu;
+                @Skip.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnSkip;
+                @Hint.started -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnHint;
+                @Hint.performed -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnHint;
+                @Hint.canceled -= m_Wrapper.m_CutsceneActionsCallbackInterface.OnHint;
             }
             m_Wrapper.m_CutsceneActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Menu.started += instance.OnMenu;
-                Menu.performed += instance.OnMenu;
-                Menu.canceled += instance.OnMenu;
-                Skip.started += instance.OnSkip;
-                Skip.performed += instance.OnSkip;
-                Skip.canceled += instance.OnSkip;
-                Hint.started += instance.OnHint;
-                Hint.performed += instance.OnHint;
-                Hint.canceled += instance.OnHint;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+                @Hint.started += instance.OnHint;
+                @Hint.performed += instance.OnHint;
+                @Hint.canceled += instance.OnHint;
             }
         }
     }
@@ -2144,8 +2394,8 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_DoorLock_Zoom;
     public struct DoorLockActions
     {
-        private PlayerControls m_Wrapper;
-        public DoorLockActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public DoorLockActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Camera => m_Wrapper.m_DoorLock_Camera;
         public InputAction @Exit => m_Wrapper.m_DoorLock_Exit;
         public InputAction @Menu => m_Wrapper.m_DoorLock_Menu;
@@ -2159,34 +2409,34 @@ public class PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_DoorLockActionsCallbackInterface != null)
             {
-                Camera.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
-                Camera.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
-                Camera.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
-                Exit.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
-                Exit.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
-                Exit.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
-                Menu.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
-                Menu.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
-                Menu.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
-                Zoom.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
-                Zoom.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
-                Zoom.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
+                @Camera.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnCamera;
+                @Exit.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnExit;
+                @Menu.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnMenu;
+                @Zoom.started -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_DoorLockActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_DoorLockActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Camera.started += instance.OnCamera;
-                Camera.performed += instance.OnCamera;
-                Camera.canceled += instance.OnCamera;
-                Exit.started += instance.OnExit;
-                Exit.performed += instance.OnExit;
-                Exit.canceled += instance.OnExit;
-                Menu.started += instance.OnMenu;
-                Menu.performed += instance.OnMenu;
-                Menu.canceled += instance.OnMenu;
-                Zoom.started += instance.OnZoom;
-                Zoom.performed += instance.OnZoom;
-                Zoom.canceled += instance.OnZoom;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -2200,8 +2450,8 @@ public class PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_InputType_PlayStation;
     public struct InputTypeActions
     {
-        private PlayerControls m_Wrapper;
-        public InputTypeActions(PlayerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public InputTypeActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Keyboard => m_Wrapper.m_InputType_Keyboard;
         public InputAction @Xbox => m_Wrapper.m_InputType_Xbox;
         public InputAction @PlayStation => m_Wrapper.m_InputType_PlayStation;
@@ -2214,32 +2464,89 @@ public class PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_InputTypeActionsCallbackInterface != null)
             {
-                Keyboard.started -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnKeyboard;
-                Keyboard.performed -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnKeyboard;
-                Keyboard.canceled -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnKeyboard;
-                Xbox.started -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnXbox;
-                Xbox.performed -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnXbox;
-                Xbox.canceled -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnXbox;
-                PlayStation.started -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnPlayStation;
-                PlayStation.performed -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnPlayStation;
-                PlayStation.canceled -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnPlayStation;
+                @Keyboard.started -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnKeyboard;
+                @Keyboard.performed -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnKeyboard;
+                @Keyboard.canceled -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnKeyboard;
+                @Xbox.started -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnXbox;
+                @Xbox.performed -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnXbox;
+                @Xbox.canceled -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnXbox;
+                @PlayStation.started -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnPlayStation;
+                @PlayStation.performed -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnPlayStation;
+                @PlayStation.canceled -= m_Wrapper.m_InputTypeActionsCallbackInterface.OnPlayStation;
             }
             m_Wrapper.m_InputTypeActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Keyboard.started += instance.OnKeyboard;
-                Keyboard.performed += instance.OnKeyboard;
-                Keyboard.canceled += instance.OnKeyboard;
-                Xbox.started += instance.OnXbox;
-                Xbox.performed += instance.OnXbox;
-                Xbox.canceled += instance.OnXbox;
-                PlayStation.started += instance.OnPlayStation;
-                PlayStation.performed += instance.OnPlayStation;
-                PlayStation.canceled += instance.OnPlayStation;
+                @Keyboard.started += instance.OnKeyboard;
+                @Keyboard.performed += instance.OnKeyboard;
+                @Keyboard.canceled += instance.OnKeyboard;
+                @Xbox.started += instance.OnXbox;
+                @Xbox.performed += instance.OnXbox;
+                @Xbox.canceled += instance.OnXbox;
+                @PlayStation.started += instance.OnPlayStation;
+                @PlayStation.performed += instance.OnPlayStation;
+                @PlayStation.canceled += instance.OnPlayStation;
             }
         }
     }
     public InputTypeActions @InputType => new InputTypeActions(this);
+
+    // Execute
+    private readonly InputActionMap m_Execute;
+    private IExecuteActions m_ExecuteActionsCallbackInterface;
+    private readonly InputAction m_Execute_Move;
+    private readonly InputAction m_Execute_Back;
+    private readonly InputAction m_Execute_Accept;
+    private readonly InputAction m_Execute_Menu;
+    public struct ExecuteActions
+    {
+        private @PlayerControls m_Wrapper;
+        public ExecuteActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Execute_Move;
+        public InputAction @Back => m_Wrapper.m_Execute_Back;
+        public InputAction @Accept => m_Wrapper.m_Execute_Accept;
+        public InputAction @Menu => m_Wrapper.m_Execute_Menu;
+        public InputActionMap Get() { return m_Wrapper.m_Execute; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ExecuteActions set) { return set.Get(); }
+        public void SetCallbacks(IExecuteActions instance)
+        {
+            if (m_Wrapper.m_ExecuteActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnMove;
+                @Back.started -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnBack;
+                @Accept.started -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnAccept;
+                @Accept.performed -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnAccept;
+                @Accept.canceled -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnAccept;
+                @Menu.started -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_ExecuteActionsCallbackInterface.OnMenu;
+            }
+            m_Wrapper.m_ExecuteActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
+                @Accept.started += instance.OnAccept;
+                @Accept.performed += instance.OnAccept;
+                @Accept.canceled += instance.OnAccept;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+            }
+        }
+    }
+    public ExecuteActions @Execute => new ExecuteActions(this);
     private int m_BasicSchemeIndex = -1;
     public InputControlScheme BasicScheme
     {
@@ -2262,6 +2569,7 @@ public class PlayerControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnHUD(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
@@ -2297,5 +2605,12 @@ public class PlayerControls : IInputActionCollection, IDisposable
         void OnKeyboard(InputAction.CallbackContext context);
         void OnXbox(InputAction.CallbackContext context);
         void OnPlayStation(InputAction.CallbackContext context);
+    }
+    public interface IExecuteActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnAccept(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

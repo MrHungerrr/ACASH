@@ -384,7 +384,7 @@ public class Player : Singleton<Player>
 
     private IEnumerator Bulling(Scholar scholar, bool strong)
     {
-        ScoreManager.get.BullScore(scholar, strong);
+        ScoreManager.get.Bull(scholar, strong);
 
         key += scholar.GetView();
 
@@ -431,43 +431,16 @@ public class Player : Singleton<Player>
     //Наезд на школьника
 
 
-    public void Execute()
+    public void Execute(string reason)
     {
         StopThinking();
         act = true;
-        string goalTag = actTag;
-        GameObject goalObject = actObject;
+        key = "Execute_" + reason + "_";
 
-        key = "Execute_";
+        var scholar = actObject.GetComponent<Scholar>();
 
-
-        switch (goalTag)
-        {
-            case "Scholar":
-                {
-                    var scholar = goalObject.GetComponent<Scholar>();
-                    if (!scholar.executed)
-                        StartCoroutine(Execute(scholar));
-                    break;
-                }
-            case "ScholarsSubject":
-                {
-                    var subject = goalObject.GetComponent<ScholarSubject>();
-                    StartCoroutine(Execute(subject));
-                    break;
-                }
-            case "Subject":
-                {
-                    var subject = goalObject.GetComponent<Subject>();
-                    StartCoroutine(Execute(subject));
-                    break;
-                }
-            default:
-                {
-                    act = false;
-                    break;
-                }
-        }
+        if (!scholar.executed)
+            StartCoroutine(Execute(scholar));
     }
 
 

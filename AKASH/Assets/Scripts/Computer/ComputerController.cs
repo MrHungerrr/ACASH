@@ -40,10 +40,6 @@ public class ComputerController : MonoBehaviour
     private Vector2 position;
 
 
-    public int desktop_num;
-    [HideInInspector]
-    public string desktop;
-    [HideInInspector]
     public string current_window;
     private TextMeshProUGUI program_name;
     private GameObject close_bar;
@@ -64,10 +60,10 @@ public class ComputerController : MonoBehaviour
         program_name = close_bar.transform.GetComponentInChildren<TextMeshProUGUI>();
         ChangeImage("pointer");
 
-        desktop = "Desktop_" + desktop_num;
+
         CompAgent = buf.Find("Computer Agent").GetComponent<ComputerAgent>();
         CompAgent.CompControl = this;
-        CompAgent.Set(desktop);
+        CompAgent.Set("Desktop");
         CloseProgram();
 
         comp_col = GetComponent<ComputerUIColliderManager>();

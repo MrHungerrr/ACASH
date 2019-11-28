@@ -33,7 +33,7 @@ public class ComputerAgent : MonoBehaviour
         {
             case "Student Stress":
                 {
-                    Disable(CompControl.desktop);
+                    Disable("Desktop");
                     CompControl.SetProgram(type);
                     StudentStress.get.Refresh();
                     Set(type);
@@ -41,14 +41,14 @@ public class ComputerAgent : MonoBehaviour
                 }
             case "Overwatch":
                 {
-                    Disable(CompControl.desktop);
+                    Disable("Desktop");
                     CompControl.SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Info":
                 {
-                    Disable(CompControl.desktop);
+                    Disable("Desktop");
                     CompControl.SetProgram(type);
                     Set(type);
                     break;
@@ -80,21 +80,21 @@ public class ComputerAgent : MonoBehaviour
                 {
                     Disable(type);
                     CompControl.CloseProgram();
-                    Set("Desktop_" + CompControl.desktop_num);
+                    Set("Desktop");
                     break;
                 }
             case "Overwatch":
                 {
                     Disable(type);
                     CompControl.CloseProgram();
-                    Set("Desktop_" + CompControl.desktop_num);
+                    Set("Desktop");
                     break;
                 }
             case "Info":
                 {
                     Disable(type);
                     CompControl.CloseProgram();
-                    Set("Desktop_" + CompControl.desktop_num);
+                    Set("Desktop");
                     break;
                 }
         }

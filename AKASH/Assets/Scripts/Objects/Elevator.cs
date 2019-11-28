@@ -9,6 +9,8 @@ public class Elevator : Singleton<Elevator>
     private bool open = false;
     private bool ninety;
     private bool active = false;
+    private bool enter = false;
+    private bool inside = false;
     private Transform doorLeft;
     private Transform doorRight;
     private Vector3 doorLeftPos;
@@ -56,6 +58,19 @@ public class Elevator : Singleton<Elevator>
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+            inside = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+            inside = false;
+    }
+
+
     //--------------------------------------------------------------------------------------------------------------------------------------------
     // На случай, если понадобиться открывать лифт ручками.
     //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,9 +106,10 @@ public class Elevator : Singleton<Elevator>
     */
 
 
-    public void Open()
+    public void Open(bool toEnter)
     {
         open = true;
+        enter = toEnter;
 
         if (ninety)
         {
@@ -132,14 +148,22 @@ public class Elevator : Singleton<Elevator>
         {
             if (open)
             {
-                if (close_time > 0)
+                if (enter)
                 {
-                    close_time -= Time.deltaTime;
+                    if(inside)
+                        Close();
                 }
-                else if (Vector3.Distance(elevator_pos, Player.get.transform.position) > close_distance)
+                else
                 {
-                    close_time = close_time_cd;
-                    Close();
+                    if (close_time > 0)
+                    {
+                        close_time -= Time.deltaTime;
+                    }
+                    else if (Vector3.Distance(elevator_pos, Player.get.transform.position) > close_distance)
+                    {
+                        close_time = close_time_cd;
+                        Close();
+                    }
                 }
             }
             else

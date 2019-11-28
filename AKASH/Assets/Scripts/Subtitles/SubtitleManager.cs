@@ -48,7 +48,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
         //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
 
 
-        Debug.Log("PlaySub");
+        Debug.Log("<color=#0000ff>PlaySub</color>");
         foreach ( var line in script)
         {
             yield return new WaitForSeconds(0.05f);

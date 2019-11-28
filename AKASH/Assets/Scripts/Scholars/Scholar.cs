@@ -31,8 +31,6 @@ public class Scholar : MonoBehaviour
     private string keyWord;
     [HideInInspector]
     public bool executed;
-    [HideInInspector]
-    public bool greeneyes;
     private const float peripheral_vision_angle = 140f;
     private const float central_vision_angle = 30f;
     private const float vision_distance = 5f;

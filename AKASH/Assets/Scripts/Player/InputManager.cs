@@ -49,6 +49,7 @@ public class InputManager : Singleton<InputManager>
         Controls.Gameplay.Joke.canceled += ctx => GameJoke(false);
         Controls.Gameplay.Shout.started += ctx => GameShout();
         Controls.Gameplay.Execute.started += ctx => GameExecute();
+        Controls.Gameplay.HUD.started += ctx => GameHUD();
         Controls.Gameplay.Menu.started += ctx => GameMenu();
 
         Controls.Menu.Move.performed += ctx => Menu.get.moveInput = ctx.ReadValue<Vector2>();
@@ -74,6 +75,12 @@ public class InputManager : Singleton<InputManager>
         Controls.DoorLock.Exit.started += ctx => DoorLockExit();
         Controls.DoorLock.Menu.started += ctx => DoorLockMenu();
 
+        Controls.Execute.Move.performed += ctx => ExecuteHUDController.get.moveInput = ctx.ReadValue<float>();
+        Controls.Execute.Move.canceled += ctx => ExecuteHUDController.get.moveInput = 0f;
+        Controls.Execute.Accept.started += ctx => ExecuteAccept();
+        Controls.Execute.Back.started += ctx => ExecuteBack();
+        Controls.Execute.Menu.started += ctx => ExecuteMenu();
+
 
         Controls.InputType.Keyboard.performed += ctx => TypeOfInput("keyboard");
         Controls.InputType.PlayStation.performed += ctx => TypeOfInput("playstation");
@@ -96,6 +103,8 @@ public class InputManager : Singleton<InputManager>
         Controls.Menu.Disable();
         Controls.Computer.Disable();
         Controls.Cutscene.Disable();
+        Controls.Execute.Disable();
+        Controls.DoorLock.Disable();
 
         switch (type)
         {
@@ -124,6 +133,11 @@ public class InputManager : Singleton<InputManager>
                     Controls.Gameplay.Enable();
                     break;
                 }
+            case "execute":
+                {
+                    Controls.Execute.Enable();
+                    break;
+                }
             case "disable":
                 {
                     break;
@@ -148,6 +162,7 @@ public class InputManager : Singleton<InputManager>
         {
             inputType = type;
             Menu.get.InputType();
+            ExecuteHUDController.get.InputType();
 
             switch (type)
             {
@@ -298,8 +313,16 @@ public class InputManager : Singleton<InputManager>
 
     private void GameExecute()
     {
-        if (!Player.get.act && Player.get.actReady)
-            Player.get.Execute();
+        if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+        {
+            HUDManager.get.ExecuteHUD(true);
+            SwitchGameInput("execute");
+        }
+    }
+
+    private void GameHUD()
+    {
+        HUDManager.get.ControlHUD();
     }
 
     private void GameMenu()
@@ -307,6 +330,8 @@ public class InputManager : Singleton<InputManager>
         Menu.get.MenuEnable(true);
         SwitchGameInput("menu");
     }
+
+
 
 
 
@@ -391,6 +416,34 @@ public class InputManager : Singleton<InputManager>
         Menu.get.MenuEnable(true);
         SwitchGameInput("menu");
     }
+
+
+
+
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //DoorLock Input
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void ExecuteAccept()
+    {
+        ExecuteHUDController.get.Accept();
+    }
+
+    public void ExecuteBack()
+    {
+        HUDManager.get.ExecuteHUD(false);
+        SwitchGameInput("gameplay");
+    }
+
+    private void ExecuteMenu()
+    {
+        Menu.get.MenuEnable(true);
+        SwitchGameInput("menu");
+    }
+
+
+
 
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------

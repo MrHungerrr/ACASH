@@ -33,13 +33,16 @@ public class ScriptManager : Singleton<ScriptManager>
         { "Teacher_Joke_Pen_", 3},
         { "Teacher_Joke_Pen_Sec_", 3},
         { "Teacher_Thinking_", 5},
-        { "Teacher_Execute_", 3},
+        { "Teacher_Execute_Walking_", 3},
+        { "Teacher_Execute_Cheating_", 3},
+        { "Teacher_Execute_Talking_", 3},
         { "Teacher_Execute_Pen_", 3},
         { "Teacher_Answer_Permission_", 3},
         { "Answer_", 3},
     };
 
-private string resourceFile = "Script";
+
+    private string resourceFile = "Script";
     private string resourceFileDuration = "AudioDuration";
     [HideInInspector]
     public string voicePath;
@@ -65,6 +68,18 @@ private string resourceFile = "Script";
         {
             //Сделать пустоту и нулевое время
             return new string[] { "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>" };
+        }
+    }
+
+    public string GetLine(string textKey)
+    {
+        string[] tmp = new string[] { };
+        if (lines.TryGetValue(textKey, out tmp))
+            return tmp[0];
+        else
+        {
+            //Сделать пустоту и нулевое время
+            return "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>";
         }
     }
 

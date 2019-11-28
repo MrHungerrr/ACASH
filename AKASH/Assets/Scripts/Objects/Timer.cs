@@ -66,5 +66,6 @@ public class Timer : MonoBehaviour
     private void ShowTime()
     {
         text.text = string_time;
+        HUDController.get.Time(string_time);
     }
 }

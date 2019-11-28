@@ -7,8 +7,6 @@ public class GameManager : Singleton<GameManager>
 {
 
     [HideInInspector]
-    public bool gameReady;
-    [HideInInspector]
     public bool game;
 
 
@@ -104,7 +102,6 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(0.01f);
 
         InputManager.get.SwitchGameInput("gameplay");
-        Elevator.get.Open();
     }
 
 

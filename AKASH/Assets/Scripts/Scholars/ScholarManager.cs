@@ -45,6 +45,13 @@ public class ScholarManager : Singleton<ScholarManager>
     [HideInInspector]
     public bool teacher_room_busy;
 
+    [HideInInspector]
+    public int left;
+    [HideInInspector]
+    public int cheated;
+    [HideInInspector]
+    public int finished;
+
 
 
     [HideInInspector]

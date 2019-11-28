@@ -88,7 +88,8 @@ public class StudentStressAgent : MonoBehaviour
     {
         for (int i = 0; i < cells.Length; i++)
         {
-            cells[i].Refresh();
+            if(cells[i].gameObject.activeSelf)
+                cells[i].Refresh();
         }
     }
 }

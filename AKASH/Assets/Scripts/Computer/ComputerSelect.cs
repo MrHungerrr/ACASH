@@ -7,13 +7,6 @@ public class ComputerSelect : MonoBehaviour
     [SerializeField]
     private Image[] images;
 
-    private Color[] colors = new Color[2]
-    {
-        new Color(0f,0f,0f,0f),
-        new Color(1f,1f,1f,0.3f),
-    }; 
-
-
     public void Select(bool option)
     {
         int buf;
@@ -29,7 +22,7 @@ public class ComputerSelect : MonoBehaviour
 
         for (int i = 0; i < images.Length; i++)
         {
-            images[i].color = colors[buf];
+            images[i].color = ComputerManager.get.colors[buf];
         }
     }
 }
