@@ -1,14 +1,14 @@
-AKASH/Library/
-AKASH/Temp/
-AKASH/Assembly-CSharp.csproj
-AKASH/Assembly-CSharp-Editor.csproj
-AKASH/obj/
-AKASH/Build/
-AKASH/Builds/
-AKASH/.vs/
+ACASH/Library/
+ACASH/Temp/
+ACASH/Assembly-CSharp.csproj
+ACASH/Assembly-CSharp-Editor.csproj
+ACASH/obj/
+ACASH/Build/
+ACASH/Builds/
+ACASH/.vs/
 .vscode/
-AKASH/Assets/Plugins/FMOD/Resources/FMODStudioCache.asset
-AKASH/Assets/StreamingAssets/*.bank
+ACASH/Assets/Plugins/FMOD/Resources/FMODStudioCache.asset
+ACASH/Assets/StreamingAssets/*.bank
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta

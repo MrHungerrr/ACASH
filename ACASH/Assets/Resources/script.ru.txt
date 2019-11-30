@@ -1,0 +1,453 @@
+{
+    "lines":
+    [
+        {
+            "key":"Teacher_Shout_0",
+            "line":["Молчать!"]
+        },
+        {
+            "key":"Teacher_Shout_1",
+            "line":["Так, все замолчали"]
+        },
+        {
+            "key":"Teacher_Shout_2",
+            "line":["Я сказал молчать"]
+        },
+        {
+            "key":"Teacher_Shout_3",
+            "line":["Боже, молчите"]
+        },
+        {
+            "key":"Teacher_Shout_4",
+            "line":["Вы меня не слышите?"]
+        },
+        {
+            "key":"Teacher_Shout_5",
+            "line":["Заткнитесь все!"]
+        },
+        {
+            "key":"Teacher_Shout_6",
+            "line":["Я вас всех порву"]
+        },
+        {
+            "key":"Teacher_Shout_7",
+            "line":["Я сейчас выйду из себя!"]
+        },
+        {
+            "key":"Teacher_Shout_8",
+            "line":["О боже, как же я вас ненавижу"]
+        },
+        {
+            "key":"Teacher_Shout_9",
+            "line":["Молчите!"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_0",
+            "line":["Так, хватит болтать!"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_1",
+            "line":["Какого ты говоришь?"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_2",
+            "line":["Замолчи я сказал!"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_0",
+            "line":["Ты что творишь?"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_1",
+            "line":["Ты че, списываешь?"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_2",
+            "line":["Быстро руки на парту! Не списывать!"]
+        },
+        {
+            "key":"Teacher_Bull_Nothing_0",
+            "line":["Слыш ты, ты че делаешь?"]
+        },
+        {
+            "key":"Teacher_Bull_Nothing_1",
+            "line":["Слушай, а ты не офигел такое творить?"]
+        },
+        {
+            "key":"Teacher_Bull_Nothing_2",
+            "line":["Так, я все вижу, давай прекращай"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_0",
+            "line":["И куда это мы собрались?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_1",
+            "line":["Слушай, ты не приборзел случаем?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_2",
+            "line":["А ну-ка сядь, твою мать!"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_0",
+            "line":["О, да я вижу у вас рот без костей, дорогуша."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_1",
+            "line":["Teacher_Joke_Talking_1"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_2",
+            "line":["Teacher_Joke_Talking_2"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_0",
+            "line":["Teacher_Joke_Cheating_0"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_1",
+            "line":["Teacher_Joke_Cheating_1"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_2",
+            "line":["Teacher_Joke_Cheating_2"]
+        },
+        {
+            "key":"Teacher_Joke_Nothing_0",
+            "line":["Слушай, у тебя че то рожа кривая. Улыбнись-ка."]
+        },
+        {
+            "key":"Teacher_Joke_Nothing_1",
+            "line":["Знаешь, ты прикольный"]
+        },
+        {
+            "key":"Teacher_Joke_Nothing_2",
+            "line":["Как круто, что хоть ты не списываешь"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_0",
+            "line":["Teacher_Joke_Walking_0"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_1",
+            "line":["Teacher_Joke_Walking_1"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_2",
+            "line":["Teacher_Joke_Walking_2"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_0",
+            "line":["Teacher_Bull_Talking_Sec_0"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_1",
+            "line":["Teacher_Bull_Talking_Sec_1"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_2",
+            "line":["Teacher_Bull_Talking_Sec_2"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_0",
+            "line":["Teacher_Bull_Cheating_Sec_0"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_1",
+            "line":["Teacher_Bull_Cheating_Sec_1"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_2",
+            "line":["Teacher_Bull_Cheating_Sec_2"]
+        },
+        {
+            "key":"Teacher_Bull_Nothing_Sec_0",
+            "line":["Ты что творишь?"]
+        },
+        {
+            "key":"Teacher_Bull_Nothing_Sec_1",
+            "line":["Ты че, списываешь?"]
+        },
+        {
+            "key":"Teacher_Bull_Nothing_Sec_2",
+            "line":["Быстро руки на парту! Не списывать!"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_0",
+            "line":["Teacher_Bull_Walking_Sec_0"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_1",
+            "line":["Teacher_Bull_Walking_Sec_1"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_2",
+            "line":["Teacher_Bull_Walking_Sec_2"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_0",
+            "line":["Teacher_Joke_Talking_Sec_0"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_1",
+            "line":["Teacher_Joke_Talking_Sec_1"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_2",
+            "line":["Teacher_Joke_Talking_Sec_2"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_0",
+            "line":["Teacher_Joke_Cheating_Sec_0"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_1",
+            "line":["Teacher_Joke_Cheating_Sec_1"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_2",
+            "line":["Teacher_Joke_Cheating_Sec_2"]
+        },
+        {
+            "key":"Teacher_Joke_Nothing_Sec_0",
+            "line":["Слушай, у тебя че то рожа кривая. Улыбнись-ка."]
+        },
+        {
+            "key":"Teacher_Joke_Nothing_Sec_1",
+            "line":["Знаешь, ты прикольный"]
+        },
+        {
+            "key":"Teacher_Joke_Nothing_Sec_2",
+            "line":["Как круто, что хоть ты не списываешь"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_0",
+            "line":["Teacher_Joke_Walking_Sec_0"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_1",
+            "line":["Teacher_Joke_Walking_Sec_1"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_2",
+            "line":["Teacher_Joke_Walking_Sec_2"]
+        },
+        {
+            "key":"Teacher_Thinking_Dumb_0",
+            "line":["*Какие-то мысли в слух*"]
+        },
+        {
+            "key":"Teacher_Thinking_Dumb_1",
+            "line":["*Какие-то мысли в слух*"]
+        },
+        {
+            "key":"Teacher_Thinking_Dumb_2",
+            "line":["*Какие-то мысли в слух*"]
+        },
+        {
+            "key":"Teacher_Thinking_Dumb_3",
+            "line":["*Какие-то мысли в слух*"]
+        },
+        {
+            "key":"Teacher_Thinking_Dumb_4",
+            "line":["*Какие-то мысли в слух*"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_0",
+            "line":["Я не понял."]
+        },
+        {
+            "key":"Dumb_Bull_Talking_1",
+            "line":["А сколько времени?"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_2",
+            "line":["А зачем это?"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_0",
+            "line":["Да."]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_1",
+            "line":["Что, простите?"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_2",
+            "line":["Ой, я не понял."]
+        },
+        {
+            "key":"Dumb_Bull_Nothing_0",
+            "line":["А что такое происходит?"]
+        },
+        {
+            "key":"Dumb_Bull_Nothing_1",
+            "line":["Здравствуйте."]
+        },
+        {
+            "key":"Dumb_Bull_Nothing_2",
+            "line":["Я пишу."]
+        },
+        {
+            "key":"Dumb_Bull_Walking_0",
+            "line":["И куда это мы собрались?"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_1",
+            "line":["Слушай, ты не приборзел случаем?"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_2",
+            "line":["А ну-ка сядь, твою мать!"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_0",
+            "line":["Ахахахах, смешно"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_1",
+            "line":["Вы тоже ни че так"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_2",
+            "line":["Учитель, я скоро в туалет"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_0",
+            "line":["Dumb_Joke_Cheating_0"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_1",
+            "line":["Dumb_Joke_Cheating_1"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_2",
+            "line":["Dumb_Joke_Cheating_2"]
+        },
+        {
+            "key":"Dumb_Joke_Nothing_0",
+            "line":["Ахахахах, смешно"]
+        },
+        {
+            "key":"Dumb_Joke_Nothing_1",
+            "line":["Вы тоже ни че так"]
+        },
+        {
+            "key":"Dumb_Joke_Nothing_2",
+            "line":["Учитель, я скоро в туалет"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_0",
+            "line":["Dumb_Joke_Walking_0"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_1",
+            "line":["Dumb_Joke_Walking_1"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_2",
+            "line":["Dumb_Joke_Walking_2"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_0",
+            "line":["Dumb_Bull_Talking_Sec_0"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_1",
+            "line":["Dumb_Bull_Talking_Sec_1"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_2",
+            "line":["Dumb_Bull_Talking_Sec_2"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_0",
+            "line":["Dumb_Bull_Cheating_Sec_0"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_1",
+            "line":["Dumb_Bull_Cheating_Sec_1"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_2",
+            "line":["Dumb_Bull_Cheating_Sec_2"]
+        },
+        {
+            "key":"Dumb_Bull_Nothing_Sec_0",
+            "line":["Я очень умный"]
+        },
+        {
+            "key":"Dumb_Bull_Nothing_Sec_1",
+            "line":["Нет, учитель"]
+        },
+        {
+            "key":"Dumb_Bull_Nothing_Sec_2",
+            "line":["А у меня руки не под партой"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_0",
+            "line":["Dumb_Bull_Walking_Sec_0"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_1",
+            "line":["Dumb_Bull_Walking_Sec_1"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_2",
+            "line":["Dumb_Bull_Walking_Sec_2"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_0",
+            "line":["Dumb_Joke_Talking_Sec_0"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_1",
+            "line":["Dumb_Joke_Talking_Sec_1"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_2",
+            "line":["Dumb_Joke_Talking_Sec_2"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_0",
+            "line":["Dumb_Joke_Cheating_Sec_0"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_1",
+            "line":["Dumb_Joke_Cheating_Sec_1"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_2",
+            "line":["Dumb_Joke_Cheating_Sec_2"]
+        },
+        {
+            "key":"Dumb_Joke_Nothing_Sec_0",
+            "line":["Ахахахах, смешно"]
+        },
+        {
+            "key":"Dumb_Joke_Nothing_Sec_1",
+            "line":["Вы тоже ни че так"]
+        },
+        {
+            "key":"Dumb_Joke_Nothing_Sec_2",
+            "line":["Учитель, я скоро в туалет"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_0",
+            "line":["Dumb_Joke_Walking_Sec_0"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_1",
+            "line":["Dumb_Joke_Walking_Sec_1"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_2",
+            "line":["Dumb_Joke_Walking_Sec_2"]
+        },
+        {
+            "key":"Menu_0",
+            "line":["Затычка"]
+        }
+    ]
+}
