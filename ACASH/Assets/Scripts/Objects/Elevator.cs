@@ -105,10 +105,11 @@ public class Elevator : Singleton<Elevator>
     }
     */
 
-
-    public void Open(bool toEnter)
+    public void Open(bool toEnter) // выходишь или заходишь в лифт?
     {
         open = true;
+
+
         enter = toEnter;
 
         if (ninety)

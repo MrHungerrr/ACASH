@@ -46,6 +46,8 @@ public class MenuAgent : Singleton<MenuAgent>
                 }
             case "Main Menu":
                 {
+                    if (GameManager.get.game)
+                        Disable("Pause");
                     GameManager.get.MainMenu();
                     break;
                 }

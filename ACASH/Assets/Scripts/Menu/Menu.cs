@@ -58,6 +58,7 @@ public class Menu : Singleton<Menu>
         {
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
             if (current_menu != null)
             {
@@ -227,19 +228,21 @@ public class Menu : Singleton<Menu>
                 case "playstation":
                     {
                         Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
                         break;
                     }
                 case "xbox":
                     {
                         Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
                         break;
                     }
                 default:
                     {
                         Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
                         break;
                     }
-
             }
         }
     }

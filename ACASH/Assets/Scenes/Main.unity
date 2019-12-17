@@ -120,24 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: dd8383d885a109e489ac572163a8d874, type: 2}
---- !u!1 &553142444 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4344091110958342415, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4344091109271217370}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &553142445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553142444}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09be7e26316dac044a88042e099b58b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &566975408 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1892838398495658841, guid: 92e89808c5ca54f4f88f5ff8513a0209,
@@ -410,11 +392,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584547676}
     m_Modifications:
-    - target: {fileID: 590261564893609143, guid: a3f5ef861f9fd22498d454f3cbbe172a,
-        type: 3}
-      propertyPath: m_Name
-      value: Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 590261564893609141, guid: a3f5ef861f9fd22498d454f3cbbe172a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -469,6 +446,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 590261564893609143, guid: a3f5ef861f9fd22498d454f3cbbe172a,
+        type: 3}
+      propertyPath: m_Name
+      value: Menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f5ef861f9fd22498d454f3cbbe172a, type: 3}
@@ -604,11 +586,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584547676}
     m_Modifications:
-    - target: {fileID: 4344091110958342415, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
-      objectReference: {fileID: 0}
     - target: {fileID: 4344091110958342403, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -664,20 +641,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.001
       objectReference: {fileID: 0}
-    - target: {fileID: 4344091110958342402, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
+    - target: {fileID: 4344091110958342415, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
         type: 3}
-      propertyPath: field of view
-      value: 69.9901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344091110958342402, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344091110958342413, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
-        type: 3}
-      propertyPath: m_DefaultBlend.m_Time
-      value: 0.3
+      propertyPath: m_Name
+      value: Main Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fec129ef87fcef45b9ebc55afc3aa7b, type: 3}
@@ -694,10 +661,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584547676}
     m_Modifications:
-    - target: {fileID: 6165574155718620121, guid: e1abd3ecc5dfdf1479478c0ee7d59759,
-        type: 3}
-      propertyPath: m_Name
-      value: Subtitles
+    - target: {fileID: 406170221, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 49.999756
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170221, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_fontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_text
+      value: Hello! My name is Egor Akimov!
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6165574155718620117, guid: e1abd3ecc5dfdf1479478c0ee7d59759,
         type: 3}
@@ -804,50 +806,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 406170221, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 49.999756
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170221, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 900
+    - target: {fileID: 6165574155718620121, guid: e1abd3ecc5dfdf1479478c0ee7d59759,
+        type: 3}
+      propertyPath: m_Name
+      value: Subtitles
       objectReference: {fileID: 0}
     - target: {fileID: 6165574155718620123, guid: e1abd3ecc5dfdf1479478c0ee7d59759,
         type: 3}
       propertyPath: m_MatchWidthOrHeight
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_fontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_text
-      value: Hello! My name is Egor Akimov!
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 406170223, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1abd3ecc5dfdf1479478c0ee7d59759, type: 3}
@@ -864,11 +831,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584547676}
     m_Modifications:
-    - target: {fileID: 6384746390446829958, guid: 984fb42d95f03904895bfd3451c1ab78,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 6384746390446829954, guid: 984fb42d95f03904895bfd3451c1ab78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -923,6 +885,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384746390446829958, guid: 984fb42d95f03904895bfd3451c1ab78,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984fb42d95f03904895bfd3451c1ab78, type: 3}

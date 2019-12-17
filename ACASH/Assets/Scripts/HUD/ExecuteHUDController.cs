@@ -153,19 +153,21 @@ public class ExecuteHUDController : Singleton<ExecuteHUDController>
                 case "playstation":
                     {
                         Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
                         break;
                     }
                 case "xbox":
                     {
                         Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
                         break;
                     }
                 default:
                     {
                         Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
                         break;
                     }
-
             }
         }
     }
