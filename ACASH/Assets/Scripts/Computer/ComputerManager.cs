@@ -41,6 +41,15 @@ public class ComputerManager : Singleton<ComputerManager>
     }
 
 
+    public void SetComputerManager()
+    {
+        var buf = GameObject.FindObjectsOfType<ComputerController>();
+        foreach(ComputerController cc in buf)
+        {
+            cc.SetComputerController();
+        }
+    }
+
     public void Set(ComputerController comp)
     {
         CompControl = comp;

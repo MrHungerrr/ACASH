@@ -467,6 +467,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 584547676}
     m_Modifications:
+    - target: {fileID: 1892838397933636424, guid: 92e89808c5ca54f4f88f5ff8513a0209,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 513
+      objectReference: {fileID: 0}
     - target: {fileID: 1892838398495658821, guid: 92e89808c5ca54f4f88f5ff8513a0209,
         type: 3}
       propertyPath: m_Name
@@ -576,6 +581,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892838399047511598, guid: 92e89808c5ca54f4f88f5ff8513a0209,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 513
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892838399719432443, guid: 92e89808c5ca54f4f88f5ff8513a0209,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 513
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92e89808c5ca54f4f88f5ff8513a0209, type: 3}
@@ -891,6 +906,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6384746390788808964, guid: 984fb42d95f03904895bfd3451c1ab78,
+        type: 3}
+      propertyPath: crossCant
+      value: 
+      objectReference: {fileID: 2800000, guid: 7c71400016d26e048b54d66101e92912, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984fb42d95f03904895bfd3451c1ab78, type: 3}
 --- !u!4 &6384746390931501510 stripped

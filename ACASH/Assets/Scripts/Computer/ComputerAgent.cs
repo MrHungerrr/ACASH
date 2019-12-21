@@ -10,7 +10,8 @@ public class ComputerAgent : MonoBehaviour
     [HideInInspector]
     public ComputerController CompControl;
 
-    private void Awake()
+
+    public void SetComputerAgent()
     {
         GameObject[] comp_windows = new GameObject[transform.childCount];
 

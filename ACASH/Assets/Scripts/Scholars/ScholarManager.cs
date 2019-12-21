@@ -121,7 +121,6 @@ public class ScholarManager : Singleton<ScholarManager>
         DeskSort();
         StudentStress.get.Set();
         ScholarNumberRandomer();
-        StartCoroutine(PrepareForTest());
     }
 
 
@@ -329,7 +328,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
 
-    private IEnumerator ScholarsSpecialAction(float time)
+  /*  private IEnumerator ScholarsSpecialAction(float time)
     {
         yield return new WaitForSeconds(time);
 
@@ -344,6 +343,7 @@ public class ScholarManager : Singleton<ScholarManager>
         }
         StartCoroutine(ScholarsSpecialAction(Random.Range(5,15)));
     }
+    */  
 
     private void ScholarsRandomSpecialAction()
     {
@@ -370,7 +370,6 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Action.ready = false;
             scholars[i].Do("Go_Home");
         }
 
@@ -381,29 +380,32 @@ public class ScholarManager : Singleton<ScholarManager>
 
             for (int i = 0; i < scholars.Length; i++)
             {
-                if (scholars[i].Action.ready)
+                if (!scholars[i].Action.doing)
                     buf++;
             }
 
             if (buf == scholars.Length)
                 break;
         }
-
-        StartTest();
     }
 
 
-
-    private void StartTest()
+    public void StartPrepare()
     {
-        StartCoroutine(ScholarsCheat(10));
-        StartCoroutine(ScholarsSpecialAction(5));
+        StartCoroutine(PrepareForTest());
+    }
+    
+    public void StartExam()
+    {
+        //StartCoroutine(ScholarsCheat(10));
+        //StartCoroutine(ScholarsSpecialAction(5));
         for (int i = 0; i < scholars.Length; i++)
         {
             scholars[i].StartWrite();
         }
 
-        TimeManager.get.Enable();
+
+
         special_actions_count = 0;
     }
 

@@ -44,8 +44,10 @@ public class Player : Singleton<Player>
     private float actMinRange = 0.6f;
     [HideInInspector]
     public string actTag;
-    private GameObject actObject;
-    private bool actSpecialOption;
+    [HideInInspector]
+    public GameObject actObject;
+    [HideInInspector]
+    public bool actSpecialOption;
     private GameObject selected_scholar;
     private string actText;
     private string keyWord = "Teacher_";
@@ -70,11 +72,14 @@ public class Player : Singleton<Player>
     {
 
         PlayerMovement();
+
+        if (!act)
+            Watching();
+
         Action();
 
             
-        if(!act)
-            Watching();
+
 
         if (draw && actTag == "DeskBlock")
             Drawing(draw_option);
@@ -166,10 +171,14 @@ public class Player : Singleton<Player>
                     actReady = true;
 
                     if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
-                        //Специальное условие для компьютеров
-                        if (hit.collider.tag != "Computer")
+                        //Специальное условие для компьютеров, дверей и лифта
+                        if (hit.collider.tag != "Computer" && hit.collider.tag != "Door" && hit.collider.tag != "Elevator")
                         {
                             obj_select.Select();
+                        }
+                        else
+                        {
+                            SpecialActionRealtion();
                         }
                 }
             }
@@ -193,7 +202,7 @@ public class Player : Singleton<Player>
             actTag = null;
         }
 
-        CrossHair.get.SelectHair(actTag);
+        CrossHair.get.SelectHair();
 
         RaycastHit[] hits;
         hits = Physics.RaycastAll(ray, 20, sightLayerMask);
@@ -242,8 +251,7 @@ public class Player : Singleton<Player>
         if (actReady && !act)
         {
 
-            if (actTag == "Computer")
-                ActionAngleRelation();
+            SpecialActionRealtion();
 
             if (doing)
             {
@@ -264,16 +272,22 @@ public class Player : Singleton<Player>
                         }
                     case "Door":
                         {
-                            if(typeOfMovement != "crouch")
-                                actObject.GetComponent<Door>().DoorInteract(transform.position);
-                            else
-                                actObject.GetComponent<Door>().DoorQuietInteract(transform.position);
+                            if (actSpecialOption)
+                            {
+                                if (typeOfMovement != "crouch")
+                                    actObject.GetComponent<Door>().DoorInteract(transform.position);
+                                else
+                                    actObject.GetComponent<Door>().DoorQuietInteract(transform.position);
+                            }
                             break;
                         }
-                    case "DoorHandle":
+                    case "Elevator":
                         {
-                            actObject.GetComponent<DoorLock>().Enable(true);
-                            act = false;
+                            if (actSpecialOption)
+                            {
+                                ElevatorController.get.Open();
+                                act = false;
+                            }
                             break;
                         }
                 }
@@ -282,17 +296,52 @@ public class Player : Singleton<Player>
     }
 
 
-    private void ActionAngleRelation()
+    private void SpecialActionRealtion()
     {
-        if (LookingAngle(transform.position, actObject.transform) < 70)
+        switch(actTag)
         {
-            actObject.GetComponent<ObjectSelect>().Select();
-            actSpecialOption = true;
-        }
-        else
-        {
-            actObject.GetComponent<ObjectSelect>().Deselect();
-            actSpecialOption = false;
+            case "Computer":
+                {
+                    if (LookingAngle(transform.position, actObject.transform) < 70)
+                    {
+                        actObject.GetComponent<ObjectSelect>().Select();
+                        actSpecialOption = true;
+                    }
+                    else
+                    {
+                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actSpecialOption = false;
+                    }
+                    break;
+                }
+            case "Door":
+                {
+                    if (!actObject.GetComponent<Door>().locked)
+                    {
+                        actObject.GetComponent<ObjectSelect>().Select();
+                        actSpecialOption = true;
+                    }
+                    else
+                    {
+                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actSpecialOption = false;
+                    }
+                    break;
+                }
+            case "Elevator":
+                {
+                    if (ElevatorController.get.ready)
+                    {
+                        actObject.GetComponent<ObjectSelect>().Select();
+                        actSpecialOption = true;
+                    }
+                    else
+                    {
+                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actSpecialOption = false;
+                    }
+                    break;
+                }
         }
     }
 
@@ -300,7 +349,10 @@ public class Player : Singleton<Player>
 
     public void Shout()
     {
-        StartCoroutine(Shouting());
+        if (ExamManager.get.exam_part != "prepare")
+            StartCoroutine(Shouting());
+        else
+            StartCoroutine(StartExam());
     }
 
     private IEnumerator Shouting()
@@ -546,5 +598,13 @@ public class Player : Singleton<Player>
     {
         if (actTag == "DeskBlock")
             actObject.GetComponent<DeskBlock>().Draw(option);
+    }
+
+
+    private IEnumerator StartExam()
+    {
+        yield return new WaitForEndOfFrame();
+
+        ExamManager.get.StartExam();
     }
 }

@@ -21,17 +21,21 @@ public class Tutorial : Singleton<Tutorial>
 
     private IEnumerator StartLevel()
     {
+        ElevatorController.get.Close();
+
         while (LevelManager.get.IsLoad())
             yield return new WaitForEndOfFrame();
 
         yield return new WaitForSeconds(1f);
 
+        GameManager.get.SetupManagers();
         SubtitleManager.get.Say("Tutorial_Begining");
 
         while(SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        Elevator.get.Open(false);
+
+        ElevatorController.get.Ready();
     }
 
 
@@ -42,6 +46,6 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        Elevator.get.Open(true);
+        Elevator.get.Open();
     }
 }

@@ -14,7 +14,7 @@ public class CrossHair : Singleton<CrossHair>
     [SerializeField]
     private Texture2D crossSpeak;
     [SerializeField]
-    private Texture2D crossExecute;
+    private Texture2D crossCant;
     [SerializeField]
     private Texture2D crossEye;
 
@@ -54,9 +54,9 @@ public class CrossHair : Singleton<CrossHair>
                     crossHair = crossSpeak;
                     break;
                 }
-            case "Exexute":
+            case "Cant":
                 {
-                    crossHair = crossExecute;
+                    crossHair = crossCant;
                     break;
                 }
             case "Eye":
@@ -67,9 +67,9 @@ public class CrossHair : Singleton<CrossHair>
         }
     }
 
-    public void SelectHair(string type)
+    public void SelectHair()
     {
-        switch (type)
+        switch (Player.get.actTag)
         {
            /* case "Scholar":
                 {
@@ -79,27 +79,26 @@ public class CrossHair : Singleton<CrossHair>
                 */
             case "Computer":
                 {
-                    SwitchHair("Action");
+                    if (Player.get.actSpecialOption)
+                        SwitchHair("Action");
+                    else
+                        SwitchHair("Simple");
                     break;
                 }
             case "Door":
                 {
-                    SwitchHair("Action");
+                    if(Player.get.actSpecialOption)
+                        SwitchHair("Action");
+                    else
+                        SwitchHair("Cant");
                     break;
                 }
-            case "DoorHandle":
+            case "Elevator":
                 {
-                    SwitchHair("Eye");
-                    break;
-                }
-            case "Subject":
-                {
-                    SwitchHair("Execute");
-                    break;
-                }
-            case "ScholarSubject":
-                {
-                    SwitchHair("Execute");
+                    if (Player.get.actSpecialOption)
+                        SwitchHair("Action");
+                    else
+                        SwitchHair("Simple");
                     break;
                 }
             default:

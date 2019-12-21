@@ -57,6 +57,8 @@ public class StudentStressAgent : MonoBehaviour
 
         for(int i = 0; i < ss.Length; i++)
         {
+            Debug.Log(i);
+
             if (i == buf)
                 ss[i].SetActive(true);
             else

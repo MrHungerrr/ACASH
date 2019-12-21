@@ -16,8 +16,6 @@ public class ActionsScholar : MonoBehaviour
 
 
     [HideInInspector]
-    public bool ready;
-    [HideInInspector]
     public bool doing;
     [HideInInspector]
     public bool can_i_do_smth_else;
@@ -69,6 +67,7 @@ public class ActionsScholar : MonoBehaviour
         NavAgent = GetComponent<NavMeshAgent>();
         Anim = transform.Find("Model").GetComponent<Animator>();
         Scholar = transform.GetComponentInChildren<Scholar>();
+        keyAction = null;
     }
 
 
@@ -968,7 +967,6 @@ public class ActionsScholar : MonoBehaviour
 
         Watch(desk);
 
-        ready = true;
         keyAction = null;
         doing = false;
     }

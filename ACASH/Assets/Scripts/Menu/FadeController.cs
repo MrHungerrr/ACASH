@@ -55,7 +55,6 @@ public class FadeController : Singleton<FadeController>
 
         if ((targetFade - Mathf.Sign(targetFade - 0.5f)*currentFade) < 0.00001f)
         {
-            Debug.Log("faded!");
             currentFade = targetFade;
             fade.color = new Color(0, 0, 0, currentFade);
             active = false;

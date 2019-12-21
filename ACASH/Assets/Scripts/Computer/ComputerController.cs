@@ -49,6 +49,7 @@ public class ComputerController : MonoBehaviour
     private Image select;
 
 
+
     private void Awake()
     {
         Transform buf = transform.Find("Computer_UI").Find("Canvas");
@@ -60,11 +61,8 @@ public class ComputerController : MonoBehaviour
         program_name = close_bar.transform.GetComponentInChildren<TextMeshProUGUI>();
         ChangeImage("pointer");
 
-
         CompAgent = buf.Find("Computer Agent").GetComponent<ComputerAgent>();
         CompAgent.CompControl = this;
-        CompAgent.Set("Desktop");
-        CloseProgram();
 
         comp_col = GetComponent<ComputerUIColliderManager>();
         comp_cam = transform.GetComponentInChildren<CinemachineVirtualCamera>();
@@ -73,7 +71,12 @@ public class ComputerController : MonoBehaviour
         zoom = false;
         moving = false;
         zooming = false;
-
+    }
+    public void SetComputerController()
+    {
+        CompAgent.SetComputerAgent();
+        CompAgent.Set("Desktop");
+        CloseProgram();
         Enable(false);
     }
 

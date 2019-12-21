@@ -105,12 +105,13 @@ public class Elevator : Singleton<Elevator>
     }
     */
 
-    public void Open(bool toEnter) // выходишь или заходишь в лифт?
+    public void Open()     //(bool toEnter) выходишь или заходишь в лифт?
     {
         open = true;
 
 
-        enter = toEnter;
+        enter = !inside;
+        //enter = toEnter;
 
         if (ninety)
         {
@@ -151,8 +152,8 @@ public class Elevator : Singleton<Elevator>
             {
                 if (enter)
                 {
-                    if(inside)
-                        Close();
+                    if (inside)
+                        ElevatorController.get.Close();
                 }
                 else
                 {

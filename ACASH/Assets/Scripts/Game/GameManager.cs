@@ -43,7 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
-        //
+        StartCoroutine(RestartGame());
     }
 
     public void Quit()
@@ -73,34 +73,53 @@ public class GameManager : Singleton<GameManager>
     public IEnumerator StartGame()
     {
         game = true;
-        Player.get.transform.position = new Vector3(0, 0.207f, 0);
+        InputManager.get.SwitchGameInput("disable");
 
         FadeController.get.Fade(true);
 
         while (FadeController.get.active)
             yield return new WaitForEndOfFrame();
 
-        LevelManager.get.LoadFast("Elevator");
-
         Menu.get.MenuEnable(false);
+        Player.get.transform.position = new Vector3(0, 0.207f, 0);
+        LevelManager.get.LoadFast("Elevator");
+        LevelManager.get.LoadFast("Tutorial");
 
-        while (!LevelManager.get.IsLoad("Elevator"))
+        while (!LevelManager.get.IsLoad("Elevator") || !LevelManager.get.IsLoad("Tutorial"))
             yield return new WaitForEndOfFrame();
+
+        yield return new WaitForSeconds(0.1f);
 
         FadeController.get.Fade(false);
         InputManager.get.SwitchGameInput("gameplay");
+    }
+
+    public IEnumerator RestartGame()
+    {
+        game = true;
+        InputManager.get.SwitchGameInput("disable");
+
+        FadeController.get.Fade(true);
 
         while (FadeController.get.active)
             yield return new WaitForEndOfFrame();
 
-        InputManager.get.SwitchGameInput("disable");
-        LevelManager.get.LoadFast("Tutorial");
+        Menu.get.MenuEnable(false);
+        Player.get.transform.position = new Vector3(0, 0.207f, 0);
+        LevelManager.get.UnloadLevels();
 
-        while (!LevelManager.get.IsLoad("Tutorial"))
+        while (LevelManager.get.IsLoad())
             yield return new WaitForEndOfFrame();
 
-        yield return new WaitForSeconds(0.01f);
+        LevelManager.get.LoadFast("Elevator");
+        LevelManager.get.LoadFast("Tutorial");
 
+        while (!LevelManager.get.IsLoad("Elevator") || !LevelManager.get.IsLoad("Tutorial"))
+            yield return new WaitForEndOfFrame();
+
+        yield return new WaitForSeconds(0.1f);
+
+        FadeController.get.Fade(false);
         InputManager.get.SwitchGameInput("gameplay");
     }
 
@@ -110,6 +129,9 @@ public class GameManager : Singleton<GameManager>
     {
         ScholarManager.get.SetLevel();
         ScholarManager.get.SetScholars();
+        ComputerManager.get.SetComputerManager();
+        TimeManager.get.SetTimers();
+
     }
 
 
