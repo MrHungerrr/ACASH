@@ -281,7 +281,10 @@ public class ActionsScholar : MonoBehaviour
             return true;
         }
         else
+        {
+            Debug.Log((transform.position - destination).magnitude);
             return false;
+        }
     }
 
     private void Watch(Vector3 target)
@@ -964,6 +967,8 @@ public class ActionsScholar : MonoBehaviour
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();
+
+        Debug.Log(" Here " );
 
         Watch(desk);
 

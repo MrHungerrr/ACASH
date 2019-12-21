@@ -114,8 +114,6 @@ public class TimeManager : Singleton<TimeManager>
 
     private void ShowTime()
     {
-        Debug.Log(timers.Length);
-
         time_string = StringTime(time_left);
         HUDController.get.Time(time_string);
 
