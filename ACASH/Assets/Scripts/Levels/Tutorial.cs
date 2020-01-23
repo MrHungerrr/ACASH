@@ -10,7 +10,6 @@ public class Tutorial : Singleton<Tutorial>
     private void Awake()
     {
         StartCoroutine(StartLevel());
-
     }
 
     private void Update()

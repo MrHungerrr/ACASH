@@ -5,13 +5,10 @@ using UnityEngine.AI;
 using TMPro;
 using System;
 
-public class ActionsScholar : MonoBehaviour
+public class ScholarActions : MonoBehaviour
 {
 
-    private Animator Anim;
     private Scholar Scholar;
-    [HideInInspector]
-    public NavMeshAgent NavAgent;
 
 
 
@@ -35,7 +32,6 @@ public class ActionsScholar : MonoBehaviour
     public string keyAction;
     [HideInInspector]
     public string keyAction_now;
-    private const string anim = "AnimNumber";
 
 
     //Списывание
@@ -46,34 +42,25 @@ public class ActionsScholar : MonoBehaviour
     //Дополительные переменные
 
 
-    private Vector3 destination;
+
     [HideInInspector]
     public Vector3 home;
     [HideInInspector]
     public Vector3 desk;
 
 
-    private Dictionary<string, int> animations = new Dictionary<string, int>()
-    {
-        { "Nothing", 0},
-        { "Walking", 1},
-        { "Writing", 2},
-        { "Cheating", 3},
-    };
 
 
     private void Awake()
     {
-        NavAgent = GetComponent<NavMeshAgent>();
-        Anim = transform.Find("Model").GetComponent<Animator>();
-        Scholar = transform.GetComponentInChildren<Scholar>();
+        Scholar = GetComponent<Scholar>();
         keyAction = null;
     }
 
 
     private void Start()
     {
-        Anim.SetInteger(anim, animations["Nothing"]);
+        Scholar.Anim.SetAnimation("Nothing");
         question_t = question_const_t;
         doing_t = doing_const_t;
         q_bool = true;
@@ -177,9 +164,8 @@ public class ActionsScholar : MonoBehaviour
             Scholar.cheatNeed = false;
         }
 
-        SetDestination(transform.position);
-        Anim.SetInteger(anim, animations["Nothing"]);
         Scholar.writing = false;
+        Scholar.Move.Stop();
         keyAction_now = "Nothing";
         doing = false;
     }
@@ -225,12 +211,11 @@ public class ActionsScholar : MonoBehaviour
         Scholar.writing = true;
 
         //Debug.Log("Я думаю");
-        Anim.SetInteger(anim, animations["Nothing"]);
+        Scholar.Anim.SetAnimation("Nothing");
 
         yield return new WaitForSeconds(UnityEngine.Random.Range(4, 5));
         //Debug.Log("Я пишу");
-
-        Anim.SetInteger(anim, animations["Writing"]);
+        Scholar.Anim.SetAnimation("Writing");
 
         yield return new WaitForSeconds(UnityEngine.Random.Range(2, 7));
 
@@ -246,7 +231,7 @@ public class ActionsScholar : MonoBehaviour
         }
         else
         {
-            if (ScholarManager.get.Probability((Scholar.stress / 100) + 0.25))
+            if (BaseMath.Probability((Scholar.Stress.value / 100) + 0.25))
             {
                 StartWriting();
             }
@@ -263,29 +248,11 @@ public class ActionsScholar : MonoBehaviour
     //Перемещение и повороты
 
 
-    private void SetDestination(Vector3 goal)
-    {
-        destination = new Vector3(goal.x, transform.position.y, goal.z);
-        NavAgent.SetDestination(destination);
-        Anim.SetInteger(anim, animations["Walking"]);
-        Scholar.walking = true;
-    }
 
 
-    private bool IsHere()
-    {
-        if ((transform.position - destination).magnitude <= 0.001)
-        {
-            Anim.SetInteger(anim, animations["Nothing"]);
-            Scholar.walking = false;
-            return true;
-        }
-        else
-        {
-            Debug.Log((transform.position - destination).magnitude);
-            return false;
-        }
-    }
+    //=========================================================================================================================================================
+    //Зрение
+
 
     private void Watch(Vector3 target)
     {
@@ -314,7 +281,7 @@ public class ActionsScholar : MonoBehaviour
     {
         watching = true;
         float buf = 2f;
-        Quaternion target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + angle, transform.rotation.eulerAngles.z);
+        Quaternion target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + angle, GetRotation().eulerAngles.z);
 
         while (buf > 0)
         {
@@ -340,62 +307,17 @@ public class ActionsScholar : MonoBehaviour
 
     public void SightTo(Vector3 target)
     {
-        Quaternion targetRotation = GetQuaternionTo(target);
-        targetRotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
-        transform.rotation = targetRotation;
+        Quaternion targetRotation = BaseGeometry.GetQuaternionTo(Scholar.Move.transform, target);
+        targetRotation = Quaternion.Slerp(GetRotation(), targetRotation, 3f * Time.deltaTime);
+        Scholar.Move.Rotation(targetRotation);
     }
 
     public void SightTo(Quaternion target)
     {
-        target = Quaternion.Slerp(transform.rotation, target, 3f * Time.deltaTime);
-        transform.rotation = target;
+        target = Quaternion.Slerp(GetRotation(), target, 3f * Time.deltaTime);
+        Scholar.Move.Rotation(target);
     }
 
-    public Quaternion GetQuaternionTo(Vector3 target)
-    {
-        Vector3 direct = target - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direct);
-        targetRotation.z = transform.rotation.z;
-        targetRotation.x = transform.rotation.x;
-        return targetRotation;
-    }
-
-
-    private IEnumerator LookingForTeacher()
-    {
-        watching = true;
-        float buf = 2f;
-        Quaternion target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 120, transform.rotation.eulerAngles.z);
-
-        while (buf > 0 && !Scholar.T_here)
-        {
-            SightTo(target);
-            buf -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        buf = 2f;
-        target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 120, transform.rotation.eulerAngles.z);
-
-        while (buf > 0 && !Scholar.T_here)
-        {
-            SightTo(target);
-            buf -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        buf = 2f;
-        target = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 120, transform.rotation.eulerAngles.z);
-
-        while (buf > 0 && !Scholar.T_here)
-        {
-            SightTo(target);
-            buf -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-
-        watching = false;
-    }
 
 
 
@@ -460,31 +382,29 @@ public class ActionsScholar : MonoBehaviour
     }
 
 
-    public float GetHearDistance(Vector3 goal)
+    private void SetDestination(Vector3 goal)
     {
-        NavMeshPath path = new NavMeshPath();
-
-        NavAgent.CalculatePath(goal, path);
-
-        Vector3[] allWayPoints = new Vector3[path.corners.Length + 2];
-        allWayPoints[0] = transform.position;
-        allWayPoints[allWayPoints.Length - 1] = goal;
-
-        for (int i = 0; i < path.corners.Length; i++)
-        {
-            allWayPoints[i + 1] = path.corners[i];
-        }
-
-        float buf = 0f;
-
-        for (int i = 0; i < allWayPoints.Length - 1; i++)
-        {
-            buf += Vector3.Distance(allWayPoints[i], allWayPoints[i + 1]);
-        }
-
-        return buf;
+        Scholar.Move.SetDestination(goal);
     }
 
+    private bool IsHere()
+    {
+        return Scholar.Move.IsHere();
+    }
+
+    private Quaternion GetRotation()
+    {
+        return Scholar.Move.Rotation();
+    }
+
+    private Vector3 GetPosition()
+    {
+        return Scholar.Move.Position();
+    }
+
+
+    //=========================================================================================================================================================
+    //Вопрос
 
     private bool Question(string key)
     {
@@ -499,7 +419,7 @@ public class ActionsScholar : MonoBehaviour
         }
         else
         {
-            if ((Scholar.asking || Scholar.talking) && (question_t > 0 || Scholar.T_look_at_us))
+            if ((Scholar.asking || Scholar.talking) && (question_t > 0 || Scholar.Senses.T_look_at_us))
             {
                 SightTo(Player.get.transform.position);
                 question_t -= Time.deltaTime;
@@ -531,6 +451,47 @@ public class ActionsScholar : MonoBehaviour
 
 
 
+    //=========================================================================================================================================================
+    // Поиск учителя
+
+    private IEnumerator LookingForTeacher()
+    {
+        watching = true;
+        float buf = 2f;
+        Quaternion target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + 120, GetRotation().eulerAngles.z);
+
+        while (buf > 0 && !Scholar.Senses.T_here)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        buf = 2f;
+        target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + 120, GetRotation().eulerAngles.z);
+
+        while (buf > 0 && !Scholar.Senses.T_here)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        buf = 2f;
+        target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + 120, GetRotation().eulerAngles.z);
+
+        while (buf > 0 && !Scholar.Senses.T_here)
+        {
+            SightTo(target);
+            buf -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        watching = false;
+    }
+
+
+
 
     //=========================================================================================================================================================
     //Выход в туалет
@@ -539,7 +500,7 @@ public class ActionsScholar : MonoBehaviour
     {
         if (CanIContinue())
         {
-            if (!Scholar.T_here)
+            if (!Scholar.Senses.T_here)
             {
 
                 StartCoroutine(LookingForTeacher());
@@ -549,7 +510,7 @@ public class ActionsScholar : MonoBehaviour
                     yield return new WaitForEndOfFrame();
                 }
 
-                if (Scholar.T_here)
+                if (Scholar.Senses.T_here)
                 {
                     actionNo++;
                     Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
@@ -665,7 +626,7 @@ public class ActionsScholar : MonoBehaviour
     {
         if (CanIContinue())
         {
-            if (!Scholar.T_here)
+            if (!Scholar.Senses.T_here)
             {
 
                 StartCoroutine(LookingForTeacher());
@@ -675,7 +636,7 @@ public class ActionsScholar : MonoBehaviour
                     yield return new WaitForEndOfFrame();
                 }
 
-                if (Scholar.T_here)
+                if (Scholar.Senses.T_here)
                 {
                     actionNo++;
                     Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
@@ -766,7 +727,7 @@ public class ActionsScholar : MonoBehaviour
     {
         if (CanIContinue())
         {
-            if (!Scholar.T_here)
+            if (!Scholar.Senses.T_here)
             {
 
                 StartCoroutine(LookingForTeacher());
@@ -776,7 +737,7 @@ public class ActionsScholar : MonoBehaviour
                     yield return new WaitForEndOfFrame();
                 }
 
-                if (Scholar.T_here)
+                if (Scholar.Senses.T_here)
                 {
                     actionNo++;
                     Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
@@ -871,7 +832,7 @@ public class ActionsScholar : MonoBehaviour
         Scholar.cheating = true;
         complete_before_end = true;
 
-        Anim.SetInteger(anim, animations["Cheating"]);
+        Scholar.Anim.SetAnimation("Cheating");
         yield return new WaitForSeconds(5f);
         Debug.Log("Сделал свои дела");
 
@@ -893,7 +854,7 @@ public class ActionsScholar : MonoBehaviour
         Scholar.SayThoughts("I WANT CHEAT");
 
 
-        if (!Scholar.T_here)
+        if (!Scholar.Senses.T_here)
         {
             StartCoroutine(LookingForTeacher());
             yield return new WaitForEndOfFrame();
@@ -905,7 +866,7 @@ public class ActionsScholar : MonoBehaviour
 
             doing = false;
 
-            if (Scholar.T_here)
+            if (Scholar.Senses.T_here)
             {
                 ready_for_cheat = false;
                 Debug.Log("Нихуя");
@@ -940,12 +901,12 @@ public class ActionsScholar : MonoBehaviour
     {
         complete_before_end = true;
 
-        Anim.SetInteger(anim, animations["Guesses"]);
+        Scholar.Anim.SetAnimation("Guesses");
 
         yield return new WaitForSeconds(5f);
 
 
-        Anim.SetInteger(anim, animations["HasGuessed"]);
+        Scholar.Anim.SetAnimation("HasGuessed");
 
         Debug.Log("Я догодалася");
 

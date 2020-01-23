@@ -8,12 +8,23 @@ public class GameManager : Singleton<GameManager>
 
     [HideInInspector]
     public bool game;
+    [SerializeField]
+    private bool test;
 
 
     private void Awake()
     {
         game = false;
-        MainMenu();
+        if (!test)
+        {
+            MainMenu();
+        }
+        else
+        {
+            game = true;
+            Menu.get.MenuEnable(false);
+            InputManager.get.SwitchGameInput("gameplay");
+        }
         FadeController.get.Fade(false);
     }
 

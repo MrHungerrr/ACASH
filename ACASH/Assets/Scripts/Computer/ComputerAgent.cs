@@ -23,7 +23,6 @@ public class ComputerAgent : MonoBehaviour
         foreach (GameObject i in comp_windows)
         {
             windows.Add(i.name, i);
-            Debug.Log(i.name);
             i.SetActive(false);
         }
     }

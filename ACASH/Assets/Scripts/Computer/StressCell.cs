@@ -31,10 +31,10 @@ public class StressCell : MonoBehaviour
     {
         if (active)
         {
-            stress = scholar.stress;
+            stress = scholar.Stress.value;
             //Debug.Log("Стресс чувака - " + stress/10);
             slider.Select(stress / 10);
-            Mood(scholar.GetMoodType());
+            Mood(scholar.Stress.GetMoodType());
         }
     }
 

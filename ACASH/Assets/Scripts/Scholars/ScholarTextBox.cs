@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TextBoxScholar : MonoBehaviour
+public class ScholarTextBox : MonoBehaviour
 {
 
-    private TextMeshPro[] textBox;
+    private TextMeshPro[] textBox = new TextMeshPro[3];
+    private SliderWatch stressSlider;
     private bool saying = false;
     private bool question = false;
     private bool act = false;
@@ -19,8 +20,11 @@ public class TextBoxScholar : MonoBehaviour
 
     private void Awake()
     {
-        textBox = transform.GetComponentsInChildren<TextMeshPro>();
-
+        Transform buf = transform.parent.Find("Armature").Find("Body").Find("Text Box");
+        textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();
+        textBox[1] = buf.Find("Text_1").GetComponent<TextMeshPro>();
+        textBox[2] = buf.Find("Text_2").GetComponent<TextMeshPro>();
+        stressSlider = buf.Find("Stress Slider").GetComponentInChildren<SliderWatch>();
     }
 
     private void Update()
@@ -127,17 +131,23 @@ public class TextBoxScholar : MonoBehaviour
 
     private void Text(string text)
     {
-            textBox[0].text = text;
+        textBox[0].text = text;
     }
 
     private void TextPlus(char symbol)
     {
-            textBox[0].text += symbol;
+        textBox[0].text += symbol;
     }
 
     public void Number(int num)
     {
         textBox[1].text = (num+1).ToString();
+    }
+
+    public void StressLevel(int num)
+    {
+        textBox[2].text = num.ToString() + '%';
+        stressSlider.Select(num / 10);
     }
 
 }

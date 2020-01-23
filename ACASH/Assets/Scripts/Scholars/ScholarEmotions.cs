@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class Emotions : MonoBehaviour
+public class ScholarEmotions : MonoBehaviour
 {
 
-    private TextMeshPro face;
+    private Material face;
 
 
     void Start()
     {
-        face = GetComponent<TextMeshPro>();
+        face = transform.parent.Find("Scholar Head").Find("Model").Find("Face").GetComponent<Renderer>().material;
     }
 
 
@@ -25,43 +24,49 @@ public class Emotions : MonoBehaviour
             case "ussual":
                 {
                     //Сделать обычное лицо
-                    face.text = ":|";
-                    break;
-                }
-            case "upset":
-                {
-                    //Расстроиться/Обидеться
-                    face.text = ":(";
-                    break;
-                }
-            case "sad":
-                {
-                    //Сделать печальное лицо
-                    face.text = ":[";
+                    SetFace(ScholarManager.get.ussual);
                     break;
                 }
             case "smile":
                 {
                     //Улыбнуться
-                    face.text = ":)";
+                    SetFace(ScholarManager.get.smile);
                     break;
                 }
             case "happy":
                 {
                     //Сделать счастливое лицо
-                    face.text = ":]";
+                    SetFace(ScholarManager.get.happy);
+                    break;
+                }
+            case "upset":
+                {
+                    //Расстроиться/Обидеться
+                    SetFace(ScholarManager.get.upset);
+                    break;
+                }
+            case "sad":
+                {
+                    //Сделать печальное лицо
+                    SetFace(ScholarManager.get.sad);
                     break;
                 }
             case "suprised":
                 {
                     //Сделать удивленное лицо
-                    face.text = ":O";
+                    SetFace(ScholarManager.get.suprised);
+                    break;
+                }
+            case "ask":
+                {
+                    //Сделать вопросительное лицо
+                    SetFace(ScholarManager.get.ask);
                     break;
                 }
             case "dead":
                 {
                     //Сделать мертвое лицо
-                    face.text = "X";
+                    SetFace(ScholarManager.get.dead);
                     break;
                 }
         }
@@ -69,6 +74,11 @@ public class Emotions : MonoBehaviour
     }
 
 
+    private void SetFace(Texture t)
+    {
+        face.SetTexture("_BaseMap", t);
+        face.SetTexture("_EmissionMap", t);
+    }
 
 
     public void ChangeEmotion(string emotion, string emotion_sec, float time)

@@ -20,8 +20,6 @@ public class SliderWatch : MonoBehaviour
 
     public void Select(int num)
     {
-        Debug.Log(num);
-
         for (int i = 0; i < 10; i++)
         {
             if (i < num)

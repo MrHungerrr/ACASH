@@ -52,6 +52,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6132918696476860144}
+  - component: {fileID: 118218193536906968}
   - component: {fileID: 6132918696476860143}
   - component: {fileID: 6132918696476860142}
   - component: {fileID: 6132918696476860141}
@@ -62,7 +63,6 @@ GameObject:
   - component: {fileID: 1486213564}
   - component: {fileID: 1486213565}
   - component: {fileID: 6289947634356078151}
-  - component: {fileID: 118218193536906968}
   - component: {fileID: 4691075570870221643}
   - component: {fileID: 6326149851576382278}
   - component: {fileID: 3982946758408277148}
@@ -88,6 +88,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &118218193536906968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132918696476860140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e71f063cc2135447984421eeb47d6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: 0
+  test: 0
 --- !u!114 &6132918696476860143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +166,17 @@ MonoBehaviour:
   desks_count: 0
   teacher_room: {fileID: 0}
   teacher_room_busy: 0
+  left: 0
+  cheated: 0
+  finished: 0
+  ussual: {fileID: 2800000, guid: 87c1c48b65072a24a941aec7ad64ad4b, type: 3}
+  happy: {fileID: 2800000, guid: 06a47f8b6b61b8841ad11c3d62f20288, type: 3}
+  smile: {fileID: 2800000, guid: 7ce14bec2060c1a4597f433724fc6002, type: 3}
+  sad: {fileID: 2800000, guid: 2d15d2c63f6e9bd4581f77c663f9a37a, type: 3}
+  upset: {fileID: 2800000, guid: 10fb9a8dd0801f84b9922c8a2cc6f92d, type: 3}
+  suprised: {fileID: 2800000, guid: db2cc152395e42246b6b39f0361d80ae, type: 3}
+  ask: {fileID: 2800000, guid: 4fe466d859381eb4881b88356dcc7cd3, type: 3}
+  dead: {fileID: 2800000, guid: 92fced849fdd5dd48b8be70b19e3ad53, type: 3}
 --- !u!114 &911437710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,9 +208,10 @@ MonoBehaviour:
   mouseInput: {x: 0, y: 0}
   mouse: {x: 0, y: 0}
   fast: 0
-  desktop_num: 0
-  desktop: 
   current_window: 
+  colors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 1, g: 1, b: 1, a: 0.3}
 --- !u!114 &1486213563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +224,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f44d52c1f5affc48af7dff5c67b2166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scores_names:
+  - Left
+  - Cheated
+  - Not Finished
+  - Executed Right
+  - Executed Wrong
+  - Answered Right
+  - Answered Wrong
+  reputation: 0
+  kindness: 0
+  reputation_amount: 0
+  kindness_amount: 0
+  bulls: 0
+  jokes: 0
 --- !u!114 &1486213564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,22 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f8aa6d1ed6a824bad86979b12eb0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_passed: 0
-  time_left: 0
-  time_test: 0
---- !u!114 &118218193536906968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6132918696476860140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e71f063cc2135447984421eeb47d6dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  game: 0
+  time_name: 
 --- !u!114 &4691075570870221643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1aa1610d99b64f47ac2f10c30ee01ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exam_part: 
+  exam: 0
 --- !u!114 &6326149851576382278
 MonoBehaviour:
   m_ObjectHideFlags: 0

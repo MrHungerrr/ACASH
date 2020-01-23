@@ -31,10 +31,7 @@ public class Scholar : MonoBehaviour
     private string keyWord;
     [HideInInspector]
     public bool executed;
-    private const float peripheral_vision_angle = 140f;
-    private const float central_vision_angle = 30f;
-    private const float vision_distance = 5f;
-    private LayerMask visible_layerMask;
+
 
 
 
@@ -62,61 +59,32 @@ public class Scholar : MonoBehaviour
 
 
 
-    //T - это Teacher
-    private float T_angle_x;
-    private float T_angle_y;
-    private Vector3 T_direction;
-    private float T_distance;
-    private float T_look_time;
-    private bool T_behind_wall;
-    private float T_look_near_time;
-    private float T_look_vanish_time;
-    private const float T_look_vanish_time_const = 0.1f;
-    [HideInInspector]
-    public bool T_look_at_us;
-    [HideInInspector]
-    public bool T_look_near_at_us;
-    private int T_look_coef;
-    private float angle_to_teacher;
-    [HideInInspector]
-    public bool T_here;
-    private bool T_in_sight;
-    private float T_vanish_time;
-    private const float T_vanish_time_const = 4f;
+
 
 
 
 
     //Доп инструмент ы
     [HideInInspector]
-    public TextBoxScholar TextBox;
+    public ScholarTextBox TextBox;
     [HideInInspector]
-    public ActionsScholar Action;
+    public ScholarActions Action;
     [HideInInspector]
-    public Emotions Emotions;
+    public ScholarEmotions Emotions;
+    [HideInInspector]
+    public ScholarMove Move;
+    [HideInInspector]
+    public ScholarSenses Senses;
+    [HideInInspector]
+    public ScholarAnim Anim;
+    [HideInInspector]
+    public ScholarStress Stress;
     [HideInInspector]
     public ScholarAgent Agent;
 
 
 
     private bool selectable = true;
-
-    //Стресс и настроение
-    [HideInInspector]
-    public int stress;
-    [HideInInspector]
-    public int threshold_1 = 33;
-    [HideInInspector]
-    public int threshold_2 = 66;
-    private byte moodType;
-    [HideInInspector]
-    public float[] moodType_time = new float[3];
-    private string[] moodType_string = new string[]
-    {
-        "chill",
-        "normal",
-        "panic"
-    };
 
 
     //Написание теста
@@ -160,23 +128,21 @@ public class Scholar : MonoBehaviour
     private void Awake()
     {
         this.tag = "Scholar";
- 
-        TextBox = transform.parent.transform.parent.GetComponentInChildren<TextBoxScholar>();
-        Emotions = transform.parent.transform.parent.GetComponentInChildren<Emotions>();
-        Action = transform.parent.transform.GetComponentInParent<ActionsScholar>();
+
+        TextBox = GetComponent<ScholarTextBox>();
+        Emotions = GetComponent<ScholarEmotions>();
+        Action = GetComponent<ScholarActions>();
+        Move = transform.GetComponentInParent<ScholarMove>();
+        Senses = new ScholarSenses(this);
+        Stress = new ScholarStress(this);
+        Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
         cheatNeed = false;
 
-        stress = 50;
-        ChangeMoodType();
+        Stress.value = 50;
+        Stress.ChangeMoodType();
         ChangeType(scholarType.ToString());
         Selectable(true);
         IQ_start = 0;
-    }
-
-
-    private void Start()
-    {
-        visible_layerMask = LayerMask.GetMask("ScholarEye Layer");
     }
 
 
@@ -188,18 +154,18 @@ public class Scholar : MonoBehaviour
             if (writing)
                 Agent.Writing();
 
-            TeacherCalculate();
-            WhereTeacher();
+            Senses.TeacherCalculate();
+            Senses.WhereTeacher();
 
             if (cheating)
-                CheatingFinish();
+                Senses.CheatingFinish();
         }
     }
 
     private void FixedUpdate()
     {
-        if(!executed)
-            MoodTypeTime();
+        if (!executed)
+            Stress.MoodTypeTime();
     }
 
     public void Continue()
@@ -210,9 +176,9 @@ public class Scholar : MonoBehaviour
 
     public void Stop()
     {
-            StopAllCoroutines();
-            Action.Stop();
-            TextBox.Clear();
+        StopAllCoroutines();
+        Action.Stop();
+        TextBox.Clear();
     }
 
     public void StartWrite()
@@ -235,74 +201,7 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Поднятие стресса
 
-    public void Stress(int value)
-    {
-        stress += value;
-        if (stress > 100)
-            stress = 100;
-        if (stress < 0)
-            stress = 0;
 
-        ChangeMoodType();
-    }
-
-    private void ChangeMoodType()
-    {
-        if (stress < threshold_1)
-            moodType = 0;
-        else if (stress < threshold_2)
-            moodType = 1;
-        else
-            moodType = 2;
-    }
-
-
-
-    public string GetMoodType()
-    {
-        return moodType_string[moodType];
-    }
-
-
-    private void MoodTypeTime()
-    {
-         moodType_time[moodType] += Time.fixedDeltaTime;
-    }
-
-    public void ZeroingMoodTypeTime()
-    {
-        for(int i = 0; i < 3; i++)
-        {
-            moodType_time[i] = 0;
-        }
-    }
-
-    public int GetMoodTypeTime()
-    {
-        float buf_time = 0;
-
-        for (int i = 0; i < 3; i++)
-        {
-            buf_time += moodType_time[i];
-        }
-
-        buf_time *= UnityEngine.Random.value;
-        moodType_time[1] += moodType_time[0];
-
-
-        if(buf_time <= moodType_time[0])
-        {
-            return 0;
-        }
-        else if(buf_time < moodType_time[1])
-        {
-            return 1;
-        }
-        else
-        {
-            return 2;
-        }
-    }
 
 
 
@@ -365,7 +264,7 @@ public class Scholar : MonoBehaviour
         Selectable(true);
         talking = false;
 
-        if (ScholarManager.get.Probability(probability_of_continue))
+        if (BaseMath.Probability(probability_of_continue))
             Continue();
         else
             StartWrite();
@@ -519,7 +418,7 @@ public class Scholar : MonoBehaviour
     {
         talking = true;
         Selectable(false);
-        TextBox.Question(key);
+        TextBox.Say(key);
 
         yield return new WaitForSeconds(1f);
 
@@ -651,225 +550,5 @@ public class Scholar : MonoBehaviour
         Agent = new ScholarAgent(type, this);
         keyWord = type + "_";
     }
-
-
-
-    //========================================================================================================
-    //Вычесления связанные с учителем
-
-    public void ISeeYou()
-    {
-        T_look_at_us = true;
-        T_look_vanish_time = T_look_vanish_time_const;
-    }
-
-    private void TeacherCalculate()
-    {
-        if (Player.get.look_closer)
-            T_look_coef = 2;
-        else
-            T_look_coef = 1;
-
-        T_behind_wall = true;
-
-        T_angle_y = LookingAngle(Action.transform.position, Player.get.transform);
-        T_angle_x = (PlayerCamera.get.transform.rotation.eulerAngles.x + 30) % 360;
-
-        T_direction = new Vector3(Player.get.transform.position.x - Action.transform.position.x, Action.transform.position.y, Player.get.transform.position.z - Action.transform.position.z).normalized;
-
-        T_distance = Action.GetHearDistance(Player.get.transform.position);
-
-
-        RaycastHit hit;
-        Debug.DrawRay(Action.transform.position + transform.up.normalized * 0.3f, T_direction, Color.red);
-        if (Physics.Raycast(Action.transform.position + transform.up.normalized * 0.3f, T_direction, out hit, vision_distance, visible_layerMask))
-        {
-            if (hit.collider.tag == "Player")
-            {
-                T_behind_wall = false;
-            }
-        }
-
-
-        angle_to_teacher = LookingAngle(Player.get.transform.position, Action.transform);
-
-        // Debug.Log("X: " + teacher_angle_x + ";   Y: " + teacher_angle_y);
-        // Debug.Log("Magnitude: " + teacher_distance);
-
-
-        if ((T_angle_y < (48 / (T_look_coef * T_look_coef)) && T_angle_x < 80) || (T_distance <= 0.5))
-        {
-            T_look_near_at_us = true;
-        }
-        else
-        {
-            T_look_near_at_us = false;
-        }
-
-
-        if (T_look_at_us)
-        {
-            T_look_time += Time.deltaTime * T_look_coef;
-        }
-        else
-        {
-            T_look_time = 0;
-        }
-
-        if (T_look_near_at_us)
-        {
-            T_look_near_time += Time.deltaTime * T_look_coef;
-        }
-        else
-        {
-            T_look_near_time = 0;
-        }
-
-
-        if (T_look_vanish_time > 0)
-        {
-            T_look_vanish_time -= Time.deltaTime;
-        }
-        else
-        { 
-            T_look_at_us = false;
-        }
-    }
-
-
-
-
-    private float LookingAngle(Vector3 lookingTo, Transform Who)
-    {
-        lookingTo.y = Who.transform.position.y;
-        lookingTo = lookingTo - Who.transform.position;
-        return Vector3.Angle(lookingTo, Who.forward);
-    }
-
-
-
-    public void Hear(float distance)
-    {
-        if(T_distance <= distance)
-        {
-            T_here = true;
-            T_vanish_time = T_vanish_time_const;
-        }
-    }
-
-
-
-    private void CheatingFinish()
-    {
-
-        // Обозначения переменных для завершения списывания
-        //  1 - Звук от учителя
-        //  2 - Я вижу учителя
-        //  3 - Учитель возможно смотрит на меня
-        //  4 - Учитель точно смотрит на меня
-
-        switch (cheat_finish_type)
-        {
-            case 1:
-                {
-                    if (T_here)
-                        Action.StopCheating();
-
-                    break;
-                }
-            case 2:
-                {
-                    if (T_in_sight)
-                        Action.StopCheating();
-
-                    break;
-                }
-            case 3:
-                {
-                    if (T_in_sight && T_look_near_at_us)
-                        Action.StopCheating();
-
-                    break;
-                }
-            case 4:
-                {
-                    if (T_in_sight && T_look_at_us)
-                        Action.StopCheating();
-
-                    break;
-                }
-        }
-    }
-
-
-
-    public void SpecialHear(Vector3 pos)
-    {
-        //Вероятность нужна тут
-        Debug.Log("Я услышал");
-        Action.SpecialWatch(pos);
-    }
-
-
-
-    private void WhereTeacher()
-    {
-
-        if (!T_behind_wall)
-        {
-            if (T_distance > 0.5)
-            {
-                if ((angle_to_teacher <= peripheral_vision_angle*0.5f && T_here) || (angle_to_teacher <= central_vision_angle * 0.5f && !T_here))
-                {
-                    T_in_sight = true;
-                }
-                else
-                {
-                    T_in_sight = false;
-                }
-            }
-            else
-            {
-                T_in_sight = true;
-            }
-        }
-        else
-        {
-            T_in_sight = false;
-        }
-
-
-        if(T_in_sight)
-        {
-            T_here = true;
-
-            T_vanish_time = T_vanish_time_const;
-        }
-        else
-        {
-            if (T_vanish_time > 0)
-            {
-                T_vanish_time -= Time.deltaTime;
-            }
-            else
-            {
-                T_here = false;
-            }
-        }
-        
-
-        /*
-        if(T_here)
-        {
-            //Debug.Log("Ты туууут!");
-        }
-        else
-        {
-            //Debug.Log("Неееет");
-        }
-        */
-    }
-
-
 
 }

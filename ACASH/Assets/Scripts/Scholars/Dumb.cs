@@ -4,12 +4,12 @@ using System;
 public class Dumb
 {
     [HideInInspector]
-    public Scholar scholar;
+    public Scholar Scholar;
     private string cheat_check;
 
     public Dumb(Scholar p)
     {
-        scholar = p;
+        Scholar = p;
     }
 
 
@@ -20,11 +20,11 @@ public class Dumb
     {
         if (strong)
         {
-            scholar.Emotions.ChangeEmotion("suprised");
+            Scholar.Emotions.ChangeEmotion("suprised");
         }
         else
         {
-            scholar.Emotions.ChangeEmotion("suprised");
+            Scholar.Emotions.ChangeEmotion("suprised");
         }
     }
 
@@ -37,16 +37,16 @@ public class Dumb
         if (strong)
         {
             Debug.Log("Учитель наезжает");
-            scholar.Stress(10);
-            scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+            Scholar.Stress.Change(10);
+            Scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
             Debug.Log("Учитель прикалывается");
-            scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
+            Scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
 
-        scholar.Answer(key, 1, 1);
+        Scholar.Answer(key, 1, 1);
     }
 
 
@@ -56,43 +56,43 @@ public class Dumb
     public void BullingForSubjects(string key, string obj)
     {
         Debug.Log("Учитель наезжает");
-        scholar.Stress(10);
-        scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
-        scholar.Answer(key, obj, 0, 1);
+        Scholar.Stress.Change(10);
+        Scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        Scholar.Answer(key, obj, 0, 1);
     }
 
     public void TeacherAnswer(string key, bool answer)
     {
         if (answer)
         {
-            scholar.SayWithoutContinue(key);
-            scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
+            Scholar.SayWithoutContinue(key);
+            Scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
         else
         {
-            scholar.SayWithoutContinue(key);
-            scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+            Scholar.SayWithoutContinue(key);
+            Scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
     }
 
     public void StopQuestion()
     {
-        scholar.asking = false;
-        scholar.TextBox.Clear();
-        scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
-        scholar.StartWrite();
+        Scholar.asking = false;
+        Scholar.TextBox.Clear();
+        Scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+        Scholar.StartWrite();
     }
 
     public void Writing()
     {
-        scholar.WritingTest(UnityEngine.Random.value * 100);
+        Scholar.WritingTest(UnityEngine.Random.value * 100);
     }
 
     public void CheatNeed()
     {
         if (CheatProbability())
         {
-            scholar.cheatNeed = true;
+            Scholar.cheatNeed = true;
             ScholarManager.get.cheating_count++;
             CheatingSelection();
             Debug.Log("Я хочу списать");
@@ -105,17 +105,17 @@ public class Dumb
 
     public bool CheatProbability()
     {
-        switch (scholar.GetMoodTypeTime())
+        switch (Scholar.Stress.GetMoodTypeTime())
         {
             case 0:
                 {
-                    if (ScholarManager.get.Probability(0.75))
+                    if (BaseMath.Probability(0.75))
                         return true;
                     break;
                 }
             case 1:
                 {
-                    if (ScholarManager.get.Probability(0.5))
+                    if (BaseMath.Probability(0.5))
                         return true;
                     break;
                 }
@@ -146,7 +146,7 @@ public class Dumb
                     {
                         case 0:
                             {
-                                scholar.Do("Cheating_Check_1");
+                                Scholar.Do("Cheating_Check_1");
                                 break;
                             }
                     }
@@ -165,9 +165,9 @@ public class Dumb
         {
             case 0:
                 {
-                    scholar.Action.cheat_string = "Cheating_1";
+                    Scholar.Action.cheat_string = "Cheating_1";
                     cheat_check = "Outside";
-                    scholar.cheat_finish_type = 1;
+                    Scholar.cheat_finish_type = 1;
                     break;
                 }
         }
@@ -181,7 +181,7 @@ public class Dumb
         {
             case 0:
                 {
-                    scholar.StartWrite();
+                    Scholar.StartWrite();
                     break;
                 }
         }
@@ -196,17 +196,17 @@ public class Dumb
         {
             case 0:
                 {
-                    scholar.Do("Toilet_1");
+                    Scholar.Do("Toilet_1");
                     break;
                 }
             case 1:
                 {
-                    scholar.Do("Sink_1");
+                    Scholar.Do("Sink_1");
                     break;
                 }
             case 2:
                 {
-                    scholar.Do("Air_1");
+                    Scholar.Do("Air_1");
                     break;
                 }
         }

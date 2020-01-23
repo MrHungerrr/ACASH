@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using N_BH;
 
@@ -9,9 +10,11 @@ public class ScholarManager : Singleton<ScholarManager>
     public Scholar[] scholars;
     private bool withoutScholars;
 
+    [HideInInspector]
     public int cheating_count;
     private int cheating_limit = 2;
     private float special_actions_per_minute = 10;
+    [HideInInspector]
     public int special_actions_count;
 
 
@@ -51,6 +54,18 @@ public class ScholarManager : Singleton<ScholarManager>
     public int cheated;
     [HideInInspector]
     public int finished;
+
+
+    //Emotions
+    public Texture ussual;
+    public Texture happy;
+    public Texture smile;
+    public Texture sad;
+    public Texture upset;
+    public Texture suprised;
+    public Texture ask;
+    public Texture dead;
+
 
 
 
@@ -128,7 +143,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Stress(value);
+            scholars[i].Stress.Change(value);
         }
     }
 
@@ -140,7 +155,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            buf[i] = scholars[i].stress;
+            buf[i] = scholars[i].Stress.value;
         }
 
         return buf;
@@ -151,7 +166,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public int GetStress(int scholarNum)
     {
-        return scholars[scholarNum].stress;
+        return scholars[scholarNum].Stress.value;
     }
 
 
@@ -308,11 +323,11 @@ public class ScholarManager : Singleton<ScholarManager>
             if (IsCheatFree())
             {
                 scholars[i].Agent.CheatNeed();
-                scholars[i].ZeroingMoodTypeTime();
+                scholars[i].Stress.ZeroingMoodTypeTime();
             }
             else
             {
-                scholars[i].ZeroingMoodTypeTime();
+                scholars[i].Stress.ZeroingMoodTypeTime();
             }
         }
     }
@@ -411,22 +426,11 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
 
-    public bool Probability(double a)
-    {
-        double rnd = Random.value;
-
-        if (a >= rnd)
-            return true;
-        else
-            return false;
-    }
-
-
     public void Hear(float distance)
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Hear(distance);
+            scholars[i].Senses.Hear(distance);
         }
     }
 
@@ -434,7 +438,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].SpecialHear(pos);
+            scholars[i].Senses.SpecialHear(pos);
         }
     }
 }

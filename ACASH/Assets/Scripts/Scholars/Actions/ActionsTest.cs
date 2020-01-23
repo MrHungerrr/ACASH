@@ -155,11 +155,11 @@ public class ActionsTest : MonoBehaviour
     {
         if (greater)
         {
-            Scholar.Stress(10);
+            Scholar.Stress.Change(10);
         }
         else
         {
-            Scholar.Stress(-10);
+            Scholar.Stress.Change(-10);
         }
     }
 
@@ -199,8 +199,8 @@ public class ActionsTest : MonoBehaviour
     private void ScholarRefresh()
     {
         text_type.text = Scholar.type;
-        text_stress.text = Scholar.stress.ToString();
+        text_stress.text = Scholar.Stress.value.ToString();
         text_action.text = Scholar.Action.keyAction_now;
-        text_mood.text = Scholar.GetMoodType();
+        text_mood.text = Scholar.Stress.GetMoodType();
     }
 }

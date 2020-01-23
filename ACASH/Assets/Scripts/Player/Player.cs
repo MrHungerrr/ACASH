@@ -212,8 +212,8 @@ public class Player : Singleton<Player>
             
             if (hits[i].transform != null)
             {
-                Scholar obj = hits[i].transform.parent.GetComponentInChildren<Scholar>();
-                obj.ISeeYou();
+                Scholar scholar = hits[i].transform.parent.GetComponentInChildren<Scholar>();
+                scholar.Senses.ISeeYou();
             }
         }
         
@@ -522,41 +522,6 @@ public class Player : Singleton<Player>
         act = false;
 
         SubtitleManager.get.Say(keyWord + "Thinking_" + key);
-    }
-
-
-    private IEnumerator Execute(ScholarSubject subject)
-    {
-        key += subject.name + "_";
-        key += Random.Range(0, ScriptManager.get.linesQuantity[keyWord + key]);
-        SubtitleManager.get.Say(keyWord + key);
-        subject.Execute(key);
-
-        yield return new WaitForSeconds(1f);
-
-        while (SubtitleManager.get.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        act = false;
-    }
-
-    private IEnumerator Execute(Subject subject)
-    {
-        key += subject.name + "_";
-        key += Random.Range(0, ScriptManager.get.linesQuantity[keyWord + key]);
-        SubtitleManager.get.Say(keyWord + key);
-        subject.Execute();
-
-        yield return new WaitForSeconds(1f);
-
-        while (SubtitleManager.get.act)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        act = false;
     }
 
 
