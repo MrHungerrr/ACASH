@@ -19,7 +19,7 @@ public class ComputerManager : Singleton<ComputerManager>
     public Vector2 mouse;
 
     private ComputerController CompControl;
-    private bool active;
+    private bool active = false;
     [HideInInspector]
     public bool fast;
 
@@ -34,11 +34,6 @@ public class ComputerManager : Singleton<ComputerManager>
         new Color(1f,1f,1f,0.3f),
     };
 
-
-    private void Awake()
-    {
-        active = false;
-    }
 
 
     public void SetComputerManager()

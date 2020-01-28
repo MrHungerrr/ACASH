@@ -73,6 +73,8 @@ public class Scholar : MonoBehaviour
     public ScholarTest Test;
     [HideInInspector]
     public ScholarTextBox TextBox;
+    [HideInInspector]
+    public DeskController Desk;
 
 
     //Список замечаний, которые уже были сделаны.
@@ -401,6 +403,7 @@ public class Scholar : MonoBehaviour
         Action.home = ScholarManager.get.desks[0, i].position;
         Action.desk = ScholarManager.get.desks[1, i].position;
         TextBox.Number(i);
+        Desk = DeskManager.get.desks[i];
     }
 
 

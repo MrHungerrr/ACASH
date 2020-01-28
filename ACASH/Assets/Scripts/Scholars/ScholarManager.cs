@@ -114,14 +114,14 @@ public class ScholarManager : Singleton<ScholarManager>
         }
 
 
-        buf = GameObject.FindGameObjectsWithTag("ScholarDesk");
-        desks = new Transform[2, buf.Length];
-        desks_count = buf.Length;
+        desks = new Transform[2, DeskManager.get.desks.Length];
+        desks_count = DeskManager.get.desks.Length;
 
         for (int i = 0; i < buf.Length; i++)
         {
-            desks[1, i] = buf[i].transform;
-            desks[0, i] = buf[i].transform.parent.transform.Find("Destonation");
+            DeskController desk = DeskManager.get.desks[i];
+            desks[1, i] = desk.transform;
+            desks[0, i] = desk.transform.parent.transform.Find("Destonation");
         }
     }
 
@@ -130,8 +130,6 @@ public class ScholarManager : Singleton<ScholarManager>
         scholars = GameObject.FindObjectsOfType<Scholar>();
 
         withoutScholars = (scholars.Length == 0);
-
-        DeskSort();
         StudentStress.get.Set();
         ScholarNumberRandomer();
     }
@@ -165,32 +163,6 @@ public class ScholarManager : Singleton<ScholarManager>
     public int GetStress(int scholarNum)
     {
         return scholars[scholarNum].Stress.value;
-    }
-
-
-
-    private void DeskSort()
-    {
-        for (int i = 0; i < (desks_count - 1); i++)
-            for (int i2 = 0; i2 < (desks_count - 1 - i); i2++)
-            {
-                if ((desks[1, i2].position.x > desks[1, i2 + 1].position.x) || (desks[1, i2].position.x == desks[1, i2 + 1].position.x && desks[1, i2].position.z < desks[1, i2 + 1].position.z))
-                {
-                    var buf0 = desks[0, i2 + 1];
-                    var buf1 = desks[1, i2 + 1];
-                    desks[0, i2 + 1] = desks[0, i2];
-                    desks[1, i2 + 1] = desks[1, i2];
-                    desks[0, i2] = buf0;
-                    desks[1, i2] = buf1;
-                }
-            }
-
-
-        for (int i = 0; i < desks_count; i++)
-        {
-            desks[1, i].name = "Desk_" + i;
-            //Debug.Log(desks[1, i].position);
-        }
     }
 
 

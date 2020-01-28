@@ -4,13 +4,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using Cinemachine;
-using TMPro;
 using N_BH;
 
 
 public class ComputerController : MonoBehaviour
 {
-    private ComputerAgent CompAgent;
+    private ComputerWindows CompWindows;
     private ComputerUIColliderManager comp_col;
 
 
@@ -39,30 +38,24 @@ public class ComputerController : MonoBehaviour
 
     private Vector2 position;
 
-
-    public string current_window;
-    private TextMeshProUGUI program_name;
-    private GameObject close_bar;
     private GameObject screen;
     private GameObject cursor;
     private Image pointer;
     private Image select;
 
 
-
-    private void Awake()
+    public void SetComputerController()
     {
         Transform buf = transform.Find("Computer_UI").Find("Canvas");
         screen = buf.Find("Screen").gameObject;
-        close_bar = screen.transform.Find("Close Bar").gameObject;
         cursor = screen.transform.Find("Cursor").gameObject;
         pointer = screen.transform.Find("Cursor").Find("Pointer").GetComponent<Image>();
         select = screen.transform.Find("Cursor").Find("Select").GetComponent<Image>();
-        program_name = close_bar.transform.GetComponentInChildren<TextMeshProUGUI>();
         ChangeImage("pointer");
 
-        CompAgent = buf.Find("Computer Agent").GetComponent<ComputerAgent>();
-        CompAgent.CompControl = this;
+        CompWindows = buf.Find("Computer Agent").GetComponent<ComputerWindows>();
+        CompWindows.SetProgramBar(screen.transform.Find("Close Bar").gameObject);
+        CompWindows.SetWindows();
 
         comp_col = GetComponent<ComputerUIColliderManager>();
         comp_cam = transform.GetComponentInChildren<CinemachineVirtualCamera>();
@@ -71,12 +64,7 @@ public class ComputerController : MonoBehaviour
         zoom = false;
         moving = false;
         zooming = false;
-    }
-    public void SetComputerController()
-    {
-        CompAgent.SetComputerAgent();
-        CompAgent.Set("Desktop");
-        CloseProgram();
+
         Enable(false);
     }
 
@@ -249,18 +237,6 @@ public class ComputerController : MonoBehaviour
         }
     }
 
-    public void SetProgram(string n)
-    {
-        close_bar.SetActive(true);
-        program_name.text = n;
-    }
-
-    public void CloseProgram()
-    {
-        close_bar.SetActive(false);
-        program_name.text = null;
-    }
-
     public void Select()
     {
         if(collision)
@@ -268,7 +244,7 @@ public class ComputerController : MonoBehaviour
         else
             Debug.Log("Не чувстсвую коллайдера");
        
-        CompAgent.Enter(mouse_collision);
+        CompWindows.Enter(mouse_collision);
     }
 
 

@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using N_BH;
 
-public class ComputerAgent : MonoBehaviour
+public class ComputerWindows : MonoBehaviour
 {
 
     private Dictionary<string, GameObject> windows = new Dictionary<string, GameObject>();
     [HideInInspector]
-    public ComputerController CompControl;
+
+    private string current_window;
+    private TextMeshProUGUI program_name;
+    private GameObject program_bar;
 
 
-    public void SetComputerAgent()
+    public void SetProgramBar(GameObject bar)
+    {
+        program_bar = bar;
+        program_name = program_bar.transform.transform.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void SetWindows()
     {
         GameObject[] comp_windows = new GameObject[transform.childCount];
 
@@ -25,16 +35,25 @@ public class ComputerAgent : MonoBehaviour
             windows.Add(i.name, i);
             i.SetActive(false);
         }
+
+        Enter("Desktop");
     }
 
     public void Enter(string type)
     {
         switch (type)
         {
+            case "Desktop":
+                {
+                    Disable();
+                    CloseProgram();
+                    Set(type);
+                    break;
+                }
             case "Student Stress":
                 {
                     Disable("Desktop");
-                    CompControl.SetProgram(type);
+                    SetProgram(type);
                     StudentStress.get.Refresh();
                     Set(type);
                     break;
@@ -42,14 +61,14 @@ public class ComputerAgent : MonoBehaviour
             case "Overwatch":
                 {
                     Disable("Desktop");
-                    CompControl.SetProgram(type);
+                    SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Info":
                 {
                     Disable("Desktop");
-                    CompControl.SetProgram(type);
+                    SetProgram(type);
                     Set(type);
                     break;
                 }
@@ -60,7 +79,7 @@ public class ComputerAgent : MonoBehaviour
                 }
             case "Close":
                 {
-                    Escape(CompControl.current_window);
+                    Escape(current_window);
                     break;
                 }
             case "Exit":
@@ -74,26 +93,25 @@ public class ComputerAgent : MonoBehaviour
 
     public void Escape(string type)
     {
+        Disable(type);
+
         switch (type)
         {
             case "Student Stress":
                 {
-                    Disable(type);
-                    CompControl.CloseProgram();
+                    CloseProgram();
                     Set("Desktop");
                     break;
                 }
             case "Overwatch":
                 {
-                    Disable(type);
-                    CompControl.CloseProgram();
+                    CloseProgram();
                     Set("Desktop");
                     break;
                 }
             case "Info":
                 {
-                    Disable(type);
-                    CompControl.CloseProgram();
+                    CloseProgram();
                     Set("Desktop");
                     break;
                 }
@@ -104,12 +122,34 @@ public class ComputerAgent : MonoBehaviour
     {
         Debug.Log(window);
         windows[window].SetActive(true);
-        CompControl.current_window = window;
+        current_window = window;
     }
 
 
     public void Disable(string window)
     {
         windows[window].SetActive(false);
+    }
+
+    public void Disable()
+    {
+        if (current_window != null)
+        {
+            windows[current_window].SetActive(false);
+            current_window = null;
+        }
+    }
+
+
+    public void SetProgram(string n)
+    {
+        program_bar.SetActive(true);
+        program_name.text = n;
+    }
+
+    public void CloseProgram()
+    {
+        program_bar.SetActive(false);
+        program_name.text = null;
     }
 }

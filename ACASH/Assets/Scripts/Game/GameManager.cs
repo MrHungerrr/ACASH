@@ -138,11 +138,11 @@ public class GameManager : Singleton<GameManager>
 
     public void SetupManagers()
     {
+        DeskManager.get.SetDeskManager();
         ScholarManager.get.SetLevel();
         ScholarManager.get.SetScholars();
         ComputerManager.get.SetComputerManager();
         TimeManager.get.SetTimers();
-
     }
 
 
