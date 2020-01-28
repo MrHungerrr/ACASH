@@ -10,12 +10,10 @@ public class ScholarManager : Singleton<ScholarManager>
     public Scholar[] scholars;
     private bool withoutScholars;
 
+
     [HideInInspector]
     public int cheating_count;
     private int cheating_limit = 2;
-    private float special_actions_per_minute = 10;
-    [HideInInspector]
-    public int special_actions_count;
 
 
     [HideInInspector]
@@ -72,9 +70,9 @@ public class ScholarManager : Singleton<ScholarManager>
     [HideInInspector]
     public Dictionary<string, int> scholar_type_count = new Dictionary<string, int>()
     {
-        { "Asshole", 0 },
-        { "Dumb", 0 },
-        { "Underdog", 0 },
+        { ScholarTypes.asshole, 0 },
+        { ScholarTypes.dumb, 0 },
+        { ScholarTypes.nerd, 0 },
     };
 
 
@@ -305,33 +303,6 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
 
-    private IEnumerator ScholarsCheat(float time)
-    {
-
-        yield return new WaitForSeconds(time);
-        //Debug.Log("Проверка на желание списать");
-        ScholarsWantCheat();
-
-        StartCoroutine(ScholarsCheat(10));
-    }
-
-
-    public void ScholarsWantCheat()
-    {
-        for (int i = 0; i < scholars.Length; i++)
-        {
-            if (IsCheatFree())
-            {
-                scholars[i].Agent.CheatNeed();
-                scholars[i].Stress.ZeroingMoodTypeTime();
-            }
-            else
-            {
-                scholars[i].Stress.ZeroingMoodTypeTime();
-            }
-        }
-    }
-
     public bool IsCheatFree()
     {
         if (cheating_count < cheating_limit)
@@ -360,24 +331,6 @@ public class ScholarManager : Singleton<ScholarManager>
     }
     */  
 
-    private void ScholarsRandomSpecialAction()
-    {
-        int a = Random.Range(0, scholars.Length);
-
-        for (int i = 0; i < scholars.Length; i++)
-        {
-            if (scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
-                break;
-            a = (a + 1) % scholars.Length;
-        }
-
-        if (!withoutScholars && scholars[a].Action.can_i_do_smth_else && !scholars[a].executed)
-        {
-            scholars[a].Agent.RandomSpecialAction();
-            special_actions_count++;
-        }
-    }
-
 
     private IEnumerator PrepareForTest()
     {
@@ -385,7 +338,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Do("Go_Home");
+            scholars[i].Action.Doing("Go_Home");
         }
 
         while(true)
@@ -416,12 +369,9 @@ public class ScholarManager : Singleton<ScholarManager>
         //StartCoroutine(ScholarsSpecialAction(5));
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].StartWrite();
+            Debug.Log(i);
+            scholars[i].Action.StartWriting();
         }
-
-
-
-        special_actions_count = 0;
     }
 
 

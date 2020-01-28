@@ -35,6 +35,9 @@ public class Tutorial : Singleton<Tutorial>
 
 
         ElevatorController.get.Ready();
+
+        //Эту строчку потом нужно будет убрать!
+        ElevatorController.get.Open();
     }
 
 

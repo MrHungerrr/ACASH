@@ -10,8 +10,6 @@ public class ScholarMove : MonoBehaviour
     public NavMeshAgent NavAgent;
     private Scholar Scholar;
     private Vector3 destination;
-    [HideInInspector]
-    public bool walking;
 
 
     private void Awake()
@@ -25,7 +23,7 @@ public class ScholarMove : MonoBehaviour
         destination = new Vector3(goal.x, transform.position.y, goal.z);
         NavAgent.SetDestination(destination);
         Scholar.Anim.SetAnimation("Walking");
-        walking = true;
+        Scholar.walking = true;
     }
 
 
@@ -34,7 +32,7 @@ public class ScholarMove : MonoBehaviour
         if ((transform.position - destination).magnitude <= 0.01)
         {
             Scholar.Anim.SetAnimation("Nothing");
-            walking = false;
+            Scholar.walking = false;
             return true;
         }
         else
@@ -70,7 +68,7 @@ public class ScholarMove : MonoBehaviour
         destination = transform.position;
         NavAgent.SetDestination(destination);
         Scholar.Anim.SetAnimation("Nothing");
-        walking = false;
+        Scholar.walking = false;
     }
 
 }

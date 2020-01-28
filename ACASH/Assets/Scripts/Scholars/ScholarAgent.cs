@@ -12,7 +12,7 @@ public class ScholarAgent
         type = t;
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
                     dumb = new Dumb(s);
                     break;
@@ -26,7 +26,7 @@ public class ScholarAgent
     {
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
                     dumb.HearBulling(strong);
                     break;
@@ -38,21 +38,9 @@ public class ScholarAgent
     {
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
                     dumb.Bulling(key, strong);
-                    break;
-                }
-        }
-    }
-
-    public void BullingForSubjects(string key, string obj)
-    {
-        switch (type)
-        {
-            case "Dumb":
-                {
-                    dumb.BullingForSubjects(key, obj);
                     break;
                 }
         }
@@ -62,7 +50,7 @@ public class ScholarAgent
     {
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
                     dumb.TeacherAnswer(key, answer);
                     break;
@@ -74,7 +62,7 @@ public class ScholarAgent
     {
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
                     dumb.StopQuestion();
                     break;
@@ -86,7 +74,7 @@ public class ScholarAgent
     {
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
                     dumb.Writing();
                     break;
@@ -94,61 +82,13 @@ public class ScholarAgent
         }
     }
 
-    public void CheatNeed()
+    public void CheckForTeacher()
     {
         switch (type)
         {
-            case "Dumb":
+            case ScholarTypes.dumb:
                 {
-                    dumb.CheatNeed();
-                    break;
-                }
-        }
-    }
-
-    public void CanCheat()
-    {
-        switch (type)
-        {
-            case "Dumb":
-                {
-                    dumb.CanCheat();
-                    break;
-                }
-        }
-    }
-
-    public void CheatingSelection()
-    {
-        switch (type)
-        {
-            case "Dumb":
-                {
-                    dumb.CheatingSelection();
-                    break;
-                }
-        }
-    }
-
-    public void RandomSimpleAction()
-    {
-        switch (type)
-        {
-            case "Dumb":
-                {
-                    dumb.RandomSimpleAction();
-                    break;
-                }
-        }
-    }
-
-    public void RandomSpecialAction()
-    {
-        switch (type)
-        {
-            case "Dumb":
-                {
-                    dumb.RandomSpecialAction();
+                    dumb.CheckForTeacher();
                     break;
                 }
         }

@@ -8,14 +8,10 @@ using UnityEngine.AI;
 public class Scholar : MonoBehaviour
 {
     //Тип ученика
-    public enum list_scholarType
-    {
-        Dumb,
-        Asshole,
-        Underdog
-    }
-
-    public list_scholarType scholarType;
+    [SerializeField] 
+    private ScholarTypes.list scholarType;
+    [HideInInspector]
+    public string type;
 
 
     //Базовое
@@ -26,12 +22,10 @@ public class Scholar : MonoBehaviour
     public string name_1 = "Akim";
     [HideInInspector]
     public string name_2 = "Akimov";
-    [HideInInspector]
-    public string type;
     private string keyWord;
     [HideInInspector]
     public bool executed;
-
+    private bool selectable = true;
 
 
 
@@ -42,14 +36,11 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public bool cheating;
     [HideInInspector]
-    public bool cheatNeed;
-    [HideInInspector]
-    public int cheat_finish_type;
-    [HideInInspector]
     public bool writing;
 
+
+
     //Вопросы
-    private bool walkingAnswer;
     [HideInInspector]
     public bool asking;
     [HideInInspector]
@@ -60,15 +51,16 @@ public class Scholar : MonoBehaviour
 
 
 
-
-
-
-
     //Доп инструмент ы
-    [HideInInspector]
-    public ScholarTextBox TextBox;
+
     [HideInInspector]
     public ScholarActions Action;
+    [HideInInspector]
+    public ScholarAgent Agent;
+    [HideInInspector]
+    public ScholarAnim Anim;
+    [HideInInspector]
+    public ScholarCheat Cheat;
     [HideInInspector]
     public ScholarEmotions Emotions;
     [HideInInspector]
@@ -76,26 +68,11 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ScholarSenses Senses;
     [HideInInspector]
-    public ScholarAnim Anim;
-    [HideInInspector]
     public ScholarStress Stress;
     [HideInInspector]
-    public ScholarAgent Agent;
-
-
-
-    private bool selectable = true;
-
-
-    //Написание теста
+    public ScholarTest Test;
     [HideInInspector]
-    public int IQ_start;
-    [HideInInspector]
-    public int test;
-    [HideInInspector]
-    public double test_buf;
-    [HideInInspector]
-    public float test_bufTime;
+    public ScholarTextBox TextBox;
 
 
     //Список замечаний, которые уже были сделаны.
@@ -121,28 +98,22 @@ public class Scholar : MonoBehaviour
 
 
 
-
-
-
-
     private void Awake()
     {
         this.tag = "Scholar";
-
+        Action = GetComponent<ScholarActions>();
         TextBox = GetComponent<ScholarTextBox>();
         Emotions = GetComponent<ScholarEmotions>();
-        Action = GetComponent<ScholarActions>();
         Move = transform.GetComponentInParent<ScholarMove>();
+        Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
-        Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
-        cheatNeed = false;
+        Cheat = new ScholarCheat(this);
+        Test = new ScholarTest();
 
-        Stress.value = 50;
-        Stress.ChangeMoodType();
+
         ChangeType(scholarType.ToString());
         Selectable(true);
-        IQ_start = 0;
     }
 
 
@@ -154,11 +125,10 @@ public class Scholar : MonoBehaviour
             if (writing)
                 Agent.Writing();
 
-            Senses.TeacherCalculate();
-            Senses.WhereTeacher();
+            Senses.Teacher();
 
             if (cheating)
-                Senses.CheatingFinish();
+                Cheat.CheatingFinish();
         }
     }
 
@@ -168,59 +138,12 @@ public class Scholar : MonoBehaviour
             Stress.MoodTypeTime();
     }
 
-    public void Continue()
-    {
-        Action.Continue();
-        Debug.Log("Продолжаем");
-    }
-
     public void Stop()
     {
         StopAllCoroutines();
         Action.Stop();
         TextBox.Clear();
     }
-
-    public void StartWrite()
-    {
-        Action.StartWriting();
-    }
-
-    public void Do(string key)
-    {
-        Action.Doing(key);
-    }
-
-    public void SimpleDo(string key)
-    {
-        Action.SimpleDoing(key);
-    }
-
-
-
-    //========================================================================================================
-    //Поднятие стресса
-
-
-
-
-
-    public void WritingTest(float value)
-    {
-        //Debug.Log("Пишу тест");
-        if (test_bufTime > 0)
-        {
-            test_buf += value * Time.deltaTime;
-            test_bufTime -= Time.deltaTime;
-        }
-        else
-        {
-            test += Convert.ToInt32(test_buf);
-            test_bufTime = 1f;
-            test_buf = 0;
-        }
-    }
-
 
 
     //========================================================================================================
@@ -265,9 +188,9 @@ public class Scholar : MonoBehaviour
         talking = false;
 
         if (BaseMath.Probability(probability_of_continue))
-            Continue();
+            Action.Continue();
         else
-            StartWrite();
+            Action.StartWriting();
     }
 
     private IEnumerator SayingWithoutContinue(string key)
@@ -316,18 +239,6 @@ public class Scholar : MonoBehaviour
         }
     }
 
-    public void Answer(string key, string obj, double prob_cont_right, double prob_cont_false)
-    {
-        if (IsTeacherBullingRight(obj))
-        {
-            Say(key + "_Yes", prob_cont_right);
-        }
-        else
-        {
-            Say(key + "_No", prob_cont_false);
-        }
-    }
-
 
 
     //========================================================================================================
@@ -342,11 +253,6 @@ public class Scholar : MonoBehaviour
     public void Bulling(string bullKey, bool strong)
     {
         Agent.Bulling(keyWord + bullKey, strong);
-    }
-
-    public void BullingForSubjects(string bullKey, string obj)
-    {
-        Agent.BullingForSubjects(keyWord + bullKey, obj);
     }
 
     private IEnumerator WatchingTeacher()
@@ -383,7 +289,7 @@ public class Scholar : MonoBehaviour
                 }
             case "Walking_":
                 {
-                    if (walkingAnswer)
+                    if (walking)
                         return true;
                     else
                         return false;
@@ -392,23 +298,12 @@ public class Scholar : MonoBehaviour
         return false;
     }
 
-    public bool IsTeacherBullingRight(string obj)
-    {
-        Debug.Log(obj);
-        if (ExamManager.get.banned[obj])
-            return true;
-        else
-            return false;
-    }
-
-
-
     //========================================================================================================
     //Вопросы и ответы
 
     public void Question(string q)
     {
-        questionKey = keyWord + q;
+        questionKey = keyWord +"Question_" + q;
         teacher_answer = false;
         asking = true;
         StartCoroutine(Asking(q));
@@ -492,7 +387,7 @@ public class Scholar : MonoBehaviour
     {
         Stop();
         TextBox.Say(keyWord + key);
-        Do("Execute");
+        Action.Doing("Execute");
     }
 
 

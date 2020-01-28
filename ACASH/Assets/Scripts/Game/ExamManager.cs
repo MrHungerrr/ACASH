@@ -19,9 +19,6 @@ public class ExamManager : Singleton<ExamManager>
     };
 
 
-    public bool exam;
-
-
     private void Awake()
     {
         

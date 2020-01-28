@@ -57,8 +57,6 @@ public class ActionsTest : MonoBehaviour
     {
         ScholarControl();
         ScholarRefresh();
-        
-
     }
 
 
@@ -78,7 +76,7 @@ public class ActionsTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Scholar.Do(actions[act_nom]);
+            Scholar.Action.Doing(actions[act_nom]);
         }
 
 
@@ -114,14 +112,7 @@ public class ActionsTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            if(help.activeSelf)
-            {
-                help.SetActive(false);
-            }
-            else
-            {
-                help.SetActive(true);
-            }
+            help.SetActive(!help.activeSelf);
         }
     }
 

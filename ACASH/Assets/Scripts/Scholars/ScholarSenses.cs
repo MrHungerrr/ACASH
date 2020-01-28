@@ -89,7 +89,14 @@ public class ScholarSenses
     }
 
 
-    public void TeacherCalculate()
+    public void Teacher()
+    {
+        TeacherCalculate();
+        WhereTeacher();
+    }
+
+
+    private void TeacherCalculate()
     {
         if (Player.get.look_closer)
             T_look_coef = 2;
@@ -163,7 +170,7 @@ public class ScholarSenses
     }
 
 
-    public void WhereTeacher()
+    private void WhereTeacher()
     {
 
         if (!T_behind_wall)
@@ -209,48 +216,7 @@ public class ScholarSenses
         }
     }
 
-    public void CheatingFinish()
-    {
-
-        // Обозначения переменных для завершения списывания
-        //  1 - Звук от учителя
-        //  2 - Я вижу учителя
-        //  3 - Учитель возможно смотрит на меня
-        //  4 - Учитель точно смотрит на меня
-
-        switch (Scholar.cheat_finish_type)
-        {
-            case 1:
-                {
-                    if (T_here)
-                        Scholar.Action.StopCheating();
-
-                    break;
-                }
-            case 2:
-                {
-                    if (T_in_sight)
-                        Scholar.Action.StopCheating();
-
-                    break;
-                }
-            case 3:
-                {
-                    if (T_in_sight && T_look_near_at_us)
-                        Scholar.Action.StopCheating();
-
-                    break;
-                }
-            case 4:
-                {
-                    if (T_in_sight && T_look_at_us)
-                        Scholar.Action.StopCheating();
-
-                    break;
-                }
-        }
-    }
-
+  
 
 
 

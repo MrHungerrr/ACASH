@@ -25,7 +25,7 @@ public class ScholarActions : MonoBehaviour
     private bool complete_before_end;
     private bool answering;
     [SerializeField]
-    private int actionNo;
+    private int actionNum;
     [SerializeField]
     private int actionNoPlus;
     [HideInInspector]
@@ -60,7 +60,6 @@ public class ScholarActions : MonoBehaviour
 
     private void Start()
     {
-        Scholar.Anim.SetAnimation("Nothing");
         question_t = question_const_t;
         doing_t = doing_const_t;
         q_bool = true;
@@ -82,7 +81,7 @@ public class ScholarActions : MonoBehaviour
         Debug.Log("Я начал делать" + key);
         doing = true;
         can_i_do_smth_else = false;
-        actionNo = 0;
+        actionNum = 0;
         actionNoPlus = 0;
         complete_before_end = false;
         StartCoroutine(key);
@@ -97,10 +96,10 @@ public class ScholarActions : MonoBehaviour
         Debug.Log("Я начал делать" + key);
         doing = true;
         can_i_do_smth_else = false;
-        actionNo = 0;
+        actionNum = 0;
         actionNoPlus = 0;
         complete_before_end = false;
-        StartCoroutine(key,i);
+        StartCoroutine(key, i);
         keyAction = key;
         keyAction_now = key;
     }
@@ -109,7 +108,7 @@ public class ScholarActions : MonoBehaviour
     {
         Stop();
         Debug.Log("Я начал делать" + key);
-        actionNo = 0;
+        actionNum = 0;
         actionNoPlus = 0;
         complete_before_end = false;
         StartCoroutine(key);
@@ -127,11 +126,11 @@ public class ScholarActions : MonoBehaviour
         if (!Scholar.executed && Scholar.isLiving)
         {
             Stop();
-            //Debug.Log("Я начал делать Writing");
+            Debug.Log("Я начал делать Writing");
             keyAction = "Writing";
             keyAction_now = "Writing";
             complete_before_end = false;
-            StartCoroutine(keyAction);
+            StartCoroutine(Writing());
         }
     }
 
@@ -161,7 +160,7 @@ public class ScholarActions : MonoBehaviour
         {
             ScholarManager.get.cheating_count--;
             Scholar.cheating = false;
-            Scholar.cheatNeed = false;
+            Scholar.Cheat.cheatNeed = false;
         }
 
         Scholar.writing = false;
@@ -210,11 +209,11 @@ public class ScholarActions : MonoBehaviour
 
         Scholar.writing = true;
 
-        //Debug.Log("Я думаю");
+        Debug.Log("Я думаю");
         Scholar.Anim.SetAnimation("Nothing");
 
         yield return new WaitForSeconds(UnityEngine.Random.Range(4, 5));
-        //Debug.Log("Я пишу");
+        Debug.Log("Я пишу");
         Scholar.Anim.SetAnimation("Writing");
 
         yield return new WaitForSeconds(UnityEngine.Random.Range(2, 7));
@@ -225,7 +224,8 @@ public class ScholarActions : MonoBehaviour
 
     private void WhatToDoNext()
     {
-        if (Scholar.cheatNeed)
+        /*
+        if (Scholar.Cheat.cheatNeed)
         {
             Scholar.Agent.CanCheat();
         }
@@ -240,6 +240,7 @@ public class ScholarActions : MonoBehaviour
                 Scholar.Agent.RandomSimpleAction();
             }
         }
+        */
     }
 
 
@@ -346,8 +347,8 @@ public class ScholarActions : MonoBehaviour
 
     private bool CanIContinue()
     {
-        Debug.Log(actionNo == actionNoPlus);
-        if(actionNo == actionNoPlus)
+        Debug.Log(actionNum == actionNoPlus);
+        if (actionNum == actionNoPlus)
         {
             actionNoPlus++;
             return true;
@@ -439,6 +440,16 @@ public class ScholarActions : MonoBehaviour
     {
         Scholar.Agent.StopQuestion();
     }
+
+    public void QuestionBeforeAct(string question, string ActionYes, string ActionNo)
+    {
+        StartCoroutine(Question(question, ActionYes, ActionNo));
+    }
+
+    public void QuestionBeforeAct(string question, string ActionYes)
+    {
+        StartCoroutine(Question(question, ActionYes, "Writing"));
+    }
     //=========================================================================================================================================================
     //=========================================================================================================================================================
     //=========================================================================================================================================================
@@ -449,12 +460,113 @@ public class ScholarActions : MonoBehaviour
 
 
 
+    //=========================================================================================================================================================
+    // Вопрос
+
+    private IEnumerator Question(string question, string ActionYes, string ActionNo)
+    {
+        if (CanIContinue())
+        {
+            if (!Scholar.Senses.T_here)
+            {
+                CheckForTeacher();
+                yield return new WaitForEndOfFrame();
+                while (watching)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
+
+                if (Scholar.Senses.T_here)
+                {
+                    actionNum++;
+                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
+                    yield return new WaitForSeconds(0.7f);
+                }
+                else
+                {
+                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
+                    StartWriting();
+                }
+            }
+            else
+            {
+                actionNum++;
+            }
+        }
+
+        if (CanIContinue())
+        {
+
+            while (Question(question))
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (!Scholar.asking)
+            {
+                if (Scholar.teacher_answer)
+                {
+                    Doing(ActionYes);
+                }
+                else
+                {
+                    Doing(ActionNo);
+                }
+            }
+            else
+            {
+                Doing(ActionNo);
+            }
+        }
+    }
+
 
 
     //=========================================================================================================================================================
     // Поиск учителя
 
-    private IEnumerator LookingForTeacher()
+    private void CheckForTeacher()
+    {
+        Scholar.Agent.CheckForTeacher();
+    }
+
+    public void CheckBeforeAct(string T_here_Action, string T_not_here_Action)
+    {
+        StartCoroutine(Check(T_here_Action, T_not_here_Action));
+    }
+
+
+    private IEnumerator Check(string T_here_Action, string T_not_here_Action)
+    {
+        if (!Scholar.Senses.T_here)
+        {
+            CheckForTeacher();
+            yield return new WaitForEndOfFrame();
+            while (watching)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
+            if (Scholar.Senses.T_here)
+            {
+                Doing(T_here_Action);
+            }
+            else
+            {
+                Doing(T_not_here_Action);
+            }
+        }
+        else
+        {
+            Doing(T_here_Action);
+        }
+    }
+    
+
+    //=========================================================================================================================================================
+    // Проверка тупицы на учителя
+
+    private IEnumerator Dumb_Check_For_Teacher()
     {
         watching = true;
         float buf = 2f;
@@ -496,92 +608,13 @@ public class ScholarActions : MonoBehaviour
     //=========================================================================================================================================================
     //Выход в туалет
 
+
     private IEnumerator Toilet_1()
     {
         if (CanIContinue())
         {
-            if (!Scholar.Senses.T_here)
-            {
-
-                StartCoroutine(LookingForTeacher());
-                yield return new WaitForEndOfFrame();
-                while (watching)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
-
-                if (Scholar.Senses.T_here)
-                {
-                    actionNo++;
-                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
-                    yield return new WaitForSeconds(0.7f);
-                }
-                else
-                {
-                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
-                    StartWriting();
-                }
-            }
-            else
-            {
-                actionNo++;
-            }
-        }
-
-        if (CanIContinue())
-        {
-
-            while (Question("Question_Permission_1"))
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
-            if (!Scholar.asking)
-            {
-                if (Scholar.teacher_answer)
-                {
-                    actionNo++;
-                }
-                else
-                {
-                    StartWriting();
-                }
-            }
-            else
-            {
-                StopQuestion();
-            }
-        }
-
-        if (CanIContinue())
-        {
-
-            while (Question("Question_Toilet_1"))
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
-            if (!Scholar.asking)
-            {
-                if (Scholar.teacher_answer)
-                {
-                    actionNo++;
-                }
-                else
-                {
-                    StartWriting();
-                }
-            }
-            else
-            {
-                StopQuestion();
-            }
-        }
-
-        if (CanIContinue())
-        {
             Debug.Log("пошел");
-            SetDestination(ScholarManager.get.GetPlace("toilet",0));
+            SetDestination(ScholarManager.get.GetPlace("toilet", 0));
 
             while (!IsHere())
                 yield return new WaitForSeconds(1f);
@@ -589,14 +622,15 @@ public class ScholarActions : MonoBehaviour
             Watch(ScholarManager.get.GetSightGoal("toilet", 0));
 
             Debug.Log("Я дошел");
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
         {
+            Scholar.Anim.SetAnimation("Toilet");
             yield return new WaitForSeconds(5f);
             Debug.Log("Сделал свои дела");
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
@@ -606,7 +640,7 @@ public class ScholarActions : MonoBehaviour
             while (!IsHere())
                 yield return new WaitForSeconds(1f);
 
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
@@ -623,63 +657,7 @@ public class ScholarActions : MonoBehaviour
     //Выход в туалет
 
     private IEnumerator Sink_1()
-    {
-        if (CanIContinue())
-        {
-            if (!Scholar.Senses.T_here)
-            {
-
-                StartCoroutine(LookingForTeacher());
-                yield return new WaitForEndOfFrame();
-                while (watching)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
-
-                if (Scholar.Senses.T_here)
-                {
-                    actionNo++;
-                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
-                    yield return new WaitForSeconds(0.7f);
-                }
-                else
-                {
-                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
-                    StartWriting();
-                }
-            }
-            else
-            {
-                actionNo++;
-            }
-        }
-
-
-        if (CanIContinue())
-        {
-
-            while (Question("Question_Sink_1"))
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
-            if (!Scholar.asking)
-            {
-                if (Scholar.teacher_answer)
-                {
-                    actionNo++;
-                }
-                else
-                {
-                    StartWriting();
-                }
-            }
-            else
-            {
-                StopQuestion();
-            }
-        }
-
+    { 
         if (CanIContinue())
         {
             Debug.Log("пошел");
@@ -691,14 +669,15 @@ public class ScholarActions : MonoBehaviour
             Watch(ScholarManager.get.GetSightGoal("sink", 0));
 
             Debug.Log("Я дошел");
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
         {
+            Scholar.Anim.SetAnimation("Sink");
             yield return new WaitForSeconds(5f);
             Debug.Log("Сделал свои дела");
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
@@ -708,7 +687,7 @@ public class ScholarActions : MonoBehaviour
             while (!IsHere())
                 yield return new WaitForSeconds(1f);
 
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
@@ -720,66 +699,12 @@ public class ScholarActions : MonoBehaviour
 
 
 
+
     //=========================================================================================================================================================
     //Выход подышать воздухом
 
     private IEnumerator Air_1()
     {
-        if (CanIContinue())
-        {
-            if (!Scholar.Senses.T_here)
-            {
-
-                StartCoroutine(LookingForTeacher());
-                yield return new WaitForEndOfFrame();
-                while (watching)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
-
-                if (Scholar.Senses.T_here)
-                {
-                    actionNo++;
-                    Scholar.Emotions.ChangeEmotion("suprised", "happy", 1f);
-                    yield return new WaitForSeconds(0.7f);
-                }
-                else
-                {
-                    Scholar.Emotions.ChangeEmotion("sad", "ussual", 2f);
-                    StartWriting();
-                }
-            }
-            else
-            {
-                actionNo++;
-            }
-        }
-
-
-        if (CanIContinue())
-        {
-            while (Question("Question_Air_1"))
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
-            if (!Scholar.asking)
-            {
-                if (Scholar.teacher_answer)
-                {
-                    actionNo++;
-                }
-                else
-                {
-                    StartWriting();
-                }
-            }
-            else
-            {
-                StopQuestion();
-            }
-        }
-
 
         if (CanIContinue())
         {
@@ -791,14 +716,15 @@ public class ScholarActions : MonoBehaviour
 
             Watch(ScholarManager.get.GetSightGoal("outside", 0));
 
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
         {
+            Scholar.Anim.SetAnimation("Think_Outside");
             yield return new WaitForSeconds(5f);
             Debug.Log("Сделал свои дела");
-            actionNo++;
+            actionNum++;
         }
 
         if (CanIContinue())
@@ -808,7 +734,7 @@ public class ScholarActions : MonoBehaviour
             while (!IsHere())
                 yield return new WaitForSeconds(1f);
 
-            actionNo++;
+            actionNum++;
         }
 
 
@@ -823,12 +749,52 @@ public class ScholarActions : MonoBehaviour
 
 
     //=========================================================================================================================================================
+    //Думание вслух
+
+    private IEnumerator Think_Aloud_1()
+    {
+        Scholar.Anim.SetAnimation("Think_Aloud");
+        Scholar.SayThoughts("Think_Aloud_1");
+        yield return new WaitForSeconds(5f);
+
+        keyAction = null;
+        StartWriting();
+    }
+
+
+
+
+    //=========================================================================================================================================================
+    //Догадывание
+
+    private IEnumerator Guesses_1()
+    {
+        complete_before_end = true;
+
+        Scholar.Anim.SetAnimation("Guesses");
+
+        yield return new WaitForSeconds(5f);
+
+
+        Scholar.Anim.SetAnimation("HasGuessed");
+
+        Debug.Log("Я догодалася");
+
+        yield return new WaitForSeconds(1f);
+
+        keyAction = null;
+        StartWriting();
+    }
+
+
+
+
+    //=========================================================================================================================================================
     //Списывание
 
     private IEnumerator Cheating_1()
     {
 
-        ScholarManager.get.special_actions_count++;
         Scholar.cheating = true;
         complete_before_end = true;
 
@@ -837,7 +803,7 @@ public class ScholarActions : MonoBehaviour
         Debug.Log("Сделал свои дела");
 
         doing = false;
-        Scholar.cheatNeed = false;
+        Scholar.Cheat.cheatNeed = false;
         Scholar.cheating = false;
 
         ScholarManager.get.cheating_count--;
@@ -856,7 +822,7 @@ public class ScholarActions : MonoBehaviour
 
         if (!Scholar.Senses.T_here)
         {
-            StartCoroutine(LookingForTeacher());
+            CheckForTeacher();
             yield return new WaitForEndOfFrame();
             while (watching)
             {
@@ -895,29 +861,6 @@ public class ScholarActions : MonoBehaviour
 
 
     //=========================================================================================================================================================
-    //Догадывание
-
-    private IEnumerator Guesses()
-    {
-        complete_before_end = true;
-
-        Scholar.Anim.SetAnimation("Guesses");
-
-        yield return new WaitForSeconds(5f);
-
-
-        Scholar.Anim.SetAnimation("HasGuessed");
-
-        Debug.Log("Я догодалася");
-
-        yield return new WaitForSeconds(1f);
-
-        keyAction = null;
-        StartWriting();
-    }
-
-
-    //=========================================================================================================================================================
     //Домой
 
 
@@ -928,8 +871,6 @@ public class ScholarActions : MonoBehaviour
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();
-
-        Debug.Log(" Here " );
 
         Watch(desk);
 
@@ -959,8 +900,6 @@ public class ScholarActions : MonoBehaviour
 
     private IEnumerator Delay_Start()
     {
-        Debug.Log(actionNo);
-        Debug.Log(actionNoPlus);
         yield return new WaitForSeconds(1f);
         StartWriting();
     }
