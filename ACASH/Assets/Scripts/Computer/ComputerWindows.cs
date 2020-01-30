@@ -13,11 +13,13 @@ public class ComputerWindows : MonoBehaviour
     private string current_window;
     private TextMeshProUGUI program_name;
     private GameObject program_bar;
+    private GameObject task_bar;
 
 
-    public void SetProgramBar(GameObject bar)
+    public void SetBars(GameObject program, GameObject task)
     {
-        program_bar = bar;
+        task_bar = task;
+        program_bar = program;
         program_name = program_bar.transform.transform.GetComponentInChildren<TextMeshProUGUI>();
     }
 
@@ -120,7 +122,7 @@ public class ComputerWindows : MonoBehaviour
 
     public void Set(string window)
     {
-        Debug.Log(window);
+        //Debug.Log(window);
         windows[window].SetActive(true);
         current_window = window;
     }

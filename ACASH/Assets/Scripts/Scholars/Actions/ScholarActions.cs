@@ -1,9 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using TMPro;
-using System;
 
 public class ScholarActions : MonoBehaviour
 {
@@ -24,9 +20,7 @@ public class ScholarActions : MonoBehaviour
     private bool watching;
     private bool complete_before_end;
     private bool answering;
-    [SerializeField]
     private int actionNum;
-    [SerializeField]
     private int actionNoPlus;
     [HideInInspector]
     public string keyAction;

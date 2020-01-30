@@ -170,13 +170,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8229833219193952087}
-  - component: {fileID: 7708027088921050893}
-  - component: {fileID: 2684837207079300538}
-  - component: {fileID: 7010668100030901757}
-  - component: {fileID: 3811184618166470945}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Computer Screen
-  m_TagString: Computer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,64 +194,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7708027088921050893
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011037564229261488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.102, y: 0.093, z: 0.074999996}
-  m_Center: {x: 0, y: 0.04650003, z: -0.0029257499}
---- !u!114 &2684837207079300538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011037564229261488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f46faced56aaf40be70c90ff96b6b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: 0
-  zooming: 0
-  moving: 0
---- !u!114 &7010668100030901757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011037564229261488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abb4b19280d5f34abf82ecf4188e52c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 3995305861880276588}
-  - {fileID: 0}
-  - {fileID: 0}
-  texts: []
---- !u!65 &3811184618166470945
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011037564229261488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14861396, y: 0.014388427, z: 0.07576084}
-  m_Center: {x: 0.023982689, y: 0.0073269065, z: 0.07279852}
 --- !u!1001 &6444800575434090380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -356,12 +294,12 @@ PrefabInstance:
     - target: {fileID: 7288083781186763656, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0183
+      value: 0.018099977
       objectReference: {fileID: 0}
     - target: {fileID: 7288083781186763656, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0265
+      value: 0.026500225
       objectReference: {fileID: 0}
     - target: {fileID: 7288083781186763656, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
@@ -416,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 7288083781186763657, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
       propertyPath: m_Name
-      value: ComputerUI
+      value: Computer UI
       objectReference: {fileID: 0}
     - target: {fileID: 7288083781627084628, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
@@ -441,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 7288083782133432510, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
       propertyPath: m_Name
-      value: ComputerWindows
+      value: Computer Windows
       objectReference: {fileID: 0}
     - target: {fileID: 7288083782144073708, guid: 6fc63f68853464446bd57b034025f61c,
         type: 3}
@@ -1903,12 +1841,6 @@ PrefabInstance:
 --- !u!4 &3206158380162026871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: ed5657df0ced6e24e8fa22f092a40346,
-    type: 3}
-  m_PrefabInstance: {fileID: 7567213688703854189}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &3995305861880276588 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -2416733968201007103, guid: ed5657df0ced6e24e8fa22f092a40346,
     type: 3}
   m_PrefabInstance: {fileID: 7567213688703854189}
   m_PrefabAsset: {fileID: 0}

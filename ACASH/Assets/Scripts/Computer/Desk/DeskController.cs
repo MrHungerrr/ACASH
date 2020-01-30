@@ -1,11 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine;
-using Cinemachine;
-using TMPro;
-using N_BH;
+﻿using UnityEngine;
 
 
 public class DeskController : MonoBehaviour
@@ -15,9 +8,14 @@ public class DeskController : MonoBehaviour
 
     public void SetDeskController()
     {
-        Windows = GetComponent<ComputerWindows>();
+        Debug.Log("Setup'им DeskController");
+
+        Transform buf = transform.Find("Desk Screen").Find("Desk UI").Find("Canvas");
+        Transform screen = buf.Find("Screen");
+
+        Windows = buf.GetComponentInChildren<ComputerWindows>();
+        Windows.SetBars(screen.Find("Program Bar").gameObject, screen.Find("Task Bar").gameObject);
         Windows.SetWindows();
-        Windows.SetProgramBar(transform.Find("Program Bar").gameObject);
     }
 
     public void Select(string key)

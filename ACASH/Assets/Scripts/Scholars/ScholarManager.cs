@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 using N_BH;
 
@@ -83,7 +82,7 @@ public class ScholarManager : Singleton<ScholarManager>
         sinks_busy = new bool[buf.Length];
         sinks_count = buf.Length;
 
-        for (int i = 0; i < buf.Length; i++)
+        for (int i = 0; i < sinks_count; i++)
         {
             sinks[1, i] = buf[i].transform;
             sinks[0, i] = buf[i].transform.parent.transform.Find("Destonation");
@@ -95,7 +94,7 @@ public class ScholarManager : Singleton<ScholarManager>
         toilets_busy = new bool[buf.Length];
         toilets_count = buf.Length;
 
-        for (int i = 0; i < buf.Length; i++)
+        for (int i = 0; i < toilets_count; i++)
         {
             toilets[1, i] = buf[i].transform;
             toilets[0, i] = buf[i].transform.parent.transform.Find("Destonation");
@@ -107,7 +106,7 @@ public class ScholarManager : Singleton<ScholarManager>
         outside_busy = new bool[buf.Length];
         outside_count = buf.Length;
 
-        for (int i = 0; i < buf.Length; i++)
+        for (int i = 0; i < outside_count; i++)
         {
             outside[i] = buf[i].transform;
             outside[i].gameObject.GetComponent<Renderer>().enabled = false;
@@ -117,11 +116,13 @@ public class ScholarManager : Singleton<ScholarManager>
         desks = new Transform[2, DeskManager.get.desks.Length];
         desks_count = DeskManager.get.desks.Length;
 
-        for (int i = 0; i < buf.Length; i++)
+        for (int i = 0; i < desks_count; i++)
         {
             DeskController desk = DeskManager.get.desks[i];
             desks[1, i] = desk.transform;
-            desks[0, i] = desk.transform.parent.transform.Find("Destonation");
+            desks[0, i] = desk.transform.Find("Destonation");
+            Debug.Log(desks[1, i].position);
+            Debug.Log(desks[0, i].position);
         }
     }
 
@@ -183,6 +184,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
+            Debug.Log("Номер нового ученика" + i);
             scholars[i].SetNumber(i);
         }
     }

@@ -38,6 +38,7 @@ public class ComputerManager : Singleton<ComputerManager>
 
     public void SetComputerManager()
     {
+        Debug.Log("Setup'им ComputerManager");
         var buf = GameObject.FindObjectsOfType<ComputerController>();
         foreach(ComputerController cc in buf)
         {

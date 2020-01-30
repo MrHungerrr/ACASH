@@ -9,7 +9,7 @@ using N_BH;
 
 public class ComputerController : MonoBehaviour
 {
-    private ComputerWindows CompWindows;
+    private ComputerWindows Windows;
     private ComputerUIColliderManager comp_col;
 
 
@@ -38,7 +38,6 @@ public class ComputerController : MonoBehaviour
 
     private Vector2 position;
 
-    private GameObject screen;
     private GameObject cursor;
     private Image pointer;
     private Image select;
@@ -46,19 +45,21 @@ public class ComputerController : MonoBehaviour
 
     public void SetComputerController()
     {
-        Transform buf = transform.Find("Computer_UI").Find("Canvas");
-        screen = buf.Find("Screen").gameObject;
-        cursor = screen.transform.Find("Cursor").gameObject;
-        pointer = screen.transform.Find("Cursor").Find("Pointer").GetComponent<Image>();
-        select = screen.transform.Find("Cursor").Find("Select").GetComponent<Image>();
+        Debug.Log("Setup'им ComputerController");
+
+        Transform buf = transform.Find("Computer Screen").Find("Computer UI").Find("Canvas");
+        Transform screen = buf.Find("Screen");
+        cursor = screen.Find("Cursor").gameObject;
+        pointer = screen.Find("Cursor").Find("Pointer").GetComponent<Image>();
+        select = screen.Find("Cursor").Find("Select").GetComponent<Image>();
         ChangeImage("pointer");
 
-        CompWindows = buf.Find("Computer Agent").GetComponent<ComputerWindows>();
-        CompWindows.SetProgramBar(screen.transform.Find("Close Bar").gameObject);
-        CompWindows.SetWindows();
+        Windows = buf.GetComponentInChildren<ComputerWindows>();
+        Windows.SetBars(screen.Find("Program Bar").gameObject, screen.Find("Task Bar").gameObject);
+        Windows.SetWindows();
 
-        comp_col = GetComponent<ComputerUIColliderManager>();
-        comp_cam = transform.GetComponentInChildren<CinemachineVirtualCamera>();
+        comp_col = buf.GetComponentInParent<ComputerUIColliderManager>();
+        comp_cam = buf.parent.parent.GetComponentInChildren<CinemachineVirtualCamera>();
         normRotation = comp_cam.transform.rotation;
 
         zoom = false;
@@ -244,7 +245,7 @@ public class ComputerController : MonoBehaviour
         else
             Debug.Log("Не чувстсвую коллайдера");
        
-        CompWindows.Enter(mouse_collision);
+        Windows.Enter(mouse_collision);
     }
 
 

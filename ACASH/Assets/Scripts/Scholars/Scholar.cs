@@ -112,6 +112,7 @@ public class Scholar : MonoBehaviour
         Stress = new ScholarStress(this);
         Cheat = new ScholarCheat(this);
         Test = new ScholarTest();
+        Action.home = Vector3.zero;
 
 
         ChangeType(scholarType.ToString());
