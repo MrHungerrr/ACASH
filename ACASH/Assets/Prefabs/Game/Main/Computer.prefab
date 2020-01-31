@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5745387303227369598}
   - component: {fileID: 7316654875584126191}
+  - component: {fileID: 6102934681014016182}
   - component: {fileID: 8349175536294714912}
   - component: {fileID: 3045564628971498274}
   - component: {fileID: 4281561636145397638}
@@ -49,9 +50,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f46faced56aaf40be70c90ff96b6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Windows: {fileID: 0}
+  Login: {fileID: 0}
+  Desktop: {fileID: 0}
+  SS: {fileID: 0}
+  Numpad: {fileID: 0}
+  select: 
+  Controller: {fileID: 0}
+--- !u!114 &6102934681014016182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510300815838664878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bdff832350713418f294952c8444b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   zoom: 0
   zooming: 0
   moving: 0
+  mouse_collision: 
+  collision: 0
 --- !u!114 &8349175536294714912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,12 +367,22 @@ PrefabInstance:
     - target: {fileID: 1011037564229261488, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
         type: 3}
       propertyPath: m_Name
-      value: Computer Screen
+      value: Screen
       objectReference: {fileID: 0}
     - target: {fileID: 4144220834370300556, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
         type: 3}
       propertyPath: m_Priority
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347379297109367812, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0000665
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347379297109367812, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0000665
       objectReference: {fileID: 0}
     - target: {fileID: 8229833219193952087, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
         type: 3}

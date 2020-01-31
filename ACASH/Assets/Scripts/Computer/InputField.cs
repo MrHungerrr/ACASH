@@ -8,12 +8,13 @@ public class InputField : MonoBehaviour
 {
 
     TextMeshProUGUI field;
-    private string text;
+    [HideInInspector]
+    public string text;
     private string text_display;
     private const int length = 4;
 
 
-    private void SetInputField()
+    public void SetInputField()
     {
         field = transform.GetComponentInChildren<TextMeshProUGUI>();
     }
@@ -21,7 +22,12 @@ public class InputField : MonoBehaviour
 
     public void Reset()
     {
-        
+        if (text.Length > 0)
+        {
+            text = "";
+            Set();
+        }
+
     }
 
     public void Plus(int num)
@@ -45,7 +51,13 @@ public class InputField : MonoBehaviour
 
     private void Set()
     {
+        text_display = text;
 
-            
+        for (int i = text.Length; i < length; i++)
+        {
+            text_display += "_";
+        }
+
+        field.text = text_display;         
     }
 }

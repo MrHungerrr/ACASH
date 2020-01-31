@@ -29,19 +29,14 @@ public class DeskManager : Singleton<DeskManager>
 
 
     [HideInInspector]
-    public DeskController[] desks;
+    public ScholarComputer[] desks;
 
 
 
     public void SetDeskManager()
     {
-        desks = GameObject.FindObjectsOfType<DeskController>();
+        desks = GameObject.FindObjectsOfType<ScholarComputer>();
         DeskSort();
-
-        foreach (DeskController dc in desks)
-        {
-            dc.SetDeskController();
-        }
     }
 
 

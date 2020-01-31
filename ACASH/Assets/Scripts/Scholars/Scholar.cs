@@ -74,7 +74,7 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ScholarTextBox TextBox;
     [HideInInspector]
-    public DeskController Desk;
+    public ScholarComputer Desk;
 
 
     //Список замечаний, которые уже были сделаны.

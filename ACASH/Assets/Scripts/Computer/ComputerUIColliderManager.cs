@@ -1,53 +1,76 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-using N_BH;
-
-namespace N_BH
+public class ComputerUIColliderManager : MonoBehaviour
 {
-    public class ComputerUIColliderManager : MonoBehaviour
+
+    [HideInInspector]
+    private Dictionary<string, ComputerUICollider> colliders = new Dictionary<string, ComputerUICollider>();
+    [HideInInspector]
+    public RectTransform mouse;
+    [SerializeField]
+    private GameObject[] ui_colliders;
+
+
+
+    [ContextMenu("Fill")]
+    public void Fill()
     {
+        ui_colliders = FindAllUIObjects();
+    }
 
-        [HideInInspector]
-        private Dictionary<string, ComputerUICollider> colliders = new Dictionary<string, ComputerUICollider>();
-        [HideInInspector]
-        public RectTransform mouse;
-        [SerializeField]
-        private GameObject[] ui_colliders;
+    private GameObject[] FindAllUIObjects()
+    {
+        List<GameObject> res = new List<GameObject>();
+        Search(this.gameObject);
 
-
-
-        private void Awake()
+        void Search(GameObject obj)
         {
-
-            foreach (GameObject i in ui_colliders)
+            if (obj.tag == "ComputerUIObject" || obj.GetComponent<ComputerSelect>() != null)
             {
-                ComputerUICollider buf_collider = new ComputerUICollider(i);
+                res.Add(obj);
+                obj.tag = "ComputerUIObject";
+            }
 
-                //buf_collider.DebugWrite();
 
-                foreach (KeyValuePair<string, ComputerUICollider> pair in colliders)
-                {
-
-                }
-
-                    colliders.Add(i.name, buf_collider);
+            for (int i = 0; i < obj.transform.childCount; i++)
+            {
+                Search(obj.transform.GetChild(i).gameObject);
             }
         }
 
+        return res.ToArray();
+    }
+
+    private void Awake()
+    {
+        RefreshColliders();
+    }
 
 
-        public string MouseCollision(Vector2 pos)
+    public void RefreshColliders()
+    {
+        ui_colliders = FindAllUIObjects();
+        foreach (GameObject i in ui_colliders)
         {
-
-            foreach (KeyValuePair<string, ComputerUICollider> pair in colliders)
-            {
-                if(pair.Value.MouseCollision(pos))
-                {
-                    return pair.Key;
-                }
-            }
-            return null;
+            ComputerUICollider buf_collider = new ComputerUICollider(i);
+            colliders.Add(i.name, buf_collider);
         }
     }
+
+
+    public string MouseCollision(Vector2 pos)
+    {
+
+        foreach (KeyValuePair<string, ComputerUICollider> pair in colliders)
+        {
+            if (pair.Value.MouseCollision(pos))
+            {
+                return pair.Key;
+            }
+        }
+        return null;
+    }
 }
+

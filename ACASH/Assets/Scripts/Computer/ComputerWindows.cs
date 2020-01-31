@@ -6,6 +6,7 @@ using N_BH;
 
 public class ComputerWindows : MonoBehaviour
 {
+    private Computer Comp;
 
     private Dictionary<string, GameObject> windows = new Dictionary<string, GameObject>();
     [HideInInspector]
@@ -16,15 +17,14 @@ public class ComputerWindows : MonoBehaviour
     private GameObject task_bar;
 
 
-    public void SetBars(GameObject program, GameObject task)
+    public void SetWindows(Computer c)
     {
-        task_bar = task;
-        program_bar = program;
-        program_name = program_bar.transform.transform.GetComponentInChildren<TextMeshProUGUI>();
-    }
+        Transform buf = transform.parent.Find("Screen");
 
-    public void SetWindows()
-    {
+        task_bar = buf.Find("Task Bar").gameObject;
+        program_bar = buf.Find("Program Bar").gameObject;
+        program_name = program_bar.transform.GetComponentInChildren<TextMeshProUGUI>();
+
         GameObject[] comp_windows = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -38,17 +38,30 @@ public class ComputerWindows : MonoBehaviour
             i.SetActive(false);
         }
 
-        Enter("Desktop");
+        Comp = c;
+
+        Enter("Login");
     }
 
     public void Enter(string type)
     {
         switch (type)
         {
+            case "Login":
+                {
+                    Disable();
+                    CloseProgram();
+                    EnableTaskBar(false);
+                    Comp.Numpad.Enable(true);
+                    Set(type);
+                    break;
+                }
             case "Desktop":
                 {
                     Disable();
                     CloseProgram();
+                    EnableTaskBar(true);
+                    Comp.Numpad.Enable(false);
                     Set(type);
                     break;
                 }
@@ -56,7 +69,7 @@ public class ComputerWindows : MonoBehaviour
                 {
                     Disable("Desktop");
                     SetProgram(type);
-                    StudentStress.get.Refresh();
+                    Comp.SS.Refresh();
                     Set(type);
                     break;
                 }
@@ -76,7 +89,52 @@ public class ComputerWindows : MonoBehaviour
                 }
             case "Refresh":
                 {
-                    StudentStress.get.Refresh();
+                    Comp.SS.Refresh(); 
+                    break;
+                }
+            case "Input Field Login":
+                {
+                    Comp.Numpad.Set(Comp.Login.login);
+                    break;
+                }
+            case "Input Field Password":
+                {
+                    Comp.Numpad.Set(Comp.Login.password);
+                    break;
+                }
+            case "Login In Computer":
+                {
+                    Comp.Login.TryLogin();
+                    break;
+                }
+            case "0":
+                {
+                    Comp.Numpad.Plus(0);
+                    break;
+                }
+            case "1":
+                {
+                    Comp.Numpad.Plus(1);
+                    break;
+                }
+            case "2":
+                {
+                    Comp.Numpad.Plus(2);
+                    break;
+                }
+            case "3":
+                {
+                    Comp.Numpad.Plus(3);
+                    break;
+                }
+            case "4":
+                {
+                    Comp.Numpad.Plus(4);
+                    break;
+                }
+            case "Backspace":
+                {
+                    Comp.Numpad.Backspace();
                     break;
                 }
             case "Close":
@@ -86,7 +144,7 @@ public class ComputerWindows : MonoBehaviour
                 }
             case "Exit":
                 {
-                    //
+                    Enter("Login");
                     break;
                 }
         }
@@ -133,6 +191,14 @@ public class ComputerWindows : MonoBehaviour
         windows[window].SetActive(false);
     }
 
+    public void DisableAll()
+    {
+        foreach (KeyValuePair<string, GameObject> window in windows)
+        {
+            window.Value.SetActive(false);
+        }
+    }
+
     public void Disable()
     {
         if (current_window != null)
@@ -153,5 +219,10 @@ public class ComputerWindows : MonoBehaviour
     {
         program_bar.SetActive(false);
         program_name.text = null;
+    }
+
+    public void EnableTaskBar(bool option)
+    {
+        task_bar.SetActive(option);
     }
 }

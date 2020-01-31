@@ -46,6 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eedc3285a811e04d91cad09c6be9645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Windows: {fileID: 0}
+  Login: {fileID: 0}
+  Desktop: {fileID: 0}
+  SS: {fileID: 0}
+  Numpad: {fileID: 0}
+  select: 
 --- !u!1 &5534365762573109620
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +181,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4960968087158322719}
     m_Modifications:
+    - target: {fileID: 4156467762049466874, guid: c01bf56fdf96ac944b521a5f3f92dac6,
+        type: 3}
+      propertyPath: m_Name
+      value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156467762176670413, guid: c01bf56fdf96ac944b521a5f3f92dac6,
+        type: 3}
+      propertyPath: m_Name
+      value: Windows
+      objectReference: {fileID: 0}
     - target: {fileID: 6338226294826760483, guid: c01bf56fdf96ac944b521a5f3f92dac6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -233,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 7242951617567368959, guid: c01bf56fdf96ac944b521a5f3f92dac6,
         type: 3}
       propertyPath: m_Name
-      value: Desk Screen
+      value: Screen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c01bf56fdf96ac944b521a5f3f92dac6, type: 3}

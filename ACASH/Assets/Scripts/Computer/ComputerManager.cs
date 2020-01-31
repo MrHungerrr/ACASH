@@ -18,13 +18,11 @@ public class ComputerManager : Singleton<ComputerManager>
     [HideInInspector]
     public Vector2 mouse;
 
-    private ComputerController CompControl;
+    private TeacherComputerController CompControl;
+    private Computer[] computers;
     private bool active = false;
     [HideInInspector]
     public bool fast;
-
-    [HideInInspector]
-    public string current_window;
 
 
     [HideInInspector]
@@ -39,14 +37,22 @@ public class ComputerManager : Singleton<ComputerManager>
     public void SetComputerManager()
     {
         Debug.Log("Setup'им ComputerManager");
-        var buf = GameObject.FindObjectsOfType<ComputerController>();
-        foreach(ComputerController cc in buf)
+        computers = GameObject.FindObjectsOfType<Computer>();
+        foreach(Computer comp in computers)
         {
-            cc.SetComputerController();
+            comp.SetComputer();
         }
     }
 
-    public void Set(ComputerController comp)
+    public void SetScholars()
+    {
+        foreach (Computer comp in computers)
+        {
+            comp.SetScholars();
+        }
+    }
+
+    public void Set(TeacherComputerController comp)
     {
         CompControl = comp;
         active = true;

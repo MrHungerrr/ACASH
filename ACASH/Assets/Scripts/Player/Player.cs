@@ -265,7 +265,7 @@ public class Player : Singleton<Player>
                         {
                             if (actSpecialOption)
                             {
-                                actObject.GetComponent<ComputerController>().Enable(true);
+                                actObject.GetComponent<TeacherComputerController>().Enable(true);
                                 act = false;
                             }
                             break;
