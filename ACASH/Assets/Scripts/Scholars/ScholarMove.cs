@@ -29,7 +29,7 @@ public class ScholarMove : MonoBehaviour
 
     public bool IsHere()
     {
-        if ((transform.position - destination).magnitude <= 0.01)
+        if ((transform.position - destination).magnitude <= 0.05)
         {
             Scholar.Anim.SetAnimation("Nothing");
             Scholar.walking = false;
@@ -37,7 +37,7 @@ public class ScholarMove : MonoBehaviour
         }
         else
         {
-            //Debug.Log((transform.position - destination).magnitude);
+            Debug.Log((transform.position - destination).magnitude);
             return false;
         }
     }

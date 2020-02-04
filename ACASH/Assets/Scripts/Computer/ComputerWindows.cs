@@ -138,6 +138,11 @@ public class ComputerWindows : MonoBehaviour
                     Comp.Numpad.Backspace();
                     break;
                 }
+            case "Reset":
+                {
+                    Comp.Numpad.Reset();
+                    break;
+                }
             case "Close":
                 {
                     Escape(current_window);

@@ -122,8 +122,8 @@ public class ScholarManager : Singleton<ScholarManager>
             ScholarComputer desk = DeskManager.get.desks[i];
             desks[1, i] = desk.transform;
             desks[0, i] = desk.transform.Find("Destonation");
-            Debug.Log(desks[1, i].position);
-            Debug.Log(desks[0, i].position);
+            //Debug.Log(desks[1, i].position);
+            //Debug.Log(desks[0, i].position);
         }
 
         scholars = GameObject.FindObjectsOfType<Scholar>();

@@ -25,11 +25,8 @@ public abstract class Computer : MonoBehaviour
 
     public virtual void SetComputer()
     {
-        Debug.Log("Setup'им Computer");
-
         Transform win = transform.Find("Screen").Find("UI").Find("Canvas").Find("Windows");
         Numpad = win.parent.Find("Screen").GetComponentInChildren<NumpadController>();
-
 
         Login = win.GetComponent<LoginController>();
         Login.SetLoginController(this);
@@ -39,8 +36,6 @@ public abstract class Computer : MonoBehaviour
 
         SS = win.GetComponent<StudentStress>();
         SS.Set();
-
-        Debug.Log(name);
 
         Windows = win.GetComponent<ComputerWindows>();
         Windows.SetWindows(this);

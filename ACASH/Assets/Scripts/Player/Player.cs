@@ -255,8 +255,6 @@ public class Player : Singleton<Player>
 
             if (doing)
             {
-                Debug.Log("Мы хотим что-то сделать");
-
                 act = true;
 
                 switch (actTag)
@@ -286,7 +284,6 @@ public class Player : Singleton<Player>
                             if (actSpecialOption)
                             {
                                 ElevatorController.get.Open();
-                                act = false;
                             }
                             break;
                         }

@@ -15,11 +15,19 @@ public class UserManager : Singleton<UserManager>
 
     public void SetUserManager()
     {
-        foreach(User user in users)
+      /*  foreach(User user in users)
         {
-            user.SetKeys("4444", "4444");
-            //user.SetKeys(RandomFourDigits(), RandomFourDigits());
+            user.SetKeys(RandomFourDigits(), RandomFourDigits());
+            Debug.Log(user.name + "\nLogin: " + user.login + "   Password: " + user.password);
             login_user.Add(user.login, user);
+        }
+        */
+
+        for (int i = 0; i< users.Length; i++)
+        {
+
+            users[i].SetKeys(i.ToString() + i.ToString() + i.ToString() + i.ToString(), i.ToString() + i.ToString() + i.ToString() + i.ToString());
+            login_user.Add(users[i].login, users[i]);
         }
     }
 
@@ -30,7 +38,7 @@ public class UserManager : Singleton<UserManager>
 
         for(int i = 0; i<4; i++)
         {
-            res += Random.Range(0, 10).ToString();
+            res += Random.Range(0, 5).ToString();
         }
 
         return res;

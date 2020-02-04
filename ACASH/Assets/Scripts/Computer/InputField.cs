@@ -7,7 +7,8 @@ using TMPro;
 public class InputField : MonoBehaviour
 {
 
-    TextMeshProUGUI field;
+    private TextMeshProUGUI field;
+    private GameObject arrow;
     [HideInInspector]
     public string text;
     private string text_display;
@@ -18,6 +19,7 @@ public class InputField : MonoBehaviour
     public void SetInputField()
     {
         field = transform.GetComponentInChildren<TextMeshProUGUI>();
+        arrow = transform.Find("Arrow").gameObject;
         Select(false);
     }
 
@@ -64,5 +66,6 @@ public class InputField : MonoBehaviour
     public void Select(bool option)
     {
         select = option;
+        arrow.SetActive(option);
     }
 }

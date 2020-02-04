@@ -85,13 +85,11 @@ public class Menu : Singleton<Menu>
         if (select_name != null)
             menu_sections[select_row].Select(false);
 
-        if (select_name != menu_sections[row].name)
-        {
-            select_name = menu_sections[row].name;
-            menu_sections[row].Select(true);
-            select_row = row;
-            settings = menu_sections[row].settings;
-        }
+
+        select_name = menu_sections[row].name;
+        menu_sections[row].Select(true);
+        select_row = row;
+        settings = menu_sections[row].settings;
 
         //Debug.Log("Выбранное меню: " + select_name);
     }

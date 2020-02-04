@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class LoginController : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class LoginController : MonoBehaviour
     public InputField password;
     [HideInInspector]
     public User user;
+    private TextMeshProUGUI invalid;
 
 
 
@@ -22,6 +23,7 @@ public class LoginController : MonoBehaviour
 
         login = buf.Find("Input Field Login").GetComponent<InputField>();
         password = buf.Find("Input Field Password").GetComponent<InputField>();
+        invalid = buf.Find("Error Message").GetComponent<TextMeshProUGUI>();
 
         login.SetInputField();
         password.SetInputField();
@@ -36,6 +38,7 @@ public class LoginController : MonoBehaviour
             login.Reset();
             password.Reset();
             Comp.Numpad.Set(login);
+            invalid.text = "";
         }
     }
 
@@ -65,15 +68,18 @@ public class LoginController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Неверный пароль");
+                password.Reset();
+                Comp.Numpad.Set(password);
+                invalid.text = "Invalid Password";
             }
         }
         else
         {
-            Debug.Log("Не существующий логин");
+            login.Reset();
+            password.Reset();
+            Comp.Numpad.Set(login);
+            invalid.text = "Invalid Username";
         }
     }
-
-
 
 }

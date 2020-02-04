@@ -62,7 +62,7 @@ public class DeskManager : Singleton<DeskManager>
 
         for (int i = 0; i < desks.Length; i++)
         {
-            Debug.Log(desks[i].name + " = Desk_" + i);
+            //Debug.Log(desks[i].name + " = Desk_" + i);
             desks[i].name = "Desk_" + i;
         }
     }

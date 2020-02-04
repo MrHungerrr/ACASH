@@ -92,7 +92,6 @@ public class TimeManager : Singleton<TimeManager>
         active = false;
         index = 0;
         timers = FindObjectsOfType<Timer>();
-        Debug.Log(timers.Length);
     }
 
     private void Time()
