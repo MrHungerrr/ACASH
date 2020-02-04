@@ -28,7 +28,6 @@ public abstract class Computer : MonoBehaviour
         Debug.Log("Setup'им Computer");
 
         Transform win = transform.Find("Screen").Find("UI").Find("Canvas").Find("Windows");
-
         Numpad = win.parent.Find("Screen").GetComponentInChildren<NumpadController>();
 
 

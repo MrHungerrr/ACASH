@@ -12,22 +12,22 @@ public class InputField : MonoBehaviour
     public string text;
     private string text_display;
     private const int length = 4;
+    private bool select = false;
 
 
     public void SetInputField()
     {
         field = transform.GetComponentInChildren<TextMeshProUGUI>();
+        Select(false);
     }
-
 
     public void Reset()
     {
         if (text.Length > 0)
         {
             text = "";
-            Set();
+            Display();
         }
-
     }
 
     public void Plus(int num)
@@ -35,7 +35,7 @@ public class InputField : MonoBehaviour
         if (text.Length < 4)
         {
             text += num.ToString();
-            Set();
+            Display();
         }
     }
 
@@ -44,12 +44,11 @@ public class InputField : MonoBehaviour
         if (text.Length > 0)
         {
             text = text.Remove(text.Length - 1);
-            Set();
+            Display();
         }
     }
 
-
-    private void Set()
+    public void Display()
     {
         text_display = text;
 
@@ -58,6 +57,12 @@ public class InputField : MonoBehaviour
             text_display += "_";
         }
 
-        field.text = text_display;         
+        field.text = text_display;
+    }
+
+
+    public void Select(bool option)
+    {
+        select = option;
     }
 }

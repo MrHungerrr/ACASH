@@ -113,6 +113,7 @@ public class ScholarManager : Singleton<ScholarManager>
         }
 
 
+        DeskManager.get.SetDeskManager();
         desks = new Transform[2, DeskManager.get.desks.Length];
         desks_count = DeskManager.get.desks.Length;
 
@@ -124,15 +125,21 @@ public class ScholarManager : Singleton<ScholarManager>
             Debug.Log(desks[1, i].position);
             Debug.Log(desks[0, i].position);
         }
+
+        scholars = GameObject.FindObjectsOfType<Scholar>();
+        withoutScholars = (scholars.Length == 0);
+
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            scholars[i].SetNumber(i);
+        }
     }
 
     public void SetScholars()
     {
-        scholars = GameObject.FindObjectsOfType<Scholar>();
 
-        withoutScholars = (scholars.Length == 0);
-        
-        ScholarNumberRandomer();
+        //Рандомные ученики?
+        //ScholarNumberRandomer();
     }
 
 
@@ -180,12 +187,6 @@ public class ScholarManager : Singleton<ScholarManager>
                 scholars[i] = scholars[buf];
                 scholars[buf] = buf2;
             }
-        }
-
-        for (int i = 0; i < scholars.Length; i++)
-        {
-            Debug.Log("Номер нового ученика" + i);
-            scholars[i].SetNumber(i);
         }
     }
 

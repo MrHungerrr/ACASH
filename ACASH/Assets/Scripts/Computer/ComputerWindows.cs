@@ -53,6 +53,7 @@ public class ComputerWindows : MonoBehaviour
                     CloseProgram();
                     EnableTaskBar(false);
                     Comp.Numpad.Enable(true);
+                    Comp.Login.Reset();
                     Set(type);
                     break;
                 }
@@ -102,7 +103,7 @@ public class ComputerWindows : MonoBehaviour
                     Comp.Numpad.Set(Comp.Login.password);
                     break;
                 }
-            case "Login In Computer":
+            case "Log In Computer":
                 {
                     Comp.Login.TryLogin();
                     break;
@@ -145,6 +146,11 @@ public class ComputerWindows : MonoBehaviour
             case "Exit":
                 {
                     Enter("Login");
+                    break;
+                }
+            default:
+                {
+                    Debug.Log("Несуществуюющее окно - " + type);
                     break;
                 }
         }

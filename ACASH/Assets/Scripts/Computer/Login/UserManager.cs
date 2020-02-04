@@ -17,7 +17,8 @@ public class UserManager : Singleton<UserManager>
     {
         foreach(User user in users)
         {
-            user.SetKeys(RandomFourDigits(), RandomFourDigits());
+            user.SetKeys("4444", "4444");
+            //user.SetKeys(RandomFourDigits(), RandomFourDigits());
             login_user.Add(user.login, user);
         }
     }

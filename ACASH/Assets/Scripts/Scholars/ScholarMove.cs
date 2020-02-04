@@ -37,7 +37,7 @@ public class ScholarMove : MonoBehaviour
         }
         else
         {
-            Debug.Log((transform.position - destination).magnitude);
+            //Debug.Log((transform.position - destination).magnitude);
             return false;
         }
     }

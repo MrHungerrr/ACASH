@@ -27,7 +27,7 @@ public class Tutorial : Singleton<Tutorial>
 
         yield return new WaitForSeconds(1f);
 
-        GameManager.get.SetupManagers();
+        GameManager.get.SetLevel();
         SubtitleManager.get.Say("Tutorial_Begining");
 
         while(SubtitleManager.get.act)

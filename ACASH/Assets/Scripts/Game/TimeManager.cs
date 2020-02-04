@@ -17,6 +17,7 @@ public class TimeManager : Singleton<TimeManager>
 
     [HideInInspector]
     public string time_name;
+    private int index;
 
 
 
@@ -38,12 +39,9 @@ public class TimeManager : Singleton<TimeManager>
     };
 
 
-    private void Awake()
+    public void Reset()
     {
-        active = false;
-        time = 60 * 10;
-        time_left = 0;
-        time_passed = time;
+        SetTime(0);
     }
 
     private void Update()
@@ -54,32 +52,45 @@ public class TimeManager : Singleton<TimeManager>
         }
     }
 
-    public void Enable()
+    public void Enable(bool option)
     {
-        time_left = time;
-        time_passed = 0;
-        active = true;
+        active = option;
     }
 
     public void SetTime(int index)
     {
-        time = times[index];
-        time_left = time;
-        time_passed = 0;
+        if (index < 3 && index >= 0)
+        {
+            this.index = index;
+            time = times[index];
+            time_left = time;
+            time_passed = 0;
 
-        time_sec = (int)time_left % 60;
-        time_sec_previous = time_sec;
+            time_sec = (int)time_left % 60;
+            time_sec_previous = time_sec;
 
-        ShowTime();
-        active = true;
+            ShowTime();
+            active = true;
 
-        time_name = time_names[index];
-        HUDController.get.TimeHeader(time_name);
+            time_name = time_names[index];
+            HUDController.get.TimeHeader(time_name);
+        }
+        else
+        {
+            Debug.Log("<color=#ff0000> Ошибка index SetTime </color>");
+        }
+    }
+
+    public void Next()
+    {
+        SetTime(index + 1);
     }
 
 
     public void SetTimers()
     {
+        active = false;
+        index = 0;
         timers = FindObjectsOfType<Timer>();
         Debug.Log(timers.Length);
     }
@@ -117,9 +128,9 @@ public class TimeManager : Singleton<TimeManager>
         time_string = StringTime(time_left);
         HUDController.get.Time(time_string);
 
-        for(int i = 0; i< timers.Length; i++)
+        foreach (Timer t in timers)
         {
-            timers[i].Time(time_string);
+            t.Time(time_string);
         }
     }
 

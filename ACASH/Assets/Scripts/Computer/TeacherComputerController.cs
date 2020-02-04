@@ -4,17 +4,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using Cinemachine;
-using N_BH;
 
 
 public class TeacherComputerController: MonoBehaviour
 {
     private TeacherComputer Comp;
-    private ComputerUIColliderManager CompCol;
 
 
     //Камера
-    private CinemachineVirtualCamera CompCam;
+    private CinemachineVirtualCamera Cam;
     [HideInInspector]
     public bool zoom;
     [HideInInspector]
@@ -48,18 +46,15 @@ public class TeacherComputerController: MonoBehaviour
     public void  SetTeacherComputerController()
     {
         Comp = GetComponent<TeacherComputer>();
-
-        Transform buf = transform.Find("Screen").Find("UI").Find("Canvas");
-        Transform screen = buf.Find("Screen");
+        Transform screen = transform.Find("Screen").Find("UI").Find("Canvas").Find("Screen");
 
         cursor = screen.Find("Cursor").gameObject;
         pointer = screen.Find("Cursor").Find("Pointer").GetComponent<Image>();
         finger = screen.Find("Cursor").Find("Select").GetComponent<Image>();
         ChangeImage("pointer");
 
-        CompCol = buf.GetComponentInParent<ComputerUIColliderManager>();
-        CompCam = buf.parent.parent.GetComponentInChildren<CinemachineVirtualCamera>();
-        normRotation = CompCam.transform.rotation;
+        Cam = transform.Find("Screen").GetComponentInChildren<CinemachineVirtualCamera>();
+        normRotation = Cam.transform.rotation;
 
         zoom = false;
         moving = false;
@@ -73,9 +68,9 @@ public class TeacherComputerController: MonoBehaviour
     {
         if (option)
         {
-            CompCam.transform.rotation = normRotation;
+            Cam.transform.rotation = normRotation;
             FOV = normFOV;
-            CompCam.m_Lens.FieldOfView = FOV;
+            Cam.m_Lens.FieldOfView = FOV;
             ComputerManager.get.Set(this);
         }
         else
@@ -85,9 +80,9 @@ public class TeacherComputerController: MonoBehaviour
         }
 
         active = option;
-        CompCol.enabled = option;
+        Comp.Col.enabled = option;
         PlayerCamera.get.Enable(!option);
-        CompCam.enabled = option;
+        Cam.enabled = option;
     }
 
 
@@ -120,30 +115,30 @@ public class TeacherComputerController: MonoBehaviour
     {
         cursor.transform.Translate(movement);
 
-        if (Mathf.Abs(cursor.transform.localPosition.x) > 720)
+        if (Mathf.Abs(cursor.transform.localPosition.x - 720) >  720)
         {
-            cursor.transform.localPosition = new Vector3(Mathf.Sign(cursor.transform.localPosition.x) * 720, cursor.transform.localPosition.y, cursor.transform.localPosition.z);
+            cursor.transform.localPosition = new Vector3(720 + Mathf.Sign(cursor.transform.localPosition.x - 720) * 720, cursor.transform.localPosition.y, cursor.transform.localPosition.z);
         }
 
-        if (Mathf.Abs(cursor.transform.localPosition.y) > 540)
+        if (Mathf.Abs(cursor.transform.localPosition.y + 540) > 540)
         {
-            cursor.transform.localPosition = new Vector3(cursor.transform.localPosition.x, Mathf.Sign(cursor.transform.localPosition.y) * 540, cursor.transform.localPosition.z);
+            cursor.transform.localPosition = new Vector3(cursor.transform.localPosition.x, -540 + Mathf.Sign(cursor.transform.localPosition.y + 540) * 540, cursor.transform.localPosition.z);
         }
     }
 
     private void CameraMove(Vector3 movement)
     {
 
-        CompCam.transform.Rotate(movement);
+        Cam.transform.Rotate(movement);
 
-        if (Mathf.Abs(CompCam.transform.localEulerAngles.y - 180) > y_delta)
+        if (Mathf.Abs(Cam.transform.localEulerAngles.y - 180) > y_delta)
         {
-            ClampYAxisRotationToValue(180 + Mathf.Sign(CompCam.transform.localEulerAngles.y - 180) * y_delta);
+            ClampYAxisRotationToValue(180 + Mathf.Sign(Cam.transform.localEulerAngles.y - 180) * y_delta);
         }
 
-        if (CompCam.transform.localEulerAngles.x > x_delta && CompCam.transform.localEulerAngles.x < (360 - x_delta))
+        if (Cam.transform.localEulerAngles.x > x_delta && Cam.transform.localEulerAngles.x < (360 - x_delta))
         {
-            ClampXAxisRotationToValue((((int)CompCam.transform.localEulerAngles.x / 180) * -(x_delta * 2)) + x_delta);
+            ClampXAxisRotationToValue((((int)Cam.transform.localEulerAngles.x / 180) * -(x_delta * 2)) + x_delta);
         }
 
         ClampZAxisRotationToValue(0);
@@ -153,31 +148,31 @@ public class TeacherComputerController: MonoBehaviour
 
     private void ClampXAxisRotationToValue(float value)
     {
-        Vector3 eulerRotation = CompCam.transform.localEulerAngles;
+        Vector3 eulerRotation = Cam.transform.localEulerAngles;
         eulerRotation.x = value;
-        CompCam.transform.localEulerAngles = eulerRotation;
+        Cam.transform.localEulerAngles = eulerRotation;
     }
 
     private void ClampYAxisRotationToValue(float value)
     {
-        Vector3 eulerRotation = CompCam.transform.localEulerAngles;
+        Vector3 eulerRotation = Cam.transform.localEulerAngles;
         eulerRotation.y = value;
-        CompCam.transform.localEulerAngles = eulerRotation;
+        Cam.transform.localEulerAngles = eulerRotation;
     }
 
     private void ClampZAxisRotationToValue(float value)
     {
-        Vector3 eulerRotation = CompCam.transform.localEulerAngles;
+        Vector3 eulerRotation = Cam.transform.localEulerAngles;
         eulerRotation.z = value;
-        CompCam.transform.localEulerAngles = eulerRotation;
+        Cam.transform.localEulerAngles = eulerRotation;
     }
 
 
     private void CameraMoveToOrigin()
     {    
-        CompCam.transform.rotation = Quaternion.Slerp(CompCam.transform.rotation, normRotation, 4f * Time.deltaTime);
+        Cam.transform.rotation = Quaternion.Slerp(Cam.transform.rotation, normRotation, 4f * Time.deltaTime);
 
-        if (CompCam.transform.rotation == normRotation)
+        if (Cam.transform.rotation == normRotation)
         {
             moving = false;
         }
@@ -187,13 +182,13 @@ public class TeacherComputerController: MonoBehaviour
     {
         if (zoom)
         {
-            FOV = Mathf.Lerp(CompCam.m_Lens.FieldOfView, zoomFOV, 4 * Time.deltaTime);
+            FOV = Mathf.Lerp(Cam.m_Lens.FieldOfView, zoomFOV, 4 * Time.deltaTime);
         }
         else
         {
-            FOV = Mathf.Lerp(CompCam.m_Lens.FieldOfView, normFOV, 4 * Time.deltaTime);
+            FOV = Mathf.Lerp(Cam.m_Lens.FieldOfView, normFOV, 4 * Time.deltaTime);
         }
-        CompCam.m_Lens.FieldOfView = FOV;
+        Cam.m_Lens.FieldOfView = FOV;
 
 
         if ((normFOV - FOV) < 0.01f)
@@ -206,7 +201,7 @@ public class TeacherComputerController: MonoBehaviour
 
     private void MouseCollision()
     {
-        string buf_col = CompCol.MouseCollision(cursor.transform.localPosition);
+        string buf_col = Comp.Col.MouseCollision(cursor.transform.localPosition);
 
         if (buf_col != null)
         {

@@ -20,7 +20,6 @@ public class StudentStress : MonoBehaviour
             transform_ss.Find("Stress 2x2").gameObject,
             transform_ss.Find("Stress 3x2").gameObject,
             transform_ss.Find("Stress 3x3").gameObject,
-            transform_ss.Find("Stress 3x4").gameObject
         };
 
 
@@ -44,16 +43,10 @@ public class StudentStress : MonoBehaviour
                     cells = new StressCell[9];
                     break;
                 }
-            case 12:
-                {
-                    number = 3;
-                    cells = new StressCell[12];
-                    break;
-                }
             default:
                 {
-                    number = 3;
-                    cells = new StressCell[12];
+                    number = 2;
+                    cells = new StressCell[9];
                     break;
                 }
         }
@@ -61,10 +54,18 @@ public class StudentStress : MonoBehaviour
         for(int i = 0; i < ss.Length; i++)
         {
             if (i == number)
+            {
                 ss[i].SetActive(true);
+                transform_ss = ss[i].transform;
+            }
             else
                 ss[i].SetActive(false);
-        } 
+        }
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i] = transform_ss.Find("Cell_" + i).GetComponent<StressCell>();
+        }
     }
 
 
@@ -72,10 +73,6 @@ public class StudentStress : MonoBehaviour
     {
         for (int i = 0; i < cells.Length; i++)
         {
-            //Debug.Log(buf + "_Cell_" + i);
-            cells[i] = GameObject.Find(number + "_Cell_" + i).GetComponent<StressCell>();
-            //Debug.Log("Название ячейки - " + cells[i].name);
-
             try
             {
                 cells[i].Set(ScholarManager.get.scholars[i]);

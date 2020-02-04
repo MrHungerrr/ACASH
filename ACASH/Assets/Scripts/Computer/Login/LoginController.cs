@@ -18,17 +18,42 @@ public class LoginController : MonoBehaviour
 
     public void SetLoginController(Computer c)
     {
-        Transform buf = transform.Find("Login").Find("Input Zone");
+        Transform buf = transform.Find("Login");
 
-        login = buf.Find("Login").GetComponentInChildren<InputField>();
-        password = buf.Find("Password").GetComponentInChildren<InputField>();
+        login = buf.Find("Input Field Login").GetComponent<InputField>();
+        password = buf.Find("Input Field Password").GetComponent<InputField>();
+
+        login.SetInputField();
+        password.SetInputField();
+
         Comp = c;
+    }
+
+    public void Reset()
+    {
+        if (Comp != null)
+        {
+            login.Reset();
+            password.Reset();
+            Comp.Numpad.Set(login);
+        }
     }
 
 
     public void TryLogin()
     {
-        user = UserManager.get.login_user[login.text];
+
+        Debug.Log("Login: " + login.text + "\nPassword: " + password.text);
+
+        try
+        {
+            user = UserManager.get.login_user[login.text];
+        }
+        catch
+        {
+            user = null;
+        }
+
 
         if(user != null)
         {

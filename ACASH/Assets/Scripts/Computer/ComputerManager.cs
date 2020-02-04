@@ -36,6 +36,8 @@ public class ComputerManager : Singleton<ComputerManager>
 
     public void SetComputerManager()
     {
+        UserManager.get.SetUserManager();
+
         Debug.Log("Setup'им ComputerManager");
         computers = GameObject.FindObjectsOfType<Computer>();
         foreach(Computer comp in computers)

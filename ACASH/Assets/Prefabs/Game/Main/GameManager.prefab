@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1300066095}
-  - component: {fileID: 1300066096}
   m_Layer: 0
   m_Name: ComputerScripts
   m_TagString: Untagged
@@ -31,18 +30,6 @@ Transform:
   m_Father: {fileID: 6132918696476860144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1300066096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300066094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26dcfe8d53c17ce4ca03d21a4a60edac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6132918696476860140
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +54,7 @@ GameObject:
   - component: {fileID: 6326149851576382278}
   - component: {fileID: 3982946758408277148}
   - component: {fileID: 3585671208464519927}
+  - component: {fileID: 574315359}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -208,7 +196,6 @@ MonoBehaviour:
   mouseInput: {x: 0, y: 0}
   mouse: {x: 0, y: 0}
   fast: 0
-  current_window: 
   colors:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 1, g: 1, b: 1, a: 0.3}
@@ -328,3 +315,17 @@ MonoBehaviour:
   First_Desk_X: 1
   First_Desk_Z: 0
   desks: []
+--- !u!114 &574315359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132918696476860140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb24247015ac0b3479b260267cdb2240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  users:
+  - {fileID: 11400000, guid: b4fd0d2afcaf67b46bd6c6ff4dfd9f74, type: 2}

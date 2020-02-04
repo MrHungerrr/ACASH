@@ -16,7 +16,11 @@ public class NumpadController: MonoBehaviour
 
     public void Set(InputField new_input)
     {
+        if (input_field != null)
+            input_field.Select(false);
+
         input_field = new_input;
+        input_field.Select(true);
     }
 
     public void Reset()

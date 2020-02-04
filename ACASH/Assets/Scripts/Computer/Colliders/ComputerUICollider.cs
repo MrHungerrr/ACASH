@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using N_BH;
 
 public class ComputerUICollider
 {
@@ -17,13 +16,22 @@ public class ComputerUICollider
     //y_corner
     public int y_c;
 
-    private GameObject obj;
+    public GameObject obj;
     private ComputerSelect select;
 
     public ComputerUICollider(GameObject o)
     {
         obj = o;
-        RectTransform rt = obj.GetComponent<RectTransform>();
+
+        RectTransform rt = obj.GetComponentInParent<RectTransform>();
+        rt.anchorMax = new Vector2(0, 1);
+        rt.anchorMin = new Vector2(0, 1);
+        rt.pivot = new Vector2(0, 1);
+
+        rt = obj.GetComponent<RectTransform>();
+        rt.anchorMax = new Vector2(0, 1);
+        rt.anchorMin = new Vector2(0, 1);
+        rt.pivot = new Vector2(0, 1);
 
         x_p = (int)rt.localPosition.x;
         y_p = (int)rt.localPosition.y;

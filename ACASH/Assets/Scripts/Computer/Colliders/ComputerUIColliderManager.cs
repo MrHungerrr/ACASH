@@ -6,9 +6,7 @@ public class ComputerUIColliderManager : MonoBehaviour
 {
 
     [HideInInspector]
-    private Dictionary<string, ComputerUICollider> colliders = new Dictionary<string, ComputerUICollider>();
-    [HideInInspector]
-    public RectTransform mouse;
+    private ComputerUICollider[] colliders;
     [SerializeField]
     private GameObject[] ui_colliders;
 
@@ -43,31 +41,31 @@ public class ComputerUIColliderManager : MonoBehaviour
         return res.ToArray();
     }
 
-    private void Awake()
-    {
-        RefreshColliders();
-    }
 
-
-    public void RefreshColliders()
+    public void SetColliders()
     {
         ui_colliders = FindAllUIObjects();
+
+        List <ComputerUICollider> colliders_list = new List<ComputerUICollider>();
+
         foreach (GameObject i in ui_colliders)
         {
             ComputerUICollider buf_collider = new ComputerUICollider(i);
-            colliders.Add(i.name, buf_collider);
+            colliders_list.Add(buf_collider);
         }
+
+        colliders = colliders_list.ToArray();
     }
 
 
     public string MouseCollision(Vector2 pos)
     {
 
-        foreach (KeyValuePair<string, ComputerUICollider> pair in colliders)
+        foreach (ComputerUICollider col in colliders)
         {
-            if (pair.Value.MouseCollision(pos))
+            if (col.MouseCollision(pos))
             {
-                return pair.Key;
+                return col.obj.name;
             }
         }
         return null;
