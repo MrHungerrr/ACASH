@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6384746390446829954}
   - component: {fileID: 6384746390446829955}
   - component: {fileID: 6384746390446829952}
-  - component: {fileID: 8236636797606539669}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -75,22 +74,6 @@ MonoBehaviour:
   actTag: 
   actObject: {fileID: 0}
   actSpecialOption: 0
---- !u!54 &8236636797606539669
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6384746390446829958}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!1 &6384746390683932918
 GameObject:
   m_ObjectHideFlags: 0

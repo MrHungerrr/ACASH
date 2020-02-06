@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 using N_BH;
 
 
 public class PostProcessManager: Singleton<PostProcessManager>
 {
-    private PostProcessVolume volume;
+    private VolumeProfile volume;
     private DepthOfField depthOfField;
-    private ColorGrading colorGrading;
-    private const float dof_coef = 5f;
+    private ColorAdjustments colorAdjustments;
+    private const float time_coef = 10f;
 
 
     void Awake()
     {
-        volume = GameObject.FindObjectOfType<PostProcessVolume>();
+        volume = GameObject.FindObjectOfType<Volume>().profile;
     }
 
 
     public void Blur(bool option)
     {
-        StopAllCoroutines();
+       StopAllCoroutines();
 
         if(option)
         {
@@ -34,54 +35,72 @@ public class PostProcessManager: Singleton<PostProcessManager>
 
     public void SetAperture(float value)
     {
-        if (volume.profile.TryGetSettings(out depthOfField))
+        if (volume.TryGet(out depthOfField))
             depthOfField.aperture.value = value;
     }
 
     public float GetAperture()
     {
-        depthOfField = volume.profile.GetSetting<DepthOfField>();
-        return depthOfField.aperture.value;
+        if (volume.TryGet(out depthOfField))
+            return depthOfField.aperture.value;
+        else
+            return 0;
     }
 
     public void SetFocusDistance(float value)
     {
-        if (volume.profile.TryGetSettings(out depthOfField))
+        if (volume.TryGet(out depthOfField))
             depthOfField.focusDistance.value = value;
     }
 
     public float GetFocuseDistance()
     {
-        depthOfField = volume.profile.GetSetting<DepthOfField>();
-        return depthOfField.focusDistance.value;
+        if (volume.TryGet(out depthOfField))
+            return depthOfField.focusDistance.value;
+        else
+            return 0;
+    }
+
+    public void SetFocalLength(float value)
+    {
+        if (volume.TryGet(out depthOfField))
+            depthOfField.focalLength.value = value;
+    }
+
+    public float GetFocalLength()
+    {
+        if (volume.TryGet(out depthOfField))
+            return depthOfField.focalLength.value;
+        else
+            return 0;
     }
 
     public void SetContrast(float value)
     {
-        //Debug.Log("Change Contrast");
-        if (volume.profile.TryGetSettings(out colorGrading))
-            colorGrading.contrast.value = value;
+        if (volume.TryGet(out colorAdjustments))
+            colorAdjustments.contrast.value = value;
     }
 
     public float GetContrast()
     {
-        //Debug.Log("Get Contrast");
-        colorGrading = volume.profile.GetSetting<ColorGrading>();
-        return colorGrading.contrast.value;
+        if (volume.TryGet(out colorAdjustments))
+            return colorAdjustments.contrast.value;
+        else
+            return 0;
     }
 
     public void SetSaturation(float value)
     {
-        //Debug.Log("Change Saturation");
-        if (volume.profile.TryGetSettings(out colorGrading))
-            colorGrading.saturation.value = value;
+        if (volume.TryGet(out colorAdjustments))
+            colorAdjustments.saturation.value = value;
     }
 
     public float GetSaturation()
     {
-        //Debug.Log("Get Saturation");
-        colorGrading = volume.profile.GetSetting<ColorGrading>();
-        return colorGrading.saturation.value;
+        if (volume.TryGet(out colorAdjustments))
+            return colorAdjustments.saturation.value;
+        else
+            return 0;
     }
 
 
@@ -89,16 +108,18 @@ public class PostProcessManager: Singleton<PostProcessManager>
     {
         float aperture = 10f;
         float focuse = 0.1f;
+        float focal = 99f;
         float contrast = -20f;
         float saturation = 0f;
 
         SetFocusDistance(focuse);
+        SetFocalLength(focal);
 
         while (aperture > 0.1)
         {
-            aperture = Mathf.Lerp(aperture, 0.05f, Time.unscaledDeltaTime * dof_coef);
-            contrast = Mathf.Lerp(contrast, -60f, Time.unscaledDeltaTime * dof_coef *2);
-            saturation = Mathf.Lerp(saturation, -60f, Time.unscaledDeltaTime * dof_coef *2);
+            aperture = Mathf.Lerp(aperture, 0.05f, Time.unscaledDeltaTime * time_coef);
+            contrast = Mathf.Lerp(contrast, -60f, Time.unscaledDeltaTime * time_coef);
+            saturation = Mathf.Lerp(saturation, -60f, Time.unscaledDeltaTime * time_coef);
 
             SetAperture(aperture);
             SetContrast(contrast);
@@ -111,18 +132,21 @@ public class PostProcessManager: Singleton<PostProcessManager>
     {
         float aperture = GetAperture();
         float focuse = GetFocuseDistance();
+        float focal = 1f;
         float contrast = GetContrast();
         float saturation = GetSaturation();
 
+        SetFocalLength(focal);
+
         while (aperture < 32)
         {
-            aperture = Mathf.Lerp(aperture, 32.001f, Time.unscaledDeltaTime * dof_coef);
-            focuse = Mathf.Lerp(focuse, 30, Time.unscaledDeltaTime * dof_coef);
-            contrast = Mathf.Lerp(contrast, 100f, Time.unscaledDeltaTime * dof_coef);
-            saturation = Mathf.Lerp(saturation, 100f, Time.unscaledDeltaTime * dof_coef);
+            aperture = Mathf.Lerp(aperture, 32.001f, Time.unscaledDeltaTime * time_coef);
+            focuse = Mathf.Lerp(focuse, 30, Time.unscaledDeltaTime * time_coef);
+            contrast = Mathf.Lerp(contrast, 100f, Time.unscaledDeltaTime * time_coef);
+            saturation = Mathf.Lerp(saturation, 100f, Time.unscaledDeltaTime * time_coef);
 
             SetAperture(aperture);
-            SetFocusDistance(focuse);
+            SetFocusDistance(focuse);   
             SetContrast(contrast);
             SetSaturation(saturation);
 

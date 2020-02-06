@@ -51,7 +51,7 @@ public class HUDManager : Singleton<HUDManager>
     {
         huds["Timer"].Select(true);
         huds["Reputation"].Select(true);
-        huds["Specials"].Select(true);
+        //huds["Specials"].Select(true);
 
         hud_cd = hud_const_cd;
         active = true;
