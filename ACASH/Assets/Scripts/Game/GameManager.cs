@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using N_BH;
+using Single;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -141,7 +141,7 @@ public class GameManager : Singleton<GameManager>
         ScholarManager.get.SetLevel();
         ComputerManager.get.SetComputerManager();
         TimeManager.get.SetTimers();
-
+        Difficulty.get.SetDifficulty();
         SetScholars();
     }
 

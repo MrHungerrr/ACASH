@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using N_BH;
+using Single;
 
 
 public class StudentStress : MonoBehaviour

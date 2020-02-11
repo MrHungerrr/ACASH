@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using N_BH;
+using Single;
 
 public class Player : Singleton<Player>
 {
@@ -124,7 +124,7 @@ public class Player : Singleton<Player>
         if (forwardMovement != Vector3.zero || rightMovement != Vector3.zero)
         {
             CharController.SimpleMove(forwardMovement + rightMovement);
-            //ScholarMan.Hear(movementSound);
+            ScholarManager.get.Hear(movementSound);
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using N_BH;
+using Single;
 
 public class UserManager : Singleton<UserManager>
 {

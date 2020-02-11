@@ -18,13 +18,14 @@ public class ScholarTextBox : MonoBehaviour
     private float timeUnselectable = 0;
 
 
-    private void Awake()
+    public void SetupTextBox()
     {
         Transform buf = transform.parent.Find("Armature").Find("Body").Find("Text Box");
         textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();
         textBox[1] = buf.Find("Text_1").GetComponent<TextMeshPro>();
         textBox[2] = buf.Find("Text_2").GetComponent<TextMeshPro>();
         stressSlider = buf.Find("Stress Slider").GetComponentInChildren<SliderWatch>();
+        Clear();
     }
 
     private void Update()
@@ -60,6 +61,7 @@ public class ScholarTextBox : MonoBehaviour
 
     public void Say(string key)
     {
+        Debug.Log("Я говорю");
         Clear();
         StartCoroutine(PlaySub(key));
         timeClear_N = 1f;

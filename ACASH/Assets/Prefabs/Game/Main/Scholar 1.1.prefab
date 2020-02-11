@@ -324,6 +324,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -398,9 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cff5ed13e61eb4bad3954166dd5697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scholarType: 0
+  scholarType: 1
   type: 
-  isLiving: 1
   number: 0
   name_1: Akim
   name_2: Akimov
@@ -409,6 +409,7 @@ MonoBehaviour:
   walking: 0
   cheating: 0
   writing: 0
+  chill: 1
   asking: 0
   questionKey: 
   teacher_answer: 0
@@ -753,6 +754,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1238,6 +1240,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1297,8 +1300,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\u041F\u0440\u0438\u0432\u0435\u0442 \u0443\u0447\u0438\u0442\u0435\u043B\u044C)
-    \u042F \u0445\u043E\u0447\u0443 \u0432 \u0442\u0443\u0430\u043B\u0435\u0442. \u041E\u0442\u043F\u0443\u0441\u0442\u0438,
-    \u043F\u043B\u0438\u0437?"
+    \u042F \u0445\u043E\u0447\u0443 \u0432 \u0442\u0443\u0430\u043B\u0435\u0442.
+    \u041E\u0442\u043F\u0443\u0441\u0442\u0438, \u043F\u043B\u0438\u0437?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18212532e95722e48a79b1e16c04e758, type: 2}
   m_sharedMaterial: {fileID: -3006359655313297055, guid: 18212532e95722e48a79b1e16c04e758,
@@ -1444,6 +1447,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1648,6 +1652,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1853,6 +1858,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1930,6 +1936,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

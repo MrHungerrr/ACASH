@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using N_BH;
+using Single;
 
 public class ScoreManager : Singleton<ScoreManager>
 {

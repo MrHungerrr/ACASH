@@ -68,7 +68,7 @@ public class ScholarStress
     }
 
 
-    public void MoodTypeTime()
+    public void MoodTypeTimeUpdate()
     {
         moodType_time[moodType] += Time.fixedDeltaTime;
     }

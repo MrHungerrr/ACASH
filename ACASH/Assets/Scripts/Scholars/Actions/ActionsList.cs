@@ -4,18 +4,10 @@ using UnityEngine;
 
 public static class ActionsList
 {
-
-    private static Dictionary<int, Action[]> actions = new Dictionary<int, Action[]>()
-    {
-        { 1, actions_1 },
-        { 2, actions_2 },
-        { 3, actions_3 },
-    };
-
     private static Action[] actions_1 = new Action[]
     {
         new Action("Think_Aloud", "All"),
-        new Action("Web", "All"),
+        new Action("Program", "All"),
         new Action("Ask", "All"),
     };
 
@@ -30,15 +22,16 @@ public static class ActionsList
         new Action("Toilet", "All"),
     };
 
-
-
-
-    private static Dictionary<int, Action[]> cheatings = new Dictionary<int, Action[]>()
+    private static Dictionary<int, Action[]> actions = new Dictionary<int, Action[]>()
     {
-        { 1, cheatings_1 },
-        { 2, cheatings_2 },
-        { 3, cheatings_3 },
+        { 1, actions_1 },
+        { 2, actions_2 },
+        { 3, actions_3 },
     };
+
+
+
+
 
     private static Action[] cheatings_1 = new Action[]
     {
@@ -52,6 +45,7 @@ public static class ActionsList
     {
         new Action("Air", "All"),
         new Action("Sink", "All"),
+        new Action("Program", "All"),
     };
 
     private static Action[] cheatings_3 = new Action[]
@@ -62,34 +56,36 @@ public static class ActionsList
         new Action("Nerd_Break_Desk", ScholarTypes.nerd),
     };
 
+    private static Dictionary<int, Action[]> cheatings = new Dictionary<int, Action[]>()
+    {
+        { 1, cheatings_1 },
+        { 2, cheatings_2 },
+        { 3, cheatings_3 },
+    };
 
 
 
 
 
-
-
-    public static void ActionChoice(int cost, Scholar scholar)
+    public static string ActionChoice(int cost, Scholar scholar)
     {
         Action action = FindAction(cost, scholar.type);
-
-        SelectAction(action.name, scholar);
+        Debug.Log("Выбрано действие - " + action.name);
+        return action.name;
     }
 
     public static string CheatingChoice(int cost, Scholar scholar)
     {
         Action cheating = FindCheating(cost, scholar.type);
-
+        Debug.Log("Выбрано списывание - " + cheating.name);
         return cheating.name;
     }
 
 
 
-
-
     private static Action FindAction(int cost, string scholar)
     {
-        int choice = Random.Range(0, actions[cost].Length - 1);
+        int choice = Random.Range(0, actions[cost].Length);
 
         for (int i = 0; i < actions[cost].Length; i++)
         {
@@ -110,7 +106,7 @@ public static class ActionsList
 
     private static Action FindCheating(int cost, string scholar)
     {
-        int choice = Random.Range(0, cheatings[cost].Length - 1);
+        int choice = Random.Range(0, cheatings[cost].Length);
 
         for (int i = 0; i < cheatings[cost].Length; i++)
         {
@@ -126,150 +122,5 @@ public static class ActionsList
         }
 
         return null;
-    }
-
-
-    private static void SelectAction(string key, Scholar scholar)
-    {
-        Debug.Log("Action - " + key);
-
-        switch (key)
-        {
-            case "Air":
-                {
-                    if (BaseMath.Probability(0.9))
-                    {
-                        scholar.Action.QuestionBeforeAct("Air_1", "Air_1");
-                    }
-                    else
-                    {
-                        scholar.Action.Doing("Air_1");
-                    }
-                    break;
-                }
-            case "Sink":
-                {
-                    if (BaseMath.Probability(0.9))
-                    {
-                        scholar.Action.QuestionBeforeAct("Sink_1", "Sink_1");
-                    }
-                    else
-                    {
-                        scholar.Action.Doing("Sink_1");
-                    }
-                    break;
-                }
-            case "Toilet":
-                {
-                    if (BaseMath.Probability(0.9))
-                    {
-                        scholar.Action.QuestionBeforeAct("Toilet_1", "Toilet_1");
-                    }
-                    else
-                    {
-                        scholar.Action.Doing("Toilet_1");
-                    }
-                    break;
-                }
-            case "Think_Aloud":
-                {
-                    int buf = Random.Range(1, 3);
-                    scholar.Action.Doing("Think_Aloud_" + buf);
-                    break;
-                }
-            case "Web":
-                {
-                    int buf = Random.Range(1, 3);
-                    scholar.Action.Doing("Web_" + buf);
-                    break;
-                }
-            case "Ask":
-                {
-                    int buf = Random.Range(1, 3);
-                    scholar.Action.Doing("Ask_" + buf);
-                    break;
-                }
-        }
-    }
-
-
-    private static void SelectCheating(string key, Scholar scholar)
-    {
-        Debug.Log("Cheat - " + key);
-
-        switch (key)
-        {
-            case "Air":
-                {
-                    if (BaseMath.Probability(0.9))
-                    {
-                        scholar.Action.QuestionBeforeAct("Air_1", "Cheat_Air_1");
-                    }
-                    else
-                    {
-                        scholar.Action.Doing("Cheat_Air_1");
-                    }
-                    break;
-                }
-            case "Sink":
-                {
-                    if (BaseMath.Probability(0.9))
-                    {
-                        scholar.Action.QuestionBeforeAct("Sink_1", "Cheat_Sink_1");
-                    }
-                    else
-                    {
-                        scholar.Action.Doing("Cheat_Sink_1");
-                    }
-                    break;
-                }
-            case "Toilet":
-                {
-                    if (BaseMath.Probability(0.9))
-                    {
-                        scholar.Action.QuestionBeforeAct("Toilet_1", "Cheat_Toilet_1");
-                    }
-                    else
-                    {
-                        scholar.Action.Doing("Cheat_Toilet_1");
-                    }
-                    break;
-                }
-            case "Ask_Neighbour":
-                {
-
-                    break;
-                }
-            case "Asshole_Class_Computer":
-                {
-
-                    break;
-                }
-            case "Note":
-                {
-
-                    break;
-                }
-            case "Phone":
-                {
-
-                    break;
-                }
-            case "Asshole_Teacher_Room_Computer":
-                {
-
-                    break;
-                }
-            case "Nerd_Break_Cameras":
-                {
-
-                    break;
-                }
-            case "Nerd_Break_Desk":
-                {
-
-                    break;
-                }
-        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using N_BH;
+using Single;
 
 
 public class SettingsManager : Singleton<SettingsManager>

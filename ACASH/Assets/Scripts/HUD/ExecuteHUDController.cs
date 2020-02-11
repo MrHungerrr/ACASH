@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using N_BH;
+using Single;
 
 public class ExecuteHUDController : Singleton<ExecuteHUDController>
 {

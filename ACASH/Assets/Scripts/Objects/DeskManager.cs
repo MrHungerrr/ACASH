@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using N_BH;
+using Single;
 
 
 public class DeskManager : Singleton<DeskManager>

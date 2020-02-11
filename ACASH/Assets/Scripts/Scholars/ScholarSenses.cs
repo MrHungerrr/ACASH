@@ -21,7 +21,7 @@ public class ScholarSenses
     public bool T_look_near_at_us;
     private int T_look_coef;
     private float angle_to_teacher;
-    public bool T_here;
+    public bool T_here { get; set; }
     public bool T_in_sight;
     private float T_vanish_time;
     private const float T_vanish_time_const = 4f;
@@ -37,6 +37,14 @@ public class ScholarSenses
     {
         Scholar = s;
     }
+
+
+    public void Update()
+    {
+        TeacherCalculate();
+        WhereTeacher();
+    }
+
 
     public void ISeeYou()
     {
@@ -59,7 +67,6 @@ public class ScholarSenses
     {
         //Вероятность нужна тут
         Debug.Log("Я услышал");
-        Scholar.Action.SpecialWatch(pos);
     }
 
 
@@ -89,11 +96,7 @@ public class ScholarSenses
     }
 
 
-    public void Teacher()
-    {
-        TeacherCalculate();
-        WhereTeacher();
-    }
+
 
 
     private void TeacherCalculate()
@@ -108,14 +111,14 @@ public class ScholarSenses
         T_angle_y = BaseGeometry.LookingAngle(Player.get.transform, Scholar.Move.transform.position);
         T_angle_x = (PlayerCamera.get.transform.rotation.eulerAngles.x + 30) % 360;
 
-        T_direction = new Vector3(Player.get.transform.position.x - Scholar.Move.transform.position.x, Scholar.Move.transform.position.y, Player.get.transform.position.z - Scholar.Move.transform.position.z).normalized;
+        T_direction = new Vector3(Player.get.transform.position.x - Scholar.Move.transform.position.x, 0, Player.get.transform.position.z - Scholar.Move.transform.position.z).normalized;
 
         T_distance = GetHearDistance(Player.get.transform.position);
 
 
         RaycastHit hit;
-        Debug.DrawRay(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.3f, T_direction, Color.red);
-        if (Physics.Raycast(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.3f, T_direction, out hit, vision_distance, visible_layerMask))
+        Debug.DrawRay(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.2f, T_direction, Color.red);
+        if (Physics.Raycast(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.2f, T_direction, out hit, vision_distance, visible_layerMask))
         {
             if (hit.collider.tag == "Player")
             {
@@ -126,8 +129,7 @@ public class ScholarSenses
 
         angle_to_teacher = BaseGeometry.LookingAngle(Scholar.Move.transform, Player.get.transform.position);
 
-        // Debug.Log("X: " + teacher_angle_x + ";   Y: " + teacher_angle_y);
-        // Debug.Log("Magnitude: " + teacher_distance);
+        //Debug.Log("Angle to Teacher: " + angle_to_teacher);
 
 
         if ((T_angle_y < (48 / (T_look_coef * T_look_coef)) && T_angle_x < 80) || (T_distance <= 0.5))
@@ -172,6 +174,7 @@ public class ScholarSenses
 
     private void WhereTeacher()
     {
+        Debug.Log("T Behind Wall - " + T_behind_wall);
 
         if (!T_behind_wall)
         {
@@ -197,6 +200,7 @@ public class ScholarSenses
         }
 
 
+
         if (T_in_sight)
         {
             T_here = true;
@@ -214,6 +218,9 @@ public class ScholarSenses
                 T_here = false;
             }
         }
+
+        Debug.Log("T In Sight - " + T_in_sight);
+        Debug.Log("T Here - " + T_here);
     }
 
   

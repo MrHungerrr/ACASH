@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
-using N_BH;
+using Single;
 
 
 public class PostProcessManager: Singleton<PostProcessManager>

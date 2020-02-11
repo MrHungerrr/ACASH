@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using N_BH;
+using Single;
 
 public class Tutorial : Singleton<Tutorial>
 {

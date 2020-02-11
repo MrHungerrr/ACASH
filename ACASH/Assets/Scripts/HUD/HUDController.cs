@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using N_BH;
+using Single;
 
 public class HUDController : Singleton<HUDController>
 {

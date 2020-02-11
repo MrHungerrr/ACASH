@@ -5,13 +5,10 @@ using System;
 public class ScholarTest
 {
 
-    [HideInInspector]
-    public int test;
-    [HideInInspector]
-    public double test_buf;
-    [HideInInspector]
-    public float test_bufTime;
-
+    public bool writing;
+    public int test { get; private set; }
+    public double test_buf { get; private set; }
+    public float test_bufTime { get; private set; }
 
 
     public ScholarTest()
@@ -19,6 +16,12 @@ public class ScholarTest
         test = 0;
         test_buf = 0;
         test_bufTime = 0;
+    }
+
+    public void Update()
+    {
+        if (writing)
+            WritingTest(10);
     }
 
     public void WritingTest(float value)

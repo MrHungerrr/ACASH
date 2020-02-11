@@ -17,6 +17,11 @@ public class ScholarAgent
                     dumb = new Dumb(s);
                     break;
                 }
+            default:
+                {
+                    Debug.Log("Не настроено действие для типа - " + type);
+                    break;
+                }
         }
     }
 
@@ -31,64 +36,9 @@ public class ScholarAgent
                     dumb.HearBulling(strong);
                     break;
                 }
-        }
-    }
-
-    public void Bulling(string key, bool strong)
-    {
-        switch (type)
-        {
-            case ScholarTypes.dumb:
+            default:
                 {
-                    dumb.Bulling(key, strong);
-                    break;
-                }
-        }
-    }
-
-    public void TeacherAnswer(string key, bool answer)
-    {
-        switch (type)
-        {
-            case ScholarTypes.dumb:
-                {
-                    dumb.TeacherAnswer(key, answer);
-                    break;
-                }
-        }
-    }
-
-    public void StopQuestion()
-    {
-        switch (type)
-        {
-            case ScholarTypes.dumb:
-                {
-                    dumb.StopQuestion();
-                    break;
-                }
-        }
-    }
-
-    public void Writing()
-    {
-        switch (type)
-        {
-            case ScholarTypes.dumb:
-                {
-                    dumb.Writing();
-                    break;
-                }
-        }
-    }
-
-    public void CheckForTeacher()
-    {
-        switch (type)
-        {
-            case ScholarTypes.dumb:
-                {
-                    dumb.CheckForTeacher();
+                    Debug.Log("Не настроено действие для типа - " + type);
                     break;
                 }
         }

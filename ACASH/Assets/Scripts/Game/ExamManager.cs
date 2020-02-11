@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using N_BH;
+using Single;
 
 public class ExamManager : Singleton<ExamManager>
 {

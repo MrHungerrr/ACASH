@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using N_BH;
+using Single;
 
 
 public class Menu : Singleton<Menu>

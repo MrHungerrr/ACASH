@@ -11,70 +11,51 @@ public class Scholar : MonoBehaviour
     [SerializeField] 
     private ScholarTypes.list scholarType;
     [HideInInspector]
-    public string type;
-
+    public string type { get; private set; }
+    private bool writing;
 
     //Базовое
-    public bool isLiving;
-    [HideInInspector]
-    public int number;
-    [HideInInspector]
-    public string name_1 = "Akim";
-    [HideInInspector]
-    public string name_2 = "Akimov";
-    private string keyWord;
+
+    public string keyWord { get; private set; }
     [HideInInspector]
     public bool executed;
     private bool selectable = true;
 
 
 
+
+    //Доп инструменты
     [HideInInspector]
-    public bool talking;
+    public ScholarActions Action { get; private set; }
     [HideInInspector]
-    public bool walking;
+    public ScholarAgent Agent { get; private set; }
     [HideInInspector]
-    public bool cheating;
+    public ScholarAnim Anim { get; private set; }
     [HideInInspector]
-    public bool writing;
+    public ScholarCheat Cheat { get; private set; }
+    [HideInInspector]
+    public ScholarEmotions Emotions { get; private set; }
+    [HideInInspector]
+    public ScholarMove Move { get; private set; }
+    [HideInInspector]
+    public ScholarSenses Senses { get; private set; }
+    [HideInInspector]
+    public ScholarStress Stress { get; private set; }
+    [HideInInspector]
+    public ScholarTest Test { get; private set; }
+    [HideInInspector]
+    public ScholarTextBox TextBox { get; private set; }
+    [HideInInspector]
+    public ScholarTalk Talk { get; private set; }
+    [HideInInspector]
+    public ScholarComputer Desk { get; private set; }
+    [HideInInspector]
+    public ScholarQuestions Question { get; private set; }
+    [HideInInspector]
+    public ScholarBulling Bull { get; private set; }
 
 
 
-    //Вопросы
-    [HideInInspector]
-    public bool asking;
-    [HideInInspector]
-    public string questionKey;
-    [HideInInspector]
-    public bool teacher_answer;
-
-
-
-
-    //Доп инструмент ы
-
-    [HideInInspector]
-    public ScholarActions Action;
-    [HideInInspector]
-    public ScholarAgent Agent;
-    [HideInInspector]
-    public ScholarAnim Anim;
-    [HideInInspector]
-    public ScholarCheat Cheat;
-    [HideInInspector]
-    public ScholarEmotions Emotions;
-    [HideInInspector]
-    public ScholarMove Move;
-    [HideInInspector]
-    public ScholarSenses Senses;
-    [HideInInspector]
-    public ScholarStress Stress;
-    [HideInInspector]
-    public ScholarTest Test;
-    [HideInInspector]
-    public ScholarTextBox TextBox;
-    [HideInInspector]
-    public ScholarComputer Desk;
 
 
     //Список замечаний, которые уже были сделаны.
@@ -103,17 +84,23 @@ public class Scholar : MonoBehaviour
     private void Awake()
     {
         this.tag = "Scholar";
-        Action = GetComponent<ScholarActions>();
-        TextBox = GetComponent<ScholarTextBox>();
-        Emotions = GetComponent<ScholarEmotions>();
-        Move = transform.GetComponentInParent<ScholarMove>();
         Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
+        Question = new ScholarQuestions(this);
+        Action = new ScholarActions(this);
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
         Cheat = new ScholarCheat(this);
+        Talk = new ScholarTalk(this);
         Test = new ScholarTest();
-        Action.home = Vector3.zero;
 
+        TextBox = GetComponent<ScholarTextBox>();
+        TextBox.SetupTextBox();
+
+        Emotions = GetComponent<ScholarEmotions>();
+        Emotions.SetupEmotions();
+
+        Move = transform.GetComponentInParent<ScholarMove>();
+        Move.SetupMove(this);
 
         ChangeType(scholarType.ToString());
         Selectable(true);
@@ -125,122 +112,26 @@ public class Scholar : MonoBehaviour
     {
         if (!executed)
         {
-            if (writing)
-                Agent.Writing();
-
-            Senses.Teacher();
-
-            if (cheating)
-                Cheat.CheatingFinish();
+            Test.Update();
+            Question.Update();
+            Senses.Update();
+            Talk.Update();
         }
     }
 
     private void FixedUpdate()
     {
         if (!executed)
-            Stress.MoodTypeTime();
+            Stress.MoodTypeTimeUpdate();
     }
 
     public void Stop()
     {
-        StopAllCoroutines();
         Action.Stop();
-        TextBox.Clear();
+
     }
 
 
-    //========================================================================================================
-    //Ученик говорит
-
-    public void Say(string key, double probability_of_continue)
-    {
-        Stop();
-        StartCoroutine(Saying(key, probability_of_continue));
-    }
-
-    public void Say(string key)
-    {
-        Stop();
-        StartCoroutine(Saying(key, 0));
-    }
-
-    public void SayWithoutContinue(string key)
-    {
-        StartCoroutine(SayingWithoutContinue(key));
-    }
-
-    public void SayThoughts(string key)
-    {
-        StartCoroutine(SayingThoughts(key));
-    }
-
-    private IEnumerator Saying(string key, double probability_of_continue)
-    {
-        talking = true;
-        Selectable(false);
-        TextBox.Say(key);
-
-
-        while (TextBox.IsTalking())
-        {
-            Action.SightTo(Player.get.transform.position);
-            yield return new WaitForEndOfFrame();
-        }
-
-        Selectable(true);
-        talking = false;
-
-        if (BaseMath.Probability(probability_of_continue))
-            Action.Continue();
-        else
-            Action.StartWriting();
-    }
-
-    private IEnumerator SayingWithoutContinue(string key)
-    {
-        talking = true;
-        Selectable(false);
-        TextBox.Say(key);
-
-        while (TextBox.IsTalking())
-        {
-            Action.SightTo(Player.get.transform.position);
-            yield return new WaitForEndOfFrame();
-        }
-
-        Selectable(true);
-        talking = false;
-    }
-
-    private IEnumerator SayingThoughts(string key)
-    {
-        talking = true;
-        TextBox.Say(key);
-
-        while (TextBox.IsTalking())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        talking = false;
-    }
-
-
-
-    //========================================================================================================
-    //Ответ учителю
-
-    public void Answer(string key, double prob_cont_right, double prob_cont_false)
-    {
-        if (IsTeacherBullingRight())
-        {
-            Say(key + "_Yes", prob_cont_right);
-        }
-        else
-        {
-            Say(key + "_No", prob_cont_false);
-        }
-    }
 
 
 
@@ -249,21 +140,40 @@ public class Scholar : MonoBehaviour
 
     public void HearBulling(bool strong)
     {
-        Agent.HearBulling(strong);
-        StartCoroutine(WatchingTeacher());
-    }
-
-    public void Bulling(string bullKey, bool strong)
-    {
-        Agent.Bulling(keyWord + bullKey, strong);
-    }
-
-    private IEnumerator WatchingTeacher()
-    {
-        while (!talking)
+        if (strong)
         {
-            Action.SightTo(Player.get.transform.position);
-            yield return new WaitForEndOfFrame();
+            Emotions.ChangeEmotion("suprised");
+        }
+        else
+        {
+            Emotions.ChangeEmotion("suprised");
+        }
+    }
+
+    public void Bulling(string key, bool strong)
+    {
+        if (strong)
+        {
+            Stress.Change(10);
+            Emotions.ChangeEmotion("upset", "ussual", 4f);
+        }
+        else
+        {
+            Emotions.ChangeEmotion("happy", "smile", 4f);
+        }
+
+        Answer(key);
+    }
+
+    public void Answer(string key)
+    {
+        if (IsTeacherBullingRight())
+        {
+            Talk.Say(key + "_Yes");
+        }
+        else
+        {
+            Talk.Say(key + "_No");
         }
     }
 
@@ -285,14 +195,14 @@ public class Scholar : MonoBehaviour
                 }
             case "Talking_":
                 {
-                    if (talking)
+                    if (Talk.talking)
                         return true;
                     else
                         return false;
                 }
             case "Walking_":
                 {
-                    if (walking)
+                    if (Move.walking /*или на улице)*/
                         return true;
                     else
                         return false;
@@ -304,51 +214,7 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Вопросы и ответы
 
-    public void Question(string q)
-    {
-        questionKey = keyWord +"Question_" + q;
-        teacher_answer = false;
-        asking = true;
-        StartCoroutine(Asking(q));
-    }
 
-    private IEnumerator Asking(string key)
-    {
-        talking = true;
-        Selectable(false);
-        TextBox.Say(key);
-
-        yield return new WaitForSeconds(1f);
-
-        while (TextBox.IsTalking())
-        {
-            Action.SightTo(Player.get.transform.position);
-            yield return new WaitForEndOfFrame();
-        }
-        Debug.Log("Мы задали вопрос");
-        Selectable(true);
-        talking = false;
-    }
-
-    public void TeacherAnswer(bool answer)
-    {
-        //string buf = "Answer_";
-        //buf += UnityEngine.Random.Range(0, ScriptMan.linesQuantity[buf]);
-        string key = questionKey;
-
-        if (answer)
-        {
-            key += "_Yes";
-            teacher_answer = true;
-        }
-        else
-        {
-            key += "_No";
-        }
-
-        Agent.TeacherAnswer(key, answer);
-        asking = false;
-    }
 
     //=================================================================================================================================================
     //Учитель кричит на ученика
@@ -367,11 +233,11 @@ public class Scholar : MonoBehaviour
 
     public string GetView()
     {
-        if (talking)
+        if (Talk.talking)
         {
             return "Talking_";
         }
-        else if (walking)
+        else if (Move.walking)
         {
             return "Walking_";
         }
@@ -449,5 +315,4 @@ public class Scholar : MonoBehaviour
         Agent = new ScholarAgent(type, this);
         keyWord = type + "_";
     }
-
 }

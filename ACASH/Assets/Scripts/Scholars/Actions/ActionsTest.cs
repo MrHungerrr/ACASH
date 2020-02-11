@@ -191,7 +191,7 @@ public class ActionsTest : MonoBehaviour
     {
         text_type.text = Scholar.type;
         text_stress.text = Scholar.Stress.value.ToString();
-        text_action.text = Scholar.Action.keyAction_now;
+        text_action.text = Scholar.Action.last_key_action;
         text_mood.text = Scholar.Stress.GetMoodType();
     }
 }

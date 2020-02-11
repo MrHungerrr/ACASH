@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using N_BH;
+using Single;
 
 public class PlayerCamera : Singleton<PlayerCamera>
 {

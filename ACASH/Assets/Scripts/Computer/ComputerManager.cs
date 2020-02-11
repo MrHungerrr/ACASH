@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using N_BH;
+using Single;
 
 
 public class ComputerManager : Singleton<ComputerManager>

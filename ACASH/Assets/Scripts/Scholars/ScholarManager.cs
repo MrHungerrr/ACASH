@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using N_BH;
+using Single;
 
 public class ScholarManager : Singleton<ScholarManager>
 {
@@ -190,6 +190,17 @@ public class ScholarManager : Singleton<ScholarManager>
         }
     }
 
+    public Scholar GetRandomScholar()
+    {
+        int rand = Random.Range(0, scholars.Length);
+        return scholars[rand];
+    }
+
+    public int GetRandomScholarIndex()
+    {
+        return Random.Range(0, scholars.Length);
+    }
+
     public int IsFree(string place, int a)
     {
         switch (place)
@@ -289,22 +300,15 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
 
-  /*  private IEnumerator ScholarsSpecialAction(float time)
+    private IEnumerator ScholarsAction(float time)
     {
         yield return new WaitForSeconds(time);
 
-        if ((special_actions_per_minute / 60) > (special_actions_count / TimeManager.get.time_passed))
-        {
-            //Debug.Log("Проверка на радномное специальное действие!");
-            if (Probability(0.6))
-            {
-                ScholarsRandomSpecialAction();
-                //Debug.Log("опа, рандомное действие");
-            }
-        }
-        StartCoroutine(ScholarsSpecialAction(Random.Range(5,15)));
+        Debug.Log("Пошел Экшон!");
+        ActionsGiver.GiveActions(Difficulty.get.actions[2]);
+
+        StartCoroutine(ScholarsAction(Random.Range(5, 15)));
     }
-    */  
 
 
     private IEnumerator PrepareForTest()
@@ -340,12 +344,12 @@ public class ScholarManager : Singleton<ScholarManager>
     
     public void StartExam()
     {
-        //StartCoroutine(ScholarsCheat(10));
-        //StartCoroutine(ScholarsSpecialAction(5));
+        StartCoroutine(ScholarsAction(10f));
         for (int i = 0; i < scholars.Length; i++)
         {
             Debug.Log(i);
             scholars[i].Action.StartWriting();
+            scholars[i].chill = false;
         }
     }
 
