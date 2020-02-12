@@ -1,18 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ActionsSripts : ActionsBase
+public class OperationsExecuter : OperationsExecuterBase
 {
-
-    public ActionsSripts(Scholar Scholar)
-    {
-        this.Scholar = Scholar;
-
-    }
-
-
-
-
 
     //=========================================================================================================================================================
     // Основной действие школьника - написание экзамена.
@@ -37,7 +27,7 @@ public class ActionsSripts : ActionsBase
 
         yield return new WaitForSeconds(Random.Range(2, 7));
 
-        EndOfDoing();
+        EndDo();
     }
 
 
@@ -93,7 +83,7 @@ public class ActionsSripts : ActionsBase
 
         if (CanIContinue())
         {
-            EndOfDoing();
+            EndDo();
         }
     }
 
@@ -139,7 +129,7 @@ public class ActionsSripts : ActionsBase
 
         if (CanIContinue())
         {
-            EndOfDoing();
+            EndDo();
         }
     }
 
@@ -186,7 +176,7 @@ public class ActionsSripts : ActionsBase
 
         if (CanIContinue())
         {
-            EndOfDoing();
+            EndDo();
         }
     }
 
@@ -203,7 +193,7 @@ public class ActionsSripts : ActionsBase
 
         yield return new WaitForSeconds(8f);
 
-        EndOfDoing();
+        EndDo();
     }
 
 
@@ -223,7 +213,7 @@ public class ActionsSripts : ActionsBase
 
         yield return new WaitForSeconds(1f);
 
-        EndOfDoing();
+        EndDo();
     }
 
 
@@ -239,7 +229,7 @@ public class ActionsSripts : ActionsBase
 
         yield return new WaitForSeconds(8f);
 
-        EndOfDoing();
+        EndDo();
     }
 
 
@@ -258,7 +248,7 @@ public class ActionsSripts : ActionsBase
 
         Watch(Scholar.Action.desk);
 
-        EndOfDoing();
+        EndDo();
     }
 
 

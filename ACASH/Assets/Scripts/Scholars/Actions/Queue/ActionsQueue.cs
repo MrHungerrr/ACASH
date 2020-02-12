@@ -12,20 +12,31 @@ public class ActionsQueue
         queue.Enqueue(new ActionsQueueElement(action));
     }
 
-    public void Add(string action_true, string action_false, ref bool option)
-    {
-        queue.Enqueue(new ActionsQueueElementChoice(action_true, action_false, ref option));
-    }
-
 
     public string GetAction()
     {
-        return queue.Dequeue().GetAction();
+        if (queue.Peek() != null)
+        {
+            return queue.Dequeue().GetAction();
+        }
+        else
+        {
+            return null;
+        }
     }
 
 
     public string Show()
     {
-        foreach()
+        string show = "";
+        int i = 1;
+
+        foreach (I_ActionsQueueElement element in queue)
+        {
+            show += i + ". " + element.Show() + "\n";
+            i++;
+        }
+
+        return show;
     }
 }

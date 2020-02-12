@@ -28,26 +28,26 @@ public static class ActionsGiver
 
             cost = actions.GetRandomCost();
 
-            if (cost > 0)
-            {
-                string act;
-
-                if (s.Agent.CheatProbability())
-                {
-                    Debug.Log("Списывание");
-                    act = ActionsList.CheatingChoice(cost , s);
-                }
-                else
-                {
-                    Debug.Log("Действие");
-                    act = ActionsList.ActionChoice(cost, s);
-                }
-            }
-            else
+            if (cost == 0)
             {
                 //Закончились действия
                 break;
             }
+
+            string act;
+
+            if (s.Cheat.Probability())
+            {
+                Debug.Log("Списывание");
+                act = ActionsList.CheatingChoice(cost, s);
+            }
+            else
+            {
+                Debug.Log("Действие");
+                act = ActionsList.ActionChoice(cost, s);
+            }
+
+            s.Action.Queue.Add(act);
         }
     }
 

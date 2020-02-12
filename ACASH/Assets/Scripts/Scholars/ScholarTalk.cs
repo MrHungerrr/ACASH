@@ -47,7 +47,7 @@ public class ScholarTalk
                 {
                     if (Scholar.TextBox.IsTalking())
                     {
-                        Scholar.Move.SetSightGoal(Player.get.transform.position);
+                        Scholar.Move.SetRotateGoal(Player.get.transform.position);
                     }
                     else
                     {

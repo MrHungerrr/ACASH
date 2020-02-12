@@ -53,6 +53,8 @@ public class Scholar : MonoBehaviour
     public ScholarQuestions Question { get; private set; }
     [HideInInspector]
     public ScholarBulling Bull { get; private set; }
+    [HideInInspector]
+    public ScholarReactions Reaction { get; private set; }
 
 
 
@@ -84,8 +86,11 @@ public class Scholar : MonoBehaviour
     private void Awake()
     {
         this.tag = "Scholar";
+        ChangeType(scholarType.ToString());
+
         Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
         Question = new ScholarQuestions(this);
+        Reaction = new ScholarReactions();
         Action = new ScholarActions(this);
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
@@ -102,7 +107,7 @@ public class Scholar : MonoBehaviour
         Move = transform.GetComponentInParent<ScholarMove>();
         Move.SetupMove(this);
 
-        ChangeType(scholarType.ToString());
+
         Selectable(true);
     }
 
@@ -128,10 +133,12 @@ public class Scholar : MonoBehaviour
     public void Stop()
     {
         Action.Stop();
-
     }
 
-
+    public void Continue()
+    {
+        Action.Continue();
+    }
 
 
 

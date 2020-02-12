@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScholarBulling
+public class ActionsWriting
 {
 
+    public void GetWritingActions()
+    {
 
-
+    }
 }

@@ -6,22 +6,21 @@ using UnityEngine;
 public class ScholarMove : MonoBehaviour
 {
 
-    [HideInInspector]
-    public NavMeshAgent NavAgent;
     private Scholar Scholar;
+
+    [HideInInspector]
+    public NavMeshAgent NavAgent { get; private set; }
+
+
     private Vector3 destination;
     private Quaternion targetRotation;
     [HideInInspector]
-    public bool watching = false;
+    public bool rotating { get; private set; } = false;
     [HideInInspector]
-    public bool walking = false;
+    public bool walking{ get; private set; } = false;
+    [HideInInspector]
+    public bool checking { get; private set; } = false;
 
-    [HideInInspector]
-    public delegate void DoneDelegate();
-    [HideInInspector]
-    public event DoneDelegate moveDoneEvent;
-    [HideInInspector]
-    public event DoneDelegate lookDoneEvent;
 
 
     public void SetupMove(Scholar scholar)
@@ -32,11 +31,18 @@ public class ScholarMove : MonoBehaviour
 
     private void Update()
     {
-        if(watching)
-            Look();
+        if(rotating)
+            Rotate();
         if (walking)
             Walk();
     }
+
+
+
+
+    //===========================================================================================================================
+    //===========================================================================================================================
+    //Ходьба
 
     public void SetDestination(Vector3 goal)
     {
@@ -53,7 +59,6 @@ public class ScholarMove : MonoBehaviour
         {
             Scholar.Anim.SetAnimation("Nothing");
             walking = false;
-            moveDoneEvent();
         }
     }
 
@@ -70,36 +75,48 @@ public class ScholarMove : MonoBehaviour
         }
     }
 
-    public void SetSightGoal(Quaternion target)
+
+
+
+    //===========================================================================================================================
+    //===========================================================================================================================
+    //Поворот
+
+    public void SetRotateGoal(Quaternion target)
     {
         targetRotation = target;
-        watching = true;
+        rotating = true;
     }
 
-    public void SetSightGoal(Vector3 position)
+    public void SetRotateGoal(Vector3 position)
     {
         targetRotation = BaseGeometry.GetQuaternionTo(transform, position);
-        watching = true;
+        rotating = true;
     }
 
-    private void Look()
+    public void SetRotateGoal(float angle)
     {
-        SightTo(targetRotation);
+        targetRotation = Quaternion.Euler(Rotation().eulerAngles.x, Rotation().eulerAngles.y + angle, Rotation().eulerAngles.z);
+        rotating = true;
+    }
 
-        if(SightIsHere())
+    private void Rotate()
+    {
+        RotateTo(targetRotation);
+
+        if(RotationIsHere())
         {
-            watching = false;
-            lookDoneEvent();
+            rotating = false;
         }
     }
 
-    public void SightTo(Quaternion target)
+    public void RotateTo(Quaternion target)
     {
         Rotation(Quaternion.Slerp(Rotation(), target, 3f * Time.deltaTime));
     }
 
 
-    public bool SightIsHere()
+    public bool RotationIsHere()
     {
         if (Rotation() == targetRotation)
         {
@@ -109,6 +126,49 @@ public class ScholarMove : MonoBehaviour
         {
             return false;
         }
+    }
+
+
+
+    public void CheckForTeacher()
+    {
+        checking = true;
+        StartCoroutine(Check());
+    }
+
+    private IEnumerator Check()
+    {
+        SetRotateGoal(120);
+
+        while (!RotationIsHere() && !Scholar.Senses.T_here)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (!Scholar.Senses.T_here)
+        {
+            SetRotateGoal(120);
+        }
+
+        while (!Scholar.Senses.T_here && !RotationIsHere())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (!Scholar.Senses.T_here)
+        {
+            SetRotateGoal(120);
+        }
+
+        while (!Scholar.Senses.T_here && !RotationIsHere())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (Scholar.Senses.T_here)
+            SetRotateGoal(Player.get.transform.position);
+
+        checking = false;
     }
 
 
@@ -138,7 +198,7 @@ public class ScholarMove : MonoBehaviour
         destination = transform.position;
         NavAgent.SetDestination(destination);
         Scholar.Anim.SetAnimation("Nothing");
-        Scholar.walking = false;
+        walking = false;
     }
 
 }

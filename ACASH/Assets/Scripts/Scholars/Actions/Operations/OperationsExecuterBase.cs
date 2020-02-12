@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class ActionsBase : MonoBehaviour
+public abstract class OperationsExecuterBase : MonoBehaviour
 {
     protected Scholar Scholar;
 
@@ -10,15 +10,14 @@ public abstract class ActionsBase : MonoBehaviour
     protected int actionNum;
     protected int actionNoPlus;
 
-    protected string last_key_action;
-    protected string key_action;
 
-    protected bool checking;
+    public void SetOperationsExecuter(Scholar Scholar)
+    {
+        this.Scholar = Scholar;
+    }
 
 
-
-
-    public void Doing(string key)
+    public void Do(string key)
     { 
         Stop();
         Debug.Log("Я начал делать" + key);
@@ -28,7 +27,7 @@ public abstract class ActionsBase : MonoBehaviour
         StartCoroutine(key);
     }
 
-    public void Doing(string key, int i)
+    public void Do(string key, int i)
     {
         Stop();
         Debug.Log("Я начал делать" + key);
@@ -38,7 +37,7 @@ public abstract class ActionsBase : MonoBehaviour
         StartCoroutine(key, i);
     }
 
-    public void Doing(string key, string option)
+    public void Do(string key, string option)
     {
         Stop();
         Debug.Log("Я начал делать" + key);
@@ -52,14 +51,14 @@ public abstract class ActionsBase : MonoBehaviour
     public void Stop()
     {
         StopAllCoroutines();
-        EndOfDoing();
+        EndDo();
     }
 
 
-    protected void EndOfDoing()
+    protected void EndDo()
     {
         doing = false;
-        Говорить скуларАкшинс что закончил
+        Scholar.Action.EndOfDoing();
     }
 
     //=========================================================================================================================================================
@@ -103,22 +102,22 @@ public abstract class ActionsBase : MonoBehaviour
 
     public void Watch(Vector3 target)
     {
-        Scholar.Move.SetSightGoal(BaseGeometry.GetQuaternionTo(Scholar.Move.transform, target));
+        Scholar.Move.SetRotateGoal(target);
     }
 
     public void Watch(float angle)
     {
-        Scholar.Move.SetSightGoal(Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + angle, GetRotation().eulerAngles.z));
+        Scholar.Move.SetRotateGoal(Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + angle, GetRotation().eulerAngles.z));
     }
 
     public void Watch(Quaternion targetRotation)
     {
-        Scholar.Move.SetSightGoal(targetRotation);
+        Scholar.Move.SetRotateGoal(targetRotation);
     }
 
     protected IEnumerator Watching()
     {
-        while (Scholar.Move.watching)
+        while (Scholar.Move.rotating)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -126,7 +125,7 @@ public abstract class ActionsBase : MonoBehaviour
 
     private bool SightIsHere()
     {
-        return !Scholar.Move.watching;
+        return !Scholar.Move.rotating;
     }
 
 
@@ -166,83 +165,34 @@ public abstract class ActionsBase : MonoBehaviour
     //=========================================================================================================================================================
     //Вопрос
 
-    public void QuestionBeforeAct(string question, string ActionYes, string ActionNo)
+
+
+    protected IEnumerator Question(string question)
     {
-        Scholar.Stop();
-        StartCoroutine(Question(question, ActionYes, ActionNo));
-    }
+        Scholar.Question.Ask(question);
 
-    public void QuestionBeforeAct(string question, string ActionYes)
-    {
-        Scholar.Stop();
-        StartCoroutine(Question(question, ActionYes, "Writing"));
-    }
-
-    public void JustQuestion(string question)
-    {
-        Scholar.Stop();
-        StartCoroutine(Question(question, "Writing", "Writing"));
-    }
-
-
-
-
-    protected IEnumerator Question(string question, string ActionYes, string ActionNo)
-    {
-        if (CanIContinue())
+        while (Scholar.Question.question)
         {
-            if (!Scholar.Senses.T_here)
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (Scholar.Question.question_end)
+        {
+            if (Scholar.Question.answer)
             {
-                CheckForTeacher();
-                yield return new WaitForEndOfFrame();
-
-                while (checking)
-                {
-                    yield return new WaitForEndOfFrame();
-                }
-
-                if (Scholar.Senses.T_here)
-                {
-                    actionNum++;
-                    Scholar.Stress.Change(-10);
-                    yield return new WaitForSeconds(0.7f);
-                }
-                else
-                {
-                    Scholar.Stress.Change(+10);
-                    Scholar.Action.StartWriting();
-                }
+                //Учитель ответил положительно
             }
             else
             {
-                actionNum++;
+                //Учитель ответил отрицательно
             }
         }
-
-        if (CanIContinue())
+        else
         {
-
-            while (Scholar.Question.question)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
-            if (Scholar.Question.question_end)
-            {
-                if (Scholar.Question.answer)
-                {
-                    Scholar.Action.Doing(ActionYes);
-                }
-                else
-                {
-                    Scholar.Action.Doing(ActionNo);
-                }
-            }
-            else
-            {
-                Scholar.Action.Doing(ActionNo);
-            }
+            //Учитель не ответил
         }
+
+        EndDo();
     }
 
 
@@ -253,77 +203,31 @@ public abstract class ActionsBase : MonoBehaviour
     //=========================================================================================================================================================
     // Поиск учителя
 
-    protected void CheckForTeacher()
-    {
-        checking = true;
-        StartCoroutine("Check_For_Teacher");
-    }
 
-    public void CheckBeforeAct(string T_here_Action, string T_not_here_Action)
-    {
-        StartCoroutine(Check(T_here_Action, T_not_here_Action));
-    }
-
-
-    protected IEnumerator Check(string T_here_Action, string T_not_here_Action)
+    protected IEnumerator Check()
     {
         if (!Scholar.Senses.T_here)
         {
-            CheckForTeacher();
-            yield return new WaitForEndOfFrame();
+            Scholar.Move.CheckForTeacher();
 
-            while (checking)
+            while (Scholar.Move.checking)
             {
                 yield return new WaitForEndOfFrame();
             }
 
             if (Scholar.Senses.T_here)
             {
-                Scholar.Action.Action.Doing(T_here_Action);
+                // Учитель здесь
             }
             else
             {
-                Scholar.Action.Doing(T_not_here_Action);
+                // Учитель не здесь
             }
         }
         else
         {
-            Scholar.Action.Doing(T_here_Action);
+            // Учитель здесь
         }
-    }
-
-
-
-    protected IEnumerator Check_For_Teacher()
-    {
-        Quaternion target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + 120, GetRotation().eulerAngles.z);
-        Watch(target);
-
-        while (!SightIsHere() && !Scholar.Senses.T_here)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + 120, GetRotation().eulerAngles.z);
-        Watch(target);
-
-        while (!SightIsHere() && !Scholar.Senses.T_here)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        target = Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + 120, GetRotation().eulerAngles.z);
-        Watch(target);
-
-        while (!SightIsHere() && !Scholar.Senses.T_here)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (Scholar.Senses.T_here)
-            Watch(Player.get.transform.position);
-
-        checking = false;
     }
 
 

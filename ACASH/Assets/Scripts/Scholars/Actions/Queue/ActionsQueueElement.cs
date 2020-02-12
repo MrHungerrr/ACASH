@@ -12,4 +12,9 @@
         return action;
     }
 
+    public string Show()
+    {
+        return action;
+    }
+
 }

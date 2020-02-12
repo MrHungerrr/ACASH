@@ -28,32 +28,42 @@ public class ScholarCheat
             case 1:
                 {
                     if (Scholar.Senses.T_here)
-                        Scholar.Action.StopCheating();
+                        Stop();
 
                     break;
                 }
             case 2:
                 {
                     if (Scholar.Senses.T_in_sight)
-                        Scholar.Action.StopCheating();
+                        Stop();
 
                     break;
                 }
             case 3:
                 {
                     if (Scholar.Senses.T_in_sight && Scholar.Senses.T_look_near_at_us)
-                        Scholar.Action.StopCheating();
+                        Stop();
 
                     break;
                 }
             case 4:
                 {
                     if (Scholar.Senses.T_in_sight && Scholar.Senses.T_look_at_us)
-                        Scholar.Action.StopCheating();
+                        Stop();
 
                     break;
                 }
         }
+    }
+
+    public void Stop()
+    {
+        //Остановка читерства
+    }
+
+    public bool Probability()
+    {
+        return false;
     }
 
 }

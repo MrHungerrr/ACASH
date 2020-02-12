@@ -45,7 +45,7 @@ public class ScholarQuestions
         Scholar.Talk.Say(answer_key + key);
     }
 
-    private void Ask(string key)
+    public void Ask(string key)
     {
         base_key = key;
         Scholar.Talk.Say(question_key + key);
@@ -58,9 +58,10 @@ public class ScholarQuestions
     {
         if ((!question_end) && (question_t > 0 || Scholar.Senses.T_look_at_us))
         {
-            if (!Scholar.Talk.talking)
+            Scholar.Move.SetRotateGoal(Player.get.transform.position);
+
+            if (!Scholar.Talk.talking && !Scholar.Senses.T_look_at_us)
             {
-                Scholar.Move.SetSightGoal(Player.get.transform.position);
                 question_t -= Time.deltaTime;
             }
         }
