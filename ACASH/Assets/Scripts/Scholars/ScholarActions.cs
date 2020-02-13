@@ -3,30 +3,20 @@ using UnityEngine;
 
 public class ScholarActions
 {
-    private OperationsCaller
-    private OperationsExecuter Executer;
-    private ActionsWriting Writing;
-    public ActionsQueue Queue { get; private set; }
-
+    private OperationsManager Operations { get; }
+    private ActionsSimple Simple { get; }
+    private ActionsQueue Queue { get;}
 
 
     [HideInInspector]
     public string key_action;
-    [HideInInspector]
-    public string last_key_action;
-
-
-    [HideInInspector]
-    public Vector3 home;
-    [HideInInspector]
-    public Vector3 desk;
 
 
 
     public ScholarActions(Scholar scholar)
     {
-        Executer = scholar.GetComponent<OperationsExecuter>();
-        Executer.SetOperationsExecuter(scholar);
+        Operations = new OperationsManager(scholar);
+        Simple = new ActionsSimple();
         Queue = new ActionsQueue();
         key_action = null;
     }
@@ -39,48 +29,43 @@ public class ScholarActions
 
         if(key_action != null)
         {
-            StartDoing();
+            DoAction(key_action);
         }
         else
         {
-            Writing.GetWritingActions();
+            Simple.GetActions();
             NextAction();
         }
     }
 
 
-    private void StartDoing()
+    public void AddAction(string action)
     {
-        Executer.Do(key_action);
+        Queue.Add(action);
     }
+
+
+    public void DoAction(string action)
+    {
+        Operations.SetAction(action);
+    }
+
 
     public void Continue()
     {
-        if (last_key_action != null)
-            Executer.Continue(last_key_action);
-        else
-            NextAction();
+        Operations.Continue();
     }
 
 
-    public void EndOfDoing()
+    public void ActionDone()
     {
-        key_action = "Nothing";
-        last_key_action = null;
         NextAction();
     }
     
 
     public void Stop()
     {
-        Executer.Stop();
-
-        if (key_action != "Nothing")
-            last_key_action = key_action;
-        else
-            last_key_action = null;
-
-        key_action = "Nothing";
+        Operations.Stop();
     }
 
 }

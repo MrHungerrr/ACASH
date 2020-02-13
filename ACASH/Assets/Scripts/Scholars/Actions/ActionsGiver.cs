@@ -4,8 +4,10 @@ using System.Collections;
 public static class ActionsGiver
 {
 
-    public static void GiveActions(ActionsCount actions)
+    public static void GiveActions(ActionsCount actions_count)
     {
+        ActionsCount actions = new ActionsCount(actions_count);
+
         int length;
 
         if (ScholarManager.get.scholars.Length < actions.count)
@@ -47,7 +49,7 @@ public static class ActionsGiver
                 act = ActionsList.ActionChoice(cost, s);
             }
 
-            s.Action.Queue.Add(act);
+            s.Action.AddAction(act);
         }
     }
 

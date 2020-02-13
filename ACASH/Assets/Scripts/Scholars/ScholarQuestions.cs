@@ -35,12 +35,12 @@ public class ScholarQuestions
         this.answer = answer;
         question_end = true;
 
-        string key = base_key;
+        string key;
 
         if (answer)
-            key += "_Yes";
+            key = "_Yes";
         else
-            key += "_No";
+            key = "_No";
 
         Scholar.Talk.Say(answer_key + key);
     }

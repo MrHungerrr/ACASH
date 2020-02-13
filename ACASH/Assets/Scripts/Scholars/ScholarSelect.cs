@@ -1,9 +1,15 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
-public class ObjectSelect : MonoBehaviour, I_ObjectSelect
+public class ScholarSelect : MonoBehaviour, I_ObjectSelect
 {
+
+    private bool selectable = true;
+
+    //========================================================================================================
+    //Возможность выбрать объект
 
     private Material mat;
     private Material[] mats;
@@ -13,7 +19,7 @@ public class ObjectSelect : MonoBehaviour, I_ObjectSelect
     private TextMeshPro[] texts;
 
 
-    private void Awake()
+    public void SetScholarSelect()
     {
         Renderer buf;
 
@@ -30,6 +36,7 @@ public class ObjectSelect : MonoBehaviour, I_ObjectSelect
             }
         }
 
+        Selectable(true);
         Deselect();
     }
 
@@ -70,5 +77,32 @@ public class ObjectSelect : MonoBehaviour, I_ObjectSelect
             texts[i].color = SelectHelper.col;
         }
 
+    }
+
+    public void Selectable(bool u)
+    {
+
+        if (u)
+        {
+            selectable = true;
+            StartCoroutine(SetSelectable());
+        }
+        else
+        {
+            this.gameObject.layer = 10;
+            selectable = false;
+            Deselect();
+        }
+    }
+
+
+
+    private IEnumerator SetSelectable()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (selectable)
+        {
+            this.gameObject.layer = 9;
+        }
     }
 }

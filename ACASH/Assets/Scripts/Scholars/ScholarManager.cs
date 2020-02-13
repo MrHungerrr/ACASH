@@ -16,6 +16,8 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
     [HideInInspector]
+    public Transform near_toilet;
+    [HideInInspector]
     public Transform[,] desks;
     [HideInInspector]
     public Transform[,] toilets;
@@ -239,6 +241,29 @@ public class ScholarManager : Singleton<ScholarManager>
     }
 
     public Vector3 GetPlace(string place, int i)
+    {
+        switch (place)
+        {
+            case "toilet":
+                {
+                    return toilets[0, i].position;
+                }
+            case "sink":
+                {
+                    return sinks[0, i].position;
+                }
+            case "outside":
+                {
+                    return outside[i].position;
+                }
+            default:
+                {
+                    return Vector3.zero;
+                }
+        }
+    }
+
+    public Vector3 GetPlace(string place)
     {
         switch (place)
         {

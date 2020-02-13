@@ -3,13 +3,19 @@
 public class ActionsCount
 {
     public int[] costs { get; private set; }
-    public int count { get; set; }
+    public int count { get; private set; }
 
 
     public ActionsCount(int easy, int normal, int hard)
     {
         costs = new int[3] {easy, normal, hard};
         count = easy + normal + hard;
+    }
+
+    public ActionsCount(ActionsCount actions_count)
+    {
+        costs = new int[3] { actions_count.costs[0], actions_count.costs[1], actions_count.costs[2] };
+        count = actions_count.costs[0] + actions_count.costs[1] + actions_count.costs[2];
     }
 
 

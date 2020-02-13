@@ -11,6 +11,5 @@
     public const string dumb = "Dumb";
     public const string nerd = "Nerd";
 
-
     // От этого скрипта зависят Scholar, ScholarManaget и самый главный - ScholarAgent
 }

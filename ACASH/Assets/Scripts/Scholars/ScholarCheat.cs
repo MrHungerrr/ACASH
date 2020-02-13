@@ -5,6 +5,7 @@ public class ScholarCheat
 {
 
     private Scholar Scholar;
+    public bool cheating { get; private set; }
     public bool cheatNeed;
     public int cheat_finish_type;
 

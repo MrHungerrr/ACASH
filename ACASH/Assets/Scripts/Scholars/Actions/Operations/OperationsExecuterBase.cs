@@ -4,16 +4,23 @@ using System.Collections;
 public abstract class OperationsExecuterBase : MonoBehaviour
 {
     protected Scholar Scholar;
+    protected OperationsManager Manager;
 
+    public delegate bool VerifyDelegate();
 
+    [HideInInspector]
     public bool doing;
+   
+    /*
     protected int actionNum;
     protected int actionNoPlus;
+    */
 
 
-    public void SetOperationsExecuter(Scholar Scholar)
+    public void SetOperationsExecuter(Scholar Scholar, OperationsManager Manager)
     {
         this.Scholar = Scholar;
+        this.Manager = Manager;
     }
 
 
@@ -22,8 +29,6 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         Stop();
         Debug.Log("Я начал делать" + key);
         doing = true;
-        actionNum = 0;
-        actionNoPlus = 0;
         StartCoroutine(key);
     }
 
@@ -32,8 +37,6 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         Stop();
         Debug.Log("Я начал делать" + key);
         doing = true;
-        actionNum = 0;
-        actionNoPlus = 0;
         StartCoroutine(key, i);
     }
 
@@ -42,8 +45,6 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         Stop();
         Debug.Log("Я начал делать" + key);
         doing = true;
-        actionNum = 0;
-        actionNoPlus = 0;
         StartCoroutine(key, option);
     }
 
@@ -51,33 +52,34 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     public void Stop()
     {
         StopAllCoroutines();
-        EndDo();
     }
 
 
-    protected void EndDo()
+    protected void OperationDone()
     {
         doing = false;
-        Scholar.Action.EndOfDoing();
+        Manager.OpeartionDone();
     }
+
 
     //=========================================================================================================================================================
     //=========================================================================================================================================================
     //Продолжить незаконченное действие
 
-    public void Continue(string key)
-    {
-        actionNoPlus = 0;
-        StartCoroutine(key);
-        doing = true;
-    }
+    /* public void Continue(string key)
+     {
+         actionNoPlus = 0;
+         StartCoroutine(key);
+         doing = true;
+     }
+     */
 
 
 
     //=========================================================================================================================================================
     //=========================================================================================================================================================
     //Функция для запоминания этапа действия , если действие прервется
-
+    /*
     protected bool CanIContinue()
     {
         if (actionNum == actionNoPlus)
@@ -91,7 +93,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
             return false;
         }
     }
-
+    */
 
 
 
@@ -123,7 +125,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         }
     }
 
-    private bool SightIsHere()
+    protected bool SightIsHere()
     {
         return !Scholar.Move.rotating;
     }
@@ -192,7 +194,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
             //Учитель не ответил
         }
 
-        EndDo();
+        OperationDone();
     }
 
 
@@ -228,7 +230,35 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         {
             // Учитель здесь
         }
+
+        OperationDone();
     }
 
 
+
+
+
+
+
+    //=========================================================================================================================================================
+    //=========================================================================================================================================================
+    // Проверка, можно ли продолжать цепочку действий
+
+    public bool VerifyTeacherIsHere()
+    {
+        return Scholar.Senses.T_here;
+    }
+
+    public bool VerifyAnswer()
+    {
+        return Scholar.Question.answer;
+    }
+
+    public void Verify(VerifyDelegate typeOfCheck, bool need_condition)
+    {
+        if (typeOfCheck() == need_condition)
+            OperationDone();
+        else
+            Manager.EndOfAction();
+    }
 }

@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Operation
+namespace Operations
 {
-
-    public string operation { get;}
-
-    public Operation(string operation)
+    public class Operation
     {
-        this.operation = operation;
-    }
 
-    public virtual void Do(OperationsExecuter executer)
-    {
-        executer.Do(operation);
-    }
+        protected string operation { get; }
 
+        public Operation(GetO.operation operation)
+        {
+            this.operation = operation.ToString();
+        }
+
+        public virtual void Do(OperationsExecuter executer)
+        {
+            executer.Do(operation);
+        }
+
+    }
 }

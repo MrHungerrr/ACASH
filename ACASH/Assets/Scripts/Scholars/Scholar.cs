@@ -12,14 +12,11 @@ public class Scholar : MonoBehaviour
     private ScholarTypes.list scholarType;
     [HideInInspector]
     public string type { get; private set; }
-    private bool writing;
 
     //Базовое
-
     public string keyWord { get; private set; }
     [HideInInspector]
     public bool executed;
-    private bool selectable = true;
 
 
 
@@ -27,8 +24,6 @@ public class Scholar : MonoBehaviour
     //Доп инструменты
     [HideInInspector]
     public ScholarActions Action { get; private set; }
-    [HideInInspector]
-    public ScholarAgent Agent { get; private set; }
     [HideInInspector]
     public ScholarAnim Anim { get; private set; }
     [HideInInspector]
@@ -55,29 +50,15 @@ public class Scholar : MonoBehaviour
     public ScholarBulling Bull { get; private set; }
     [HideInInspector]
     public ScholarReactions Reaction { get; private set; }
-
-
-
-
-
-    //Список замечаний, которые уже были сделаны.
     [HideInInspector]
-    public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
-    {
-        { "Talking_", false },
-        { "Cheating_", false },
-        { "Walking_", false },
-    };
-
-
-    //Список причин, по которым можно удалить ученика
+    public ScholarInfo Info { get; private set; }
     [HideInInspector]
-    public Dictionary<string, bool> reason = new Dictionary<string, bool>()
-    {
-        { "Walking_", false },
-        { "Talking_", false },
-        { "Cheating_", false },
-    };
+    public ScholarView View { get; private set; }
+    [HideInInspector]
+    public ScholarSelect Select{ get; private set; }
+
+
+
 
 
 
@@ -91,12 +72,15 @@ public class Scholar : MonoBehaviour
         Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
         Question = new ScholarQuestions(this);
         Reaction = new ScholarReactions();
+        Bull = new ScholarBulling();
         Action = new ScholarActions(this);
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
         Cheat = new ScholarCheat(this);
         Talk = new ScholarTalk(this);
         Test = new ScholarTest();
+        Info = new ScholarInfo();
+        View = new ScholarView();
 
         TextBox = GetComponent<ScholarTextBox>();
         TextBox.SetupTextBox();
@@ -107,8 +91,8 @@ public class Scholar : MonoBehaviour
         Move = transform.GetComponentInParent<ScholarMove>();
         Move.SetupMove(this);
 
-
-        Selectable(true);
+        Select = GetComponent<ScholarSelect>();
+        Select.SetScholarSelect();
     }
 
 
@@ -133,125 +117,12 @@ public class Scholar : MonoBehaviour
     public void Stop()
     {
         Action.Stop();
+        Move.Stop();
     }
 
     public void Continue()
     {
         Action.Continue();
-    }
-
-
-
-    //========================================================================================================
-    //Наезд на ученика
-
-    public void HearBulling(bool strong)
-    {
-        if (strong)
-        {
-            Emotions.ChangeEmotion("suprised");
-        }
-        else
-        {
-            Emotions.ChangeEmotion("suprised");
-        }
-    }
-
-    public void Bulling(string key, bool strong)
-    {
-        if (strong)
-        {
-            Stress.Change(10);
-            Emotions.ChangeEmotion("upset", "ussual", 4f);
-        }
-        else
-        {
-            Emotions.ChangeEmotion("happy", "smile", 4f);
-        }
-
-        Answer(key);
-    }
-
-    public void Answer(string key)
-    {
-        if (IsTeacherBullingRight())
-        {
-            Talk.Say(key + "_Yes");
-        }
-        else
-        {
-            Talk.Say(key + "_No");
-        }
-    }
-
-
-
-    //========================================================================================================
-    //Прав ли учитель?
-
-    public bool IsTeacherBullingRight()
-    {
-        switch (GetView())
-        {
-            case "Cheating_":
-                {
-                    if (cheating)
-                        return true;
-                    else
-                        return false;
-                }
-            case "Talking_":
-                {
-                    if (Talk.talking)
-                        return true;
-                    else
-                        return false;
-                }
-            case "Walking_":
-                {
-                    if (Move.walking /*или на улице)*/
-                        return true;
-                    else
-                        return false;
-                }
-        }
-        return false;
-    }
-
-    //========================================================================================================
-    //Вопросы и ответы
-
-
-
-    //=================================================================================================================================================
-    //Учитель кричит на ученика
-
-    public void Shout()
-    {
-
-    }
-
-
-
-
-
-    //=================================================================================================================================================
-    //Как выглядит то что делает ученик
-
-    public string GetView()
-    {
-        if (Talk.talking)
-        {
-            return "Talking_";
-        }
-        else if (Move.walking)
-        {
-            return "Walking_";
-        }
-        else
-        {
-            return "Cheating_";
-        }
     }
 
 
@@ -262,8 +133,9 @@ public class Scholar : MonoBehaviour
     public void Execute(string key)
     {
         Stop();
+        Select.Selectable(false);
         TextBox.Say(keyWord + key);
-        Action.Doing("Execute");
+        Action.DoAction("Execute");
     }
 
 
@@ -273,43 +145,11 @@ public class Scholar : MonoBehaviour
 
     public void SetNumber(int i)
     {
-        number = i;
-        Action.home = ScholarManager.get.desks[0, i].position;
-        Action.desk = ScholarManager.get.desks[1, i].position;
+        Info.SetNumber(i);
         TextBox.Number(i);
         Desk = DeskManager.get.desks[i];
     }
 
-
-
-    //========================================================================================================
-    //Возможность выбрать объект
-
-    public void Selectable(bool u)
-    {
-
-        if (u)
-        {
-            selectable = true;
-            StartCoroutine(SetSelectable());
-        }
-        else
-        {
-            this.gameObject.layer = 10;
-            selectable = false;
-        }
-    }
-
-
-
-    private IEnumerator SetSelectable()
-    {
-        yield return new WaitForSeconds(0.1f);
-        if (selectable)
-        {
-            this.gameObject.layer = 9;
-        }
-    }
 
 
 

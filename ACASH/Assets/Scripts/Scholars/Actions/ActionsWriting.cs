@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionsWriting
+public class ActionsSimple
 {
 
-    public void GetWritingActions()
+    public void GetActions()
     {
 
     }

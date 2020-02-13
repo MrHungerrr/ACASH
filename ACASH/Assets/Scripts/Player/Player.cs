@@ -133,7 +133,7 @@ public class Player : Singleton<Player>
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-        ObjectSelect obj_select;
+        I_ObjectSelect obj_select;
 
 
         //Рейкаст интерактивных объектов
@@ -146,12 +146,12 @@ public class Player : Singleton<Player>
                 {
                     if (actObject != null)
                     {
-                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actObject.GetComponent<I_ObjectSelect>().Deselect();
                     }
                     actObject = hit.collider.gameObject;
                     actTag = hit.collider.tag;
                     actReady = true;
-                    actObject.GetComponent<ObjectSelect>().Select();
+                    actObject.GetComponent<I_ObjectSelect>().Select();
 
                     WhatISee();
                 }
@@ -163,28 +163,24 @@ public class Player : Singleton<Player>
                 {
                     if (actObject != null)
                     {
-                        if(actObject.TryGetComponent<ObjectSelect>(out obj_select))
+                        if(actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
                             obj_select.Deselect();
                     }
                     actObject = hit.collider.gameObject;
                     actTag = hit.collider.tag;
                     actReady = true;
 
-                    if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
-                        //Специальное условие для компьютеров, дверей и лифта
-                        if (hit.collider.tag != "Computer" && hit.collider.tag != "Door" && hit.collider.tag != "Elevator")
-                        {
-                            obj_select.Select();
-                        }
-                        else
-                        {
-                            SpecialActionRealtion();
-                        }
+                    if (actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
+                            SpecialSelectRealtion();
+                }
+                else
+                {
+                    SpecialSelectRealtion();
                 }
             }
             else if (actReady && actObject != null)
             {
-                if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
+                if (actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
                     obj_select.Deselect();
 
                 actObject = null;
@@ -194,7 +190,7 @@ public class Player : Singleton<Player>
         }
         else if (actReady && actObject != null)
         {
-            if (actObject.TryGetComponent<ObjectSelect>(out obj_select))
+            if (actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
                 obj_select.Deselect();
 
             actObject = null;
@@ -232,7 +228,7 @@ public class Player : Singleton<Player>
     private void WhatISee()
     {
 
-        if (actObject.GetComponent<Scholar>().asking)
+        if (actObject.GetComponent<Scholar>().Question.question)
         {
             asked = true;
         }
@@ -250,9 +246,6 @@ public class Player : Singleton<Player>
     {
         if (actReady && !act)
         {
-
-            SpecialActionRealtion();
-
             if (doing)
             {
                 act = true;
@@ -293,7 +286,7 @@ public class Player : Singleton<Player>
     }
 
 
-    private void SpecialActionRealtion()
+    private void SpecialSelectRealtion()
     {
         switch(actTag)
         {
@@ -301,12 +294,12 @@ public class Player : Singleton<Player>
                 {
                     if (LookingAngle(transform.position, actObject.transform) < 70)
                     {
-                        actObject.GetComponent<ObjectSelect>().Select();
+                        actObject.GetComponent<I_ObjectSelect>().Select();
                         actSpecialOption = true;
                     }
                     else
                     {
-                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actObject.GetComponent<I_ObjectSelect>().Deselect();
                         actSpecialOption = false;
                     }
                     break;
@@ -315,12 +308,12 @@ public class Player : Singleton<Player>
                 {
                     if (!actObject.GetComponent<Door>().locked)
                     {
-                        actObject.GetComponent<ObjectSelect>().Select();
+                        actObject.GetComponent<I_ObjectSelect>().Select();
                         actSpecialOption = true;
                     }
                     else
                     {
-                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actObject.GetComponent<I_ObjectSelect>().Deselect();
                         actSpecialOption = false;
                     }
                     break;
@@ -329,14 +322,19 @@ public class Player : Singleton<Player>
                 {
                     if (ElevatorController.get.ready)
                     {
-                        actObject.GetComponent<ObjectSelect>().Select();
+                        actObject.GetComponent<I_ObjectSelect>().Select();
                         actSpecialOption = true;
                     }
                     else
                     {
-                        actObject.GetComponent<ObjectSelect>().Deselect();
+                        actObject.GetComponent<I_ObjectSelect>().Deselect();
                         actSpecialOption = false;
                     }
+                    break;
+                }
+            default:
+                {
+                    actObject.GetComponent<I_ObjectSelect>().Select();
                     break;
                 }
         }

@@ -7,7 +7,6 @@ public static class ActionsList
     private static Action[] actions_1 = new Action[]
     {
         new Action("Think_Aloud", "All"),
-        new Action("Program", "All"),
         new Action("Ask", "All"),
     };
 
@@ -71,14 +70,14 @@ public static class ActionsList
     {
         Action action = FindAction(cost, scholar.type);
         Debug.Log("Выбрано действие - " + action.name);
-        return action.name;
+        return action.name + "_" + cost;
     }
 
     public static string CheatingChoice(int cost, Scholar scholar)
     {
         Action cheating = FindCheating(cost, scholar.type);
         Debug.Log("Выбрано списывание - " + cheating.name);
-        return cheating.name;
+        return cheating.name + "_" + cost;
     }
 
 

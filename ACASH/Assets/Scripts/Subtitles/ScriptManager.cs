@@ -36,7 +36,6 @@ public class ScriptManager : Singleton<ScriptManager>
         { "Teacher_Execute_Walking_", 3},
         { "Teacher_Execute_Cheating_", 3},
         { "Teacher_Execute_Talking_", 3},
-        { "Teacher_Execute_Pen_", 3},
         { "Teacher_Answer_Permission_", 3},
         { "Answer_", 3},
     };

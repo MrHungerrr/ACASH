@@ -9,12 +9,12 @@ public class OperationsExecuter : OperationsExecuterBase
 
     private IEnumerator Writing()
     {
-        SetDestination(Scholar.Action.home);
+        SetDestination(Scholar.Info.home);
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();
 
-        Watch(Scholar.Action.desk);
+        Watch(Scholar.Info.desk);
 
         Scholar.Test.writing = true;
 
@@ -27,7 +27,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         yield return new WaitForSeconds(Random.Range(2, 7));
 
-        EndDo();
+        OperationDone();
     }
 
 
@@ -45,6 +45,11 @@ public class OperationsExecuter : OperationsExecuterBase
 
     //=========================================================================================================================================================
     //Выход в туалет
+
+
+
+    
+
 
 
     private IEnumerator Toilet_1()
@@ -83,7 +88,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         if (CanIContinue())
         {
-            EndDo();
+            OperationDone();
         }
     }
 
@@ -129,7 +134,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         if (CanIContinue())
         {
-            EndDo();
+            OperationDone();
         }
     }
 
@@ -176,7 +181,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         if (CanIContinue())
         {
-            EndDo();
+            OperationDone();
         }
     }
 
@@ -193,7 +198,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         yield return new WaitForSeconds(8f);
 
-        EndDo();
+        OperationDone();
     }
 
 
@@ -213,7 +218,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         yield return new WaitForSeconds(1f);
 
-        EndDo();
+        OperationDone();
     }
 
 
@@ -229,7 +234,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         yield return new WaitForSeconds(8f);
 
-        EndDo();
+        OperationDone();
     }
 
 
@@ -241,14 +246,17 @@ public class OperationsExecuter : OperationsExecuterBase
 
     private IEnumerator Go_Home()
     {
-        SetDestination(Scholar.Action.home);
+        SetDestination(Scholar.Info.home);
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();
 
-        Watch(Scholar.Action.desk);
+        Watch(Scholar.Info.desk);
 
-        EndDo();
+        while (!SightIsHere())
+            yield return new WaitForEndOfFrame();
+
+        OperationDone();
     }
 
 
@@ -258,7 +266,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
     private IEnumerator Execute()
     {
-        Scholar.Selectable(false);
+        Scholar.Select.Selectable(false);
         Scholar.executed = true;
         yield return new WaitForSeconds(1f);
 
