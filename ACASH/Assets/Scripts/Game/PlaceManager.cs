@@ -46,7 +46,8 @@ public class PlaceManager : Singleton<PlaceManager>
             if (buf_string != "Desk")
             {
                 buf_objects = GameObject.FindGameObjectsWithTag(buf_string);
-                SetPlaces(buf_place, buf_objects);
+                if(buf_objects != null)
+                    SetPlaces(buf_place, buf_objects);
             }
         }
 
@@ -91,24 +92,54 @@ public class PlaceManager : Singleton<PlaceManager>
 
     public Vector3 GetPlace(place type_of_place, int i)
     {
-        return places[type_of_place][0, i].position;
+        try
+        {
+            return places[type_of_place][0, i].position;
+        }
+        catch
+        {
+            Debug.LogError("Ошибка в GetPlace");
+            return Vector3.zero;
+        }
     }
 
     public Vector3 GetSightGoal(place type_of_place, int i)
     {
-        return places[type_of_place][1, i].position;
+        try
+        {
+            return places[type_of_place][1, i].position;
+        }
+        catch
+        {
+            Debug.LogError("Ошибка в GetSightGoal");
+            return Vector3.zero;
+        }
     }
 
 
 
     public void MakeFree(place type_of_place, int i)
     {
-        busy[type_of_place][i] = false;
+        try
+        {
+            busy[type_of_place][i] = false;
+        }
+        catch
+        {
+            Debug.LogError("Ошибка в MakeFree");
+        }
     }
 
     public void MakeBusy(place type_of_place, int i)
     {
-        busy[type_of_place][i] = true;
+        try
+        {
+            busy[type_of_place][i] = true;
+        }
+        catch
+        {
+            Debug.LogError("Ошибка в MakeFree");
+        }
     }
 
 

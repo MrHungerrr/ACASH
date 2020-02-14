@@ -4,7 +4,7 @@ using TMPro;
 
 public interface I_ObjectSelect
 {
-    public void Select();
+    void Select();
 
-    public void Deselect();
+    void Deselect();
 }

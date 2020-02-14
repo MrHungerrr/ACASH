@@ -5,8 +5,8 @@ using UnityEngine;
 public class ActionsSimple
 {
 
-    public void GetActions()
+    public string GetActions()
     {
-
+        return "Write";
     }
 }

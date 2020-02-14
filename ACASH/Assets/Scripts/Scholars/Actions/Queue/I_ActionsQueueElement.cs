@@ -1,6 +1,6 @@
 ﻿public interface I_ActionsQueueElement
 {
-    public string GetAction();
+    string GetAction();
 
-    public string Show();
+    string Show();
 }

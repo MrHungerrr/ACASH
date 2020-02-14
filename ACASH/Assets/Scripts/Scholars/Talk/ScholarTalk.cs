@@ -26,7 +26,15 @@ public class ScholarTalk
     {
         type_of_talk = "talk";
         Scholar.Stop();
-        Scholar.Selectable(false);
+        Scholar.Select.Selectable(false);
+        Scholar.TextBox.Say(Scholar.keyWord + key);
+        talking = true;
+    }
+
+    public void SayWithoutStop(string key)
+    {
+        type_of_talk = "talk";
+        Scholar.Select.Selectable(false);
         Scholar.TextBox.Say(Scholar.keyWord + key);
         talking = true;
     }
@@ -38,11 +46,20 @@ public class ScholarTalk
         talking = true;
     }
 
+    public void Question(string key)
+    {
+        type_of_talk = "question";
+        Scholar.Select.Selectable(false);
+        Scholar.TextBox.Question(Scholar.keyWord + key);
+        talking = true;
+    }
+
 
     private void Talk()
     {
         switch (type_of_talk)
         {
+            case "question":
             case "talk":
                 {
                     if (Scholar.TextBox.IsTalking())
@@ -51,7 +68,7 @@ public class ScholarTalk
                     }
                     else
                     {
-                        Scholar.Selectable(true);
+                        Scholar.Select.Selectable(true);
                         talking = false;
                     }
                     break;

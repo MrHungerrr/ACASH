@@ -24,7 +24,7 @@ public class StressCell : MonoBehaviour
     {
         active = true;
         scholar = s;
-        scholar_name.text = scholar.name_1 + " " + scholar.name_2;
+        scholar_name.text = scholar.Info.surname + " " + scholar.Info.name;
     }
 
     public void Refresh()

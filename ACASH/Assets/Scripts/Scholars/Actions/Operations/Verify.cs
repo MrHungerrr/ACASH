@@ -32,5 +32,10 @@ namespace Operations
             }
         }
 
+        public override string Show()
+        {
+            return base.Show() + " that " + verify + " is " + need_condition;
+        }
+
     }
 }

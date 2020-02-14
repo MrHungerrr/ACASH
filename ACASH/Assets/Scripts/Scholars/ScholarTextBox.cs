@@ -61,18 +61,13 @@ public class ScholarTextBox : MonoBehaviour
 
     public void Say(string key)
     {
-        Debug.Log("Я говорю");
-        Clear();
-        StartCoroutine(PlaySub(key));
-        timeClear_N = 1f;
-        question = false;
+        Say(key, 1f);
     }
 
     public void Say(string key, float t)
     {
         Clear();
         StartCoroutine(PlaySub(key));
-        question = false;
         timeClear_N = t;
     }
 
@@ -90,6 +85,7 @@ public class ScholarTextBox : MonoBehaviour
         Text("");
         act = false;
         filled = false;
+        question = false;
         saying = false;
         timeClear = 0;
     }

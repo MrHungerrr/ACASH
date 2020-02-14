@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class ScholarInfo
 {
+    private Scholar Scholar { get; }
     public int number { get; private set; }
     public string surname { get; private set; }
     public string name { get; private set; }
 
-    public Vector3 home { get; private set; }
-    public Vector3 desk { get; private set; }
 
-
-    public ScholarInfo()
+    public ScholarInfo(Scholar Scholar)
     {
+        this.Scholar = Scholar; 
         surname = "Akimov";
         name = "Egor";
     }
@@ -22,7 +21,7 @@ public class ScholarInfo
     public void SetNumber(int number)
     {
         this.number = number;
-        home = ScholarManager.get.desks[0, number].position;
-        desk = ScholarManager.get.desks[1, number].position;
+        Scholar.TextBox.Number(number);
+        Scholar.Desk = DeskManager.get.desks[number];
     }
 }

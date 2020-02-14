@@ -82,7 +82,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void Execute(string reason, Scholar scholar)
     {
-        if (scholar.reason[reason])
+        if (scholar.View.reason[reason])
         {
             scores["Executed Right"].Plus();
         }

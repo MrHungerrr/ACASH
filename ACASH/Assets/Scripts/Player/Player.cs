@@ -386,7 +386,7 @@ public class Player : Singleton<Player>
 
     private IEnumerator Answering(Scholar scholar, bool answer)
     {
-        key += scholar.questionKey;
+        key += scholar.Question.main_key;
 
         if (answer)
             key += "_Yes";
@@ -397,14 +397,14 @@ public class Player : Singleton<Player>
 
         yield return new WaitForSeconds(1f);
 
-        scholar.HearBulling(!answer);
+        scholar.Bull.HearBulling(!answer);
 
         while (SubtitleManager.get.act)
         {
             yield return new WaitForSeconds(0.1f);
         }
 
-        scholar.TeacherAnswer(answer);
+        scholar.Question.TeacherAnswer(answer);
         act = false;
     }
 
@@ -433,15 +433,15 @@ public class Player : Singleton<Player>
     {
         ScoreManager.get.Bull(scholar, strong);
 
-        key += scholar.GetView();
+        key += scholar.View.GetView();
 
-        if (scholar.remarks[scholar.GetView()])
+        if (scholar.View.remarks[scholar.View.GetView()])
         {
             if (Probability(0.5))
                 key += "Sec_";
         }
         else
-            scholar.remarks[scholar.GetView()] = true;
+            scholar.View.remarks[scholar.View.GetView()] = true;
 
         int nomber = Random.Range(0, ScriptManager.get.linesQuantity[keyWord + key]);
         key += nomber;
@@ -449,7 +449,7 @@ public class Player : Singleton<Player>
 
         yield return new WaitForSeconds(1f);
 
-        scholar.HearBulling(strong);
+        scholar.Bull.HearBulling(strong);
 
 
         while (SubtitleManager.get.act)
@@ -457,7 +457,7 @@ public class Player : Singleton<Player>
             yield return new WaitForSeconds(0.1f);
         }
 
-        scholar.Bulling(key, strong);
+        scholar.Bull.Bulling(key, strong);
         act = false;
 
         while (scholar.TextBox.IsTalking() && !act)
@@ -503,7 +503,7 @@ public class Player : Singleton<Player>
 
         yield return new WaitForSeconds(1f);
 
-        scholar.HearBulling(true);
+        scholar.Bull.HearBulling(true);
 
         yield return new WaitForSeconds(1f);
 

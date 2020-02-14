@@ -20,5 +20,11 @@ namespace Operations
             executer.Do(operation, question);
         }
 
+
+        public override string Show()
+        {
+            return base.Show() + " about " + question;
+        }
+
     }
 }

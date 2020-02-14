@@ -5,7 +5,7 @@ public class ScholarActions
 {
     private OperationsManager Operations { get; }
     private ActionsSimple Simple { get; }
-    private ActionsQueue Queue { get;}
+    private ActionsQueue Queue { get; }
 
 
     [HideInInspector]
@@ -15,7 +15,7 @@ public class ScholarActions
 
     public ScholarActions(Scholar scholar)
     {
-        Operations = new OperationsManager(scholar);
+        Operations = new OperationsManager(scholar, this);
         Simple = new ActionsSimple();
         Queue = new ActionsQueue();
         key_action = null;
@@ -23,17 +23,25 @@ public class ScholarActions
 
 
 
+
+    public void Reset()
+    {
+        Queue.Reset();
+        NextAction();
+    }
+
     private void NextAction()
     {
         key_action = Queue.GetAction();
 
         if(key_action != null)
         {
+            Debug.Log("Пошло действие - " + key_action);
             DoAction(key_action);
         }
         else
         {
-            Simple.GetActions();
+            AddAction(Simple.GetActions());
             NextAction();
         }
     }
@@ -59,6 +67,7 @@ public class ScholarActions
 
     public void ActionDone()
     {
+        Debug.Log("Опа, закончилось - " + key_action);
         NextAction();
     }
     

@@ -15,7 +15,7 @@ public class ActionsQueue
 
     public string GetAction()
     {
-        if (queue.Peek() != null)
+        if (queue.Count > 0)
         {
             return queue.Dequeue().GetAction();
         }
@@ -25,6 +25,11 @@ public class ActionsQueue
         }
     }
 
+
+    public void Reset()
+    {
+        queue.Clear();
+    }
 
     public string Show()
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using Animations;
 
 public class ScholarMove : MonoBehaviour
 {
@@ -14,12 +15,13 @@ public class ScholarMove : MonoBehaviour
 
     private Vector3 destination;
     private Quaternion targetRotation;
+
+
     [HideInInspector]
     public bool rotating { get; private set; } = false;
     [HideInInspector]
     public bool walking{ get; private set; } = false;
-    [HideInInspector]
-    public bool checking { get; private set; } = false;
+
 
 
 
@@ -48,7 +50,7 @@ public class ScholarMove : MonoBehaviour
     {
         destination = new Vector3(goal.x, transform.position.y, goal.z);
         NavAgent.SetDestination(destination);
-        Scholar.Anim.SetAnimation("Walking");
+        Scholar.Anim.SetAnimation(GetA.animations.Walking);
         walking = true;
     }
 
@@ -57,7 +59,7 @@ public class ScholarMove : MonoBehaviour
     {
         if(ScholarIsHere())
         {
-            Scholar.Anim.SetAnimation("Nothing");
+            Scholar.Anim.SetAnimation(GetA.animations.Nothing);
             walking = false;
         }
     }
@@ -94,9 +96,10 @@ public class ScholarMove : MonoBehaviour
         rotating = true;
     }
 
-    public void SetRotateGoal(float angle)
+    public void SetRotateGoal(float angle_plus)
     {
-        targetRotation = Quaternion.Euler(Rotation().eulerAngles.x, Rotation().eulerAngles.y + angle, Rotation().eulerAngles.z);
+        Debug.Log("Вращаемся на " + angle_plus);
+        targetRotation = Quaternion.Euler(Rotation().eulerAngles.x, Rotation().eulerAngles.y + angle_plus, Rotation().eulerAngles.z);
         rotating = true;
     }
 
@@ -129,49 +132,6 @@ public class ScholarMove : MonoBehaviour
     }
 
 
-
-    public void CheckForTeacher()
-    {
-        checking = true;
-        StartCoroutine(Check());
-    }
-
-    private IEnumerator Check()
-    {
-        SetRotateGoal(120);
-
-        while (!RotationIsHere() && !Scholar.Senses.T_here)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (!Scholar.Senses.T_here)
-        {
-            SetRotateGoal(120);
-        }
-
-        while (!Scholar.Senses.T_here && !RotationIsHere())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (!Scholar.Senses.T_here)
-        {
-            SetRotateGoal(120);
-        }
-
-        while (!Scholar.Senses.T_here && !RotationIsHere())
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (Scholar.Senses.T_here)
-            SetRotateGoal(Player.get.transform.position);
-
-        checking = false;
-    }
-
-
     public Vector3 Position()
     {
         return transform.position;
@@ -195,10 +155,19 @@ public class ScholarMove : MonoBehaviour
 
     public void Stop()
     {
-        destination = transform.position;
-        NavAgent.SetDestination(destination);
-        Scholar.Anim.SetAnimation("Nothing");
-        walking = false;
+        if (walking)
+        {
+            walking = false;
+            destination = transform.position;
+            NavAgent.SetDestination(destination);
+            Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        }
+
+        if (rotating)
+        {
+            rotating = false;
+            SetRotateGoal(Rotation());
+        }
     }
 
 }

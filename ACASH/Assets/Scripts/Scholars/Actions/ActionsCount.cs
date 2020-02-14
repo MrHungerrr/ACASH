@@ -25,7 +25,7 @@ public class ActionsCount
 
         for(int i = 0; i < costs.Length; i++)
         {
-            if (GetCost(rand))
+            if (IsCostExist(rand))
                 return rand;
             else
             {
@@ -38,15 +38,23 @@ public class ActionsCount
         return 0;
     }
 
-    private bool GetCost(int cost)
+    private bool IsCostExist(int cost)
     {
-        if (costs[cost - 1] > 0)
+        try
         {
-            costs[cost - 1]--;
-            count--;
-            return true;
+            if (costs[cost - 1] > 0)
+            {
+                costs[cost - 1]--;
+                count--;
+                return true;
+            }
+            else
+                return false;
         }
-        else
+        catch
+        {
+            Debug.LogError("Не правильная стоимость");
             return false;
+        }
     }
 }

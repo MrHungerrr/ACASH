@@ -8,6 +8,12 @@ public class ScholarBulling
     private Scholar Scholar;
 
 
+    public ScholarBulling(Scholar Scholar)
+    {
+        this.Scholar = Scholar;
+    }
+
+
     //========================================================================================================
     //Наезд на ученика
 
@@ -59,7 +65,7 @@ public class ScholarBulling
 
     public bool IsTeacherBullingRight()
     {
-        switch (GetView())
+        switch (Scholar.View.GetView())
         {
             case "Cheating_":
                 {
@@ -77,7 +83,7 @@ public class ScholarBulling
                 }
             case "Walking_":
                 {
-                    if (Scholar.Move.walking /*или на улице)*/
+                    if (Scholar.Move.walking) /*или на улице)*/
                         return true;
                     else
                         return false;

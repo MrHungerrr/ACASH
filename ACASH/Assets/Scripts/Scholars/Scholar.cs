@@ -43,7 +43,7 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ScholarTalk Talk { get; private set; }
     [HideInInspector]
-    public ScholarComputer Desk { get; private set; }
+    public ScholarComputer Desk { get; set; }
     [HideInInspector]
     public ScholarQuestions Question { get; private set; }
     [HideInInspector]
@@ -55,8 +55,11 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ScholarView View { get; private set; }
     [HideInInspector]
-    public ScholarSelect Select{ get; private set; }
-
+    public ScholarSelect Select { get; private set; }
+    [HideInInspector]
+    public ScholarLocation Location { get; private set; }
+    [HideInInspector]
+    public ScholarCheck Check { get; private set; }
 
 
 
@@ -69,19 +72,6 @@ public class Scholar : MonoBehaviour
         this.tag = "Scholar";
         ChangeType(scholarType.ToString());
 
-        Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
-        Question = new ScholarQuestions(this);
-        Reaction = new ScholarReactions();
-        Bull = new ScholarBulling();
-        Action = new ScholarActions(this);
-        Senses = new ScholarSenses(this);
-        Stress = new ScholarStress(this);
-        Cheat = new ScholarCheat(this);
-        Talk = new ScholarTalk(this);
-        Test = new ScholarTest();
-        Info = new ScholarInfo();
-        View = new ScholarView();
-
         TextBox = GetComponent<ScholarTextBox>();
         TextBox.SetupTextBox();
 
@@ -93,6 +83,22 @@ public class Scholar : MonoBehaviour
 
         Select = GetComponent<ScholarSelect>();
         Select.SetScholarSelect();
+
+
+        Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
+        Question = new ScholarQuestions(this);
+        Location = new ScholarLocation(this);
+        Reaction = new ScholarReactions();
+        Action = new ScholarActions(this);
+        Senses = new ScholarSenses(this);
+        Stress = new ScholarStress(this);
+        Bull = new ScholarBulling(this);
+        Cheat = new ScholarCheat(this);
+        Check = new ScholarCheck(this);
+        Info = new ScholarInfo(this);
+        View = new ScholarView(this);
+        Talk = new ScholarTalk(this);
+        Test = new ScholarTest();
     }
 
 
@@ -105,6 +111,7 @@ public class Scholar : MonoBehaviour
             Question.Update();
             Senses.Update();
             Talk.Update();
+            Check.Update();
         }
     }
 
@@ -138,28 +145,12 @@ public class Scholar : MonoBehaviour
         Action.DoAction("Execute");
     }
 
-
-
-    //========================================================================================================
-    //Присвоить номер ученику
-
-    public void SetNumber(int i)
-    {
-        Info.SetNumber(i);
-        TextBox.Number(i);
-        Desk = DeskManager.get.desks[i];
-    }
-
-
-
-
     //========================================================================================================
     //Изменение типа ученика
 
     public void ChangeType(string t)
     {
         type = t;
-        Agent = new ScholarAgent(type, this);
         keyWord = type + "_";
     }
 }

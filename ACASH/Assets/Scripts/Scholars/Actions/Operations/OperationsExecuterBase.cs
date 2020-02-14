@@ -10,7 +10,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     [HideInInspector]
     public bool doing;
-   
+
     /*
     protected int actionNum;
     protected int actionNoPlus;
@@ -25,9 +25,9 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
 
     public void Do(string key)
-    { 
+    {
         Stop();
-        Debug.Log("Я начал делать" + key);
+        //Debug.Log("Я начал делать" + key);
         doing = true;
         StartCoroutine(key);
     }
@@ -35,7 +35,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     public void Do(string key, int i)
     {
         Stop();
-        Debug.Log("Я начал делать" + key);
+        //Debug.Log("Я начал делать " + key);
         doing = true;
         StartCoroutine(key, i);
     }
@@ -43,7 +43,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     public void Do(string key, string option)
     {
         Stop();
-        Debug.Log("Я начал делать" + key);
+        //Debug.Log("Я начал делать" + key);
         doing = true;
         StartCoroutine(key, option);
     }
@@ -55,10 +55,10 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     }
 
 
-    protected void OperationDone()
+    protected void OperationEnd()
     {
         doing = false;
-        Manager.OpeartionDone();
+        Manager.OperationDone();
     }
 
 
@@ -102,27 +102,24 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     //=========================================================================================================================================================
     //Зрение
 
-    public void Watch(Vector3 target)
+    protected void WatchTo(PlaceManager.place place, int index)
+    {
+        Watch(PlaceManager.get.GetSightGoal(place, index));
+    }
+
+    protected void Watch(Vector3 target)
     {
         Scholar.Move.SetRotateGoal(target);
     }
 
-    public void Watch(float angle)
+    protected void Watch(float angle)
     {
         Scholar.Move.SetRotateGoal(Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + angle, GetRotation().eulerAngles.z));
     }
 
-    public void Watch(Quaternion targetRotation)
+    protected void Watch(Quaternion targetRotation)
     {
         Scholar.Move.SetRotateGoal(targetRotation);
-    }
-
-    protected IEnumerator Watching()
-    {
-        while (Scholar.Move.rotating)
-        {
-            yield return new WaitForEndOfFrame();
-        }
     }
 
     protected bool SightIsHere()
@@ -139,9 +136,9 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     //=========================================================================================================================================================
     //Местоположение и передвижение
 
-    protected void SetDestination(Vector3 goal)
+    protected void GoTo(PlaceManager.place place, int index)
     {
-        Scholar.Move.SetDestination(goal);
+        Scholar.Location.ChangeLocation(place, index);
     }
 
     protected bool IsHere()
@@ -173,12 +170,14 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     {
         Scholar.Question.Ask(question);
 
-        while (Scholar.Question.question)
+        while (Scholar.Question.question || Scholar.Talk.talking)
         {
             yield return new WaitForEndOfFrame();
         }
 
-        if (Scholar.Question.question_end)
+        Debug.Log("Ура учитель ответил на вопрос");
+
+        if (Scholar.Question.question_answered)
         {
             if (Scholar.Question.answer)
             {
@@ -194,7 +193,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
             //Учитель не ответил
         }
 
-        OperationDone();
+        OperationEnd();
     }
 
 
@@ -210,9 +209,11 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     {
         if (!Scholar.Senses.T_here)
         {
-            Scholar.Move.CheckForTeacher();
+            Scholar.Check.StartCheck();
 
-            while (Scholar.Move.checking)
+            Debug.Log("Проверяю учителя");
+
+            while (Scholar.Check.checking)
             {
                 yield return new WaitForEndOfFrame();
             }
@@ -231,7 +232,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
             // Учитель здесь
         }
 
-        OperationDone();
+        OperationEnd();
     }
 
 
@@ -257,8 +258,8 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     public void Verify(VerifyDelegate typeOfCheck, bool need_condition)
     {
         if (typeOfCheck() == need_condition)
-            OperationDone();
+            OperationEnd();
         else
-            Manager.EndOfAction();
+            Manager.ActionEnd();
     }
 }

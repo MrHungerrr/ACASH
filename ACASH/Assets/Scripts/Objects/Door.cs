@@ -183,7 +183,7 @@ public class Door : MonoBehaviour
                 {
                     if (!open)
                     {
-                        if (Mathf.Abs(BaseGeometry.GetQuaternionTo(ScholarManager.get.scholars[i].Move.transform, door_position).eulerAngles.y - ScholarManager.get.scholars[i].Action.transform.rotation.eulerAngles.y) < 45)
+                        if (Mathf.Abs(BaseGeometry.GetQuaternionTo(ScholarManager.get.scholars[i].Move.transform, door_position).eulerAngles.y - ScholarManager.get.scholars[i].Move.Rotation().eulerAngles.y) < 45)
                         {
                             in_range = true;
                             break;
@@ -204,7 +204,7 @@ public class Door : MonoBehaviour
 
         if (in_range && !open && !scholar_open)
         {
-            DoorInteract(ScholarManager.get.scholars[i].Action.transform.position);
+            DoorInteract(ScholarManager.get.scholars[i].Move.Position());
             scholar_open = true;
         }
         else if (!in_range && open && scholar_open)

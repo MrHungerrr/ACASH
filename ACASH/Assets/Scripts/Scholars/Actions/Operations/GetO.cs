@@ -5,17 +5,22 @@
         public enum operation
         {
             Check,
+            Go_Home,
+            Question,
+            Verify,
+            Think_Aloud,
+        }
+
+
+        public enum special
+        {
             Go_To_Toilet,
             Go_To_Sink,
             Go_Outside,
             Pee,
-            Go_Home,
-            Wait_For_Toilet,
-            Wait_For_Sink,
-            Think_Aloud,
-            Question,
-            Verify,
             Think,
+            Write,
+            Think_Outside,
             Wash_Hands,
         }
 

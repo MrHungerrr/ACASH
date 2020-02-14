@@ -28,7 +28,7 @@ public static class ActionsGiver
             scholars_numbs[i] = ScholarChoice(scholars_numbs);
             s = ScholarManager.get.scholars[scholars_numbs[i]];
 
-            cost = actions.GetRandomCost();
+            cost = 2;
 
             if (cost == 0)
             {
@@ -40,12 +40,12 @@ public static class ActionsGiver
 
             if (s.Cheat.Probability())
             {
-                Debug.Log("Списывание");
+                //Debug.Log("Списывание");
                 act = ActionsList.CheatingChoice(cost, s);
             }
             else
             {
-                Debug.Log("Действие");
+                //Debug.Log("Действие");
                 act = ActionsList.ActionChoice(cost, s);
             }
 

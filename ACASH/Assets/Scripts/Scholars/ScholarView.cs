@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class ScholarView
 {
+    private Scholar Scholar;
+
+
+    public ScholarView(Scholar Scholar)
+    {
+        this.Scholar = Scholar;
+    }
 
     //Список замечаний, которые уже были сделаны.
 
@@ -35,11 +42,11 @@ public class ScholarView
 
     public string GetView()
     {
-        if (Talk.talking)
+        if (Scholar.Talk.talking)
         {
             return "Talking_";
         }
-        else if (Move.walking)
+        else if (Scholar.Move.walking)
         {
             return "Walking_";
         }

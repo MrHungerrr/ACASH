@@ -2,7 +2,7 @@
 using Questions;
 using Operations;
 
-public static class ActionsOperations
+public static class OperationsList
 {
 
     private static Operation[] Toilet_3 = new Operation[]
@@ -13,9 +13,8 @@ public static class ActionsOperations
         new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
 
-        new Operation(GetO.operation.Go_To_Toilet),
-        new Operation(GetO.operation.Wait_For_Toilet),
-        new Operation(GetO.operation.Pee),
+        new Special(GetO.special.Go_To_Toilet, 0),
+        new Special(GetO.special.Pee),
         new Operation(GetO.operation.Go_Home),
     };
 
@@ -28,8 +27,8 @@ public static class ActionsOperations
         new Question(GetQ.questions.Air),
         new Verify(GetO.verify.Answer, true),
 
-        new Operation(GetO.operation.Go_Outside),
-        new Operation(GetO.operation.Think),
+        new Special(GetO.special.Go_Outside, 0),
+        new Special(GetO.special.Think_Outside),
         new Operation(GetO.operation.Go_Home),
     };
 
@@ -41,9 +40,8 @@ public static class ActionsOperations
         new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
 
-        new Operation(GetO.operation.Go_To_Sink),
-        new Operation(GetO.operation.Wait_For_Sink),
-        new Operation(GetO.operation.Wash_Hands),
+        new Special(GetO.special.Go_To_Sink, 0),
+        new Special(GetO.special.Wash_Hands),
         new Operation(GetO.operation.Go_Home),
     };
 
@@ -57,7 +55,14 @@ public static class ActionsOperations
 
     private static Operation[] Think_Aloud_1 = new Operation[]
     {
-        new Special(GetO.operation.Think_Aloud, 15),
+        new Operation(GetO.operation.Think_Aloud),
+    };
+
+    private static Operation[] Write = new Operation[]
+    {
+        new Operation(GetO.operation.Go_Home),
+        new Special(GetO.special.Think, 5),
+        new Special(GetO.special.Write, 5),
     };
 
 
@@ -69,6 +74,7 @@ public static class ActionsOperations
         {"Sink_2", Sink_2},
         {"Ask_1", Ask_1},
         {"Think_Aloud_1", Think_Aloud_1},
+        {"Write", Write}
     };
 
 }

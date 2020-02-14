@@ -33,7 +33,6 @@ public class ScholarAgent
         {
             case ScholarTypes.dumb:
                 {
-                    dumb.HearBulling(strong);
                     break;
                 }
             default:

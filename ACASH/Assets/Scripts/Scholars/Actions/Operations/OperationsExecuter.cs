@@ -1,141 +1,101 @@
-﻿using UnityEngine;
+﻿using Animations;
+using UnityEngine;
 using System.Collections;
 
 public class OperationsExecuter : OperationsExecuterBase
 {
 
     //=========================================================================================================================================================
-    // Основной действие школьника - написание экзамена.
-
-    private IEnumerator Writing()
+    // Идти домой
+    private IEnumerator Go_Home()
     {
-        SetDestination(Scholar.Info.home);
+        GoTo(PlaceManager.place.Desk, Scholar.Info.number);
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();
 
-        Watch(Scholar.Info.desk);
+        WatchTo(PlaceManager.place.Desk, Scholar.Info.number);
 
-        Scholar.Test.writing = true;
+        OperationEnd();
+    }
 
-        Debug.Log("Я думаю");
-        Scholar.Anim.SetAnimation("Nothing");
 
-        yield return new WaitForSeconds(Random.Range(4, 5));
-        Debug.Log("Я пишу");
-        Scholar.Anim.SetAnimation("Writing");
+    //=========================================================================================================================================================
+    // Думать
+    private IEnumerator Think(int time)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking);
+        yield return new WaitForSeconds(time);
 
-        yield return new WaitForSeconds(Random.Range(2, 7));
-
-        OperationDone();
+        OperationEnd();
     }
 
 
 
+    //=========================================================================================================================================================
+    // Писать экзамен
+    private IEnumerator Write(int time)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(time);
+
+        OperationEnd();
+    }
 
 
-
-    //=========================================================================================================================================================
-    //=========================================================================================================================================================
-    //=========================================================================================================================================================
-    //Список всех действий доступных ученикам.
-    //=========================================================================================================================================================
-    //=========================================================================================================================================================
-    //=========================================================================================================================================================
 
     //=========================================================================================================================================================
     //Выход в туалет
-
-
-
-    
-
-
-
-    private IEnumerator Toilet_1()
+    private IEnumerator Go_To_Toilet(int index)
     {
-        if (CanIContinue())
-        {
-            Debug.Log("пошел");
-            SetDestination(ScholarManager.get.GetPlace("toilet", 0));
+        GoTo(PlaceManager.place.Toilet, index);
 
-            while (!IsHere())
-                yield return new WaitForSeconds(1f);
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
 
-            Watch(ScholarManager.get.GetSightGoal("toilet", 0));
+        WatchTo(PlaceManager.place.Toilet, index);
 
-            Debug.Log("Я дошел");
-            actionNum++;
-        }
+        OperationEnd();
+    }
 
-        if (CanIContinue())
-        {
-            Scholar.Anim.SetAnimation("Toilet");
-            yield return new WaitForSeconds(5f);
-            Debug.Log("Сделал свои дела");
-            actionNum++;
-        }
 
-        if (CanIContinue())
-        {
-            SetDestination(Scholar.Action.home);
+    //=========================================================================================================================================================
+    //Пописать
+    private IEnumerator Pee(int index)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Peeing);
+        yield return new WaitForSeconds(index);
 
-            while (!IsHere())
-                yield return new WaitForSeconds(1f);
-
-            actionNum++;
-        }
-
-        if (CanIContinue())
-        {
-            OperationDone();
-        }
+        OperationEnd();
     }
 
 
 
 
     //=========================================================================================================================================================
-    //Выход в туалет
-
-    private IEnumerator Sink_1()
+    //Выход к раковина
+    private IEnumerator Go_To_Sink(int index)
     {
-        if (CanIContinue())
-        {
-            Debug.Log("пошел");
-            SetDestination(ScholarManager.get.GetPlace("sink", 0));
+        GoTo(PlaceManager.place.Sink, index);
 
-            while (!IsHere())
-                yield return new WaitForSeconds(1f);
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
 
-            Watch(ScholarManager.get.GetSightGoal("sink", 0));
+        WatchTo(PlaceManager.place.Sink, index);
 
-            Debug.Log("Я дошел");
-            actionNum++;
-        }
+        OperationEnd();
+    }
 
-        if (CanIContinue())
-        {
-            Scholar.Anim.SetAnimation("Sink");
-            yield return new WaitForSeconds(5f);
-            Debug.Log("Сделал свои дела");
-            actionNum++;
-        }
 
-        if (CanIContinue())
-        {
-            SetDestination(Scholar.Action.home);
 
-            while (!IsHere())
-                yield return new WaitForSeconds(1f);
+    //=========================================================================================================================================================
+    //Помыл руки
+    private IEnumerator Wash_Hands(int index)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Washing_Hands);
+        yield return new WaitForSeconds(index);
 
-            actionNum++;
-        }
-
-        if (CanIContinue())
-        {
-            OperationDone();
-        }
+        OperationEnd();
     }
 
 
@@ -143,46 +103,25 @@ public class OperationsExecuter : OperationsExecuterBase
 
     //=========================================================================================================================================================
     //Выход подышать воздухом
-
-    private IEnumerator Air_1()
+    private IEnumerator Go_Outside(int index)
     {
+        GoTo(PlaceManager.place.Outside, index);
 
-        if (CanIContinue())
-        {
-            Debug.Log("пошел");
-            SetDestination(ScholarManager.get.GetPlace("outside", 0));
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
 
-            while (!IsHere())
-                yield return new WaitForSeconds(1f);
+        WatchTo(PlaceManager.place.Outside, index);
 
-            Watch(ScholarManager.get.GetSightGoal("outside", 0));
-
-            actionNum++;
-        }
-
-        if (CanIContinue())
-        {
-            Scholar.Anim.SetAnimation("Think_Outside");
-            yield return new WaitForSeconds(5f);
-            Debug.Log("Сделал свои дела");
-            actionNum++;
-        }
-
-        if (CanIContinue())
-        {
-            SetDestination(Scholar.Action.home);
-
-            while (!IsHere())
-                yield return new WaitForSeconds(1f);
-
-            actionNum++;
-        }
+        OperationEnd();
+    }
 
 
-        if (CanIContinue())
-        {
-            OperationDone();
-        }
+    private IEnumerator Think_Outside(int index)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking_Outside);
+        yield return new WaitForSeconds(index);
+
+        OperationEnd();
     }
 
 
@@ -191,72 +130,15 @@ public class OperationsExecuter : OperationsExecuterBase
     //=========================================================================================================================================================
     //Думание вслух
 
-    private IEnumerator Think_Aloud_1()
+    private IEnumerator Think_Aloud()
     {
-        Scholar.Anim.SetAnimation("Think_Aloud_1");
-        Scholar.Talk.SayThoughts("Think_Aloud_1");
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking_Aloud);
+        Scholar.Talk.SayThoughts("Think_Aloud");
 
-        yield return new WaitForSeconds(8f);
-
-        OperationDone();
-    }
-
-
-
-
-    //=========================================================================================================================================================
-    //Догадывание
-
-    private IEnumerator Guesses_1()
-    {
-        Scholar.Anim.SetAnimation("Guesses");
-
-        yield return new WaitForSeconds(5f);
-
-        Scholar.Anim.SetAnimation("HasGuessed");
-        Debug.Log("Я догодалася");
-
-        yield return new WaitForSeconds(1f);
-
-        OperationDone();
-    }
-
-
-
-
-    //=========================================================================================================================================================
-    //Использование различных программ
-
-    private IEnumerator Program_1(string program)
-    {
-        Scholar.Anim.SetAnimation("Working_On_Computer");
-        Scholar.Desk.Select(program);
-
-        yield return new WaitForSeconds(8f);
-
-        OperationDone();
-    }
-
-
-
-
-
-    //=========================================================================================================================================================
-    //Домой
-
-    private IEnumerator Go_Home()
-    {
-        SetDestination(Scholar.Info.home);
-
-        while (!IsHere())
+        while(Scholar.Talk.talking)
             yield return new WaitForEndOfFrame();
 
-        Watch(Scholar.Info.desk);
-
-        while (!SightIsHere())
-            yield return new WaitForEndOfFrame();
-
-        OperationDone();
+        OperationEnd();
     }
 
 

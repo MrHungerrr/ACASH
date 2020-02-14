@@ -138,6 +138,7 @@ public class GameManager : Singleton<GameManager>
 
     public void SetLevel()
     {
+        PlaceManager.get.SetLevel();
         ScholarManager.get.SetLevel();
         ComputerManager.get.SetComputerManager();
         TimeManager.get.SetTimers();

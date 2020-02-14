@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 3982946758408277148}
   - component: {fileID: 3585671208464519927}
   - component: {fileID: 574315359}
+  - component: {fileID: 5286558187355912941}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -147,13 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scholars: []
   cheating_count: 0
-  outside: []
-  toilets_count: 0
-  outside_count: 0
-  sinks_count: 0
-  desks_count: 0
-  teacher_room: {fileID: 0}
-  teacher_room_busy: 0
   left: 0
   cheated: 0
   finished: 0
@@ -330,3 +324,15 @@ MonoBehaviour:
   users:
   - {fileID: 11400000, guid: b4fd0d2afcaf67b46bd6c6ff4dfd9f74, type: 2}
   - {fileID: 11400000, guid: f3bd78252297cb442890491dfbe2ce04, type: 2}
+--- !u!114 &5286558187355912941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132918696476860140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5dd3c1b06a95f4fbfcee7acb669401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

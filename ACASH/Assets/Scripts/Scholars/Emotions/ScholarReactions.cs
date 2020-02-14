@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScholarReactions : MonoBehaviour
+public class ScholarReactions
 {
     // Start is called before the first frame update
     void Start()

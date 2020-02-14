@@ -197,7 +197,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 0.4
   m_BaseOffset: 0.16
-  m_WalkableMask: 3
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &9144633250537657041
 MonoBehaviour:
@@ -211,7 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399591820ccd923459967205bee294a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NavAgent: {fileID: 0}
 --- !u!1 &1304049459607022736
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,10 +284,10 @@ GameObject:
   - component: {fileID: 6308777819421357594}
   - component: {fileID: 9144633250537657038}
   - component: {fileID: 9144633250537657045}
-  - component: {fileID: 9144633250537657042}
   - component: {fileID: 9144633250537657043}
   - component: {fileID: 9144633250537657040}
-  - component: {fileID: 9144633249979890534}
+  - component: {fileID: 6991122859621611486}
+  - component: {fileID: 5137398077062087219}
   m_Layer: 9
   m_Name: Scholar
   m_TagString: Scholar
@@ -400,43 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scholarType: 1
-  type: 
-  number: 0
-  name_1: Akim
-  name_2: Akimov
   executed: 0
-  talking: 0
-  walking: 0
-  cheating: 0
-  writing: 0
-  chill: 1
-  asking: 0
-  questionKey: 
-  teacher_answer: 0
-  Action: {fileID: 0}
-  Emotions: {fileID: 0}
-  Move: {fileID: 0}
-  TextBox: {fileID: 0}
-  Desk: {fileID: 0}
---- !u!114 &9144633250537657042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679317599551083891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c170669f637de94aa19adde34ce0452, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doing: 0
-  can_i_do_smth_else: 0
-  keyAction: 
-  keyAction_now: 
-  cheat_string: 
-  home: {x: 0, y: 0, z: 0}
-  desk: {x: 0, y: 0, z: 0}
 --- !u!114 &9144633250537657043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebc7bfefed2cf840b911ee445d79420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9144633249979890534
+--- !u!114 &6991122859621611486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -470,12 +433,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1679317599551083891}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abb4b19280d5f34abf82ecf4188e52c, type: 3}
+  m_Script: {fileID: 11500000, guid: 882c515d96d22e249b97dbf0b288c84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   renderers:
   - {fileID: 2538210818566788134}
   texts: []
+--- !u!114 &5137398077062087219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679317599551083891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1c8c52928594e43badb6ad8eca6ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doing: 0
 --- !u!1 &2309555731163047856
 GameObject:
   m_ObjectHideFlags: 0

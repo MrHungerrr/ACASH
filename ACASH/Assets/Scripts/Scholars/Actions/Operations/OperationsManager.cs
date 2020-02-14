@@ -14,9 +14,9 @@ public class OperationsManager
     public bool done { get; private set; }
 
 
-    public OperationsManager(Scholar scholar)
+    public OperationsManager(Scholar scholar, ScholarActions action)
     {
-        Action = scholar.Action;
+        Action = action;
         Executer = scholar.GetComponent<OperationsExecuter>();
         Executer.SetOperationsExecuter(scholar, this);
     }
@@ -27,7 +27,7 @@ public class OperationsManager
         done = false;
         action = key;
         operation_num = 0;
-        operations = ActionsOperations.operations[key];
+        operations = OperationsList.operations[key];
 
         DoOperation();
     }
@@ -35,13 +35,14 @@ public class OperationsManager
 
     private void DoOperation()
     {
+
         if (operation_num < operations.Length)
         {
             operations[operation_num].Do(Executer);
         }
         else
         {
-            EndOfAction();
+            ActionEnd();
             done = true;
         }
     }
@@ -56,14 +57,15 @@ public class OperationsManager
         Executer.Stop();
     }
 
-    public void OpeartionDone()
+    public void OperationDone()
     {
+        Debug.Log("Я сделал операцию - " + operations[operation_num].Show());
         operation_num++;
         DoOperation();
     }
 
 
-    public void EndOfAction()
+    public void ActionEnd()
     {
         Action.ActionDone();
     }
