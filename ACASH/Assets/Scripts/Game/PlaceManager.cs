@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Single;
+using Searching;
 
 public class PlaceManager : Singleton<PlaceManager>
 {
@@ -77,11 +78,14 @@ public class PlaceManager : Singleton<PlaceManager>
         busy.Add(type_of_place, new bool[places.Length]);
         count.Add(type_of_place, places.Length);
 
+        SIC search = new SIC("Destonation");
 
         for (int i = 0; i < places.Length; i++)
         {
-            this.places[type_of_place][0, i] = places[i].transform.parent.transform.Find("Destonation");
-            this.places[type_of_place][1, i] = places[i].transform;
+            search.Key("Destonation");
+            search.Component(places[i], out this.places[type_of_place][0, i]);
+            search.Key("Sight Goal");
+            search.Component(places[i], out this.places[type_of_place][1, i]);
         }
     }
 

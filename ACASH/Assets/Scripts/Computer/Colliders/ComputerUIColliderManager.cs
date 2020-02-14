@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Searching;
+
+
 public class ComputerUIColliderManager : MonoBehaviour
 {
 
@@ -15,7 +18,8 @@ public class ComputerUIColliderManager : MonoBehaviour
     [ContextMenu("Fill")]
     public void Fill()
     {
-        ui_colliders = FindAllUIObjects();
+        SIC<ComputerSelect> search = new SIC<ComputerSelect>();
+        search.Components(transform, out ui_colliders);
     }
 
     private GameObject[] FindAllUIObjects()
@@ -44,7 +48,8 @@ public class ComputerUIColliderManager : MonoBehaviour
 
     public void SetColliders()
     {
-        ui_colliders = FindAllUIObjects();
+        SIC<ComputerSelect> search = new SIC<ComputerSelect>();
+        search.Components(transform, out ui_colliders);
 
         List <ComputerUICollider> colliders_list = new List<ComputerUICollider>();
 
