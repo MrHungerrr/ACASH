@@ -9,7 +9,7 @@ public class UserManager : Singleton<UserManager>
     private User[] users;
 
     [HideInInspector]
-    public Dictionary<string, User> login_user = new Dictionary<string, User>();
+    public Dictionary<string, User> login_user;
 
 
 
@@ -22,6 +22,7 @@ public class UserManager : Singleton<UserManager>
             login_user.Add(user.login, user);
         }
         */
+        login_user =  new Dictionary<string, User>();
 
         for (int i = 0; i< users.Length; i++)
         {

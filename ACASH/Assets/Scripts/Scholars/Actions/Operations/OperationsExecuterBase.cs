@@ -114,7 +114,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     protected void Watch(float angle)
     {
-        Scholar.Move.SetRotateGoal(Quaternion.Euler(GetRotation().eulerAngles.x, GetRotation().eulerAngles.y + angle, GetRotation().eulerAngles.z));
+        Scholar.Move.SetRotateGoal(angle);
     }
 
     protected void Watch(Quaternion targetRotation)
@@ -217,6 +217,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
             {
                 yield return new WaitForEndOfFrame();
             }
+
 
             if (Scholar.Senses.T_here)
             {

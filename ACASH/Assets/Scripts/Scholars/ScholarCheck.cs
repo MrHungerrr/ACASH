@@ -23,18 +23,20 @@ public class ScholarCheck
 
     public void StartCheck()
     {
+        Scholar.Move.ResetRotateGoal();
         checking = true;
         index = 0;
     }
 
 
     private void Check()
-    {
+    {   
         if (!Scholar.Senses.T_here)
         {
             if (!Scholar.Move.rotating)
             {
                 Scholar.Move.SetRotateGoal(120);
+
                 if (index > 2)
                 {
                     CheckEnd();

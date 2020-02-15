@@ -10,9 +10,9 @@ public class Player : Singleton<Player>
     private Vector2 move;
     [HideInInspector]
     public string typeOfMovement;
-    private float crouchSpeed = 15f;
-    private float normalSpeed = 45f;
-    private float runSpeed = 65f;
+    private float crouchSpeed = 35f;
+    private float normalSpeed = 65f;
+    private float runSpeed = 100f;
     private float crouchSound = 0.5f;
     private float normalSound = 3f;
     private float runSound = 5f;

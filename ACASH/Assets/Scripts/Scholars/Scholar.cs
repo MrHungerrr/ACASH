@@ -78,7 +78,7 @@ public class Scholar : MonoBehaviour
         Emotions = GetComponent<ScholarEmotions>();
         Emotions.SetupEmotions();
 
-        Move = transform.GetComponentInParent<ScholarMove>();
+        Move = transform.parent.GetComponentInParent<ScholarMove>();
         Move.SetupMove(this);
 
         Select = GetComponent<ScholarSelect>();

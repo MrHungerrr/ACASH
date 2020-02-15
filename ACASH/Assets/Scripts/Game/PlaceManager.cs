@@ -19,19 +19,17 @@ public class PlaceManager : Singleton<PlaceManager>
 
 
     [HideInInspector]
-    public Dictionary<place, Transform[,]> places = new Dictionary<place, Transform[,]>();
+    public Dictionary<place, Transform[,]> places;
 
     [HideInInspector]
-    public Dictionary<place, int> count = new Dictionary<place, int>();
+    public Dictionary<place, int> count;
 
     [HideInInspector]
-    public Dictionary<place, bool[]> busy = new Dictionary<place, bool[]>();
-
-    public Dictionary<Scholar, ScholarLocation> scholars = new Dictionary<Scholar, ScholarLocation>();
-
+    public Dictionary<place, bool[]> busy;
 
     public void SetLevel()
     {
+        ResetLevel();
 
         //Ищутся все места на уровне и забиваются в базу
         int place_count = Enum.GetNames(typeof(place)).Length;
@@ -53,7 +51,7 @@ public class PlaceManager : Singleton<PlaceManager>
         }
 
 
-        //Специальная инцилизация для парт
+        //Специальная инцилизация для парт для того, чтобы они были по порядку
         DeskManager.get.SetDeskManager();
         buf_place = place.Desk;
 
@@ -61,12 +59,17 @@ public class PlaceManager : Singleton<PlaceManager>
         busy.Add(buf_place, new bool[DeskManager.get.desks.Length]);
         count.Add(buf_place, DeskManager.get.desks.Length);
 
+        SIC search = new SIC("Destonation");
+
         for (int i = 0; i < DeskManager.get.desks.Length; i++)
         {
             GameObject desk = DeskManager.get.desks[i].gameObject;
 
-            this.places[buf_place][0, i] = desk.transform.Find("Destonation");
-            this.places[buf_place][1, i] = desk.transform;
+            search.Key("Destonation");
+            search.Component(desk, out this.places[place.Desk][0, i]);
+            search.Key("Sight Goal");
+            search.Component(desk, out this.places[place.Desk][1, i]);
+
             //Debug.Log(desks[0, i].position);
         }
     }
@@ -90,7 +93,12 @@ public class PlaceManager : Singleton<PlaceManager>
     }
 
 
-
+    public void ResetLevel()
+    {
+        places = new Dictionary<place, Transform[,]>();
+        busy = new Dictionary<place, bool[]>();
+        count = new Dictionary<place, int>();
+    }
 
 
 

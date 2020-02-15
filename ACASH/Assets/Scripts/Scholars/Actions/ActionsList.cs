@@ -98,7 +98,6 @@ public static class ActionsList
             if (choice >= actions[cost].Length)
                 choice = 0;
         }
-
         return null;
     }
 

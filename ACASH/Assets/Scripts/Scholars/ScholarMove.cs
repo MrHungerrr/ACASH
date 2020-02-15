@@ -16,6 +16,8 @@ public class ScholarMove : MonoBehaviour
     private Vector3 destination;
     private Quaternion targetRotation;
 
+    private Vector3 last_position;
+
 
     [HideInInspector]
     public bool rotating { get; private set; } = false;
@@ -54,10 +56,18 @@ public class ScholarMove : MonoBehaviour
         walking = true;
     }
 
+    private void WatchDirection()
+    {
+        Quaternion target = BaseGeometry.GetQuaternionTo(last_position, transform.position);
+        SetRotateGoal(target);
+    }
+
 
     private void Walk()
     {
-        if(ScholarIsHere())
+        WatchDirection();
+
+        if (ScholarIsHere())
         {
             Scholar.Anim.SetAnimation(GetA.animations.Nothing);
             walking = false;
@@ -67,12 +77,13 @@ public class ScholarMove : MonoBehaviour
 
     public bool ScholarIsHere()
     {
-        if ((transform.position - destination).magnitude <= 0.05)
+        if ( transform.position == destination)
         {
             return true;
         }
         else
         {
+            last_position = transform.position;
             return false;
         }
     }
@@ -80,9 +91,11 @@ public class ScholarMove : MonoBehaviour
 
 
 
+
     //===========================================================================================================================
     //===========================================================================================================================
     //Поворот
+
 
     public void SetRotateGoal(Quaternion target)
     {
@@ -92,15 +105,14 @@ public class ScholarMove : MonoBehaviour
 
     public void SetRotateGoal(Vector3 position)
     {
-        targetRotation = BaseGeometry.GetQuaternionTo(transform, position);
-        rotating = true;
+        Quaternion target = BaseGeometry.GetQuaternionTo(transform, position);
+        SetRotateGoal(target);
     }
 
     public void SetRotateGoal(float angle_plus)
     {
-        Debug.Log("Вращаемся на " + angle_plus);
-        targetRotation = Quaternion.Euler(Rotation().eulerAngles.x, Rotation().eulerAngles.y + angle_plus, Rotation().eulerAngles.z);
-        rotating = true;
+        Quaternion target = Quaternion.Euler(Rotation().eulerAngles.x, Rotation().eulerAngles.y + angle_plus, Rotation().eulerAngles.z);
+        SetRotateGoal(target);
     }
 
     private void Rotate()
@@ -109,13 +121,21 @@ public class ScholarMove : MonoBehaviour
 
         if(RotationIsHere())
         {
+            Debug.Log("Повернулись до конца");
+            Rotation(targetRotation);
             rotating = false;
         }
     }
 
+    public void ResetRotateGoal()
+    {
+        targetRotation = Rotation();
+        rotating = false;
+    }
+
     public void RotateTo(Quaternion target)
     {
-        Rotation(Quaternion.Slerp(Rotation(), target, 3f * Time.deltaTime));
+        Rotation(Quaternion.Slerp(Rotation(), target, 4f * Time.deltaTime));
     }
 
 
@@ -130,6 +150,13 @@ public class ScholarMove : MonoBehaviour
             return false;
         }
     }
+
+
+
+
+
+
+
 
 
     public Vector3 Position()

@@ -219,16 +219,14 @@ public class InputManager : Singleton<InputManager>
 
     private void GameRun(bool u)
     {
-        /*
         if (u)
         {
-            pScript.SwitchMove("run");
+            Player.get.SwitchMove("run");
         }
-        else if (pScript.typeOfMovement == "run")
+        else if (Player.get.typeOfMovement == "run")
         {
-            pScript.SwitchMove("normal");
+            Player.get.SwitchMove("normal");
         }
-        */
     }
 
     private void GameCrouch(bool option)

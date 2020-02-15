@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 6569128479971715176}
   - component: {fileID: 6569128479971715178}
   - component: {fileID: 6569128479971715179}
+  - component: {fileID: 8061205890200817615}
   m_Layer: 0
   m_Name: Outside Point
   m_TagString: Outside
@@ -141,3 +142,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8061205890200817615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6569128479971715177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b231a7dcdd132c44bb7a94be2b032d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,6 +13,13 @@ public static class BaseGeometry
         return targetRotation;
     }
 
+    public static Quaternion GetQuaternionTo(Vector3 from, Vector3 to)
+    {
+        Vector3 direct = to - from;
+        Quaternion targetRotation = Quaternion.LookRotation(direct);
+        return targetRotation;
+    }
+
     public static float LookingAngle(Transform who, Vector3 lookingTo)
     {
         lookingTo.y = who.position.y;
