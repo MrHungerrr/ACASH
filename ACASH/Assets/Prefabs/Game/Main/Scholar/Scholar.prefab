@@ -203,7 +203,17 @@ PrefabInstance:
     - target: {fileID: 7210777317141644340, guid: 315da6bf9b6f28c42b267baa5688a875,
         type: 3}
       propertyPath: m_Name
-      value: Scholar 1.2
+      value: Scholar
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144633249901182579, guid: 315da6bf9b6f28c42b267baa5688a875,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03100014
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144633250002479826, guid: 315da6bf9b6f28c42b267baa5688a875,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9144633250146081277, guid: 315da6bf9b6f28c42b267baa5688a875,
         type: 3}

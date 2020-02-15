@@ -4,24 +4,11 @@ using Single;
 
 public class Player : Singleton<Player>
 {
+
+    public PlayerMove Move { get; private set; }
+
+
     //Управление
-    [HideInInspector]
-    public Vector2 moveInput;
-    private Vector2 move;
-    [HideInInspector]
-    public string typeOfMovement;
-    private float crouchSpeed = 35f;
-    private float normalSpeed = 65f;
-    private float runSpeed = 100f;
-    private float crouchSound = 0.5f;
-    private float normalSound = 3f;
-    private float runSound = 5f;
-    private float movementSpeed;
-    private float movementSound;
-    private double rnd;
-    private CharacterController CharController;
-    private LayerMask actLayerMask;
-    private LayerMask sightLayerMask;
     [HideInInspector]
     public bool look_closer;
 
@@ -36,18 +23,6 @@ public class Player : Singleton<Player>
     private bool think;
     [HideInInspector]
     public bool asked;
-    [HideInInspector]
-    public bool act;
-    [HideInInspector]
-    public bool actReady;
-    private float actMaxRange = 2f;
-    private float actMinRange = 0.6f;
-    [HideInInspector]
-    public string actTag;
-    [HideInInspector]
-    public GameObject actObject;
-    [HideInInspector]
-    public bool actSpecialOption;
     private GameObject selected_scholar;
     private string actText;
     private string keyWord = "Teacher_";
@@ -57,177 +32,30 @@ public class Player : Singleton<Player>
 
     private void Awake()
     {
-        CharController = GetComponent<CharacterController>();
-        draw = false;
+        Move = GetComponent<PlayerMove>();
+        Move.SetupMove();
     }
 
     private void Start()
     {
         actLayerMask = LayerMask.GetMask("Selectable");
         sightLayerMask = LayerMask.GetMask("Sight Layer");
-        SwitchMove("normal");
     }
 
     private void Update()
     {
 
-        PlayerMovement();
-
         if (!act)
             Watching();
 
         Action();
-
-            
-
-
-        if (draw && actTag == "DeskBlock")
-            Drawing(draw_option);
     }
 
 
-    public void SwitchMove(string type)
-    {
-        typeOfMovement = type;
-
-        switch(type)
-        {
-            case "normal":
-                {
-                    movementSpeed = normalSpeed;
-                    movementSound = normalSound;
-                    break;
-                }
-            case "run":
-                {
-                    movementSpeed = runSpeed;
-                    movementSound = runSound;
-                    break;
-                }
-            case "crouch":
-                {
-                    //Присесть на корточки
-                    movementSpeed = crouchSpeed;
-                    movementSound = crouchSound;
-                    break;
-                }
-        }
-    }
-
-    private void PlayerMovement()
-    {
-        move = moveInput.normalized * movementSpeed * Time.deltaTime;
-
-        Vector3 forwardMovement = transform.forward * move.y;
-        Vector3 rightMovement = transform.right * move.x;
-
-        if (forwardMovement != Vector3.zero || rightMovement != Vector3.zero)
-        {
-            CharController.SimpleMove(forwardMovement + rightMovement);
-            ScholarManager.get.Hear(movementSound);
-        }
-    }
-
-
-    private void Watching()
-    {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-        I_ObjectSelect obj_select;
-
-
-        //Рейкаст интерактивных объектов
-        if (Physics.Raycast(ray, out hit, actMaxRange, actLayerMask))
-        {
-            //Школьники
-            if (hit.collider.tag == "Scholar")
-            {
-                if (actObject != hit.collider.gameObject)
-                {
-                    if (actObject != null)
-                    {
-                        actObject.GetComponent<I_ObjectSelect>().Deselect();
-                    }
-                    actObject = hit.collider.gameObject;
-                    actTag = hit.collider.tag;
-                    actReady = true;
-                    actObject.GetComponent<I_ObjectSelect>().Select();
-
-                    WhatISee();
-                }
-            }
-            //Все остальное
-            else if((hit.transform.position - transform.position).magnitude < actMinRange)
-            {
-                if (actObject != hit.collider.gameObject)
-                {
-                    if (actObject != null)
-                    {
-                        if(actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
-                            obj_select.Deselect();
-                    }
-                    actObject = hit.collider.gameObject;
-                    actTag = hit.collider.tag;
-                    actReady = true;
-
-                    if (actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
-                            SpecialSelectRealtion();
-                }
-                else
-                {
-                    SpecialSelectRealtion();
-                }
-            }
-            else if (actReady && actObject != null)
-            {
-                if (actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
-                    obj_select.Deselect();
-
-                actObject = null;
-                actReady = false;
-                actTag = null;
-            }
-        }
-        else if (actReady && actObject != null)
-        {
-            if (actObject.TryGetComponent<I_ObjectSelect>(out obj_select))
-                obj_select.Deselect();
-
-            actObject = null;
-            actReady = false;
-            actTag = null;
-        }
-
-        CrossHair.get.SelectHair();
-
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(ray, 20, sightLayerMask);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            
-            if (hits[i].transform != null)
-            {
-                Scholar scholar = hits[i].transform.parent.GetComponentInChildren<Scholar>();
-                scholar.Senses.ISeeYou();
-            }
-        }
-        
-    }
-
-
-
-    private float LookingAngle(Vector3 lookingTo, Transform Who)
-    {
-        lookingTo.y = Who.transform.position.y;
-        lookingTo = lookingTo - Who.transform.position;
-        return Vector3.Angle(lookingTo, Who.forward);
-    }
 
 
     private void WhatISee()
     {
-
         if (actObject.GetComponent<Scholar>().Question.question)
         {
             asked = true;
@@ -236,7 +64,6 @@ public class Player : Singleton<Player>
         {
             asked = false;
         }
-
     }
 
 
@@ -292,7 +119,7 @@ public class Player : Singleton<Player>
         {
             case "Computer":
                 {
-                    if (LookingAngle(transform.position, actObject.transform) < 70)
+                    if (BaseGeometry.LookingAngle(actObject.transform, transform.position) < 70)
                     {
                         actObject.GetComponent<I_ObjectSelect>().Select();
                         actSpecialOption = true;
@@ -437,7 +264,7 @@ public class Player : Singleton<Player>
 
         if (scholar.View.remarks[scholar.View.GetView()])
         {
-            if (Probability(0.5))
+            if (BaseMath.Probability(0.5))
                 key += "Sec_";
         }
         else
@@ -466,7 +293,7 @@ public class Player : Singleton<Player>
         }
 
         //Добавить вероятность + взгляд
-        if (!act && Probability(0.1))
+        if (!act && BaseMath.Probability(0.1))
         {
             SubtitleManager.get.Say(keyWord + "Thinking_" + scholar.tag + "_" + Random.Range(0, ScriptManager.get.linesQuantity[keyWord + "Thinking_"]));
         }
@@ -524,40 +351,6 @@ public class Player : Singleton<Player>
     {
         if(SubtitleManager.get.act)
             SubtitleManager.get.StopSubtitile();
-    }
-    
-
-
-    //Вероятность
-
-    public bool Probability(double a)
-    {
-        rnd = Random.value;
-
-        if (a >= rnd)
-            return true;
-        else
-            return false;
-    }
-
-
-    public void Draw(bool option)
-    {
-        draw = option;
-        draw_option = true;
-    }
-
-    public void UnDraw(bool option)
-    {
-        draw = option;
-        draw_option = false;
-    }
-
-
-    private void Drawing(bool option)
-    {
-        if (actTag == "DeskBlock")
-            actObject.GetComponent<DeskBlock>().Draw(option);
     }
 
 

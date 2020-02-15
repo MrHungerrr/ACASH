@@ -146,6 +146,11 @@ public class GameManager : Singleton<GameManager>
         SetScholars();
     }
 
+    public void ResetLevel()
+    {
+        PlaceManager.get.ResetLevel();
+    }
+
 
     public void SetScholars()
     {

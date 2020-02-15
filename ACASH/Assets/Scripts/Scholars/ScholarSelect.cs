@@ -76,33 +76,21 @@ public class ScholarSelect : MonoBehaviour, I_ObjectSelect
         {
             texts[i].color = SelectHelper.col;
         }
-
     }
 
-    public void Selectable(bool u)
+    public bool CanISelect()
     {
+        return selectable;
+    }
 
-        if (u)
+
+    public void Selectable(bool option)
+    {
+        selectable = option;
+
+        if (!option)
         {
-            selectable = true;
-            StartCoroutine(SetSelectable());
-        }
-        else
-        {
-            this.gameObject.layer = 10;
-            selectable = false;
             Deselect();
-        }
-    }
-
-
-
-    private IEnumerator SetSelectable()
-    {
-        yield return new WaitForSeconds(0.1f);
-        if (selectable)
-        {
-            this.gameObject.layer = 9;
         }
     }
 }

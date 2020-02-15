@@ -117,8 +117,8 @@ public class ScholarSenses
 
 
         RaycastHit hit;
-        Debug.DrawRay(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.2f, T_direction, Color.red);
-        if (Physics.Raycast(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.2f, T_direction, out hit, vision_distance, visible_layerMask))
+        Debug.DrawRay(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.3f, T_direction, Color.red);
+        if (Physics.Raycast(Scholar.Move.transform.position + Scholar.transform.up.normalized * 0.3f, T_direction, out hit, vision_distance, visible_layerMask))
         {
             if (hit.collider.tag == "Player")
             {
@@ -174,7 +174,7 @@ public class ScholarSenses
 
     private void WhereTeacher()
     {
-        //Debug.Log("T Behind Wall - " + T_behind_wall);
+        Debug.Log("T Behind Wall - " + T_behind_wall);
 
         if (!T_behind_wall)
         {
@@ -220,7 +220,7 @@ public class ScholarSenses
         }
 
         //Debug.Log("T In Sight - " + T_in_sight);
-        //Debug.Log("T Here - " + T_here);
+        Debug.Log("T Here - " + T_here);
     }
 
   

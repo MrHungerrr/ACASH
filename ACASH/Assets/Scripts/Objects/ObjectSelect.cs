@@ -4,7 +4,7 @@ using TMPro;
 
 public class ObjectSelect : MonoBehaviour, I_ObjectSelect
 {
-
+    private static float range;
     private Material mat;
     private Material[] mats;
     [SerializeField]
@@ -69,6 +69,14 @@ public class ObjectSelect : MonoBehaviour, I_ObjectSelect
         {
             texts[i].color = SelectHelper.col;
         }
+    }
 
+
+    public bool CanISelect()
+    {
+        if (Vector3.Distance(Player.get.transform.position, transform.position) < range)
+            return true;
+        else
+            return false;
     }
 }

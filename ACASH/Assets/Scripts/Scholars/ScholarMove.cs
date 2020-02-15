@@ -121,7 +121,6 @@ public class ScholarMove : MonoBehaviour
 
         if(RotationIsHere())
         {
-            Debug.Log("Повернулись до конца");
             Rotation(targetRotation);
             rotating = false;
         }
