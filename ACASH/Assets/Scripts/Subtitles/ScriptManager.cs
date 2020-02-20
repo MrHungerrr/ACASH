@@ -6,39 +6,8 @@ using Single;
 
 public class ScriptManager : Singleton<ScriptManager>
 {
-
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
     private Dictionary<string, string[]> linesDuration = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
-    public Dictionary<string, int> linesQuantity = new Dictionary<string, int>()
-    {
-        { "Teacher_Shout_", 10},
-        { "Teacher_Bull_Talking_", 3},
-        { "Teacher_Bull_Cheating_", 3},
-        { "Teacher_Bull_Nothing_", 3},
-        { "Teacher_Bull_Walking_", 3},
-        { "Teacher_Joke_Talking_", 3},
-        { "Teacher_Joke_Cheating_", 3},
-        { "Teacher_Joke_Nothing_", 3},
-        { "Teacher_Joke_Walking_", 3},
-        { "Teacher_Bull_Talking_Sec_", 3},
-        { "Teacher_Bull_Cheating_Sec_", 3},
-        { "Teacher_Bull_Nothing_Sec_", 3},
-        { "Teacher_Bull_Walking_Sec_", 3},
-        { "Teacher_Joke_Talking_Sec_", 3},
-        { "Teacher_Joke_Cheating_Sec_", 3},
-        { "Teacher_Joke_Nothing_Sec_", 3},
-        { "Teacher_Joke_Walking_Sec_", 3},
-        { "Teacher_Bull_Pen_", 3},
-        { "Teacher_Bull_Pen_Sec_", 3},
-        { "Teacher_Joke_Pen_", 3},
-        { "Teacher_Joke_Pen_Sec_", 3},
-        { "Teacher_Thinking_", 5},
-        { "Teacher_Execute_Walking_", 3},
-        { "Teacher_Execute_Cheating_", 3},
-        { "Teacher_Execute_Talking_", 3},
-        { "Teacher_Answer_Permission_", 3},
-        { "Answer_", 3},
-    };
 
 
     private string resourceFile = "Script";
@@ -58,7 +27,12 @@ public class ScriptManager : Singleton<ScriptManager>
         SwitchLanguageVoice(voiceLanguage);
     }
     
-    public string[] GetText(string textKey)
+    public string[] GetText(KeyWord key_word)
+    {
+        return GetText(KeyWordManager.GetScriptKey(key_word));
+    }
+
+    private string[] GetText(string textKey)
     {
         string[] tmp = new string[] { };
         if (lines.TryGetValue(textKey, out tmp))
@@ -68,6 +42,12 @@ public class ScriptManager : Singleton<ScriptManager>
             //Сделать пустоту и нулевое время
             return new string[] { "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>" };
         }
+    }
+
+
+    public string GetLine(KeyWord key_word)
+    {
+        return GetLine(KeyWordManager.GetScriptKey(key_word));
     }
 
     public string GetLine(string textKey)
@@ -83,7 +63,12 @@ public class ScriptManager : Singleton<ScriptManager>
     }
 
 
-    public float[] GetFloat(string textKey)
+    public float[] GetFloat(KeyWord key_word)
+    {
+        return GetFloat(KeyWordManager.GetScriptKey(key_word));
+    }
+
+    private float[] GetFloat(string textKey)
     {
         string[] tmp = new string[] { };
         if (linesDuration.TryGetValue(textKey, out tmp))

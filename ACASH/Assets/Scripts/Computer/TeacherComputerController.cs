@@ -6,7 +6,7 @@ using UnityEngine;
 using Cinemachine;
 
 
-public class TeacherComputerController: MonoBehaviour
+public class TeacherComputerController: MonoBehaviour, I_Interaction
 {
     private TeacherComputer Comp;
 
@@ -62,6 +62,14 @@ public class TeacherComputerController: MonoBehaviour
 
         Enable(false);
     }
+
+
+    public void Interaction()
+    {
+        Enable(true);
+        Player.get.Action.doing = false;
+    }
+
 
 
     public void Enable(bool option)

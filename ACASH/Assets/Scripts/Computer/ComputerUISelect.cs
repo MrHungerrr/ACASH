@@ -2,7 +2,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ComputerSelect : MonoBehaviour
+public class ComputerUISelect : MonoBehaviour
 {
     [SerializeField]
     private Image[] images;

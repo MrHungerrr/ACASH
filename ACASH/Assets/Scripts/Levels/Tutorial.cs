@@ -28,7 +28,6 @@ public class Tutorial : Singleton<Tutorial>
         yield return new WaitForSeconds(1f);
 
         GameManager.get.SetLevel();
-        SubtitleManager.get.Say("Tutorial_Begining");
 
         while(SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
@@ -43,8 +42,6 @@ public class Tutorial : Singleton<Tutorial>
 
     private IEnumerator EndLevel()
     {
-        SubtitleManager.get.Say("Tutorial_Ending");
-
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 

@@ -31,10 +31,10 @@ public class InputManager : Singleton<InputManager>
     {
         Controls = new PlayerControls();
 
-        Controls.Gameplay.Camera.performed += ctx => PlayerCamera.get.rotateInput = ctx.ReadValue<Vector2>();
-        Controls.Gameplay.Camera.canceled += ctx => PlayerCamera.get.rotateInput = Vector2.zero;
-        Controls.Gameplay.Move.performed += ctx => Player.get.moveInput = ctx.ReadValue<Vector2>();
-        Controls.Gameplay.Move.canceled += ctx => Player.get.moveInput = Vector2.zero;
+        Controls.Gameplay.Camera.performed += ctx => Player.get.Camera.rotateInput = ctx.ReadValue<Vector2>();
+        Controls.Gameplay.Camera.canceled += ctx => Player.get.Camera.rotateInput = Vector2.zero;
+        Controls.Gameplay.Move.performed += ctx => Player.get.Move.moveInput = ctx.ReadValue<Vector2>();
+        Controls.Gameplay.Move.canceled += ctx => Player.get.Move.moveInput = Vector2.zero;
         Controls.Gameplay.Action.started += ctx => GameAction(true);
         Controls.Gameplay.Action.canceled += ctx => GameAction(false);
         Controls.Gameplay.Zoom.started += ctx => GameZoom(true);
@@ -43,10 +43,10 @@ public class InputManager : Singleton<InputManager>
         Controls.Gameplay.Run.canceled += ctx => GameRun(false);
         Controls.Gameplay.Crouch.started += ctx => GameCrouch(true);
         Controls.Gameplay.Crouch.canceled += ctx => GameCrouch(false);
-        Controls.Gameplay.Bull.started += ctx => GameBull(true);
-        Controls.Gameplay.Joke.started += ctx => GameJoke(true);
-        Controls.Gameplay.Bull.canceled += ctx => GameBull(false);
-        Controls.Gameplay.Joke.canceled += ctx => GameJoke(false);
+        Controls.Gameplay.Bull.started += ctx => GameTalkBad(true);
+        Controls.Gameplay.Joke.started += ctx => GameTalkGood(true);
+        Controls.Gameplay.Bull.canceled += ctx => GameTalkBad(false);
+        Controls.Gameplay.Joke.canceled += ctx => GameTalkGood(false);
         Controls.Gameplay.Shout.started += ctx => GameShout();
         Controls.Gameplay.Execute.started += ctx => GameExecute();
         Controls.Gameplay.HUD.started += ctx => GameHUD();
@@ -151,8 +151,6 @@ public class InputManager : Singleton<InputManager>
         gameType_last = gameType;
         gameType = type;
         CameraManager.get.GameplayType();
-
-        //Debug.Log("Тип управления - " + type);
     }
 
 
@@ -182,50 +180,51 @@ public class InputManager : Singleton<InputManager>
         }
     }
 
-
-
-
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Gameplay Input
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    private void GameAction(bool u)
+    private bool GameCanIDoAction()
     {
-        if (u)
-        {
-            Player.get.doing = true;
-        }
-        else if (Player.get.doing)
-        {
-            Player.get.doing = false;
-            Player.get.act = false;
-        }
+        return !Player.get.Talk.talking && !Player.get.Action.doing;
     }
 
-    private void GameZoom(bool u)
+
+
+    private void GameAction(bool option)
     {
-        if(u)
+        if (option)
         {
-            Player.get.look_closer = true;
-            PlayerCamera.get.zoom = true;
-            PlayerCamera.get.zooming = true;
+            if(GameCanIDoAction())
+                Player.get.Action.Doing(true);
         }
         else
         {
-            Player.get.look_closer = false;
-            PlayerCamera.get.zoom = false;
+            Player.get.Action.Doing(false);
         }
     }
 
-    private void GameRun(bool u)
+    private void GameZoom(bool option)
     {
-        if (u)
+        if (option)
         {
-            Player.get.SwitchMove("run");
+                Player.get.Camera.Zoom(true);
         }
-        else if (Player.get.typeOfMovement == "run")
+        else
         {
-            Player.get.SwitchMove("normal");
+            Player.get.Camera.Zoom(false);
+        }
+    }
+
+    private void GameRun(bool option)
+    {
+        if (option)
+        {
+            Player.get.Move.SwitchMove(PlayerMove.movement.Run);
+        }
+        else if (Player.get.Move.type_movement == PlayerMove.movement.Run)
+        {
+            Player.get.Move.SwitchMove(PlayerMove.movement.Normal);
         }
     }
 
@@ -235,83 +234,56 @@ public class InputManager : Singleton<InputManager>
         {
             if (hold_crouch)
             {
-                Player.get.SwitchMove("crouch");
+                Player.get.Move.SwitchMove(PlayerMove.movement.Crouch);
             }
             else
             {
-                if (Player.get.typeOfMovement != "crouch")
-                    Player.get.SwitchMove("crouch");
+                if (Player.get.Move.type_movement != PlayerMove.movement.Crouch)
+                    Player.get.Move.SwitchMove(PlayerMove.movement.Crouch);
                 else
-                    Player.get.SwitchMove("normal");
+                    Player.get.Move.SwitchMove(PlayerMove.movement.Normal);
             }
         }
         else
         {
             if (hold_crouch)
             {
-                Player.get.SwitchMove("normal");
+                Player.get.Move.SwitchMove(PlayerMove.movement.Normal);
             }
         }
     }
 
-    private void GameJoke(bool option)
+    private void GameTalkGood(bool option)
     {
         if (option)
         {
-            if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+            if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
             {
-                if (Player.get.asked)
-                    Player.get.Answer(true);
-                else
-                    Player.get.Bull(false);
+                Player.get.Talk.TalkGood();
             }
-
-            if (!Player.get.draw && Player.get.actReady && Player.get.actTag == "DeskBlock")
-            {         
-                Player.get.Draw(true);
-            }
-        }
-        else
-        {
-            if(Player.get.draw)
-                Player.get.Draw(false);
         }
     }
 
-    private void GameBull(bool option)
+    private void GameTalkBad(bool option)
     {
         if (option)
         {
-            if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+            if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
             {
-                if (Player.get.asked)
-                    Player.get.Answer(false);
-                else
-                    Player.get.Bull(true);
+                Player.get.Talk.TalkBad();
             }
-
-
-            if (!Player.get.draw && Player.get.actReady && Player.get.actTag == "DeskBlock")
-            {
-                Player.get.UnDraw(true);
-            }
-        }
-        else
-        {
-            if (Player.get.draw)
-                Player.get.UnDraw(false);
         }
     }
 
     private void GameShout()
     {
-        if (!Player.get.act)
-            Player.get.Shout();
+        if(GameCanIDoAction())
+            Player.get.Talk.Shout();
     }
 
     private void GameExecute()
     {
-        if (!Player.get.act && Player.get.actReady && Player.get.actTag == "Scholar")
+        if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
         {
             HUDManager.get.ExecuteHUD(true);
             SwitchGameInput("execute");
@@ -328,7 +300,6 @@ public class InputManager : Singleton<InputManager>
         Menu.get.MenuEnable(true);
         SwitchGameInput("menu");
     }
-
 
 
 

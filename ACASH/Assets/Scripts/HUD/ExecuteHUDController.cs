@@ -79,7 +79,7 @@ public class ExecuteHUDController : Singleton<ExecuteHUDController>
 
     public void Accept()
     {
-        Player.get.Execute(reasons[selected]);
+        Player.get.Talk.Execute(reasons[selected]);
         InputManager.get.ExecuteBack();
     }
 

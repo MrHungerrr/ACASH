@@ -8,9 +8,8 @@ public class ScholarQuestions
     public bool answer { get; private set; }
     public bool question_answered { get; private set; }
     private float question_t;
-    public string main_key { get; private set; }
-    private string question_key;
-    private string answer_key;
+    public KeyWord question_key { get; private set; }
+    private KeyWord answer_key;
 
 
     private const float question_const_t = 10f;
@@ -19,8 +18,8 @@ public class ScholarQuestions
     public ScholarQuestions(Scholar scholar)
     {
         this.Scholar = scholar;
-        question_key = "Question_";
-        answer_key = "Answer_";
+        question_key = new KeyWord(scholar.type, "Question");
+        answer_key = new KeyWord(scholar.type, "Answer");
     }
 
 
@@ -32,8 +31,8 @@ public class ScholarQuestions
 
     public void Ask(string key)
     {
-        main_key = key;
-        Scholar.Talk.Question(question_key + key);
+        question_key *= key;
+        Scholar.Talk.Question(question_key);
         question = true;
         question_answered = false;
         question_t = question_const_t;
@@ -58,19 +57,15 @@ public class ScholarQuestions
         }
     }
 
-    public void TeacherAnswer(bool answer)
+    public void Answer(bool answer)
     {
         this.answer = answer;
         question_answered = true;
 
-        string key;
+        answer_key.Reset();
+        answer_key.Answer(answer);
 
-        if (answer)
-            key = "_Yes";
-        else
-            key = "_No";
-
-        Scholar.Talk.SayWithoutStop(answer_key + key);
+        Scholar.Talk.SayWithoutStop(answer_key);
 
         QuestionEnd();
     }

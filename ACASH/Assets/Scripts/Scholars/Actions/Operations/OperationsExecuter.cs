@@ -149,7 +149,6 @@ public class OperationsExecuter : OperationsExecuterBase
     private IEnumerator Execute()
     {
         Scholar.Select.Selectable(false);
-        Scholar.executed = true;
         yield return new WaitForSeconds(1f);
 
         Scholar.Emotions.ChangeEmotion("dead");

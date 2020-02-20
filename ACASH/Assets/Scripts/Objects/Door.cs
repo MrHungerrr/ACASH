@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, I_Interaction
 {
 
     private bool open = false;
@@ -56,6 +56,23 @@ public class Door : MonoBehaviour
 
         ScholarOpen();
     }
+
+
+
+    public void Interaction()
+    {
+        if(Player.get.Move.type_movement != PlayerMove.movement.Crouch)
+        {
+            DoorInteract(Player.get.Move.Position());
+        }
+        else
+        {
+            DoorQuietInteract(Player.get.Move.Position());
+        }
+
+        Player.get.Action.doing = false;
+    }
+
 
     public void DoorInteract(Vector3 pos)
     {

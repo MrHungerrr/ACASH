@@ -69,43 +69,33 @@ public class CrossHair : Singleton<CrossHair>
 
     public void SelectHair()
     {
-        switch (Player.get.actTag)
+        if (Player.get.Select.selected)
         {
-           /* case "Scholar":
-                {
-                    SwitchHair("Speak");
-                    break;
-                }
-                */
-            case "Computer":
-                {
-                    if (Player.get.actSpecialOption)
+            switch (Player.get.Select.selected_obj.tag)
+            {
+                /* case "Scholar":
+                     {
+                         SwitchHair("Speak");
+                         break;
+                     }
+                     */
+                case "Computer":
+                case "Elevator":
+                case "Door":
+                    {
                         SwitchHair("Action");
-                    else
+                        break;
+                    }
+                default:
+                    {
                         SwitchHair("Simple");
-                    break;
-                }
-            case "Door":
-                {
-                    if(Player.get.actSpecialOption)
-                        SwitchHair("Action");
-                    else
-                        SwitchHair("Cant");
-                    break;
-                }
-            case "Elevator":
-                {
-                    if (Player.get.actSpecialOption)
-                        SwitchHair("Action");
-                    else
-                        SwitchHair("Simple");
-                    break;
-                }
-            default:
-                {
-                    SwitchHair("Simple");
-                    break;
-                }
+                        break;
+                    }
+            }
+        }
+        else
+        {
+            SwitchHair("Simple");
         }
     }
 

@@ -17,7 +17,7 @@ public class ComputerUICollider
     public int y_c;
 
     public GameObject obj;
-    private ComputerSelect select;
+    private ComputerUISelect select;
 
     public ComputerUICollider(GameObject o)
     {
@@ -38,7 +38,7 @@ public class ComputerUICollider
         x_c = x_p + (int)rt.rect.width;
         y_c = y_p - (int)rt.rect.height;
 
-        select = obj.GetComponent<ComputerSelect>();
+        select = obj.GetComponent<ComputerUISelect>();
     }
 
     public void DebugWrite()

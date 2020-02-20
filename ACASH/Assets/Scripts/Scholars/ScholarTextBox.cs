@@ -59,23 +59,22 @@ public class ScholarTextBox : MonoBehaviour
         }
     }
 
-    public void Say(string key)
+    public void Say(KeyWord key_word)
     {
-        Say(key, 1f);
+        Say(key_word, 1f);
     }
 
-    public void Say(string key, float t)
+    public void Say(KeyWord key_word, float t)
     {
         Clear();
-        StartCoroutine(PlaySub(key));
+        StartCoroutine(PlaySub(key_word));
         timeClear_N = t;
     }
 
-    public void Question(string key)
+    public void Question(KeyWord key_word)
     {
-        Clear();
-        StartCoroutine(PlaySub(key));
         question = true;
+        Say(key_word, 1f);
     }
 
     public void Clear()
@@ -92,10 +91,11 @@ public class ScholarTextBox : MonoBehaviour
 
 
 
-    private IEnumerator PlaySub(string key)
+    private IEnumerator PlaySub(KeyWord key_word)
     {
         act = true;
-        var script = ScriptManager.get.GetText(key);
+        var script = ScriptManager.get.GetText(key_word);
+
         if (script != null)
         {
             foreach (var line in script)

@@ -69,9 +69,9 @@ public class HUDManager : Singleton<HUDManager>
         active = true;
     }
 
-    public void ReportHUD(string error_key)
+    public void ReportHUD(KeyWord information_key)
     {
-        HUDController.get.Report(ScriptManager.get.GetText(error_key)[0]);
+        HUDController.get.Report(ScriptManager.get.GetLine(information_key));
         huds["Report"].Select(true);
 
         hud_cd = hud_const_cd;

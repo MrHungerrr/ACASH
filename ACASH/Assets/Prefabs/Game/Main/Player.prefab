@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6384746390446829954}
   - component: {fileID: 6384746390446829955}
   - component: {fileID: 6384746390446829952}
+  - component: {fileID: 8985340960532470398}
+  - component: {fileID: 3750878291158280565}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -63,17 +65,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11edc6b69dd63794fbb1e407044bf305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8985340960532470398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6384746390446829958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cff7f10c8ce6f4ebb8c6d0495e2455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   moveInput: {x: 0, y: 0}
-  typeOfMovement: 
-  look_closer: 0
-  draw: 0
-  doing: 0
-  asked: 0
-  act: 0
-  actReady: 0
-  actTag: 
-  actObject: {fileID: 0}
-  actSpecialOption: 0
+  type_movement: 0
+--- !u!114 &3750878291158280565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6384746390446829958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b137f785d47e57f41823797b7d429f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scholar: {fileID: 0}
 --- !u!1 &6384746390683932918
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,8 +217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateInput: {x: 0, y: 0}
-  zoom: 0
-  zooming: 0
 --- !u!114 &6384746390788808964
 MonoBehaviour:
   m_ObjectHideFlags: 0

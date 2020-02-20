@@ -6,6 +6,15 @@ public class ScholarView
 {
     private Scholar Scholar;
 
+    public enum view
+    {
+        Walking,
+        Cheating,
+        Talking
+    }
+
+    private view now_view;
+
 
     public ScholarView(Scholar Scholar)
     {
@@ -16,9 +25,9 @@ public class ScholarView
 
     public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
     {
-        { "Talking_", false },
-        { "Cheating_", false },
-        { "Walking_", false },
+        { "Talking", false },
+        { "Cheating", false },
+        { "Walking", false },
     };
 
 
@@ -26,9 +35,9 @@ public class ScholarView
 
     public Dictionary<string, bool> reason = new Dictionary<string, bool>()
     {
-        { "Walking_", false },
-        { "Talking_", false },
-        { "Cheating_", false },
+        { "Walking", false },
+        { "Talking", false },
+        { "Cheating", false },
     };
 
 
@@ -44,15 +53,23 @@ public class ScholarView
     {
         if (Scholar.Talk.talking)
         {
-            return "Talking_";
+            return "Talking";
         }
         else if (Scholar.Move.walking)
         {
-            return "Walking_";
+            return "Walking";
         }
         else
         {
-            return "Cheating_";
+            return "Cheating";
         }
+    }
+
+
+    public bool GetRemarksOnView()
+    {
+        bool answer = remarks[GetView()];
+        remarks[GetView()] = true;
+        return answer;
     }
 }

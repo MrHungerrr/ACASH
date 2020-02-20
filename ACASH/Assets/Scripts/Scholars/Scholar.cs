@@ -13,11 +13,6 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public string type { get; private set; }
 
-    //Базовое
-    public string keyWord { get; private set; }
-    [HideInInspector]
-    public bool executed;
-
 
 
 
@@ -47,7 +42,7 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ScholarQuestions Question { get; private set; }
     [HideInInspector]
-    public ScholarBulling Bull { get; private set; }
+    public ScholarConverastion Conversation { get; private set; }
     [HideInInspector]
     public ScholarReactions Reaction { get; private set; }
     [HideInInspector]
@@ -60,6 +55,8 @@ public class Scholar : MonoBehaviour
     public ScholarLocation Location { get; private set; }
     [HideInInspector]
     public ScholarCheck Check { get; private set; }
+    [HideInInspector]
+    public ScholarExecute Execute { get; private set; }
 
 
 
@@ -88,24 +85,26 @@ public class Scholar : MonoBehaviour
         Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
         Question = new ScholarQuestions(this);
         Location = new ScholarLocation(this);
+        Execute = new ScholarExecute(this);
         Reaction = new ScholarReactions();
         Action = new ScholarActions(this);
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
-        Bull = new ScholarBulling(this);
+        Conversation = new ScholarConverastion(this);
         Cheat = new ScholarCheat(this);
         Check = new ScholarCheck(this);
         Info = new ScholarInfo(this);
         View = new ScholarView(this);
         Talk = new ScholarTalk(this);
         Test = new ScholarTest();
+
     }
 
 
 
     void Update()
     {
-        if (!executed)
+        if (!Execute.executed)
         {
             Test.Update();
             Question.Update();
@@ -117,7 +116,7 @@ public class Scholar : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!executed)
+        if (!Execute.executed)
             Stress.MoodTypeTimeUpdate();
     }
 
@@ -133,24 +132,14 @@ public class Scholar : MonoBehaviour
     }
 
 
-
-    //=================================================================================================================================================
-    //Исключение
-
-    public void Execute(string key)
-    {
-        Stop();
-        Select.Selectable(false);
-        TextBox.Say(keyWord + key);
-        Action.DoAction("Execute");
-    }
-
     //========================================================================================================
     //Изменение типа ученика
 
     public void ChangeType(string t)
     {
         type = t;
-        keyWord = type + "_";
+
+        if (Talk != null)
+            Talk.key_word = new KeyWord(t);
     }
 }

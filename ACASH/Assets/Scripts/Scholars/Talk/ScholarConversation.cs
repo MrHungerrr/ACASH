@@ -2,34 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScholarBulling
+public class ScholarConverastion
 {
 
     private Scholar Scholar;
 
 
-    public ScholarBulling(Scholar Scholar)
+    public ScholarConverastion(Scholar Scholar)
     {
         this.Scholar = Scholar;
     }
 
 
+
+
     //========================================================================================================
     //Наезд на ученика
 
-    public void HearBulling(bool strong)
+    public void HearTeacherTalking(bool strong)
     {
+        Scholar.Emotions.ChangeEmotion("suprised");
+
         if (strong)
         {
-            Scholar.Emotions.ChangeEmotion("suprised");
+            //Плохая реакция
         }
         else
         {
-            Scholar.Emotions.ChangeEmotion("suprised");
+            //Хорошая реакция
         }
     }
 
-    public void Bulling(string key, bool strong)
+
+    public void Listening(KeyWord key, bool strong)
     {
         if (strong)
         {
@@ -46,16 +51,11 @@ public class ScholarBulling
 
 
 
-    public void Answer(string key)
+    public void Answer(KeyWord key)
     {
-        if (IsTeacherBullingRight())
-        {
-            Scholar.Talk.Say(key + "_Yes");
-        }
-        else
-        {
-            Scholar.Talk.Say(key + "_No");
-        }
+        key.Answer(IsTeacherBullingRight());
+
+        Scholar.Talk.Say(key);
     }
 
 
@@ -67,21 +67,21 @@ public class ScholarBulling
     {
         switch (Scholar.View.GetView())
         {
-            case "Cheating_":
+            case "Cheating":
                 {
                     if (Scholar.Cheat.cheating)
                         return true;
                     else
                         return false;
                 }
-            case "Talking_":
+            case "Talking":
                 {
                     if (Scholar.Talk.talking)
                         return true;
                     else
                         return false;
                 }
-            case "Walking_":
+            case "Walking":
                 {
                     if (Scholar.Move.walking) /*или на улице)*/
                         return true;

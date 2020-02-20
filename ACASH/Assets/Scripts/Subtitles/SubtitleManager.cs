@@ -8,7 +8,7 @@ using Single;
 public class SubtitleManager : Singleton<SubtitleManager>
 {
     private SubtitlePlay subPlay;
-    private string lastKey;
+    private KeyWord last_key;
     [HideInInspector]
     public bool act;
 
@@ -19,44 +19,45 @@ public class SubtitleManager : Singleton<SubtitleManager>
     }
 
 
-    public void Say(string key)
+    public void Say(KeyWord key)
     {
         StartCoroutine(PlaySub(key));
     }
 
     public void StopSubtitile()
     {
-        if (lastKey != string.Empty)
+        if (last_key != null)
         {
             StopAllCoroutines();
-            Debug.Log(lastKey);
+            Debug.Log("Остановка субтитров - " + last_key);
         }
-        Debug.Log("Da");
+
         subPlay.Clear();
         //Остановка аудиозаписи
     }
 
 
 
-    private IEnumerator PlaySub(string key)
+    private IEnumerator PlaySub(KeyWord key_word)
     {
         act = true;
-        lastKey = key;
-        int i = 0;
-        var script = ScriptManager.get.GetText(key);
-        var duration = ScriptManager.get.GetFloat(key);
+        last_key = key_word;
+
+        var script = ScriptManager.get.GetText(key_word);
+        var duration = ScriptManager.get.GetFloat(key_word);
         //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
 
-
         Debug.Log("<color=#0000ff>PlaySub</color>");
-        foreach ( var line in script)
+
+        for (int i = 0; i < script.Length; i++)
         {
             yield return new WaitForSeconds(0.05f);
-            subPlay.SetText(line);
+            subPlay.SetText(script[i]);
             yield return new WaitForSeconds(duration[i]);
             subPlay.Clear();
             i++;
         }
+
         act = false;
     }
 

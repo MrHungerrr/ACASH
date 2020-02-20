@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5745387303227369598}
   - component: {fileID: 7316654875584126191}
   - component: {fileID: 6102934681014016182}
-  - component: {fileID: 8349175536294714912}
   - component: {fileID: 3045564628971498274}
   - component: {fileID: 4281561636145397638}
+  - component: {fileID: 6406852879386823206}
   m_Layer: 9
   m_Name: Computer
   m_TagString: Computer
@@ -56,6 +56,7 @@ MonoBehaviour:
   SS: {fileID: 0}
   Numpad: {fileID: 0}
   select: 
+  Col: {fileID: 0}
   Controller: {fileID: 0}
 --- !u!114 &6102934681014016182
 MonoBehaviour:
@@ -74,23 +75,6 @@ MonoBehaviour:
   moving: 0
   mouse_collision: 
   collision: 0
---- !u!114 &8349175536294714912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2510300815838664878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abb4b19280d5f34abf82ecf4188e52c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 6943516421241797333}
-  - {fileID: 5016681218937591864}
-  - {fileID: 8867073171060918456}
-  texts: []
 --- !u!65 &3045564628971498274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,6 +101,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14861396, y: 0.014388427, z: 0.07576084}
   m_Center: {x: 0.023982689, y: 0.0073269065, z: 0.07279852}
+--- !u!114 &6406852879386823206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510300815838664878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f31c818e52cf92468225a42d79acaf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 6943516421241797333}
+  - {fileID: 5016681218937591864}
+  - {fileID: 8867073171060918456}
 --- !u!65 &2479553042571920088
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using Single;
 
-public class ElevatorController : Singleton<ElevatorController>
+public class ElevatorController : Singleton<ElevatorController>, I_Interaction
 {
 
     TextMeshPro text;
@@ -15,6 +15,12 @@ public class ElevatorController : Singleton<ElevatorController>
     private void Awake()
     {
         text = transform.parent.GetComponentInChildren<TextMeshPro>();
+    }
+
+    public void Interaction()
+    {
+        Open();
+        Player.get.Action.doing = false;
     }
 
     public void Ready()

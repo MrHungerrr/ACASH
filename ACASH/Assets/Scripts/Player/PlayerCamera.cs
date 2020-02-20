@@ -17,9 +17,8 @@ public class PlayerCamera : Singleton<PlayerCamera>
     public Vector2 rotateInput;
     private Vector2 rotate;
     [HideInInspector]
-    public bool zoom;
-    [HideInInspector]
-    public bool zooming;
+    public bool zoom { get; private set; } = false;
+    private bool zooming;
     private float normFOV = 70;
     private float zoomFOV = 15;
     private float FOV;
@@ -102,6 +101,17 @@ public class PlayerCamera : Singleton<PlayerCamera>
         eulerRotation.x = value;
         transform.eulerAngles = eulerRotation;
     }
+
+
+
+    public void Zoom(bool option)
+    {
+        zoom = option;
+        zooming = true;
+    }
+
+
+
 
     private void Zoom()
     {

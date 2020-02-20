@@ -4,21 +4,29 @@ using System.Collections;
 public class PlayerSelecting
 {
 
-    private LayerMask select_layer_mask;
-    private LayerMask sight_layer_mask;
 
-
-    private I_ObjectSelect select;
+    private LayerMask select_layer_mask = LayerMask.GetMask("Selectable", "Default");
+    private LayerMask sight_layer_mask = LayerMask.GetMask("Sight Layer");
     private float select_max_range { get; } = 2f;
-    public GameObject selected_obj { get; private set; }
+
+
     public bool selected { get; private set; }
+    private I_ObjectSelect select;
+    public GameObject selected_obj { get; private set; }
+    public Scholar selected_scholar;
+
+
+
 
 
 
     public void Update()
     {
-        RayCasting();
-        CrossHair.get.SelectHair();
+        if (!Player.get.Camera.zoom)
+        {
+            RayCasting();
+            CrossHair.get.SelectHair();
+        }
     }
 
 
@@ -62,25 +70,57 @@ public class PlayerSelecting
     }
 
 
+    public bool TryGetScholar()
+    {
+        if (selected_obj != null)
+        {
+            if (selected_obj.TryGetComponent<Scholar>(out selected_scholar))
+            {
+                if (!selected_scholar.Execute.executed)
+                {
+                    Player.get.Talk.scholar = selected_scholar;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
 
     private void FirstLook(GameObject obj)
     {
         Deselect();
 
-        selected_obj = obj;
-
-        if (selected_obj.TryGetComponent<I_ObjectSelect>(out select))
-            CanISelect();
+        if (obj.layer == 9)
+        {
+            selected_obj = obj;
+            Debug.Log(selected_obj.tag);
+     
+            if (selected_obj.TryGetComponent(out select))
+            {
+                CanISelect();
+            }
+            else
+                select = null;
+        }
         else
+        {
+            selected_obj = null;
             select = null;
+        }
     }
 
     private void CanISelect()
     {
         if (select.CanISelect())
+        {
             Select();
+        }
         else
+        {
             Deselect();
+        }
     }
 
     private void Select()
@@ -101,7 +141,6 @@ public class PlayerSelecting
             selected = false;
         }
     }
-
 
 
 }

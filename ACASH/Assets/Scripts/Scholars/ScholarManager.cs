@@ -64,6 +64,11 @@ public class ScholarManager : Singleton<ScholarManager>
     }
 
 
+    public void Shout(int value)
+    {
+        Stress(value);
+    }
+
     public void Stress(int value)
     {
         for (int i = 0; i < scholars.Length; i++)

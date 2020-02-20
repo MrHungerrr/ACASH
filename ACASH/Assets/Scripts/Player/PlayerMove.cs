@@ -5,7 +5,6 @@ public class PlayerMove : MonoBehaviour
 {
     private CharacterController CharController;
 
-
     [HideInInspector]
     public Vector2 moveInput;
     private Vector2 move;
@@ -33,9 +32,9 @@ public class PlayerMove : MonoBehaviour
 
 
 
-    public void SetupMove()
+    public void SetupMove(CharacterController controller)
     {
-        CharController = GetComponent<CharacterController>();
+        CharController = controller;
         SwitchMove(movement.Normal);
     }
 
@@ -86,6 +85,12 @@ public class PlayerMove : MonoBehaviour
             CharController.SimpleMove(forwardMovement + rightMovement);
             ScholarManager.get.Hear(movementSound);
         }
+    }
+
+
+    public Vector3 Position()
+    {
+        return transform.position;
     }
 
 }

@@ -18,7 +18,7 @@ public class ComputerUIColliderManager : MonoBehaviour
     [ContextMenu("Fill")]
     public void Fill()
     {
-        SIC<ComputerSelect> search = new SIC<ComputerSelect>();
+        SIC<ComputerUISelect> search = new SIC<ComputerUISelect>();
         search.Components(transform, out ui_colliders);
     }
 
@@ -29,7 +29,7 @@ public class ComputerUIColliderManager : MonoBehaviour
 
         void Search(GameObject obj)
         {
-            if (obj.tag == "ComputerUIObject" || obj.GetComponent<ComputerSelect>() != null)
+            if (obj.tag == "ComputerUIObject" || obj.GetComponent<ComputerUISelect>() != null)
             {
                 res.Add(obj);
                 obj.tag = "ComputerUIObject";
@@ -48,7 +48,7 @@ public class ComputerUIColliderManager : MonoBehaviour
 
     public void SetColliders()
     {
-        SIC<ComputerSelect> search = new SIC<ComputerSelect>();
+        SIC<ComputerUISelect> search = new SIC<ComputerUISelect>();
         search.Components(transform, out ui_colliders);
 
         List <ComputerUICollider> colliders_list = new List<ComputerUICollider>();

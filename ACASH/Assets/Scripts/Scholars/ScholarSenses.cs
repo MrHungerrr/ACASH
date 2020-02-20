@@ -48,8 +48,11 @@ public class ScholarSenses
 
     public void ISeeYou()
     {
-        T_look_at_us = true;
-        T_look_vanish_time = T_look_vanish_time_const;
+        if (T_here)
+        {
+            T_look_at_us = true;
+            T_look_vanish_time = T_look_vanish_time_const;
+        }
     }
 
 
@@ -101,7 +104,7 @@ public class ScholarSenses
 
     private void TeacherCalculate()
     {
-        if (Player.get.look_closer)
+        if (Player.get.Camera.zoom)
             T_look_coef = 2;
         else
             T_look_coef = 1;
@@ -174,7 +177,7 @@ public class ScholarSenses
 
     private void WhereTeacher()
     {
-        Debug.Log("T Behind Wall - " + T_behind_wall);
+        //Debug.Log("T Behind Wall - " + T_behind_wall);
 
         if (!T_behind_wall)
         {
@@ -220,7 +223,7 @@ public class ScholarSenses
         }
 
         //Debug.Log("T In Sight - " + T_in_sight);
-        Debug.Log("T Here - " + T_here);
+        // Debug.Log("T Here - " + T_here);
     }
 
   

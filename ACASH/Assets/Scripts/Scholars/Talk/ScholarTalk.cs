@@ -8,10 +8,13 @@ public class ScholarTalk
     public bool talking { get; private set; }
     private string type_of_talk;
 
+    public KeyWord key_word;
+
 
     public ScholarTalk(Scholar scholar)
     {
         this.Scholar = scholar;
+        key_word = new KeyWord(scholar.type);
     }
 
 
@@ -22,37 +25,65 @@ public class ScholarTalk
     }
 
 
-    public void Say(string key)
+    public void Say(KeyWord key)
     {
+        MakeKey(key);
         type_of_talk = "talk";
         Scholar.Stop();
         Scholar.Select.Selectable(false);
-        Scholar.TextBox.Say(Scholar.keyWord + key);
+        Scholar.TextBox.Say(key_word);
         talking = true;
     }
 
-    public void SayWithoutStop(string key)
+    public void SayWithoutStop(KeyWord key)
     {
+        MakeKey(key);
         type_of_talk = "talk";
         Scholar.Select.Selectable(false);
-        Scholar.TextBox.Say(Scholar.keyWord + key);
+        Scholar.TextBox.Say(key_word);
+        talking = true;
+    }
+
+    public void SayThoughts(KeyWord key)
+    {
+        MakeKey(key);
+        type_of_talk = "thoughts";
+        Scholar.TextBox.Say(key_word);
         talking = true;
     }
 
     public void SayThoughts(string key)
     {
+        MakeKey(key);
         type_of_talk = "thoughts";
-        Scholar.TextBox.Say(Scholar.keyWord + key);
+        Scholar.TextBox.Say(key_word);
         talking = true;
     }
 
-    public void Question(string key)
+
+
+    public void Question(KeyWord key)
     {
+        MakeKey(key);
         type_of_talk = "question";
         Scholar.Select.Selectable(false);
-        Scholar.TextBox.Question(Scholar.keyWord + key);
+        Scholar.TextBox.Question(key_word);
         talking = true;
     }
+
+
+    public void MakeKey(KeyWord key)
+    {
+        key_word *= key;
+    }
+
+    public void MakeKey(string key)
+    {
+        Debug.Log(key);
+        Debug.Log(key_word.GetFullWord());
+        key_word *= key;
+    }
+
 
 
     private void Talk()
