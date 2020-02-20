@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 4315416963588102686}
   - component: {fileID: 2054621161542321476}
   m_Layer: 5
-  m_Name: Backspace
+  m_Name: Button 1x1
   m_TagString: ComputerUIObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1130, y: -780}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 140, y: 140}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2054621161542321476
