@@ -8,9 +8,9 @@ public class LoginController : MonoBehaviour
 
     private Computer Comp;
     [HideInInspector]
-    public InputField login;
+    public InputFieldCode login;
     [HideInInspector]
-    public InputField password;
+    public InputFieldCode password;
     [HideInInspector]
     public User user;
     private TextMeshProUGUI invalid;
@@ -21,8 +21,8 @@ public class LoginController : MonoBehaviour
     {
         Transform buf = transform.Find("Login");
 
-        login = buf.Find("Input Field Login").GetComponent<InputField>();
-        password = buf.Find("Input Field Password").GetComponent<InputField>();
+        login = buf.Find("Input Field Login").GetComponent<InputFieldCode>();
+        password = buf.Find("Input Field Password").GetComponent<InputFieldCode>();
         invalid = buf.Find("Error Message").GetComponent<TextMeshProUGUI>();
 
         login.SetInputField();
@@ -33,13 +33,9 @@ public class LoginController : MonoBehaviour
 
     public void Reset()
     {
-        if (Comp != null)
-        {
-            login.Reset();
-            password.Reset();
-            Comp.Numpad.Set(login);
-            invalid.text = "";
-        }
+        login.Reset();
+        password.Reset();
+        invalid.text = "";
     }
 
 

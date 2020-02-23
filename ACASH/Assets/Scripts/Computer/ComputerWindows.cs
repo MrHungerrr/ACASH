@@ -47,6 +47,9 @@ public class ComputerWindows : MonoBehaviour
     {
         switch (type)
         {
+            //========================================================
+            // Окна
+
             case "Login":
                 {
                     Disable();
@@ -54,6 +57,7 @@ public class ComputerWindows : MonoBehaviour
                     EnableTaskBar(false);
                     Comp.Numpad.Enable(true);
                     Comp.Login.Reset();
+                    Comp.Numpad.Set(Comp.Login.login);
                     Set(type);
                     break;
                 }
@@ -88,6 +92,22 @@ public class ComputerWindows : MonoBehaviour
                     Set(type);
                     break;
                 }
+            case "Calculator":
+                {
+                    Disable("Desktop");
+                    SetProgram(type);
+                    Set(type);
+                    Comp.Numpad.Enable(true);
+                    Comp.Calculator.Reset();
+                    Comp.Numpad.Set(Comp.Calculator.input);
+                    break;
+                }
+
+
+
+            //========================================================
+            // Кнопки
+
             case "Refresh":
                 {
                     Comp.SS.Refresh(); 
@@ -131,6 +151,36 @@ public class ComputerWindows : MonoBehaviour
             case "4":
                 {
                     Comp.Numpad.Plus(4);
+                    break;
+                }
+            case "Plus":
+                {
+                    Comp.Calculator.input.Plus(Calculator.operations.Plus);
+                    break;
+                }
+            case "Minus":
+                {
+                    Comp.Calculator.input.Plus(Calculator.operations.Minus);
+                    break;
+                }
+            case "Multiply":
+                {
+                    Comp.Calculator.input.Plus(Calculator.operations.Multiply);
+                    break;
+                }
+            case "Divide":
+                {
+                    Comp.Calculator.input.Plus(Calculator.operations.Divide);
+                    break;
+                }
+            case "Mod":
+                {
+                    Comp.Calculator.input.Plus(Calculator.operations.Mod);
+                    break;
+                }
+            case "Calculate":
+                {
+                    Comp.Calculator.Calculate();
                     break;
                 }
             case "Backspace":
@@ -182,6 +232,13 @@ public class ComputerWindows : MonoBehaviour
                 }
             case "Info":
                 {
+                    CloseProgram();
+                    Set("Desktop");
+                    break;
+                }
+            case "Calculator":
+                {
+                    Comp.Numpad.Enable(false);
                     CloseProgram();
                     Set("Desktop");
                     break;

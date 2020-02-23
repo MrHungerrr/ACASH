@@ -18,6 +18,8 @@ public abstract class Computer : MonoBehaviour
     public StudentStress SS;
     [HideInInspector]
     public NumpadController Numpad;
+    [HideInInspector]
+    public CalculatorController Calculator;
 
     [HideInInspector]
     public string select;
@@ -35,10 +37,13 @@ public abstract class Computer : MonoBehaviour
         Desktop.SetDesktopController();
 
         SS = win.GetComponent<StudentStress>();
-        SS.Set();
+        SS.SetSS();
 
         Windows = win.GetComponent<ComputerWindows>();
         Windows.SetWindows(this);
+
+        Calculator = win.GetComponent<CalculatorController>();
+        Calculator.SetCalculator();
     }
 
     public virtual void SetScholars()

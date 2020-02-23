@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487e7f96b8582664fa01b24a42a8b72c, type: 3}
   m_Name: Teacher
   m_EditorClassIdentifier: 
-  login: 
-  password: 1234
+  login: 0000
+  password: 0000
   background: {fileID: 21300000, guid: 21b1c1efd95c2b547b67e125a649a246, type: 3}
   icons:
   - {fileID: 11400000, guid: b756de1b1c8fe1f42965a87572aa19ce, type: 2}
   - {fileID: 11400000, guid: dc086b8b907b5b249bf1bfdb4281ada2, type: 2}
   - {fileID: 11400000, guid: 5cb8917bcc68aa64f9e77aa13d40d8a0, type: 2}
+  - {fileID: 11400000, guid: 265ff74a11c0f4e45b905f824584ed7c, type: 2}
+  - {fileID: 11400000, guid: 020bbebfc359f7347b9785b61618f933, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class NumpadController: MonoBehaviour
 {
 
-    private InputField input_field;
+    private A_InputField input_field;
 
 
     public void Enable(bool option)
@@ -14,7 +14,7 @@ public class NumpadController: MonoBehaviour
         this.gameObject.SetActive(option);
     }
 
-    public void Set(InputField new_input)
+    public void Set(A_InputField new_input)
     {
         if (input_field != null)
             input_field.Select(false);
