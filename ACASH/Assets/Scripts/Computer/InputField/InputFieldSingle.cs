@@ -4,18 +4,16 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class InputFieldCode : A_InputField
+public class InputFieldSingle : A_InputField
 {
 
-    private GameObject arrow;
     [HideInInspector]
     private string text_display;
 
 
     public override void SetInputField()
     {
-        length = 4;
-        arrow = transform.Find("Arrow").gameObject;
+        length = 3;
         base.SetInputField();
     }
 
@@ -36,6 +34,5 @@ public class InputFieldCode : A_InputField
     public override void Select(bool option)
     {
         base.Select(option);
-        arrow.SetActive(option);
     }
 }
