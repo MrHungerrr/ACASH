@@ -63,7 +63,7 @@ public class PlayerSelecting
         {
             if (hits[i].transform != null)
             {
-                Scholar scholar = hits[i].transform.parent.Find("Scholar").GetComponentInChildren<Scholar>();
+                Scholar scholar = hits[i].transform.parent.Find("Body").GetComponentInChildren<Scholar>();
                 scholar.Senses.ISeeYou();
             }
         }
@@ -95,7 +95,6 @@ public class PlayerSelecting
         if (obj.layer == 9)
         {
             selected_obj = obj;
-            Debug.Log(selected_obj.tag);
      
             if (selected_obj.TryGetComponent(out select))
             {

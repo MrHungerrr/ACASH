@@ -6,7 +6,7 @@ using TMPro;
 public class LoginController : MonoBehaviour
 {
 
-    private Computer Comp;
+    private A_Computer Comp;
     [HideInInspector]
     public InputFieldSelectable login;
     [HideInInspector]
@@ -17,7 +17,7 @@ public class LoginController : MonoBehaviour
 
 
 
-    public void SetLoginController(Computer c)
+    public void SetLoginController(A_Computer c)
     {
         Transform buf = transform.Find("Login");
 
@@ -59,7 +59,7 @@ public class LoginController : MonoBehaviour
             if(user.password == password.text)
             {
                 Comp.Desktop.SetUser(user);
-                Comp.Windows.Enter("Desktop");
+                Comp.Commands.Do("Desktop");
                 //Обновление коллайдеров
             }
             else

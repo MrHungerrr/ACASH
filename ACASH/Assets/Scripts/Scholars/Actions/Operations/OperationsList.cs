@@ -65,6 +65,11 @@ public static class OperationsList
         new Special(GetO.special.Write, 5),
     };
 
+    private static Operation[] Execute = new Operation[]
+    {
+        new Operation(GetO.operation.Execute),
+    };
+
 
 
     public static Dictionary<string, Operation[]> operations = new Dictionary<string, Operation[]>()
@@ -74,7 +79,8 @@ public static class OperationsList
         {"Sink_2", Sink_2},
         {"Ask_1", Ask_1},
         {"Think_Aloud_1", Think_Aloud_1},
-        {"Write", Write}
+        {"Write", Write},
+        {"Execute", Execute }
     };
 
 }

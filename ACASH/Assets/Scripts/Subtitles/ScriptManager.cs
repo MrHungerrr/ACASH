@@ -9,7 +9,7 @@ public class ScriptManager : Singleton<ScriptManager>
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
     private Dictionary<string, string[]> linesDuration = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
 
-
+    private string resourcePath = "Subtitles/";
     private string resourceFile = "Script";
     private string resourceFileDuration = "AudioDuration";
     [HideInInspector]
@@ -91,7 +91,7 @@ public class ScriptManager : Singleton<ScriptManager>
     public void SwitchLanguageText(string lang)
     {
         textLanguage = lang;
-        string scriptFileName = resourceFile + "." + lang;
+        string scriptFileName = resourcePath + resourceFile + "." + lang;
         var textAsset = Resources.Load<TextAsset>(scriptFileName);
         var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
 
@@ -106,7 +106,7 @@ public class ScriptManager : Singleton<ScriptManager>
         voiceLanguage = lang;
         voicePath = "event:/" + lang + "/";
 
-        string scriptFileName = resourceFileDuration + "." + lang;
+        string scriptFileName = resourcePath + resourceFileDuration + "." + lang;
         var textAsset = Resources.Load<TextAsset>(scriptFileName);
         var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
 

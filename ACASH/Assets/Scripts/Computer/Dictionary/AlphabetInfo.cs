@@ -1,10 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
 public static class AlphabetInfo
 {
 
 
-    public static int max_length = 5;
+    public static int max_length = 4;
     public static int size = 4;
 
     private static int WordCount()
@@ -20,4 +21,11 @@ public static class AlphabetInfo
     }
 
     public static int word_count = WordCount();
+
+
+
+    public static Sprite GetHieroglyph(int number)
+    {
+        return Resources.Load("Dictionary/Hieroglyphs/" + number) as Sprite;
+    }
 }

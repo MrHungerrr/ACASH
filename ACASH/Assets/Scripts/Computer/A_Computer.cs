@@ -6,10 +6,12 @@ using UnityEngine;
 using Cinemachine;
 
 
-public abstract class Computer : MonoBehaviour
+public abstract class A_Computer : MonoBehaviour
 {
     [HideInInspector]
     public ComputerWindows Windows;
+    [HideInInspector]
+    public ComputerCommands Commands;
     [HideInInspector]
     public LoginController Login;
     [HideInInspector]
@@ -20,6 +22,10 @@ public abstract class Computer : MonoBehaviour
     public NumpadController Numpad;
     [HideInInspector]
     public CalculatorController Calculator;
+    [HideInInspector]
+    public QuestionController Question;
+    [HideInInspector]
+    public ExamController Exam;
 
     [HideInInspector]
     public string select;
@@ -39,11 +45,18 @@ public abstract class Computer : MonoBehaviour
         SS = win.GetComponent<StudentStress>();
         SS.SetSS();
 
-        Windows = win.GetComponent<ComputerWindows>();
-        Windows.SetWindows(this);
+        Windows= win.GetComponent<ComputerWindows>();
+        Windows.SetComputerWindows(this);
+
+        Commands = new ComputerCommands(this);
 
         Calculator = win.GetComponent<CalculatorController>();
-        Calculator.SetCalculator();
+        Calculator.SetCalculatorController();
+
+        Question = win.GetComponent<QuestionController>();
+        Question.SetQuestionController();
+
+        Exam = win.GetComponent<ExamController>();
     }
 
     public virtual void SetScholars()
@@ -53,7 +66,7 @@ public abstract class Computer : MonoBehaviour
 
     public virtual void Select()
     {
-        Windows.Enter(select);
+        Commands.Do(select);
     }
 
 

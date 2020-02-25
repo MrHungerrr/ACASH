@@ -171,10 +171,10 @@ public class PlayerTalk : MonoBehaviour
     //========================================================================================================
     //Наезд на школьника
 
-    public void Execute(string reason)
+    public void Execute()
     {
         BeginOfTalk();
-        key_word += "Execute_" + reason;
+        key_word += "Execute";
 
         StartCoroutine(Execute(scholar));
     }

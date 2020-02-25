@@ -285,8 +285,7 @@ public class InputManager : Singleton<InputManager>
     {
         if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
         {
-            HUDManager.get.ExecuteHUD(true);
-            SwitchGameInput("execute");
+            Player.get.Talk.Execute();
         }
     }
 

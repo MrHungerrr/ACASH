@@ -19,7 +19,7 @@ public class ComputerManager : Singleton<ComputerManager>
     public Vector2 mouse;
 
     private TeacherComputerController CompControl;
-    private Computer[] computers;
+    private A_Computer[] computers;
     private bool active = false;
     [HideInInspector]
     public bool fast;
@@ -38,8 +38,8 @@ public class ComputerManager : Singleton<ComputerManager>
     {
         UserManager.get.SetUserManager();
 
-        computers = GameObject.FindObjectsOfType<Computer>();
-        foreach(Computer comp in computers)
+        computers = GameObject.FindObjectsOfType<A_Computer>();
+        foreach(A_Computer comp in computers)
         {
             comp.SetComputer();
         }
@@ -47,7 +47,7 @@ public class ComputerManager : Singleton<ComputerManager>
 
     public void SetScholars()
     {
-        foreach (Computer comp in computers)
+        foreach (A_Computer comp in computers)
         {
             comp.SetScholars();
         }

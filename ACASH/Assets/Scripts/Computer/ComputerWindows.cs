@@ -6,18 +6,18 @@ using Single;
 
 public class ComputerWindows : MonoBehaviour
 {
-    private Computer Comp;
+    private A_Computer Comp;
 
     private Dictionary<string, GameObject> windows = new Dictionary<string, GameObject>();
-    [HideInInspector]
 
-    private string current_window;
+    [HideInInspector]
+    public string current_window;
     private TextMeshProUGUI program_name;
     private GameObject program_bar;
     private GameObject task_bar;
 
 
-    public void SetWindows(Computer c)
+    public void SetComputerWindows(A_Computer c)
     {
         Transform buf = transform.parent.Find("Screen");
 
@@ -38,213 +38,12 @@ public class ComputerWindows : MonoBehaviour
             i.SetActive(false);
         }
 
+        current_window = null;
+
         Comp = c;
-
-        Enter("Login");
-    }
-
-    public void Enter(string type)
-    {
-        switch (type)
-        {
-            //========================================================
-            // Окна
-
-            case "Login":
-                {
-                    Disable();
-                    CloseProgram();
-                    EnableTaskBar(false);
-                    Comp.Numpad.Enable(true);
-                    Comp.Login.Reset();
-                    Comp.Numpad.Set(Comp.Login.login);
-                    Set(type);
-                    break;
-                }
-            case "Desktop":
-                {
-                    Disable();
-                    CloseProgram();
-                    EnableTaskBar(true);
-                    Comp.Numpad.Enable(false);
-                    Set(type);
-                    break;
-                }
-            case "Student Stress":
-                {
-                    Disable("Desktop");
-                    SetProgram(type);
-                    Comp.SS.Refresh();
-                    Set(type);
-                    break;
-                }
-            case "Overwatch":
-                {
-                    Disable("Desktop");
-                    SetProgram(type);
-                    Set(type);
-                    break;
-                }
-            case "Info":
-                {
-                    Disable("Desktop");
-                    SetProgram(type);
-                    Set(type);
-                    break;
-                }
-            case "Calculator":
-                {
-                    Disable("Desktop");
-                    SetProgram(type);
-                    Set(type);
-                    Comp.Numpad.Enable(true);
-                    Comp.Calculator.Reset();
-                    Comp.Numpad.Set(Comp.Calculator.input);
-                    break;
-                }
-
-
-
-            //========================================================
-            // Кнопки
-
-            case "Refresh":
-                {
-                    Comp.SS.Refresh(); 
-                    break;
-                }
-            case "Input Field Login":
-                {
-                    Comp.Numpad.Set(Comp.Login.login);
-                    break;
-                }
-            case "Input Field Password":
-                {
-                    Comp.Numpad.Set(Comp.Login.password);
-                    break;
-                }
-            case "Log In Computer":
-                {
-                    Comp.Login.TryLogin();
-                    break;
-                }
-            case "0":
-                {
-                    Comp.Numpad.Plus(0);
-                    break;
-                }
-            case "1":
-                {
-                    Comp.Numpad.Plus(1);
-                    break;
-                }
-            case "2":
-                {
-                    Comp.Numpad.Plus(2);
-                    break;
-                }
-            case "3":
-                {
-                    Comp.Numpad.Plus(3);
-                    break;
-                }
-            case "4":
-                {
-                    Comp.Numpad.Plus(4);
-                    break;
-                }
-            case "Plus":
-                {
-                    Comp.Calculator.input.Plus(Calculator.operations.Plus);
-                    break;
-                }
-            case "Minus":
-                {
-                    Comp.Calculator.input.Plus(Calculator.operations.Minus);
-                    break;
-                }
-            case "Multiply":
-                {
-                    Comp.Calculator.input.Plus(Calculator.operations.Multiply);
-                    break;
-                }
-            case "Divide":
-                {
-                    Comp.Calculator.input.Plus(Calculator.operations.Divide);
-                    break;
-                }
-            case "Mod":
-                {
-                    Comp.Calculator.input.Plus(Calculator.operations.Mod);
-                    break;
-                }
-            case "Calculate":
-                {
-                    Comp.Calculator.Calculate();
-                    break;
-                }
-            case "Backspace":
-                {
-                    Comp.Numpad.Backspace();
-                    break;
-                }
-            case "Reset":
-                {
-                    Comp.Numpad.Reset();
-                    break;
-                }
-            case "Close":
-                {
-                    Escape(current_window);
-                    break;
-                }
-            case "Exit":
-                {
-                    Enter("Login");
-                    break;
-                }
-            default:
-                {
-                    Debug.Log("Несуществуюющее окно - " + type);
-                    break;
-                }
-        }
     }
 
 
-    public void Escape(string type)
-    {
-        Disable(type);
-
-        switch (type)
-        {
-            case "Student Stress":
-                {
-                    CloseProgram();
-                    Set("Desktop");
-                    break;
-                }
-            case "Overwatch":
-                {
-                    CloseProgram();
-                    Set("Desktop");
-                    break;
-                }
-            case "Info":
-                {
-                    CloseProgram();
-                    Set("Desktop");
-                    break;
-                }
-            case "Calculator":
-                {
-                    Comp.Numpad.Enable(false);
-                    CloseProgram();
-                    Set("Desktop");
-                    break;
-                }
-        }
-    }
 
     public void Set(string window)
     {

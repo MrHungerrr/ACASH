@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class ScholarTest
+public class ScholarExam
 {
 
     public bool writing;
@@ -11,7 +11,7 @@ public class ScholarTest
     public float test_bufTime { get; private set; }
 
 
-    public ScholarTest()
+    public ScholarExam()
     {
         test = 0;
         test_buf = 0;

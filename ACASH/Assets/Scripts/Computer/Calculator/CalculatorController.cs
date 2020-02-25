@@ -15,7 +15,7 @@ public class CalculatorController : MonoBehaviour
     private const int answer_length = 14;
 
 
-    public void SetCalculator()
+    public void SetCalculatorController()
     {
         Transform calculator = transform.Find("Calculator");
 

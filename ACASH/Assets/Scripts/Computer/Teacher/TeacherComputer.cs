@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEngine;
 
 
-public class TeacherComputer : Computer
+public class TeacherComputer : A_Computer
 {
     [HideInInspector]
     public ComputerUIColliderManager Col;
@@ -18,6 +18,9 @@ public class TeacherComputer : Computer
         Col.SetColliders();
 
         base.SetComputer();
+
+        Exam.SetExamController(this, false);
+
         Controller = GetComponent<TeacherComputerController>();
         Controller.SetTeacherComputerController();
     }

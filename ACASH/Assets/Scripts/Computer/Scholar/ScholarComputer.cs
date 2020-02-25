@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 
 
-public class ScholarComputer : Computer
+public class ScholarComputer : A_Computer
 {
 
     public override void SetComputer()
     {
         base.SetComputer();
+
+        Exam.SetExamController(this, true);
     }
 
 

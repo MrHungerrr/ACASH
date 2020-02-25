@@ -32,7 +32,7 @@ public class Scholar : MonoBehaviour
     [HideInInspector]
     public ScholarStress Stress { get; private set; }
     [HideInInspector]
-    public ScholarTest Test { get; private set; }
+    public ScholarExam Test { get; private set; }
     [HideInInspector]
     public ScholarTextBox TextBox { get; private set; }
     [HideInInspector]
@@ -57,6 +57,8 @@ public class Scholar : MonoBehaviour
     public ScholarCheck Check { get; private set; }
     [HideInInspector]
     public ScholarExecute Execute { get; private set; }
+    [HideInInspector]
+    public ScholarAnswers Answers { get; private set; }
 
 
 
@@ -67,7 +69,9 @@ public class Scholar : MonoBehaviour
     private void Awake()
     {
         this.tag = "Scholar";
-        ChangeType(scholarType.ToString());
+
+        Answers = new ScholarAnswers();
+        ChangeType(scholarType);
 
         TextBox = GetComponent<ScholarTextBox>();
         TextBox.SetupTextBox();
@@ -96,8 +100,14 @@ public class Scholar : MonoBehaviour
         Info = new ScholarInfo(this);
         View = new ScholarView(this);
         Talk = new ScholarTalk(this);
-        Test = new ScholarTest();
+        Test = new ScholarExam();
+    }
 
+
+
+    public void SetType(ScholarTypes.list type)
+    {
+        ChangeType(type);
     }
 
 
@@ -135,11 +145,16 @@ public class Scholar : MonoBehaviour
     //========================================================================================================
     //Изменение типа ученика
 
-    public void ChangeType(string t)
+    public void ChangeType(ScholarTypes.list t)
     {
-        type = t;
+        scholarType = t;
+
+        type = t.ToString();
 
         if (Talk != null)
-            Talk.key_word = new KeyWord(t);
+            Talk.key_word = new KeyWord(t.ToString());
+
+        if (Answers != null)
+            Answers.Reset();
     }
 }

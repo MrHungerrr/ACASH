@@ -55,6 +55,9 @@ MonoBehaviour:
   Desktop: {fileID: 0}
   SS: {fileID: 0}
   Numpad: {fileID: 0}
+  Calculator: {fileID: 0}
+  Question: {fileID: 0}
+  Exam: {fileID: 0}
   select: 
   Col: {fileID: 0}
   Controller: {fileID: 0}
@@ -368,21 +371,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Screen
-      objectReference: {fileID: 0}
-    - target: {fileID: 4144220834370300556, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
-        type: 3}
-      propertyPath: m_Priority
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347379297109367812, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.0000665
-      objectReference: {fileID: 0}
-    - target: {fileID: 4347379297109367812, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.0000665
       objectReference: {fileID: 0}
     - target: {fileID: 8229833219193952087, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
         type: 3}

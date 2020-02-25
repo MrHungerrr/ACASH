@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.IO;
 using System.Collections.Generic;
 
 public class DictionaryData
@@ -33,6 +34,8 @@ public class DictionaryData
         List<DictionaryItem> words_list = new List<DictionaryItem>();
         DictionaryItem item;
         string word;
+
+
 
         for (int i = 0; i < 125; i++)
         {

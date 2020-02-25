@@ -92,7 +92,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
 
         Menu.get.MenuEnable(false);
-        Player.get.transform.position = new Vector3(0, 0.207f, 0);
+        Player.get.transform.position = new Vector3(-1.9f, 0.207f, 5.5f);
         LevelManager.get.LoadFast("Elevator");
         LevelManager.get.LoadFast("Tutorial");
 
@@ -116,7 +116,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
 
         Menu.get.MenuEnable(false);
-        Player.get.transform.position = new Vector3(0, 0.207f, 0);
+        Player.get.transform.position = new Vector3(-1.9f, 0.207f, 5.5f);
         LevelManager.get.UnloadLevels();
 
         while (LevelManager.get.IsLoad())
