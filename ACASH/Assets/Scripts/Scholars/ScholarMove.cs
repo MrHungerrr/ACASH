@@ -15,14 +15,17 @@ public class ScholarMove : MonoBehaviour
 
     private Vector3 destination;
     private Quaternion targetRotation;
-
     private Vector3 last_position;
+
+    private Transform head;
+    private Transform head_target;
 
 
     [HideInInspector]
     public bool rotating { get; private set; } = false;
     [HideInInspector]
     public bool walking{ get; private set; } = false;
+    private bool head_on_postion = false;
 
 
 
@@ -30,15 +33,24 @@ public class ScholarMove : MonoBehaviour
     public void SetupMove(Scholar scholar)
     {
         Scholar = scholar;
+
+        head = transform.Find("Head");
+        head_target = transform.Find("Scholar").Find("Scholar").Find("Spine").Find("Head Target");
+
         NavAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        if(rotating)
-            Rotate();
-        if (walking)
-            Walk();
+        if (Scholar != null)
+        {
+            if (rotating)
+                Rotate();
+            if (walking)
+                Walk();
+
+            MoveHead();
+        }
     }
 
 
@@ -51,15 +63,22 @@ public class ScholarMove : MonoBehaviour
     public void SetDestination(Vector3 goal)
     {
         destination = new Vector3(goal.x, transform.position.y, goal.z);
-        NavAgent.SetDestination(destination);
-        Scholar.Anim.SetAnimation(GetA.animations.Walking);
-        walking = true;
+
+        if (!ScholarIsHere())
+        {
+            NavAgent.SetDestination(destination);
+            Scholar.Anim.SetAnimation(GetA.animations.Walking);
+            walking = true;
+        }
     }
 
     private void WatchDirection()
     {
-        Quaternion target = BaseGeometry.GetQuaternionTo(last_position, transform.position);
-        SetRotateGoal(target);
+        if (last_position != transform.position)
+        {
+            Quaternion target = BaseGeometry.GetQuaternionTo(last_position, transform.position);
+            SetRotateGoal(target);
+        }
     }
 
 
@@ -77,7 +96,7 @@ public class ScholarMove : MonoBehaviour
 
     public bool ScholarIsHere()
     {
-        if ( transform.position == destination)
+        if (transform.position == destination)
         {
             return true;
         }
@@ -155,6 +174,38 @@ public class ScholarMove : MonoBehaviour
 
 
 
+    //===========================================================================================================================
+    //===========================================================================================================================
+    //Поворот бошки
+
+    public void MoveHeadTo(Vector3 target)
+    {
+        PositionHead(Vector3.Slerp(PositionHead(), target, 6f * Time.deltaTime));
+    }
+
+
+
+    private void MoveHead()
+    {
+        if (!HeadOnPosition())
+        {
+            Vector3 target = new Vector3(head_target.position.x, PositionHead().y, head_target.position.z);
+            MoveHeadTo(target);
+        }
+    }
+
+
+    public bool HeadOnPosition()
+    {
+        if (head.position.x == head_target.position.x && head.position.z == head_target.position.z)
+        {
+            return true;
+        }
+        else
+        { 
+            return false;
+        }
+    }
 
 
 
@@ -177,6 +228,29 @@ public class ScholarMove : MonoBehaviour
     {
         transform.rotation = set_rotation;
     }
+
+
+    public Vector3 PositionHead()
+    {
+        return head.position;
+    }
+
+    public Quaternion RotationHead()
+    {
+        return head.rotation;
+    }
+
+    public void PositionHead(Vector3 set_position)
+    {
+        head.position = set_position;
+    }
+
+    public void RotationHead(Quaternion set_rotation)
+    {
+        head.rotation = set_rotation;
+    }
+
+
 
 
     public void Stop()

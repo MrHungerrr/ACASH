@@ -20,7 +20,7 @@ public class ScholarTextBox : MonoBehaviour
 
     public void SetupTextBox()
     {
-        Transform buf = transform.parent.Find("Armature").Find("Spine").Find("Text Box");
+        Transform buf = transform.parent.Find("Scholar").Find("Scholar").Find("Spine").Find("Text Box");
         textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();
         textBox[1] = buf.Find("Text_1").GetComponent<TextMeshPro>();
         textBox[2] = buf.Find("Text_2").GetComponent<TextMeshPro>();
@@ -73,8 +73,9 @@ public class ScholarTextBox : MonoBehaviour
 
     public void Question(KeyWord key_word)
     {
+        Clear();
         question = true;
-        Say(key_word, 1f);
+        StartCoroutine(PlaySub(key_word));
     }
 
     public void Clear()

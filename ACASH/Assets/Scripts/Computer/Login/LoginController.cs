@@ -8,9 +8,9 @@ public class LoginController : MonoBehaviour
 
     private A_Computer Comp;
     [HideInInspector]
-    public InputFieldSelectable login;
+    public InputFieldLogin login;
     [HideInInspector]
-    public InputFieldSelectable password;
+    public InputFieldLogin password;
     [HideInInspector]
     public User user;
     private TextMeshProUGUI invalid;
@@ -21,8 +21,8 @@ public class LoginController : MonoBehaviour
     {
         Transform buf = transform.Find("Login");
 
-        login = buf.Find("Input Field Login").GetComponent<InputFieldSelectable>();
-        password = buf.Find("Input Field Password").GetComponent<InputFieldSelectable>();
+        login = buf.Find("Input Field Login").GetComponent<InputFieldLogin>();
+        password = buf.Find("Input Field Password").GetComponent<InputFieldLogin>();
         invalid = buf.Find("Error Message").GetComponent<TextMeshProUGUI>();
 
         login.SetInputField();

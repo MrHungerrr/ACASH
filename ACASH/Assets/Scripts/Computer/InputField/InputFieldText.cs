@@ -4,30 +4,18 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class InputFieldSingle : A_InputField
+public class InputFieldText : A_InputField
 {
-
-    [HideInInspector]
-    private string text_display;
-
-
     public override void SetInputField()
     {
-        length = 3;
+        length = 256;
         base.SetInputField();
     }
 
 
     public override void Display()
     {
-        text_display = text;
-
-        for (int i = text.Length; i < length; i++)
-        {
-            text_display += "_";
-        }
-
-        field.text = text_display;
+        field.text = text;
     }
 
 

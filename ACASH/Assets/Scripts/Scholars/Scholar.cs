@@ -86,7 +86,7 @@ public class Scholar : MonoBehaviour
         Select.SetScholarSelect();
 
 
-        Anim = new ScholarAnim(transform.GetComponentInParent<Animator>());
+        Anim = new ScholarAnim(transform.parent.GetComponentInChildren<Animator>());
         Question = new ScholarQuestions(this);
         Location = new ScholarLocation(this);
         Execute = new ScholarExecute(this);

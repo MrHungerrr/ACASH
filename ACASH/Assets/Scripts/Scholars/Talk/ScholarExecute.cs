@@ -20,7 +20,6 @@ public class ScholarExecute
         Scholar.Select.Selectable(false);
         Scholar.Talk.Say(key);
         Scholar.Action.DoAction("Execute");
-
     }
 
 }

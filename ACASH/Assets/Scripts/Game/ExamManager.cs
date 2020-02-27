@@ -65,7 +65,7 @@ public class ExamManager : Singleton<ExamManager>
                 }
             case "prepare":
                 {
-
+                    StartExam();
                     break;
                 }
             case "exam":

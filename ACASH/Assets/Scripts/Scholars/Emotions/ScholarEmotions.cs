@@ -10,7 +10,7 @@ public class ScholarEmotions : MonoBehaviour
 
     public void SetupEmotions()
     {
-        face = transform.parent.parent.Find("Head").Find("Model").Find("Face").GetComponent<Renderer>().material;
+        face = transform.parent.Find("Head").Find("Model").Find("Face").GetComponent<Renderer>().material;
     }
 
 

@@ -62,18 +62,19 @@ public class ScholarQuestions
         this.answer = answer;
         question_answered = true;
 
+        QuestionEnd();
+
         answer_key.Reset();
         answer_key.Answer(answer);
 
         Scholar.Talk.SayWithoutStop(answer_key);
-
-        QuestionEnd();
     }
 
 
     private void QuestionEnd()
     {
         Debug.Log("Конец вопроса");
+        Scholar.TextBox.Clear();
         question = false;
     }
 

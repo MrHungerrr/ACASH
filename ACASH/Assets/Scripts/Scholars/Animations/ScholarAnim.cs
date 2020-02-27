@@ -33,7 +33,7 @@ public class ScholarAnim
     {
         try
         {
-            Debug.Log("Играет анимация - <color=#003366>" + type + "</color>");
+            //Debug.Log("Играет анимация - <color=#003366>" + type + "</color>");
             Anim.SetInteger(GetA.anim, animations[type]);
         }
         catch

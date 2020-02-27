@@ -63,7 +63,7 @@ public class PlayerSelecting
         {
             if (hits[i].transform != null)
             {
-                Scholar scholar = hits[i].transform.parent.Find("Body").GetComponentInChildren<Scholar>();
+                Scholar scholar = hits[i].transform.parent.GetComponentInChildren<Scholar>();
                 scholar.Senses.ISeeYou();
             }
         }

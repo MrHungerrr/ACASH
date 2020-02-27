@@ -26,8 +26,8 @@ public class TimeManager : Singleton<TimeManager>
 
     private float[] times = new float[]
     {
-        30f,
-        60f,
+        5f,
+        1f,
         600f
     };
 

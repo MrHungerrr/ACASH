@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class InputFieldSelectable : A_InputField
+public class InputFieldLogin : A_InputField
 {
     private GameObject arrow;
     [HideInInspector]

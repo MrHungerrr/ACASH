@@ -8,17 +8,17 @@ public class DictionaryController : MonoBehaviour
 
 
     [HideInInspector]
-    public InputFieldSingle input { get; private set; }
+    public InputFieldDictionary input { get; private set; }
     private DictionaryHieroglyphWord word;
     private TextMeshProUGUI description;
 
 
     public void SetDictionary()
     {
-        SIC<InputFieldSingle> search = new SIC<InputFieldSingle>();
+        SIC<InputFieldDictionary> search = new SIC<InputFieldDictionary>();
 
         Transform dictionary = transform.Find("Dictionary");
-        input = transform.GetComponentInChildren<InputFieldSingle>();
+        input = transform.GetComponentInChildren<InputFieldDictionary>();
         description = transform.Find("Description").Find("Text").GetComponent<TextMeshProUGUI>();
         word = transform.GetComponentInChildren<DictionaryHieroglyphWord>();
     }

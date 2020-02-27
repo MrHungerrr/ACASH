@@ -19,9 +19,9 @@ public class PlayerMove : MonoBehaviour
 
     [HideInInspector]
     public movement type_movement;
-    private float crouchSpeed = 35f;
-    private float normalSpeed = 65f;
-    private float runSpeed = 100f;
+    private float crouchSpeed = 0.35f;
+    private float normalSpeed = 0.65f;
+    private float runSpeed = 1f;
     private float crouchSound = 0.5f;
     private float normalSound = 3f;
     private float runSound = 5f;
@@ -82,7 +82,7 @@ public class PlayerMove : MonoBehaviour
 
         if (forwardMovement != Vector3.zero || rightMovement != Vector3.zero)
         {
-            CharController.SimpleMove(forwardMovement + rightMovement);
+            CharController.Move((forwardMovement + rightMovement));
             ScholarManager.get.Hear(movementSound);
         }
     }
