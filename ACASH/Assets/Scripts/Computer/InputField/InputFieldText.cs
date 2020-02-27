@@ -6,16 +6,43 @@ using TMPro;
 
 public class InputFieldText : A_InputField
 {
+
+    private string text_display;
+
+
     public override void SetInputField()
     {
-        length = 256;
+        length = 270;
         base.SetInputField();
     }
 
 
     public override void Display()
     {
-        field.text = text;
+        text_display = "";
+
+        if (text.Length > 0)
+        {
+            text_display += text[0];
+
+            for (int i = 1; i < text.Length; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    if (i % 30 != 0)
+                    {
+                        text_display += " ";
+                    }
+                    else
+                    {
+                        text_display += "\n";
+                    }
+                }
+                text_display += text[i];
+            }
+        }
+
+        field.text = text_display;
     }
 
 

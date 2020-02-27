@@ -3,11 +3,15 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 
-public class NumpadController: MonoBehaviour
+public class NumpadController : MonoBehaviour
 {
+    [HideInInspector]
+    public A_InputField input_field { get; private set;}
 
-    private A_InputField input_field;
-
+    public bool IsEnabled()
+    {
+        return gameObject.activeSelf;
+    }
 
     public void Enable(bool option)
     {

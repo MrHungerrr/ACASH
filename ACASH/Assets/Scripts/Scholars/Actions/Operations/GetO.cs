@@ -7,9 +7,19 @@
             Check,
             Go_Home,
             Question,
+            Computer,
             Verify,
             Think_Aloud,
             Execute,
+            Take_Up_Paper,
+        }
+
+        public enum computer
+        {
+            Calculator,
+            Text,
+            Rules,
+            Overwatch,
         }
 
 
@@ -24,6 +34,7 @@
             Think_Outside,
             Wash_Hands,
         }
+
 
         public enum verify
         {

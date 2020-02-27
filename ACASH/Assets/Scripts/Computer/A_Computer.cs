@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine;
-using Cinemachine;
+﻿using UnityEngine;
+using Computer;
 
 
 public abstract class A_Computer : MonoBehaviour
@@ -26,12 +22,13 @@ public abstract class A_Computer : MonoBehaviour
     public QuestionController Question;
     [HideInInspector]
     public ExamController Exam;
+    public TextController Text;
 
     [HideInInspector]
-    public string select;
+    public string command;
 
 
-    public virtual void SetComputer()
+    public virtual void Setup()
     {
         Transform win = transform.Find("Screen").Find("UI").Find("Canvas").Find("Windows");
         Numpad = win.parent.Find("Screen").GetComponentInChildren<NumpadController>();
@@ -57,6 +54,9 @@ public abstract class A_Computer : MonoBehaviour
         Question.SetQuestionController();
 
         Exam = win.GetComponent<ExamController>();
+
+        Text = win.GetComponent<TextController>();
+        Text.SetTextController();
     }
 
     public virtual void SetScholars()
@@ -64,10 +64,21 @@ public abstract class A_Computer : MonoBehaviour
         SS.SetScholars();
     }
 
-    public virtual void Select()
+    protected void ExecuteCommand()
     {
-        Commands.Do(select);
+        Commands.Do(command);
     }
 
+    public void ExecuteCommand(string command)
+    {
+        this.command = command;
+        ExecuteCommand();
+    }
+
+    public void ExecuteCommand(GetC.commands command)
+    {
+        this.command = GetC.GetString(command);
+        ExecuteCommand();
+    }
 
 }

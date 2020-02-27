@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using Single;
+﻿using UnityEngine;
+using Computer;
 
 public class ComputerCommands
 {
@@ -13,6 +10,13 @@ public class ComputerCommands
         Comp = c;
         Do("Login");
     }
+
+
+    public void Do(GetC.commands command)
+    {
+        Do(GetC.GetString(command));
+    }
+
 
     public void Do(string type)
     {
@@ -69,13 +73,12 @@ public class ComputerCommands
                     SetProgram(type);
                     Set(type);
                     Comp.Numpad.Enable(true);
-                    Comp.Calculator.Reset();
                     Comp.Numpad.Set(Comp.Calculator.input);
                     break;
                 }
             case "Exam":
                 {
-                    Disable(Comp.Windows.current_window);
+                    Disable();
                     SetProgram(type);
                     Set(type);
                     break;
@@ -106,9 +109,18 @@ public class ComputerCommands
                 }
             case "Rules":
                 {
-                    Disable(Comp.Windows.current_window);
+                    Disable();
                     SetProgram(type);
                     Set(type);
+                    break;
+                }
+            case "Text":
+                {
+                    Disable();
+                    SetProgram(type);
+                    Set(type);
+                    Comp.Numpad.Enable(true);
+                    Comp.Numpad.Set(Comp.Text.input);
                     break;
                 }
 
@@ -239,7 +251,7 @@ public class ComputerCommands
                 }
             default:
                 {
-                    Debug.Log("Несуществуюющее окно - " + type);
+                    Debug.LogError("Несуществуюющее окно - " + type);
                     break;
                 }
         }
@@ -296,6 +308,14 @@ public class ComputerCommands
                     Disable(type);
                     CloseProgram();
                     Set("Desktop");
+                    break;
+                }
+            case "Text":
+                {
+                    Disable(type);
+                    CloseProgram();
+                    Set("Desktop");
+                    Comp.Numpad.Enable(false);
                     break;
                 }
         }

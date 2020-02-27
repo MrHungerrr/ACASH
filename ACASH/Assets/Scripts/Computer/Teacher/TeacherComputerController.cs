@@ -251,8 +251,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
     {
         if (collision)
         {
-            Comp.select = mouse_collision;
-            Comp.Select();
+            Comp.ExecuteCommand(mouse_collision);
         }
         else
             Debug.Log("Не чувстсвую коллайдера");

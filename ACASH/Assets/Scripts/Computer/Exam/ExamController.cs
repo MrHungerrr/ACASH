@@ -12,10 +12,17 @@ public class ExamController : MonoBehaviour
     public int[] answers = new int[3];
 
 
-    public void SetExamController(A_Computer computer, bool scholar)
+    public void Setup(ScholarComputer computer)
     {
         this.computer = computer;
-        this.scholar = scholar;
+        this.scholar = true;
+        Reset();
+    }
+
+    public void SetExamController(A_Computer computer)
+    {
+        this.computer = computer;
+        this.scholar = false;
         Reset();
     }
 

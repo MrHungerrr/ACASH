@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
+using Computer;
 
 
 public class ScholarComputer : A_Computer
 {
+    [HideInInspector]
+    public ScholarComputerAIController Controller { get; private set; }
 
-    public override void SetComputer()
+    public override void Setup()
     {
-        base.SetComputer();
+        base.Setup();
 
-        Exam.SetExamController(this, true);
+        Exam.Setup(this);
+
+        Controller = GetComponent<ScholarComputerAIController>();
+        Controller.Setup();
     }
 
 
@@ -16,11 +22,4 @@ public class ScholarComputer : A_Computer
     {
         base.SetScholars();
     }
-
-    public void Select(string key)
-    {
-        select = key;
-        base.Select();
-    }
-
 }

@@ -9,8 +9,9 @@ public abstract class A_InputField : MonoBehaviour
 
     protected TextMeshProUGUI field;
     [HideInInspector]
-    public string text;
-    protected int length;
+    public string text { get; protected set; }
+    [HideInInspector]
+    public int length{ get; protected set; }
     protected bool select = false;
 
 
@@ -18,6 +19,7 @@ public abstract class A_InputField : MonoBehaviour
     {
         field = transform.GetComponentInChildren<TextMeshProUGUI>();
         Select(false);
+        Reset();
     }
 
     public virtual void Reset()

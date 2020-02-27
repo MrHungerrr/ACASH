@@ -12,14 +12,14 @@ public class TeacherComputer : A_Computer
     [HideInInspector]
     public TeacherComputerController Controller;
 
-    public override void SetComputer()
+    public override void Setup()
     {
         Col = transform.Find("Screen").Find("UI").GetComponent<ComputerUIColliderManager>();
         Col.SetColliders();
 
-        base.SetComputer();
+        base.Setup();
 
-        Exam.SetExamController(this, false);
+        Exam.SetExamController(this);
 
         Controller = GetComponent<TeacherComputerController>();
         Controller.SetTeacherComputerController();

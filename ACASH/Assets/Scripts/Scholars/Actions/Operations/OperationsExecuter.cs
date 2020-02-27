@@ -170,6 +170,29 @@ public class OperationsExecuter : OperationsExecuterBase
 
 
 
+    //=========================================================================================================================================================
+    //Компьютерный раздел
+
+    private IEnumerator Computer_Text()
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+
+        Scholar.Desk.ExecuteCommand()
+
+
+        while (Scholar.Talk.talking)
+            yield return new WaitForEndOfFrame();
+
+        OperationEnd();
+    }
+
+
+
+
+
+
+
+
 
 
 

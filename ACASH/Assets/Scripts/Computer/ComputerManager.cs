@@ -41,7 +41,7 @@ public class ComputerManager : Singleton<ComputerManager>
         computers = GameObject.FindObjectsOfType<A_Computer>();
         foreach(A_Computer comp in computers)
         {
-            comp.SetComputer();
+            comp.Setup();
         }
     }
 

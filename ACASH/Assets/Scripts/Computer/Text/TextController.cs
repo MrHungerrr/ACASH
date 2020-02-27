@@ -13,8 +13,9 @@ public class TextController : MonoBehaviour
 
     public void SetTextController()
     {
-        Transform dictionary = transform.Find("Text");
-        input = transform.GetComponentInChildren<InputFieldText>();
+        Transform text = transform.Find("Text");
+        input = text.GetComponentInChildren<InputFieldText>();
+        input.SetInputField();
     }
 
 }
