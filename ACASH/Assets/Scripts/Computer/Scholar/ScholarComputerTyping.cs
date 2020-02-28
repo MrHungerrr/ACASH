@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Computer;
+using ComputerActions;
 
 
 public class ScholarComputerTyping : MonoBehaviour
@@ -23,12 +23,14 @@ public class ScholarComputerTyping : MonoBehaviour
     {
         typing = true;
 
+        Debug.Log("Type - " + number);
+
         if (number != null)
         {
             for(int i = 0; i < number.Length; i++)
             {
                 Comp.Commands.Do(number[i].ToString());
-                yield return new WaitForSeconds(Random.Range(0.4f, 1f));
+                yield return new WaitForSeconds(Random.Range(0.4f, 0.8f));
             }
         }
 

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace Computer
+namespace ComputerActions
 {
     public static class GetC
     {
@@ -73,8 +73,8 @@ namespace Computer
         public static string GetString(commands command)
         {
             string result = command.ToString();
-            result.Replace("number_", "");
-            result.Replace("_", " ");
+            result = result.Replace("number_", "");
+            result = result.Replace("_", " ");
             return result;
         }
     }

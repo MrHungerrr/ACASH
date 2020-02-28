@@ -11,7 +11,7 @@
             Verify,
             Think_Aloud,
             Execute,
-            Take_Up_Paper,
+            Note,
         }
 
         public enum computer
@@ -19,7 +19,12 @@
             Calculator,
             Text,
             Rules,
-            Overwatch,
+            Login,
+        }
+
+        public enum computer_spec
+        {
+            Question
         }
 
 

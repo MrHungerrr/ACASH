@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
             game = true;
             Menu.get.MenuEnable(false);
             InputManager.get.SwitchGameInput("gameplay");
+            SetLevelForTest();
         }
         FadeController.get.Fade(false);
     }
@@ -135,6 +136,14 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+
+    public void SetLevelForTest()
+    {
+        PlaceManager.get.SetLevel();
+        ScholarManager.get.SetLevel();
+        ComputerManager.get.SetComputerManager();
+        SetScholars();
+    }
 
     public void SetLevel()
     {

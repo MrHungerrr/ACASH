@@ -16,9 +16,8 @@ public class ScholarAnim
         { GetA.animations.Walking, 1},
         { GetA.animations.Writing, 2},
         { GetA.animations.Thinking, 3},
-        { GetA.animations.Thinking_Aloud, 4},
-        { GetA.animations.Thinking_Outside, 5},
-        { GetA.animations.Washing_Hands, 6},
+        { GetA.animations.Take_Out, 4},
+        { GetA.animations.Take_Up, 5},
     };
 
 
@@ -40,6 +39,5 @@ public class ScholarAnim
         {
             Debug.Log("<color=#ff00ff>Отсутсвует анимация - " + type + "</color>");
         }
-        
     }
 }

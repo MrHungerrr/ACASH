@@ -174,4 +174,27 @@ public static class Calculator
         return "+";
     }
 
+
+
+    public static operations RandomOpeartion()
+    {
+        int result = Random.Range(0, 5);
+
+        switch (result)
+        {
+            case 0:
+                return operations.Plus;
+            case 1:
+                return operations.Minus;
+            case 2:
+                return operations.Multiply;
+            case 3:
+                return operations.Divide;
+            case 4:
+                return operations.Mod;
+        }
+
+        return operations.Plus;
+    }
+
 }

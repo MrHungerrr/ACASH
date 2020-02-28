@@ -15,6 +15,7 @@ public class ScholarCheat
         Scholar = s;
     }
 
+
     public void CheatingFinish()
     {
 
@@ -64,7 +65,7 @@ public class ScholarCheat
 
     public bool Probability()
     {
-        return false;
+        return true;
     }
 
 }

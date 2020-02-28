@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Computer;
+using ComputerActions;
 
 
 public class ScholarComputer : A_Computer

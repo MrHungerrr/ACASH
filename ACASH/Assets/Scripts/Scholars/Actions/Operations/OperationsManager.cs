@@ -24,6 +24,7 @@ public class OperationsManager
 
     public void SetAction(string key)
     {
+        Stop();
         done = false;
         action = key;
         operation_num = 0;

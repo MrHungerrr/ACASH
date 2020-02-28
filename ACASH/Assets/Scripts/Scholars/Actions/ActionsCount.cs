@@ -57,4 +57,11 @@ public class ActionsCount
             return false;
         }
     }
+
+
+
+    public override string ToString()
+    {
+        return "1 - " + costs[0] + "; 2 - " + costs[1] + "; 3 - " + costs[2];
+    }
 }

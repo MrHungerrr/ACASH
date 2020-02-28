@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using Questions;
 using Operations;
 
@@ -62,7 +63,42 @@ public static class OperationsList
     {
         new Operation(GetO.operation.Go_Home),
         new Special(GetO.special.Think, 5),
-        new Special(GetO.special.Write, 5),
+        new Computer(GetO.computer.Text),
+    };
+
+
+    private static Operation[] Calculate = new Operation[]
+    {
+        new Operation(GetO.operation.Go_Home),
+        new Special(GetO.special.Think, 5),
+        new Computer(GetO.computer.Calculator),
+    };
+
+    private static Operation[] Watch_Rules = new Operation[]
+    {
+        new Operation(GetO.operation.Go_Home),
+        new Special(GetO.special.Think, 5),
+        new Computer(GetO.computer.Rules),
+    };
+
+    private static Operation[] Answer = new Operation[]
+    {
+        new Operation(GetO.operation.Go_Home),
+        new Special(GetO.special.Think, 5),
+        new Computer(GetO.computer_spec.Question, Random.Range(1,4)),
+    };
+
+
+    private static Operation[] Login = new Operation[]
+    {
+        new Operation(GetO.operation.Go_Home),
+        new Computer(GetO.computer.Login),
+    };
+
+    private static Operation[] Note = new Operation[]
+    {
+        new Operation(GetO.operation.Go_Home),
+        new Operation(GetO.operation.Note),
     };
 
     private static Operation[] Execute = new Operation[]
@@ -80,7 +116,13 @@ public static class OperationsList
         {"Ask_1", Ask_1},
         {"Think_Aloud_1", Think_Aloud_1},
         {"Write", Write},
-        {"Execute", Execute }
+        {"Execute", Execute},
+        {"Watch_Rules", Watch_Rules},
+        {"Answer", Answer},
+        {"Cheating_Calculate_1", Calculate},
+        {"Cheating_Note_1", Note},
+        {"Login", Login },
     };
+
 
 }

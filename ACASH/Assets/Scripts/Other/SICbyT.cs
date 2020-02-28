@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Searching
 {
-    public class SIC<T> where T : MonoBehaviour // Search In Children By <T>
+    public static class SIC<T> where T : MonoBehaviour // Search In Children By <T>
     { 
 
         //Поиск компонентов
-        private T[] Components(Transform obj)
+        private static T[] Components(Transform obj)
         {
             List<T> list = new List<T>();
             T buf;
@@ -28,7 +28,7 @@ namespace Searching
 
 
         // Функции для использования пользователем
-        public void Components(Transform obj, out GameObject[] array)
+        public static void Components(Transform obj, out GameObject[] array)
         {
             T[] buf_array = Components(obj.transform);
             List<GameObject> list = new List<GameObject>();
@@ -41,7 +41,7 @@ namespace Searching
             array = list.ToArray();
         }
 
-        public void Components(Transform obj, out T[] array)
+        public static void Components(Transform obj, out T[] array)
         {
             array = Components(obj);
         }
@@ -50,12 +50,12 @@ namespace Searching
 
 
         //Перегрузки для GameObjects Вместо Transform
-        public void Components(GameObject obj, out GameObject[] array)
+        public static void Components(GameObject obj, out GameObject[] array)
         {
             Components(obj.transform, out array);
         }
 
-        public void Components(GameObject obj, out T[] array)
+        public static void Components(GameObject obj, out T[] array)
         {
             Components(obj.transform, out array);
         }
@@ -64,7 +64,7 @@ namespace Searching
 
 
         //Поиск компонента
-        private T Component(Transform obj)
+        private static T Component(Transform obj)
         {
             T buf;
 
@@ -88,12 +88,12 @@ namespace Searching
 
 
         // Функции для использования пользователем
-        public void Component(Transform obj, out GameObject goal)
+        public static void Component(Transform obj, out GameObject goal)
         {
             goal = Component(obj.transform).gameObject;
         }
 
-        public void Component(Transform obj, out T goal)
+        public static void Component(Transform obj, out T goal)
         {
             goal = Component(obj.transform);
         }
@@ -101,12 +101,12 @@ namespace Searching
 
 
         //Перегрузки для GameObjects Вместо Transform
-        public void Component(GameObject obj, out GameObject goal)
+        public static void Component(GameObject obj, out GameObject goal)
         {
             Component(obj.transform, out goal);
         }
 
-        public void Component(GameObject obj, out T goal)
+        public static void Component(GameObject obj, out T goal)
         {
             Component(obj.transform, out goal);
         }

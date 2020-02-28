@@ -24,11 +24,10 @@ public static class ActionsGiver
 
         for (int i = 0; i < length; i++)
         {
-
             scholars_numbs[i] = ScholarChoice(scholars_numbs);
             s = ScholarManager.get.scholars[scholars_numbs[i]];
 
-            cost = 2;
+            cost = actions.GetRandomCost();
 
             if (cost == 0)
             {

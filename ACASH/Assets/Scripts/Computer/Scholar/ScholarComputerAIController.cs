@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using Computer;
+using ComputerActions;
 
 
 public class ScholarComputerAIController : MonoBehaviour
 {
-    private ScholarComputer Comp{ get; private set; }
+    private ScholarComputer Comp;
     [HideInInspector]
     public ScholarComputerTyping Typing { get; private set; }
 

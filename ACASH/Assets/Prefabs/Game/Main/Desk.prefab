@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4960968087158322719}
   - component: {fileID: 4391415206553459429}
+  - component: {fileID: 3851062958208077653}
+  - component: {fileID: 6080944844245809310}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -55,7 +57,32 @@ MonoBehaviour:
   Calculator: {fileID: 0}
   Question: {fileID: 0}
   Exam: {fileID: 0}
-  select: 
+  Text: {fileID: 0}
+  command: 
+--- !u!114 &3851062958208077653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612648237044586326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5444011771081054ab9fdac44dff15a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6080944844245809310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612648237044586326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cee39c06d7c95646b27f5d32a968dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4357345280767422407
 GameObject:
   m_ObjectHideFlags: 0

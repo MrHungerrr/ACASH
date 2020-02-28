@@ -59,6 +59,8 @@ public class Scholar : MonoBehaviour
     public ScholarExecute Execute { get; private set; }
     [HideInInspector]
     public ScholarAnswers Answers { get; private set; }
+    [HideInInspector]
+    public ScholarObjects Objects { get; private set; }
 
 
 
@@ -90,6 +92,7 @@ public class Scholar : MonoBehaviour
         Question = new ScholarQuestions(this);
         Location = new ScholarLocation(this);
         Execute = new ScholarExecute(this);
+        Objects = new ScholarObjects(this);
         Reaction = new ScholarReactions();
         Action = new ScholarActions(this);
         Senses = new ScholarSenses(this);
@@ -101,6 +104,7 @@ public class Scholar : MonoBehaviour
         View = new ScholarView(this);
         Talk = new ScholarTalk(this);
         Test = new ScholarExam();
+
     }
 
 
@@ -121,6 +125,7 @@ public class Scholar : MonoBehaviour
             Senses.Update();
             Talk.Update();
             Check.Update();
+            Objects.Update();
         }
     }
 

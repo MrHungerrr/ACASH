@@ -15,12 +15,10 @@ public class DictionaryController : MonoBehaviour
 
     public void SetDictionary()
     {
-        SIC<InputFieldDictionary> search = new SIC<InputFieldDictionary>();
-
         Transform dictionary = transform.Find("Dictionary");
-        input = transform.GetComponentInChildren<InputFieldDictionary>();
-        description = transform.Find("Description").Find("Text").GetComponent<TextMeshProUGUI>();
-        word = transform.GetComponentInChildren<DictionaryHieroglyphWord>();
+        input = dictionary.GetComponentInChildren<InputFieldDictionary>();
+        description = dictionary.Find("Description").Find("Text").GetComponent<TextMeshProUGUI>();
+        word = dictionary.GetComponentInChildren<DictionaryHieroglyphWord>();
     }
 
 }

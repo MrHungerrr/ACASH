@@ -135,7 +135,8 @@ public class ScholarManager : Singleton<ScholarManager>
         yield return new WaitForSeconds(time);
 
         Debug.Log("Пошел Экшон!");
-        ActionsGiver.GiveActions(Difficulty.get.actions[2]);
+        Debug.Log(Difficulty.get.actions[0].ToString());
+        ActionsGiver.GiveActions(Difficulty.get.actions[0]);
     }
 
 
@@ -153,9 +154,10 @@ public class ScholarManager : Singleton<ScholarManager>
     public void StartExam()
     {
         StartCoroutine(ScholarsAction(10f));
+
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Action.Reset();
+            scholars[i].Action.Reset("Login");
         }
     }
 

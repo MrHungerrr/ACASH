@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Computer;
+using ComputerActions;
 
 public class ComputerCommands
 {
@@ -27,7 +27,6 @@ public class ComputerCommands
 
             case "Login":
                 {
-                    Disable();
                     CloseProgram();
                     EnableTaskBar(false);
                     Comp.Numpad.Enable(true);
@@ -38,7 +37,6 @@ public class ComputerCommands
                 }
             case "Desktop":
                 {
-                    Disable();
                     CloseProgram();
                     EnableTaskBar(true);
                     Comp.Numpad.Enable(false);
@@ -47,7 +45,6 @@ public class ComputerCommands
                 }
             case "Student Stress":
                 {
-                    Disable("Desktop");
                     SetProgram(type);
                     Comp.SS.Refresh();
                     Set(type);
@@ -55,21 +52,18 @@ public class ComputerCommands
                 }
             case "Overwatch":
                 {
-                    Disable("Desktop");
                     SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Info":
                 {
-                    Disable("Desktop");
                     SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Calculator":
                 {
-                    Disable("Desktop");
                     SetProgram(type);
                     Set(type);
                     Comp.Numpad.Enable(true);
@@ -78,14 +72,12 @@ public class ComputerCommands
                 }
             case "Exam":
                 {
-                    Disable();
                     SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Question 1":
                 {
-                    Disable("Exam");
                     SetProgram("Question");
                     Set("Question");
                     Comp.Question.SetQuestion(0);
@@ -93,7 +85,6 @@ public class ComputerCommands
                 }
             case "Question 2":
                 {
-                    Disable("Exam");
                     SetProgram("Question");
                     Set("Question");
                     Comp.Question.SetQuestion(1);
@@ -101,7 +92,6 @@ public class ComputerCommands
                 }
             case "Question 3":
                 {
-                    Disable("Exam");
                     SetProgram("Question");
                     Set("Question");
                     Comp.Question.SetQuestion(2);
@@ -109,14 +99,12 @@ public class ComputerCommands
                 }
             case "Rules":
                 {
-                    Disable();
                     SetProgram(type);
                     Set(type);
                     break;
                 }
             case "Text":
                 {
-                    Disable();
                     SetProgram(type);
                     Set(type);
                     Comp.Numpad.Enable(true);
@@ -264,28 +252,24 @@ public class ComputerCommands
         {
             case "Student Stress":
                 {
-                    Disable(type);
                     CloseProgram();
                     Set("Desktop");
                     break;
                 }
             case "Overwatch":
                 {
-                    Disable(type);
                     CloseProgram();
                     Set("Desktop");
                     break;
                 }
             case "Info":
                 {
-                    Disable(type);
                     CloseProgram();
                     Set("Desktop");
                     break;
                 }
             case "Calculator":
                 {
-                    Disable(type);
                     Comp.Numpad.Enable(false);
                     CloseProgram();
                     Set("Desktop");
@@ -293,7 +277,6 @@ public class ComputerCommands
                 }
             case "Exam":
                 {
-                    Disable(type);
                     CloseProgram();
                     Set("Desktop");
                     break;
@@ -305,14 +288,12 @@ public class ComputerCommands
                 }
             case "Rules":
                 {
-                    Disable(type);
                     CloseProgram();
                     Set("Desktop");
                     break;
                 }
             case "Text":
                 {
-                    Disable(type);
                     CloseProgram();
                     Set("Desktop");
                     Comp.Numpad.Enable(false);

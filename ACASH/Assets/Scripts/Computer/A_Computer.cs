@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Computer;
+using ComputerActions;
 
 
 public abstract class A_Computer : MonoBehaviour
@@ -22,6 +22,7 @@ public abstract class A_Computer : MonoBehaviour
     public QuestionController Question;
     [HideInInspector]
     public ExamController Exam;
+    [HideInInspector]
     public TextController Text;
 
     [HideInInspector]

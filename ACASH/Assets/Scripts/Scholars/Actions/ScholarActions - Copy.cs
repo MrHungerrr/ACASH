@@ -30,6 +30,13 @@ public class ScholarActions
         NextAction();
     }
 
+    public void Reset(string next_action)
+    {
+        Queue.Reset();
+        Queue.Add(next_action);
+        NextAction();
+    }
+
     private void NextAction()
     {
         key_action = Queue.GetAction();

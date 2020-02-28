@@ -25,7 +25,7 @@ public class Difficulty: Singleton<Difficulty>
 
 
     [HideInInspector]
-    public ActionsCount[] actions = new ActionsCount[3];
+    public ActionsCount[] actions { get; private set; } = new ActionsCount[3];
 
 
     public void SetDifficulty()

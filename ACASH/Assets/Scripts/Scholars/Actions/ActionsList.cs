@@ -34,25 +34,25 @@ public static class ActionsList
 
     private static Action[] cheatings_1 = new Action[]
     {
-        new Action("Ask_Neighbour", "All"),
-        new Action("Asshole_Class_Computer", ScholarTypes.asshole),
+        //new Action("Ask_Neighbour", "All"),
+        //new Action("Asshole_Class_Computer", ScholarTypes.asshole),
         new Action("Note", "All"),
-        new Action("Phone", "All"),
+        new Action("Calculate", "All"),
     };
 
     private static Action[] cheatings_2 = new Action[]
     {
         new Action("Air", "All"),
         new Action("Sink", "All"),
-        new Action("Program", "All"),
+        //new Action("Program", "All"),
     };
 
     private static Action[] cheatings_3 = new Action[]
     {
         new Action("Toilet", "All"),
-        new Action("Asshole_Teacher_Room_Computer", ScholarTypes.asshole),
-        new Action("Nerd_Break_Cameras", ScholarTypes.nerd),
-        new Action("Nerd_Break_Desk", ScholarTypes.nerd),
+        //new Action("Asshole_Teacher_Room_Computer", ScholarTypes.asshole),
+        //new Action("Nerd_Break_Cameras", ScholarTypes.nerd),
+        //new Action("Nerd_Break_Desk", ScholarTypes.nerd),
     };
 
     private static Dictionary<int, Action[]> cheatings = new Dictionary<int, Action[]>()
@@ -77,7 +77,7 @@ public static class ActionsList
     {
         Action cheating = FindCheating(cost, scholar.type);
         Debug.Log("Ученик №" + scholar.Info.number + "выбрал списывание - " + cheating.name);
-        return cheating.name + "_" + cost;
+        return "Cheating_" + cheating.name + "_" + cost;
     }
 
 

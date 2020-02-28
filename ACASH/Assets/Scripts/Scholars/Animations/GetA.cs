@@ -15,6 +15,8 @@
             Washing_Hands,
             Thinking_Outside,
             Thinking_Aloud,
+            Take_Out,
+            Take_Up,
         }
     }
 }

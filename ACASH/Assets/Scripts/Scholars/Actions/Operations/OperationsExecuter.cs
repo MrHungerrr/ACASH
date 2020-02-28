@@ -1,4 +1,5 @@
 ﻿using Animations;
+using ComputerActions;
 using UnityEngine;
 using System.Collections;
 
@@ -128,6 +129,32 @@ public class OperationsExecuter : OperationsExecuterBase
 
 
     //=========================================================================================================================================================
+    //Достать бумажку и посмотреть в нее
+
+    private IEnumerator Note()
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Take_Out);
+
+        yield return new WaitForSeconds(0.25f);
+
+        Scholar.Objects.Hold();
+
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Take_Up);
+
+        yield return new WaitForSeconds(5f);
+
+        Scholar.Objects.ThrowOut();
+
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+
+        OperationEnd();
+    }
+
+
+
+    //=========================================================================================================================================================
     //Думание вслух
 
     private IEnumerator Think_Aloud()
@@ -176,13 +203,174 @@ public class OperationsExecuter : OperationsExecuterBase
     private IEnumerator Computer_Text()
     {
         Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
 
-        Scholar.Desk.ExecuteCommand()
+        Scholar.Desk.ExecuteCommand(GetC.commands.Text);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(0.5f);
 
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 31)));
 
-        while (Scholar.Talk.talking)
+        while(Scholar.Desk.Controller.Typing.typing)
             yield return new WaitForEndOfFrame();
 
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(1f);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 31)));
+
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
+
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(1f);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.ExecuteCommand(GetC.commands.Desktop);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        OperationEnd();
+    }
+
+
+
+
+    private IEnumerator Computer_Calculator()
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Calculator);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(0.5f);
+
+
+
+
+        //Вычисление_1
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.ExecuteCommand(GetC.commands.Reset);
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(1, 6)));
+
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
+
+
+        Scholar.Desk.ExecuteCommand(GetC.GetCommand(Calculator.RandomOpeartion().ToString()));
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(1, 6)));
+
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
+
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Calculate);
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking);
+        yield return new WaitForSeconds(5f);
+
+
+
+
+        //Вычисление_2
+        Scholar.Desk.ExecuteCommand(GetC.commands.Reset);
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(1, 6)));
+
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
+
+
+        Scholar.Desk.ExecuteCommand(GetC.GetCommand(Calculator.RandomOpeartion().ToString()));
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(1, 6)));
+
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
+
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Calculate);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(5f);
+
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.ExecuteCommand(GetC.commands.Desktop);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        OperationEnd();
+    }
+
+
+
+    private IEnumerator Computer_Question(int question)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Exam);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(0.5f);
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand("Question " + question);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(0.5f);
+
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking);
+        yield return new WaitForSeconds(Random.Range(3, 10));
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.ExecuteCommand("Answer " + Random.Range(1, 5));
+        yield return new WaitForSeconds(0.5f);
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking);
+        yield return new WaitForSeconds(Random.Range(3, 10));
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.ExecuteCommand("Answer " + Random.Range(1, 5));
+        yield return new WaitForSeconds(0.5f);
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.ExecuteCommand(GetC.commands.Exam);
+        yield return new WaitForSeconds(0.5f);
+        Scholar.Desk.ExecuteCommand(GetC.commands.Desktop);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        OperationEnd();
+    }
+
+
+
+    private IEnumerator Computer_Rules()
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Rules);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(0.5f);
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Thinking);
+        yield return new WaitForSeconds(Random.Range(5, 15));
+
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Desktop);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
         OperationEnd();
     }
 
@@ -190,13 +378,42 @@ public class OperationsExecuter : OperationsExecuterBase
 
 
 
+    //=========================================================================================================================================================
+    //Зайти в комп под своим логином
+
+    private IEnumerator Computer_Login()
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Input_Field_Login);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.Controller.Typing.Type(new FiveDigitInt("1111"));
+
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
+
+        yield return new WaitForSeconds(0.5f);
+
+        Scholar.Desk.ExecuteCommand(GetC.commands.Input_Field_Password);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
 
 
+        Scholar.Anim.SetAnimation(GetA.animations.Writing);
+        Scholar.Desk.Controller.Typing.Type(new FiveDigitInt("1111"));
 
+        while (Scholar.Desk.Controller.Typing.typing)
+            yield return new WaitForEndOfFrame();
 
+        yield return new WaitForSeconds(0.5f);
 
-
-
+        Scholar.Desk.ExecuteCommand(GetC.commands.Log_In_Computer);
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        OperationEnd();
+    }
 
 
 

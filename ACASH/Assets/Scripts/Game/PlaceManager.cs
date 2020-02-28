@@ -59,16 +59,11 @@ public class PlaceManager : Singleton<PlaceManager>
         busy.Add(buf_place, new bool[DeskManager.get.desks.Length]);
         count.Add(buf_place, DeskManager.get.desks.Length);
 
-        SIC search = new SIC("Destonation");
-
         for (int i = 0; i < DeskManager.get.desks.Length; i++)
         {
             GameObject desk = DeskManager.get.desks[i].gameObject;
-
-            search.Key("Destonation");
-            search.Component(desk, out this.places[place.Desk][0, i]);
-            search.Key("Sight Goal");
-            search.Component(desk, out this.places[place.Desk][1, i]);
+            SIC.Component(desk, "Destonation", out this.places[place.Desk][0, i]);
+            SIC.Component(desk, "Sight Goal", out this.places[place.Desk][1, i]);
 
             //Debug.Log(desks[0, i].position);
         }
@@ -81,14 +76,11 @@ public class PlaceManager : Singleton<PlaceManager>
         busy.Add(type_of_place, new bool[places.Length]);
         count.Add(type_of_place, places.Length);
 
-        SIC search = new SIC("Destonation");
 
         for (int i = 0; i < places.Length; i++)
         {
-            search.Key("Destonation");
-            search.Component(places[i], out this.places[type_of_place][0, i]);
-            search.Key("Sight Goal");
-            search.Component(places[i], out this.places[type_of_place][1, i]);
+            SIC.Component(places[i], "Destonation",out this.places[type_of_place][0, i]);
+            SIC.Component(places[i], "Sight Goal",out this.places[type_of_place][1, i]);
         }
     }
 

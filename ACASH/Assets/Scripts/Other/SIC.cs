@@ -4,24 +4,12 @@ using UnityEngine;
 
 namespace Searching
 {
-    public class SIC// Search In Children by KEY
+    public static class SIC// Search In Children by KEY
     {
-        string key;
-
-        public SIC(string search_key)
-        {
-            this.key = search_key;
-        }
-
-        //Смена ключа поиска
-        public void Key(string search_key)
-        {
-            this.key = search_key;
-        }
 
 
         //Поиск компонентов
-        private Transform[] Components(Transform obj)
+        private static Transform[] Components(Transform obj, string key)
         {
             List<Transform> list = new List<Transform>();
 
@@ -32,7 +20,7 @@ namespace Searching
 
             for (int i = 0; i < obj.childCount; i++)
             {
-                list.AddRange(Components(obj.GetChild(i)));
+                list.AddRange(Components(obj.GetChild(i), key));
             }
 
             return list.ToArray();
@@ -43,14 +31,14 @@ namespace Searching
 
 
         //Фунуции для использования пользователем
-        public void Components(Transform obj, out Transform[] array)
+        public static void Components(Transform obj, string key, out Transform[] array)
         {
-            array = Components(obj.transform);
+            array = Components(obj.transform, key);
         }
 
-        public void Components(Transform obj, out GameObject[] array)
+        public static void Components(Transform obj, string key, out GameObject[] array)
         {
-            Transform[] buf_array = Components(obj);
+            Transform[] buf_array = Components(obj, key);
             List<GameObject> list = new List<GameObject>();
 
             foreach(Transform t in buf_array)
@@ -64,14 +52,14 @@ namespace Searching
 
 
         //Перегрузки для GameObjects Вместо Transform
-        public void Components(GameObject obj, out Transform[] array)
+        public static void Components(GameObject obj, string key, out Transform[] array)
         {
-            Components(obj.transform, out array);
+            Components(obj.transform, key, out array);
         }
 
-        public void Components(GameObject obj, out GameObject[] array)
+        public static void Components(GameObject obj, string key, out GameObject[] array)
         {
-            Components(obj.transform, out array);
+            Components(obj.transform, key, out array);
         }
 
 
@@ -80,7 +68,7 @@ namespace Searching
 
 
         //Поиск компонента
-        private Transform Component(Transform obj)
+        private static Transform Component(Transform obj, string key)
         {
             if (obj.name == key)
             {
@@ -89,7 +77,7 @@ namespace Searching
 
             for (int i = 0; i < obj.childCount; i++)
             {
-                Transform buf = Component(obj.GetChild(i));
+                Transform buf = Component(obj.GetChild(i), key);
                 if (buf != null)
                 {
                     return buf;
@@ -101,28 +89,28 @@ namespace Searching
 
 
         //Фунуции для использования пользователем
-        public void Component(Transform obj, out Transform goal)
+        public static void Component(Transform obj, string key, out Transform goal)
         {
-            goal = Component(obj.transform);
+            goal = Component(obj.transform, key);
         }
 
-        public void Component(Transform obj, out GameObject goal)
+        public static void Component(Transform obj, string key, out GameObject goal)
         {
-            goal = Component(obj.transform).gameObject;
+            goal = Component(obj.transform, key).gameObject;
         }
 
 
 
 
         //Перегрузки для GameObjects Вместо Transform
-        public void Component(GameObject obj, out GameObject goal)
+        public static void Component(GameObject obj, string key, out GameObject goal)
         {
-            Component(obj.transform, out goal);
+            Component(obj.transform, key, out goal);
         }
 
-        public void Component(GameObject obj, out Transform goal)
+        public static void Component(GameObject obj, string key, out Transform goal)
         {
-            Component(obj.transform, out goal);
+            Component(obj.transform, key, out goal);
         }
     }
 }

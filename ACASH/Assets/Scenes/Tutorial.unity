@@ -3803,9 +3803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328ba3959a803964da104c50a4a2c237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficultyType: 1
+  difficultyType: 0
   difficulty: 
-  actionsCount: 20
+  actionsCount: 6
 --- !u!1001 &1476234763
 PrefabInstance:
   m_ObjectHideFlags: 0

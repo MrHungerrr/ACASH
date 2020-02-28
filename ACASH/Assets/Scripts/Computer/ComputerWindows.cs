@@ -48,6 +48,14 @@ public class ComputerWindows : MonoBehaviour
     public void Set(string window)
     {
         //Debug.Log(window);
+        Disable();
+        windows[window].SetActive(true);
+        current_window = window;
+    }
+
+    public void SetWithoutDisable(string window)
+    {
+        //Debug.Log(window);
         windows[window].SetActive(true);
         current_window = window;
     }
