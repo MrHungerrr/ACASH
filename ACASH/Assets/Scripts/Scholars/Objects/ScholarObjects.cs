@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Searching;
@@ -8,22 +9,32 @@ public class ScholarObjects
 
 
     private Scholar Scholar { get; }
+    ScholarObjectsManager.obj_name object_current;
     Transform objects_holder;
     Transform objects_target;
 
     private bool holding;
 
 
+    [HideInInspector]
+    public Dictionary<ScholarObjectsManager.obj_name, GameObject> objects = new Dictionary<ScholarObjectsManager.obj_name, GameObject>();
 
 
 
     public ScholarObjects(Scholar Scholar)
     {
         holding = false;
-
         objects_holder = Scholar.transform.parent.Find("Objects");
         SIC.Component(Scholar.transform.parent, "Arm_Target_R_2", out objects_target);
-        objects_holder.gameObject.SetActive(false);
+
+        for (int i = 0; i < Enum.GetNames(typeof(ScholarObjectsManager.obj_name)).Length; i++)
+        {
+            ScholarObjectsManager.obj_name name_buf = (ScholarObjectsManager.obj_name)i;
+            GameObject object_buf = objects_holder.Find(name_buf.ToString()).gameObject;
+            objects.Add(name_buf, object_buf);
+
+            object_buf.SetActive(false);
+        }
 
         this.Scholar = Scholar;
     }
@@ -38,16 +49,25 @@ public class ScholarObjects
     }
 
 
-    public void Hold()
+    public void Hold(ScholarObjectsManager.obj_name obj)
     {
-        holding = true;
-        objects_holder.gameObject.SetActive(true);
+        if (!holding)
+        {
+            object_current = obj;
+            holding = true;
+            objects[obj].SetActive(true);
+        }
     }
 
     public void ThrowOut()
     {
-        holding = false;
-        objects_holder.gameObject.SetActive(false);
+        if (holding)
+        {
+            holding = false;
+            objects[object_current].SetActive(false);
+
+            GameObject.Instantiate(ScholarObjectsManager.get.objects[object_current], objects_target.position, objects[object_current].transform.rotation, ScholarObjectsManager.get.object_parent);
+        }
     }
 
 

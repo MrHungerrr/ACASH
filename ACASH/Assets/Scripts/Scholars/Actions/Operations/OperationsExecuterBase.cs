@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Animations;
 
 public abstract class OperationsExecuterBase : MonoBehaviour
 {
@@ -51,6 +52,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     public void Stop()
     {
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
         StopAllCoroutines();
     }
 
@@ -241,6 +243,47 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
 
 
+    //=========================================================================================================================================================
+    //=========================================================================================================================================================
+    // Ожидание
+
+
+    protected IEnumerator Wait(int option)
+    {
+        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        yield return new WaitForSeconds(option);
+
+        OperationEnd();
+    }
+
+
+
+
+
+    //=========================================================================================================================================================
+    //=========================================================================================================================================================
+    // Начало и конец списывание
+
+
+    protected IEnumerator StartCheat()
+    {
+        Scholar.Cheat.StartCheat();
+        yield return new WaitForEndOfFrame();
+
+        OperationEnd();
+    }
+
+    protected IEnumerator EndCheat()
+    {
+        Scholar.Cheat.EndCheat();
+        yield return new WaitForEndOfFrame();
+
+        OperationEnd();
+    }
+
+
+
+
 
     //=========================================================================================================================================================
     //=========================================================================================================================================================
@@ -263,4 +306,29 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         else
             Manager.ActionEnd();
     }
+
+
+
+
+
+    //=========================================================================================================================================================
+    //Исключение
+
+    private IEnumerator Execute()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (Scholar.Execute.executed)
+        {
+            Scholar.Talk.SayWithoutStop(Scholar.Execute.execute_key);
+            yield return new WaitForSeconds(1f);
+        }
+
+
+        Scholar.Emotions.ChangeEmotion("dead");
+
+        OperationEnd();
+    }
+
+
 }

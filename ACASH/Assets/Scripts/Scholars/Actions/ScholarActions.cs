@@ -10,6 +10,8 @@ public class ScholarActions
 
     [HideInInspector]
     public string key_action;
+    private bool active;
+    private bool skip;
 
 
 
@@ -19,37 +21,48 @@ public class ScholarActions
         Simple = new ActionsSimple();
         Queue = new ActionsQueue();
         key_action = null;
+        active = false;
+        skip = false;
     }
-
 
 
 
     public void Reset()
     {
         Queue.Reset();
+        active = true;
         NextAction();
     }
 
     public void Reset(string next_action)
     {
         Queue.Reset();
+        active = true;
         Queue.Add(next_action);
         NextAction();
     }
 
+    public void ResetFirst()
+    {
+        skip = true;
+    }
+
     private void NextAction()
     {
-        key_action = Queue.GetAction();
+        if (active)
+        {
+            key_action = Queue.GetAction();
 
-        if(key_action != null)
-        {
-            Debug.Log("Пошло действие - " + key_action);
-            DoAction(key_action);
-        }
-        else
-        {
-            AddAction(Simple.GetActions());
-            NextAction();
+            if (key_action != null)
+            {
+                Debug.Log("Пошло действие - " + key_action);
+                DoAction(key_action);
+            }
+            else
+            {
+                AddAction(Simple.GetActions());
+                NextAction();
+            }
         }
     }
 
@@ -60,7 +73,7 @@ public class ScholarActions
     }
 
 
-    public void DoAction(string action)
+    public void DoAction (string action)
     {
         Operations.SetAction(action);
     }
@@ -68,7 +81,15 @@ public class ScholarActions
 
     public void Continue()
     {
-        Operations.Continue();
+        active = true;
+
+        if (skip)
+        {
+            skip = false;
+            NextAction();
+        }
+        else
+            Operations.Continue();
     }
 
 
@@ -77,11 +98,23 @@ public class ScholarActions
         Debug.Log("Опа, закончилось - " + key_action);
         NextAction();
     }
-    
 
-    public void Stop()
+
+    public void Enable()
+    {
+        active = true;
+        NextAction();
+    }
+
+    public void Disable()
+    {
+        active = false;
+    }
+
+    public void Pause()
     {
         Operations.Stop();
+        Disable();
     }
 
 }

@@ -10,6 +10,20 @@ public class OperationsExecuter : OperationsExecuterBase
     // Идти домой
     private IEnumerator Go_Home()
     {
+        GoTo(PlaceManager.place.Home, Scholar.Info.number);
+
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
+
+        WatchTo(PlaceManager.place.Home, Scholar.Info.number);
+
+        OperationEnd();
+    }
+
+    //=========================================================================================================================================================
+    // Идти к парте
+    private IEnumerator Go_To_Desk()
+    {
         GoTo(PlaceManager.place.Desk, Scholar.Info.number);
 
         while (!IsHere())
@@ -19,7 +33,6 @@ public class OperationsExecuter : OperationsExecuterBase
 
         OperationEnd();
     }
-
 
     //=========================================================================================================================================================
     // Думать
@@ -137,7 +150,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
         yield return new WaitForSeconds(0.25f);
 
-        Scholar.Objects.Hold();
+        Scholar.Objects.Hold(ScholarObjectsManager.obj_name.Note);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -167,21 +180,6 @@ public class OperationsExecuter : OperationsExecuterBase
 
         OperationEnd();
     }
-
-
-
-    //=========================================================================================================================================================
-    //Исключение
-
-    private IEnumerator Execute()
-    {
-        Scholar.Select.Selectable(false);
-        yield return new WaitForSeconds(1f);
-
-        Scholar.Emotions.ChangeEmotion("dead");
-        Scholar.Stop();
-    }
-
 
 
 

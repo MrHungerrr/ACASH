@@ -6,51 +6,59 @@ using Single;
 public class ExamManager : Singleton<ExamManager>
 {
 
+    public enum part
+    {
+        chill,
+        prepare,
+        exam
+    }
+
+    public bool exam;
+
+
+    public delegate void OnTimeDone();
+    public event OnTimeDone ChillDone;
+    public event OnTimeDone PrepareDone;
+    public event OnTimeDone ExamDone;
+
+
+
     [HideInInspector]
-    public string exam_part;
+    public part exam_part;
 
-    public Dictionary<string, bool> banned = new Dictionary<string, bool>()
+
+
+    public void Awake()
     {
-        { "Pen_", false },
-        { "Calculator_", false },
-        { "Talking_", false },
-        { "Cheating_", false },
-        { "Walking_", false },
-    };
-
-
-    private void Awake()
-    {
-        
+        ChillDone += StartPrepare;
+        PrepareDone += StartExam;
     }
 
 
     public void ResetExam()
     {
         StartChill();
+        GameManager.get.SetScholars();
     }
 
     private void StartChill()
     {
-        exam_part = "chill";
+        exam = false;
+        exam_part = part.chill;
         TimeManager.get.SetTime(0);
-        Debug.Log("StartChill");
     }
 
     private void StartPrepare()
     {
-        exam_part = "prepare";
-        ScholarManager.get.StartPrepare();
+        exam_part = part.prepare;
         TimeManager.get.SetTime(1);
-        Debug.Log("StartPrepare");
     }
 
     public void StartExam()
     {
-        exam_part = "exam";
-        ScholarManager.get.StartExam();
+        exam = true;
+        exam_part = part.exam;
         TimeManager.get.SetTime(2);
-        Debug.Log("StartExam");
     }
 
 
@@ -58,27 +66,22 @@ public class ExamManager : Singleton<ExamManager>
     {
         switch(exam_part)
         {
-            case "chill":
+            case part.chill:
                 {
-                    StartPrepare();
+                    ChillDone();
                     break;
                 }
-            case "prepare":
+            case part.prepare:
                 {
-                    StartExam();
+                    PrepareDone();
                     break;
                 }
-            case "exam":
+            case part.exam:
                 {
                     ExamDone();
                     break;
                 }
         }
-    }
-
-    public void ExamDone()
-    {
-        Debug.Log("ExamDone");
     }
 
 }

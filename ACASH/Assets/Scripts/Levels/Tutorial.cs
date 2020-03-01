@@ -16,6 +16,10 @@ public class Tutorial : Singleton<Tutorial>
     {
         if (Input.GetKeyDown(KeyCode.P))
            StartCoroutine(EndLevel());
+
+
+
+
     }
 
     private IEnumerator StartLevel()
@@ -32,11 +36,10 @@ public class Tutorial : Singleton<Tutorial>
         while(SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        yield return new WaitForSeconds(3f);
+
 
         ElevatorController.get.Ready();
-
-        //Эту строчку потом нужно будет убрать!
-        ElevatorController.get.Open();
     }
 
 

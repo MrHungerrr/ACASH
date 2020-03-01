@@ -15,33 +15,45 @@ public class Difficulty: Singleton<Difficulty>
     private list difficultyType;
 
     [HideInInspector]
-    public string difficulty;
+    public string difficulty { get; private set; }
 
     [SerializeField]
     [Range(0,20)]
     private int actionsCount;
 
 
-
-
-    [HideInInspector]
-    public ActionsCount[] actions { get; private set; } = new ActionsCount[3];
-
-
-    public void SetDifficulty()
+    public void Setup()
     {
         difficulty = difficultyType.ToString();
-        GetActionsCount();
     }
 
-    private void GetActionsCount()
+
+    public ActionsCount GetWave(int wave)
     {
-        actions[0] = FirstWave(actionsCount);
-        actions[1] = SecondWave(actionsCount);
-        actions[2] = ThirdWave(actionsCount);
+        return GetWave(wave, actionsCount);
     }
 
-    private ActionsCount FirstWave(int act_count)
+    public ActionsCount GetWave(int wave, int act_count)
+    {
+        switch(wave)
+        {
+            case 0:
+                return GetZeroWave(act_count);
+            case 1:
+                return GetFirstWave(act_count);
+            case 2:
+                return GetSecondWave(act_count);
+            case 3:
+                return GetThirdWave(act_count);
+        }
+
+        Debug.LogError("Подана не та волна");
+        return null;
+    }
+
+
+
+    private ActionsCount GetZeroWave(int act_count)
     {
         int quotient;
         ActionsCount act;
@@ -50,7 +62,7 @@ public class Difficulty: Singleton<Difficulty>
         {
             case "Easy":
                 {
-                    act = new ActionsCount(act_count, 0,0);
+                    act = new ActionsCount(act_count, 0, 0);
                     return act;
                 }
             case "Normal":
@@ -69,7 +81,9 @@ public class Difficulty: Singleton<Difficulty>
         return null;
     }
 
-    private ActionsCount SecondWave(int act_count)
+
+
+    private ActionsCount GetFirstWave(int act_count)
     {
         int quotient;
         ActionsCount act;
@@ -100,8 +114,7 @@ public class Difficulty: Singleton<Difficulty>
     }
 
 
-
-    private ActionsCount ThirdWave(int act_count)
+    private ActionsCount GetSecondWave(int act_count)
     {
         int quotient;
         ActionsCount act;
@@ -111,7 +124,7 @@ public class Difficulty: Singleton<Difficulty>
             case "Easy":
                 {
                     quotient = Quotient(ref act_count, 4);
-                    act = new ActionsCount(quotient * 2 + act_count, quotient, quotient);
+                    act = new ActionsCount(quotient * 2, quotient + act_count, quotient);
                     return act;
                 }
             case "Normal":
@@ -122,8 +135,38 @@ public class Difficulty: Singleton<Difficulty>
                 }
             case "Hard":
                 {
-                    quotient = Quotient(ref act_count, 4);
-                    act = new ActionsCount(quotient, quotient, quotient * 2 + act_count);
+                    quotient = Quotient(ref act_count, 3);
+                    act = new ActionsCount(quotient, quotient, quotient + act_count);
+                    return act;
+                }
+        }
+
+        return null;
+    }
+
+    private ActionsCount GetThirdWave(int act_count)
+    {
+        int quotient;
+        ActionsCount act;
+
+        switch (difficulty)
+        {
+            case "Easy":
+                {
+                    quotient = Quotient(ref act_count, 3);
+                    act = new ActionsCount(quotient, quotient + act_count, quotient);
+                    return act;
+                }
+            case "Normal":
+                {
+                    quotient = Quotient(ref act_count, 2);
+                    act = new ActionsCount(act_count, quotient, quotient);
+                    return act;
+                }
+            case "Hard":
+                {
+                    quotient = Quotient(ref act_count, 3);
+                    act = new ActionsCount(0, quotient, quotient * 2 + act_count);
                     return act;
                 }
         }

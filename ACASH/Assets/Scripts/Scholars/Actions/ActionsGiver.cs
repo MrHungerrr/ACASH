@@ -7,7 +7,7 @@ public static class ActionsGiver
     public static void GiveActions(ActionsCount actions_count)
     {
         ActionsCount actions = new ActionsCount(actions_count);
-
+        Debug.Log(actions);
         int length;
 
         if (ScholarManager.get.scholars.Length < actions.count)

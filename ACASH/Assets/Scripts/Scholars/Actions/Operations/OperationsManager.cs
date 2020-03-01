@@ -34,6 +34,15 @@ public class OperationsManager
     }
 
 
+    public void Reset()
+    {
+        done = true;
+        action = "";
+        operation_num = 0;
+        operations = null;
+    }
+
+
     private void DoOperation()
     {
 

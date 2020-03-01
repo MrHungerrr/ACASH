@@ -4,7 +4,7 @@ using System.Collections;
 public class ScholarAnswers
 {
 
-    public int[] answers = new int[3];
+    public int[] answers { get; set; } = new int[3];
 
 
     public ScholarAnswers()
@@ -13,7 +13,7 @@ public class ScholarAnswers
     }
 
 
-    public void Reset()
+    private void Reset()
     {
         for(int i = 0; i< answers.Length; i++)
         {

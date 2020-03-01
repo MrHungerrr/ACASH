@@ -7,7 +7,8 @@ public class TimeManager : Singleton<TimeManager>
 {
 
     private bool active;
-    private float time_passed;
+    [HideInInspector]
+    public float time_passed { get; private set; }
     private float time_left;
     private float time;
     private string time_string;
@@ -15,8 +16,7 @@ public class TimeManager : Singleton<TimeManager>
     private float time_sec_previous = 0;
     private Timer[] timers;
 
-    [HideInInspector]
-    public string time_name;
+    private string time_name;
     private int index;
 
 
@@ -28,7 +28,7 @@ public class TimeManager : Singleton<TimeManager>
     {
         5f,
         1f,
-        600f
+        1f
     };
 
     private string[] time_names = new string[]
@@ -87,11 +87,12 @@ public class TimeManager : Singleton<TimeManager>
     }
 
 
-    public void SetTimers()
+    public void Setup()
     {
         active = false;
         index = 0;
         timers = FindObjectsOfType<Timer>();
+        ScholarActionTime.get.Setup();
     }
 
     private void Time()

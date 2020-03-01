@@ -6,12 +6,15 @@
         {
             Check,
             Go_Home,
+            Go_To_Desk,
             Question,
             Computer,
             Verify,
             Think_Aloud,
             Execute,
             Note,
+            StartCheat,
+            EndCheat,
         }
 
         public enum computer
@@ -38,6 +41,7 @@
             Write,
             Think_Outside,
             Wash_Hands,
+            Wait,
         }
 
 

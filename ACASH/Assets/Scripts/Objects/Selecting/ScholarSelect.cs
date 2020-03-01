@@ -7,11 +7,13 @@ public class ScholarSelect : ObjectSelect
 {
     //========================================================================================================
     //Возможность выбрать объект
+    private Scholar Scholar;
     private bool selectable = true;
 
 
-    public void SetScholarSelect()
+    public void Setup(Scholar scholar)
     {
+        Scholar = scholar;
         SetSelect();
         Selectable(true);
     }
@@ -42,11 +44,14 @@ public class ScholarSelect : ObjectSelect
 
     public void Selectable(bool option)
     {
-        selectable = option;
-
-        if (!option)
+        if (Scholar.active)
         {
-            Deselect();
+            selectable = option;
+
+            if (!option)
+            {
+                Deselect();
+            }
         }
     }
 }

@@ -1,13 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ScholarCheat
 {
 
     private Scholar Scholar;
     public bool cheating { get; private set; }
-    public bool cheatNeed;
-    public int cheat_finish_type;
+
+
+    public enum reason
+    {
+        Walking,
+        Cheating,
+        Talking
+    }
+
+
+    //Список причин, по которым можно удалить ученика
+
+    public Dictionary<reason, bool> reasons = new Dictionary<reason, bool>()
+    {
+        { reason.Walking, false },
+        { reason.Cheating, false },
+        { reason.Talking, false },
+    };
+
+    public Dictionary<reason, bool> cheated = new Dictionary<reason, bool>()
+    {
+        { reason.Walking, false },
+        { reason.Cheating, false },
+        { reason.Talking, false },
+    };
 
 
     public ScholarCheat(Scholar s)
@@ -16,56 +40,50 @@ public class ScholarCheat
     }
 
 
-    public void CheatingFinish()
+
+
+    public void StartCheat()
     {
+        cheating = true;
+        reasons[reason.Cheating] = true;
+    }
 
-        // Обозначения переменных для завершения списывания
-        //  1 - Звук от учителя
-        //  2 - Я вижу учителя
-        //  3 - Учитель возможно смотрит на меня
-        //  4 - Учитель точно смотрит на меня
 
-        switch (cheat_finish_type)
+    public void EndCheat()
+    {
+        cheating = false;
+        cheated[reason.Cheating] = true;
+    }
+
+
+    public bool IsTryToCheat()
+    {
+        foreach (KeyValuePair<reason, bool> pair in reasons)
         {
-            case 1:
-                {
-                    if (Scholar.Senses.T_here)
-                        Stop();
-
-                    break;
-                }
-            case 2:
-                {
-                    if (Scholar.Senses.T_in_sight)
-                        Stop();
-
-                    break;
-                }
-            case 3:
-                {
-                    if (Scholar.Senses.T_in_sight && Scholar.Senses.T_look_near_at_us)
-                        Stop();
-
-                    break;
-                }
-            case 4:
-                {
-                    if (Scholar.Senses.T_in_sight && Scholar.Senses.T_look_at_us)
-                        Stop();
-
-                    break;
-                }
+            if (pair.Value)
+                return true;
         }
+
+        return false;
     }
 
-    public void Stop()
+    public bool IsCheated()
     {
-        //Остановка читерства
+        foreach(KeyValuePair<reason, bool> pair in cheated)
+        {
+            if (pair.Value)
+                return true;
+        }
+
+        return false;
     }
+
 
     public bool Probability()
     {
-        return true;
+        if (BaseMath.Probability((70f - Scholar.Stress.value)/100f))
+            return true;
+        else
+            return false;
     }
-
 }

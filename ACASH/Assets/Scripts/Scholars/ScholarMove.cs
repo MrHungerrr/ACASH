@@ -30,7 +30,7 @@ public class ScholarMove : MonoBehaviour
 
 
 
-    public void SetupMove(Scholar scholar)
+    public void Setup(Scholar scholar)
     {
         Scholar = scholar;
 

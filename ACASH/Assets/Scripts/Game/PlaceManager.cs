@@ -15,6 +15,7 @@ public class PlaceManager : Singleton<PlaceManager>
         Outside,
         Teacher_Room,
         Desk,
+        Home
     }
 
 
@@ -27,7 +28,7 @@ public class PlaceManager : Singleton<PlaceManager>
     [HideInInspector]
     public Dictionary<place, bool[]> busy;
 
-    public void SetLevel()
+    public void Setup()
     {
         ResetLevel();
 

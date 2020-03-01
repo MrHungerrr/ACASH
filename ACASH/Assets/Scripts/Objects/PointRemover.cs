@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutsidePointRemover : MonoBehaviour
+public class PointRemover : MonoBehaviour
 {
 
 

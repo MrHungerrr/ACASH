@@ -111,6 +111,14 @@ public class ComputerCommands
                     Comp.Numpad.Set(Comp.Text.input);
                     break;
                 }
+            case "Score":
+                {
+                    CloseProgram();
+                    EnableTaskBar(false);
+                    Set(type);
+                    Comp.Numpad.Enable(false);
+                    break;
+                }
 
 
 
@@ -225,6 +233,17 @@ public class ComputerCommands
             case "Answer 4":
                 {
                     Comp.Question.SetAnswer(3);
+                    break;
+                }
+            case "Continue Score":
+                {
+                    ScoreManager.get.Accept();
+
+                    if(Comp.Login.loged)
+                        Do("Desktop");
+                    else
+                        Do("Login");
+                    //Новый экзамен
                     break;
                 }
             case "Close":

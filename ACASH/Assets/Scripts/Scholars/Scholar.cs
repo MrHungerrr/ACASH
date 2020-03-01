@@ -7,11 +7,15 @@ using UnityEngine.AI;
 
 public class Scholar : MonoBehaviour
 {
+    public bool handControl;
     //Тип ученика
     [SerializeField] 
     private ScholarTypes.list scholarType;
     [HideInInspector]
     public string type { get; private set; }
+
+    [HideInInspector]
+    public bool active { get; private set; }
 
 
 
@@ -68,24 +72,21 @@ public class Scholar : MonoBehaviour
 
 
 
-    private void Awake()
+    public void Setup()
     {
         this.tag = "Scholar";
 
-        Answers = new ScholarAnswers();
-        ChangeType(scholarType);
-
         TextBox = GetComponent<ScholarTextBox>();
-        TextBox.SetupTextBox();
+        TextBox.Setup();
 
         Emotions = GetComponent<ScholarEmotions>();
-        Emotions.SetupEmotions();
+        Emotions.Setup();
 
         Move = transform.parent.GetComponentInParent<ScholarMove>();
-        Move.SetupMove(this);
+        Move.Setup(this);
 
         Select = GetComponent<ScholarSelect>();
-        Select.SetScholarSelect();
+        Select.Setup(this);
 
 
         Anim = new ScholarAnim(transform.parent.GetComponentInChildren<Animator>());
@@ -102,23 +103,28 @@ public class Scholar : MonoBehaviour
         Check = new ScholarCheck(this);
         Info = new ScholarInfo(this);
         View = new ScholarView(this);
-        Talk = new ScholarTalk(this);
         Test = new ScholarExam();
 
+        if(handControl)
+            SetType(scholarType);
     }
 
 
 
     public void SetType(ScholarTypes.list type)
     {
+        active = true;
         ChangeType(type);
+
+        Talk = new ScholarTalk(this);
+        Answers = new ScholarAnswers();
     }
 
 
 
     void Update()
     {
-        if (!Execute.executed)
+        if (active)
         {
             Test.Update();
             Question.Update();
@@ -131,20 +137,33 @@ public class Scholar : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Execute.executed)
+        if (active)
             Stress.MoodTypeTimeUpdate();
     }
 
-    public void Stop()
-    {
-        Action.Stop();
-        Move.Stop();
-    }
+
 
     public void Continue()
     {
         Action.Continue();
     }
+
+    public void Pause()
+    {
+        Action.Pause();
+        Move.Stop();
+    }
+
+    public void Disable()
+    {
+        Action.Disable();
+        Move.Stop();
+        Talk.Stop();
+        Anim.SetAnimation(Animations.GetA.animations.Nothing);
+        active = false;
+    }
+
+
 
 
     //========================================================================================================
@@ -153,13 +172,6 @@ public class Scholar : MonoBehaviour
     public void ChangeType(ScholarTypes.list t)
     {
         scholarType = t;
-
         type = t.ToString();
-
-        if (Talk != null)
-            Talk.key_word = new KeyWord(t.ToString());
-
-        if (Answers != null)
-            Answers.Reset();
     }
 }

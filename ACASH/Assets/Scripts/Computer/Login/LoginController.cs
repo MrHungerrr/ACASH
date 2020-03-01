@@ -15,6 +15,8 @@ public class LoginController : MonoBehaviour
     public User user;
     private TextMeshProUGUI invalid;
 
+    public bool loged { get; private set;}
+
 
 
     public void SetLoginController(A_Computer c)
@@ -27,6 +29,7 @@ public class LoginController : MonoBehaviour
 
         login.SetInputField();
         password.SetInputField();
+        loged = false;
 
         Comp = c;
     }
@@ -35,6 +38,7 @@ public class LoginController : MonoBehaviour
     {
         login.Reset();
         password.Reset();
+        loged = false;
         invalid.text = "";
     }
 
@@ -58,6 +62,7 @@ public class LoginController : MonoBehaviour
         {
             if(user.password == password.text)
             {
+                loged = true;
                 Comp.Desktop.SetUser(user);
                 Comp.Commands.Do("Desktop");
                 //Обновление коллайдеров

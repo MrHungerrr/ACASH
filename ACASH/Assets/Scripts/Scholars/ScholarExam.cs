@@ -9,10 +9,12 @@ public class ScholarExam
     public int test { get; private set; }
     public double test_buf { get; private set; }
     public float test_bufTime { get; private set; }
+    public bool finished { get; private set; }
 
 
     public ScholarExam()
     {
+        finished = false;
         test = 0;
         test_buf = 0;
         test_bufTime = 0;

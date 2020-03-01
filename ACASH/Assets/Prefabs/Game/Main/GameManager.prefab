@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1300066095}
+  - component: {fileID: 9076347397069098129}
+  - component: {fileID: 8020458321740194047}
   m_Layer: 0
   m_Name: ComputerScripts
   m_TagString: Untagged
@@ -30,6 +32,152 @@ Transform:
   m_Father: {fileID: 6132918696476860144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9076347397069098129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300066094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb24247015ac0b3479b260267cdb2240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  users:
+  - {fileID: 11400000, guid: b4fd0d2afcaf67b46bd6c6ff4dfd9f74, type: 2}
+  - {fileID: 11400000, guid: f3bd78252297cb442890491dfbe2ce04, type: 2}
+--- !u!114 &8020458321740194047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300066094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8c87cbec725724eaf3f250b62993f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseInput: {x: 0, y: 0}
+  mouse: {x: 0, y: 0}
+  fast: 0
+  colors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 1, g: 1, b: 1, a: 0.3}
+--- !u!1 &3729787128719576152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4924896803829262489}
+  - component: {fileID: 7402170229714837336}
+  - component: {fileID: 304736969996870486}
+  - component: {fileID: 8525955165949043584}
+  - component: {fileID: 6629959892841843872}
+  - component: {fileID: 6621011079169996320}
+  m_Layer: 0
+  m_Name: ScholarScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4924896803829262489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729787128719576152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6132918696476860144}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7402170229714837336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729787128719576152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66536129bf1f9ee439e66aad34de14cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scholars: []
+  cheating_count: 0
+  left: 0
+  cheated: 0
+  finished: 0
+  ussual: {fileID: 2800000, guid: 87c1c48b65072a24a941aec7ad64ad4b, type: 3}
+  happy: {fileID: 2800000, guid: 06a47f8b6b61b8841ad11c3d62f20288, type: 3}
+  smile: {fileID: 2800000, guid: 7ce14bec2060c1a4597f433724fc6002, type: 3}
+  sad: {fileID: 2800000, guid: 2d15d2c63f6e9bd4581f77c663f9a37a, type: 3}
+  upset: {fileID: 2800000, guid: 10fb9a8dd0801f84b9922c8a2cc6f92d, type: 3}
+  suprised: {fileID: 2800000, guid: db2cc152395e42246b6b39f0361d80ae, type: 3}
+  ask: {fileID: 2800000, guid: 4fe466d859381eb4881b88356dcc7cd3, type: 3}
+  dead: {fileID: 2800000, guid: 92fced849fdd5dd48b8be70b19e3ad53, type: 3}
+--- !u!114 &304736969996870486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729787128719576152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefd5718c508e204e881bb6d9497f8f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8525955165949043584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729787128719576152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20459ff9fa050e41ab405f3cbc25e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainLine: 1
+  First_Desk_X: 1
+  First_Desk_Z: 0
+  desks: []
+--- !u!114 &6629959892841843872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729787128719576152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5dd3c1b06a95f4fbfcee7acb669401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6621011079169996320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729787128719576152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4abb738617760d4b8265d2bc52185ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  object_parent: {fileID: 0}
 --- !u!1 &5761644016120540648
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,9 +238,7 @@ GameObject:
   - component: {fileID: 6132918696476860143}
   - component: {fileID: 6132918696476860142}
   - component: {fileID: 6132918696476860141}
-  - component: {fileID: 6132918696476860146}
   - component: {fileID: 911437710}
-  - component: {fileID: 1486213562}
   - component: {fileID: 1486213563}
   - component: {fileID: 1486213564}
   - component: {fileID: 1486213565}
@@ -100,9 +246,6 @@ GameObject:
   - component: {fileID: 4691075570870221643}
   - component: {fileID: 6326149851576382278}
   - component: {fileID: 3982946758408277148}
-  - component: {fileID: 3585671208464519927}
-  - component: {fileID: 574315359}
-  - component: {fileID: 5286558187355912941}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -123,6 +266,7 @@ Transform:
   m_Children:
   - {fileID: 1300066095}
   - {fileID: 9209631483066717037}
+  - {fileID: 4924896803829262489}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,31 +326,6 @@ MonoBehaviour:
   gameType: 
   gameType_last: 
   hold_crouch: 0
---- !u!114 &6132918696476860146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6132918696476860140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66536129bf1f9ee439e66aad34de14cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scholars: []
-  cheating_count: 0
-  left: 0
-  cheated: 0
-  finished: 0
-  ussual: {fileID: 2800000, guid: 87c1c48b65072a24a941aec7ad64ad4b, type: 3}
-  happy: {fileID: 2800000, guid: 06a47f8b6b61b8841ad11c3d62f20288, type: 3}
-  smile: {fileID: 2800000, guid: 7ce14bec2060c1a4597f433724fc6002, type: 3}
-  sad: {fileID: 2800000, guid: 2d15d2c63f6e9bd4581f77c663f9a37a, type: 3}
-  upset: {fileID: 2800000, guid: 10fb9a8dd0801f84b9922c8a2cc6f92d, type: 3}
-  suprised: {fileID: 2800000, guid: db2cc152395e42246b6b39f0361d80ae, type: 3}
-  ask: {fileID: 2800000, guid: 4fe466d859381eb4881b88356dcc7cd3, type: 3}
-  dead: {fileID: 2800000, guid: 92fced849fdd5dd48b8be70b19e3ad53, type: 3}
 --- !u!114 &911437710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,24 +342,6 @@ MonoBehaviour:
   type_of_setting: 
   slider: {fileID: 0}
   selector: {fileID: 0}
---- !u!114 &1486213562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6132918696476860140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8c87cbec725724eaf3f250b62993f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseInput: {x: 0, y: 0}
-  mouse: {x: 0, y: 0}
-  fast: 0
-  colors:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 1, g: 1, b: 1, a: 0.3}
 --- !u!114 &1486213563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f8aa6d1ed6a824bad86979b12eb0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time_name: 
 --- !u!114 &4691075570870221643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1aa1610d99b64f47ac2f10c30ee01ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exam_part: 
+  exam: 0
+  exam_part: 0
 --- !u!114 &6326149851576382278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,48 +440,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4c6154b4c85ebf4d8eb2c23d5281901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3585671208464519927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6132918696476860140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c20459ff9fa050e41ab405f3cbc25e64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainLine: 1
-  First_Desk_X: 1
-  First_Desk_Z: 0
-  desks: []
---- !u!114 &574315359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6132918696476860140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb24247015ac0b3479b260267cdb2240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  users:
-  - {fileID: 11400000, guid: b4fd0d2afcaf67b46bd6c6ff4dfd9f74, type: 2}
-  - {fileID: 11400000, guid: f3bd78252297cb442890491dfbe2ce04, type: 2}
---- !u!114 &5286558187355912941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6132918696476860140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5dd3c1b06a95f4fbfcee7acb669401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

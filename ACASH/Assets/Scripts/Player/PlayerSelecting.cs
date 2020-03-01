@@ -76,13 +76,15 @@ public class PlayerSelecting
         {
             if (selected_obj.TryGetComponent<Scholar>(out selected_scholar))
             {
-                if (!selected_scholar.Execute.executed)
+                if (selected_scholar.active)
                 {
                     Player.get.Talk.scholar = selected_scholar;
                     return true;
                 }
             }
         }
+
+        Player.get.Talk.scholar = null;
         return false;
     }
 

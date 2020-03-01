@@ -24,7 +24,7 @@ public class ActionsTest: MonoBehaviour
         
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.RightShift))
         {
             DoAction();
         }

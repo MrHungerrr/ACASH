@@ -18,7 +18,7 @@ public class ScholarTextBox : MonoBehaviour
     private float timeUnselectable = 0;
 
 
-    public void SetupTextBox()
+    public void Setup()
     {
         Transform buf = transform.parent.Find("Scholar").Find("Scholar").Find("Spine").Find("Text Box");
         textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();

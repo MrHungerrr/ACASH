@@ -38,11 +38,12 @@ public class ScholarConverastion
     {
         if (strong)
         {
-            Scholar.Stress.Change(10);
+            Scholar.Stress.Change(30);
             Scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
         }
         else
         {
+            Scholar.Stress.Change(10);
             Scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
         }
 
@@ -53,8 +54,12 @@ public class ScholarConverastion
 
     public void Answer(KeyWord key)
     {
-        key.Answer(IsTeacherBullingRight());
+        bool teacherIsRight = IsTeacherBullingRight();
 
+        if(teacherIsRight)
+            Scholar.Action.ResetFirst();
+
+        key.Answer(teacherIsRight);
         Scholar.Talk.Say(key);
     }
 
@@ -67,25 +72,28 @@ public class ScholarConverastion
     {
         switch (Scholar.View.GetView())
         {
-            case "Cheating":
+            case ScholarCheat.reason.Cheating:
                 {
                     if (Scholar.Cheat.cheating)
                         return true;
                     else
                         return false;
                 }
-            case "Talking":
+            case ScholarCheat.reason.Talking:
                 {
-                    if (Scholar.Talk.talking)
+                   /* if (Scholar.Talk.talking)
                         return true;
                     else
+                    */
                         return false;
                 }
-            case "Walking":
+            case ScholarCheat.reason.Walking:
                 {
-                    if (Scholar.Move.walking) /*или на улице)*/
-                        return true;
+                    /*
+                    if (Scholar.Move.walking) или на улице)
+                    return true;
                     else
+                    */
                         return false;
                 }
         }

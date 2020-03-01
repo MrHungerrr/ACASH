@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using Cinemachine;
+﻿using ComputerActions;
 using UnityEngine;
 
 
@@ -23,10 +20,19 @@ public class TeacherComputer : A_Computer
 
         Controller = GetComponent<TeacherComputerController>();
         Controller.SetTeacherComputerController();
+
+        ExamManager.get.ExamDone += ExamDone;
     }
 
     public override void SetScholars()
     {
         base.SetScholars();
+    }
+
+
+
+    private void ExamDone()
+    {
+        Commands.Do(GetC.commands.Score);
     }
 }

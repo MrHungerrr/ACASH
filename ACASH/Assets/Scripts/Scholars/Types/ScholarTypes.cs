@@ -4,12 +4,14 @@
     {
         Asshole,
         Dumb,
-        Nerd
+        Nerd,
     }
 
     public const string asshole = "Asshole";
     public const string dumb = "Dumb";
     public const string nerd = "Nerd";
 
-    // От этого скрипта зависят Scholar, ScholarManaget и самый главный - ScholarAgent
+    public const int length = 3;
+
+    // От этого скрипта зависят Scholar, ScholarManager
 }

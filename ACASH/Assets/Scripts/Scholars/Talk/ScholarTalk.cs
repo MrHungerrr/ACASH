@@ -28,8 +28,8 @@ public class ScholarTalk
     public void Say(KeyWord key)
     {
         MakeKey(key);
-        type_of_talk = "talk";
-        Scholar.Stop();
+        type_of_talk = "hard_talk";
+        Scholar.Pause();
         Scholar.Select.Selectable(false);
         Scholar.TextBox.Say(key_word);
         talking = true;
@@ -90,7 +90,33 @@ public class ScholarTalk
     {
         switch (type_of_talk)
         {
+            case "hard_talk":
+                {
+                    if (Scholar.TextBox.IsTalking())
+                    {
+                        Scholar.Move.SetRotateGoal(Player.get.transform.position);
+                    }
+                    else
+                    {
+                        Scholar.Continue();
+                        Scholar.Select.Selectable(true);
+                        talking = false;
+                    }
+                    break;
+                }
             case "question":
+                {
+                    if (Scholar.TextBox.IsTalking())
+                    {
+                        Scholar.Move.SetRotateGoal(Player.get.transform.position);
+                    }
+                    else
+                    {
+                        Scholar.Select.Selectable(true);
+                        talking = false;
+                    }
+                    break;
+                }
             case "talk":
                 {
                     if (Scholar.TextBox.IsTalking())
@@ -113,5 +139,11 @@ public class ScholarTalk
                     break;
                 }
         }
+    }
+
+
+    public void Stop()
+    {
+        Scholar.TextBox.Clear();
     }
 }

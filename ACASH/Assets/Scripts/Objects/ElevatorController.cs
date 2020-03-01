@@ -40,7 +40,7 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
     {
         if(ready)
         {
-            ExamManager.get.ResetExam();
+            GameManager.get.StartLevel();
             Elevator.get.Open();
             ready = false;
         }

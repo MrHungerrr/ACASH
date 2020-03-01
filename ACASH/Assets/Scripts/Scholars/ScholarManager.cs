@@ -34,34 +34,38 @@ public class ScholarManager : Singleton<ScholarManager>
     public Texture dead;
 
 
-
-
-    [HideInInspector]
-    public Dictionary<string, int> scholar_type_count = new Dictionary<string, int>()
-    {
-        { ScholarTypes.asshole, 0 },
-        { ScholarTypes.dumb, 0 },
-        { ScholarTypes.nerd, 0 },
-    };
-
-
-    public void SetLevel()
+    public void Setup()
     {
         scholars = GameObject.FindObjectsOfType<Scholar>();
         withoutScholars = (scholars.Length == 0);
 
         for (int i = 0; i < scholars.Length; i++)
         {
+            scholars[i].Setup();
             scholars[i].Info.SetNumber(i);
         }
+
+        ExamManager.get.ChillDone += StartPrepare;
+        ExamManager.get.PrepareDone += StartExam;
+        ExamManager.get.ExamDone += EndExam;
     }
+
 
     public void SetScholars()
     {
-
-        //Рандомные ученики?
-        //ScholarNumberRandomer();
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if (!scholars[i].handControl)
+            {
+                int rand = Random.Range(0, ScholarTypes.length);
+                scholars[i].SetType((ScholarTypes.list)rand);
+            }
+        }
     }
+
+
+
+
 
 
     public void Shout(int value)
@@ -129,35 +133,30 @@ public class ScholarManager : Singleton<ScholarManager>
     }
 
 
-
-    private IEnumerator ScholarsAction(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        Debug.Log("Пошел Экшон!");
-        Debug.Log(Difficulty.get.actions[0].ToString());
-        ActionsGiver.GiveActions(Difficulty.get.actions[0]);
-    }
-
-
-    private IEnumerator PrepareForTest()
-    {
-        yield return new WaitForSeconds(1f);
-    }
-
-
     public void StartPrepare()
     {
-        StartCoroutine(PrepareForTest());
-    }
-    
-    public void StartExam()
-    {
-        StartCoroutine(ScholarsAction(10f));
-
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Action.Reset("Login");
+            if (scholars[i].active)
+                scholars[i].Action.DoAction("Login");
+        }
+    }
+
+    public void StartExam()
+    {
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if(scholars[i].active)
+                scholars[i].Action.Reset();
+        }
+    }
+
+    public void EndExam()
+    {
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if (scholars[i].active)
+                scholars[i].Execute.EndExam();
         }
     }
 
@@ -177,5 +176,39 @@ public class ScholarManager : Singleton<ScholarManager>
         {
             scholars[i].Senses.SpecialHear(pos);
         }
+    }
+
+
+
+
+
+    public delegate bool Count(Scholar scholar);
+
+    public static bool Cheated(Scholar scholar)
+    {
+        return scholar.Cheat.IsCheated();
+    }
+
+    public static bool Left(Scholar scholar)
+    {
+        return !scholar.Execute.executed;
+    }
+
+    public static bool NotFinished(Scholar scholar)
+    {
+        return !scholar.Test.finished;
+    }
+
+    public int GetCount(Count Type)
+    {
+        int result = 0;
+
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if (Type(scholars[i]))
+                result++;
+        }
+
+        return result;
     }
 }

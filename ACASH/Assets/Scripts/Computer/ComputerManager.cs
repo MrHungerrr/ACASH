@@ -34,7 +34,7 @@ public class ComputerManager : Singleton<ComputerManager>
 
 
 
-    public void SetComputerManager()
+    public void Setup()
     {
         UserManager.get.SetUserManager();
 

@@ -24,6 +24,7 @@ namespace ComputerActions
             Question_3,
             Rules,
             Text,
+            Score,
 
 
             //Кнопки

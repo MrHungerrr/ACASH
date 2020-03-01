@@ -93,7 +93,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
 
         Menu.get.MenuEnable(false);
-        Player.get.transform.position = new Vector3(-1.9f, 0.207f, 5.5f);
+        Player.get.transform.position = new Vector3(0f, 0.207f, 0f);
         LevelManager.get.LoadFast("Elevator");
         LevelManager.get.LoadFast("Tutorial");
 
@@ -117,7 +117,7 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
 
         Menu.get.MenuEnable(false);
-        Player.get.transform.position = new Vector3(-1.9f, 0.207f, 5.5f);
+        Player.get.transform.position = new Vector3(0f, 0.207f, 0f);
         LevelManager.get.UnloadLevels();
 
         while (LevelManager.get.IsLoad())
@@ -139,20 +139,32 @@ public class GameManager : Singleton<GameManager>
 
     public void SetLevelForTest()
     {
-        PlaceManager.get.SetLevel();
-        ScholarManager.get.SetLevel();
-        ComputerManager.get.SetComputerManager();
-        SetScholars();
+        PlaceManager.get.Setup();
+        ScholarObjectsManager.get.Setup();
+        ScholarManager.get.Setup();
+        ScoreManager.get.Setup();
+        ComputerManager.get.Setup();
+        TimeManager.get.Setup();
+        Difficulty.get.Setup();
+        StartLevel();
     }
 
     public void SetLevel()
     {
-        PlaceManager.get.SetLevel();
-        ScholarManager.get.SetLevel();
-        ComputerManager.get.SetComputerManager();
-        TimeManager.get.SetTimers();
-        Difficulty.get.SetDifficulty();
-        SetScholars();
+        PlaceManager.get.Setup();
+        ScholarObjectsManager.get.Setup();
+        ScholarManager.get.Setup();
+        ScoreManager.get.Setup();
+        ComputerManager.get.Setup();
+        TimeManager.get.Setup();
+        Difficulty.get.Setup();
+    }
+
+
+
+    public void StartLevel()
+    {
+        ExamManager.get.ResetExam();
     }
 
     public void ResetLevel()

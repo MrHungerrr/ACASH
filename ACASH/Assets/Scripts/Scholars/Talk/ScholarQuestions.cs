@@ -74,7 +74,7 @@ public class ScholarQuestions
     private void QuestionEnd()
     {
         Debug.Log("Конец вопроса");
-        Scholar.TextBox.Clear();
+        Scholar.Talk.Stop();
         question = false;
     }
 

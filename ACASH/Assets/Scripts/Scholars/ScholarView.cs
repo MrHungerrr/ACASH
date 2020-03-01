@@ -6,14 +6,7 @@ public class ScholarView
 {
     private Scholar Scholar;
 
-    public enum view
-    {
-        Walking,
-        Cheating,
-        Talking
-    }
 
-    private view now_view;
 
 
     public ScholarView(Scholar Scholar)
@@ -23,22 +16,14 @@ public class ScholarView
 
     //Список замечаний, которые уже были сделаны.
 
-    public Dictionary<string, bool> remarks = new Dictionary<string, bool>()
+    public Dictionary<ScholarCheat.reason, bool> remarks = new Dictionary<ScholarCheat.reason, bool>()
     {
-        { "Talking", false },
-        { "Cheating", false },
-        { "Walking", false },
+        { ScholarCheat.reason.Walking, false },
+        { ScholarCheat.reason.Cheating, false },
+        { ScholarCheat.reason.Talking, false },
     };
 
 
-    //Список причин, по которым можно удалить ученика
-
-    public Dictionary<string, bool> reason = new Dictionary<string, bool>()
-    {
-        { "Walking", false },
-        { "Talking", false },
-        { "Cheating", false },
-    };
 
 
 
@@ -49,19 +34,19 @@ public class ScholarView
     //=================================================================================================================================================
     //Как выглядит то что делает ученик
 
-    public string GetView()
+    public ScholarCheat.reason GetView()
     {
         if (Scholar.Talk.talking)
         {
-            return "Talking";
+            return ScholarCheat.reason.Talking;
         }
         else if (Scholar.Move.walking)
         {
-            return "Walking";
+            return ScholarCheat.reason.Walking;
         }
         else
         {
-            return "Cheating";
+            return ScholarCheat.reason.Cheating;
         }
     }
 

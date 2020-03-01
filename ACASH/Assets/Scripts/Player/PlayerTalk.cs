@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerTalk : MonoBehaviour
 {
     [HideInInspector]
-    public Scholar scholar;  
+    public Scholar scholar { get; set; }
     private KeyWord key_word = new KeyWord("Teacher");
     public bool talking { get; private set; } = false;
 
@@ -99,7 +99,7 @@ public class PlayerTalk : MonoBehaviour
     {
         // Подлежит изменению (View) \\
 
-        key_word += scholar.View.GetView();
+        key_word += scholar.View.GetView().ToString();
 
         //Было ли сделано уже такое замечание?
         if (scholar.View.GetRemarksOnView())
@@ -137,6 +137,7 @@ public class PlayerTalk : MonoBehaviour
     {
         BeginOfTalk();
         key_word += "Answer";
+        PlayerCheat.IsAnswerRight(scholar, answer);
 
         StartCoroutine(Answering(scholar, answer));
     }
@@ -161,6 +162,13 @@ public class PlayerTalk : MonoBehaviour
 
         scholar.Question.Answer(answer);
         talking = false;
+
+        while (scholar.Talk.talking)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(0.5f);
     }
 
 
@@ -175,6 +183,8 @@ public class PlayerTalk : MonoBehaviour
     {
         BeginOfTalk();
         key_word += "Execute";
+
+        PlayerCheat.IsExecuteRight(scholar);
 
         StartCoroutine(Execute(scholar));
     }
@@ -194,5 +204,6 @@ public class PlayerTalk : MonoBehaviour
         }
 
         scholar.Execute.Execute(key_word);
+        talking = false;
     }
 }
