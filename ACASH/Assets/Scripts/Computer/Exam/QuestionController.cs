@@ -15,7 +15,7 @@ public class QuestionController : MonoBehaviour
 
 
 
-    public void SetQuestionController()
+    public void Setup()
     {
         this.Exam = GetComponent<ExamController>();
         Transform question = transform.Find("Question");

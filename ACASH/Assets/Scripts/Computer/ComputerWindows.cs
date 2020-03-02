@@ -6,7 +6,7 @@ using Single;
 
 public class ComputerWindows : MonoBehaviour
 {
-    private A_Computer Comp;
+    private A_Computer Computer;
 
     private Dictionary<string, GameObject> windows = new Dictionary<string, GameObject>();
 
@@ -17,7 +17,7 @@ public class ComputerWindows : MonoBehaviour
     private GameObject task_bar;
 
 
-    public void SetComputerWindows(A_Computer c)
+    public void Setup(A_Computer c)
     {
         Transform buf = transform.parent.Find("Screen");
 
@@ -40,7 +40,7 @@ public class ComputerWindows : MonoBehaviour
 
         current_window = null;
 
-        Comp = c;
+        Computer = c;
     }
 
 
@@ -51,6 +51,8 @@ public class ComputerWindows : MonoBehaviour
         Disable();
         windows[window].SetActive(true);
         current_window = window;
+
+        Computer.Sound.MakeSound(ComputerSounds.one_shot.Open_Window);
     }
 
     public void SetWithoutDisable(string window)

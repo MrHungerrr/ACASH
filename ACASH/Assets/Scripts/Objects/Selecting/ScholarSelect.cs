@@ -8,7 +8,8 @@ public class ScholarSelect : ObjectSelect
     //========================================================================================================
     //Возможность выбрать объект
     private Scholar Scholar;
-    private bool selectable = true;
+    [HideInInspector]
+    public bool selectable = true;
 
 
     public void Setup(Scholar scholar)

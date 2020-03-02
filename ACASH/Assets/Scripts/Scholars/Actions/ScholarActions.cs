@@ -103,7 +103,9 @@ public class ScholarActions
     public void Enable()
     {
         active = true;
-        NextAction();
+
+        if(Operations.done)
+            NextAction();
     }
 
     public void Disable()

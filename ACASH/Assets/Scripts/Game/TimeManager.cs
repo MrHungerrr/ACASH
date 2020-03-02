@@ -27,8 +27,8 @@ public class TimeManager : Singleton<TimeManager>
     private float[] times = new float[]
     {
         5f,
-        1f,
-        1f
+        15f,
+        30f
     };
 
     private string[] time_names = new string[]

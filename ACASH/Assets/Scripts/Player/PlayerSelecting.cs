@@ -72,7 +72,7 @@ public class PlayerSelecting
 
     public bool TryGetScholar()
     {
-        if (selected_obj != null)
+        if (selected)
         {
             if (selected_obj.TryGetComponent<Scholar>(out selected_scholar))
             {

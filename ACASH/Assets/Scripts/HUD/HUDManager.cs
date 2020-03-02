@@ -50,6 +50,10 @@ public class HUDManager : Singleton<HUDManager>
     private void GameHud()
     {
         huds["Timer"].Select(true);
+
+        ScoreManager.get.InterimScore();
+        HUDController.get.Reputation(ScoreManager.get.reputation);
+
         huds["Reputation"].Select(true);
         //huds["Specials"].Select(true);
 
@@ -59,6 +63,7 @@ public class HUDManager : Singleton<HUDManager>
 
     public void ChangeReputationHUD(int change)
     {
+        ScoreManager.get.InterimScore();
         HUDController.get.Reputation(ScoreManager.get.reputation);
         HUDController.get.ReputationChange(change);
 
@@ -100,7 +105,14 @@ public class HUDManager : Singleton<HUDManager>
         PostProcessManager.get.Blur(option);
     }
 
+    public void ExamHUD(KeyWord exam_key)
+    {
+        HUDController.get.Exam(ScriptManager.get.GetLine(exam_key));
+        huds["Exam"].Select(true);
 
+        hud_cd = hud_const_cd;
+        active = true;
+    }
 
     private void CloseTime()
     {

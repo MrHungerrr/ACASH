@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Single;
 using System;
@@ -39,8 +39,8 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void Setup()
     {
-        reputation = 500;
-        kindness = 25;
+        reputation_saved = 500;
+        kindness_saved = 25;
 
         int[] rep_coef = new int[7]
         {
@@ -99,6 +99,18 @@ public class ScoreManager : Singleton<ScoreManager>
         }
     }
 
+
+    //Промежуточный счет
+    public void InterimScore()
+    {
+        Amount();
+
+        reputation = reputation_saved + reputation_amount;
+        kindness = kindness_saved + kindness_amount;
+    }
+
+
+
     public void FinalScore()
     {
         int left = ScholarManager.get.GetCount(ScholarManager.Left);
@@ -106,9 +118,9 @@ public class ScoreManager : Singleton<ScoreManager>
         int notFinished = ScholarManager.get.GetCount(ScholarManager.NotFinished);
 
 
-        GetScore(scores_names.Left).ChangeCount(left);
-        GetScore(scores_names.Cheated).ChangeCount(cheated);
-        GetScore(scores_names.Not_Finished).ChangeCount(notFinished);
+        GetScore(scores_names.Left).SetCount(left);
+        GetScore(scores_names.Cheated).SetCount(cheated);
+        GetScore(scores_names.Not_Finished).SetCount(notFinished);
 
 
         Amount();

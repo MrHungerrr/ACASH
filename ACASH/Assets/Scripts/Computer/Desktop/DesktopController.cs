@@ -10,7 +10,7 @@ public class DesktopController : MonoBehaviour
     private IconUI[] icons;
     private User user;
 
-    public void SetDesktopController()
+    public void Setup()
     {
         Transform desktop = transform.Find("Desktop");
         background = desktop.GetComponentInChildren<Image>();

@@ -51,7 +51,7 @@ public class ScholarManager : Singleton<ScholarManager>
     }
 
 
-    public void SetScholars()
+    public void NewScholars()
     {
         for (int i = 0; i < scholars.Length; i++)
         {
@@ -77,7 +77,8 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Stress.Change(value);
+            if(scholars[i].active)
+                scholars[i].Stress.Change(value);
         }
     }
 
@@ -147,7 +148,7 @@ public class ScholarManager : Singleton<ScholarManager>
         for (int i = 0; i < scholars.Length; i++)
         {
             if(scholars[i].active)
-                scholars[i].Action.Reset();
+                scholars[i].Action.Enable();
         }
     }
 
@@ -186,7 +187,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public static bool Cheated(Scholar scholar)
     {
-        return scholar.Cheat.IsCheated();
+        return !scholar.Execute.executed && scholar.Cheat.IsCheated();
     }
 
     public static bool Left(Scholar scholar)
@@ -196,7 +197,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public static bool NotFinished(Scholar scholar)
     {
-        return !scholar.Test.finished;
+        return !scholar.Execute.executed && !scholar.Test.finished;
     }
 
     public int GetCount(Count Type)

@@ -15,6 +15,8 @@ public class ScholarComputer : A_Computer
 
         Controller = GetComponent<ScholarComputerAIController>();
         Controller.Setup();
+
+        LevelSettings.get.ExamNext += ResetComputer;
     }
 
 

@@ -145,7 +145,7 @@ public class GameManager : Singleton<GameManager>
         ScoreManager.get.Setup();
         ComputerManager.get.Setup();
         TimeManager.get.Setup();
-        Difficulty.get.Setup();
+        LevelSettings.get.Setup();
         StartLevel();
     }
 
@@ -157,7 +157,7 @@ public class GameManager : Singleton<GameManager>
         ScoreManager.get.Setup();
         ComputerManager.get.Setup();
         TimeManager.get.Setup();
-        Difficulty.get.Setup();
+        LevelSettings.get.Setup();
     }
 
 
@@ -173,9 +173,9 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    public void SetScholars()
+    public void NewScholars()
     {
-        ScholarManager.get.SetScholars();
+        ScholarManager.get.NewScholars();
         ComputerManager.get.SetScholars();
     }
 

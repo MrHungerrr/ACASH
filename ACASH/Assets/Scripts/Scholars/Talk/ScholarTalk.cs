@@ -7,6 +7,7 @@ public class ScholarTalk
     private Scholar Scholar;
     public bool talking { get; private set; }
     private string type_of_talk;
+    private Quaternion last_rotate_goal;
 
     public KeyWord key_word;
 
@@ -33,6 +34,7 @@ public class ScholarTalk
         Scholar.Select.Selectable(false);
         Scholar.TextBox.Say(key_word);
         talking = true;
+        last_rotate_goal = Scholar.Move.Rotation();
     }
 
     public void SayWithoutStop(KeyWord key)
@@ -42,6 +44,7 @@ public class ScholarTalk
         Scholar.Select.Selectable(false);
         Scholar.TextBox.Say(key_word);
         talking = true;
+        last_rotate_goal = Scholar.Move.Rotation();
     }
 
     public void SayThoughts(KeyWord key)
@@ -69,6 +72,7 @@ public class ScholarTalk
         Scholar.Select.Selectable(false);
         Scholar.TextBox.Question(key_word);
         talking = true;
+        last_rotate_goal = Scholar.Move.Rotation();
     }
 
 
@@ -98,6 +102,7 @@ public class ScholarTalk
                     }
                     else
                     {
+                        Scholar.Move.SetRotateGoal(last_rotate_goal);
                         Scholar.Continue();
                         Scholar.Select.Selectable(true);
                         talking = false;
@@ -112,6 +117,7 @@ public class ScholarTalk
                     }
                     else
                     {
+                        Scholar.Move.SetRotateGoal(last_rotate_goal);
                         Scholar.Select.Selectable(true);
                         talking = false;
                     }
@@ -125,6 +131,7 @@ public class ScholarTalk
                     }
                     else
                     {
+                        Scholar.Move.SetRotateGoal(last_rotate_goal);
                         Scholar.Select.Selectable(true);
                         talking = false;
                     }

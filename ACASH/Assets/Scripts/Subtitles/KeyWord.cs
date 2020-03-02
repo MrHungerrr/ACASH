@@ -3,7 +3,7 @@
 public class KeyWord
 {
 
-    private enum answer
+    protected enum answer
     {
         Void,
         Yes,
@@ -11,11 +11,11 @@ public class KeyWord
     }
 
     private string main { get;}
-    private string const_key { get; }
-    private string key { get; set; }
-    private answer ans { get; set; }
-    private int number { get; set; }
-    private string full_key { get; set; }
+    protected string const_key { get; }
+    protected string key { get; set; }
+    protected answer ans { get; set; }
+    protected int number { get; set; }
+    protected string full_key { get; set; }
 
 
 
@@ -58,7 +58,7 @@ public class KeyWord
 
 
 
-    private void Plus(string word)
+    protected void Plus(string word)
     {
         if (key != string.Empty)
             key += "_";
@@ -72,7 +72,7 @@ public class KeyWord
             ans = answer.Void;
     }
 
-    private void Plus(KeyWord keyword)
+    protected void Plus(KeyWord keyword)
     {
         Plus(keyword.GetKey());
     }
@@ -99,7 +99,7 @@ public class KeyWord
         key = "_" + word;
     }
 
-    private void FullKey()
+    protected void FullKey()
     {
         full_key = GetKey();
 
@@ -141,7 +141,7 @@ public class KeyWord
         return full_key;
     }
 
-    public string GetFullWord()
+    public virtual string GetFullWord()
     {
         if (main != string.Empty)
             return main + "_" + GetFullKey();

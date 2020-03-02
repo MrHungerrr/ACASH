@@ -19,6 +19,8 @@ public class OperationsManager
         Action = action;
         Executer = scholar.GetComponent<OperationsExecuter>();
         Executer.SetOperationsExecuter(scholar, this);
+
+        Reset();
     }
 
 

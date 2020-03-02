@@ -34,20 +34,23 @@
 
     public void Zeroing()
     {
-        ChangeCount(0);
+        SetCount(0);
     }
 
     public void ChangeCount(int value)
     {
         int buf_rep = (value - count) * rep_coef;
-        ScoreManager.get.reputation += buf_rep;
-        ScoreManager.get.kindness += (value - count) * kind_coef;
 
+        SetCount(value);
+
+        HUDManager.get.ChangeReputationHUD(buf_rep);
+    }
+
+    public void SetCount(int value)
+    {
         count = value;
         rep = value * rep_coef;
         kind = value * kind_coef;
-
-        HUDManager.get.ChangeReputationHUD(buf_rep);
     }
 
 

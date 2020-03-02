@@ -12,20 +12,16 @@ public class HUDController : Singleton<HUDController>
     private TextMeshProUGUI report;
     private TextMeshProUGUI timer;
     private TextMeshProUGUI timer_header;
-    private TextMeshProUGUI[] specials = new TextMeshProUGUI[2];
-    private GameObject[] marks = new GameObject[2];
+    private TextMeshProUGUI exam;
 
     void Awake()
     {
-        rep = transform.Find("Reputation").Find("ReputationBox").GetComponentInChildren<TextMeshProUGUI>();
-        rep_change = transform.Find("Reputation Change").Find("ReputationBox").GetComponentInChildren<TextMeshProUGUI>();
-        report = transform.Find("Report").Find("ReportBox").GetComponentInChildren<TextMeshProUGUI>();
-        timer = transform.Find("Timer").Find("TimeBox").GetComponentInChildren<TextMeshProUGUI>();
+        rep = transform.Find("Reputation").Find("Box").GetComponentInChildren<TextMeshProUGUI>();
+        rep_change = transform.Find("Reputation Change").Find("Box").GetComponentInChildren<TextMeshProUGUI>();
+        report = transform.Find("Report").Find("Box").GetComponentInChildren<TextMeshProUGUI>();
+        timer = transform.Find("Timer").Find("Box").GetComponentInChildren<TextMeshProUGUI>();
         timer_header = transform.Find("Timer").Find("Title").GetComponent<TextMeshProUGUI>();
-        specials[0] = transform.Find("Specials").Find("SpecialsBox").Find("Tasks").Find("Special_0").GetComponent<TextMeshProUGUI>();
-        specials[1] = transform.Find("Specials").Find("SpecialsBox").Find("Tasks").Find("Special_1").GetComponent<TextMeshProUGUI>();
-        marks[0] = transform.Find("Specials").Find("SpecialsBox").Find("Marks").Find("Special_0").Find("Mark").gameObject;
-        marks[1] = transform.Find("Specials").Find("SpecialsBox").Find("Marks").Find("Special_1").Find("Mark").gameObject;
+        exam = transform.Find("Exam").GetComponentInChildren<TextMeshProUGUI>();
     }
 
 
@@ -44,7 +40,8 @@ public class HUDController : Singleton<HUDController>
 
     public void Report(string text)
     {
-        report.text = report.text;
+        Debug.LogError(text);
+        report.text = text;
     }
 
     public void Time(string time)
@@ -57,16 +54,9 @@ public class HUDController : Singleton<HUDController>
         timer_header.text = text;
     }
 
-    public void SetSpecials(string special_0, string special_1)
-    {
-        specials[0].text = special_0;
-        specials[1].text = special_1;
-        marks[0].SetActive(false);
-        marks[1].SetActive(false);
-    }
 
-    public void SpecialComplete(int special_num)
+    public void Exam(string text)
     {
-        marks[special_num].SetActive(true);
+        exam.text = text;
     }
 }

@@ -20,7 +20,6 @@ public class ScholarExecute
     {
         executed = true;
         execute_key = key;
-
         EndExam();
     }
 

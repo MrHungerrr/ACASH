@@ -24,6 +24,8 @@ public abstract class A_Computer : MonoBehaviour
     public ExamController Exam;
     [HideInInspector]
     public TextController Text;
+    [HideInInspector]
+    public ComputerSounds Sound;
 
     [HideInInspector]
     public string command;
@@ -33,31 +35,33 @@ public abstract class A_Computer : MonoBehaviour
     {
         Transform win = transform.Find("Screen").Find("UI").Find("Canvas").Find("Windows");
         Numpad = win.parent.Find("Screen").GetComponentInChildren<NumpadController>();
+        Sound = new ComputerSounds(this);
 
         Login = win.GetComponent<LoginController>();
-        Login.SetLoginController(this);
+        Login.Setup(this);
 
         Desktop = win.GetComponent<DesktopController>();
-        Desktop.SetDesktopController();
+        Desktop.Setup();
 
         SS = win.GetComponent<StudentStress>();
-        SS.SetSS();
+        SS.Setup();
 
         Windows= win.GetComponent<ComputerWindows>();
-        Windows.SetComputerWindows(this);
+        Windows.Setup(this);
 
         Commands = new ComputerCommands(this);
 
         Calculator = win.GetComponent<CalculatorController>();
-        Calculator.SetCalculatorController();
+        Calculator.Setup();
 
         Question = win.GetComponent<QuestionController>();
-        Question.SetQuestionController();
+        Question.Setup();
 
         Exam = win.GetComponent<ExamController>();
 
         Text = win.GetComponent<TextController>();
-        Text.SetTextController();
+        Text.Setup();
+
     }
 
     public virtual void SetScholars()
@@ -82,4 +86,14 @@ public abstract class A_Computer : MonoBehaviour
         ExecuteCommand();
     }
 
+
+
+    public void ResetComputer()
+    {
+        Calculator.Reset();
+        Exam.Reset();
+        Text.Reset();
+
+        Commands.Do(GetC.commands.Login);
+    }
 }

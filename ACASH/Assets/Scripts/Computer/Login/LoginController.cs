@@ -19,7 +19,7 @@ public class LoginController : MonoBehaviour
 
 
 
-    public void SetLoginController(A_Computer c)
+    public void Setup(A_Computer c)
     {
         Transform buf = transform.Find("Login");
 

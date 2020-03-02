@@ -25,7 +25,8 @@ public class ScholarMove : MonoBehaviour
     public bool rotating { get; private set; } = false;
     [HideInInspector]
     public bool walking{ get; private set; } = false;
-    private bool head_on_postion = false;
+
+
 
 
 

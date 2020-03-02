@@ -208,7 +208,7 @@ public class OperationsExecuter : OperationsExecuterBase
         yield return new WaitForSeconds(0.5f);
 
         Scholar.Anim.SetAnimation(GetA.animations.Writing);
-        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 31)));
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 15)));
 
         while(Scholar.Desk.Controller.Typing.typing)
             yield return new WaitForEndOfFrame();
@@ -217,7 +217,7 @@ public class OperationsExecuter : OperationsExecuterBase
         yield return new WaitForSeconds(1f);
 
         Scholar.Anim.SetAnimation(GetA.animations.Writing);
-        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 31)));
+        Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 15)));
 
         while (Scholar.Desk.Controller.Typing.typing)
             yield return new WaitForEndOfFrame();

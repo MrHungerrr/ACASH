@@ -316,7 +316,8 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     private IEnumerator Execute()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+
 
         if (Scholar.Execute.executed)
         {

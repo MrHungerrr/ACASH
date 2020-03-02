@@ -10,7 +10,7 @@ public class StudentStress : MonoBehaviour
     private StressCell[] cells;
     private int number;
 
-    public void SetSS()
+    public void Setup()
     {
 
         Transform transform_ss = transform.Find("Student Stress");

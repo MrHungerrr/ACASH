@@ -8,7 +8,7 @@ using Cinemachine;
 
 public class TeacherComputerController: MonoBehaviour, I_Interaction
 {
-    private TeacherComputer Comp;
+    private TeacherComputer Computer;
 
 
     //Камера
@@ -45,7 +45,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
     public void  SetTeacherComputerController()
     {
-        Comp = GetComponent<TeacherComputer>();
+        Computer = GetComponent<TeacherComputer>();
         Transform screen = transform.Find("Screen").Find("UI").Find("Canvas").Find("Screen");
 
         cursor = screen.Find("Cursor").gameObject;
@@ -88,7 +88,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
         }
 
         active = option;
-        Comp.Col.enabled = option;
+        Computer.Col.enabled = option;
         PlayerCamera.get.Enable(!option);
         Cam.enabled = option;
     }
@@ -209,7 +209,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
     private void MouseCollision()
     {
-        string buf_col = Comp.Col.MouseCollision(cursor.transform.localPosition);
+        string buf_col = Computer.Col.MouseCollision(cursor.transform.localPosition);
 
         if (buf_col != null)
         {
@@ -249,9 +249,11 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
     public void Select()
     {
+        Computer.Sound.MakeSound(ComputerSounds.one_shot.Click);
+
         if (collision)
         {
-            Comp.ExecuteCommand(mouse_collision);
+            Computer.ExecuteCommand(mouse_collision);
         }
         else
             Debug.Log("Не чувстсвую коллайдера");

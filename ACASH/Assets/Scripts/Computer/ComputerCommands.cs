@@ -238,6 +238,7 @@ public class ComputerCommands
             case "Continue Score":
                 {
                     ScoreManager.get.Accept();
+                    LevelSettings.get.NextExam();
 
                     if(Comp.Login.loged)
                         Do("Desktop");

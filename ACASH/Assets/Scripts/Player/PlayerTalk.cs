@@ -193,17 +193,13 @@ public class PlayerTalk : MonoBehaviour
     private IEnumerator Execute(Scholar scholar)
     {
         SubtitleManager.get.Say(key_word);
-
-        yield return new WaitForSeconds(1f);
-
-        scholar.Conversation.HearTeacherTalking(true);
+        scholar.Execute.Execute(key_word);
 
         while (SubtitleManager.get.act)
         {
             yield return new WaitForEndOfFrame();
         }
 
-        scholar.Execute.Execute(key_word);
         talking = false;
     }
 }

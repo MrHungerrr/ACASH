@@ -30,7 +30,7 @@ public class ScholarSenses
     private const float peripheral_vision_angle = 140f;
     private const float central_vision_angle = 30f;
     private const float vision_distance = 5f;
-    private LayerMask visible_layerMask = LayerMask.GetMask("ScholarEye Layer");
+    private LayerMask visible_layerMask = LayerMask.GetMask("Wall");
 
 
     public ScholarSenses(Scholar s)

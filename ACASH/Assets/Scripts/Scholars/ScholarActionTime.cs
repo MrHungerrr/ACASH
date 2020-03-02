@@ -57,7 +57,7 @@ public class ScholarActionTime : Singleton<ScholarActionTime>
     {
         Debug.Log("Пошел Экшон!");
 
-        ActionsGiver.GiveActions(Difficulty.get.GetWave(wave));
+        ActionsGiver.GiveActions(GetActionsCount.Wave(wave));
     }
 
 }

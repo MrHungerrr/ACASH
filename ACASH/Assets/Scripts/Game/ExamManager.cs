@@ -10,8 +10,11 @@ public class ExamManager : Singleton<ExamManager>
     {
         chill,
         prepare,
-        exam
+        exam,
+        afterhours,
     }
+
+    KeyWord exam_key = new KeyWordWithoutMain("Exam_Part");
 
     public bool exam;
 
@@ -32,26 +35,35 @@ public class ExamManager : Singleton<ExamManager>
     {
         ChillDone += StartPrepare;
         PrepareDone += StartExam;
+        ExamDone += FinishExam;
+
+        LevelSettings.get.ExamNext += ResetExam;
     }
 
 
     public void ResetExam()
     {
-        StartChill();
-        GameManager.get.SetScholars();
+        GameManager.get.NewScholars();
+        StartGame();
     }
 
-    private void StartChill()
+    private void StartGame()
     {
         exam = false;
         exam_part = part.chill;
         TimeManager.get.SetTime(0);
+
+        exam_key += 0;
+        HUDManager.get.ExamHUD(exam_key);
     }
 
     private void StartPrepare()
     {
         exam_part = part.prepare;
         TimeManager.get.SetTime(1);
+
+        exam_key += 1;
+        HUDManager.get.ExamHUD(exam_key);
     }
 
     public void StartExam()
@@ -59,6 +71,18 @@ public class ExamManager : Singleton<ExamManager>
         exam = true;
         exam_part = part.exam;
         TimeManager.get.SetTime(2);
+
+        exam_key += 2;
+        HUDManager.get.ExamHUD(exam_key);
+    }
+
+    public void FinishExam()
+    {
+        exam = false;
+        exam_part = part.afterhours;
+
+        exam_key += 3;
+        HUDManager.get.ExamHUD(exam_key);
     }
 
 
@@ -83,5 +107,4 @@ public class ExamManager : Singleton<ExamManager>
                 }
         }
     }
-
 }
