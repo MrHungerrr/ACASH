@@ -4,13 +4,13 @@ using UnityEngine;
 using Cinemachine;
 using Single;
 
-public class PlayerCamera : Singleton<PlayerCamera>
+public class PlayerCamera : MonoBehaviour
 {
     private float coefSensitivity = 5;
     private const float mouseSensitivity = 2;
     private const float gamepadSensitivity = 35; 
 
-    private Transform playerBody;
+    private Player Player;
     private CinemachineVirtualCamera cineCam;
     private float xAxisClamp;
     [HideInInspector]
@@ -25,18 +25,16 @@ public class PlayerCamera : Singleton<PlayerCamera>
 
 
 
-    private void Awake()
+
+    public void Setup(Player Player)
     {
         LockCursor(true);
         xAxisClamp = 0.0f;
-        
+
         cineCam = GetComponent<CinemachineVirtualCamera>();
         cineCam.m_Lens.FieldOfView = normFOV;
-    }
 
-    private void Start()
-    {
-        playerBody = GameObject.Find("Player").transform;
+        this.Player = Player;
     }
 
 
@@ -48,7 +46,7 @@ public class PlayerCamera : Singleton<PlayerCamera>
             Cursor.lockState = CursorLockMode.None;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CameraRotation();
         if (zoom || zooming)
@@ -91,7 +89,7 @@ public class PlayerCamera : Singleton<PlayerCamera>
             }
 
             transform.Rotate(Vector3.left * rotate.y);
-            playerBody.Rotate(Vector3.up * rotate.x);
+            Player.Move.rotateAngle = rotate.x;
         }
     }
 

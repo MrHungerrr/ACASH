@@ -97,6 +97,14 @@ public class InputManager : Singleton<InputManager>
     }
 
 
+
+
+
+
+
+
+
+
     public void SwitchGameInput(string type)
     {
         Controls.Gameplay.Disable();
@@ -183,6 +191,7 @@ public class InputManager : Singleton<InputManager>
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Gameplay Input
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
     private bool GameCanIDoAction()
     {

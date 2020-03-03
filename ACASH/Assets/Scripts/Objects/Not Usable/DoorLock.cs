@@ -60,7 +60,7 @@ public class DoorLock : MonoBehaviour
 
         active = option;
         moving = true;
-        PlayerCamera.get.Enable(!option);
+        Player.get.Camera.Enable(!option);
         lock_cam.enabled = option;
     }
 

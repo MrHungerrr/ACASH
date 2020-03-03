@@ -78,7 +78,7 @@ public static class SettingsBlanks
 
     private static void Sensitivity(int option)
     {
-        PlayerCamera.get.Sensitivity(option);
+        Player.get.Camera.Sensitivity(option);
     }
 
     private static void Crouch(int option)

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3045564628971498274}
   - component: {fileID: 4281561636145397638}
   - component: {fileID: 6406852879386823206}
+  - component: {fileID: 549155192867936624}
   m_Layer: 9
   m_Name: Computer
   m_TagString: Computer
@@ -121,6 +122,22 @@ MonoBehaviour:
   - {fileID: 6943516421241797333}
   - {fileID: 5016681218937591864}
   - {fileID: 8867073171060918456}
+--- !u!54 &549155192867936624
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2510300815838664878}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!65 &2479553042571920088
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -894,15 +911,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6282098060803546297}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &6943516421241797333 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3995305861880276588, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6282098060803546297}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2937411827736595475 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9218224778280226986, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6282098060803546297}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6943516421241797333 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3995305861880276588, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
     type: 3}
   m_PrefabInstance: {fileID: 6282098060803546297}
   m_PrefabAsset: {fileID: 0}

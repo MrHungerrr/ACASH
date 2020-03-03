@@ -89,7 +89,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
         active = option;
         Computer.Col.enabled = option;
-        PlayerCamera.get.Enable(!option);
+        Player.get.Camera.Enable(!option);
         Cam.enabled = option;
     }
 

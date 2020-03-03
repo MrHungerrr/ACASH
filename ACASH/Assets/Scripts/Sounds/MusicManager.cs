@@ -7,14 +7,18 @@ using Single;
 public class MusicManager : Singleton<MusicManager>
 {
 
+
     public enum music_name
     {
         Track_1,
     }
 
+    private music_name sound_now;
+    [HideInInspector]
+    public bool playing;
+
 
     Dictionary<music_name, FMOD.Studio.EventInstance> music = new Dictionary<music_name, FMOD.Studio.EventInstance>();
-    static string sounds_path = "event:/Music/";
 
 
     public void Setup()
@@ -26,16 +30,52 @@ public class MusicManager : Singleton<MusicManager>
             FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(music_path + name.ToString());
             music.Add(name, sound);
         }
+
+        sound_now = default;
     }
 
 
-    public void Start(music_name sound)
+    public void Play(music_name sound)
     {
         Debug.Log("Infinite Sound Start - " + sound.ToString());
+        sound_now = sound;
+        playing = true;
         music[sound].start();
     }
 
 
+
+
+    public void Pause()
+    {
+            Pause(sound_now);
+    }
+
+    public void Pause(music_name sound)
+    {
+        if (playing)
+            music[sound].setPaused(true);
+        else
+            Debug.LogError("Никакой трек не играет");
+    }
+
+    public void Continue()
+    {
+        Continue(sound_now);
+    }
+
+    public void Continue(music_name sound)
+    {
+        if (playing)
+            music[sound].setPaused(false);
+        else
+            Debug.LogError("Никакой трек не играет");
+    }
+
+
+
+
+    //Остановка Sound
     public void Stop(music_name sound)
     {
         Stop(sound, false);
@@ -43,12 +83,31 @@ public class MusicManager : Singleton<MusicManager>
 
     public void Stop(music_name sound, bool immediate)
     {
-        Debug.Log("Infinite Sound Stop - " + sound.ToString());
+        if (playing)
+        {
+            Debug.Log("Infinite Sound Stop - " + sound.ToString());
 
-        if (immediate)
-            music[sound].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        else
-            music[sound].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            if (immediate)
+                music[sound].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            else
+                music[sound].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+            playing = false;
+            sound_now = default;
+        }
+    }
+
+
+
+    //Остановка Sound_Now
+    public void Stop()
+    {
+        Stop(false);
+    }
+
+    public void Stop(bool immediate)
+    {
+        Stop(sound_now, immediate);
     }
 
 }

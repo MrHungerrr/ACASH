@@ -112,7 +112,7 @@ public class ScholarSenses
         T_behind_wall = true;
 
         T_angle_y = BaseGeometry.LookingAngle(Player.get.transform, Scholar.Move.transform.position);
-        T_angle_x = (PlayerCamera.get.transform.rotation.eulerAngles.x + 30) % 360;
+        T_angle_x = (Player.get.Camera.transform.rotation.eulerAngles.x + 30) % 360;
 
         T_direction = new Vector3(Player.get.transform.position.x - Scholar.Move.transform.position.x, 0, Player.get.transform.position.z - Scholar.Move.transform.position.z).normalized;
 

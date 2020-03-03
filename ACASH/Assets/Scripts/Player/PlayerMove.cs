@@ -3,12 +3,18 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-    private CharacterController CharController;
+    private Rigidbody RB;
+    [HideInInspector]
+    public bool moving;
+
 
     [HideInInspector]
     public Vector2 moveInput;
-    private Vector2 move;
+    private Vector3 move;
 
+    [HideInInspector]
+    public float rotateAngle;
+    private float last_rotateAngle;
 
     public enum movement
     {
@@ -19,22 +25,23 @@ public class PlayerMove : MonoBehaviour
 
     [HideInInspector]
     public movement type_movement;
-    private float crouchSpeed = 0.35f;
-    private float normalSpeed = 0.65f;
-    private float runSpeed = 1f;
+    private const int RB_coef = 2500;
+    private float crouchSpeed = 1f;
+    private float normalSpeed = 2f;
+    private float runSpeed = 3.5f;
     private float crouchSound = 0.5f;
     private float normalSound = 3f;
     private float runSound = 5f;
     private float movementSpeed;
     private float movementSound;
+    
 
 
 
 
-
-    public void SetupMove(CharacterController controller)
+    public void Setup()
     {
-        CharController = controller;
+        this.RB = GetComponent<Rigidbody>();
         SwitchMove(movement.Normal);
     }
 
@@ -42,7 +49,25 @@ public class PlayerMove : MonoBehaviour
 
     public void Update()
     {
-        PlayerMovement();
+        MoveCalculate();
+    }
+
+    public void FixedUpdate()
+    {
+        if (move != Vector3.zero)
+        {
+            moving = true;
+            PlayerMovement();
+        }
+        else
+        {
+            moving = false;
+        }
+
+        if (rotateAngle != last_rotateAngle)
+        {
+            Rotate();
+        }
     }
 
     public void SwitchMove(movement type)
@@ -73,18 +98,39 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    private void MoveCalculate()
+    {
+        if (moveInput != Vector2.zero)
+        {
+            Vector3 moveInput3 = moveInput.normalized;
+            moveInput3 = new Vector3(moveInput3.x, 0, moveInput3.y);
+            move += moveInput3;
+
+            Debug.Log(moveInput3 + "\n" + move);
+        }
+    }
+
     private void PlayerMovement()
     {
-        move = moveInput.normalized * movementSpeed * Time.deltaTime;
+        Vector3 new_move = transform.TransformDirection(move * movementSpeed * RB_coef * Time.fixedDeltaTime);
+        //Vector3 new_position = transform.position + new_move;
 
-        Vector3 forwardMovement = transform.forward * move.y;
-        Vector3 rightMovement = transform.right * move.x;
 
-        if (forwardMovement != Vector3.zero || rightMovement != Vector3.zero)
-        {
-            CharController.Move((forwardMovement + rightMovement));
-            ScholarManager.get.Hear(movementSound);
-        }
+        RB.AddForce(new_move);
+
+        //RB.MovePosition(new_position);
+        ScholarManager.get.Hear(movementSound);
+
+
+        move = Vector3.zero;
+    }
+
+
+    private void Rotate()
+    {
+        Quaternion rotation_goal = Quaternion.Euler(0, transform.eulerAngles.y + rotateAngle, 0);
+        RB.MoveRotation(rotation_goal);
+        last_rotateAngle = rotateAngle;
     }
 
 
@@ -92,5 +138,9 @@ public class PlayerMove : MonoBehaviour
     {
         return transform.position;
     }
+
+
+
+
 
 }

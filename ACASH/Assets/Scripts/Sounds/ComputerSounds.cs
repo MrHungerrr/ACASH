@@ -31,6 +31,7 @@ public class ComputerSounds
         {
             infinite name = (infinite)i;
             FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + "Infinite/" + name.ToString());
+            RuntimeManager.AttachInstanceToGameObject(sound, Computer.transform, Computer.GetComponent<Rigidbody>());
             infinite_sounds.Add(name, sound);
         }
     }
@@ -38,7 +39,7 @@ public class ComputerSounds
     public void MakeSound(one_shot sound)
     {
         Debug.Log("One Shot Sound Play - " + sound.ToString());
-        RuntimeManager.PlayOneShotAttached(sounds_path + "One Shot/" + sound.ToString(), Computer.gameObject);
+        RuntimeManager.PlayOneShot(sounds_path + "One Shot/" + sound.ToString(), Computer.transform.position);
     }
 
 

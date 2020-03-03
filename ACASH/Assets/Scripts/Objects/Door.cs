@@ -9,9 +9,12 @@ public class Door : MonoBehaviour, I_Interaction
     public bool locked;
     private bool ninety;
     private bool active = false;
+
+    private Rigidbody RB;
     private Quaternion commonRot;
     private Quaternion targetRot;
-    private Transform trans;
+
+
     private Vector3 door_position;
     private const float close_distance = 1f;
     private float close_time;
@@ -24,9 +27,10 @@ public class Door : MonoBehaviour, I_Interaction
 
     void Start()
     {
+        RB = transform.parent.GetComponent<Rigidbody>();
+
         door_position = transform.parent.parent.position;
-        commonRot = transform.parent.transform.rotation;
-        trans = transform.parent.transform;
+        commonRot = transform.parent.rotation;
         close_time = close_time_cd;
         this.tag = "Door";
         in_range = false;
@@ -49,7 +53,7 @@ public class Door : MonoBehaviour, I_Interaction
 
     
 
-    void Update()
+    void FixedUpdate()
     {
         if (active)
             DoorRot();
@@ -84,7 +88,7 @@ public class Door : MonoBehaviour, I_Interaction
             {
                 if (ninety)
                 {
-                    if (trans.position.z > pos.z)
+                    if (transform.position.z > pos.z)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
                     }
@@ -95,7 +99,7 @@ public class Door : MonoBehaviour, I_Interaction
                 }
                 else
                 {
-                    if (trans.position.x > pos.x)
+                    if (transform.position.x > pos.x)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 90, commonRot.eulerAngles.z);
                     }
@@ -127,7 +131,7 @@ public class Door : MonoBehaviour, I_Interaction
             {
                 if (ninety)
                 {
-                    if (trans.position.z > pos.z)
+                    if (transform.position.z > pos.z)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 50, commonRot.eulerAngles.z);
                     }
@@ -138,7 +142,7 @@ public class Door : MonoBehaviour, I_Interaction
                 }
                 else
                 {
-                    if (trans.position.x > pos.x)
+                    if (transform.position.x > pos.x)
                     {
                         targetRot = Quaternion.Euler(commonRot.eulerAngles.x, commonRot.eulerAngles.y + 50, commonRot.eulerAngles.z);
                     }
@@ -161,10 +165,11 @@ public class Door : MonoBehaviour, I_Interaction
 
 
     private void DoorRot()
-    {
-       trans.rotation = Quaternion.Lerp(trans.rotation, targetRot, 6 * Time.deltaTime);
+    {   
+        RB.MoveRotation(Quaternion.Lerp(transform.rotation, targetRot, 6 * Time.deltaTime));
 
-        if (Mathf.Abs(trans.rotation.eulerAngles.y - targetRot.eulerAngles.y) < 0.1f)
+
+        if ((Mathf.Abs(transform.rotation.eulerAngles.y - targetRot.eulerAngles.y) < 0.1f) && (Mathf.Abs(RB.angularVelocity.y)  < 0.1f))
         {
             if(open)
             {

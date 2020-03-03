@@ -7,15 +7,22 @@ using Animations;
 public class ScholarMove : MonoBehaviour
 {
 
+    private Rigidbody RB;
     private Scholar Scholar;
 
     [HideInInspector]
     public NavMeshAgent NavAgent { get; private set; }
 
 
+
     private Vector3 destination;
     private Quaternion targetRotation;
     private Vector3 last_position;
+
+    public bool paused;
+    public bool collision_player;
+    private Vector3 last_destination;
+
 
     private Transform head;
     private Transform head_target;
@@ -34,21 +41,24 @@ public class ScholarMove : MonoBehaviour
     public void Setup(Scholar scholar)
     {
         Scholar = scholar;
-
+        RB = GetComponent<Rigidbody>();
         head = transform.Find("Head");
         head_target = transform.Find("Scholar").Find("Scholar").Find("Spine").Find("Head Target");
 
         NavAgent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Scholar != null)
         {
-            if (rotating)
-                Rotate();
-            if (walking)
-                Walk();
+            if (!paused)
+            {
+                if (rotating)
+                    Rotate();
+                if (walking)
+                    Walk();
+            }
 
             MoveHead();
         }
@@ -67,9 +77,14 @@ public class ScholarMove : MonoBehaviour
 
         if (!ScholarIsHere())
         {
+            NavAgent.isStopped = false;
             NavAgent.SetDestination(destination);
-            Scholar.Anim.SetAnimation(GetA.animations.Walking);
+
+            last_position = transform.position;
             walking = true;
+            RB.isKinematic = false;
+
+            Scholar.Anim.SetAnimation(GetA.animations.Walking);
         }
     }
 
@@ -91,6 +106,7 @@ public class ScholarMove : MonoBehaviour
         {
             Scholar.Anim.SetAnimation(GetA.animations.Nothing);
             walking = false;
+            RB.isKinematic = true;
         }
     }
 
@@ -154,7 +170,7 @@ public class ScholarMove : MonoBehaviour
 
     public void RotateTo(Quaternion target)
     {
-        Rotation(Quaternion.Slerp(Rotation(), target, 4f * Time.deltaTime));
+        Rotation(Quaternion.Slerp(Rotation(), target, 6f * Time.deltaTime));
     }
 
 
@@ -169,6 +185,30 @@ public class ScholarMove : MonoBehaviour
             return false;
         }
     }
+
+
+    //===========================================================================================================================
+    //===========================================================================================================================
+    // Колижн с плеером
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision_player = true;
+            Pause();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision_player = false;
+            Continue();
+        }
+    }
+
 
 
 
@@ -227,7 +267,8 @@ public class ScholarMove : MonoBehaviour
 
     public void Rotation(Quaternion set_rotation)
     {
-        transform.rotation = set_rotation;
+        RB.MoveRotation(set_rotation);
+        //transform.rotation = set_rotation;
     }
 
 
@@ -254,20 +295,45 @@ public class ScholarMove : MonoBehaviour
 
 
 
+    public void Continue()
+    {
+
+        if (paused)
+        {
+            paused = false;
+
+            if (walking)
+                SetDestination(destination);
+        }
+
+    }
+
+    public void Pause()
+    {
+        if (walking)
+        {
+            NavAgent.isStopped = true;
+            Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        }
+
+        paused = true;
+    }
+
     public void Stop()
     {
         if (walking)
         {
             walking = false;
+            NavAgent.isStopped = true;
+            last_destination = destination;
             destination = transform.position;
-            NavAgent.SetDestination(destination);
             Scholar.Anim.SetAnimation(GetA.animations.Nothing);
         }
 
         if (rotating)
         {
+            targetRotation = Rotation();
             rotating = false;
-            SetRotateGoal(Rotation());
         }
     }
 

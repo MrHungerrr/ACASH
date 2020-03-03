@@ -19,6 +19,10 @@ public class ScholarSelect : ObjectSelect
         Selectable(true);
     }
 
+    public void Reset()
+    {
+        Selectable(true);
+    }
 
 
     public override void Select()

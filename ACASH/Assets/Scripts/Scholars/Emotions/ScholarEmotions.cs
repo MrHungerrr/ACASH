@@ -11,6 +11,12 @@ public class ScholarEmotions : MonoBehaviour
     public void Setup()
     {
         face = transform.parent.Find("Head").Find("Model").Find("Face").GetComponent<Renderer>().material;
+        ChangeEmotion("dead");
+    }
+
+    public void Reset()
+    {
+        ChangeEmotion("ussual");
     }
 
 

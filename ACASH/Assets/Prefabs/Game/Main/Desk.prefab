@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4391415206553459429}
   - component: {fileID: 3851062958208077653}
   - component: {fileID: 6080944844245809310}
+  - component: {fileID: 3293976952098200979}
   m_Layer: 0
   m_Name: Desk
   m_TagString: Untagged
@@ -83,6 +84,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cee39c06d7c95646b27f5d32a968dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &3293976952098200979
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3612648237044586326}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &4357345280767422407
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,6 +160,19 @@ Transform:
   m_Father: {fileID: 4960968087158322719}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1181858213162926629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655328806561498482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.051, y: 0.14999999, z: 0.19800003}
+  m_Center: {x: -0.006970589, y: 0, z: 0.000000044703484}
 --- !u!1 &7771611014615760127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 1999593105937183534, guid: c01bf56fdf96ac944b521a5f3f92dac6,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1999593105969037400, guid: c01bf56fdf96ac944b521a5f3f92dac6,
         type: 3}
@@ -2728,8 +2758,15 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 922887351870623571, guid: c01bf56fdf96ac944b521a5f3f92dac6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c01bf56fdf96ac944b521a5f3f92dac6, type: 3}
+--- !u!1 &5655328806561498482 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7242951617567368959, guid: c01bf56fdf96ac944b521a5f3f92dac6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3098443047337223053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9010021369578003118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6338226294826760483, guid: c01bf56fdf96ac944b521a5f3f92dac6,

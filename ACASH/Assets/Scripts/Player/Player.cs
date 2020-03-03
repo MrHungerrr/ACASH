@@ -22,7 +22,10 @@ public class Player : Singleton<Player>
     private void Awake()
     {
         Move = GetComponent<PlayerMove>();
-        Move.SetupMove(GetComponent<CharacterController>());
+        Move.Setup();
+
+        Camera = GetComponentInChildren<PlayerCamera>();
+        Camera.Setup(this);
 
         Select = new PlayerSelecting();
 
@@ -30,7 +33,7 @@ public class Player : Singleton<Player>
 
         Talk = GetComponent<PlayerTalk>();
 
-        Camera = PlayerCamera.get;
+
     }
 
 

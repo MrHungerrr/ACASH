@@ -178,6 +178,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   object_parent: {fileID: 0}
+--- !u!1 &4110266937315216235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1516911064377604195}
+  - component: {fileID: 1270427940822321591}
+  - component: {fileID: 5852299298866164817}
+  m_Layer: 0
+  m_Name: SoundScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1516911064377604195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110266937315216235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6132918696476860144}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1270427940822321591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110266937315216235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88626a10daa71d74a85bcd9b21496ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5852299298866164817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110266937315216235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d6d69eabb328b4eb001924a1bcb93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5761644016120540648
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +323,7 @@ Transform:
   - {fileID: 1300066095}
   - {fileID: 9209631483066717037}
   - {fileID: 4924896803829262489}
+  - {fileID: 1516911064377604195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -354,20 +411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f44d52c1f5affc48af7dff5c67b2166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scores_names:
-  - Left
-  - Cheated
-  - Not Finished
-  - Executed Right
-  - Executed Wrong
-  - Answered Right
-  - Answered Wrong
   reputation: 0
   kindness: 0
   reputation_amount: 0
   kindness_amount: 0
-  bulls: 0
-  jokes: 0
 --- !u!114 &1486213564
 MonoBehaviour:
   m_ObjectHideFlags: 0

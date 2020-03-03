@@ -33,7 +33,6 @@ public class ExamManager : Singleton<ExamManager>
 
     public void Awake()
     {
-        ChillDone += StartPrepare;
         PrepareDone += StartExam;
         ExamDone += FinishExam;
 
@@ -43,7 +42,6 @@ public class ExamManager : Singleton<ExamManager>
 
     public void ResetExam()
     {
-        GameManager.get.NewScholars();
         StartGame();
     }
 
@@ -59,9 +57,10 @@ public class ExamManager : Singleton<ExamManager>
 
     private void StartPrepare()
     {
+        GameManager.get.NewScholars();
+
         exam_part = part.prepare;
         TimeManager.get.SetTime(1);
-
         exam_key += 1;
         HUDManager.get.ExamHUD(exam_key);
     }
@@ -92,6 +91,7 @@ public class ExamManager : Singleton<ExamManager>
         {
             case part.chill:
                 {
+                    StartPrepare();
                     ChillDone();
                     break;
                 }

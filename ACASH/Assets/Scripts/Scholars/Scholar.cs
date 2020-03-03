@@ -104,9 +104,6 @@ public class Scholar : MonoBehaviour
         Info = new ScholarInfo(this);
         View = new ScholarView(this);
         Test = new ScholarExam();
-
-        if(handControl)
-            SetType(scholarType);
     }
 
 
@@ -116,6 +113,8 @@ public class Scholar : MonoBehaviour
         active = true;
         ChangeType(type);
 
+        Select.Reset();
+        Emotions.Reset();
         Talk = new ScholarTalk(this);
         Answers = new ScholarAnswers();
     }
