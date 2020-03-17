@@ -326,7 +326,8 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         }
 
 
-        Scholar.Emotions.ChangeEmotion("dead");
+        Scholar.scholarType = ScholarTypes.list.Random;
+        Scholar.Emotions.Change("dead");
 
         OperationEnd();
     }

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerSelecting
 {
-
+    public Reasons active;
 
     private LayerMask select_layer_mask = LayerMask.GetMask("Selectable", "Default");
     private LayerMask sight_layer_mask = LayerMask.GetMask("Sight Layer");
@@ -16,17 +17,36 @@ public class PlayerSelecting
     public Scholar selected_scholar;
 
 
-
+    public PlayerSelecting()
+    {
+        active = new Reasons();
+        Deselect();
+    }
 
 
 
     public void Update()
     {
-        if (!Player.get.Camera.zoom)
+        if (active.GiveMeChance())
         {
             RayCasting();
             CrossHair.get.SelectHair();
         }
+        else
+        {
+            Deselect();
+        }
+    }
+
+
+    public void Enable(Type reason)
+    {
+        active.Remove(reason);
+    }
+
+    public void Disable(Type reason)
+    {
+        active.Add(reason);
     }
 
 

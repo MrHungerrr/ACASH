@@ -48,7 +48,7 @@ public class OperationsManager
     private void DoOperation()
     {
 
-        if (operation_num < operations.Length)
+        if (operations != null && operation_num < operations.Length)
         {
             operations[operation_num].Do(Executer);
         }

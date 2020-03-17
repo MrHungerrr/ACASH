@@ -11,17 +11,17 @@ public class ScholarEmotions : MonoBehaviour
     public void Setup()
     {
         face = transform.parent.Find("Head").Find("Model").Find("Face").GetComponent<Renderer>().material;
-        ChangeEmotion("dead");
+        Change("dead");
     }
 
     public void Reset()
     {
-        ChangeEmotion("ussual");
+        Change("ussual");
     }
 
 
 
-    public void ChangeEmotion(string emotion)
+    public void Change(string emotion)
     {
         StopAllCoroutines();
 
@@ -87,38 +87,38 @@ public class ScholarEmotions : MonoBehaviour
     }
 
 
-    public void ChangeEmotion(string emotion, string emotion_sec, float time)
+    public void Change(string emotion, string emotion_sec, float time)
     {
-            ChangeEmotion(emotion);
-            StartCoroutine(EmotionForTime(emotion_sec, time));
+            Change(emotion);
+            StartCoroutine(ChangeForTime(emotion_sec, time));
     }
 
-    public void ChangeEmotion(string emotion_flash, string emotion, string emotion_sec, float time)
+    public void Change(string emotion_flash, string emotion, string emotion_sec, float time)
     {
-            ChangeEmotion(emotion_flash);
-            StartCoroutine(EmotionForTime(emotion, emotion_sec, time));
+            Change(emotion_flash);
+            StartCoroutine(ChangeForTime(emotion, emotion_sec, time));
     }
 
-    public void ChangeEmotion(string emotion_flash, string emotion)
+    public void Change(string emotion_flash, string emotion)
     {
-            ChangeEmotion(emotion_flash);
-            StartCoroutine(EmotionForTime(emotion, 1f));
+            Change(emotion_flash);
+            StartCoroutine(ChangeForTime(emotion, 1f));
     }
 
 
 
-    private IEnumerator EmotionForTime(string emotion, float time)
+    private IEnumerator ChangeForTime(string emotion, float time)
     {
         yield return new WaitForSeconds(time);
-        ChangeEmotion(emotion);
+        Change(emotion);
     }
 
-    private IEnumerator EmotionForTime(string emotion, string emotion_sec, float time)
+    private IEnumerator ChangeForTime(string emotion, string emotion_sec, float time)
     {
         yield return new WaitForSeconds(1f);
-        ChangeEmotion(emotion);
+        Change(emotion);
         yield return new WaitForSeconds(time);
-        ChangeEmotion(emotion_sec);
+        Change(emotion_sec);
     }
 
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EventFolder" id="{6057e576-1673-4ae9-84ee-761660209122}">
+		<property name="name">
+			<value>Infinite</value>
+		</property>
+		<relationship name="folder">
+			<destination>{2c30aaa3-c71b-4925-ab12-f9b432f85de8}</destination>
+		</relationship>
+	</object>
+</objects>

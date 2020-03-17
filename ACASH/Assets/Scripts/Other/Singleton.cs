@@ -18,9 +18,9 @@ namespace Single
                     {
                         _get = FindObjectOfType<T>();
 
-                        if (FindObjectsOfType(typeof(T)).Length > 1)
+                        if (FindObjectsOfType<T>().Length > 1)
                         {
-                            Debug.LogError("Несколько Синглтонов '" + typeof(T) + "' найдено! ");
+                            Debug.LogError("Несколько Синглтонов '" + typeof(T).ToString() + "' найдено! ");
                         }
 
                         if (_get == null)

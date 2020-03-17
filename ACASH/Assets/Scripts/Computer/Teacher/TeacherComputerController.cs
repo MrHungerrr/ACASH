@@ -67,7 +67,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
     public void Interaction()
     {
         Enable(true);
-        Player.get.Action.doing = false;
+        Player.get.Action.Doing(false);
     }
 
 
@@ -249,7 +249,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
     public void Select()
     {
-        Computer.Sound.MakeSound(ComputerSounds.one_shot.Click);
+        Computer.Sound.Make(ComputerSounds.one_shot.Click);
 
         if (collision)
         {

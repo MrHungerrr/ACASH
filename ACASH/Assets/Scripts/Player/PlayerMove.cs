@@ -64,7 +64,7 @@ public class PlayerMove : MonoBehaviour
             moving = false;
         }
 
-        if (rotateAngle != last_rotateAngle)
+        if (rotateAngle != 0f)
         {
             Rotate();
         }
@@ -104,9 +104,9 @@ public class PlayerMove : MonoBehaviour
         {
             Vector3 moveInput3 = moveInput.normalized;
             moveInput3 = new Vector3(moveInput3.x, 0, moveInput3.y);
-            move += moveInput3;
+            move = moveInput3;
 
-            Debug.Log(moveInput3 + "\n" + move);
+            //Debug.Log(moveInput3 + "\n" + move);
         }
     }
 
@@ -115,12 +115,9 @@ public class PlayerMove : MonoBehaviour
         Vector3 new_move = transform.TransformDirection(move * movementSpeed * RB_coef * Time.fixedDeltaTime);
         //Vector3 new_position = transform.position + new_move;
 
-
         RB.AddForce(new_move);
 
-        //RB.MovePosition(new_position);
         ScholarManager.get.Hear(movementSound);
-
 
         move = Vector3.zero;
     }
@@ -130,7 +127,7 @@ public class PlayerMove : MonoBehaviour
     {
         Quaternion rotation_goal = Quaternion.Euler(0, transform.eulerAngles.y + rotateAngle, 0);
         RB.MoveRotation(rotation_goal);
-        last_rotateAngle = rotateAngle;
+        rotateAngle = 0f;
     }
 
 

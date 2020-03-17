@@ -46,7 +46,7 @@ public class PlayerCamera : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         CameraRotation();
         if (zoom || zooming)
@@ -89,7 +89,7 @@ public class PlayerCamera : MonoBehaviour
             }
 
             transform.Rotate(Vector3.left * rotate.y);
-            Player.Move.rotateAngle = rotate.x;
+            Player.Move.rotateAngle += rotate.x;
         }
     }
 
@@ -106,6 +106,12 @@ public class PlayerCamera : MonoBehaviour
     {
         zoom = option;
         zooming = true;
+
+        if (option)
+            Player.Select.Disable(this.GetType());
+        else
+            Player.Select.Enable(this.GetType());
+
     }
 
 

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class ComputerSounds
+public class ComputerSounds : A_Sound
 {
     A_Computer Computer;
 
@@ -19,49 +19,60 @@ public class ComputerSounds
     }
 
 
-    Dictionary<infinite, FMOD.Studio.EventInstance> infinite_sounds = new Dictionary<infinite, FMOD.Studio.EventInstance>();
-    static string sounds_path = "event:/Computer/";
-
-
     public ComputerSounds(A_Computer Computer)
     {
+        sounds_path += "Local/Computer/";
         this.Computer = Computer;
+        obj = Computer.gameObject;
 
-        for(int i = 0; i < Enum.GetNames(typeof(infinite)).Length; i++)
+        Setup();
+    }
+
+    protected override void Setup()
+    {
+        for (int i = 0; i < Enum.GetNames(typeof(infinite)).Length; i++)
         {
             infinite name = (infinite)i;
-            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + "Infinite/" + name.ToString());
-            RuntimeManager.AttachInstanceToGameObject(sound, Computer.transform, Computer.GetComponent<Rigidbody>());
-            infinite_sounds.Add(name, sound);
+            AddInfinite(name.ToString());
         }
     }
 
-    public void MakeSound(one_shot sound)
+
+
+
+
+
+    //========================================================================================================================
+    //========================================================================================================================
+    //Не трогать
+
+    public void Make(one_shot sound)
     {
-        Debug.Log("One Shot Sound Play - " + sound.ToString());
-        RuntimeManager.PlayOneShot(sounds_path + "One Shot/" + sound.ToString(), Computer.transform.position);
+        base.Make(sound.ToString());
     }
 
-
-    public void StartSound(infinite sound)
+    public void Play(infinite sound)
     {
-        Debug.Log("Infinite Sound Start - " + sound.ToString());
-        infinite_sounds[sound].start();
+        base.Play(sound.ToString());
     }
 
-
-    public void StopSound(infinite sound)
+    public void Pause(infinite sound)
     {
-        StopSound(sound, false);
+        base.Pause(sound.ToString());
     }
 
-    public void StopSound(infinite sound, bool immediate)
+    public void Continue(infinite sound)
     {
-        Debug.Log("Infinite Sound Stop - " + sound.ToString());
+        base.Continue(sound.ToString());
+    }
 
-        if (immediate)
-            infinite_sounds[sound].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        else
-            infinite_sounds[sound].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    public void Stop(infinite sound)
+    {
+        base.Stop(sound.ToString());
+    }
+
+    public void Stop(infinite sound, bool immediate)
+    {
+        base.Stop(sound.ToString(),immediate);
     }
 }

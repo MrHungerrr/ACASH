@@ -19,13 +19,8 @@ public class ScholarMove : MonoBehaviour
     private Quaternion targetRotation;
     private Vector3 last_position;
 
-    public bool paused;
-    public bool collision_player;
-    private Vector3 last_destination;
+    private bool paused = true;
 
-
-    private Transform head;
-    private Transform head_target;
 
 
     [HideInInspector]
@@ -42,25 +37,21 @@ public class ScholarMove : MonoBehaviour
     {
         Scholar = scholar;
         RB = GetComponent<Rigidbody>();
-        head = transform.Find("Head");
-        head_target = transform.Find("Scholar").Find("Scholar").Find("Spine").Find("Head Target");
+        //RB.isKinematic = true;
 
         NavAgent = GetComponent<NavMeshAgent>();
+        paused = false;
     }
 
-    private void FixedUpdate()
-    {
-        if (Scholar != null)
-        {
-            if (!paused)
-            {
-                if (rotating)
-                    Rotate();
-                if (walking)
-                    Walk();
-            }
 
-            MoveHead();
+    private void FixedUpdate()
+    { 
+        if (!paused)
+        {
+            if (rotating)
+                Rotate();
+            if (walking)
+                Walk();
         }
     }
 
@@ -157,7 +148,6 @@ public class ScholarMove : MonoBehaviour
 
         if(RotationIsHere())
         {
-            Rotation(targetRotation);
             rotating = false;
         }
     }
@@ -168,9 +158,9 @@ public class ScholarMove : MonoBehaviour
         rotating = false;
     }
 
-    public void RotateTo(Quaternion target)
+    private void RotateTo(Quaternion target)
     {
-        Rotation(Quaternion.Slerp(Rotation(), target, 6f * Time.deltaTime));
+        Rotation(Quaternion.Slerp(Rotation(), target, 5f * Time.fixedDeltaTime));
     }
 
 
@@ -195,7 +185,6 @@ public class ScholarMove : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision_player = true;
             Pause();
         }
     }
@@ -204,49 +193,10 @@ public class ScholarMove : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision_player = false;
             Continue();
         }
     }
 
-
-
-
-
-
-
-    //===========================================================================================================================
-    //===========================================================================================================================
-    //Поворот бошки
-
-    public void MoveHeadTo(Vector3 target)
-    {
-        PositionHead(Vector3.Slerp(PositionHead(), target, 6f * Time.deltaTime));
-    }
-
-
-
-    private void MoveHead()
-    {
-        if (!HeadOnPosition())
-        {
-            Vector3 target = new Vector3(head_target.position.x, PositionHead().y, head_target.position.z);
-            MoveHeadTo(target);
-        }
-    }
-
-
-    public bool HeadOnPosition()
-    {
-        if (head.position.x == head_target.position.x && head.position.z == head_target.position.z)
-        {
-            return true;
-        }
-        else
-        { 
-            return false;
-        }
-    }
 
 
 
@@ -262,34 +212,15 @@ public class ScholarMove : MonoBehaviour
 
     public void Position(Vector3 set_position)
     {
-        transform.position = set_position;
+        RB.MovePosition(set_position);
     }
 
     public void Rotation(Quaternion set_rotation)
     {
-        RB.MoveRotation(set_rotation);
-        //transform.rotation = set_rotation;
-    }
-
-
-    public Vector3 PositionHead()
-    {
-        return head.position;
-    }
-
-    public Quaternion RotationHead()
-    {
-        return head.rotation;
-    }
-
-    public void PositionHead(Vector3 set_position)
-    {
-        head.position = set_position;
-    }
-
-    public void RotationHead(Quaternion set_rotation)
-    {
-        head.rotation = set_rotation;
+        //Какого-то хуя РигидБоди просто с катушек слетает и хуево поворачивает студента
+        //RB.rotation = set_rotation;
+        //RB.MoveRotation(set_rotation);
+        transform.rotation = set_rotation;
     }
 
 
@@ -297,15 +228,14 @@ public class ScholarMove : MonoBehaviour
 
     public void Continue()
     {
-
         if (paused)
         {
             paused = false;
+            RB.angularVelocity = Vector3.zero;
 
             if (walking)
                 SetDestination(destination);
         }
-
     }
 
     public void Pause()
@@ -319,13 +249,13 @@ public class ScholarMove : MonoBehaviour
         paused = true;
     }
 
+
     public void Stop()
     {
         if (walking)
         {
             walking = false;
             NavAgent.isStopped = true;
-            last_destination = destination;
             destination = transform.position;
             Scholar.Anim.SetAnimation(GetA.animations.Nothing);
         }

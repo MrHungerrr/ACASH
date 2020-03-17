@@ -21,7 +21,7 @@ public class ScholarConverastion
 
     public void HearTeacherTalking(bool strong)
     {
-        Scholar.Emotions.ChangeEmotion("suprised");
+        Scholar.Emotions.Change("suprised");
 
         if (strong)
         {
@@ -39,12 +39,12 @@ public class ScholarConverastion
         if (strong)
         {
             Scholar.Stress.Change(30);
-            Scholar.Emotions.ChangeEmotion("upset", "ussual", 4f);
+            Scholar.Emotions.Change("upset", "ussual", 4f);
         }
         else
         {
             Scholar.Stress.Change(10);
-            Scholar.Emotions.ChangeEmotion("happy", "smile", 4f);
+            Scholar.Emotions.Change("happy", "smile", 4f);
         }
 
         Answer(key);

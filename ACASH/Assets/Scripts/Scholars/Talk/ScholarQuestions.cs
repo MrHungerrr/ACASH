@@ -37,6 +37,8 @@ public class ScholarQuestions
         question_answered = false;
         question_t = question_const_t;
         answer = false;
+
+        Scholar.Emotions.Change("ask");
     }
 
 
@@ -76,6 +78,8 @@ public class ScholarQuestions
         Debug.Log("Конец вопроса");
         Scholar.Talk.Stop();
         question = false;
+
+        Scholar.Emotions.Change("ussual");
     }
 
 

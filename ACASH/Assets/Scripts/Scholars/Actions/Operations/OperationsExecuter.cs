@@ -16,6 +16,7 @@ public class OperationsExecuter : OperationsExecuterBase
             yield return new WaitForEndOfFrame();
 
         WatchTo(PlaceManager.place.Home, Scholar.Info.number);
+        Scholar.Body.Disable();
 
         OperationEnd();
     }

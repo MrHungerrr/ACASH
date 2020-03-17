@@ -65,6 +65,7 @@ public class ScoreManager : Singleton<ScoreManager>
         };
 
         scores_length = Enum.GetNames(typeof(scores_names)).Length;
+        scores = new Dictionary<scores_names, ScoreItem>();
 
         for (int i = 0; i < scores_length; i++)
         {

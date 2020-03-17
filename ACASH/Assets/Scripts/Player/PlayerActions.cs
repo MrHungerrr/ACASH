@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerActions
 {
-    public bool doing = false;
+    public bool doing { get; private set; } = false;
     private I_Interaction interact_obj;
 
 

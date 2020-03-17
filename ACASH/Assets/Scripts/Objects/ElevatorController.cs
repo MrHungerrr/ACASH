@@ -20,11 +20,12 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
     public void Interaction()
     {
         Open();
-        Player.get.Action.doing = false;
+        Player.get.Action.Doing(false);
     }
 
     public void Ready()
     {
+        Elevator.get.Sound.Make(ElevatorSounds.one_shot.Ring);
         text.text = "Ready";
         ready = true;
     }
@@ -40,7 +41,6 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
     {
         if(ready)
         {
-            GameManager.get.StartLevel();
             Elevator.get.Open();
             ready = false;
         }

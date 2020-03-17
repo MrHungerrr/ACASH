@@ -10,6 +10,7 @@ using Single;
 public class InputManager : Singleton<InputManager>
 {
 
+    private Player Player;
     private PlayerControls Controls;
 
 
@@ -24,17 +25,17 @@ public class InputManager : Singleton<InputManager>
     [HideInInspector]
     public bool hold_crouch;
 
-    //private ParticleSystem.VelocityOverLifetimeModule vel;
-    //private ParticleSystem.ShapeModule shape;
+
 
     private void Awake()
     {
+        Player = GameObject.FindObjectOfType<Player>();
         Controls = new PlayerControls();
 
-        Controls.Gameplay.Camera.performed += ctx => Player.get.Camera.rotateInput = ctx.ReadValue<Vector2>();
-        Controls.Gameplay.Camera.canceled += ctx => Player.get.Camera.rotateInput = Vector2.zero;
-        Controls.Gameplay.Move.performed += ctx => Player.get.Move.moveInput = ctx.ReadValue<Vector2>();
-        Controls.Gameplay.Move.canceled += ctx => Player.get.Move.moveInput = Vector2.zero;
+        Controls.Gameplay.Camera.performed += ctx => Player.Camera.rotateInput = ctx.ReadValue<Vector2>();
+        Controls.Gameplay.Camera.canceled += ctx => Player.Camera.rotateInput = Vector2.zero;
+        Controls.Gameplay.Move.performed += ctx => Player.Move.moveInput = ctx.ReadValue<Vector2>();
+        Controls.Gameplay.Move.canceled += ctx => Player.Move.moveInput = Vector2.zero;
         Controls.Gameplay.Action.started += ctx => GameAction(true);
         Controls.Gameplay.Action.canceled += ctx => GameAction(false);
         Controls.Gameplay.Zoom.started += ctx => GameZoom(true);
@@ -89,10 +90,6 @@ public class InputManager : Singleton<InputManager>
 
     private void Start()
     {
-        //menu = GameObject.FindObjectOfType<Menu>();
-        //menu.SwitchMenu(false);
-        //SwitchGameInput("menu");
-        //TypeOfInput("keyboard");
         Controls.InputType.Enable();
     }
 
@@ -195,7 +192,7 @@ public class InputManager : Singleton<InputManager>
 
     private bool GameCanIDoAction()
     {
-        return !Player.get.Talk.talking && !Player.get.Action.doing;
+        return !Player.Talk.talking && !Player.Action.doing;
     }
 
 
@@ -205,11 +202,11 @@ public class InputManager : Singleton<InputManager>
         if (option)
         {
             if(GameCanIDoAction())
-                Player.get.Action.Doing(true);
+                Player.Action.Doing(true);
         }
         else
         {
-            Player.get.Action.Doing(false);
+            Player.Action.Doing(false);
         }
     }
 
@@ -217,11 +214,11 @@ public class InputManager : Singleton<InputManager>
     {
         if (option)
         {
-                Player.get.Camera.Zoom(true);
+                Player.Camera.Zoom(true);
         }
         else
         {
-            Player.get.Camera.Zoom(false);
+            Player.Camera.Zoom(false);
         }
     }
 
@@ -229,11 +226,11 @@ public class InputManager : Singleton<InputManager>
     {
         if (option)
         {
-            Player.get.Move.SwitchMove(PlayerMove.movement.Run);
+            Player.Move.SwitchMove(PlayerMove.movement.Run);
         }
-        else if (Player.get.Move.type_movement == PlayerMove.movement.Run)
+        else if (Player.Move.type_movement == PlayerMove.movement.Run)
         {
-            Player.get.Move.SwitchMove(PlayerMove.movement.Normal);
+            Player.Move.SwitchMove(PlayerMove.movement.Normal);
         }
     }
 
@@ -243,21 +240,21 @@ public class InputManager : Singleton<InputManager>
         {
             if (hold_crouch)
             {
-                Player.get.Move.SwitchMove(PlayerMove.movement.Crouch);
+                Player.Move.SwitchMove(PlayerMove.movement.Crouch);
             }
             else
             {
-                if (Player.get.Move.type_movement != PlayerMove.movement.Crouch)
-                    Player.get.Move.SwitchMove(PlayerMove.movement.Crouch);
+                if (Player.Move.type_movement != PlayerMove.movement.Crouch)
+                    Player.Move.SwitchMove(PlayerMove.movement.Crouch);
                 else
-                    Player.get.Move.SwitchMove(PlayerMove.movement.Normal);
+                    Player.Move.SwitchMove(PlayerMove.movement.Normal);
             }
         }
         else
         {
             if (hold_crouch)
             {
-                Player.get.Move.SwitchMove(PlayerMove.movement.Normal);
+                Player.Move.SwitchMove(PlayerMove.movement.Normal);
             }
         }
     }
@@ -266,9 +263,9 @@ public class InputManager : Singleton<InputManager>
     {
         if (option)
         {
-            if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
+            if (Player.Select.TryGetScholar() && GameCanIDoAction())
             {
-                Player.get.Talk.TalkGood();
+                Player.Talk.TalkGood();
             }
         }
     }
@@ -277,9 +274,9 @@ public class InputManager : Singleton<InputManager>
     {
         if (option)
         {
-            if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
+            if (Player.Select.TryGetScholar() && GameCanIDoAction())
             {
-                Player.get.Talk.TalkBad();
+                Player.Talk.TalkBad();
             }
         }
     }
@@ -287,14 +284,14 @@ public class InputManager : Singleton<InputManager>
     private void GameShout()
     {
         if(GameCanIDoAction())
-            Player.get.Talk.Shout();
+            Player.Talk.Shout();
     }
 
     private void GameExecute()
     {
-        if (Player.get.Select.TryGetScholar() && GameCanIDoAction())
+        if (Player.Select.TryGetScholar() && GameCanIDoAction())
         {
-            Player.get.Talk.Execute();
+            Player.Talk.Execute();
         }
     }
 

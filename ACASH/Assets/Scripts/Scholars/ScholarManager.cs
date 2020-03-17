@@ -36,12 +36,23 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public void Setup()
     {
-        scholars = GameObject.FindObjectsOfType<Scholar>();
+        var scholars_buf = GameObject.FindObjectsOfType<Scholar>();
+        List<Scholar> scholars_list = new List<Scholar>();
+
+        foreach(Scholar s in scholars_buf)
+        {
+            s.Setup();
+
+            if (!s.disabled)
+                scholars_list.Add(s);
+        }
+
+        scholars = scholars_list.ToArray();
+
         withoutScholars = (scholars.Length == 0);
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Setup();
             scholars[i].Info.SetNumber(i);
         }
 
@@ -55,10 +66,14 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (!scholars[i].handControl)
+            if (scholars[i].scholarType == ScholarTypes.list.Random)
             {
                 int rand = Random.Range(0, ScholarTypes.length);
-                scholars[i].SetType((ScholarTypes.list)rand);
+                scholars[i].SetNewType((ScholarTypes.list)rand);
+            }
+            else
+            {
+                scholars[i].ResetType();
             }
         }
     }
@@ -157,7 +172,7 @@ public class ScholarManager : Singleton<ScholarManager>
         for (int i = 0; i < scholars.Length; i++)
         {
             if (scholars[i].active)
-                scholars[i].Execute.EndExam();
+                scholars[i].Execute.EndExamForScholar();
         }
     }
 

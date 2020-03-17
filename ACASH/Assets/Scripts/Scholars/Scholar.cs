@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 
 
 public class Scholar : MonoBehaviour
 {
-    public bool handControl;
+
+    public bool disabled;
     //Тип ученика
-    [SerializeField] 
-    private ScholarTypes.list scholarType;
+    public ScholarTypes.list scholarType;
     [HideInInspector]
     public string type { get; private set; }
 
@@ -65,6 +61,10 @@ public class Scholar : MonoBehaviour
     public ScholarAnswers Answers { get; private set; }
     [HideInInspector]
     public ScholarObjects Objects { get; private set; }
+    [HideInInspector]
+    public ScholarSounds Sound { get; private set; }
+    [HideInInspector]
+    public ScholarBody Body { get; private set; }
 
 
 
@@ -72,8 +72,9 @@ public class Scholar : MonoBehaviour
 
 
 
-    public void Setup()
+    public virtual void Setup()
     {
+        active = false;
         this.tag = "Scholar";
 
         TextBox = GetComponent<ScholarTextBox>();
@@ -82,14 +83,17 @@ public class Scholar : MonoBehaviour
         Emotions = GetComponent<ScholarEmotions>();
         Emotions.Setup();
 
-        Move = transform.parent.GetComponentInParent<ScholarMove>();
+        Move = transform.parent.GetComponent<ScholarMove>();
         Move.Setup(this);
+
+        Body = transform.parent.GetComponent<ScholarBody>();
+        Body.Setup(this);
 
         Select = GetComponent<ScholarSelect>();
         Select.Setup(this);
 
 
-        Anim = new ScholarAnim(transform.parent.GetComponentInChildren<Animator>());
+        Anim = new ScholarAnim(transform.parent.Find("Scholar").GetComponent<Animator>());
         Question = new ScholarQuestions(this);
         Location = new ScholarLocation(this);
         Execute = new ScholarExecute(this);
@@ -99,6 +103,7 @@ public class Scholar : MonoBehaviour
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
         Conversation = new ScholarConverastion(this);
+        Sound = new ScholarSounds(this);
         Cheat = new ScholarCheat(this);
         Check = new ScholarCheck(this);
         Info = new ScholarInfo(this);
@@ -108,7 +113,7 @@ public class Scholar : MonoBehaviour
 
 
 
-    public void SetType(ScholarTypes.list type)
+    public virtual void SetNewType(ScholarTypes.list type)
     {
         active = true;
         ChangeType(type);
@@ -117,6 +122,20 @@ public class Scholar : MonoBehaviour
         Emotions.Reset();
         Talk = new ScholarTalk(this);
         Answers = new ScholarAnswers();
+
+
+        Body.Enable();
+    }
+
+    public void ResetType()
+    {
+        if (scholarType == ScholarTypes.list.Random)
+        {
+            int rand = Random.Range(0, ScholarTypes.length);
+            scholarType = (ScholarTypes.list)rand;
+        }
+
+        SetNewType(scholarType);
     }
 
 
@@ -142,9 +161,10 @@ public class Scholar : MonoBehaviour
 
 
 
-    public void Continue()
+    public virtual void Continue()
     {
-        Action.Continue();
+        if (active)
+            Action.Continue();
     }
 
     public void Pause()
@@ -153,8 +173,10 @@ public class Scholar : MonoBehaviour
         Move.Stop();
     }
 
+
     public void Disable()
     {
+        Select.Selectable(false);
         Action.Disable();
         Move.Stop();
         Talk.Stop();

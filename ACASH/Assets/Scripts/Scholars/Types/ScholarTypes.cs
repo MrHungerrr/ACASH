@@ -5,9 +5,9 @@
         Asshole,
         Dumb,
         Nerd,
+        Random,
     }
 
-    public const string asshole = "Asshole";
     public const string dumb = "Dumb";
     public const string nerd = "Nerd";
 

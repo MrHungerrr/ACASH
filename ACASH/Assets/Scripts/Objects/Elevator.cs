@@ -6,7 +6,8 @@ using Single;
 public class Elevator : Singleton<Elevator>
 {
 
-    private bool open = false;
+    [HideInInspector]
+    public bool open { get; private set; } = false;
     private bool ninety;
     private bool active = false;
     private bool enter = false;
@@ -23,10 +24,17 @@ public class Elevator : Singleton<Elevator>
     private float close_time;
     private const float close_time_cd = 3f;
 
+    [SerializeField]
+    private BoxCollider col;
+
+    public ElevatorSounds Sound;
 
 
-    void Start()
+
+    void Awake()
     {
+        Sound = new ElevatorSounds(transform.parent.Find("Elevator Sounds").gameObject);
+
         doorLeft = transform.Find("Door_Left");
         doorRight = transform.Find("Door_Right");
 
@@ -71,6 +79,8 @@ public class Elevator : Singleton<Elevator>
     }
 
 
+
+
     //--------------------------------------------------------------------------------------------------------------------------------------------
     // На случай, если понадобиться открывать лифт ручками.
     //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -109,7 +119,6 @@ public class Elevator : Singleton<Elevator>
     {
         open = true;
 
-
         enter = !inside;
         //enter = toEnter;
 
@@ -124,8 +133,13 @@ public class Elevator : Singleton<Elevator>
             doorRightTarget = new Vector3(doorRightPos.x, doorRightPos.y, doorRightPos.z + doorAddFloat);
         }
 
+        col.enabled = false;
+
         active = true;
+
+        Sound.Make(ElevatorSounds.one_shot.Open);
     }
+
 
 
     public void Close()
@@ -135,7 +149,11 @@ public class Elevator : Singleton<Elevator>
         doorLeftTarget = doorLeftPos;
         doorRightTarget = doorRightPos;
 
+        col.enabled = true;
+
         active = true;
+
+        Sound.Make(ElevatorSounds.one_shot.Close);
     }
 
 
@@ -150,6 +168,8 @@ public class Elevator : Singleton<Elevator>
         {
             if (open)
             {
+
+
                 if (enter)
                 {
                     if (inside)

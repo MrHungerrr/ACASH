@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,30 +7,39 @@ public class PlayerTalk : MonoBehaviour
 {
     [HideInInspector]
     public Scholar scholar { get; set; }
-    private KeyWord key_word = new KeyWord("Teacher");
+    protected KeyWord key_word = new KeyWord("Teacher");
     public bool talking { get; private set; } = false;
 
 
-    private void BeginOfTalk()
+
+    public delegate void BoolDone(bool option);
+    public event BoolDone AnswerDone;
+    public event BoolDone TalkDone;
+
+    public delegate void OnDone();
+    public event OnDone ShoutDone;
+    public event OnDone ExecuteDone;
+
+
+
+    protected void BeginOfTalk()
     {
         StopThinking();
         key_word.Reset();
         talking = true;
     }
 
-
-
-
-
-    private void StopThinking()
+    protected void StopThinking()
     {
+
+
         if (SubtitleManager.get.act)
             SubtitleManager.get.StopSubtitile();
     }
 
 
 
-    public void Shout()
+    public virtual void Shout()
     {
         BeginOfTalk();
         key_word += "Shout";
@@ -39,12 +49,10 @@ public class PlayerTalk : MonoBehaviour
 
 
 
-
-
     //========================================================================================================
     //Крик на всех школьников
 
-    private IEnumerator Shouting()
+    protected IEnumerator Shouting()
     {
         ScholarManager.get.Shout(10);
 
@@ -56,6 +64,9 @@ public class PlayerTalk : MonoBehaviour
         }
 
         talking = false;
+
+        if (ShoutDone != null)
+            ShoutDone();
     }
 
 
@@ -76,7 +87,7 @@ public class PlayerTalk : MonoBehaviour
             Talk(true);
     }
 
-    public void Talk(bool strong)
+    public virtual void Talk(bool strong)
     {
         BeginOfTalk();
 
@@ -95,7 +106,7 @@ public class PlayerTalk : MonoBehaviour
     //========================================================================================================
     //Наезд на школьника
 
-    private IEnumerator Talking(Scholar scholar, bool strong)
+    protected IEnumerator Talking(Scholar scholar, bool strong)
     {
         // Подлежит изменению (View) \\
 
@@ -122,6 +133,9 @@ public class PlayerTalk : MonoBehaviour
 
         scholar.Conversation.Listening(key_word, strong);
         talking = false;
+
+        if (TalkDone != null)
+            TalkDone(strong);
     }
 
 
@@ -133,7 +147,7 @@ public class PlayerTalk : MonoBehaviour
     //========================================================================================================
     //Ответ на вопрос
 
-    public void Answer(bool answer)
+    public virtual void Answer(bool answer)
     {
         BeginOfTalk();
         key_word += "Answer";
@@ -144,7 +158,7 @@ public class PlayerTalk : MonoBehaviour
 
 
 
-    private IEnumerator Answering(Scholar scholar, bool answer)
+    protected IEnumerator Answering(Scholar scholar, bool answer)
     {
         key_word += scholar.Question.question_key;
         key_word.Answer(answer);
@@ -160,8 +174,11 @@ public class PlayerTalk : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        scholar.Question.Answer(answer);
+        scholar.Question.Answer(answer);    
         talking = false;
+
+        if(AnswerDone != null)
+            AnswerDone(answer);
 
         while (scholar.Talk.talking)
         {
@@ -179,7 +196,7 @@ public class PlayerTalk : MonoBehaviour
     //========================================================================================================
     //Наезд на школьника
 
-    public void Execute()
+    public virtual void Execute()
     {
         BeginOfTalk();
         key_word += "Execute";
@@ -190,7 +207,7 @@ public class PlayerTalk : MonoBehaviour
     }
 
 
-    private IEnumerator Execute(Scholar scholar)
+    protected IEnumerator Execute(Scholar scholar)
     {
         SubtitleManager.get.Say(key_word);
         scholar.Execute.Execute(key_word);
@@ -201,5 +218,9 @@ public class PlayerTalk : MonoBehaviour
         }
 
         talking = false;
+
+
+        if (ExecuteDone != null)
+            ExecuteDone();
     }
 }

@@ -5,21 +5,21 @@ using Single;
 public class Player : Singleton<Player>
 {
 
-    public PlayerMove Move { get; private set; }
-    public PlayerSelecting Select { get; private set; }
-    public PlayerActions Action { get; private set; }
-    public PlayerTalk Talk { get; private set; }
-    public PlayerCamera Camera { get; private set; }
-
-
-    //Управление
-
-    //Действия
-    private bool think;
+    public PlayerMove Move { get; protected set; }
+    public PlayerSelecting Select { get; protected set; }
+    public PlayerActions Action { get; protected set; }
+    public PlayerTalkControl Talk { get; protected set; }
+    public PlayerCamera Camera { get; protected set; }
 
 
 
-    private void Awake()
+    protected void Awake()
+    {
+        Setup();
+    }
+
+
+    protected virtual void Setup()
     {
         Move = GetComponent<PlayerMove>();
         Move.Setup();
@@ -31,13 +31,11 @@ public class Player : Singleton<Player>
 
         Action = new PlayerActions();
 
-        Talk = GetComponent<PlayerTalk>();
-
-
+        Talk = GetComponent<PlayerTalkControl>();
     }
 
 
-    private void Update()
+    protected void Update()
     {
         Select.Update();
         Action.Update();

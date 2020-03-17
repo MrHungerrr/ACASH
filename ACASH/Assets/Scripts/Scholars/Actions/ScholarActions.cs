@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ScholarActions
 {
+    private Scholar Scholar;
     private OperationsManager Operations { get; }
     private ActionsSimple Simple { get; }
     private ActionsQueue Queue { get; }
@@ -20,6 +21,7 @@ public class ScholarActions
         Operations = new OperationsManager(scholar, this);
         Simple = new ActionsSimple();
         Queue = new ActionsQueue();
+        Scholar = scholar;
         key_action = null;
         active = false;
         skip = false;
@@ -49,7 +51,7 @@ public class ScholarActions
 
     private void NextAction()
     {
-        if (active)
+        if (active && !Scholar.disabled)
         {
             key_action = Queue.GetAction();
 

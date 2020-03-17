@@ -16,7 +16,7 @@ public class ScholarSelect : ObjectSelect
     {
         Scholar = scholar;
         SetSelect();
-        Selectable(true);
+        selectable = false;
     }
 
     public void Reset()
@@ -43,7 +43,7 @@ public class ScholarSelect : ObjectSelect
 
     public override bool CanISelect()
     {
-        return selectable;
+            return selectable;
     }
 
 

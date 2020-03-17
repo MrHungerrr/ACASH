@@ -52,7 +52,7 @@ public class ComputerWindows : MonoBehaviour
         windows[window].SetActive(true);
         current_window = window;
 
-        Computer.Sound.MakeSound(ComputerSounds.one_shot.Open_Window);
+        Computer.Sound.Make(ComputerSounds.one_shot.Open_Window);
     }
 
     public void SetWithoutDisable(string window)
