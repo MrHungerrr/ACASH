@@ -12,7 +12,9 @@ public class PlayerTalkControl : PlayerTalk
     [HideInInspector]
     public bool talk_bad_control;
     [HideInInspector]
-    public bool answer_control;
+    public bool answer_yes_control;
+    [HideInInspector]
+    public bool answer_no_control;
     [HideInInspector]
     public bool execute_control;
 
@@ -24,7 +26,8 @@ public class PlayerTalkControl : PlayerTalk
         shout_control = false;
         talk_good_control = false;
         talk_bad_control = false;
-        answer_control = false;
+        answer_yes_control = false;
+        answer_no_control = false;
         execute_control = false;
     }
 
@@ -48,7 +51,10 @@ public class PlayerTalkControl : PlayerTalk
 
     public override void Answer(bool answer)
     {
-        if (answer_control)
+        if (answer && answer_yes_control)
+            base.Answer(answer);
+
+        if (!answer && answer_no_control)
             base.Answer(answer);
     }
 

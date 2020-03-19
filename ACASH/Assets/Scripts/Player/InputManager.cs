@@ -190,12 +190,15 @@ public class InputManager : Singleton<InputManager>
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    private bool GameCanIDoAction()
+    private bool GameCanITalk()
     {
         return !Player.Talk.talking && !Player.Action.doing;
     }
 
-
+    private bool GameCanIDoAction()
+    {
+        return !Player.Action.doing;
+    }
 
     private void GameAction(bool option)
     {
@@ -263,7 +266,7 @@ public class InputManager : Singleton<InputManager>
     {
         if (option)
         {
-            if (Player.Select.TryGetScholar() && GameCanIDoAction())
+            if (Player.Select.TryGetScholar() && GameCanITalk())
             {
                 Player.Talk.TalkGood();
             }
@@ -274,7 +277,7 @@ public class InputManager : Singleton<InputManager>
     {
         if (option)
         {
-            if (Player.Select.TryGetScholar() && GameCanIDoAction())
+            if (Player.Select.TryGetScholar() && GameCanITalk())
             {
                 Player.Talk.TalkBad();
             }
@@ -283,13 +286,13 @@ public class InputManager : Singleton<InputManager>
 
     private void GameShout()
     {
-        if(GameCanIDoAction())
+        if(GameCanITalk())
             Player.Talk.Shout();
     }
 
     private void GameExecute()
     {
-        if (Player.Select.TryGetScholar() && GameCanIDoAction())
+        if (Player.Select.TryGetScholar() && GameCanITalk())
         {
             Player.Talk.Execute();
         }

@@ -67,7 +67,7 @@ public class Door : MonoBehaviour, I_Interaction
         }
         else
         {
-            DoorClose();
+            Close();
         }
 
         open = !open;
@@ -126,7 +126,7 @@ public class Door : MonoBehaviour, I_Interaction
 
 
 
-    private void DoorClose()
+    public void Close()
     {
         Sound.Make(DoorSounds.one_shot.Close);
         targetRot = commonRot;
@@ -151,7 +151,7 @@ public class Door : MonoBehaviour, I_Interaction
                 else if(Vector3.Distance(doorT.position, Player.get.transform.position) > close_distance)
                 {
                     close_time = close_time_cd;
-                    DoorClose();
+                    Close();
                 }
             }
             else
@@ -202,7 +202,7 @@ public class Door : MonoBehaviour, I_Interaction
         }
         else if (!in_range && open && scholar_open)
         {
-            DoorClose();
+            Close();
             scholar_open = false;
         }
     }

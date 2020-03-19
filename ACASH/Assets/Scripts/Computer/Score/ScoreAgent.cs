@@ -7,7 +7,7 @@ using Single;
 public class ScoreAgent : MonoBehaviour
 {
 
-    private Dictionary<ScoreManager.scores_names, ScoreLine> score_lines = new Dictionary<ScoreManager.scores_names, ScoreLine>();
+    private Dictionary<ScoreManager.scores_names, ScoreLine> score_lines;
     private ScoreLine amount;
     private ScoreLine total;
 
@@ -22,6 +22,8 @@ public class ScoreAgent : MonoBehaviour
 
         TextMeshProUGUI text_count;
         TextMeshProUGUI text_rep;
+
+        score_lines = new Dictionary<ScoreManager.scores_names, ScoreLine>();
 
         for (int i = 0; i < ScoreManager.get.scores_length; i++)
         {

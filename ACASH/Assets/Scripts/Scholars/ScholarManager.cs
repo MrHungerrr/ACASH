@@ -7,12 +7,10 @@ public class ScholarManager : Singleton<ScholarManager>
 {
     [HideInInspector]
     public Scholar[] scholars;
-    private bool withoutScholars;
 
 
     [HideInInspector]
     public int cheating_count;
-    private int cheating_limit = 2;
 
 
     [HideInInspector]
@@ -36,24 +34,19 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public void Setup()
     {
-        var scholars_buf = GameObject.FindObjectsOfType<Scholar>();
-        List<Scholar> scholars_list = new List<Scholar>();
-
-        foreach(Scholar s in scholars_buf)
-        {
-            s.Setup();
-
-            if (!s.disabled)
-                scholars_list.Add(s);
-        }
-
-        scholars = scholars_list.ToArray();
-
-        withoutScholars = (scholars.Length == 0);
+        scholars = GameObject.FindObjectsOfType<Scholar>();
+        int number = 0;
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Info.SetNumber(i);
+            scholars[i].Setup();
+
+            if (!scholars[i].disabled)
+            {
+                scholars[i].Info.SetNumber(number);
+                scholars[i].Move.Position(PlaceManager.get.GetPlace(PlaceManager.place.Home, number));
+                number++;
+            }
         }
 
         ExamManager.get.ChillDone += StartPrepare;
@@ -66,27 +59,23 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (scholars[i].scholarType == ScholarTypes.list.Random)
+            if (!scholars[i].disabled)
             {
-                int rand = Random.Range(0, ScholarTypes.length);
-                scholars[i].SetNewType((ScholarTypes.list)rand);
-            }
-            else
-            {
-                scholars[i].ResetType();
+                if (scholars[i].scholarType == ScholarTypes.list.Random)
+                {
+                    int rand = Random.Range(0, ScholarTypes.length);
+                    scholars[i].SetNewType((ScholarTypes.list)rand);
+                }
+                else
+                {
+                    scholars[i].ResetType();
+                }
             }
         }
     }
 
 
 
-
-
-
-    public void Shout(int value)
-    {
-        Stress(value);
-    }
 
     public void Stress(int value)
     {
@@ -109,14 +98,6 @@ public class ScholarManager : Singleton<ScholarManager>
         }
 
         return buf;
-    }
-
-
-
-
-    public int GetStress(int scholarNum)
-    {
-        return scholars[scholarNum].Stress.value;
     }
 
 
@@ -153,7 +134,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (scholars[i].active)
+            if (scholars[i].active && !scholars[i].disabled)
                 scholars[i].Action.DoAction("Login");
         }
     }
@@ -162,7 +143,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if(scholars[i].active)
+            if(scholars[i].active && !scholars[i].disabled)
                 scholars[i].Action.Enable();
         }
     }
@@ -171,7 +152,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (scholars[i].active)
+            if (scholars[i].active && !scholars[i].disabled)
                 scholars[i].Execute.EndExamForScholar();
         }
     }
@@ -193,6 +174,36 @@ public class ScholarManager : Singleton<ScholarManager>
             scholars[i].Senses.SpecialHear(pos);
         }
     }
+
+
+    public Scholar[] GetScholars(Vector3 point, float range)
+    {
+        List<Scholar> result = new List<Scholar>();
+
+        for(int i = 0; i < scholars.Length; i++)
+        {
+            float distance = Vector3.Distance(point, scholars[i].Move.Position());
+
+            if (distance <= range)
+                result.Add(scholars[i]);
+        }
+
+        return result.ToArray();
+    }
+
+    public Scholar[] GetVisibleScholars()
+    {
+        List<Scholar> result = new List<Scholar>();
+
+        for (int i = 0; i < scholars.Length; i++)
+        {
+            if (!scholars[i].Senses.T_behind_wall)
+                result.Add(scholars[i]);
+        }
+
+        return result.ToArray();
+    }
+
 
 
 

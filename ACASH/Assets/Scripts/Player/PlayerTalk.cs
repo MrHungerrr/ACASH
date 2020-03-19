@@ -54,9 +54,17 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Shouting()
     {
-        ScholarManager.get.Shout(10);
+
+        Scholar[] scholars = ScholarManager.get.GetVisibleScholars();
 
         SubtitleManager.get.Say(key_word);
+
+        yield return new WaitForSeconds(0.4f);
+
+        foreach (Scholar s in scholars)
+        {
+            s.Conversation.Shout();
+        }
 
         while (SubtitleManager.get.act)
         {

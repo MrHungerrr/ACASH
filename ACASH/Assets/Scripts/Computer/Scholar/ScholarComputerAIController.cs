@@ -24,6 +24,8 @@ public class ScholarComputerAIController : MonoBehaviour
 
 
 
+
+
     public void Clear()
     {
         if (Comp.Numpad.IsEnabled())

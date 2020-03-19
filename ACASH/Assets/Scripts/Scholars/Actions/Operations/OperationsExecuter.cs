@@ -7,25 +7,12 @@ public class OperationsExecuter : OperationsExecuterBase
 {
 
     //=========================================================================================================================================================
-    // Идти домой
-    private IEnumerator Go_Home()
-    {
-        GoTo(PlaceManager.place.Home, Scholar.Info.number);
-
-        while (!IsHere())
-            yield return new WaitForEndOfFrame();
-
-        WatchTo(PlaceManager.place.Home, Scholar.Info.number);
-        Scholar.Body.Disable();
-
-        OperationEnd();
-    }
-
-    //=========================================================================================================================================================
     // Идти к парте
     private IEnumerator Go_To_Desk()
     {
         GoTo(PlaceManager.place.Desk, Scholar.Info.number);
+
+        yield return new WaitForEndOfFrame();
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();

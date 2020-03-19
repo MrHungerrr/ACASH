@@ -44,7 +44,7 @@ public class ScholarActions
         NextAction();
     }
 
-    public void ResetFirst()
+    public void Skip()
     {
         skip = true;
     }
@@ -117,8 +117,8 @@ public class ScholarActions
 
     public void Pause()
     {
-        Operations.Stop();
         Disable();
+        Operations.Stop();
     }
 
 }

@@ -326,11 +326,31 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         }
 
 
-        Scholar.scholarType = ScholarTypes.list.Random;
+        Scholar.Desk.ResetComputer();
         Scholar.Emotions.Change("dead");
 
         OperationEnd();
     }
 
+
+
+    //=========================================================================================================================================================
+    // Идти домой
+    private IEnumerator Go_Home()
+    {
+        GoTo(PlaceManager.place.Home, Scholar.Info.number);
+
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
+
+        WatchTo(PlaceManager.place.Home, Scholar.Info.number);
+        Scholar.Body.Disable();
+
+        yield return new WaitForEndOfFrame();
+
+        Scholar.Move.RB.isKinematic = false;
+
+        OperationEnd();
+    }
 
 }

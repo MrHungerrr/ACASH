@@ -6,8 +6,8 @@ using Animations;
 
 public class ScholarMove : MonoBehaviour
 {
-
-    private Rigidbody RB;
+    [HideInInspector]
+    public Rigidbody RB { get; private set; }
     private Scholar Scholar;
 
     [HideInInspector]
@@ -97,6 +97,7 @@ public class ScholarMove : MonoBehaviour
         {
             Scholar.Anim.SetAnimation(GetA.animations.Nothing);
             walking = false;
+            NavAgent.isStopped = true;
             RB.isKinematic = true;
         }
     }

@@ -17,12 +17,12 @@ public class DesktopController : MonoBehaviour
 
         Transform iconsDest = desktop.Find("Icons");
 
-        icons = new IconUI[GetComponentsInChildren<IconUI>().Length];
+        icons = new IconUI[iconsDest.GetComponentsInChildren<IconUI>().Length];
 
         for(int i = 0; i< icons.Length; i++)
         {
             icons[i] = iconsDest.Find("Icon_" + i).GetComponent<IconUI>();
-            icons[i].SetIconUI();
+            icons[i].Setup();
         }
     }
 
@@ -42,6 +42,7 @@ public class DesktopController : MonoBehaviour
 
         for(i = 0; i < new_icons.Length; i++)
         {
+            Debug.Log(i);
             icons[i].Enable(true);
             icons[i].Change(new_icons[i]);
         }

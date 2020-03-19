@@ -120,6 +120,7 @@ public class Scholar : MonoBehaviour
 
         Select.Reset();
         Emotions.Reset();
+        Execute.Reset();
         Talk = new ScholarTalk(this);
         Answers = new ScholarAnswers();
 
@@ -177,7 +178,7 @@ public class Scholar : MonoBehaviour
     public void Disable()
     {
         Select.Selectable(false);
-        Action.Disable();
+        Action.Pause();
         Move.Stop();
         Talk.Stop();
         Anim.SetAnimation(Animations.GetA.animations.Nothing);

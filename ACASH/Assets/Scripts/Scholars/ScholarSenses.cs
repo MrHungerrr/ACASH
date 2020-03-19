@@ -13,7 +13,8 @@ public class ScholarSenses
     private Vector3 T_direction;
     private float T_distance;
     private float T_look_time;
-    private bool T_behind_wall;
+    [HideInInspector]
+    public bool T_behind_wall;
     private float T_look_near_time;
     private float T_look_vanish_time;
     private const float T_look_vanish_time_const = 0.1f;

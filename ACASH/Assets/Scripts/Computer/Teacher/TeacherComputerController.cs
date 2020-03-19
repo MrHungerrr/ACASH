@@ -8,7 +8,8 @@ using Cinemachine;
 
 public class TeacherComputerController: MonoBehaviour, I_Interaction
 {
-    private TeacherComputer Computer;
+    [HideInInspector]
+    public TeacherComputer Computer { get; private set; }
 
 
     //Камера

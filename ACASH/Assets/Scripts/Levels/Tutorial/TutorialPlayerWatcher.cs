@@ -8,9 +8,13 @@ public class TutorialPlayerWatcher: MonoBehaviour
 {
 
     [HideInInspector]
+    public bool talk { get; private set; }
+    [HideInInspector]
     public bool talk_good { get; private set; }
     [HideInInspector]
     public bool talk_bad { get; private set; }
+    [HideInInspector]
+    public bool answer { get; private set; }
     [HideInInspector]
     public bool answer_yes { get; private set; }
     [HideInInspector]
@@ -38,8 +42,10 @@ public class TutorialPlayerWatcher: MonoBehaviour
 
     public void Reset()
     {
+        talk = false;
         talk_good = false;
         talk_bad = false;
+        answer = false;
         answer_yes = false;
         answer_no = false;
         shout = false;
@@ -56,36 +62,31 @@ public class TutorialPlayerWatcher: MonoBehaviour
         else
             talk_good = true;
 
-        PlayerDoneSomething();
+        talk = true;
+        done = true;
     }
 
-    private void PlayerAnswer(bool strong)
+    private void PlayerAnswer(bool answer)
     {
-        if (strong)
-            answer_no = true;
-        else
+        if (answer)
             answer_yes = true;
+        else
+            answer_no = true;
 
-        PlayerDoneSomething();
+        this.answer = true;
+        done = true;
     }
 
 
     private void PlayerShout()
     {
         shout = true;
-
-        PlayerDoneSomething();
+        done = true;
     }
 
     private void PlayerExecute()
     {
         execute = true;
-        PlayerDoneSomething();
-    }
-
-
-    private void PlayerDoneSomething()
-    {
         done = true;
     }
 }

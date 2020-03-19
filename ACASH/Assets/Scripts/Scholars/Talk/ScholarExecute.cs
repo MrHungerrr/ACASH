@@ -32,21 +32,10 @@ public class ScholarExecute
 
     public void EndExamForScholar()
     {
-        Scholar.Disable();
-        Scholar.Action.DoAction("Execute");
+        if (Scholar.active)
+        {
+            Scholar.Disable();
+            Scholar.Action.DoAction("Execute");
+        }
     }
-
-   
-    public void DisableScholar()
-    {
-        Scholar.Body.SetBodyTarget(0f);
-        Scholar.Emotions.Change("dead");
-    }
-
-    public void EnableScholar()
-    {
-        Scholar.Body.SetBodyTarget(0.1f);
-        Scholar.Emotions.Change("ussual");
-    }
-
 }

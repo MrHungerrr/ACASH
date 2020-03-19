@@ -49,6 +49,7 @@ public static class OperationsList
 
     private static Operation[] Cheating_Toilet_3 = new Operation[]
     {
+        new Operation(GetO.operation.Go_To_Desk),
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
@@ -185,9 +186,9 @@ public static class OperationsList
         {"Answer", Answer},
         {"Cheating_Calculate_1", Calculate},
         {"Cheating_Note_1", Note},
-        {"Cheating_Toilet_3", Toilet_3},
-        {"Cheating_Air_2", Air_2},
-        {"Cheating_Sink_2", Sink_2},
+        {"Cheating_Toilet_3", Cheating_Toilet_3},
+        {"Cheating_Air_2", Cheating_Air_2},
+        {"Cheating_Sink_2", Cheating_Sink_2},
         {"Login", Login },
     };
 

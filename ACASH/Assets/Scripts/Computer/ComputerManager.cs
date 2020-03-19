@@ -18,7 +18,8 @@ public class ComputerManager : Singleton<ComputerManager>
     [HideInInspector]
     public Vector2 mouse;
 
-    private TeacherComputerController CompControl;
+    [HideInInspector]
+    public TeacherComputerController CompControl { get; private set; }
     private A_Computer[] computers;
     private bool active = false;
     [HideInInspector]

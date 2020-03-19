@@ -30,9 +30,15 @@ public class OperationsManager
         done = false;
         action = key;
         operation_num = 0;
-        operations = OperationsList.operations[key];
-
-        DoOperation();
+        try
+        {
+            operations = OperationsList.operations[key];
+            DoOperation();
+        }
+        catch
+        {
+            Debug.LogError("Несуществующий ключ - " + key);
+        }
     }
 
 

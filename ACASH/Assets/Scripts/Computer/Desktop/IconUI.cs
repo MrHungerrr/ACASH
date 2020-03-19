@@ -11,7 +11,7 @@ public class IconUI : MonoBehaviour
     private TextMeshProUGUI topic;
 
 
-    public void SetIconUI()
+    public void Setup()
     {
         icon = transform.Find("Image").GetComponent<Image>();
         topic = transform.GetComponentInChildren<TextMeshProUGUI>();

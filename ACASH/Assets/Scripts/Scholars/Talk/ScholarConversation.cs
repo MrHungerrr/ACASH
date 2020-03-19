@@ -57,7 +57,7 @@ public class ScholarConverastion
         bool teacherIsRight = IsTeacherBullingRight();
 
         if(teacherIsRight)
-            Scholar.Action.ResetFirst();
+            Scholar.Action.Skip();
 
         key.Answer(teacherIsRight);
         Scholar.Talk.Say(key);
@@ -104,7 +104,7 @@ public class ScholarConverastion
 
     public void Shout()
     {
-
+        Scholar.Stress.Change(20);
     }
 
 }

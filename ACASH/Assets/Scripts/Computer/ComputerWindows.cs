@@ -8,7 +8,7 @@ public class ComputerWindows : MonoBehaviour
 {
     private A_Computer Computer;
 
-    private Dictionary<string, GameObject> windows = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> windows;
 
     [HideInInspector]
     public string current_window;
@@ -31,6 +31,8 @@ public class ComputerWindows : MonoBehaviour
         {
             comp_windows[i] = transform.GetChild(i).gameObject;
         }
+
+        windows = new Dictionary<string, GameObject>();
 
         foreach (GameObject i in comp_windows)
         {
