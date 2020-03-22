@@ -31,15 +31,28 @@ namespace Excel_to_json
             {
                 string buf = ws.Cells[i, j].Value2.ToString();
                 string res = "";
+                bool first_char = true;
+
                 for (int c = 0; c < buf.Length; c++)
                 {
                     if (buf[c] != ';')
                     {
-                        res += buf[c];
+                        if (!first_char)
+                            res += JSONSymbol(buf[c]);
+                        else if (buf[c] != ' ')
+                        {
+                            first_char = false;
+                            char.ToUpper(buf[c]);
+                            res += JSONSymbol(buf[c]);
+                        }
                     }
                     else
                     {
-                        res += "\",\"";
+                        if (c != (buf.Length - 1))
+                        {
+                            first_char = true;
+                            res += "\",\"";
+                        }
                     }
                 }
                 res = res.Replace("\n", String.Empty);
@@ -49,6 +62,27 @@ namespace Excel_to_json
             else
                 return "";
         }
+
+
+
+        private string JSONSymbol(char symbol)
+        {
+            switch(symbol)
+            {
+                case '"':
+                    return "\\\"";
+                case '\'':
+                    return "\\\"";
+                case 'ё':
+                    return "е";
+                case 'Ё':
+                    return "Е";
+                default:
+                    return symbol.ToString();
+            }
+        }
+
+
 
         public void WriteCell(int i, int j, string s)
         {

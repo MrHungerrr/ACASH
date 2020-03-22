@@ -22,6 +22,9 @@ public class HUDController : Singleton<HUDController>
         timer = transform.Find("Timer").Find("Box").GetComponentInChildren<TextMeshProUGUI>();
         timer_header = transform.Find("Timer").Find("Title").GetComponent<TextMeshProUGUI>();
         exam = transform.Find("Exam").GetComponentInChildren<TextMeshProUGUI>();
+
+        Time("00:00");
+        TimeHeader("Exam is OVER");
     }
 
 

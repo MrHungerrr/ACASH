@@ -44,10 +44,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3086448456706112769}
     m_Modifications:
+    - target: {fileID: 4344091110958342402, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
+        type: 3}
+      propertyPath: far clip plane
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4344091110958342403, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.027
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4344091110958342403, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
         type: 3}
@@ -57,7 +62,7 @@ PrefabInstance:
     - target: {fileID: 4344091110958342403, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.693
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4344091110958342403, guid: 8fec129ef87fcef45b9ebc55afc3aa7b,
         type: 3}
@@ -553,6 +558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165574155718620116, guid: e1abd3ecc5dfdf1479478c0ee7d59759,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6165574155718620117, guid: e1abd3ecc5dfdf1479478c0ee7d59759,
         type: 3}

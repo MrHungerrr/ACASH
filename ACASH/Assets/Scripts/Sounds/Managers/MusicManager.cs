@@ -46,6 +46,8 @@ public class MusicManager : A_Sound
     protected override void Setup()
     {
         sounds_path += "Global/Music/";
+        base.Setup();
+
         for (int i = 0; i < Enum.GetNames(typeof(music)).Length; i++)
         {
             music name = (music)i;

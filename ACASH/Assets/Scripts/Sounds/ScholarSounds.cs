@@ -23,13 +23,14 @@ public class ScholarSounds : A_Sound
     {
         sounds_path += "Local/Scholar/";
         this.Scholar = Scholar;
-        obj = Scholar.gameObject;
 
-        Setup();
+        Setup(Scholar.gameObject);
     }
 
-    protected override void Setup()
+    protected override void Setup(GameObject obj)
     {
+        base.Setup(obj);
+
         for (int i = 0; i < Enum.GetNames(typeof(infinite)).Length; i++)
         {
             infinite name = (infinite)i;
@@ -47,7 +48,7 @@ public class ScholarSounds : A_Sound
 
     public void Make(one_shot sound)
     {
-        base.Make(sound.ToString());
+        base.MakeWithAttach(sound.ToString());
     }
 
     public void Play(infinite sound)

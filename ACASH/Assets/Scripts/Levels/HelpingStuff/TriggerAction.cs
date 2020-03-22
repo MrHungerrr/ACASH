@@ -1,14 +1,11 @@
-﻿using System;
-using UnityEngine;
-using Single;
+﻿using UnityEngine;
 
 
 public class TriggerAction: MonoBehaviour
 {
-    public delegate void OnAction();
-    public event OnAction OnEnter;
-    public event OnAction OnExit;
-    public event OnAction OnStay;
+    public event ActionEvent.OnAction OnEnter;
+    public event ActionEvent.OnAction OnExit;
+    public event ActionEvent.OnAction OnStay;
 
 
     private void OnTriggerEnter(Collider other)
@@ -33,21 +30,12 @@ public class TriggerAction: MonoBehaviour
 
     public void Remove()
     {
-        Unsubscribe(OnEnter);
-        Unsubscribe(OnStay);
-        Unsubscribe(OnExit);
+        ActionEvent.Unsubscribe(OnEnter);
+        ActionEvent.Unsubscribe(OnStay);
+        ActionEvent.Unsubscribe(OnExit);
         Destroy(this.gameObject);
     }
 
 
-    private static void Unsubscribe(OnAction ConcreteDelegate)
-    {
-        if (ConcreteDelegate != null)
-        {
-            Delegate[] clientList = ConcreteDelegate.GetInvocationList();
 
-            foreach (var d in clientList)
-                ConcreteDelegate -= (d as OnAction);
-        }
-    }
 }

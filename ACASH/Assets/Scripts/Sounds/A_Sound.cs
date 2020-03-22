@@ -2,9 +2,10 @@
 using FMODUnity;
 using System.Collections.Generic;
 
+
+
 public abstract class A_Sound : A_SoundSimple
 {
-
 
     protected string playing_now;
     [HideInInspector]
@@ -13,7 +14,10 @@ public abstract class A_Sound : A_SoundSimple
     protected Dictionary<string, FMOD.Studio.EventInstance> infinite_sounds = new Dictionary<string, FMOD.Studio.EventInstance>();
 
 
-    protected abstract void Setup();
+    protected override void Setup(GameObject obj)
+    {
+        base.Setup(obj);
+    }
 
 
 

@@ -60,6 +60,7 @@ public class ScholarConverastion
             Scholar.Action.Skip();
 
         key.Answer(teacherIsRight);
+
         Scholar.Talk.Say(key);
     }
 
@@ -105,6 +106,7 @@ public class ScholarConverastion
     public void Shout()
     {
         Scholar.Stress.Change(20);
+        Scholar.Emotions.Change("suprised", "upset", "ussual", 2f);
     }
 
 }

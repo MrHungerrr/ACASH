@@ -18,13 +18,14 @@ public class DoorSounds : A_SoundSimple
     {
         sounds_path += "Local/Door/";
         this.Door = Door;
-        obj = Door.gameObject;
+
+        Setup(Door.gameObject);
     }
 
 
 
     public void Make(one_shot sound)
     {
-        base.Make(sound.ToString());
+        base.MakeWithAttach(sound.ToString());
     }
 }

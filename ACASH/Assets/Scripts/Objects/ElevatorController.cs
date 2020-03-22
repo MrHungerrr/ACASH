@@ -15,6 +15,8 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
     private void Awake()
     {
         text = transform.parent.GetComponentInChildren<TextMeshPro>();
+        text.text = "Please\nWait";
+        ready = false;
     }
 
     public void Interaction()

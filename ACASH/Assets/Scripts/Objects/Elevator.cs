@@ -7,9 +7,9 @@ public class Elevator : Singleton<Elevator>
 {
 
     [HideInInspector]
-    public bool open { get; private set; } = false;
+    public bool open { get; private set; }
     private bool ninety;
-    private bool active = false;
+    private bool active;
     private bool enter = false;
     private bool inside = false;
     private Transform doorLeft;
@@ -29,11 +29,15 @@ public class Elevator : Singleton<Elevator>
 
     public ElevatorSounds Sound;
 
+    public Vector3 position;
+
 
 
     void Awake()
     {
         Sound = new ElevatorSounds(transform.parent.Find("Elevator Sounds").gameObject);
+
+        position = transform.parent.Find("Floor").position;
 
         doorLeft = transform.Find("Door_Left");
         doorRight = transform.Find("Door_Right");
@@ -56,6 +60,7 @@ public class Elevator : Singleton<Elevator>
         }
 
         active = false;
+        open = false;
     }
 
 
@@ -79,19 +84,17 @@ public class Elevator : Singleton<Elevator>
     }
 
 
-
-
-    //--------------------------------------------------------------------------------------------------------------------------------------------
-    // На случай, если понадобиться открывать лифт ручками.
-    //--------------------------------------------------------------------------------------------------------------------------------------------
-
-    /*
-    public void DoorInteract()
+    public void Open()     
     {
-        open = !open;
-
-        if (open)
+        if (!open)
         {
+            open = true;
+
+            //(bool toEnter) выходишь или заходишь в лифт?
+            //enter = toEnter;
+            enter = !inside;
+
+
             if (ninety)
             {
                 doorLeftTarget = new Vector3(doorLeftPos.x - doorAddFloat, doorLeftPos.y, doorLeftPos.z);
@@ -103,57 +106,30 @@ public class Elevator : Singleton<Elevator>
                 doorRightTarget = new Vector3(doorRightPos.x, doorRightPos.y, doorRightPos.z + doorAddFloat);
             }
 
-            ScholarManager.get.SpecialHear(elevator_pos);
+            col.enabled = false;
+
+            active = true;
+
+            Sound.Make(ElevatorSounds.one_shot.Open);
         }
-        else
-        {
-            doorLeftTarget = doorLeftPos;
-            doorRightTarget = doorRightPos;
-        }
-
-        active = true;
-    }
-    */
-
-    public void Open()     //(bool toEnter) выходишь или заходишь в лифт?
-    {
-        open = true;
-
-        enter = !inside;
-        //enter = toEnter;
-
-        if (ninety)
-        {
-            doorLeftTarget = new Vector3(doorLeftPos.x - doorAddFloat, doorLeftPos.y, doorLeftPos.z);
-            doorRightTarget = new Vector3(doorRightPos.x + doorAddFloat, doorRightPos.y, doorRightPos.z);
-        }
-        else
-        {
-            doorLeftTarget = new Vector3(doorLeftPos.x, doorLeftPos.y, doorLeftPos.z - doorAddFloat);
-            doorRightTarget = new Vector3(doorRightPos.x, doorRightPos.y, doorRightPos.z + doorAddFloat);
-        }
-
-        col.enabled = false;
-
-        active = true;
-
-        Sound.Make(ElevatorSounds.one_shot.Open);
     }
 
 
 
     public void Close()
     {
-        open = false;
+        if (open)
+        {
+            open = false;
 
-        doorLeftTarget = doorLeftPos;
-        doorRightTarget = doorRightPos;
+            doorLeftTarget = doorLeftPos;
+            doorRightTarget = doorRightPos;
 
-        col.enabled = true;
+            col.enabled = true;
+            active = true;
 
-        active = true;
-
-        Sound.Make(ElevatorSounds.one_shot.Close);
+            Sound.Make(ElevatorSounds.one_shot.Close);
+        }
     }
 
 
@@ -161,8 +137,6 @@ public class Elevator : Singleton<Elevator>
     {
         doorLeft.position = Vector3.Slerp(doorLeft.position, doorLeftTarget, 6 * Time.deltaTime);
         doorRight.position = Vector3.Slerp(doorRight.position, doorRightTarget, 6 * Time.deltaTime);
-
-
 
         if ((Mathf.Abs(doorLeft.position.x - doorLeftTarget.x) < 0.0001f && ninety) || (Mathf.Abs(doorLeft.position.z - doorLeftTarget.z) < 0.0001f && !ninety))
         {

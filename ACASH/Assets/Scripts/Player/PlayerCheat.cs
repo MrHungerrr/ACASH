@@ -7,21 +7,21 @@ public static class PlayerCheat
 
     public static void IsExecuteRight(Scholar scholar)
     {
-        KeyWord key_buf = new KeyWord(key);
+        key.Reset();
 
         if (scholar.Cheat.IsTryToCheat())
         {
             ScoreManager.get.Plus(ScoreManager.scores_names.Executed_Right);
-            key_buf += "Executed_Right";
+            key += "Executed_Right";
         }
         else
         {
             ScoreManager.get.Plus(ScoreManager.scores_names.Executed_Wrong);
-            key_buf += "Executed_Wrong";
+            key += "Executed_Wrong";
+            HUDManager.get.ReportHUD(key);
         }
 
 
-        HUDManager.get.ReportHUD(key_buf);
         //Report(key_buf);
         //Вставить показывание очков за действие.
     }
@@ -29,22 +29,23 @@ public static class PlayerCheat
 
     public static void IsAnswerRight(Scholar scholar, bool answer)
     {
-        KeyWord key_buf = new KeyWord(key);
+        key.Reset();
 
         if (answer)
         {
             ScoreManager.get.Plus(ScoreManager.scores_names.Answered_Right);
-            key_buf += "Answered_Right";
+            key += "Answered_Right";
         }
         else
         {
             ScoreManager.get.Plus(ScoreManager.scores_names.Answered_Wrong);
-            key_buf += "Answered_Wrong";
+            key += "Answered_Wrong";
+            HUDManager.get.ReportHUD(key);
         }
 
 
 
-        HUDManager.get.ReportHUD(key_buf);
+
         //Report(key_buf);
         //Вставить показывание очков за действие.
     }

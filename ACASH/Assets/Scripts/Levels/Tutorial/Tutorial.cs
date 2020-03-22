@@ -7,6 +7,13 @@ using Single;
 public class Tutorial : Singleton<Tutorial>
 {
     private TutorialPlayerWatcher Watcher;
+    private TutorialScholarCheatSet Cheat;
+
+    private KeyWord key = new KeyWord("Tutorial");
+    private KeyWord key_mistake = new KeyWord("Tutorial", "Mistake");
+
+    [Header("Begining")]
+    public GameObject phone;
 
     [Header("First Room")]
     public TriggerAction first_room;
@@ -29,9 +36,10 @@ public class Tutorial : Singleton<Tutorial>
     {
         first_room.OnEnter += StartFirstRoom;
         second_room.OnEnter += StartSecondRoom;
+        phone.GetComponent<InteractAction>().OnInteraction += StartElevator;
 
-        Watcher = GetComponent<TutorialPlayerWatcher>();
-        Watcher.Setup();
+        Watcher = new TutorialPlayerWatcher();
+        Cheat = new TutorialScholarCheatSet();
 
         StartCoroutine(StartLevel());
     }
@@ -39,28 +47,70 @@ public class Tutorial : Singleton<Tutorial>
 
     private IEnumerator StartLevel()
     {
-
-        ElevatorController.get.Close();
-
         while (LevelManager.get.IsLoad())
+            yield return new WaitForEndOfFrame();
+
+        Transform point = GameObject.FindGameObjectWithTag("PlayerPoint").transform;
+        Player.get.Move.Position(point.position);
+        Destroy(point.gameObject);
+
+        GameManager.get.SetLevel();
+
+        yield return new WaitForSeconds(1f);
+        phone.GetComponent<ObjectSound>().Setup();
+        phone.GetComponent<ObjectSound>().Play();
+
+        yield return new WaitForSeconds(1f);
+
+        GameManager.get.StartGame();
+    }
+
+
+    //===================================================================================================================================
+    // Первая комната
+    //===================================================================================================================================
+    private void StartElevator()
+    {
+        phone.GetComponent<InteractAction>().Remove();
+        phone.GetComponent<ObjectSound>().Stop();
+
+        FadeController.get.FastFade(true);
+        InputManager.get.SwitchGameInput("cutscene");
+
+        StartCoroutine(ElevatorRoom());
+    }
+
+
+    private IEnumerator ElevatorRoom()
+    {
+        Player.get.Move.Position(Elevator.get.position);
+
+        key *= "Begining";
+
+        SubtitleManager.get.Say(key);
+
+        while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
         yield return new WaitForSeconds(1f);
 
-        GameManager.get.SetLevel();
+        GameManager.get.StartGame();
 
-        while(SubtitleManager.get.act)
+        key *= "Elevator";
+
+        SubtitleManager.get.Say(key);
+
+        while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        yield return new WaitForSeconds(3f);
 
 
         ElevatorController.get.Ready();
 
         while (!Elevator.get.open)
             yield return new WaitForEndOfFrame();
-
     }
+
 
 
 
@@ -79,7 +129,15 @@ public class Tutorial : Singleton<Tutorial>
     private IEnumerator First_Room()
     {
         first_room_scholar.ResetType();
-        yield return new WaitForEndOfFrame();
+        
+        key *= "First_Room";
+        key_mistake *= "First_Room";
+        key += 0;
+
+        SubtitleManager.get.Say(key);
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
 
 
@@ -91,32 +149,84 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
+        Watcher.Reset();
 
+        key += 1;
+        SubtitleManager.get.Say(key);
 
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
         Player.get.Talk.talk_bad_control = true;
 
-        while (!Watcher.talk_bad)
+        bool option = true;
+
+        while (option)
         {
+            if(Watcher.done)
+            {
+                if(Watcher.talk_bad)
+                {
+                    option = false;
+                    Watcher.Reset();
+                }
+                else
+                {
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
+                    key_mistake += 0;
+                    SubtitleManager.get.Say(key_mistake);
+                    Watcher.Reset();
+                }
+            }
+
             yield return new WaitForEndOfFrame();
         }
 
+        key += 2;
+        SubtitleManager.get.Say(key);
 
-        foreach(Scholar s in first_room_other_scholars)
+        yield return new WaitForSeconds(1f);
+
+        foreach (Scholar s in first_room_other_scholars)
         {
             s.ResetType();
         }
 
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
         Player.get.Talk.shout_control = true;
 
-        while (!Watcher.shout)
+        option = true;
+
+        while (option)
         {
+            if (Watcher.done)
+            {
+                if (Watcher.shout)
+                {
+                    option = false;
+                    Watcher.Reset();
+                }
+                else
+                {
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
+                    key_mistake += 1;
+                    SubtitleManager.get.Say(key_mistake);
+                    Watcher.Reset();
+                }
+            }
+
             yield return new WaitForEndOfFrame();
         }
 
 
-
+        key += 3;
+        SubtitleManager.get.Say(key);
 
         first_room_door_exit.locked = false;
     }
@@ -149,14 +259,50 @@ public class Tutorial : Singleton<Tutorial>
     {
 
         Player.get.Talk.execute_control = true;
+
+        key *= "Second_Room";
+        key_mistake *= "Second_Room";
+        key += 0;
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        SubtitleManager.get.Say(key);
+
         second_room_scholars[1].ResetType();
 
         second_room_scholars[1].Action.Reset("Login");
 
-        while (!second_room_scholars[1].Execute.executed)
+        bool option = true;
+
+        while (option)
         {
+            if (Watcher.done)
+            {
+                if (Watcher.execute)
+                {
+                    option = false;
+                    Watcher.Reset();
+                }
+                else
+                {
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                    key_mistake += 0;
+                    SubtitleManager.get.Say(key_mistake);
+                    Watcher.Reset();
+                }
+            }
+
             yield return new WaitForEndOfFrame();
         }
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 1;
+        SubtitleManager.get.Say(key);
 
 
         while (InputManager.get.gameType != "computer")
@@ -167,73 +313,106 @@ public class Tutorial : Singleton<Tutorial>
 
         if (computer.Windows.current_window == "Rules")
         {
-            while (computer.Windows.current_window != "Rules")
-            {
-                yield return new WaitForEndOfFrame();
-            }
+            key += 4;
+            SubtitleManager.get.Say(key);
 
             Debug.LogWarning("Rules!");
         }
         else
         {
+            key += 2;
+            SubtitleManager.get.Say(key);
+
             while (computer.Windows.current_window != "Desktop")
             {
                 yield return new WaitForEndOfFrame();
             }
 
-            Debug.LogWarning("Desktop!");
+
+            key += 3;
+            SubtitleManager.get.Say(key);
 
             while (computer.Windows.current_window != "Rules")
             {
                 yield return new WaitForEndOfFrame();
             }
 
+            key += 4;
+            SubtitleManager.get.Say(key);
+
             Debug.LogWarning("Rules!");
         }
 
 
-        foreach (Scholar s in second_room_scholars)
-        {
-            s.ResetType();
-            s.Action.Reset("Login");
-        }
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[0].Action.AddAction("Cheating_Calculate_1");
+
+        Cheat.RandomScholarsCheatSet(second_room_scholars, TutorialScholarCheatSet.calculate);
         Watcher.Reset();
 
-        bool option = true;
+        option = true;
+        int option_num = 0;
 
         while (option)
         {
-            if (Watcher.execute)
+            if (Watcher.done)
             {
-                if (second_room_scholars[0].Execute.executed)
+                if (Watcher.execute)
                 {
-                    option = false;
+                    if (Player.get.Talk.scholar.Cheat.cheating)
+                    {
+                        option = false;
+                    }
+                    else
+                    {
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                        key_mistake += 2;
+                        SubtitleManager.get.Say(key_mistake);
+                        option_num++;
+
+                        if(option_num == 3)
+                        {
+                            foreach (Scholar s in second_room_scholars)
+                            {
+                                s.Execute.EndExamForScholar();
+                            }
+
+                            while (SubtitleManager.get.act)
+                                yield return new WaitForEndOfFrame();
+
+                            key_mistake += 3;
+                            SubtitleManager.get.Say(key_mistake);
+
+                            while (SubtitleManager.get.act)
+                                yield return new WaitForEndOfFrame();
+
+                            Cheat.RandomScholarsCheatSet(second_room_scholars, TutorialScholarCheatSet.calculate);
+                            option_num = 0;
+                        }
+                    }
                 }
                 else
                 {
-                    //Сказать реплику, что не правильный ученик
-                    Watcher.Reset();
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
+                    key_mistake += 1;
+                    SubtitleManager.get.Say(key_mistake);
                 }
+                Watcher.Reset();
             }
             yield return new WaitForEndOfFrame();
         }
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 5;
+        SubtitleManager.get.Say(key);
+
 
         foreach (Scholar s in second_room_scholars)
         {
@@ -242,50 +421,67 @@ public class Tutorial : Singleton<Tutorial>
 
         yield return new WaitForSeconds(5f);
 
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
-        foreach (Scholar s in second_room_scholars)
-        {
-            s.ResetType();
-            s.Action.Reset("Login");
-        }
 
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
+        Cheat.RandomScholarsCheatSet(second_room_scholars, TutorialScholarCheatSet.note);
         Watcher.Reset();
 
         option = true;
 
         while (option)
         {
-            if (Watcher.execute)
+            if (Watcher.done)
             {
-                if (second_room_scholars[2].Execute.executed)
+                if (Watcher.execute)
                 {
-                    option = false;
+                    if (Player.get.Talk.scholar.Cheat.cheating)
+                    {
+                        option = false;
+                    }
+                    else
+                    {
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                        key_mistake += 4;
+                        SubtitleManager.get.Say(key_mistake);
+                        option_num++;
+
+                        if (option_num == 3)
+                        {
+                            foreach (Scholar s in second_room_scholars)
+                            {
+                                s.Execute.EndExamForScholar();
+                            }
+
+                            while (SubtitleManager.get.act)
+                                yield return new WaitForEndOfFrame();
+
+                            key_mistake += 5;
+                            SubtitleManager.get.Say(key_mistake);
+
+                            while (SubtitleManager.get.act)
+                                yield return new WaitForEndOfFrame();
+
+                            Cheat.RandomScholarsCheatSet(second_room_scholars, TutorialScholarCheatSet.calculate);
+                            option_num = 0;
+                        }
+                    }
                 }
                 else
                 {
-                    //Сказать реплику, что не правильный ученик
-                    Watcher.Reset();
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
+                    key_mistake += 1;
+                    SubtitleManager.get.Say(key_mistake);
                 }
+                Watcher.Reset();
             }
             yield return new WaitForEndOfFrame();
         }
-
 
 
 
@@ -301,6 +497,12 @@ public class Tutorial : Singleton<Tutorial>
 
     private IEnumerator Second_Room_Part_2()
     {
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 6;
+        SubtitleManager.get.Say(key);
+
         foreach (Scholar s in second_room_scholars)
         {
             s.Execute.EndExamForScholar();
@@ -308,49 +510,11 @@ public class Tutorial : Singleton<Tutorial>
 
         Player.get.Talk.execute_control = false;
 
-        yield return new WaitForSeconds(6f);
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
 
-        foreach (Scholar s in second_room_scholars)
-        {
-            s.ResetType();
-            s.Action.Reset("Login");
-        }
-
-
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-        second_room_scholars[2].Action.AddAction("Write");
-        second_room_scholars[2].Action.AddAction("Cheating_Note_1");
-
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-        second_room_scholars[1].Action.AddAction("Answer");
-        second_room_scholars[1].Action.AddAction("Cheating_Calculate_1");
-
+        Cheat.RandomScholarsCheatSet(second_room_scholars);
         Watcher.Reset();
 
         int remarks = 0;
@@ -359,17 +523,22 @@ public class Tutorial : Singleton<Tutorial>
         {
             if (Watcher.talk)
             {
+                while (SubtitleManager.get.act)
+                    yield return new WaitForEndOfFrame();
+
                 if (Player.get.Talk.scholar.Cheat.cheating)
                 {
                     //Сказать реплику, что правильный ученик
+                    
+                    key_mistake += (7 + remarks);
+                    SubtitleManager.get.Say(key_mistake);
                     remarks++;
-                    Debug.LogError("Красава");
                     Watcher.Reset();
                 }
                 else
                 {
-                    Debug.LogError("Ты говно!");
-                    //Сказать реплику, что ученик не списывал
+                    key_mistake += 6;
+                    SubtitleManager.get.Say(key_mistake);
                     Watcher.Reset();
                 }
             }
@@ -386,12 +555,19 @@ public class Tutorial : Singleton<Tutorial>
 
     private IEnumerator Second_Room_Part_3()
     {
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 7;
+        SubtitleManager.get.Say(key);
+
         foreach (Scholar s in second_room_scholars)
         {
             s.Execute.EndExamForScholar();
         }
 
-        yield return new WaitForSeconds(6f);
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
         Player.get.Talk.answer_no_control = true;
 
@@ -411,13 +587,26 @@ public class Tutorial : Singleton<Tutorial>
 
             if (!second_room_scholars[1].Question.question && !second_room_scholars[1].Question.question_answered)
             {
-                //Какого хуя не отвечаешь на вопрос
+                key_mistake += 10;
+                SubtitleManager.get.Say(key_mistake);
+
+                while (SubtitleManager.get.act)
+                    yield return new WaitForEndOfFrame();
+
                 second_room_scholars[1].Action.DoAction("Cheating_Toilet_3");
             }
 
             yield return new WaitForEndOfFrame();
         }
 
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 8;
+        SubtitleManager.get.Say(key);
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
         Player.get.Talk.answer_no_control = false;
         Player.get.Talk.answer_yes_control = true;
@@ -439,12 +628,25 @@ public class Tutorial : Singleton<Tutorial>
             {
                 if (!second_room_scholars[1].Question.question_answered)
                 {
-                    //Какого хуя не отвечаешь на вопрос
+                    key_mistake += 10;
+                    SubtitleManager.get.Say(key_mistake);
+
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
                     second_room_scholars[1].Action.DoAction("Cheating_Toilet_3");
                 }
                 else if (!second_room_scholars[1].Question.answer)
                 {
-                    //Какого хуя не так отвечаешь на вопрос
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
+                    key_mistake += 11;
+                    SubtitleManager.get.Say(key_mistake);
+
+                    while (SubtitleManager.get.act)
+                        yield return new WaitForEndOfFrame();
+
                     second_room_scholars[1].Action.DoAction("Cheating_Toilet_3");
                 }
             }
@@ -452,6 +654,14 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 9;
+        SubtitleManager.get.Say(key);
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
 
         Player.get.Talk.execute_control = true;
 
@@ -461,6 +671,17 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+        key += 11;
+        SubtitleManager.get.Say(key);
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+
+        GameManager.get.MainMenu();
 
         Debug.Log("END OF LEVEL");
 

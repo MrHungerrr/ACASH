@@ -61,7 +61,7 @@ public class ScholarTextBox : MonoBehaviour
 
     public void Say(KeyWord key_word)
     {
-        Say(key_word, 1f);
+        Say(key_word, 3f);
     }
 
     public void Say(KeyWord key_word, float t)

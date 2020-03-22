@@ -7,7 +7,7 @@ public static class KeyWordManager
     public static Dictionary<string, int> quantity = new Dictionary<string, int>()
     {
         //Дикий ор
-        { "Shout", 10},
+        { "Shout", 4},
 
 
         //Наезды
@@ -29,19 +29,20 @@ public static class KeyWordManager
 
 
         //Казнь
-        { "Execute_Walking", 3},
-        { "Execute_Cheating", 3},
-        { "Execute_Talking", 3},
+        { "Execute", 3},
+        //{ "Execute_Walking", 3},
+        //{ "Execute_Cheating", 3},
+        //{ "Execute_Talking", 3},
 
 
         //Вопросы
-        { "Question_Toilet", 3},
-        { "Question_Sink", 3},
-        { "Question_Air", 3},
+        { "Question_Toilet", 1},
+        { "Question_Sink", 1},
+        { "Question_Air", 1},
 
 
         //Ответы
-        { "Answer", 3},
+        { "Answer", 1},
     };
 
 
@@ -67,7 +68,7 @@ public static class KeyWordManager
         }
         catch
         {
-            Debug.LogError("Нет гребанного quantity key в KeyWordManager");
+            Debug.Log("Нет гребанного quantity key '" + key.GetKey() + "' в KeyWordManager");
             return 0;
         }
     }

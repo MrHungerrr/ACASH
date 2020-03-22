@@ -40,6 +40,23 @@ public class FadeController : Singleton<FadeController>
         active = true;
     }
 
+    public void FastFade(bool option)
+    {
+        if (option)
+        {
+            currentFade = 1f;
+        }
+        else
+        {
+            currentFade = 0f;
+        }
+
+        fade.color = new Color(0, 0, 0, currentFade);
+
+        active = false;
+    }
+
+
     private void Fading()
     {
         if(fadeNeed)

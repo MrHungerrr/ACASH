@@ -168,6 +168,7 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Answering(Scholar scholar, bool answer)
     {
+        key_word += scholar.type;
         key_word += scholar.Question.question_key;
         key_word.Answer(answer);
 

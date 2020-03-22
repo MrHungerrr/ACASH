@@ -21,6 +21,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
 
     public void Say(KeyWord key)
     {
+        StopSubtitile();
         StartCoroutine(PlaySub(key));
     }
 
@@ -55,7 +56,6 @@ public class SubtitleManager : Singleton<SubtitleManager>
             subPlay.SetText(script[i]);
             yield return new WaitForSeconds(duration[i]);
             subPlay.Clear();
-            i++;
         }
 
         act = false;

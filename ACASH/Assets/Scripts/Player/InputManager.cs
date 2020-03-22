@@ -165,7 +165,7 @@ public class InputManager : Singleton<InputManager>
         {
             inputType = type;
             Menu.get.InputType();
-            ExecuteHUDController.get.InputType();
+            //ExecuteHUDController.get.InputType();
 
             switch (type)
             {

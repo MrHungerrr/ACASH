@@ -33,6 +33,7 @@ public class SoundManager : A_SoundSimple
     private SoundManager()
     {
         sounds_path += "Global/Sounds/";
+        Setup();
     }
 
 
@@ -44,6 +45,6 @@ public class SoundManager : A_SoundSimple
 
     public void Make(sound sound)
     {
-        base.Make(sound.ToString());
+        base.MakeWithoutAttach(sound.ToString());
     }
 }

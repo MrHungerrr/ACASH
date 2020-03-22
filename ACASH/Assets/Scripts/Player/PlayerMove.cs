@@ -136,7 +136,10 @@ public class PlayerMove : MonoBehaviour
         return transform.position;
     }
 
-
+    public void Position(Vector3 position)
+    {
+        RB.position = position;
+    }
 
 
 

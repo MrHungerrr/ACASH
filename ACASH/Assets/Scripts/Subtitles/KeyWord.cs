@@ -189,6 +189,8 @@ public class KeyWord
     {
         keyword1.Reset();
         keyword1.Plus(keyword2);
+        keyword1.Number(keyword2.number);
+        keyword1.ans = keyword2.ans;
         return keyword1;
     }
 }

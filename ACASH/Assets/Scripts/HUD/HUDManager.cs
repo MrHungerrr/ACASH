@@ -78,7 +78,7 @@ public class HUDManager : Singleton<HUDManager>
     {
         HUDController.get.Report(ScriptManager.get.GetLine(information_key));
         huds["Report"].Select(true);
-        huds["Timer"].Select(true);
+        //huds["Timer"].Select(true);
 
         hud_cd = hud_const_cd;
         active = true;

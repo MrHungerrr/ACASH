@@ -2,6 +2,906 @@
     "lines":
     [
         {
+            "key":"Teacher_Shout_0",
+            "line":["Никому не списывать в этой комнате"]
+        },
+        {
+            "key":"Teacher_Shout_1",
+            "line":["Даже не думайте о списывании"]
+        },
+        {
+            "key":"Teacher_Shout_2",
+            "line":["Нарушение правил в этой комнате","Приведет к серъезным последствиям"]
+        },
+        {
+            "key":"Teacher_Shout_3",
+            "line":["Я предупреждаю всех. Не играйте со мной"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_0",
+            "line":["Слышишь, а ты чего списываешь?"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_1",
+            "line":["Ты не прифигел списывать?"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_2",
+            "line":["Если ты думаешь, что я не вижу - то я все вижу"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_0",
+            "line":["С этого момента даже не думай списать"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_1",
+            "line":["Я повторяю еще раз: хватит списывать"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_2",
+            "line":["Я не понимаю","Я что ли мало замечаний тебе делаю?"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_0",
+            "line":["Какого ты говоришь?"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_1",
+            "line":["Я предлагаю тебе замолчать"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_2",
+            "line":["Пожалуйста, закрой свой рот"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_0",
+            "line":["Замолчи я сказал!"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_1",
+            "line":["Я повторяю еще раз: заткни пасть"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_2",
+            "line":["Если еще раз откроешь рот","Уже не закроешь"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_0",
+            "line":["Ты уверен","Что тебе разрешали вставать с места?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_1",
+            "line":["Слышь, псина, куда ты идешь?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_2",
+            "line":["Какого ты не на своем месте?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_0",
+            "line":["Я повторяю","Хватит ходить, твою мать!"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_1",
+            "line":["Вернись на место."]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_2",
+            "line":["Тебе не было разрешено вставать с места","Поэтому прошу вернуться"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_0",
+            "line":["Ох, в свое время, помню как списывал","А сейчас...","А сейчас списывать плохо."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_1",
+            "line":["Вот помню, Петя у нас был","А потом Петя списал","И нету Пети."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_2",
+            "line":["Ух не списываешь","Совсем не списываешь","Молодец!"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_0",
+            "line":["Ты воняешь","Ха, пошутил"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_1",
+            "line":["А еще у нас был Витя","Такой же как ты","А сейчас его нет, списал потому что."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_2",
+            "line":["Я вот смотерел-смотрел","а ты все не списываешь","Молодец! Большой молодец."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_0",
+            "line":["Ну че, побозарим вместе?"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_1",
+            "line":["Вот поговорить - это я люблю."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_2",
+            "line":["Хочешь анекдот?","А он тебя не хочет!","Ха-ха, смешно"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_0",
+            "line":["Кто первый скажет слово - тот воняет."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_1",
+            "line":["Я вижу ты поговорить любишь","Ну давай поговорим"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_2",
+            "line":["Молодой человек, у вас пахнет изо рта","Пожалуйста закройте его"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_0",
+            "line":["Был у нас Ваня","Ваня ходить любил","А я таких не люблю","Вани не стало."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_1",
+            "line":["О, давай вместе ходить","Я люблю гулять со своими учениками"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_2",
+            "line":["Мои любимые ученики - это ученики","Которые не умеют ходить"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_0",
+            "line":["Помню, были времена","Когда за ходьбу на экзамене ломали ноги","Эх, было время."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_1",
+            "line":["Знаешь, однажды я сидел на экзамене","И все сидели на экзамене","Вот так вот","Давай иди уже"]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_2",
+            "line":["Стой! Да, ладно тебе, я шучу","Иди куда идешь конечно же","Иди-иди"]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Toilet_Yes_0",
+            "line":["Со своей мамой","Так дома разговаривать будешь","А сейчас быстро вали в туалет"]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Toilet_No_0",
+            "line":["Ты сначала манерам поучись","А потом и в туалет ходить будешь"]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Sink_Yes_0",
+            "line":["Со своей мамой","Так дома разговаривать будешь","А сейчас иди умойся"]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Sink_No_0",
+            "line":["Ты сначала манерам поучись","А потом и умываться ходить будешь"]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Outside_Yes_0",
+            "line":["Со своей мамой","Так дома разговаривать будешь","А сейчас быстро вали в коридор"]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Outside_No_0",
+            "line":["Ты сначала манерам поучись","А потом и в коридор выходить будешь"]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Toilet_Yes_0",
+            "line":["Да, только быстрее"]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Toilet_No_0",
+            "line":["Нет","Сейчас в туалет нельзя"]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Sink_Yes_0",
+            "line":["Да, только быстрее"]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Sink_No_0",
+            "line":["Нет","Сейчас в туалет нельзя"]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Outside_Yes_0",
+            "line":["Да, только быстрее"]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Outside_No_0",
+            "line":["Нет","Сейчас в коридор нельзя"]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Toilet_Yes_0",
+            "line":["Да, конечно, выходи"]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Toilet_No_0",
+            "line":["Ты что, прикалываешься?","Сиди на месте"]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Sink_Yes_0",
+            "line":["Да, конечно, иди"]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Sink_No_0",
+            "line":["Ты что, прикалываешься?","Сиди на месте"]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Outside_Yes_0",
+            "line":["Да, конечно, выходи"]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Outside_No_0",
+            "line":["Ты что, прикалываешься?","Сиди на месте"]
+        },
+        {
+            "key":"Teacher_Execute_0",
+            "line":["Именем экзаменатора АКАШ","Я исключаю вас  с экзамена","Казнить"]
+        },
+        {
+            "key":"Teacher_Execute_1",
+            "line":["За нарушение регламентов экзамена","Я вынужден вас исключить","Казнить"]
+        },
+        {
+            "key":"Teacher_Execute_2",
+            "line":["К сожалению вы нарушили правила","Мне ничего не остается сделать, кроме как...","Казинть"]
+        },
+        {
+            "key":"Tutorial_Begining_0",
+            "line":["- Да?","- Мне нужна твоя помощь","- Что тебе нужно?","- Мне нужно, чтобы ты провел экзамен","- Я же говорил","Что больше не провожу экзамены","- Да, я знаю... Я бы тебе не звонил","Если бы мне мог помочь кто-то другой","Это вопрос жизни и смерти","- Говори адрес"]
+        },
+        {
+            "key":"Tutorial_Elevator_0",
+            "line":["Добро пожаловать","На программу подготовки экзаменаторов","Здесь вас научат","Как правильно проводить экзамен АКАШ","Чтобы продолжить, пройдите в первую комнату"]
+        },
+        {
+            "key":"Tutorial_First_Room_0",
+            "line":["В этой комнате мы научим вас","Как правильно общаться с учениками","Попробуйте намекнуть ученику, что он списывает"]
+        },
+        {
+            "key":"Tutorial_First_Room_1",
+            "line":["Отлично!","А теперь скажите ученику прямо","Что списывать не стоит"]
+        },
+        {
+            "key":"Tutorial_First_Room_2",
+            "line":["Хорошо!","Теперь попробуйте сказать целому классу","Что списывать - это плохо"]
+        },
+        {
+            "key":"Tutorial_First_Room_3",
+            "line":["Вот это да!","Вы показываете хорошие результаты!","Предлоагаю вам пройти на следующий этап"]
+        },
+        {
+            "key":"Tutorial_Mistake_First_Room_0",
+            "line":["Вам нужно не намекнуть ученику","А сказать прямо, что списывать нельзя"]
+        },
+        {
+            "key":"Tutorial_Mistake_First_Room_1",
+            "line":["Вам нужно накричать на всех","А не только на одного"]
+        },
+        {
+            "key":"Tutorial_Second_Room_0",
+            "line":["Во 2-ой комнате мы научим вас как \"казнить\"","Но не беспокойтесь","\"Казнить\" - эти лишь кодовое слово","Для того, чтобы выгнать ученика","Представьте, что ученик перед вами списал","Пожалуйста, \"казните\" его за это"]
+        },
+        {
+            "key":"Tutorial_Second_Room_1",
+            "line":["Супер!","Но как вы видете, вам сняли очки за это","Все потому, что этот ученик не списывал","Поэтому зайдите в компьютер","Чтобы узнать правила экзамена"]
+        },
+        {
+            "key":"Tutorial_Second_Room_2",
+            "line":["Ах, да, чуть не забыл","Ваш логин и пароль - 0000","По многочисленным расчетам","Это самый надежный из доступных паролей"]
+        },
+        {
+            "key":"Tutorial_Second_Room_3",
+            "line":["А сейчас заходите в программу \"Правила\""]
+        },
+        {
+            "key":"Tutorial_Second_Room_4",
+            "line":["Как вы видете, на экзамене можно пользоваться","Только некоторыми программами","Понаблюдайте за учениками и казните всех","Кто начнет пользоваться запрещенными программами"]
+        },
+        {
+            "key":"Tutorial_Second_Room_5",
+            "line":["Отлично!","Так же на экзамене нельзя пользоваться","Любыми посторонними предметами","Поэтому казните всех","кто начнет пользоваться чем-то посторонним"]
+        },
+        {
+            "key":"Tutorial_Second_Room_6",
+            "line":["Замечательно!","А теперь попробуйте не казнить учеников","А спугнуть их своими словами","Чтобы они перестали списывать","Поэтому спугните 3 списывания"]
+        },
+        {
+            "key":"Tutorial_Second_Room_7",
+            "line":["Но помните, что если кому-то удастся списать","То ваша репутация понизится","Поэтому глядите в оба за учениками","А сейчас мы научимся отвечать","На вопросы учеников","Попробуйте ответить \"нет\" этому ученику"]
+        },
+        {
+            "key":"Tutorial_Second_Room_8",
+            "line":["Если вы ответите нет ученику","Когда должны были ответить да","Ваша репутация снижается","Поэтому следите за своим языком","А теперь ответьте да"]
+        },
+        {
+            "key":"Tutorial_Second_Room_9",
+            "line":["Ученик пошел в туалет!  Но не радуйтесь так быстро","Возможно он там хочет списать","Дождитесь когда ученик выйдет","И проверьте кабинку"]
+        },
+        {
+            "key":"Tutorial_Second_Room_10",
+            "line":["Ага! Шпаргалка!","Отличная причина казнить этого ученика!"]
+        },
+        {
+            "key":"Tutorial_Second_Room_11",
+            "line":["Отлично!","Вы прошли начальный курс экзаменатора","Теперь вы готовы проводить ваш первый экзамен","Успехов и до встречи!"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_0",
+            "line":["Пожалуйста, казните этого ученика","А не общайтесь с ним"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_1",
+            "line":["Вам нужно казнить учеников, а не общаться с ними"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_2",
+            "line":["К сожалению, вы казнили ученика","Который не пользовался запрещенной програмой","Попробуйте еще раз"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_3",
+            "line":["Напомню, что список запрещенных","И разрешенных программ находится в вашем компьютере","Проверьте его еще раз"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_4",
+            "line":["К сожалению, вы казнили ученика","Который не пользовался посторонними предметами","Попробуйте еще раз"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_5",
+            "line":["Замечу, что посторонними предметами","В даном случае","Являются различные бумажки, телефоны","И так далее"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_6",
+            "line":["Этот ученик не списывал"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_7",
+            "line":["Отлично, вы спугнули списывание этого ученика","Продолжайте"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_8",
+            "line":["Еще одно списывание предотвращено!"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_9",
+            "line":["На этом ученике и закончим. Отличная работа! "]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_10",
+            "line":["Ученик не будет вечно ждать вашего ответа","Его же терпение не вечно","Пожалуйста, ответьте ему"]
+        },
+        {
+            "key":"Tutorial_Mistake_Second_Room_11",
+            "line":["Вы должны разрешить ученику вытйти в туалет","Пожалуйста, ответьте ему еще раз"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Yes_0",
+            "line":["А что, нельзя?!"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Yes_1",
+            "line":["Есть такое..."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Yes_2",
+            "line":["Не по-пацански делаете ."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_No_0",
+            "line":["Захотелось!"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_No_1",
+            "line":["Нет, не прифигел."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_No_2",
+            "line":["Я ничего не делал. Не надо за мной подглядывать. "]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_Yes_0",
+            "line":["Когда хочу, тогда и списываю!"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_Yes_1",
+            "line":["Списал однажды, спишу и дважды."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_Yes_2",
+            "line":["Это вам решать уже, не мешайте."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_No_0",
+            "line":["Ты надоел, отстань уже."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_No_1",
+            "line":["А я повторять не буду! "]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_No_2",
+            "line":["Предлагаю прекратить, иначе это будет ваше последнее замечание. "]
+        },
+        {
+            "key":"Asshole_Bull_Talking_No_0",
+            "line":["Свободна слова в стране."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_No_1",
+            "line":["Хорошее предложение, я подумаю."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_No_2",
+            "line":["Только после вас. "]
+        },
+        {
+            "key":"Asshole_Bull_Talking_Sec_No_0",
+            "line":["Замолчу, когда захочу."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_Sec_No_1",
+            "line":["Маме своей так скажи."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_Sec_No_2",
+            "line":["А я и не против."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_No_0",
+            "line":["Мне разрешение не нужно."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_No_1",
+            "line":["Я не пес чтобы место иметь."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_No_2",
+            "line":["Я разминаюсь."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_Sec_No_0",
+            "line":["Мне пофиг."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_Sec_No_1",
+            "line":["Я устал сидеть уже."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_Sec_No_2",
+            "line":["Да-да... я вас услышал."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Yes_0",
+            "line":["По вам видно ."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Yes_1",
+            "line":["Тогда давай один на один выйдем ."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Yes_2",
+            "line":["От вас не ожидал ."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_No_0",
+            "line":["И сейчас хорошо списывать."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_No_1",
+            "line":["Фига Петя лох."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_No_2",
+            "line":["Дааа, какой же я крутой! "]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_Yes_0",
+            "line":["Так я списываю, а не воняю."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_Yes_1",
+            "line":["Мне не страшны ваши угрозы."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_Yes_2",
+            "line":["Да, специально для вас стараюсь!"]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_No_0",
+            "line":["Что естественно, то не безобразно."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_No_1",
+            "line":["Земля ему пухом!"]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_No_2",
+            "line":["Иначе и быть не может!"]
+        },
+        {
+            "key":"Asshole_Question_Toilet_0",
+            "line":["Слышь, дай выйти в туалет."]
+        },
+        {
+            "key":"Asshole_Question_Sink_0",
+            "line":["Слышь, дай выйти, умыться надо."]
+        },
+        {
+            "key":"Asshole_Question_Outside_0",
+            "line":["Слышь, дай выйти в коридор."]
+        },
+        {
+            "key":"Asshole_Answer_Yes_0",
+            "line":["Спасибо, бро! Уже валю."]
+        },
+        {
+            "key":"Asshole_Answer_No_0",
+            "line":["Ты че, базар попутал?"]
+        },
+        {
+            "key":"Asshole_Execute_0",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Asshole_Execute_1",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Asshole_Execute_2",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Yes_0",
+            "line":["Я думал вы не видите"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Yes_1",
+            "line":["Чуть-чуть то можно "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Yes_2",
+            "line":["Лаадно, все равно не помогло "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_No_0",
+            "line":["Я еще и не начинал "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_No_1",
+            "line":["Вчера же не считается "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_No_2",
+            "line":["Я ничего не думал "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_Yes_0",
+            "line":["Даже если бы списывал, то не помогло бы"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_Yes_1",
+            "line":["Я просто пишу "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_Yes_2",
+            "line":["Это уже буллинг какой-то "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_No_0",
+            "line":["Даже если бы списывал, то не помогло бы"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_No_1",
+            "line":["Я просто пишу "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_No_2",
+            "line":["Это уже буллинг какой-то "]
+        },
+        {
+            "key":"Dumb_Bull_Talking_No_0",
+            "line":["Так я сам с собой "]
+        },
+        {
+            "key":"Dumb_Bull_Talking_No_1",
+            "line":["Хорошо, я замолкаю"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_No_2",
+            "line":["Я тогда дальше с закрытым ртом буду говорить "]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_No_0",
+            "line":["Я не хочу "]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_No_1",
+            "line":["Я что, животное?"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_No_2",
+            "line":["Типо как закрыть, только наоборот "]
+        },
+        {
+            "key":"Dumb_Bull_Walking_No_0",
+            "line":["Не понял вопроса "]
+        },
+        {
+            "key":"Dumb_Bull_Walking_No_1",
+            "line":["Кушать хочу"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_No_2",
+            "line":["Я уже забыл где мое место "]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_No_0",
+            "line":["Вы тогда мне не дали походить "]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_No_1",
+            "line":["Другие же тоже ходят "]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_No_2",
+            "line":["Сяду-ка я здесь "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Yes_0",
+            "line":["Я так не думаю "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Yes_1",
+            "line":["Моего папу тоже Петя зовут "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Yes_2",
+            "line":["Да, я  такой "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_No_0",
+            "line":["Ну вы и динозавр "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_No_1",
+            "line":["Он же просто умер "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_No_2",
+            "line":["Я весь в папу "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_Yes_0",
+            "line":["Но я же мылся "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_Yes_1",
+            "line":["Не хочу быть как Витя "]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_Yes_2",
+            "line":["Я списываю вообще-то!"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_No_0",
+            "line":["Ха-ха-ха"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_No_1",
+            "line":["Ух ты! У меня есть двойник!"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_No_2",
+            "line":["Сам в шоке. Я тоже это заметил "]
+        },
+        {
+            "key":"Dumb_Question_Toilet_0",
+            "line":["Я хочу в туалет. Можно я пойду?"]
+        },
+        {
+            "key":"Dumb_Question_Sink_0",
+            "line":["Я хочу умыться. Можно я выйду?"]
+        },
+        {
+            "key":"Dumb_Question_Outside_0",
+            "line":["Я хочу в коридор. Можно я выйду?"]
+        },
+        {
+            "key":"Dumb_Answer_Yes_0",
+            "line":["Ура! Я пошел."]
+        },
+        {
+            "key":"Dumb_Answer_No_0",
+            "line":["Ну блин, ладно."]
+        },
+        {
+            "key":"Dumb_Execute_0",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Dumb_Execute_1",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Dumb_Execute_2",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Yes_0",
+            "line":["Простите, я больше не буду "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Yes_1",
+            "line":["Я один разочек только"]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Yes_2",
+            "line":["Больше не буду, только не выгоняйте "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_No_0",
+            "line":["Нет, вам показалось"]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_No_1",
+            "line":["Вы мне? Я не списывал"]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_No_2",
+            "line":["Вы меня с кем-то путаете "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_Yes_0",
+            "line":["Это черновик, правда "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_Yes_1",
+            "line":["Меня за 4 родители накажут "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_Yes_2",
+            "line":["Обещаю, это в последний раз "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_No_0",
+            "line":["Я ничего не делал "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_No_1",
+            "line":["Почему вы меня так не любите? "]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_No_2",
+            "line":["Я не понимаю за что "]
+        },
+        {
+            "key":"Nerd_Bull_Talking_No_0",
+            "line":["Мне так лучше думается "]
+        },
+        {
+            "key":"Nerd_Bull_Talking_No_1",
+            "line":["Я соглашусь с Вами "]
+        },
+        {
+            "key":"Nerd_Bull_Talking_No_2",
+            "line":["Ой, я думал, что я у себя в голове разговариваю"]
+        },
+        {
+            "key":"Nerd_Bull_Talking_Sec_No_0",
+            "line":["Зачем так грубо"]
+        },
+        {
+            "key":"Nerd_Bull_Talking_Sec_No_1",
+            "line":["Я имею право говорить "]
+        },
+        {
+            "key":"Nerd_Bull_Talking_Sec_No_2",
+            "line":["Я сейчас маме позвоню "]
+        },
+        {
+            "key":"Nerd_Bull_Walking_No_0",
+            "line":["Я думал можно "]
+        },
+        {
+            "key":"Nerd_Bull_Walking_No_1",
+            "line":["Что так грубо, просто встал "]
+        },
+        {
+            "key":"Nerd_Bull_Walking_No_2",
+            "line":["Так вы же мне разрешили"]
+        },
+        {
+            "key":"Nerd_Bull_Walking_Sec_No_0",
+            "line":["Но..  Ладно"]
+        },
+        {
+            "key":"Nerd_Bull_Walking_Sec_No_1",
+            "line":["Хорошо, учитель "]
+        },
+        {
+            "key":"Nerd_Bull_Walking_Sec_No_2",
+            "line":["Хорошо, учитель "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Yes_0",
+            "line":["Я согласен, простите "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Yes_1",
+            "line":["Ой-ой, страшно "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Yes_2",
+            "line":["Но я спи.. Спасибо, Учитель! "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_No_0",
+            "line":["С кем не бывает "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_No_1",
+            "line":["Не помню такого "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_No_2",
+            "line":["Спасибо! "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_Yes_0",
+            "line":["Не смешно вообще-то "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_Yes_1",
+            "line":["Я всего лишь подсмотрел чуть-чуть"]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_Yes_2",
+            "line":["Вы прям как моя мама"]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_No_0",
+            "line":["У нас воду отключили "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_No_1",
+            "line":["Так вот куда он пропал "]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_No_2",
+            "line":["Не зря готовился "]
+        },
+        {
+            "key":"Nerd_Question_Toilet_0",
+            "line":["Простите, а можно в туалет?"]
+        },
+        {
+            "key":"Nerd_Question_Sink_0",
+            "line":["Простите, а можно выйти умыться?"]
+        },
+        {
+            "key":"Nerd_Question_Outside_0",
+            "line":["Простите, а можно выйти в коридор?"]
+        },
+        {
+            "key":"Nerd_Answer_Yes_0",
+            "line":["Спасибо, учитель."]
+        },
+        {
+            "key":"Nerd_Answer_No_0",
+            "line":["Но!.. Ладно..."]
+        },
+        {
+            "key":"Nerd_Execute_0",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Nerd_Execute_1",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
+            "key":"Nerd_Execute_2",
+            "line":["Нет не надо, прошу, я все сделаю"]
+        },
+        {
             "key":"Main_Menu_Continue",
             "line":["Продолжить"]
         },
@@ -519,503 +1419,519 @@
         },
         {
             "key":"Dictionary_Description_Air",
-            "line":["Объяснение слова: 'Воздух'"]
+            "line":["Объяснение слова: \"Воздух\""]
         },
         {
             "key":"Dictionary_Description_Alphabet",
-            "line":["Объяснение слова: 'Алфавит'"]
+            "line":["Объяснение слова: \"Алфавит\""]
         },
         {
             "key":"Dictionary_Description_Apply",
-            "line":["Объяснение слова: 'Обратиться'"]
+            "line":["Объяснение слова: \"Обратиться\""]
         },
         {
             "key":"Dictionary_Description_Argue",
-            "line":["Объяснение слова: 'Спорить'"]
+            "line":["Объяснение слова: \"Спорить\""]
         },
         {
             "key":"Dictionary_Description_Army",
-            "line":["Объяснение слова: 'Армия'"]
+            "line":["Объяснение слова: \"Армия\""]
         },
         {
             "key":"Dictionary_Description_Autumn",
-            "line":["Объяснение слова: 'Осень'"]
+            "line":["Объяснение слова: \"Осень\""]
         },
         {
             "key":"Dictionary_Description_Bank",
-            "line":["Объяснение слова: 'Банк'"]
+            "line":["Объяснение слова: \"Банк\""]
         },
         {
             "key":"Dictionary_Description_Big",
-            "line":["Объяснение слова: 'Большой'"]
+            "line":["Объяснение слова: \"Большой\""]
         },
         {
             "key":"Dictionary_Description_Black",
-            "line":["Объяснение слова: 'Черный'"]
+            "line":["Объяснение слова: \"Черный\""]
         },
         {
             "key":"Dictionary_Description_Blue",
-            "line":["Объяснение слова: 'Синий'"]
+            "line":["Объяснение слова: \"Синий\""]
         },
         {
             "key":"Dictionary_Description_Bright",
-            "line":["Объяснение слова: 'Яркий'"]
+            "line":["Объяснение слова: \"Яркий\""]
         },
         {
             "key":"Dictionary_Description_Builder",
-            "line":["Объяснение слова: 'Строитель'"]
+            "line":["Объяснение слова: \"Строитель\""]
         },
         {
             "key":"Dictionary_Description_Car",
-            "line":["Объяснение слова: 'Автомобиль'"]
+            "line":["Объяснение слова: \"Автомобиль\""]
         },
         {
             "key":"Dictionary_Description_Chair",
-            "line":["Объяснение слова: 'Стул'"]
+            "line":["Объяснение слова: \"Стул\""]
         },
         {
             "key":"Dictionary_Description_Chapter",
-            "line":["Объяснение слова: 'Глава'"]
+            "line":["Объяснение слова: \"Глава\""]
         },
         {
             "key":"Dictionary_Description_Class",
-            "line":["Объяснение слова: 'Класс'"]
+            "line":["Объяснение слова: \"Класс\""]
         },
         {
             "key":"Dictionary_Description_Client",
-            "line":["Объяснение слова: 'Клиент'"]
+            "line":["Объяснение слова: \"Клиент\""]
         },
         {
             "key":"Dictionary_Description_Club",
-            "line":["Объяснение слова: 'Клуб'"]
+            "line":["Объяснение слова: \"Клуб\""]
         },
         {
             "key":"Dictionary_Description_Company",
-            "line":["Объяснение слова: 'Компания'"]
+            "line":["Объяснение слова: \"Компания\""]
         },
         {
             "key":"Dictionary_Description_Confirm",
-            "line":["Объяснение слова: 'Подтвердить'"]
+            "line":["Объяснение слова: \"Подтвердить\""]
         },
         {
             "key":"Dictionary_Description_Cut",
-            "line":["Объяснение слова: 'Отрезать'"]
+            "line":["Объяснение слова: \"Отрезать\""]
         },
         {
             "key":"Dictionary_Description_Daughter",
-            "line":["Объяснение слова: 'Дочь'"]
+            "line":["Объяснение слова: \"Дочь\""]
         },
         {
             "key":"Dictionary_Description_Day",
-            "line":["Объяснение слова: 'День'"]
+            "line":["Объяснение слова: \"День\""]
         },
         {
             "key":"Dictionary_Description_Death",
-            "line":["Объяснение слова: 'Смерть'"]
+            "line":["Объяснение слова: \"Смерть\""]
         },
         {
             "key":"Dictionary_Description_Decide",
-            "line":["Объяснение слова: 'Решить'"]
+            "line":["Объяснение слова: \"Решить\""]
         },
         {
             "key":"Dictionary_Description_Disease",
-            "line":["Объяснение слова: 'Болезнь'"]
+            "line":["Объяснение слова: \"Болезнь\""]
         },
         {
             "key":"Dictionary_Description_Dog",
-            "line":["Объяснение слова: 'Собака'"]
+            "line":["Объяснение слова: \"Собака\""]
         },
         {
             "key":"Dictionary_Description_Door",
-            "line":["Объяснение слова: 'Дверь'"]
+            "line":["Объяснение слова: \"Дверь\""]
         },
         {
             "key":"Dictionary_Description_Draw",
-            "line":["Объяснение слова: 'Нарисовать'"]
+            "line":["Объяснение слова: \"Нарисовать\""]
         },
         {
             "key":"Dictionary_Description_Drink",
-            "line":["Объяснение слова: 'Напиток'"]
+            "line":["Объяснение слова: \"Напиток\""]
         },
         {
             "key":"Dictionary_Description_Early",
-            "line":["Объяснение слова: 'Рано'"]
+            "line":["Объяснение слова: \"Рано\""]
         },
         {
             "key":"Dictionary_Description_Eat",
-            "line":["Объяснение слова: 'Есть'"]
+            "line":["Объяснение слова: \"Есть\""]
         },
         {
             "key":"Dictionary_Description_Enjoy",
-            "line":["Объяснение слова: 'Наслаждаться'"]
+            "line":["Объяснение слова: \"Наслаждаться\""]
         },
         {
             "key":"Dictionary_Description_Environment",
-            "line":["Объяснение слова: 'Окружающая Среда'"]
+            "line":["Объяснение слова: \"Окружающая Среда\""]
         },
         {
             "key":"Dictionary_Description_Event",
-            "line":["Объяснение слова: 'Событие'"]
+            "line":["Объяснение слова: \"Событие\""]
         },
         {
             "key":"Dictionary_Description_Execute",
-            "line":["Объяснение слова: 'Выполнить'"]
+            "line":["Объяснение слова: \"Выполнить\""]
         },
         {
             "key":"Dictionary_Description_Exist",
-            "line":["Объяснение слова: 'Существовать'"]
+            "line":["Объяснение слова: \"Существовать\""]
         },
         {
             "key":"Dictionary_Description_Experience",
-            "line":["Объяснение слова: 'Опыт'"]
+            "line":["Объяснение слова: \"Опыт\""]
         },
         {
             "key":"Dictionary_Description_Express",
-            "line":["Объяснение слова: 'Экспресс'"]
+            "line":["Объяснение слова: \"Экспресс\""]
         },
         {
             "key":"Dictionary_Description_Film",
-            "line":["Объяснение слова: 'Фильм'"]
+            "line":["Объяснение слова: \"Фильм\""]
         },
         {
             "key":"Dictionary_Description_Flat",
-            "line":["Объяснение слова: 'Квартира'"]
+            "line":["Объяснение слова: \"Квартира\""]
         },
         {
             "key":"Dictionary_Description_Friend",
-            "line":["Объяснение слова: 'Друг'"]
+            "line":["Объяснение слова: \"Друг\""]
         },
         {
             "key":"Dictionary_Description_Full",
-            "line":["Объяснение слова: 'Полный'"]
+            "line":["Объяснение слова: \"Полный\""]
         },
         {
             "key":"Dictionary_Description_Funny",
-            "line":["Объяснение слова: 'Забавное'"]
+            "line":["Объяснение слова: \"Забавное\""]
         },
         {
             "key":"Dictionary_Description_Girl",
-            "line":["Объяснение слова: 'Девочка'"]
+            "line":["Объяснение слова: \"Девочка\""]
         },
         {
             "key":"Dictionary_Description_Good",
-            "line":["Объяснение слова: 'Хороший'"]
+            "line":["Объяснение слова: \"Хороший\""]
         },
         {
             "key":"Dictionary_Description_Government",
-            "line":["Объяснение слова: 'Правительство'"]
+            "line":["Объяснение слова: \"Правительство\""]
         },
         {
             "key":"Dictionary_Description_Grave",
-            "line":["Объяснение слова: 'Могила'"]
+            "line":["Объяснение слова: \"Могила\""]
         },
         {
             "key":"Dictionary_Description_Happen",
-            "line":["Объяснение слова: 'Произойти'"]
+            "line":["Объяснение слова: \"Произойти\""]
         },
         {
             "key":"Dictionary_Description_Hate",
-            "line":["Объяснение слова: 'Ненависть'"]
+            "line":["Объяснение слова: \"Ненависть\""]
         },
         {
             "key":"Dictionary_Description_Have",
-            "line":["Объяснение слова: 'Иметь'"]
+            "line":["Объяснение слова: \"Иметь\""]
         },
         {
             "key":"Dictionary_Description_Heavy",
-            "line":["Объяснение слова: 'Тяжелый'"]
+            "line":["Объяснение слова: \"Тяжелый\""]
         },
         {
             "key":"Dictionary_Description_High",
-            "line":["Объяснение слова: 'Высоко'"]
+            "line":["Объяснение слова: \"Высоко\""]
         },
         {
             "key":"Dictionary_Description_Hour",
-            "line":["Объяснение слова: 'Час'"]
+            "line":["Объяснение слова: \"Час\""]
         },
         {
             "key":"Dictionary_Description_Interest",
-            "line":["Объяснение слова: 'Интерес'"]
+            "line":["Объяснение слова: \"Интерес\""]
         },
         {
             "key":"Dictionary_Description_Invite",
-            "line":["Объяснение слова: 'Пригласить'"]
+            "line":["Объяснение слова: \"Пригласить\""]
         },
         {
             "key":"Dictionary_Description_Left",
-            "line":["Объяснение слова: 'Левый'"]
+            "line":["Объяснение слова: \"Левый\""]
         },
         {
             "key":"Dictionary_Description_Life",
-            "line":["Объяснение слова: 'Жизнь'"]
+            "line":["Объяснение слова: \"Жизнь\""]
         },
         {
             "key":"Dictionary_Description_Link",
-            "line":["Объяснение слова: 'Связь'"]
+            "line":["Объяснение слова: \"Связь\""]
         },
         {
             "key":"Dictionary_Description_Listen",
-            "line":["Объяснение слова: 'Прослушать'"]
+            "line":["Объяснение слова: \"Прослушать\""]
         },
         {
             "key":"Dictionary_Description_Mind",
-            "line":["Объяснение слова: 'Ум'"]
+            "line":["Объяснение слова: \"Ум\""]
         },
         {
             "key":"Dictionary_Description_Monday",
-            "line":["Объяснение слова: 'Понедельник'"]
+            "line":["Объяснение слова: \"Понедельник\""]
         },
         {
             "key":"Dictionary_Description_Morning",
-            "line":["Объяснение слова: 'Утро'"]
+            "line":["Объяснение слова: \"Утро\""]
         },
         {
             "key":"Dictionary_Description_Name",
-            "line":["Объяснение слова: 'Имя'"]
+            "line":["Объяснение слова: \"Имя\""]
         },
         {
             "key":"Dictionary_Description_Nature",
-            "line":["Объяснение слова: 'Природа'"]
+            "line":["Объяснение слова: \"Природа\""]
         },
         {
             "key":"Dictionary_Description_Number",
-            "line":["Объяснение слова: 'Число'"]
+            "line":["Объяснение слова: \"Число\""]
         },
         {
             "key":"Dictionary_Description_Order",
-            "line":["Объяснение слова: 'Заказ'"]
+            "line":["Объяснение слова: \"Заказ\""]
         },
         {
             "key":"Dictionary_Description_Organisation",
-            "line":["Объяснение слова: 'Организация'"]
+            "line":["Объяснение слова: \"Организация\""]
         },
         {
             "key":"Dictionary_Description_Pain",
-            "line":["Объяснение слова: 'Боль'"]
+            "line":["Объяснение слова: \"Боль\""]
         },
         {
             "key":"Dictionary_Description_Parent",
-            "line":["Объяснение слова: 'Родитель'"]
+            "line":["Объяснение слова: \"Родитель\""]
         },
         {
             "key":"Dictionary_Description_Park",
-            "line":["Объяснение слова: 'Парк'"]
+            "line":["Объяснение слова: \"Парк\""]
         },
         {
             "key":"Dictionary_Description_People",
-            "line":["Объяснение слова: 'Люди'"]
+            "line":["Объяснение слова: \"Люди\""]
         },
         {
             "key":"Dictionary_Description_Pill",
-            "line":["Объяснение слова: 'Таблетка'"]
+            "line":["Объяснение слова: \"Таблетка\""]
         },
         {
             "key":"Dictionary_Description_Pink",
-            "line":["Объяснение слова: 'Розовый'"]
+            "line":["Объяснение слова: \"Розовый\""]
         },
         {
             "key":"Dictionary_Description_Poor",
-            "line":["Объяснение слова: 'Бедный'"]
+            "line":["Объяснение слова: \"Бедный\""]
         },
         {
             "key":"Dictionary_Description_Position",
-            "line":["Объяснение слова: 'Положение'"]
+            "line":["Объяснение слова: \"Положение\""]
         },
         {
             "key":"Dictionary_Description_Problem",
-            "line":["Объяснение слова: 'Проблема'"]
+            "line":["Объяснение слова: \"Проблема\""]
         },
         {
             "key":"Dictionary_Description_Process",
-            "line":["Объяснение слова: 'Процесс'"]
+            "line":["Объяснение слова: \"Процесс\""]
         },
         {
             "key":"Dictionary_Description_Programme",
-            "line":["Объяснение слова: 'Программа'"]
+            "line":["Объяснение слова: \"Программа\""]
         },
         {
             "key":"Dictionary_Description_Protect",
-            "line":["Объяснение слова: 'Защитить'"]
+            "line":["Объяснение слова: \"Защитить\""]
         },
         {
             "key":"Dictionary_Description_Question",
-            "line":["Объяснение слова: 'Вопрос'"]
+            "line":["Объяснение слова: \"Вопрос\""]
         },
         {
             "key":"Dictionary_Description_Quiet",
-            "line":["Объяснение слова: 'Тихий'"]
+            "line":["Объяснение слова: \"Тихий\""]
         },
         {
             "key":"Dictionary_Description_Receive",
-            "line":["Объяснение слова: 'Получить'"]
+            "line":["Объяснение слова: \"Получить\""]
         },
         {
             "key":"Dictionary_Description_Refuse",
-            "line":["Объяснение слова: 'Отказаться'"]
+            "line":["Объяснение слова: \"Отказаться\""]
         },
         {
             "key":"Dictionary_Description_Region",
-            "line":["Объяснение слова: 'Область'"]
+            "line":["Объяснение слова: \"Область\""]
         },
         {
             "key":"Dictionary_Description_Remove",
-            "line":["Объяснение слова: 'Удалить'"]
+            "line":["Объяснение слова: \"Удалить\""]
         },
         {
             "key":"Dictionary_Description_Road",
-            "line":["Объяснение слова: 'Дорога'"]
+            "line":["Объяснение слова: \"Дорога\""]
         },
         {
             "key":"Dictionary_Description_Round",
-            "line":["Объяснение слова: 'Вокруг'"]
+            "line":["Объяснение слова: \"Вокруг\""]
         },
         {
             "key":"Dictionary_Description_School",
-            "line":["Объяснение слова: 'Школа'"]
+            "line":["Объяснение слова: \"Школа\""]
         },
         {
             "key":"Dictionary_Description_Sea",
-            "line":["Объяснение слова: 'Море'"]
+            "line":["Объяснение слова: \"Море\""]
         },
         {
             "key":"Dictionary_Description_See",
-            "line":["Объяснение слова: 'Посмотрите'"]
+            "line":["Объяснение слова: \"Посмотрите\""]
         },
         {
             "key":"Dictionary_Description_Seek",
-            "line":["Объяснение слова: 'Искать'"]
+            "line":["Объяснение слова: \"Искать\""]
         },
         {
             "key":"Dictionary_Description_Set",
-            "line":["Объяснение слова: 'Набор'"]
+            "line":["Объяснение слова: \"Набор\""]
         },
         {
             "key":"Dictionary_Description_Seven",
-            "line":["Объяснение слова: 'Семь'"]
+            "line":["Объяснение слова: \"Семь\""]
         },
         {
             "key":"Dictionary_Description_Simple",
-            "line":["Объяснение слова: 'Простой'"]
+            "line":["Объяснение слова: \"Простой\""]
         },
         {
             "key":"Dictionary_Description_Six",
-            "line":["Объяснение слова: 'Шесть'"]
+            "line":["Объяснение слова: \"Шесть\""]
         },
         {
             "key":"Dictionary_Description_Small",
-            "line":["Объяснение слова: 'Маленький'"]
+            "line":["Объяснение слова: \"Маленький\""]
         },
         {
             "key":"Dictionary_Description_Smart",
-            "line":["Объяснение слова: 'Умный'"]
+            "line":["Объяснение слова: \"Умный\""]
         },
         {
             "key":"Dictionary_Description_South",
-            "line":["Объяснение слова: 'Юг'"]
+            "line":["Объяснение слова: \"Юг\""]
         },
         {
             "key":"Dictionary_Description_State",
-            "line":["Объяснение слова: 'Государство'"]
+            "line":["Объяснение слова: \"Государство\""]
         },
         {
             "key":"Dictionary_Description_Story",
-            "line":["Объяснение слова: 'История'"]
+            "line":["Объяснение слова: \"История\""]
         },
         {
             "key":"Dictionary_Description_Strong",
-            "line":["Объяснение слова: 'Сильный'"]
+            "line":["Объяснение слова: \"Сильный\""]
         },
         {
             "key":"Dictionary_Description_Student",
-            "line":["Объяснение слова: 'Студент'"]
+            "line":["Объяснение слова: \"Студент\""]
         },
         {
             "key":"Dictionary_Description_Sunday",
-            "line":["Объяснение слова: 'Воскресенье'"]
+            "line":["Объяснение слова: \"Воскресенье\""]
         },
         {
             "key":"Dictionary_Description_Support",
-            "line":["Объяснение слова: 'Поддержка'"]
+            "line":["Объяснение слова: \"Поддержка\""]
         },
         {
             "key":"Dictionary_Description_Take",
-            "line":["Объяснение слова: 'Взять'"]
+            "line":["Объяснение слова: \"Взять\""]
         },
         {
             "key":"Dictionary_Description_Talk",
-            "line":["Объяснение слова: 'Разговор'"]
+            "line":["Объяснение слова: \"Разговор\""]
         },
         {
             "key":"Dictionary_Description_Teach",
-            "line":["Объяснение слова: 'Преподавать'"]
+            "line":["Объяснение слова: \"Преподавать\""]
         },
         {
             "key":"Dictionary_Description_Teacher",
-            "line":["Объяснение слова: 'Учитель'"]
+            "line":["Объяснение слова: \"Учитель\""]
         },
         {
             "key":"Dictionary_Description_Technology",
-            "line":["Объяснение слова: 'Технология'"]
+            "line":["Объяснение слова: \"Технология\""]
         },
         {
             "key":"Dictionary_Description_Test",
-            "line":["Объяснение слова: 'Тест'"]
+            "line":["Объяснение слова: \"Тест\""]
         },
         {
             "key":"Dictionary_Description_Thank",
-            "line":["Объяснение слова: 'Благодарность'"]
+            "line":["Объяснение слова: \"Благодарность\""]
         },
         {
             "key":"Dictionary_Description_Time",
-            "line":["Объяснение слова: 'Время'"]
+            "line":["Объяснение слова: \"Время\""]
         },
         {
             "key":"Dictionary_Description_Two",
-            "line":["Объяснение слова: 'Два'"]
+            "line":["Объяснение слова: \"Два\""]
         },
         {
             "key":"Dictionary_Description_University",
-            "line":["Объяснение слова: 'Университет'"]
+            "line":["Объяснение слова: \"Университет\""]
         },
         {
             "key":"Dictionary_Description_Walk",
-            "line":["Объяснение слова: 'Идти'"]
+            "line":["Объяснение слова: \"Идти\""]
         },
         {
             "key":"Dictionary_Description_Warm",
-            "line":["Объяснение слова: 'Теплый'"]
+            "line":["Объяснение слова: \"Теплый\""]
         },
         {
             "key":"Dictionary_Description_Wear",
-            "line":["Объяснение слова: 'Носить'"]
+            "line":["Объяснение слова: \"Носить\""]
         },
         {
             "key":"Dictionary_Description_Week",
-            "line":["Объяснение слова: 'Неделя'"]
+            "line":["Объяснение слова: \"Неделя\""]
         },
         {
             "key":"Dictionary_Description_Well",
-            "line":["Объяснение слова: 'Хорошо'"]
+            "line":["Объяснение слова: \"Хорошо\""]
         },
         {
             "key":"Dictionary_Description_Wife",
-            "line":["Объяснение слова: 'Жена'"]
+            "line":["Объяснение слова: \"Жена\""]
         },
         {
             "key":"Dictionary_Description_Window",
-            "line":["Объяснение слова: 'Окно'"]
+            "line":["Объяснение слова: \"Окно\""]
         },
         {
             "key":"Dictionary_Description_Word",
-            "line":["Объяснение слова: 'Слово'"]
+            "line":["Объяснение слова: \"Слово\""]
         },
         {
             "key":"Dictionary_Description_Work",
-            "line":["Объяснение слова: 'Работа'"]
+            "line":["Объяснение слова: \"Работа\""]
         },
         {
             "key":"Dictionary_Description_Wrong",
-            "line":["Объяснение слова: 'Неправильно'"]
+            "line":["Объяснение слова: \"Неправильно\""]
+        },
+        {
+            "key":"Report_Executed_Right_0",
+            "line":["Этот ученик списывал"]
+        },
+        {
+            "key":"Report_Executed_Wrong_0",
+            "line":["Этот ученик не списывал"]
+        },
+        {
+            "key":"Report_Answered_Right_0",
+            "line":["Вы ответили правильно этому ученику"]
+        },
+        {
+            "key":"Report_Answered_Wrong_0",
+            "line":["Вы ответили неверно этому ученику"]
         }
     ]
 }

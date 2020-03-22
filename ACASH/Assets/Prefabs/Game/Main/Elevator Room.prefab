@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7034833812473090254}
   - component: {fileID: 7034833812473090255}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,6 +1178,11 @@ PrefabInstance:
     - target: {fileID: 5042331962225350924, guid: 9830ee9a1e3ef064785990673d7b876f,
         type: 3}
       propertyPath: m_Name
+      value: Elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042331962225350924, guid: 9830ee9a1e3ef064785990673d7b876f,
+        type: 3}
+      propertyPath: m_TagString
       value: Elevator
       objectReference: {fileID: 0}
     m_RemovedComponents: []

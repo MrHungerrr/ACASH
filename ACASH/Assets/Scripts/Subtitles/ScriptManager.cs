@@ -13,11 +13,11 @@ public class ScriptManager : Singleton<ScriptManager>
     private string resourceFile_script = "Script";
     private string resourceFile_duration = "AudioDuration";
     [HideInInspector]
-    public string voicePath;
+    public string voicePath { get; private set; }
 
-    private string textLanguage = "en";
+    private string textLanguage = "ru";
 
-    private string voiceLanguage = "en";
+    private string voiceLanguage = "ru";
 
 
     private void Awake()
@@ -104,7 +104,7 @@ public class ScriptManager : Singleton<ScriptManager>
     public void SwitchLanguageVoice(string lang)
     {
         voiceLanguage = lang;
-        voicePath = "event:/" + lang + "/";
+        voicePath = "event:/Voice" + lang + "/";
 
         string scriptFileName = resourcePath + resourceFile_duration + "." + lang;
         var textAsset = Resources.Load<TextAsset>(scriptFileName);

@@ -1,35 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using Single;
-
-public class TutorialPlayerWatcher: MonoBehaviour
+﻿public class TutorialPlayerWatcher
 {
 
-    [HideInInspector]
     public bool talk { get; private set; }
-    [HideInInspector]
     public bool talk_good { get; private set; }
-    [HideInInspector]
     public bool talk_bad { get; private set; }
-    [HideInInspector]
     public bool answer { get; private set; }
-    [HideInInspector]
     public bool answer_yes { get; private set; }
-    [HideInInspector]
     public bool answer_no { get; private set; }
-    [HideInInspector]
     public bool shout { get; private set; }
-    [HideInInspector]
     public bool execute { get; private set; }
-    [HideInInspector]
     public bool done { get; private set; }
 
 
 
+    public TutorialPlayerWatcher()
+    {
+        Setup();
+    }
 
-    public void Setup()
+
+    private void Setup()
     {
         Reset();
 

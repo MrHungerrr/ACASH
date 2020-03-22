@@ -7,9 +7,9 @@ namespace Excel_to_json
     {
         static string filesPath = "D:/GameDev/Unity/ACASH/ACASH/Assets/Resources/";
         static string excelPath = "D:/GameDev/Unity/ACASH/Docs/";
-        static string audioPath = "D:/GameDev/Unity/ACASH/ACASH/FMOD/Assets/";
+        static string audioPath = "D:/GameDev/Unity/ACASH/ACASH/FMOD/Assets/Voice/";
         static string[] nameOfFiles = new string[2] { "Script", "AudioDuration"};
-        static int[] quantOfSheets = new int[2] { 5, 1 };
+        static int[] quantOfSheets = new int[2] { 7, 2 };
 
         static void Main(string[] args)
         {
@@ -41,7 +41,7 @@ namespace Excel_to_json
                     }
 
                     nSentence[s - 1] = i;
-                    Console.WriteLine("    Shit {0} containts {1} cells", s, i);
+                    Console.WriteLine("    Sheet {0} containts {1} cells", s, i);
                     i = 2;
                 }
 
@@ -103,7 +103,7 @@ namespace Excel_to_json
 
                 if (c == 0)
                 {
-                    DictionaryWords(nSentence[3]);
+                    DictionaryWords(nSentence[4], 5);
                 }
 
                 Console.WriteLine();
@@ -126,9 +126,9 @@ namespace Excel_to_json
 
 
 
-        static private void DictionaryWords(int nSentence)
+        static private void DictionaryWords(int nSentence, int nSheet)
         {
-           var excel = new Excel(excelPath + nameOfFiles[0] + ".xlsx", 4);
+           var excel = new Excel(excelPath + nameOfFiles[0] + ".xlsx", nSheet);
 
             try
             {
@@ -159,119 +159,138 @@ namespace Excel_to_json
             Console.WriteLine("AudioDuration Begin");
             Console.WriteLine();
 
-            Excel excelAudio = new Excel(excelPath + nameOfFiles[1] + ".xlsx", 1);
-            Excel excelScript = new Excel(excelPath + nameOfFiles[0] + ".xlsx", 1);
-            int i = 1;
-            int j = 1;
 
-
-            //Количество фраз в файле с фразами
-            while (excelScript.ReadCell(i, 1) != "")
+            for (int s = 1; s <= quantOfSheets[1]; s++)
             {
-                i++;
-            }
-            int nSentence = i;
+
+                Excel excelAudio = new Excel(excelPath + nameOfFiles[1] + ".xlsx", s);
+                Excel excelScript = new Excel(excelPath + nameOfFiles[0] + ".xlsx", s);
+                int i = 1;
+                int j = 1;
 
 
-            //Количество языков озвучки в файле с длительностью озвучки
-            while (excelAudio.ReadCell(0, j) != "")
-            {
-                j++;
-            }
-
-            int nLang = j;
-
-
-            try
-            {
-                for (i = 2; i < nSentence; i++)
+                //Количество фраз в файле с фразами
+                while (excelScript.ReadCell(i, 1) != "")
                 {
-                    string KeyWord = excelScript.ReadCell(i, 1);
+                    i++;
+                }
+                int nSentence = i;
 
-                    if (excelAudio.ReadCell(i, 1) == "" || (excelScript.ReadCell(i, 1) != excelAudio.ReadCell(i, 1)))
-                    {
-                        excelAudio.WriteCell(i, 1, excelScript.ReadCell(i, 1));
 
-                    }
+                //Количество языков озвучки в файле с длительностью озвучки
+                while (excelAudio.ReadCell(0, j) != "")
+                {
+                    j++;
                 }
 
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
-            }
+                int nLang = j;
 
 
-            try
-            {
-                for (j = 2; j < nLang; j++)
+                try
                 {
-                    string language = excelAudio.ReadCell(0, j);
-
                     for (i = 2; i < nSentence; i++)
                     {
-                        if (excelAudio.ReadCell(i, j) == "" || (excelScript.QuantOfSentences(i, j) != excelAudio.QuantOfSentences(i, j)))
+                        string KeyWord = excelScript.ReadCell(i, 1);
+
+                        if (excelAudio.ReadCell(i, 1) == "" || (excelScript.ReadCell(i, 1) != excelAudio.ReadCell(i, 1)))
                         {
-                            double duration = 0;
-                            string nameFile = audioPath + language + "/" + excelAudio.ReadCell(i, 1);
+                            excelAudio.WriteCell(i, 1, excelScript.ReadCell(i, 1));
 
-                            if (File.Exists(nameFile + ".wav"))
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e);
+                }
+
+
+                try
+                {
+                    for (j = 2; j < nLang; j++)
+                    {
+                        string language = excelAudio.ReadCell(0, j);
+
+                        for (i = 2; i < nSentence; i++)
+                        {
+                            int n = excelScript.QuantOfSentences(i, j);
+
+                            if ((excelAudio.ReadCell(i, j) == "" || (n + 1) != excelAudio.QuantOfSentences(i, j)) && n!=0)
                             {
-                                NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(nameFile + ".wav");
-                                duration = wf.TotalTime.TotalSeconds;
 
-                                int n = excelScript.QuantOfSentences(i, 1);
-                                duration = duration / n;
+                                string nameFile = audioPath + language + "/" + excelAudio.ReadCell(i, 1);
+                                double duration = 0;
                                 string cell = "";
-                                string durStr = string.Format("{0:N2}", duration);
 
-                                for (int c = 0; c < n - 1; c++)
+                                if (File.Exists(nameFile + ".wav"))
                                 {
-                                    cell += durStr + ';';
+                                    NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(nameFile + ".wav");
+                                    duration = wf.TotalTime.TotalSeconds;
+                                    cell += duration + ';';
+                                    duration /= n;
+
+                                    string durStr = string.Format("{0:N1}", duration);
+
+                                    for (int c = 0; c < n - 1; c++)
+                                    {
+                                        cell += durStr + ';';
+                                    }
+                                    cell += durStr;
+
+                                    excelAudio.WriteCell(i, j, cell);
                                 }
-                                cell += durStr;
-
-                                excelAudio.WriteCell(i, j, cell);
-                            }
-                            else if (File.Exists(nameFile + ".mp3"))
-                            {
-                                NAudio.Wave.Mp3FileReader mp3f = new NAudio.Wave.Mp3FileReader(nameFile + ".mp3");
-                                duration = mp3f.TotalTime.TotalSeconds;
-
-                                int n = excelScript.QuantOfSentences(i, 2);
-                                duration = duration / n;
-                                string cell = "";
-                                string durStr = string.Format("{0:N1}", duration);
-
-                                for (int c = 0; c < n - 1; c++)
+                                else if (File.Exists(nameFile + ".mp3"))
                                 {
-                                    cell += durStr + ';';
-                                }
-                                cell += durStr;
+                                    NAudio.Wave.Mp3FileReader mp3f = new NAudio.Wave.Mp3FileReader(nameFile + ".mp3");
+                                    duration = mp3f.TotalTime.TotalSeconds;
+                                    cell += string.Format("{0:N1}", duration) + ';';
+                                    duration /= n;
 
-                                excelAudio.WriteCell(i, j, cell);
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("    File {0} was not found", nameFile);
-                                Console.ResetColor();
+                                    string durStr = string.Format("{0:N1}", duration);
+
+                                    for (int c = 0; c < n - 1; c++)
+                                    {
+                                        cell += durStr + ';';
+                                    }
+                                    cell += durStr;
+
+                                    excelAudio.WriteCell(i, j, cell);
+                                }
+                                else
+                                {
+                                    duration = 2f;
+
+                                    string durStr = string.Format("{0:N1}", duration);
+
+                                    for (int c = 0; c < n - 1; c++)
+                                    {
+                                        cell += durStr + ';';
+                                    }
+                                    cell += durStr;
+
+                                    excelAudio.WriteCell(i, j, cell);
+
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("    File {0} was not found", nameFile);
+                                    Console.ResetColor();
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.Write(e);
+                catch (Exception e)
+                {
+                    Console.Write(e);
+                }
+
+                excelAudio.Save();
+                excelAudio.Close();
+                excelScript.Close();
             }
 
             Console.WriteLine();
             Console.WriteLine("AudioDuration Complete\n\n");
-
-            excelAudio.Save();
-            excelAudio.Close();
-            excelScript.Close();
         }
 
     }

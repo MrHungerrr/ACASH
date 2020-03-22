@@ -23,9 +23,8 @@ public class GameManager : Singleton<GameManager>
         {
             game = true;
             Menu.get.MenuEnable(false);
-            InputManager.get.SwitchGameInput("gameplay");
-            SetLevelForTest();
         }
+
         FadeController.get.Fade(false);
     }
 
@@ -45,7 +44,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
-        StartCoroutine(StartGame());
+        StartCoroutine(LoadGame());
     }
 
     public void Continue()
@@ -55,7 +54,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
-        StartCoroutine(RestartGame());
+        StartCoroutine(LoadGame());
     }
 
     public void Quit()
@@ -82,7 +81,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public IEnumerator StartGame()
+    public IEnumerator LoadGame()
     {
         game = true;
         InputManager.get.SwitchGameInput("disable");
@@ -93,44 +92,23 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
 
         Menu.get.MenuEnable(false);
-        Player.get.transform.position = new Vector3(0f, 0.2f, 0f);
-        LevelManager.get.LoadFast("Elevator");
-        LevelManager.get.LoadFast("Tutorial");
-
-        while (!LevelManager.get.IsLoad("Elevator") || !LevelManager.get.IsLoad("Tutorial"))
-            yield return new WaitForEndOfFrame();
-
-        yield return new WaitForSeconds(0.1f);
-
-        FadeController.get.Fade(false);
-        InputManager.get.SwitchGameInput("gameplay");
-    }
-
-    public IEnumerator RestartGame()
-    {
-        game = true;
-        InputManager.get.SwitchGameInput("disable");
-
-        FadeController.get.Fade(true);
-
-        while (FadeController.get.active)
-            yield return new WaitForEndOfFrame();
-
-        Menu.get.MenuEnable(false);
-        Player.get.transform.position = new Vector3(0f, 0.2f, 0f);
         LevelManager.get.UnloadLevels();
 
         while (LevelManager.get.IsLoad())
             yield return new WaitForEndOfFrame();
 
-        LevelManager.get.LoadFast("Elevator");
         LevelManager.get.LoadFast("Tutorial");
 
-        while (!LevelManager.get.IsLoad("Elevator") || !LevelManager.get.IsLoad("Tutorial"))
+        while (!LevelManager.get.IsLoad("Tutorial"))
             yield return new WaitForEndOfFrame();
 
-        yield return new WaitForSeconds(0.1f);
+        //END
+    }
 
+
+
+    public void StartGame()
+    {
         FadeController.get.Fade(false);
         InputManager.get.SwitchGameInput("gameplay");
     }
@@ -162,14 +140,9 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public void StartLevel()
+    public void StartExam()
     {
         ExamManager.get.ResetExam();
-    }
-
-    public void ResetLevel()
-    {
-        PlaceManager.get.ResetLevel();
     }
 
 

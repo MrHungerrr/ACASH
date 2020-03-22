@@ -8,7 +8,17 @@ public abstract class A_SoundSimple
     protected GameObject obj;
 
 
-    protected void Make(string sound)
+    protected virtual void Setup()
+    {
+        obj = null;
+    }
+
+    protected virtual void Setup(GameObject obj)
+    {
+        this.obj = obj;
+    }
+
+    protected void MakeWithAttach(string sound)
     {
         try
         {
