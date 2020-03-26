@@ -6,6 +6,8 @@ using TMPro;
 public class ScholarTextBox : MonoBehaviour
 {
 
+    private Scholar Scholar;
+
     private TextMeshPro[] textBox = new TextMeshPro[3];
     private SliderWatch stressSlider;
     private bool saying = false;
@@ -18,8 +20,10 @@ public class ScholarTextBox : MonoBehaviour
     private float timeUnselectable = 0;
 
 
-    public void Setup()
+    public void Setup(Scholar Scholar)
     {
+        this.Scholar = Scholar;
+
         Transform buf = transform.parent.Find("Scholar").Find("Scholar").Find("Spine").Find("Text Box");
         textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();
         textBox[1] = buf.Find("Text_1").GetComponent<TextMeshPro>();
@@ -50,11 +54,11 @@ public class ScholarTextBox : MonoBehaviour
         {
             if (saying)
             {
-                //Звук говорения
+                Scholar.Sound.Play(ScholarSounds.sounds.Talk);
             }
             else
             {
-                //Минус звук говорения
+                Scholar.Sound.Stop(ScholarSounds.sounds.Talk);
             }
         }
     }
@@ -108,10 +112,10 @@ public class ScholarTextBox : MonoBehaviour
                 {
 
                     TextPlus(line[i]);
-                    yield return new WaitForSeconds(0.02f);
+                    yield return new WaitForSeconds(0.05f);
                 }
                 saying = false;
-                TextPlus(' ');
+                //TextPlus(' ');
                 yield return new WaitForSeconds(1f);
             }
         }

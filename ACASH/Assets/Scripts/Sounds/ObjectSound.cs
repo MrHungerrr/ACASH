@@ -2,44 +2,72 @@
 using System;
 using System.Collections.Generic;
 using FMODUnity;
-
 [RequireComponent(typeof(Rigidbody))]
 
-public class ObjectSound : MonoBehaviour, I_Sound
+public class ObjectSound : A_Sound
 {
+
     [SerializeField]
     [EventRef]
-    private string sound_path;
+    private string path;
 
-    private FMOD.Studio.EventInstance sound;
+    private new string name;
 
-    public void Setup()
+
+
+    public void Awake()
     {
-        sound = RuntimeManager.CreateInstance(sound_path);
-        RuntimeManager.AttachInstanceToGameObject(sound, gameObject.transform, gameObject.GetComponent<Rigidbody>());
+        Setup();
+    }
+
+
+    protected override void Setup()
+    {
+        name = "";
+
+        path = path.Remove(0, 7);
+
+        for (int i = path.Length - 1; i >= 0; i--)
+        {
+            if (path[i] != '/')
+            {
+                name = path[i] + name;
+            }
+            else
+            {
+                path = path.Remove(i + 1, path.Length - i - 1);
+                break;
+            }
+        }
+
+        Setup(gameObject, path);
+
+        AddSound(name);
     }
 
 
     public void Play()
     {
-        sound.start();
+        base.Play(name);
     }
 
     public void Pause()
     {
-        sound.setPaused(true);
+        base.Pause(name);
     }
 
     public void Continue()
     {
-        sound.setPaused(false);
+        base.Continue(name);
     }
 
     public void Stop()
     {
-        sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        base.Stop(name);
     }
 
-
-
+    public void Stop(bool immediate)
+    {
+        base.Stop(name, immediate);
+    }
 }

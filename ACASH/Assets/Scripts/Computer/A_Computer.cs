@@ -35,7 +35,9 @@ public abstract class A_Computer : MonoBehaviour
     {
         Transform win = transform.Find("Screen").Find("UI").Find("Canvas").Find("Windows");
         Numpad = win.parent.Find("Screen").GetComponentInChildren<NumpadController>();
-        Sound = new ComputerSounds(this);
+
+        Sound = GetComponent<ComputerSounds>();
+        Sound.Setup(this);
 
         Login = win.GetComponent<LoginController>();
         Login.Setup(this);

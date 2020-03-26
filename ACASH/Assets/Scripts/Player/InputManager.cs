@@ -11,7 +11,7 @@ public class InputManager : Singleton<InputManager>
 {
 
     private Player Player;
-    private PlayerControls Controls;
+    public PlayerControls Controls { get; private set; }
 
 
     [HideInInspector]

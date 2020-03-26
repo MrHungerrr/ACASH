@@ -31,7 +31,7 @@ public class ScholarSenses
     private const float peripheral_vision_angle = 140f;
     private const float central_vision_angle = 30f;
     private const float vision_distance = 5f;
-    private LayerMask visible_layerMask = LayerMask.GetMask("Wall");
+    private LayerMask visible_layerMask = LayerMask.GetMask("Wall", "Teacher");
 
 
     public ScholarSenses(Scholar s)
@@ -115,7 +115,7 @@ public class ScholarSenses
         T_angle_y = BaseGeometry.LookingAngle(Player.get.transform, Scholar.Move.transform.position);
         T_angle_x = (Player.get.Camera.transform.rotation.eulerAngles.x + 30) % 360;
 
-        T_direction = new Vector3(Player.get.transform.position.x - Scholar.Move.transform.position.x, 0, Player.get.transform.position.z - Scholar.Move.transform.position.z).normalized;
+        T_direction = BaseGeometry.GetDirection2D(Scholar.Move.Position(), Player.get.Move.Position());
 
         T_distance = GetHearDistance(Player.get.transform.position);
 

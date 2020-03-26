@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Single;
+using PlayerOptions;
 
 public class HUDManager : Singleton<HUDManager>
 {
@@ -11,18 +10,49 @@ public class HUDManager : Singleton<HUDManager>
     private const float hud_const_cd = 5f;
     
 
-    Dictionary<string, HUDSelect> huds = new Dictionary<string, HUDSelect>();
+    private Dictionary<string, HUDSelect> huds = new Dictionary<string, HUDSelect>();
+    private HUDSelect hint;
+    private HUDSelect subtitle;
+    private HUDSelect introdaction;
+    private bool subtitle_active;
 
     private void Awake()
     {
         HUDSelect[] bufs = GameObject.FindObjectsOfType<HUDSelect>();
 
-        foreach(HUDSelect buf in bufs)
+        foreach (HUDSelect buf in bufs)
         {
-            huds.Add(buf.name, buf);
+            switch(buf.name)
+            {
+                case "Hint":
+                    {
+                        hint = buf;
+                        break;
+                    }
+                case "Subtitles":
+                    {
+                        subtitle = buf;
+                        break;
+                    }
+                case "Introdaction":
+                    {
+                        introdaction = buf;
+                        break;
+                    }
+                default:
+                    {
+                        huds.Add(buf.name, buf);
+                        break;
+                    }
+
+            }
         }
 
         CloseHUD();
+        CloseHintHUD();
+        SubtitleHUD(false);
+        SubtitleDisable(false);
+        CloseIntrodactionHUD();
     }
 
     private void Update()
@@ -84,6 +114,50 @@ public class HUDManager : Singleton<HUDManager>
         active = true;
     }
 
+    public void HintHUD(GetP.actions action)
+    {
+        HintHUDController.get.SetHint(action);
+        hint.Select(true);
+    }
+
+    public void CloseHintHUD()
+    {
+        hint.Select(false);
+    }
+
+    public void IntrodactionHUD(KeyWord introdaction_key)
+    {
+        introdaction_key += 0;
+        string text = ScriptManager.get.GetLine(introdaction_key) + "\n";
+        introdaction_key += 1;
+        text += ScriptManager.get.GetLine(introdaction_key);
+
+        HUDController.get.Introdaction(text);
+        introdaction.Select(true);
+    }
+
+    public void CloseIntrodactionHUD()
+    {
+        introdaction.Select(false);
+    }
+
+
+    public void SubtitleHUD(bool enable)
+    {
+        if(subtitle_active)
+            subtitle.Select(enable);
+    }
+
+    public void SubtitleDisable(bool option)
+    {
+        subtitle_active = !option;
+
+        if(option)
+            subtitle.Select(false);
+    }
+
+
+
     public void ExecuteHUD(bool option)
     {
         ExecuteHUDController.get.active = option;
@@ -114,6 +188,7 @@ public class HUDManager : Singleton<HUDManager>
         hud_cd = hud_const_cd;
         active = true;
     }
+
 
     private void CloseTime()
     {

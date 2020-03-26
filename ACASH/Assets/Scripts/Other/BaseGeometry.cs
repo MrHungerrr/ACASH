@@ -27,4 +27,15 @@ public static class BaseGeometry
         return Vector3.Angle(lookingTo, who.forward);
     }
 
+
+    public static Vector3 GetDirection2D(Vector3 from, Vector3 to)
+    {
+        return new Vector3(to.x - from.x, 0, to.z - from.z).normalized;
+    }
+
+
+    public static Vector3 GetDirection(Vector3 from, Vector3 to)
+    {
+        return new Vector3(to.x - from.x, to.y - from.y, to.z - from.z).normalized;
+    }
 }

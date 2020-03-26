@@ -1,8 +1,13 @@
-﻿using UnityEngine;
-using FMODUnity;
+﻿using System;
+using UnityEngine;
 
-public class SoundManager : A_SoundSimple
+public class SoundManager : A_Sound
 {
+    public enum sounds
+    {
+        Sound_1,
+    }
+
 
 
     private static SoundManager _get;
@@ -17,9 +22,17 @@ public class SoundManager : A_SoundSimple
                 
                 lock(_lock)
                 {
-                    if(_get == null)
+                    _get = FindObjectOfType<SoundManager>();
+
+                    if (FindObjectsOfType<SoundManager>().Length > 1)
                     {
-                        _get = new SoundManager();
+                        Debug.LogError("Несколько Синглтонов '" + typeof(SoundManager).ToString() + "' найдено! ");
+                    }
+
+                    if (_get == null)
+                    {
+                        Debug.Log("На сцене отсутсвует " + typeof(SoundManager).ToString());
+                        return null;
                     }
                 }
             }
@@ -30,21 +43,54 @@ public class SoundManager : A_SoundSimple
 
 
 
-    private SoundManager()
+    private void Awake()
     {
-        sounds_path += "Global/Sounds/";
         Setup();
     }
 
 
-    public enum sound   
+    protected override void Setup()
     {
-        Fuck,
+        base.Setup("Global/Sounds/");
+
+        for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
+        {
+            sounds name = (sounds)i;
+            AddSoundWithoutAttach(name.ToString());
+        }
     }
 
 
-    public void Make(sound sound)
+
+
+
+
+    //========================================================================================================================
+    //========================================================================================================================
+    //Не трогать
+
+    public void Play(sounds sound)
     {
-        base.MakeWithoutAttach(sound.ToString());
+        base.Play(sound.ToString());
+    }
+
+    public void Pause(sounds sound)
+    {
+        base.Pause(sound.ToString());
+    }
+
+    public void Continue(sounds sound)
+    {
+        base.Continue(sound.ToString());
+    }
+
+    public void Stop(sounds sound)
+    {
+        base.Stop(sound.ToString());
+    }
+
+    public void Stop(sounds sound, bool immediate)
+    {
+        base.Stop(sound.ToString(), immediate);
     }
 }

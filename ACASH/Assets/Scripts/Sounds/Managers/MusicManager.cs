@@ -5,7 +5,14 @@ using FMODUnity;
 
 public class MusicManager : A_Sound
 {
+    public enum music
+    {
+        Track_1,
+    }
 
+
+    //====================================================================================================
+    //Singleton
     private static MusicManager _get;
     private static System.Object _lock = new System.Object();
 
@@ -18,9 +25,17 @@ public class MusicManager : A_Sound
 
                 lock (_lock)
                 {
+                    _get = FindObjectOfType<MusicManager>();
+
+                    if (FindObjectsOfType<MusicManager>().Length > 1)
+                    {
+                        Debug.LogError("Несколько Синглтонов '" + typeof(MusicManager).ToString() + "' найдено! ");
+                    }
+
                     if (_get == null)
                     {
-                        _get = new MusicManager();
+                        Debug.Log("На сцене отсутсвует " + typeof(MusicManager).ToString());
+                        return null;
                     }
                 }
             }
@@ -30,14 +45,7 @@ public class MusicManager : A_Sound
     }
 
 
-    public enum music
-    {
-        Track_1,
-    }
-
-
-
-    private MusicManager()
+    private void Awake()
     {
         Setup();
     }
@@ -45,13 +53,12 @@ public class MusicManager : A_Sound
 
     protected override void Setup()
     {
-        sounds_path += "Global/Music/";
-        base.Setup();
+        base.Setup("Global/Music/");
 
         for (int i = 0; i < Enum.GetNames(typeof(music)).Length; i++)
         {
             music name = (music)i;
-            AddInfiniteWithoutAttach(name.ToString());
+            AddSoundWithoutAttach(name.ToString());
         }
     }
 

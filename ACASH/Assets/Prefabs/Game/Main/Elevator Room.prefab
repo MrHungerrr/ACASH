@@ -1180,11 +1180,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator
       objectReference: {fileID: 0}
-    - target: {fileID: 5042331962225350924, guid: 9830ee9a1e3ef064785990673d7b876f,
-        type: 3}
-      propertyPath: m_TagString
-      value: Elevator
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9830ee9a1e3ef064785990673d7b876f, type: 3}
 --- !u!4 &7034833812564374417 stripped

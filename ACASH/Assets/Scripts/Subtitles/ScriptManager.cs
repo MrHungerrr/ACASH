@@ -7,13 +7,11 @@ using Single;
 public class ScriptManager : Singleton<ScriptManager>
 {
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
-    private Dictionary<string, string[]> linesDuration = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, float[]> durations = new Dictionary<string, float[]>();
 
     private string resourcePath = "Subtitles/";
     private string resourceFile_script = "Script";
     private string resourceFile_duration = "AudioDuration";
-    [HideInInspector]
-    public string voicePath { get; private set; }
 
     private string textLanguage = "ru";
 
@@ -34,13 +32,13 @@ public class ScriptManager : Singleton<ScriptManager>
 
     private string[] GetText(string textKey)
     {
-        string[] tmp = new string[] { };
+        string[] tmp;
         if (lines.TryGetValue(textKey, out tmp))
             return tmp;
         else
         {
-            //Сделать пустоту и нулевое время
-            return new string[] { "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>" };
+            Debug.Log("<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>");
+            return new string[] {""};
         }
     }
 
@@ -52,13 +50,14 @@ public class ScriptManager : Singleton<ScriptManager>
 
     public string GetLine(string textKey)
     {
-        string[] tmp = new string[] { };
+        string[] tmp;
         if (lines.TryGetValue(textKey, out tmp))
             return tmp[0];
         else
         {
             //Сделать пустоту и нулевое время
-            return "<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>";
+            Debug.Log("<color=#ff00ff>MISSING TEXT for '" + textKey + "'</color>");
+            return "";
         }
     }
 
@@ -70,14 +69,10 @@ public class ScriptManager : Singleton<ScriptManager>
 
     private float[] GetFloat(string textKey)
     {
-        string[] tmp = new string[] { };
-        if (linesDuration.TryGetValue(textKey, out tmp))
+        float[] tmp;
+        if (durations.TryGetValue(textKey, out tmp))
         {
-            float[] res = new float[tmp.Length];
-            for (int i = 0; i < tmp.Length; i++)
-                res[i] = float.Parse(tmp[i]);
-
-            return res;
+            return tmp;
         }
         else
         {
@@ -104,15 +99,14 @@ public class ScriptManager : Singleton<ScriptManager>
     public void SwitchLanguageVoice(string lang)
     {
         voiceLanguage = lang;
-        voicePath = "event:/Voice" + lang + "/";
 
         string scriptFileName = resourcePath + resourceFile_duration + "." + lang;
         var textAsset = Resources.Load<TextAsset>(scriptFileName);
-        var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
+        var voText = JsonUtility.FromJson<DurationStorage>(textAsset.text);
 
         foreach (var t in voText.lines)
         {
-            linesDuration[t.key] = t.line;
+            durations[t.key] = t.duration;
         }
     }
 }

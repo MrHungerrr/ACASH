@@ -27,6 +27,8 @@ TagManager:
   - Objects_Container
   - Home
   - PlayerPoint
+  - ActionObject
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -43,7 +45,7 @@ TagManager:
   - Wall
   - Computer
   - Not Visible
-  - 
+  - Teacher
   - 
   - 
   - 

@@ -7,34 +7,23 @@ public class ComputerSounds : A_Sound
 {
     A_Computer Computer;
 
-    public enum one_shot
-    {
-        Click,
-        Open_Window,
-    }
-
-    public enum infinite
+    public enum sounds
     {
         Load,
+        Click,
     }
 
 
-    public ComputerSounds(A_Computer Computer)
+    public void Setup(A_Computer Computer)
     {
-        sounds_path += "Local/Computer/";
         this.Computer = Computer;
+     
+        base.Setup(Computer.gameObject, "Local/Computer/");
 
-        Setup(Computer.gameObject);
-    }
-
-    protected override void Setup(GameObject obj)
-    {
-        base.Setup(obj);
-
-        for (int i = 0; i < Enum.GetNames(typeof(infinite)).Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
-            infinite name = (infinite)i;
-            AddInfinite(name.ToString());
+            sounds name = (sounds)i;
+            AddSound(name.ToString());
         }
     }
 
@@ -47,32 +36,28 @@ public class ComputerSounds : A_Sound
     //========================================================================================================================
     //Не трогать
 
-    public void Make(one_shot sound)
-    {
-        base.MakeWithAttach(sound.ToString());
-    }
 
-    public void Play(infinite sound)
+    public void Play(sounds sound)
     {
         base.Play(sound.ToString());
     }
 
-    public void Pause(infinite sound)
+    public void Pause(sounds sound)
     {
         base.Pause(sound.ToString());
     }
 
-    public void Continue(infinite sound)
+    public void Continue(sounds sound)
     {
         base.Continue(sound.ToString());
     }
 
-    public void Stop(infinite sound)
+    public void Stop(sounds sound)
     {
         base.Stop(sound.ToString());
     }
 
-    public void Stop(infinite sound, bool immediate)
+    public void Stop(sounds sound, bool immediate)
     {
         base.Stop(sound.ToString(),immediate);
     }

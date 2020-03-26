@@ -6,36 +6,24 @@ using Single;
 
 public class ElevatorSounds: A_Sound
 {
-
-
-    public enum one_shot
+    public enum sounds
     {
+        Move,
         Ring,
         Open,
         Close,
     }
 
-    public enum infinite
+
+
+    public new void Setup(GameObject obj)
     {
-        Move,
-    }
+        base.Setup(obj, "Local/Elevator/");
 
-
-    public ElevatorSounds(GameObject obj)
-    {
-        sounds_path += "Local/Elevator/";
-
-        Setup(obj);
-    }
-
-    protected override void Setup(GameObject obj)
-    {
-        base.Setup(obj);
-
-        for (int i = 0; i < Enum.GetNames(typeof(infinite)).Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
-            infinite name = (infinite)i;
-            AddInfiniteWithoutAttach(name.ToString());
+            sounds name = (sounds)i;
+            AddSound(name.ToString());
         }
     }
 
@@ -48,39 +36,27 @@ public class ElevatorSounds: A_Sound
     //========================================================================================================================
     //Не трогать
 
-
-
-    public void Make(one_shot sound)
-    {
-        base.MakeWithAttach(sound.ToString());
-    }
-
-    public void MakeWithoutAttach(one_shot sound)
-    {
-        base.MakeWithoutAttach(sound.ToString());
-    }
-
-    public void Play(infinite sound)
+    public void Play(sounds sound)
     {
         base.Play(sound.ToString());
     }
 
-    public void Pause(infinite sound)
+    public void Pause(sounds sound)
     {
         base.Pause(sound.ToString());
     }
 
-    public void Continue(infinite sound)
+    public void Continue(sounds sound)
     {
         base.Continue(sound.ToString());
     }
 
-    public void Stop(infinite sound)
+    public void Stop(sounds sound)
     {
         base.Stop(sound.ToString());
     }
 
-    public void Stop(infinite sound, bool immediate)
+    public void Stop(sounds sound, bool immediate)
     {
         base.Stop(sound.ToString(), immediate);
     }

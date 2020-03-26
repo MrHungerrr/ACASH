@@ -35,8 +35,6 @@ public class ExamManager : Singleton<ExamManager>
     {
         PrepareDone += StartExam;
         ExamDone += FinishExam;
-
-        LevelSettings.get.ExamNext += ResetExam;
     }
 
 
@@ -53,6 +51,8 @@ public class ExamManager : Singleton<ExamManager>
 
         exam_key += 0;
         HUDManager.get.ExamHUD(exam_key);
+
+        LevelSettings.get.ExamNext += ResetExam;
     }
 
     private void StartPrepare()

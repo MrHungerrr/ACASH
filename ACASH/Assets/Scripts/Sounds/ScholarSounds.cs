@@ -7,34 +7,22 @@ public class ScholarSounds : A_Sound
 {
     Scholar Scholar;
 
-    public enum one_shot
-    {
-        Touch,
-    }
 
-    public enum infinite
+    public enum sounds
     {
         Talk,
         Walk,
     }
 
-
-    public ScholarSounds(Scholar Scholar)
+    public void Setup(Scholar Scholar)
     {
-        sounds_path += "Local/Scholar/";
         this.Scholar = Scholar;
+        base.Setup(Scholar.transform.parent.gameObject, "Local/Scholar/");
 
-        Setup(Scholar.gameObject);
-    }
-
-    protected override void Setup(GameObject obj)
-    {
-        base.Setup(obj);
-
-        for (int i = 0; i < Enum.GetNames(typeof(infinite)).Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
-            infinite name = (infinite)i;
-            AddInfinite(name.ToString());
+            sounds name = (sounds)i;
+            AddSound(name.ToString());
         }
     }
 
@@ -46,32 +34,28 @@ public class ScholarSounds : A_Sound
     //========================================================================================================================
     //Не трогать
 
-    public void Make(one_shot sound)
-    {
-        base.MakeWithAttach(sound.ToString());
-    }
 
-    public void Play(infinite sound)
+    public void Play(sounds sound)
     {
         base.Play(sound.ToString());
     }
 
-    public void Pause(infinite sound)
+    public void Pause(sounds sound)
     {
         base.Pause(sound.ToString());
     }
 
-    public void Continue(infinite sound)
+    public void Continue(sounds sound)
     {
         base.Continue(sound.ToString());
     }
 
-    public void Stop(infinite sound)
+    public void Stop(sounds sound)
     {
         base.Stop(sound.ToString());
     }
 
-    public void Stop(infinite sound, bool immediate)
+    public void Stop(sounds sound, bool immediate)
     {
         base.Stop(sound.ToString(),immediate);
     }

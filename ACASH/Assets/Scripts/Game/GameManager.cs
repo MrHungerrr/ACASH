@@ -110,6 +110,7 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         FadeController.get.Fade(false);
+        FadeHUDController.get.Fade(false);
         InputManager.get.SwitchGameInput("gameplay");
     }
 

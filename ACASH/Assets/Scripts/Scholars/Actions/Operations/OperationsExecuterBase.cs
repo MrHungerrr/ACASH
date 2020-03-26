@@ -325,8 +325,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-
-        Scholar.Desk.ResetComputer();
+        Scholar.Talk.Stop();
         Scholar.Emotions.Change("dead");
 
         OperationEnd();

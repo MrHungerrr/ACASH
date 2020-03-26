@@ -2,50 +2,80 @@
 using FMODUnity;
 using System.Collections.Generic;
 
-
-
-public abstract class A_Sound : A_SoundSimple
+public abstract class A_Sound: MonoBehaviour
 {
-
-    protected string playing_now;
-    [HideInInspector]
-    public bool playing;
-
-    protected Dictionary<string, FMOD.Studio.EventInstance> infinite_sounds = new Dictionary<string, FMOD.Studio.EventInstance>();
+    protected string sounds_path = "event:/";
 
 
-    protected override void Setup(GameObject obj)
+    protected Dictionary<string, FMODAudio> FMODsounds = new Dictionary<string, FMODAudio>();
+    public GameObject obj { get; private set; }
+
+    public event ActionEvent.OnAction UpdateSound;
+
+
+    protected virtual void Setup()
     {
-        base.Setup(obj);
+        obj = null;
+    }
+
+    protected virtual void Setup(GameObject obj)
+    {
+        this.obj = obj;
+    }
+
+    protected virtual void Setup(string path)
+    {
+        obj = null;
+        this.sounds_path += path;
+    }
+
+    protected virtual void Setup(GameObject obj, string path)
+    {
+        this.obj = obj;
+        this.sounds_path += path;
+    }
+
+    public void Update()
+    {
+        if (UpdateSound != null)
+            UpdateSound();
+    }
+
+    protected void AddSound(string name)
+    {
+        //try
+        {
+            if (obj != null)
+            {
+                FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + name);
+                RuntimeManager.AttachInstanceToGameObject(sound, obj.transform, obj.GetComponent<Rigidbody>());
+                FMODAudio audio = new FMODAudio(this, sound, true);
+                FMODsounds.Add(name, audio);
+            }
+            else
+            {
+                Debug.Log("No object to Attach - " + name);
+            }
+        }
+       /* catch
+        {
+            Debug.Log("ERROR in adding Sound - " + name);
+        }
+        */
     }
 
 
-
-    protected void AddInfinite(string name)
+    protected void AddSoundWithoutAttach(string name)
     {
         try
         {
-            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + "Infinite/" + name);
-            RuntimeManager.AttachInstanceToGameObject(sound, obj.transform, obj.GetComponent<Rigidbody>());
-            infinite_sounds.Add(name, sound);
+            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + name);
+            FMODAudio audio = new FMODAudio(this, sound, false);
+            FMODsounds.Add(name, audio);
         }
         catch
         {
-            Debug.LogError("Infinite Sound is MISSING - " + name);
-        }
-    }
-
-
-    protected void AddInfiniteWithoutAttach(string name)
-    {
-        try
-        {
-            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + "Infinite/" + name);
-            infinite_sounds.Add(name, sound);
-        }
-        catch
-        {
-            Debug.LogError("Infinite Sound is MISSING - " + name);
+            Debug.Log("ERROR in adding Sound - " + name);
         }
     }
 
@@ -55,42 +85,38 @@ public abstract class A_Sound : A_SoundSimple
     {
         try
         {
-            infinite_sounds[sound].start();
-            Debug.Log("Infinite Sound Start - " + sound);
-            playing_now = sound;
-            playing = true;
+            if(FMODsounds[sound].Play())
+            {
+                Debug.Log("Sound Start - " + sound);
+            }
+            else
+            {
+                Debug.Log("Sound is already playing - " + sound);
+            }
+
         }
         catch
         {
-            Debug.LogError("Infinite Sound is MISSING - " + sound);
+            Debug.Log("Sound is MISSING - " + sound);
         }
     }
 
 
-    public void Pause()
-    {
-        Pause(playing_now);
-    }
-
     protected void Pause(string sound)
     {
-        if (playing)
-            infinite_sounds[sound].setPaused(true);
-        else
-            Debug.LogError("Никакой трек не играет");
-    }
+        if (!FMODsounds[sound].Pause())
+        {
+            Debug.Log("Sound is not playing - " + sound);
+        }
 
-    public void Continue()
-    {
-        Continue(playing_now);
     }
 
     protected void Continue(string sound)
     {
-        if (playing)
-            infinite_sounds[sound].setPaused(false);
-        else
-            Debug.LogError("Никакой трек не играет");
+        if (!FMODsounds[sound].Continue())
+        {
+            Debug.Log("Sound is not paused - " + sound);
+        }
     }
 
 
@@ -99,43 +125,14 @@ public abstract class A_Sound : A_SoundSimple
     //Остановка Sound
     protected void Stop(string sound)
     {
-        Stop(sound, false);
+        FMODsounds[sound].Stop();
     }
 
     protected void Stop(string sound, bool immediate)
     {
-        if (playing)
+        if(!FMODsounds[sound].Stop(immediate))
         {
-            try
-            {
-                Debug.Log("Infinite Sound Stop - " + sound);
-
-                if (immediate)
-                    infinite_sounds[sound].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                else
-                    infinite_sounds[sound].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-
-                playing = false;
-                playing_now = default;
-            }
-            catch
-            {
-                Debug.LogError("Infinite Sound is MISSING - " + sound);
-            }
+            Debug.Log("Sound is not active - " + sound);
         }
     }
-
-
-
-    //Остановка Sound_Now
-    public void Stop()
-    {
-        Stop(false);
-    }
-
-    public void Stop(bool immediate)
-    {
-        Stop(playing_now, immediate);
-    }
-
 }

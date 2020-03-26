@@ -91,9 +91,10 @@ GameObject:
   - component: {fileID: 5042331962225350925}
   - component: {fileID: 5042331961321678848}
   - component: {fileID: 1517153621870233492}
+  - component: {fileID: 4986684956080034108}
   m_Layer: 12
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: Elevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -128,6 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 1517153621870233492}
+  Sound: {fileID: 0}
+  position: {x: 0, y: 0, z: 0}
 --- !u!65 &5042331961321678848
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -154,6 +157,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.48, z: 0.35}
   m_Center: {x: 0, y: 0.24, z: 0}
+--- !u!114 &4986684956080034108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5042331962225350924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbdf51eaa60a95429def8428f02393b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5483577598311957172
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,10 @@ public class Elevator : Singleton<Elevator>
 
     void Awake()
     {
-        Sound = new ElevatorSounds(transform.parent.Find("Elevator Sounds").gameObject);
+        Sound = new ElevatorSounds();
+
+        Sound = GetComponent<ElevatorSounds>();
+        Sound.Setup(transform.parent.Find("Elevator Sounds").gameObject);
 
         position = transform.parent.Find("Floor").position;
 
@@ -110,7 +113,7 @@ public class Elevator : Singleton<Elevator>
 
             active = true;
 
-            Sound.Make(ElevatorSounds.one_shot.Open);
+            Sound.Play(ElevatorSounds.sounds.Open);
         }
     }
 
@@ -128,15 +131,15 @@ public class Elevator : Singleton<Elevator>
             col.enabled = true;
             active = true;
 
-            Sound.Make(ElevatorSounds.one_shot.Close);
+            Sound.Play(ElevatorSounds.sounds.Close);
         }
     }
 
 
     private void DoorMove()
     {
-        doorLeft.position = Vector3.Slerp(doorLeft.position, doorLeftTarget, 6 * Time.deltaTime);
-        doorRight.position = Vector3.Slerp(doorRight.position, doorRightTarget, 6 * Time.deltaTime);
+        doorLeft.position = Vector3.Slerp(doorLeft.position, doorLeftTarget, 3 * Time.deltaTime);
+        doorRight.position = Vector3.Slerp(doorRight.position, doorRightTarget, 3 * Time.deltaTime);
 
         if ((Mathf.Abs(doorLeft.position.x - doorLeftTarget.x) < 0.0001f && ninety) || (Mathf.Abs(doorLeft.position.z - doorLeftTarget.z) < 0.0001f && !ninety))
         {

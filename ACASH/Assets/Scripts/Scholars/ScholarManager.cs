@@ -197,7 +197,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (!scholars[i].Senses.T_behind_wall)
+            if (!scholars[i].Senses.T_behind_wall && scholars[i].active)
                 result.Add(scholars[i]);
         }
 

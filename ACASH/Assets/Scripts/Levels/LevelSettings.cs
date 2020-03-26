@@ -15,9 +15,8 @@ public class LevelSettings: Singleton<LevelSettings>
 
 
    
-    public delegate void OnExamDone();
-    public event OnExamDone ExamNext;
-    public event OnExamDone ExamOver;
+    public event ActionEvent.OnAction ExamNext;
+    public event ActionEvent.OnAction ExamOver;
 
 
     [Range(0,20)]
@@ -40,11 +39,13 @@ public class LevelSettings: Singleton<LevelSettings>
         if( exam_index < examsCount)
         {
             exam_index++;
-            ExamNext();
+            if(ExamNext != null)
+                ExamNext();
         }
         else
         {
-            ExamOver();
+            if (ExamOver != null)
+                ExamOver();
         }
     }
 

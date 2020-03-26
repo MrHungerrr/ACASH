@@ -6,7 +6,8 @@ using TMPro;
 
 public class HUDSelect : MonoBehaviour
 {
-
+    [SerializeField]
+    private bool instant;
     [SerializeField]
     private Image[] images;
     [SerializeField]
@@ -44,39 +45,46 @@ public class HUDSelect : MonoBehaviour
 
     private void Selecting()
     {
-        if (selectNeed)
+        if (!instant)
         {
-            currentFade = Mathf.Lerp(currentFade, (targetFade + 0.01f), Time.unscaledDeltaTime * 30f);
+            if (selectNeed)
+            {
+                currentFade = Mathf.Lerp(currentFade, targetFade, Time.unscaledDeltaTime * 30f);
+            }
+            else
+            {
+                currentFade = Mathf.Lerp(currentFade, targetFade, Time.unscaledDeltaTime * 30f);
+            }
         }
         else
         {
-            currentFade = Mathf.Lerp(currentFade, (targetFade - 0.01f), Time.unscaledDeltaTime * 30f);
+            currentFade = targetFade;
         }
 
         foreach (Image i in images)
         {
-            i.color = new Color(1f, 1f, 1f, currentFade);
+            i.color = new Color(i.color.r, i.color.g, i.color.b, currentFade);
         }
 
         foreach(TextMeshProUGUI t in texts)
         {
-            t.color = new Color(1f, 1f, 1f, currentFade);
+            t.color = new Color(t.color.r, t.color.g, t.color.b, currentFade);
         }
 
-        if ((targetFade - Mathf.Sign(targetFade - 0.5f) * currentFade) < 0.00001f)
+        if ( Mathf.Abs(currentFade - targetFade) < 0.001f)
         {
 
             currentFade = targetFade;
             foreach (Image i in images)
             {
                 if(i.gameObject.activeSelf)
-                    i.color = new Color(1f, 1f, 1f, currentFade);
+                    i.color = new Color(i.color.r, i.color.g, i.color.b, currentFade);
             }
 
             foreach (TextMeshProUGUI t in texts)
             {
                 if (t.gameObject.activeSelf)
-                    t.color = new Color(1f, 1f, 1f, currentFade);
+                    t.color = new Color(t.color.r, t.color.g, t.color.b, currentFade);
             }
             active = false;
         }

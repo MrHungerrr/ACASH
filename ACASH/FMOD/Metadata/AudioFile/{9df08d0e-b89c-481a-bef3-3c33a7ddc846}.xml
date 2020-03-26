@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{9df08d0e-b89c-481a-bef3-3c33a7ddc846}">
+		<property name="assetPath">
+			<value>Sounds/Elevator/Elevator Move 1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>36.332500000000003</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7cee24ac-f0db-4683-9259-a97482156a0f}</destination>
+		</relationship>
+	</object>
+</objects>

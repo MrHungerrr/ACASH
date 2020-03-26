@@ -4,7 +4,7 @@ using UnityEngine;
 public class ScholarActions
 {
     private Scholar Scholar;
-    private OperationsManager Operations { get; }
+    public OperationsManager Operations { get;}
     private ActionsSimple Simple { get; }
     private ActionsQueue Queue { get; }
 

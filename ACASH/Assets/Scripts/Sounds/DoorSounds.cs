@@ -3,29 +3,59 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class DoorSounds : A_SoundSimple
+public class DoorSounds : A_Sound
 {
-    Door Door;
 
-    public enum one_shot
+    public enum sounds
     {
         Open,
         Close
     }
 
 
-    public DoorSounds(Door Door)
-    {
-        sounds_path += "Local/Door/";
-        this.Door = Door;
 
-        Setup(Door.gameObject);
+    public new void Setup(GameObject obj)
+    {
+        base.Setup(transform.parent.gameObject, "Local/Door/");
+
+        for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
+        {
+            sounds name = (sounds)i;
+            AddSound(name.ToString());
+        }
     }
 
 
 
-    public void Make(one_shot sound)
+
+
+
+    //========================================================================================================================
+    //========================================================================================================================
+    //Не трогать
+
+    public void Play(sounds sound)
     {
-        base.MakeWithAttach(sound.ToString());
+        base.Play(sound.ToString());
+    }
+
+    public void Pause(sounds sound)
+    {
+        base.Pause(sound.ToString());
+    }
+
+    public void Continue(sounds sound)
+    {
+        base.Continue(sound.ToString());
+    }
+
+    public void Stop(sounds sound)
+    {
+        base.Stop(sound.ToString());
+    }
+
+    public void Stop(sounds sound, bool immediate)
+    {
+        base.Stop(sound.ToString(), immediate);
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, I_Interaction
 {
-
-    private bool open = false;
+    [HideInInspector]
+    public bool open { get; private set; } = false;
     public bool locked;
     private bool active = false;
 
@@ -29,7 +29,8 @@ public class Door : MonoBehaviour, I_Interaction
     {
         RB = transform.parent.GetComponent<Rigidbody>();
 
-        Sound = new DoorSounds(this);
+        Sound = GetComponent<DoorSounds>();
+        Sound.Setup(RB.gameObject);
 
         doorT = transform.parent.parent;
         commonRot = transform.parent.rotation;
@@ -39,7 +40,6 @@ public class Door : MonoBehaviour, I_Interaction
 
         active = false;
     }
-
 
 
     void FixedUpdate()
@@ -99,7 +99,7 @@ public class Door : MonoBehaviour, I_Interaction
             }
 
             ScholarManager.get.SpecialHear(doorT.position);
-            Sound.Make(DoorSounds.one_shot.Open);
+            Sound.Play(DoorSounds.sounds.Open);
             active = true;
         }
 
@@ -128,7 +128,7 @@ public class Door : MonoBehaviour, I_Interaction
 
     public void Close()
     {
-        Sound.Make(DoorSounds.one_shot.Close);
+        Sound.Play(DoorSounds.sounds.Close);
         targetRot = commonRot;
         active = true;
     }

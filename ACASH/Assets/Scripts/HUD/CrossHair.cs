@@ -82,6 +82,7 @@ public class CrossHair : Singleton<CrossHair>
                 case "Computer":
                 case "Elevator":
                 case "Door":
+                case "ActionObject":
                     {
                         SwitchHair("Action");
                         break;
@@ -97,6 +98,7 @@ public class CrossHair : Singleton<CrossHair>
         {
             SwitchHair("Simple");
         }
+
     }
 
 }

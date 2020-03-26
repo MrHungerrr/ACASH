@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EncodableAsset" id="{ac27bf45-8fcc-4257-bebf-0c352e23bd5f}">
+		<property name="assetPath">
+			<value>Sounds/Elevator/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7cee24ac-f0db-4683-9259-a97482156a0f}</destination>
+		</relationship>
+	</object>
+</objects>

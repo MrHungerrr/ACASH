@@ -9,7 +9,7 @@ namespace Excel_to_json
         static string excelPath = "D:/GameDev/Unity/ACASH/Docs/";
         static string audioPath = "D:/GameDev/Unity/ACASH/ACASH/FMOD/Assets/Voice/";
         static string[] nameOfFiles = new string[2] { "Script", "AudioDuration"};
-        static int[] quantOfSheets = new int[2] { 7, 2 };
+        static int[] quantOfSheets = new int[2] { 8, 2 };
 
         static void Main(string[] args)
         {
@@ -35,7 +35,7 @@ namespace Excel_to_json
                 for (byte s = 1; s < (quantOfSheets[c] + 1); s++)
                 {
                     excel[s - 1] = new Excel(excelPath + nameOfFiles[c] + ".xlsx", s);
-                    while (excel[s - 1].ReadCell(i, 1) != "")
+                    while (excel[s - 1].ReadCellText(i, 1) != "")
                     {
                         i++;
                     }
@@ -47,7 +47,7 @@ namespace Excel_to_json
 
                 Console.WriteLine();
 
-                while (excel[0].ReadCell(0, j) != "")
+                while (excel[0].ReadCellText(0, j) != "")
                 {
                     j++;
                 }
@@ -56,7 +56,7 @@ namespace Excel_to_json
 
                 for (j = 2; j < nLang; j++)
                 {
-                    string language = excel[0].ReadCell(0, j);
+                    string language = excel[0].ReadCellText(0, j);
                     try
                     {
                         File.Create(filesPath + "Subtitles/" + nameOfFiles[c] + "." + language + ".txt").Close();
@@ -69,11 +69,14 @@ namespace Excel_to_json
                         {
                             for (i = 2; i < nSentence[s]; i++)
                             {
-                                if (excel[s].ReadCell(i, j) != "")
+                                if (excel[s].ReadCellText(i, j) != "")
                                 {
                                     file.WriteLine("        {");
-                                    file.WriteLine("            \"key\":\"{0}\",", excel[s].ReadCell(i, 1));
-                                    file.Write("            \"line\":[\"{0}\"]", excel[s].ReadCell(i, j));
+                                    file.WriteLine("            \"key\":\"{0}\",", excel[s].ReadCellText(i, 1));
+                                    if(c == 0)
+                                        file.Write("            \"line\":[\"{0}\"]", excel[s].ReadCellText(i, j));
+                                    else
+                                        file.Write("            \"duration\":[{0}]", excel[s].ReadCellNumber(i, j));
                                     file.WriteLine();
                                     file.Write("        }");
                                     if (((s + 1) == quantOfSheets[c]) && ((i + 1) == nSentence[s]))
@@ -84,9 +87,6 @@ namespace Excel_to_json
                                     }
                                 }
                             }
-
-
-                            //Костыль на заполнение Слов для словаря
                         }
 
                         file.WriteLine("    ]");
@@ -137,7 +137,7 @@ namespace Excel_to_json
 
                 for (int i = 2; i < nSentence; i++)
                 {
-                    file.WriteLine(excel.ReadCell(i, 3));
+                    file.WriteLine(excel.ReadCellText(i, 3));
                 }
 
                 file.Close();
@@ -149,6 +149,19 @@ namespace Excel_to_json
             }
 
             excel.Close();
+        }
+
+
+
+        private void WriteText()
+        {
+
+        }
+
+
+        private void WriteFloat()
+        {
+
         }
 
 
@@ -170,7 +183,7 @@ namespace Excel_to_json
 
 
                 //Количество фраз в файле с фразами
-                while (excelScript.ReadCell(i, 1) != "")
+                while (excelScript.ReadCellText(i, 1) != "")
                 {
                     i++;
                 }
@@ -178,7 +191,7 @@ namespace Excel_to_json
 
 
                 //Количество языков озвучки в файле с длительностью озвучки
-                while (excelAudio.ReadCell(0, j) != "")
+                while (excelAudio.ReadCellText(0, j) != "")
                 {
                     j++;
                 }
@@ -190,11 +203,11 @@ namespace Excel_to_json
                 {
                     for (i = 2; i < nSentence; i++)
                     {
-                        string KeyWord = excelScript.ReadCell(i, 1);
+                        string KeyWord = excelScript.ReadCellText(i, 1);
 
-                        if (excelAudio.ReadCell(i, 1) == "" || (excelScript.ReadCell(i, 1) != excelAudio.ReadCell(i, 1)))
+                        if (excelAudio.ReadCellText(i, 1) == "" || (excelScript.ReadCellText(i, 1) != excelAudio.ReadCellText(i, 1)))
                         {
-                            excelAudio.WriteCell(i, 1, excelScript.ReadCell(i, 1));
+                            excelAudio.WriteCell(i, 1, excelScript.ReadCellText(i, 1));
 
                         }
                     }
@@ -210,16 +223,16 @@ namespace Excel_to_json
                 {
                     for (j = 2; j < nLang; j++)
                     {
-                        string language = excelAudio.ReadCell(0, j);
+                        string language = excelAudio.ReadCellText(0, j);
 
                         for (i = 2; i < nSentence; i++)
                         {
                             int n = excelScript.QuantOfSentences(i, j);
 
-                            if ((excelAudio.ReadCell(i, j) == "" || (n + 1) != excelAudio.QuantOfSentences(i, j)) && n!=0)
+                            if ((excelAudio.ReadCellText(i, j) == "" || (n + 1) != excelAudio.QuantOfSentences(i, j)) && n!=0)
                             {
 
-                                string nameFile = audioPath + language + "/" + excelAudio.ReadCell(i, 1);
+                                string nameFile = audioPath + language + "/" + excelAudio.ReadCellText(i, 1);
                                 double duration = 0;
                                 string cell = "";
 
@@ -227,7 +240,7 @@ namespace Excel_to_json
                                 {
                                     NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(nameFile + ".wav");
                                     duration = wf.TotalTime.TotalSeconds;
-                                    cell += duration + ';';
+                                    cell += string.Format("{0:N1}", duration) + ';';
                                     duration /= n;
 
                                     string durStr = string.Format("{0:N1}", duration);

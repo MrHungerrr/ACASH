@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5908480200984446060}
   - component: {fileID: 232505510615924651}
   - component: {fileID: 6179040360908989717}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -109,7 +109,8 @@ MonoBehaviour:
   shout_control: 0
   talk_good_control: 0
   talk_bad_control: 0
-  answer_control: 0
+  answer_yes_control: 0
+  answer_no_control: 0
   execute_control: 0
 --- !u!1 &6384746390683932918
 GameObject:

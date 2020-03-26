@@ -10,7 +10,7 @@ public class TutorialScholarCheatSet
 
     public void RandomScholarsCheatSet(Scholar[] scholars, string cheat = "random")
     {
-        SetScholarsCheat(scholars, Random.Range(0, 3), cheat);
+        SetScholarsCheat(scholars, Random.Range(0, 4), cheat);
     }
 
 
@@ -22,8 +22,16 @@ public class TutorialScholarCheatSet
             s.Action.Reset("Login");
         }
 
+
+
         for(int i = 0; i < scholars.Length; i++)
         {
+
+            if (number > 3)
+            {
+                number = 0;
+            }
+
             switch (number)
             {
                 case 0:
@@ -33,22 +41,22 @@ public class TutorialScholarCheatSet
                     }
                 case 1:
                     {
-                        SetScholarCheat_0(ref scholars[i], CheatName(cheat));
+                        SetScholarCheat_1(ref scholars[i], CheatName(cheat));
                         break;
                     }
                 case 2:
                     {
-                        SetScholarCheat_0(ref scholars[i], CheatName(cheat));
+                        SetScholarCheat_2(ref scholars[i], CheatName(cheat));
+                        break;
+                    }
+                case 3:
+                    {
+                        SetScholarCheat_3(ref scholars[i], CheatName(cheat));
                         break;
                     }
             }
 
             number++;
-
-            if(number == scholars.Length)
-            {
-                number = 0;
-            }
         }
     }
 
@@ -98,6 +106,26 @@ public class TutorialScholarCheatSet
 
     private void SetScholarCheat_1(ref Scholar scholar, string cheat)
     {
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+    }
+
+    private void SetScholarCheat_2(ref Scholar scholar, string cheat)
+    {
         scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
         scholar.Action.AddAction("Write");
@@ -116,24 +144,24 @@ public class TutorialScholarCheatSet
         scholar.Action.AddAction(cheat);
     }
 
-    private void SetScholarCheat_2(ref Scholar scholar, string cheat)
+    private void SetScholarCheat_3(ref Scholar scholar, string cheat)
     {
-        scholar.Action.AddAction("Text");
-        scholar.Action.AddAction("Text");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
-        scholar.Action.AddAction("Rules");
-        scholar.Action.AddAction("Text");
-        scholar.Action.AddAction("Text");
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
-        scholar.Action.AddAction("Rules");
-        scholar.Action.AddAction("Text");
-        scholar.Action.AddAction("Text");
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
-        scholar.Action.AddAction("Rules");
-        scholar.Action.AddAction("Text");
-        scholar.Action.AddAction("Text");
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
-        scholar.Action.AddAction("Rules");
+        scholar.Action.AddAction("Write");
     }
 
 }

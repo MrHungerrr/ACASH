@@ -902,19 +902,19 @@
             "line":["Нет не надо, прошу, я все сделаю"]
         },
         {
-            "key":"Main_Menu_Continue",
+            "key":"Menu_Main_Continue",
             "line":["Продолжить"]
         },
         {
-            "key":"Main_Menu_New_Game",
+            "key":"Menu_Main_New_Game",
             "line":["Новая игра"]
         },
         {
-            "key":"Main_Menu_Settings",
+            "key":"Menu_Main_Settings",
             "line":["Настройки"]
         },
         {
-            "key":"Main_Menu_Exit",
+            "key":"Menu_Main_Exit",
             "line":["Выход"]
         },
         {
@@ -1932,6 +1932,78 @@
         {
             "key":"Report_Answered_Wrong_0",
             "line":["Вы ответили неверно этому ученику"]
+        },
+        {
+            "key":"Hint_Talk_Good_0",
+            "line":["Чтобы намекунть ученику"]
+        },
+        {
+            "key":"Hint_Talk_Bad_0",
+            "line":["Чтобы сказать прямо ученику"]
+        },
+        {
+            "key":"Hint_Answer_Yes_0",
+            "line":["Чтобы ответить \"Да\" ученику"]
+        },
+        {
+            "key":"Hint_Answer_No_0",
+            "line":["Чтобы ответить \"Нет\" ученику"]
+        },
+        {
+            "key":"Hint_Action_0",
+            "line":["Чтобы что-то сделать"]
+        },
+        {
+            "key":"Hint_Zoom_0",
+            "line":["Чтобы приблизить"]
+        },
+        {
+            "key":"Hint_Shout_0",
+            "line":["Чтобы сказать всем"]
+        },
+        {
+            "key":"Hint_Hud_0",
+            "line":["Чтобы увидеть информацию"]
+        },
+        {
+            "key":"Hint_Execute_0",
+            "line":["Чтобы \"Казнить\" ученика"]
+        },
+        {
+            "key":"Hint_Move_0",
+            "line":["Чтобы двигаться"]
+        },
+        {
+            "key":"Hint_Rotate_0",
+            "line":["Чтобы осмотреться"]
+        },
+        {
+            "key":"Hint_Run_0",
+            "line":["Чтобы бежать"]
+        },
+        {
+            "key":"Hint_Crouch_0",
+            "line":["Чтобы крастьтся"]
+        },
+        {
+            "key":"Hint_Menu_0",
+            "line":["Чтобы зайти в меню"]
+        },
+        {
+            "key":"Hint_Press_0",
+            "line":["Нажмите"]
+        },
+        {
+            "key":"Tutorial_Introdaction_Home_1",
+            "line":["Наше время"]
+        },
+        {
+            "key":"Tutorial_Introdaction_Training_0",
+            "line":["Центр подготовки экзаменаторов АКАШ"]
+        },
+        {
+            "key":"Tutorial_Introdaction_Training_1",
+            "line":["10 лет назад"]
         }
     ]
 }

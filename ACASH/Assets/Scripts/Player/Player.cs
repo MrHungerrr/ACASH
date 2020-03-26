@@ -10,6 +10,7 @@ public class Player : Singleton<Player>
     public PlayerActions Action { get; protected set; }
     public PlayerTalkControl Talk { get; protected set; }
     public PlayerCamera Camera { get; protected set; }
+    public PlayerHear Hear { get; protected set; }
 
 
 
@@ -28,8 +29,8 @@ public class Player : Singleton<Player>
         Camera.Setup(this);
 
         Select = new PlayerSelecting();
-
         Action = new PlayerActions();
+        Hear = new PlayerHear();
 
         Talk = GetComponent<PlayerTalkControl>();
     }

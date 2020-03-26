@@ -13,6 +13,7 @@ public class HUDController : Singleton<HUDController>
     private TextMeshProUGUI timer;
     private TextMeshProUGUI timer_header;
     private TextMeshProUGUI exam;
+    private TextMeshProUGUI introdaction;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class HUDController : Singleton<HUDController>
         timer = transform.Find("Timer").Find("Box").GetComponentInChildren<TextMeshProUGUI>();
         timer_header = transform.Find("Timer").Find("Title").GetComponent<TextMeshProUGUI>();
         exam = transform.Find("Exam").GetComponentInChildren<TextMeshProUGUI>();
+        introdaction = transform.Find("Introdaction").GetComponentInChildren<TextMeshProUGUI>();
 
         Time("00:00");
         TimeHeader("Exam is OVER");
@@ -43,7 +45,6 @@ public class HUDController : Singleton<HUDController>
 
     public void Report(string text)
     {
-        Debug.LogError(text);
         report.text = text;
     }
 
@@ -56,6 +57,12 @@ public class HUDController : Singleton<HUDController>
     {
         timer_header.text = text;
     }
+
+    public void Introdaction(string text)
+    {
+        introdaction.text = text;
+    }
+
 
 
     public void Exam(string text)

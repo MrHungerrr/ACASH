@@ -20,7 +20,7 @@ public class StressScreen : MonoBehaviour
     {
         if (timer < 0f)
         {
-            Text.text = "Stress: " + Scholar.Stress.value;
+            Text.text = "Stres\n " + Scholar.Stress.value + "%";
             timer = timer_const;
         }
         else

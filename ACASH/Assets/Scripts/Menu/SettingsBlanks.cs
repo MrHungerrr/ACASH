@@ -61,9 +61,9 @@ public static class SettingsBlanks
     private static void Subtitles(int option)
     {
         if (option == 0)
-            SubtitleManager.get.Enable(true);
+            HUDManager.get.SubtitleDisable(false);
         else
-            SubtitleManager.get.Enable(false);
+            HUDManager.get.SubtitleDisable(true);
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Gameplay Settings 

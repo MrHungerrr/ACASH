@@ -27,7 +27,7 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
 
     public void Ready()
     {
-        Elevator.get.Sound.Make(ElevatorSounds.one_shot.Ring);
+        Elevator.get.Sound.Play(ElevatorSounds.sounds.Ring);
         text.text = "Ready";
         ready = true;
     }
@@ -45,10 +45,6 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
         {
             Elevator.get.Open();
             ready = false;
-        }
-        else
-        {
-            Debug.Log("Please Wait");
         }
     }
 

@@ -78,7 +78,7 @@ public class Scholar : MonoBehaviour
         this.tag = "Scholar";
 
         TextBox = GetComponent<ScholarTextBox>();
-        TextBox.Setup();
+        TextBox.Setup(this);
 
         Emotions = GetComponent<ScholarEmotions>();
         Emotions.Setup();
@@ -92,6 +92,9 @@ public class Scholar : MonoBehaviour
         Select = GetComponent<ScholarSelect>();
         Select.Setup(this);
 
+        Sound = GetComponent<ScholarSounds>();
+        Sound.Setup(this);
+
 
         Anim = new ScholarAnim(transform.parent.Find("Scholar").GetComponent<Animator>());
         Question = new ScholarQuestions(this);
@@ -103,7 +106,6 @@ public class Scholar : MonoBehaviour
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
         Conversation = new ScholarConverastion(this);
-        Sound = new ScholarSounds(this);
         Cheat = new ScholarCheat(this);
         Check = new ScholarCheck(this);
         Info = new ScholarInfo(this);
@@ -123,8 +125,10 @@ public class Scholar : MonoBehaviour
         Execute.Reset();
         Talk = new ScholarTalk(this);
         Answers = new ScholarAnswers();
+        Cheat.Reset();
 
-
+        if(Desk != null)
+            Desk.ResetComputer();
         Body.Enable();
     }
 

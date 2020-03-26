@@ -23,7 +23,7 @@ namespace Excel_to_json
             ws = wb.Worksheets[Sheet];
         }
 
-        public string ReadCell(int i, int j)
+        public string ReadCellText(int i, int j)
         {
             i++;
             j++;
@@ -52,6 +52,37 @@ namespace Excel_to_json
                         {
                             first_char = true;
                             res += "\",\"";
+                        }
+                    }
+                }
+                res = res.Replace("\n", String.Empty);
+                res = res.Replace("\r", String.Empty);
+                return res;
+            }
+            else
+                return "";
+        }
+
+        public string ReadCellNumber(int i, int j)
+        {
+            i++;
+            j++;
+            if (ws.Cells[i, j].Value2 != null)
+            {
+                string buf = ws.Cells[i, j].Value2.ToString();
+                string res = "";
+
+                for (int c = 0; c < buf.Length; c++)
+                {
+                    if (buf[c] != ';')
+                    {
+                        res += buf[c];
+                    }
+                    else
+                    {
+                        if (c != (buf.Length - 1))
+                        {
+                            res += ",";
                         }
                     }
                 }

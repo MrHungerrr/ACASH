@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -39,6 +40,18 @@ public class ScholarCheat
         Scholar = s;
     }
 
+
+    public void Reset()
+    {
+        for(int i = 0; i < Enum.GetNames(typeof(reason)).Length; i++)
+        {
+            reason r = (reason)i;
+            reasons[r] = false;
+            cheated[r] = false;
+        }
+
+        cheating = false;
+    }
 
 
 

@@ -7,7 +7,7 @@ using Single;
 
 public class SubtitleManager : Singleton<SubtitleManager>
 {
-    private SubtitlePlay subPlay;
+    private SubtitleHUDController subPlay;
     private KeyWord last_key;
     [HideInInspector]
     public bool act;
@@ -15,7 +15,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
 
     private void Awake()
     {
-        subPlay = GameObject.FindObjectOfType<SubtitlePlay>();
+        subPlay = GameObject.FindObjectOfType<SubtitleHUDController>();
     }
 
 
@@ -41,6 +41,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
 
     private IEnumerator PlaySub(KeyWord key_word)
     {
+        HUDManager.get.SubtitleHUD(true);
         act = true;
         last_key = key_word;
 
@@ -48,7 +49,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
         var duration = ScriptManager.get.GetFloat(key_word);
         //FMODUnity.RuntimeManager.PlayOneShot(scriptMan.voicePath + name);
 
-        Debug.Log("<color=#0000ff>PlaySub</color>");
+        //Debug.Log("<color=#0000ff>PlaySub</color>");
 
         for (int i = 0; i < script.Length; i++)
         {
@@ -58,11 +59,9 @@ public class SubtitleManager : Singleton<SubtitleManager>
             subPlay.Clear();
         }
 
+        HUDManager.get.SubtitleHUD(false);
+
         act = false;
     }
 
-    public void Enable(bool option)
-    {
-        subPlay.Enable(option);
-    }
 }
