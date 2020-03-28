@@ -138,8 +138,8 @@ public class Elevator : Singleton<Elevator>
 
     private void DoorMove()
     {
-        doorLeft.position = Vector3.Slerp(doorLeft.position, doorLeftTarget, 3 * Time.deltaTime);
-        doorRight.position = Vector3.Slerp(doorRight.position, doorRightTarget, 3 * Time.deltaTime);
+        doorLeft.position = Vector3.Lerp(doorLeft.position, doorLeftTarget, 3 * Time.deltaTime);
+        doorRight.position = Vector3.Lerp(doorRight.position, doorRightTarget, 3 * Time.deltaTime);
 
         if ((Mathf.Abs(doorLeft.position.x - doorLeftTarget.x) < 0.0001f && ninety) || (Mathf.Abs(doorLeft.position.z - doorLeftTarget.z) < 0.0001f && !ninety))
         {

@@ -27,13 +27,14 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
 
     public void Ready()
     {
-        Elevator.get.Sound.Play(ElevatorSounds.sounds.Ring);
+        Elevator.get.Sound.Stop(ElevatorSounds.sounds.Move);
         text.text = "Ready";
         ready = true;
     }
 
     public void Close()
     {
+        Elevator.get.Sound.Play(ElevatorSounds.sounds.Move);
         text.text = "Please\nWait";
         Elevator.get.Close();
         ready = false;
@@ -43,6 +44,7 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
     {
         if(ready)
         {
+            Elevator.get.Sound.Play(ElevatorSounds.sounds.Ring);
             Elevator.get.Open();
             ready = false;
         }

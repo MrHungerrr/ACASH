@@ -110,9 +110,16 @@ public class ScholarTextBox : MonoBehaviour
                 int quant = line.Length;
                 for (int i = 0; i < quant; i++)
                 {
-
                     TextPlus(line[i]);
-                    yield return new WaitForSeconds(0.05f);
+
+                    if (line[i] != ' ')
+                        yield return new WaitForSeconds(0.05f);
+                    else
+                    {
+                        saying = false;
+                        yield return new WaitForSeconds(0.5f);
+                        saying = true;
+                    }
                 }
                 saying = false;
                 //TextPlus(' ');

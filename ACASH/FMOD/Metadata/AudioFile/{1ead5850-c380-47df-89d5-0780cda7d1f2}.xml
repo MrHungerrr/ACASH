@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{1ead5850-c380-47df-89d5-0780cda7d1f2}">
+		<property name="assetPath">
+			<value>Sounds/Rain/Rain.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>60.38579166666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7cee24ac-f0db-4683-9259-a97482156a0f}</destination>
+		</relationship>
+	</object>
+</objects>

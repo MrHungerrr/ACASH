@@ -5,7 +5,7 @@ public class SoundManager : A_Sound
 {
     public enum sounds
     {
-        Sound_1,
+        Rain,
     }
 
 

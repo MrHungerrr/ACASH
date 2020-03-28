@@ -70,8 +70,8 @@ public class  FMODAudio
     {
         if(Player.get.Hear.GetOcclusion(main.obj))
         {
-            sound.setParameterByID(volume, 0.5f);
-            sound.setParameterByID(LPF, 10000);
+            sound.setParameterByID(volume, 0.75f);
+            sound.setParameterByID(LPF, 12000f);
         }
         else
         {
@@ -137,7 +137,7 @@ public class  FMODAudio
             else
                 sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-            active = false;
+            End();
 
             return true;
         }
@@ -149,6 +149,7 @@ public class  FMODAudio
 
     private void End()
     {
+        active = false;
         main.UpdateSound -= Update;
         playing = false;
     }

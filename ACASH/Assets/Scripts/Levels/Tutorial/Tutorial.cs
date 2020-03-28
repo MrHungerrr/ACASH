@@ -79,6 +79,7 @@ public class Tutorial : Singleton<Tutorial>
         key *= "Introdaction_Home";
 
         HUDManager.get.IntrodactionHUD(key);
+        SoundManager.get.Play(SoundManager.sounds.Rain);
 
         yield return new WaitForSeconds(2f);
 
@@ -122,6 +123,8 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        SoundManager.get.Stop(SoundManager.sounds.Rain);
+
 
         yield return new WaitForSeconds(1f);
 
@@ -132,6 +135,7 @@ public class Tutorial : Singleton<Tutorial>
         yield return new WaitForSeconds(3f);
 
         HUDManager.get.CloseIntrodactionHUD();
+        ElevatorController.get.Close();
 
         yield return new WaitForSeconds(1f);
 
@@ -147,6 +151,9 @@ public class Tutorial : Singleton<Tutorial>
 
 
         ElevatorController.get.Ready();
+
+        yield return new WaitForSeconds(1f);
+
         ElevatorController.get.Open();
 
         while (!Elevator.get.open)
@@ -185,6 +192,7 @@ public class Tutorial : Singleton<Tutorial>
 
         Hint.Set(GetP.actions.Talk_Good);
 
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.talk_good_control = true;
 
 
@@ -192,6 +200,7 @@ public class Tutorial : Singleton<Tutorial>
         {
             yield return new WaitForEndOfFrame();
         }
+        Player.get.Talk.all_controll = false;
 
         Hint.Disable();
 
@@ -205,6 +214,7 @@ public class Tutorial : Singleton<Tutorial>
 
         Hint.Set(GetP.actions.Talk_Bad);
 
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.talk_bad_control = true;
 
         bool option = true;
@@ -232,10 +242,12 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
+        Player.get.Talk.all_controll = false;
         Hint.Disable();
 
         key += 2;
         SubtitleManager.get.Say(key);
+        
 
         yield return new WaitForSeconds(1f);
 
@@ -247,8 +259,10 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        Hint.Set(GetP.actions.Shout);
 
+
+        Hint.Set(GetP.actions.Shout);
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.shout_control = true;
 
         option = true;
@@ -275,6 +289,7 @@ public class Tutorial : Singleton<Tutorial>
 
             yield return new WaitForEndOfFrame();
         }
+
 
         Hint.Disable();
 
@@ -314,9 +329,12 @@ public class Tutorial : Singleton<Tutorial>
         key_mistake *= "Second_Room";
         key += 0;
 
+
+
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = false;
 
         SubtitleManager.get.Say(key);
 
@@ -328,6 +346,7 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
 
         Hint.Set(GetP.actions.Execute);
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.execute_control = true;
 
 
@@ -363,7 +382,7 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
-
+        Player.get.Talk.all_controll = false;
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
@@ -414,6 +433,7 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = true;
 
         Cheat.RandomScholarsCheatSet(second_room_scholars, TutorialScholarCheatSet.calculate);
         Watcher.Reset();
@@ -473,6 +493,7 @@ public class Tutorial : Singleton<Tutorial>
             }
             yield return new WaitForEndOfFrame();
         }
+        Player.get.Talk.all_controll = false;
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
@@ -491,6 +512,7 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = true;
 
         Cheat.RandomScholarsCheatSet(second_room_scholars, TutorialScholarCheatSet.note);
         Watcher.Reset();
@@ -550,7 +572,7 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
-
+        Player.get.Talk.all_controll = false;
 
         StartCoroutine(Second_Room_Part_2());
     }
@@ -575,6 +597,7 @@ public class Tutorial : Singleton<Tutorial>
             s.Execute.EndExamForScholar();
         }
 
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.execute_control = false;
 
         while (SubtitleManager.get.act)
@@ -625,6 +648,7 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = false;
         key += 7;
         SubtitleManager.get.Say(key);
 
@@ -638,6 +662,9 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = true;
+        Player.get.Talk.talk_bad_control = false;
+        Player.get.Talk.talk_good_control = false;
         Player.get.Talk.answer_no_control = true;
 
         Hint.Set(GetP.actions.Answer_No);
@@ -677,6 +704,8 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = false;
+
         key += 8;
         SubtitleManager.get.Say(key);
 
@@ -684,6 +713,7 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.answer_yes_control = true;
 
         Watcher.Reset();
@@ -729,6 +759,8 @@ public class Tutorial : Singleton<Tutorial>
             yield return new WaitForEndOfFrame();
         }
 
+        Player.get.Talk.all_controll = false;
+
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
@@ -738,6 +770,7 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = true;
         Player.get.Talk.execute_control = true;
 
 
@@ -749,6 +782,8 @@ public class Tutorial : Singleton<Tutorial>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.all_controll = false;
+
         key += 11;
         SubtitleManager.get.Say(key);
 
@@ -757,8 +792,6 @@ public class Tutorial : Singleton<Tutorial>
 
 
         GameManager.get.MainMenu();
-
-        Debug.Log("END OF LEVEL");
 
         yield return new WaitForEndOfFrame();
     }
