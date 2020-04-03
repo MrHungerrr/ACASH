@@ -32,7 +32,7 @@ public class ScholarObjectsManager : Singleton<ScholarObjectsManager>
     }
 
 
-    public void Setup()
+    public void SetLevel()
     {
         object_parent = GameObject.FindGameObjectWithTag("Objects_Container").transform;
     }

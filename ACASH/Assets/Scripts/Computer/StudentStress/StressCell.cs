@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using ScholarOptions;
 
 
 public class StressCell : MonoBehaviour
@@ -31,28 +32,28 @@ public class StressCell : MonoBehaviour
     {
         if (active)
         {
-            stress = scholar.Stress.value;
+            stress = (int) scholar.Stress.value;
             //Debug.Log("Стресс чувака - " + stress/10);
             slider.Select(stress / 10);
             Mood(scholar.Stress.GetMoodType());
         }
     }
 
-    private void Mood(string mood)
+    private void Mood(GetS.mood mood)
     {
         switch(mood)
         {
-            case"chill":
+            case GetS.mood.Chill:
                 {
                     emotion.text = ":)";
                     break;
                 }
-            case "normal":
+            case GetS.mood.Normal:
                 {
                     emotion.text = ":|";
                     break;
                 }
-            case "panic":
+            case GetS.mood.Panic:
                 {
                     emotion.text = ":(";
                     break;

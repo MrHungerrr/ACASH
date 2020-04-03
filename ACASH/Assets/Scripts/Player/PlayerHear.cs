@@ -8,6 +8,17 @@ public class PlayerHear
 
     public bool GetOcclusion(GameObject obj)
     {
+        return GetOcclusion(obj, string.Empty);
+    }
+
+    public bool GetOcclusion(GameObject obj, string ignore_tag)
+    {
+        return GetOcclusion(obj, new string[]{ignore_tag});
+    }
+
+
+    public bool GetOcclusion(GameObject obj, string[] ignore_tags)
+    {
         RaycastHit hit;
         Vector3 direction = BaseGeometry.GetDirection(Player.get.Camera.transform.position, obj.transform.position);
 
@@ -15,22 +26,22 @@ public class PlayerHear
 
         if (Physics.Raycast(Player.get.Camera.transform.position, direction, out hit, visible_layerMask))
         {
-            Debug.Log(hit.collider.tag);
+            Debug.Log(obj.name + " sound collides with - " + hit.collider.tag);
 
-            switch(hit.collider.tag)
+            switch (hit.collider.tag)
             {
                 case "Wall":
                 case "Door":
                 case "Elevator":
                     {
-                        return true;
-                    }
-                default:
-                    {
-                        if (hit.collider.gameObject == obj)
+                        if(IsEqual(hit.collider.tag, ignore_tags))
                             return false;
                         else
                             return true;
+                    }
+                default:
+                    {
+                        return false;
                     }
             }
         }
@@ -38,6 +49,24 @@ public class PlayerHear
         {
             return false;
         }
+    }
+
+
+
+
+
+    private bool IsEqual(string word, string[] words)
+    {
+        if(words == null || string.IsNullOrEmpty(word))
+            return false;
+
+        foreach (string w in words)
+        {
+            if (word == w)
+                return true;
+        }
+
+        return false;
     }
 
 }

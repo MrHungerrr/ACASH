@@ -17,8 +17,8 @@ public class ComputerSounds : A_Sound
     public void Setup(A_Computer Computer)
     {
         this.Computer = Computer;
-     
-        base.Setup(Computer.gameObject, "Local/Computer/");
+
+        base.Setup(gameObject, "Local/Computer/");
 
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
@@ -42,14 +42,14 @@ public class ComputerSounds : A_Sound
         base.Play(sound.ToString());
     }
 
+    public void PlayAnyway(sounds sound)
+    {
+        base.PlayAnyway(sound.ToString());
+    }
+
     public void Pause(sounds sound)
     {
         base.Pause(sound.ToString());
-    }
-
-    public void Continue(sounds sound)
-    {
-        base.Continue(sound.ToString());
     }
 
     public void Stop(sounds sound)

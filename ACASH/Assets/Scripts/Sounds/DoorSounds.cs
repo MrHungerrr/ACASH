@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class DoorSounds : A_Sound
+public class DoorSounds : A_SoloSound
 {
 
     public enum sounds
@@ -17,6 +17,8 @@ public class DoorSounds : A_Sound
     public new void Setup(GameObject obj)
     {
         base.Setup(transform.parent.gameObject, "Local/Door/");
+
+        base.SetIgnore("Door");
 
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
@@ -42,11 +44,6 @@ public class DoorSounds : A_Sound
     public void Pause(sounds sound)
     {
         base.Pause(sound.ToString());
-    }
-
-    public void Continue(sounds sound)
-    {
-        base.Continue(sound.ToString());
     }
 
     public void Stop(sounds sound)

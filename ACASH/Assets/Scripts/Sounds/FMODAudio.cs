@@ -10,6 +10,7 @@ public class  FMODAudio
 
 
     private bool attached;
+    private bool occlusion = true;
 
 
     public bool active { get; private set; } = false;
@@ -40,11 +41,16 @@ public class  FMODAudio
         }
     }
 
-    public void Update()
+    public void SetOcclusion(bool option)
+    {
+        occlusion = option;
+    }
+
+    private void Update()
     {
         if(playing)
         {
-            if(attached)
+            if(attached && occlusion)
             {
                 OcclusionCalculate();
             }
@@ -54,21 +60,21 @@ public class  FMODAudio
     }
 
 
-    public void IsPlaying()
+    private void IsPlaying()
     {
         FMOD.Studio.PLAYBACK_STATE buf;
         sound.getPlaybackState(out buf);
 
         if(buf == FMOD.Studio.PLAYBACK_STATE.STOPPED)
         {
-            End();
+            Finish();
         }
     }
 
 
-    public void OcclusionCalculate()
+    private void OcclusionCalculate()
     {
-        if(Player.get.Hear.GetOcclusion(main.obj))
+        if(Player.get.Hear.GetOcclusion(main.obj, main.ignore_tags))
         {
             sound.setParameterByID(volume, 0.75f);
             sound.setParameterByID(LPF, 12000f);
@@ -83,12 +89,16 @@ public class  FMODAudio
 
     public bool Play()
     {
-        if (!active && !playing)
+        if (!playing)
         {
-            sound.start();
-            playing = true;
-            active = true;
-            main.UpdateSound += Update;
+            if (!active)
+            {
+                Start();
+            }
+            else
+            {
+                Continue();
+            }
 
             return true;
         }
@@ -96,6 +106,23 @@ public class  FMODAudio
         {
             return false;
         }
+    }
+
+    public void PlayAnyway()
+    {
+        if(!Play())
+        {
+            Stop(true);
+            Play();
+        }
+    }
+
+    private void Start()
+    {
+        sound.start();
+        playing = true;
+        active = true;
+        main.UpdateSound += Update;
     }
 
     public bool Pause()
@@ -110,22 +137,10 @@ public class  FMODAudio
             return false;
     }
 
-    public bool Continue()
+    private void Continue()
     {
-        if (active && !playing)
-        {
-            sound.setPaused(false);
-            playing = true;
-            return true;
-        }
-        else
-            return false;
-
-    }
-
-    public bool Stop()
-    {
-        return Stop(false);
+        sound.setPaused(false);
+        playing = true;
     }
 
     public bool Stop(bool immediate)
@@ -137,7 +152,7 @@ public class  FMODAudio
             else
                 sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-            End();
+            Finish();
 
             return true;
         }
@@ -147,10 +162,10 @@ public class  FMODAudio
         }
     }
 
-    private void End()
+    private void Finish()
     {
+        playing = false;
         active = false;
         main.UpdateSound -= Update;
-        playing = false;
     }
 }

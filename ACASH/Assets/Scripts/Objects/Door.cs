@@ -27,13 +27,13 @@ public class Door : MonoBehaviour, I_Interaction
 
     private void Start()
     {
-        RB = transform.parent.GetComponent<Rigidbody>();
+        RB = GetComponent<Rigidbody>();
 
         Sound = GetComponent<DoorSounds>();
         Sound.Setup(RB.gameObject);
 
-        doorT = transform.parent.parent;
-        commonRot = transform.parent.rotation;
+        doorT = transform.parent;
+        commonRot = transform.rotation;
         close_time = close_time_cd;
         this.tag = "Door";
         in_range = false;
@@ -56,6 +56,8 @@ public class Door : MonoBehaviour, I_Interaction
     {
         if (!open)
         {
+            open = true;
+
             if (Player.get.Move.type_movement != PlayerMove.movement.Crouch)
             {
                 DoorInteract(Player.get.Move.Position());
@@ -69,8 +71,6 @@ public class Door : MonoBehaviour, I_Interaction
         {
             Close();
         }
-
-        open = !open;
 
         Player.get.Action.Doing(false);
     }
@@ -130,6 +130,7 @@ public class Door : MonoBehaviour, I_Interaction
     {
         Sound.Play(DoorSounds.sounds.Close);
         targetRot = commonRot;
+        open = false;
         active = true;
     }
 
@@ -137,7 +138,7 @@ public class Door : MonoBehaviour, I_Interaction
 
     private void DoorRot()
     {   
-        RB.MoveRotation(Quaternion.Lerp(transform.rotation, targetRot, 6 * Time.deltaTime));
+        RB.MoveRotation(Quaternion.Slerp(transform.rotation, targetRot, 6 * Time.deltaTime));
 
 
         if ((Mathf.Abs(transform.rotation.eulerAngles.y - targetRot.eulerAngles.y) < 0.1f) && (Mathf.Abs(RB.angularVelocity.y)  < 0.1f))
@@ -176,7 +177,7 @@ public class Door : MonoBehaviour, I_Interaction
                 {
                     if (!open)
                     {
-                        if (Mathf.Abs(BaseGeometry.GetQuaternionTo(ScholarManager.get.scholars[i].Move.transform, doorT.position).eulerAngles.y - ScholarManager.get.scholars[i].Move.Rotation().eulerAngles.y) < 45)
+                        if (Mathf.Abs(BaseGeometry.GetQuaternionToY(ScholarManager.get.scholars[i].Move.transform, doorT.position).eulerAngles.y - ScholarManager.get.scholars[i].Move.Rotation().eulerAngles.y) < 45)
                         {
                             in_range = true;
                             break;

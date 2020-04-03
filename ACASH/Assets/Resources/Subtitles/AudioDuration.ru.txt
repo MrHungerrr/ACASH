@@ -187,7 +187,7 @@
         },
         {
             "key":"Teacher_Answer_Dumb_Question_Toilet_Yes_0",
-            "duration":[2]
+            "duration":[2.0]
         },
         {
             "key":"Teacher_Answer_Dumb_Question_Toilet_No_0",
@@ -195,7 +195,7 @@
         },
         {
             "key":"Teacher_Answer_Dumb_Question_Sink_Yes_0",
-            "duration":[2]
+            "duration":[2.0]
         },
         {
             "key":"Teacher_Answer_Dumb_Question_Sink_No_0",
@@ -203,7 +203,7 @@
         },
         {
             "key":"Teacher_Answer_Dumb_Question_Outside_Yes_0",
-            "duration":[2]
+            "duration":[2.0]
         },
         {
             "key":"Teacher_Answer_Dumb_Question_Outside_No_0",
@@ -211,7 +211,7 @@
         },
         {
             "key":"Teacher_Answer_Nerd_Question_Toilet_Yes_0",
-            "duration":[2]
+            "duration":[2.0]
         },
         {
             "key":"Teacher_Answer_Nerd_Question_Toilet_No_0",
@@ -219,7 +219,7 @@
         },
         {
             "key":"Teacher_Answer_Nerd_Question_Sink_Yes_0",
-            "duration":[2]
+            "duration":[2.0]
         },
         {
             "key":"Teacher_Answer_Nerd_Question_Sink_No_0",
@@ -227,7 +227,7 @@
         },
         {
             "key":"Teacher_Answer_Nerd_Question_Outside_Yes_0",
-            "duration":[2]
+            "duration":[2.0]
         },
         {
             "key":"Teacher_Answer_Nerd_Question_Outside_No_0",
@@ -246,96 +246,96 @@
             "duration":[2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Begining_0",
+            "key":"Tutorial_1_Begining_0",
             "duration":[2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Elevator_0",
+            "key":"Tutorial_1_Elevator_0",
             "duration":[2.0,2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_First_Room_0",
-            "duration":[2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_First_Room_1",
-            "duration":[2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_First_Room_2",
-            "duration":[2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_First_Room_3",
-            "duration":[2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Mistake_First_Room_0",
-            "duration":[2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Mistake_First_Room_1",
-            "duration":[2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Second_Room_0",
+            "key":"Tutorial_1_Room_0",
             "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Second_Room_1",
+            "key":"Tutorial_1_Room_1",
             "duration":[2.0,2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Second_Room_2",
+            "key":"Tutorial_1_Room_2",
             "duration":[2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Second_Room_3",
+            "key":"Tutorial_1_Room_3",
             "duration":[2.0]
         },
         {
-            "key":"Tutorial_Second_Room_4",
-            "duration":[2.0,2.0,2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Second_Room_5",
-            "duration":[2.0,2.0,2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Second_Room_6",
-            "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Second_Room_7",
-            "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Second_Room_8",
-            "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
-        },
-        {
-            "key":"Tutorial_Second_Room_9",
+            "key":"Tutorial_1_Room_4",
             "duration":[2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Second_Room_10",
-            "duration":[2.0,2.0]
+            "key":"Tutorial_1_Room_5",
+            "duration":[2.0,2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Second_Room_11",
+            "key":"Tutorial_1_Room_6",
+            "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Room_7",
+            "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Room_8",
             "duration":[2.0,2.0,2.0,2.0]
         },
         {
-            "key":"Tutorial_Mistake_Second_Room_0",
+            "key":"Tutorial_1_Room_9",
             "duration":[2.0,2.0]
         },
         {
-            "key":"Tutorial_Mistake_Second_Room_1",
+            "key":"Tutorial_1_Room_10",
+            "duration":[2.0,2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_0",
+            "duration":[2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_1",
             "duration":[2.0]
         },
         {
-            "key":"Tutorial_Mistake_Second_Room_2",
+            "key":"Tutorial_1_Mistake_Room_2",
             "duration":[2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_3",
+            "duration":[2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_4",
+            "duration":[2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_5",
+            "duration":[2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_6",
+            "duration":[2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_7",
+            "duration":[2.0,2.0]
+        },
+        {
+            "key":"Level_1_Begining_0",
+            "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Level_1_Begining_1",
+            "duration":[2.0]
         },
         {
             "key":"Tutorial_Mistake_Second_Room_3",

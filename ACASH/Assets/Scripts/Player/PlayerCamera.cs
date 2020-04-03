@@ -6,7 +6,8 @@ using Single;
 
 public class PlayerCamera : MonoBehaviour
 {
-    private float coefSensitivity = 5;
+    [HideInInspector]
+    public float coefSensitivity = 5;
     private const float mouseSensitivity = 2;
     private const float gamepadSensitivity = 35; 
 
@@ -138,7 +139,7 @@ public class PlayerCamera : MonoBehaviour
 
     public void Sensitivity(int coef)
     {
-        coefSensitivity = coef;
+        coefSensitivity = Mathf.Pow((coef+1)/5, 3);
     }
 
     public void Enable(bool option)

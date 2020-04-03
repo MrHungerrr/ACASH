@@ -117,6 +117,7 @@ public class ComputerCommands
                     EnableTaskBar(false);
                     Set(type);
                     Comp.Numpad.Enable(false);
+                    ComputerManager.get.end = true;
                     break;
                 }
 
@@ -239,6 +240,7 @@ public class ComputerCommands
                 {
                     ScoreManager.get.Accept();
                     LevelSettings.get.NextExam();
+                    ComputerManager.get.end = false;
 
                     if(Comp.Login.loged)
                         Do("Desktop");

@@ -250,7 +250,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
     public void Select()
     {
-        Computer.Sound.Play(ComputerSounds.sounds.Click);
+        Computer.Sound.PlayAnyway(ComputerSounds.sounds.Click);
 
         if (collision)
         {

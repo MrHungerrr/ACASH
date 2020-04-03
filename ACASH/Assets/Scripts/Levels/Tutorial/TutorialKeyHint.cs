@@ -9,7 +9,6 @@ public class TutorialKeyHint: MonoBehaviour
     public HintController hint_rotate;
     public HintController hint_move;
     public HintController hint_action;
-    public HintController hint_zoom;
 
 
     public void Set(GetP.actions action)
@@ -45,13 +44,6 @@ public class TutorialKeyHint: MonoBehaviour
         }
 
         hint_action.Disable();
-    }
-
-
-
-    public void Zoom()
-    {
-        hint_zoom.SetHint(true);
     }
 
 }

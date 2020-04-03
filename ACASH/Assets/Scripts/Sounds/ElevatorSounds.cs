@@ -20,6 +20,8 @@ public class ElevatorSounds: A_Sound
     {
         base.Setup(obj, "Local/Elevator/");
 
+        base.SetIgnore("Elevator");
+
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;
@@ -44,11 +46,6 @@ public class ElevatorSounds: A_Sound
     public void Pause(sounds sound)
     {
         base.Pause(sound.ToString());
-    }
-
-    public void Continue(sounds sound)
-    {
-        base.Continue(sound.ToString());
     }
 
     public void Stop(sounds sound)

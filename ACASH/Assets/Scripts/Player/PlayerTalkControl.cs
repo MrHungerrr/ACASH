@@ -25,20 +25,9 @@ public class PlayerTalkControl : PlayerTalk
 
     private void Awake()
     {
-        Reset();
+        AllowAll();
     }
 
-
-    public void Reset()
-    {
-        all_controll = false;
-        shout_control = false;
-        talk_good_control = false;
-        talk_bad_control = false;
-        answer_yes_control = false;
-        answer_no_control = false;
-        execute_control = false;
-    }
 
     public void AllowAll()
     {
@@ -49,6 +38,17 @@ public class PlayerTalkControl : PlayerTalk
         answer_yes_control = true;
         answer_no_control = true;
         execute_control = true;
+    }
+
+    public void DenyAll()
+    {
+        all_controll = false;
+        shout_control = false;
+        talk_good_control = false;
+        talk_bad_control = false;
+        answer_yes_control = false;
+        answer_no_control = false;
+        execute_control = false;
     }
 
 

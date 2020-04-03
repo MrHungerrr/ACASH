@@ -11,7 +11,8 @@ public class Elevator : Singleton<Elevator>
     private bool ninety;
     private bool active;
     private bool enter = false;
-    private bool inside = false;
+    [HideInInspector]
+    public bool inside { get; private set; } = false;
     private Transform doorLeft;
     private Transform doorRight;
     private Vector3 doorLeftPos;

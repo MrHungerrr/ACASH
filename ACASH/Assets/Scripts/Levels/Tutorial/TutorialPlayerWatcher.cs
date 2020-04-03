@@ -23,10 +23,10 @@
     {
         Reset();
 
-        Player.get.Talk.TalkDone += PlayerTalk;
-        Player.get.Talk.AnswerDone += PlayerAnswer;
-        Player.get.Talk.ShoutDone += PlayerShout;
-        Player.get.Talk.ExecuteDone += PlayerExecute;
+        Player.get.Talk.TalkStart += PlayerTalk;
+        Player.get.Talk.AnswerStart += PlayerAnswer;
+        Player.get.Talk.ShoutStart += PlayerShout;
+        Player.get.Talk.ExecuteStart += PlayerExecute;
     }
 
 

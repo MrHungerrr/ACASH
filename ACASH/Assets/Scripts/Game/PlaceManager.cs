@@ -39,40 +39,47 @@ public class PlaceManager : Singleton<PlaceManager>
         GameObject[] buf_objects;
 
         for (int i = 0; i < place_count; i++)
-        { 
+        {
             buf_place = (place)i;
             buf_string = buf_place.ToString();
 
             if (buf_string != "Desk")
             {
                 buf_objects = GameObject.FindGameObjectsWithTag(buf_string);
-                if(buf_objects != null)
+                if (buf_objects != null)
                     SetPlaces(buf_place, buf_objects);
             }
         }
 
 
-        //Специальная инцилизация для парт для того, чтобы они были по порядку
-        DeskManager.get.SetDeskManager();
-        buf_place = place.Desk;
 
-        places.Add(buf_place, new Transform[2, DeskManager.get.desks.Length]);
-        busy.Add(buf_place, new bool[DeskManager.get.desks.Length]);
-        count.Add(buf_place, DeskManager.get.desks.Length);
+        //Отдельная сортировка парт
+        DeskManager.get.Setup();
+        this.places.Add(place.Desk, new Transform[2, DeskManager.get.desks.Length]);
+        busy.Add(place.Desk, new bool[DeskManager.get.desks.Length]);
+        count.Add(place.Desk, DeskManager.get.desks.Length);
+
 
         for (int i = 0; i < DeskManager.get.desks.Length; i++)
         {
-            GameObject desk = DeskManager.get.desks[i].gameObject;
-            SIC.Component(desk, "Destonation", out this.places[place.Desk][0, i]);
-            SIC.Component(desk, "Sight Goal", out this.places[place.Desk][1, i]);
-
-            //Debug.Log(desks[0, i].position);
+            SIC.Component(DeskManager.get.desks[i].gameObject, "Destonation", out this.places[place.Desk][0, i]);
+            SIC.Component(DeskManager.get.desks[i].gameObject, "Sight Goal", out this.places[place.Desk][1, i]);
         }
     }
 
 
     private void SetPlaces(place type_of_place, GameObject[] places)
     {
+        switch(type_of_place)
+        {
+            case place.Home:
+                {
+                    SortManager.get.Sort(places);
+                    break;
+                }
+        }
+
+
         this.places.Add(type_of_place, new Transform[2, places.Length]);
         busy.Add(type_of_place, new bool[places.Length]);
         count.Add(type_of_place, places.Length);

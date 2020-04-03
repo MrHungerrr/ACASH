@@ -6,7 +6,7 @@ using Single;
 public class TimeManager : Singleton<TimeManager>
 {
 
-    private bool active;
+    private bool active = false;
     [HideInInspector]
     public float time_passed { get; private set; }
     private float time_left;
@@ -17,31 +17,34 @@ public class TimeManager : Singleton<TimeManager>
     private Timer[] timers;
 
     private string time_name;
-    private int index;
 
 
 
     private string minutes;
     private string seconds;
 
-    private float[] times = new float[]
+    private Dictionary<ExamManager.part, TimeStorage> times = new Dictionary<ExamManager.part, TimeStorage>()
     {
-        5f,
-        15f,
-        30f
+        {ExamManager.part.Chill, new TimeStorage(5, "Time before exam") },
+        {ExamManager.part.Prepare, new TimeStorage(15, "Exam need start in") },
+        {ExamManager.part.Exam, new TimeStorage(15, "Exam will end in") },
+        {ExamManager.part.Afterhours, new TimeStorage(0, "Exam is OVER") },
     };
 
-    private string[] time_names = new string[]
-    {
-        "Time before exam",
-        "Exam need start in",
-        "Exam will end in"
-    };
 
+
+
+
+    public void Setup()
+    {
+        active = false;
+        timers = FindObjectsOfType<Timer>();
+        ScholarActionTime.get.Setup();
+    }
 
     public void Reset()
     {
-        SetTime(0);
+        SetTime(ExamManager.part.Chill);
     }
 
     private void Update()
@@ -57,43 +60,29 @@ public class TimeManager : Singleton<TimeManager>
         active = option;
     }
 
-    public void SetTime(int index)
+    public void SetTime(ExamManager.part part)
     {
-        if (index < 3 && index >= 0)
-        {
-            this.index = index;
-            time = times[index];
-            time_left = time;
-            time_passed = 0;
-
-            time_sec = (int)time_left % 60;
-            time_sec_previous = time_sec;
-
-            ShowTime();
-            active = true;
-
-            time_name = time_names[index];
-            HUDController.get.TimeHeader(time_name);
-        }
-        else
-        {
-            Debug.Log("<color=#ff0000> Ошибка index SetTime </color>");
-        }
-    }
-
-    public void Next()
-    {
-        SetTime(index + 1);
+        SetTime(times[part]);
     }
 
 
-    public void Setup()
+    private void SetTime(TimeStorage storage)
     {
-        active = false;
-        index = 0;
-        timers = FindObjectsOfType<Timer>();
-        ScholarActionTime.get.Setup();
+        this.time = storage.time;
+        time_left = this.time;
+        time_passed = 0;
+
+        time_sec = (int)time_left % 60;
+        time_sec_previous = time_sec;
+
+        time_name = storage.topic;
+        HUDController.get.TimeHeader(time_name);
+
+        ShowTime();
+        active = true;
     }
+
+
 
     private void Time()
     {
@@ -112,12 +101,20 @@ public class TimeManager : Singleton<TimeManager>
         }
         else
         {
-            time_left = 0;
-            time_passed = time;
-            active = false;
-            ShowTime();
-            ExamManager.get.TimeDone();
+            TimeDone();
         }
+    }
+
+
+    private void TimeDone()
+    {
+        active = false;
+
+        time_left = 0;
+        time_passed = time;
+        ShowTime();
+
+        ExamManager.get.TimeDone();
     }
 
 
@@ -157,3 +154,10 @@ public class TimeManager : Singleton<TimeManager>
         return (minutes + ":" + seconds);
     }
 }
+
+
+
+
+
+
+

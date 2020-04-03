@@ -24,8 +24,8 @@ public class ScholarObjects
     public ScholarObjects(Scholar Scholar)
     {
         holding = false;
-        objects_holder = Scholar.transform.parent.Find("Objects");
-        SIC.Component(Scholar.transform.parent, "Arm_Target_R_2", out objects_target);
+        objects_holder = Scholar.transform.Find("Objects");
+        SIC.Component(Scholar.transform, "Arm_Target_R_2", out objects_target);
 
         for (int i = 0; i < Enum.GetNames(typeof(ScholarObjectsManager.obj_name)).Length; i++)
         {
@@ -66,7 +66,9 @@ public class ScholarObjects
             holding = false;
             objects[object_current].SetActive(false);
 
-            GameObject.Instantiate(ScholarObjectsManager.get.objects[object_current], objects_target.position, objects[object_current].transform.rotation, ScholarObjectsManager.get.object_parent);
+            GameObject buf = GameObject.Instantiate(ScholarObjectsManager.get.objects[object_current], objects_target.position, objects[object_current].transform.rotation, ScholarObjectsManager.get.object_parent);
+
+            buf.GetComponent<Rigidbody>().AddForce(new Vector3(UnityEngine.Random.value - 0.5f, 1f, UnityEngine.Random.value - 0.5f).normalized * UnityEngine.Random.Range(11, 15));
         }
     }
 

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerSelecting
 {
-    public Reasons active;
+    public Reasons active { get;}
 
     private LayerMask select_layer_mask = LayerMask.GetMask("Selectable", "Default");
     private LayerMask sight_layer_mask = LayerMask.GetMask("Sight Layer");
@@ -14,7 +14,6 @@ public class PlayerSelecting
     public bool selected { get; private set; }
     private I_ObjectSelect select;
     public GameObject selected_obj { get; private set; }
-    public Scholar selected_scholar;
 
 
     public PlayerSelecting()
@@ -36,6 +35,9 @@ public class PlayerSelecting
         {
             Deselect();
         }
+
+
+        LookingAtScholars();
     }
 
 
@@ -76,15 +78,24 @@ public class PlayerSelecting
 
 
 
+
+    }
+
+    private void LookingAtScholars()
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
         RaycastHit[] hits;
         hits = Physics.RaycastAll(ray, 20, sight_layer_mask);
 
         for (int i = 0; i < hits.Length; i++)
         {
+
             if (hits[i].transform != null)
             {
-                Scholar scholar = hits[i].transform.parent.GetComponentInChildren<Scholar>();
-                scholar.Senses.ISeeYou();
+                Scholar scholar = hits[i].collider.transform.parent.GetComponent<Scholar>();
+
+                scholar.Senses.TeacherLookAtUs();
             }
         }
     }
@@ -94,17 +105,19 @@ public class PlayerSelecting
     {
         if (selected)
         {
-            if (selected_obj.TryGetComponent<Scholar>(out selected_scholar))
+            Scholar scholar;
+
+            if (selected_obj.TryGetComponent<Scholar>(out scholar))
             {
-                if (selected_scholar.active)
+                if (scholar.active)
                 {
-                    Player.get.Talk.scholar = selected_scholar;
+                    Player.get.Talk.SetScholar(scholar);
                     return true;
                 }
             }
         }
 
-        Player.get.Talk.scholar = null;
+        Player.get.Talk.ResetScholar();
         return false;
     }
 

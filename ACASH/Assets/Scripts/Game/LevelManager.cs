@@ -8,6 +8,18 @@ public class LevelManager : Singleton<LevelManager>
 {
     private string current_level;
 
+    public void LoadInstead(string sceneName)
+    {
+        if (!SceneManager.GetSceneByName(sceneName).isLoaded)
+        {
+            Unload(current_level);
+
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            if (sceneName != "Elevator")
+                current_level = sceneName;
+        }
+    }
+
     public void Load(string sceneName)
     {
         if (!SceneManager.GetSceneByName(sceneName).isLoaded)

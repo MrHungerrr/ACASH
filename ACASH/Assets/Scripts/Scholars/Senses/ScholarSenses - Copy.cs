@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
-public class ScholarSenses
+public class ScholarSensess
 {
     private Scholar Scholar;
+
+
+
+
+    //===================================================================================================
+    //Видит ли нас учитель?
+    //===================================================================================================
 
     //T - это Teacher
     private float T_angle_x;
@@ -14,16 +21,26 @@ public class ScholarSenses
     private float T_distance;
     private float T_look_time;
     [HideInInspector]
-    public bool T_behind_wall;
+    public bool T_behind_wall { get; private set; }
     private float T_look_near_time;
     private float T_look_vanish_time;
     private const float T_look_vanish_time_const = 0.1f;
-    public bool T_look_at_us;
-    public bool T_look_near_at_us;
+    public bool T_look_at_us { get; private set; }
+    public bool T_look_near_at_us { get; private set; }
     private int T_look_coef;
+
+
+
+
+
+    //===================================================================================================
+    //Видим ли мы учителя?
+    //===================================================================================================
+
+
     private float angle_to_teacher;
-    public bool T_here { get; set; }
-    public bool T_in_sight;
+    public bool T_here { get; private set; }
+    public bool T_in_sight { get; private set; }
     private float T_vanish_time;
     private const float T_vanish_time_const = 4f;
 
@@ -31,10 +48,11 @@ public class ScholarSenses
     private const float peripheral_vision_angle = 140f;
     private const float central_vision_angle = 30f;
     private const float vision_distance = 5f;
+
     private LayerMask visible_layerMask = LayerMask.GetMask("Wall", "Teacher");
 
 
-    public ScholarSenses(Scholar s)
+    public ScholarSensess(Scholar s)
     {
         Scholar = s;
     }
@@ -49,11 +67,8 @@ public class ScholarSenses
 
     public void ISeeYou()
     {
-        if (T_here)
-        {
-            T_look_at_us = true;
-            T_look_vanish_time = T_look_vanish_time_const;
-        }
+        T_look_at_us = true;
+        T_look_vanish_time = T_look_vanish_time_const;
     }
 
 
@@ -112,7 +127,7 @@ public class ScholarSenses
 
         T_behind_wall = true;
 
-        T_angle_y = BaseGeometry.LookingAngle(Player.get.transform, Scholar.Move.transform.position);
+        T_angle_y = BaseGeometry.LookingAngle2D(Player.get.transform, Scholar.Move.transform.position);
         T_angle_x = (Player.get.Camera.transform.rotation.eulerAngles.x + 30) % 360;
 
         T_direction = BaseGeometry.GetDirection2D(Scholar.Move.Position(), Player.get.Move.Position());
@@ -131,12 +146,12 @@ public class ScholarSenses
         }
 
 
-        angle_to_teacher = BaseGeometry.LookingAngle(Scholar.Move.transform, Player.get.transform.position);
+        angle_to_teacher = BaseGeometry.LookingAngle2D(Scholar.Move.transform, Player.get.transform.position);
 
         //Debug.Log("Angle to Teacher: " + angle_to_teacher);
 
 
-        if ((T_angle_y < (48 / (T_look_coef * T_look_coef)) && T_angle_x < 80) || (T_distance <= 0.5))
+        if ((T_angle_y < (48 / (T_look_coef * T_look_coef)) && T_angle_x < (80 / T_look_coef)))
         {
             T_look_near_at_us = true;
         }

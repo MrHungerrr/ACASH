@@ -56,11 +56,6 @@ public class ObjectSound : A_Sound
         base.Pause(name);
     }
 
-    public void Continue()
-    {
-        base.Continue(name);
-    }
-
     public void Stop()
     {
         base.Stop(name);

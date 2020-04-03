@@ -9,10 +9,10 @@ using Single;
 
 public class ComputerManager : Singleton<ComputerManager>
 {
-    private float mouseSensitivity = 0.02f;
-    private float gamepadSensitivity = 0.07f;
-    private float mouseCameraSensitivity = 3f;
-    private float gamepadCameraSensitivity = 60f;
+    private float mouseSensitivity = 0.004f;
+    private float gamepadSensitivity = 0.014f;
+    private float mouseCameraSensitivity = 0.6f;
+    private float gamepadCameraSensitivity = 12f;
     [HideInInspector]
     public Vector2 mouseInput;
     [HideInInspector]
@@ -24,6 +24,9 @@ public class ComputerManager : Singleton<ComputerManager>
     private bool active = false;
     [HideInInspector]
     public bool fast;
+
+    [HideInInspector]
+    public bool end;
 
 
     [HideInInspector]
@@ -82,12 +85,12 @@ public class ComputerManager : Singleton<ComputerManager>
             {
                 case "keyboard":
                     {
-                        mouseInput *= mouseCameraSensitivity * Time.deltaTime;
+                        mouseInput *= mouseCameraSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
                         break;
                     }
                 default:
                     {
-                        mouseInput *= gamepadCameraSensitivity * Time.deltaTime;
+                        mouseInput *= gamepadCameraSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
                         break;
                     }
             }
@@ -100,12 +103,12 @@ public class ComputerManager : Singleton<ComputerManager>
             {
                 case "keyboard":
                     {
-                        mouseInput *= mouseSensitivity * Time.deltaTime;
+                        mouseInput *= mouseSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
                         break;
                     }
                 default:
                     {
-                        mouseInput = mouseInput.normalized * gamepadSensitivity * Time.deltaTime;
+                        mouseInput = mouseInput.normalized * gamepadSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
 
                         if (fast)
                             mouseInput *= 3f;
@@ -149,4 +152,10 @@ public class ComputerManager : Singleton<ComputerManager>
 
 
 
+
+
+    public void Sensitivity()
+    {
+
+    }
 }

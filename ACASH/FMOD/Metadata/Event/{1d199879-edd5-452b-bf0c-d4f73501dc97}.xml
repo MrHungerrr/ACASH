@@ -117,12 +117,19 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{00010ed1-b7bb-431a-8413-f31aa734da3a}">
-		<property name="isAsync">
+		<property name="length">
+			<value>0.20000000000000001</value>
+		</property>
+		<property name="looping">
 			<value>true</value>
 		</property>
-		<property name="length">
-			<value>0.050000000000000003</value>
+		<property name="playlistMode">
+			<value>1</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{e4ad8467-9436-450e-a15d-57aebcb74df5}</destination>
+			<destination>{e68d2de4-622d-44cd-93a7-402569c76ec6}</destination>
+		</relationship>
 		<relationship name="sounds">
 			<destination>{717f9c3a-af8e-4794-aec9-6d74111e4f0c}</destination>
 			<destination>{d9417615-16f2-48e9-8b5f-26d687a79675}</destination>
@@ -155,6 +162,22 @@
 	</object>
 	<object class="MixerBusPanner" id="{e03b2ee9-210a-4bdc-936c-37d453b8a566}" />
 	<object class="MixerBusFader" id="{2f2422b7-86a1-4d7f-aae3-a05894a61e55}" />
+	<object class="RandomizerModulator" id="{e4ad8467-9436-450e-a15d-57aebcb74df5}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>4.16666698</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{e68d2de4-622d-44cd-93a7-402569c76ec6}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="amount">
+			<value>3</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{717f9c3a-af8e-4794-aec9-6d74111e4f0c}">
 		<relationship name="audioFile">
 			<destination>{cfeabc3a-af93-4243-80e0-ee95f66948b7}</destination>
@@ -196,7 +219,7 @@
 			<value>0</value>
 		</property>
 		<property name="maximumDistance">
-			<value>3.4000001</value>
+			<value>2</value>
 		</property>
 		<property name="extentMode">
 			<value>1</value>
@@ -236,7 +259,7 @@
 			<value>1</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-1.5</value>
 		</property>
 	</object>
 	<object class="Automator" id="{55eb278a-a533-45b1-984b-100a44375f52}">

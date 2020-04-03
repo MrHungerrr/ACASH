@@ -79,11 +79,6 @@ public class SoundManager : A_Sound
         base.Pause(sound.ToString());
     }
 
-    public void Continue(sounds sound)
-    {
-        base.Continue(sound.ToString());
-    }
-
     public void Stop(sounds sound)
     {
         base.Stop(sound.ToString());

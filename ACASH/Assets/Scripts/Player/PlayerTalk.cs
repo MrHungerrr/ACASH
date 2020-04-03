@@ -6,19 +6,33 @@ using UnityEngine;
 public class PlayerTalk : MonoBehaviour
 {
     [HideInInspector]
-    public Scholar scholar { get; set; }
+    public Scholar scholar { get; private set; }
     protected KeyWord key_word = new KeyWord("Teacher");
     public bool talking { get; private set; } = false;
 
 
+    public event ActionEvent.OnActionBool AnswerStart;
+    public event ActionEvent.OnActionBool TalkStart;
+    public event ActionEvent.OnActionBool AnswerDone;
+    public event ActionEvent.OnActionBool TalkDone;
 
-    public delegate void BoolDone(bool option);
-    public event BoolDone AnswerDone;
-    public event BoolDone TalkDone;
+    public event ActionEvent.OnAction ShoutStart;
+    public event ActionEvent.OnAction ExecuteStart;
+    public event ActionEvent.OnAction ShoutDone;
+    public event ActionEvent.OnAction ExecuteDone;
 
-    public delegate void OnDone();
-    public event OnDone ShoutDone;
-    public event OnDone ExecuteDone;
+
+
+
+    public void SetScholar(Scholar Scholar)
+    {
+        this.scholar = Scholar;
+    }
+
+    public void ResetScholar()
+    {
+        this.scholar = null;
+    }
 
 
 
@@ -54,6 +68,8 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Shouting()
     {
+        if (ShoutStart != null)
+            ShoutStart();
 
         Scholar[] scholars = ScholarManager.get.GetVisibleScholars();
 
@@ -118,6 +134,9 @@ public class PlayerTalk : MonoBehaviour
     {
         // Подлежит изменению (View) \\
 
+        if (TalkStart != null)
+            TalkStart(strong);
+
         key_word += scholar.View.GetView().ToString();
 
         //Было ли сделано уже такое замечание?
@@ -168,6 +187,9 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Answering(Scholar scholar, bool answer)
     {
+        if (AnswerStart != null)
+            AnswerStart(answer);
+
         key_word += scholar.type;
         key_word += scholar.Question.question_key;
         key_word.Answer(answer);
@@ -188,13 +210,6 @@ public class PlayerTalk : MonoBehaviour
 
         if(AnswerDone != null)
             AnswerDone(answer);
-
-        while (scholar.Talk.talking)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        yield return new WaitForSeconds(0.5f);
     }
 
 
@@ -218,6 +233,9 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Execute(Scholar scholar)
     {
+        if (ExecuteStart != null)
+            ExecuteStart();
+
         SubtitleManager.get.Say(key_word);
         scholar.Execute.Execute(key_word);
 

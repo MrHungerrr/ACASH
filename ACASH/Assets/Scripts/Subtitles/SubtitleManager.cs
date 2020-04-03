@@ -30,7 +30,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
         if (last_key != null)
         {
             StopAllCoroutines();
-            Debug.Log("Остановка субтитров - " + last_key);
+            Debug.Log("Остановка субтитров - " + last_key.GetFullKey());
         }
 
         subPlay.Clear();

@@ -73,17 +73,19 @@ public class ScoreManager : Singleton<ScoreManager>
             scores.Add((scores_names)i, buf);
         }
 
-        agents = FindObjectsOfType<ScoreAgent>();
-
-
-        foreach(ScoreAgent a in agents)
-        {
-            a.Setup();
-        }
 
         ExamManager.get.ExamDone += FinalScore;
     }
 
+    public void SetLevel()
+    {
+        agents = FindObjectsOfType<ScoreAgent>();
+
+        foreach (ScoreAgent a in agents)
+        {
+            a.Setup();
+        }
+    }
 
 
 

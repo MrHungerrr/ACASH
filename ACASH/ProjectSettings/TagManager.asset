@@ -29,6 +29,8 @@ TagManager:
   - PlayerPoint
   - ActionObject
   - Wall
+  - Desk
+  - Obstacle
   layers:
   - Default
   - TransparentFX

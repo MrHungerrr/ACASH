@@ -350,8 +350,11 @@ public class InputManager : Singleton<InputManager>
 
     private void ComputerExit()
     {
-        ComputerManager.get.Exit();
-        SwitchGameInput("gameplay");
+        if (!ComputerManager.get.end)
+        {
+            ComputerManager.get.Exit();
+            SwitchGameInput("gameplay");
+        }
     }
 
     private void ComputerFast(bool option)

@@ -957,6 +957,11 @@ PrefabInstance:
       propertyPath: m_textInfo.lineCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6444800574640086916, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8229833219193952087, guid: e9e0c3b19b1f4994f8e8220c41ebb61a,
         type: 3}
       propertyPath: m_LocalPosition.x

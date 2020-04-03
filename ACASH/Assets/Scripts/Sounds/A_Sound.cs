@@ -9,8 +9,11 @@ public abstract class A_Sound: MonoBehaviour
 
     protected Dictionary<string, FMODAudio> FMODsounds = new Dictionary<string, FMODAudio>();
     public GameObject obj { get; private set; }
+    public string[] ignore_tags { get; private set; } = null;
 
     public event ActionEvent.OnAction UpdateSound;
+
+
 
 
     protected virtual void Setup()
@@ -35,6 +38,20 @@ public abstract class A_Sound: MonoBehaviour
         this.sounds_path += path;
     }
 
+    protected void SetIgnore(string ignore_tag)
+    {
+
+        this.ignore_tags = new string[] { ignore_tag };
+    }
+
+    protected void SetIgnore(string[] ignore_tags)
+    {
+        this.ignore_tags = ignore_tags;
+    }
+
+
+
+
     public void Update()
     {
         if (UpdateSound != null)
@@ -43,7 +60,7 @@ public abstract class A_Sound: MonoBehaviour
 
     protected void AddSound(string name)
     {
-        //try
+        try
         {
             if (obj != null)
             {
@@ -54,14 +71,14 @@ public abstract class A_Sound: MonoBehaviour
             }
             else
             {
-                Debug.Log("No object to Attach - " + name);
+                Debug.LogError("No object to Attach - " + name);
             }
         }
-       /* catch
+        catch
         {
-            Debug.Log("ERROR in adding Sound - " + name);
+            Debug.LogError("ERROR in adding Sound - " + name);
         }
-        */
+        
     }
 
 
@@ -75,64 +92,67 @@ public abstract class A_Sound: MonoBehaviour
         }
         catch
         {
-            Debug.Log("ERROR in adding Sound - " + name);
+            Debug.LogError("ERROR in adding Sound - " + name);
         }
     }
 
 
 
-    protected void Play(string sound)
+    protected virtual void Play(string sound)
     {
         try
         {
             if(FMODsounds[sound].Play())
             {
-                Debug.Log("Sound Start - " + sound);
+                Debug.Log("Sound Play - " + sound);
             }
             else
             {
-                Debug.Log("Sound is already playing - " + sound);
+                //Debug.Log("Sound is already playing - " + sound);
             }
 
         }
         catch
         {
-            Debug.Log("Sound is MISSING - " + sound);
+            Debug.LogError("Sound is MISSING - " + sound);
+        }
+    }
+
+    protected virtual void PlayAnyway(string sound)
+    {
+        try
+        {
+            FMODsounds[sound].PlayAnyway();
+            Debug.Log("Sound Play - " + sound);
+        }
+        catch
+        {
+            Debug.LogError("Sound is MISSING - " + sound);
         }
     }
 
 
-    protected void Pause(string sound)
+
+    protected virtual void Pause(string sound)
     {
         if (!FMODsounds[sound].Pause())
         {
-            Debug.Log("Sound is not playing - " + sound);
+            //Debug.Log("Sound is not playing - " + sound);
         }
 
     }
-
-    protected void Continue(string sound)
-    {
-        if (!FMODsounds[sound].Continue())
-        {
-            Debug.Log("Sound is not paused - " + sound);
-        }
-    }
-
-
-
 
     //Остановка Sound
     protected void Stop(string sound)
     {
-        FMODsounds[sound].Stop();
+        Stop(sound, false);
     }
 
-    protected void Stop(string sound, bool immediate)
+    protected virtual void Stop(string sound, bool immediate)
     {
         if(!FMODsounds[sound].Stop(immediate))
         {
-            Debug.Log("Sound is not active - " + sound);
+            //Debug.Log("Sound is not active - " + sound);
         }
     }
 }

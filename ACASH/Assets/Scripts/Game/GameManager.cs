@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        Setup();
+
         game = false;
         if (!test)
         {
@@ -27,6 +29,14 @@ public class GameManager : Singleton<GameManager>
 
         FadeController.get.Fade(false);
     }
+
+
+    private void Setup()
+    {
+        ScoreManager.get.Setup();
+        ScholarManager.get.Setup();
+    }
+
 
     public void MainMenu()
     {
@@ -72,9 +82,14 @@ public class GameManager : Singleton<GameManager>
         while (FadeController.get.active)
             yield return new WaitForEndOfFrame();
 
+        InputManager.get.SwitchGameInput("disable");
+
         Menu.get.MainMenu();
-        InputManager.get.SwitchGameInput("menu");
         LevelManager.get.UnloadLevels();
+
+        yield return new WaitForSeconds(0.1f);
+
+        InputManager.get.SwitchGameInput("menu");
 
         FadeController.get.Fade(false);
     }
@@ -114,14 +129,23 @@ public class GameManager : Singleton<GameManager>
         InputManager.get.SwitchGameInput("gameplay");
     }
 
+    public void StartLevel()
+    {
+        InputManager.get.SwitchGameInput("disable");
+        FadeHUDController.get.FastFade(true);
+        FadeController.get.FastFade(false);
+
+        SetLevel();
+    }
+
 
 
     public void SetLevelForTest()
     {
         PlaceManager.get.Setup();
-        ScholarObjectsManager.get.Setup();
-        ScholarManager.get.Setup();
-        ScoreManager.get.Setup();
+        ScholarObjectsManager.get.SetLevel();
+        ScholarManager.get.SetLevel();
+        ScoreManager.get.SetLevel();
         ComputerManager.get.Setup();
         TimeManager.get.Setup();
         LevelSettings.get.Setup();
@@ -131,9 +155,9 @@ public class GameManager : Singleton<GameManager>
     public void SetLevel()
     {
         PlaceManager.get.Setup();
-        ScholarObjectsManager.get.Setup();
-        ScholarManager.get.Setup();
-        ScoreManager.get.Setup();
+        ScholarObjectsManager.get.SetLevel();
+        ScholarManager.get.SetLevel();
+        ScoreManager.get.SetLevel();
         ComputerManager.get.Setup();
         TimeManager.get.Setup();
         LevelSettings.get.Setup();

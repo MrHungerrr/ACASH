@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System;
+using ScholarOptions;
+
+
 
 public class Dumb
 {
@@ -14,27 +17,22 @@ public class Dumb
 
     public bool CheatProbability()
     {
-        switch (Scholar.Stress.GetMoodTypeTime())
+        switch (Scholar.Stress.GetMoodType())
         {
-            case 0:
+            case GetS.mood.Chill:
                 {
                     if (BaseMath.Probability(0.75))
                         return true;
                     break;
                 }
-            case 1:
+            case GetS.mood.Normal:
                 {
                     if (BaseMath.Probability(0.5))
                         return true;
                     break;
                 }
-            case 2:
+            case GetS.mood.Panic:
                 {
-                    break;
-                }
-            default:
-                {
-                    Debug.Log("<color=#ff00ff>Ошибка настроения ученика</color>");
                     break;
                 }
         }

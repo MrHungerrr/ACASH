@@ -12,7 +12,7 @@ public static class ActionsList
 
     private static Action[] actions_2 = new Action[]
     {
-        new Action("Air", "All"),
+        //new Action("Air", "All"),
         new Action("Sink", "All"),
     };
 
@@ -42,7 +42,7 @@ public static class ActionsList
 
     private static Action[] cheatings_2 = new Action[]
     {
-        new Action("Air", "All"),
+        //new Action("Air", "All"),
         new Action("Sink", "All"),
         //new Action("Program", "All"),
     };

@@ -17,7 +17,7 @@ public class OperationsManager
     public OperationsManager(Scholar scholar, ScholarActions action)
     {
         Action = action;
-        Executer = scholar.GetComponent<OperationsExecuter>();
+        Executer = scholar.transform.Find("Script Holder").GetComponent<OperationsExecuter>();
         Executer.SetOperationsExecuter(scholar, this);
 
         Reset();

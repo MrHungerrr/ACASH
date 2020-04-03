@@ -54,7 +54,7 @@ public static class KeyWordManager
             key += GetRandomFromLinesQuantity(key);
         }
 
-        Debug.Log("key - " + key.GetKey());
+        //Debug.Log("key - " + key.GetKey());
 
         return key.GetFullWord();
     }

@@ -25,9 +25,9 @@ public class ScholarBody : MonoBehaviour
     public void Setup(Scholar scholar)
     {
         active = true;
-        head = transform.Find("Head");
+        head = transform.parent.Find("Head");
         head_height = head.Find("Model");
-        body = transform.Find("Scholar");
+        body = transform.parent.Find("Scholar");
         head_target = body.Find("Scholar").Find("Spine").Find("Head Target");
 
         body_moving = false;

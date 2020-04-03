@@ -77,39 +77,55 @@ public class Scholar : MonoBehaviour
         active = false;
         this.tag = "Scholar";
 
-        TextBox = GetComponent<ScholarTextBox>();
+        Transform buf = transform.Find("Script Holder");
+
+        TextBox = buf.GetComponent<ScholarTextBox>();
         TextBox.Setup(this);
 
-        Emotions = GetComponent<ScholarEmotions>();
+        Emotions = buf.GetComponent<ScholarEmotions>();
         Emotions.Setup();
 
-        Move = transform.parent.GetComponent<ScholarMove>();
+        Move = GetComponent<ScholarMove>();
         Move.Setup(this);
 
-        Body = transform.parent.GetComponent<ScholarBody>();
+        Body = buf.GetComponent<ScholarBody>();
         Body.Setup(this);
 
         Select = GetComponent<ScholarSelect>();
         Select.Setup(this);
 
-        Sound = GetComponent<ScholarSounds>();
+        Sound = buf.GetComponent<ScholarSounds>();
         Sound.Setup(this);
 
 
-        Anim = new ScholarAnim(transform.parent.Find("Scholar").GetComponent<Animator>());
+        Anim = new ScholarAnim(transform.Find("Scholar").GetComponent<Animator>());
+        Debug.Log(1);
         Question = new ScholarQuestions(this);
+        Debug.Log(2);
         Location = new ScholarLocation(this);
+        Debug.Log(3);
         Execute = new ScholarExecute(this);
+        Debug.Log(4);
         Objects = new ScholarObjects(this);
+        Debug.Log(5);
         Reaction = new ScholarReactions();
+        Debug.Log(6);
         Action = new ScholarActions(this);
+        Debug.Log(7);
         Senses = new ScholarSenses(this);
+        Debug.Log(8);
         Stress = new ScholarStress(this);
+        Debug.Log(9);
         Conversation = new ScholarConverastion(this);
+        Debug.Log(10);
         Cheat = new ScholarCheat(this);
+        Debug.Log(11);
         Check = new ScholarCheck(this);
+        Debug.Log(12);
         Info = new ScholarInfo(this);
+        Debug.Log(13);
         View = new ScholarView(this);
+        Debug.Log(14);
         Test = new ScholarExam();
     }
 
@@ -123,6 +139,8 @@ public class Scholar : MonoBehaviour
         Select.Reset();
         Emotions.Reset();
         Execute.Reset();
+        Stress.Reset();
+
         Talk = new ScholarTalk(this);
         Answers = new ScholarAnswers();
         Cheat.Reset();
@@ -155,13 +173,8 @@ public class Scholar : MonoBehaviour
             Talk.Update();
             Check.Update();
             Objects.Update();
+            Stress.Update();
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (active)
-            Stress.MoodTypeTimeUpdate();
     }
 
 
@@ -176,6 +189,8 @@ public class Scholar : MonoBehaviour
     {
         Action.Pause();
         Move.Stop();
+
+        Objects.ThrowOut();
     }
 
 
@@ -185,6 +200,7 @@ public class Scholar : MonoBehaviour
         Action.Pause();
         Move.Stop();
         Talk.Stop();
+        Objects.ThrowOut();
         Anim.SetAnimation(Animations.GetA.animations.Nothing);
         active = false;
     }

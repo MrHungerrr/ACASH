@@ -33,7 +33,7 @@ public class DeskManager : Singleton<DeskManager>
 
 
 
-    public void SetDeskManager()
+    public void Setup()
     {
         desks = GameObject.FindObjectsOfType<ScholarComputer>();
         DeskSort();

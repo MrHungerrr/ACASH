@@ -13,14 +13,6 @@ public class ScholarManager : Singleton<ScholarManager>
     public int cheating_count;
 
 
-    [HideInInspector]
-    public int left;
-    [HideInInspector]
-    public int cheated;
-    [HideInInspector]
-    public int finished;
-
-
     //Emotions
     public Texture ussual;
     public Texture happy;
@@ -33,6 +25,14 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
     public void Setup()
+    {
+        ExamManager.get.ChillDone += StartPrepare;
+        ExamManager.get.PrepareDone += StartExam;
+        ExamManager.get.ExamDone += EndExam;
+    }
+
+
+    public void SetLevel()
     {
         scholars = GameObject.FindObjectsOfType<Scholar>();
         int number = 0;
@@ -48,10 +48,6 @@ public class ScholarManager : Singleton<ScholarManager>
                 number++;
             }
         }
-
-        ExamManager.get.ChillDone += StartPrepare;
-        ExamManager.get.PrepareDone += StartExam;
-        ExamManager.get.ExamDone += EndExam;
     }
 
 
@@ -88,9 +84,9 @@ public class ScholarManager : Singleton<ScholarManager>
 
 
 
-    public int[] GetStress()
+    public float[] GetStress()
     {
-        int[] buf = new int[scholars.Length];
+        float[] buf = new float[scholars.Length];
 
         for (int i = 0; i < scholars.Length; i++)
         {
@@ -132,6 +128,8 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public void StartPrepare()
     {
+        GameManager.get.NewScholars();
+
         for (int i = 0; i < scholars.Length; i++)
         {
             if (scholars[i].active && !scholars[i].disabled)
@@ -163,7 +161,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Senses.Hear(distance);
+            scholars[i].Senses.Ears.Hear(distance);
         }
     }
 
@@ -171,7 +169,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            scholars[i].Senses.SpecialHear(pos);
+            scholars[i].Senses.Ears.SpecialHear(pos);
         }
     }
 
@@ -197,7 +195,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (!scholars[i].Senses.T_behind_wall && scholars[i].active)
+            if (!scholars[i].Senses.Teacher.behind_wall && scholars[i].active)
                 result.Add(scholars[i]);
         }
 

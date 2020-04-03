@@ -8,10 +8,10 @@ public class ExamManager : Singleton<ExamManager>
 
     public enum part
     {
-        chill,
-        prepare,
-        exam,
-        afterhours,
+        Chill,
+        Prepare,
+        Exam,
+        Afterhours,
     }
 
     KeyWord exam_key = new KeyWordWithoutMain("Exam_Part");
@@ -19,11 +19,9 @@ public class ExamManager : Singleton<ExamManager>
     public bool exam;
 
 
-    public delegate void OnTimeDone();
-    public event OnTimeDone ChillDone;
-    public event OnTimeDone PrepareDone;
-    public event OnTimeDone ExamDone;
-
+    public event ActionEvent.OnAction ChillDone;
+    public event ActionEvent.OnAction PrepareDone;
+    public event ActionEvent.OnAction ExamDone;
 
 
     [HideInInspector]
@@ -33,6 +31,7 @@ public class ExamManager : Singleton<ExamManager>
 
     public void Awake()
     {
+        ChillDone += StartPrepare;
         PrepareDone += StartExam;
         ExamDone += FinishExam;
     }
@@ -46,21 +45,17 @@ public class ExamManager : Singleton<ExamManager>
     private void StartGame()
     {
         exam = false;
-        exam_part = part.chill;
-        TimeManager.get.SetTime(0);
+        exam_part = part.Chill;
+        TimeManager.get.SetTime(exam_part);
 
         exam_key += 0;
         HUDManager.get.ExamHUD(exam_key);
-
-        LevelSettings.get.ExamNext += ResetExam;
     }
 
     private void StartPrepare()
     {
-        GameManager.get.NewScholars();
-
-        exam_part = part.prepare;
-        TimeManager.get.SetTime(1);
+        exam_part = part.Prepare;
+        TimeManager.get.SetTime(exam_part);
         exam_key += 1;
         HUDManager.get.ExamHUD(exam_key);
     }
@@ -68,8 +63,8 @@ public class ExamManager : Singleton<ExamManager>
     public void StartExam()
     {
         exam = true;
-        exam_part = part.exam;
-        TimeManager.get.SetTime(2);
+        exam_part = part.Exam;
+        TimeManager.get.SetTime(exam_part);
 
         exam_key += 2;
         HUDManager.get.ExamHUD(exam_key);
@@ -78,7 +73,9 @@ public class ExamManager : Singleton<ExamManager>
     public void FinishExam()
     {
         exam = false;
-        exam_part = part.afterhours;
+        exam_part = part.Afterhours;
+        TimeManager.get.SetTime(exam_part);
+        TimeManager.get.Enable(false);
 
         exam_key += 3;
         HUDManager.get.ExamHUD(exam_key);
@@ -89,20 +86,25 @@ public class ExamManager : Singleton<ExamManager>
     {
         switch(exam_part)
         {
-            case part.chill:
+            case part.Chill:
                 {
-                    StartPrepare();
-                    ChillDone();
+                    if (ChillDone != null)
+                        ChillDone();
+
                     break;
                 }
-            case part.prepare:
+            case part.Prepare:
                 {
-                    PrepareDone();
+                    if(PrepareDone != null)
+                        PrepareDone();
+
                     break;
                 }
-            case part.exam:
+            case part.Exam:
                 {
-                    ExamDone();
+                    if(ExamDone != null)
+                        ExamDone();
+
                     break;
                 }
         }

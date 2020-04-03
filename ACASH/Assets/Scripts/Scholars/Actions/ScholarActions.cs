@@ -87,6 +87,7 @@ public class ScholarActions
 
         if (skip)
         {
+            Scholar.Cheat.EndCheat();
             skip = false;
             NextAction();
         }

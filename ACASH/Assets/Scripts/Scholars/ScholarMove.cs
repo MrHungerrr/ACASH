@@ -133,7 +133,7 @@ public class ScholarMove : MonoBehaviour
 
     public void SetRotateGoal(Vector3 position)
     {
-        Quaternion target = BaseGeometry.GetQuaternionTo(transform, position);
+        Quaternion target = BaseGeometry.GetQuaternionToY(transform, position);
         SetRotateGoal(target);
     }
 

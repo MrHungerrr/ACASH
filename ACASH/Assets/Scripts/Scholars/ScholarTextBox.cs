@@ -34,9 +34,9 @@ public class ScholarTextBox : MonoBehaviour
 
     private void Update()
     {
-        if(filled && !question)
+        if (filled && !question)
         {
-            if(timeClear>=timeClear_N)
+            if (timeClear >= timeClear_N)
             {
                 Clear();
             }
@@ -85,7 +85,10 @@ public class ScholarTextBox : MonoBehaviour
     public void Clear()
     {
         if (act)
+        {
             StopAllCoroutines();
+            Scholar.Sound.Stop(ScholarSounds.sounds.Talk);
+        }
         Text("");
         act = false;
         filled = false;
@@ -112,13 +115,16 @@ public class ScholarTextBox : MonoBehaviour
                 {
                     TextPlus(line[i]);
 
-                    if (line[i] != ' ')
-                        yield return new WaitForSeconds(0.05f);
-                    else
+
+                    if (line[i] == ' ' && BaseMath.Probability(0.25))
                     {
                         saying = false;
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.15f);
                         saying = true;
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(0.05f);
                     }
                 }
                 saying = false;

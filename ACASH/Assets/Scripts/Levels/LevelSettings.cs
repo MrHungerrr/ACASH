@@ -11,8 +11,16 @@ public class LevelSettings: Singleton<LevelSettings>
         Hard
     }
 
-    public difficultyes difficultyType;
+    private enum next_exam_mode
+    {
+        Auto,
+        Manual,
+    }
 
+
+    public difficultyes difficultyType;
+    [SerializeField]
+    private next_exam_mode nextExam;
 
    
     public event ActionEvent.OnAction ExamNext;
@@ -31,6 +39,19 @@ public class LevelSettings: Singleton<LevelSettings>
 
     public void Setup()
     {
+        switch(nextExam)
+        {
+            case next_exam_mode.Auto:
+                {
+                    ExamNext += ExamManager.get.ResetExam;
+                    break;
+                }
+            case next_exam_mode.Manual:
+                {
+                    break;
+                }
+        }
+
         exam_index = 1;
     }
 
