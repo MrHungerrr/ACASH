@@ -13,20 +13,30 @@
 
 
 
-    public TutorialPlayerWatcher()
+    public TutorialPlayerWatcher(bool start = true)
     {
-        Setup();
+        Setup(start);
     }
 
 
-    private void Setup()
+    private void Setup(bool start)
     {
         Reset();
 
-        Player.get.Talk.TalkStart += PlayerTalk;
-        Player.get.Talk.AnswerStart += PlayerAnswer;
-        Player.get.Talk.ShoutStart += PlayerShout;
-        Player.get.Talk.ExecuteStart += PlayerExecute;
+        if (start)
+        {
+            Player.get.Talk.TalkStart += PlayerTalk;
+            Player.get.Talk.AnswerStart += PlayerAnswer;
+            Player.get.Talk.ShoutStart += PlayerShout;
+            Player.get.Talk.ExecuteStart += PlayerExecute;
+        }
+        else
+        {
+            Player.get.Talk.TalkDone += PlayerTalk;
+            Player.get.Talk.AnswerDone += PlayerAnswer;
+            Player.get.Talk.ShoutDone += PlayerShout;
+            Player.get.Talk.ExecuteDone += PlayerExecute;
+        }
     }
 
 

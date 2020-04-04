@@ -5,23 +5,16 @@ using Single;
 
 public class ScholarManager : Singleton<ScholarManager>
 {
+
     [HideInInspector]
-    public Scholar[] scholars;
+    public Scholar[] all_scholars { get; private set; }
+    [HideInInspector]
+    public Scholar[] scholars { get; private set; }
 
 
     [HideInInspector]
     public int cheating_count;
 
-
-    //Emotions
-    public Texture ussual;
-    public Texture happy;
-    public Texture smile;
-    public Texture sad;
-    public Texture upset;
-    public Texture suprised;
-    public Texture ask;
-    public Texture dead;
 
 
     public void Setup()
@@ -29,25 +22,32 @@ public class ScholarManager : Singleton<ScholarManager>
         ExamManager.get.ChillDone += StartPrepare;
         ExamManager.get.PrepareDone += StartExam;
         ExamManager.get.ExamDone += EndExam;
+        ScholarFaces.Setup();
     }
 
 
     public void SetLevel()
     {
-        scholars = GameObject.FindObjectsOfType<Scholar>();
+        all_scholars = GameObject.FindObjectsOfType<Scholar>();
+        List<Scholar> list = new List<Scholar>();
+
         int number = 0;
 
-        for (int i = 0; i < scholars.Length; i++)
+        for (int i = 0; i < all_scholars.Length; i++)
         {
-            scholars[i].Setup();
 
-            if (!scholars[i].disabled)
+            all_scholars[i].Setup();
+
+            if (!all_scholars[i].disabled)
             {
-                scholars[i].Info.SetNumber(number);
-                scholars[i].Move.Position(PlaceManager.get.GetPlace(PlaceManager.place.Home, number));
+                list.Add(all_scholars[i]);
+                all_scholars[i].Info.SetNumber(number);
+                all_scholars[i].Move.Position(PlaceManager.get.GetPlace(PlaceManager.place.Home, number));
                 number++;
             }
         }
+
+        scholars = list.ToArray();
     }
 
 
@@ -55,17 +55,14 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (!scholars[i].disabled)
+            if (scholars[i].scholarType == ScholarTypes.list.Random)
             {
-                if (scholars[i].scholarType == ScholarTypes.list.Random)
-                {
-                    int rand = Random.Range(0, ScholarTypes.length);
-                    scholars[i].SetNewType((ScholarTypes.list)rand);
-                }
-                else
-                {
-                    scholars[i].ResetType();
-                }
+                int rand = Random.Range(0, ScholarTypes.length);
+                scholars[i].SetNewType((ScholarTypes.list)rand);
+            }
+            else
+            {
+                scholars[i].ResetType();
             }
         }
     }
@@ -132,7 +129,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (scholars[i].active && !scholars[i].disabled)
+            if (scholars[i].active)
                 scholars[i].Action.DoAction("Login");
         }
     }
@@ -141,7 +138,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if(scholars[i].active && !scholars[i].disabled)
+            if(scholars[i].active)
                 scholars[i].Action.Enable();
         }
     }
@@ -150,7 +147,7 @@ public class ScholarManager : Singleton<ScholarManager>
     {
         for (int i = 0; i < scholars.Length; i++)
         {
-            if (scholars[i].active && !scholars[i].disabled)
+            if (scholars[i].active)
                 scholars[i].Execute.EndExamForScholar();
         }
     }

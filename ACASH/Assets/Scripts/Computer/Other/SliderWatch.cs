@@ -3,13 +3,17 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 
-public class SliderWatch : MonoBehaviour
+public abstract class SliderWatch : MonoBehaviour
 {
-    private SliderPiece[] pieces = new SliderPiece[10];
+    protected SliderPiece[] pieces;
+    protected int length;
 
-    private void Awake()
+
+    public virtual void Setup()
     {
-        for (int i = 0; i < 10; i++)
+        pieces = new SliderPiece[length];
+
+        for (int i = 0; i < length; i++)
         {
             pieces[i] = transform.Find("Piece_" + i).GetComponent<SliderPiece>();
             pieces[i].nomber = i;
@@ -20,7 +24,9 @@ public class SliderWatch : MonoBehaviour
 
     public void Select(int num)
     {
-        for (int i = 0; i < 10; i++)
+        int res = (int) (length * (float) (num / 100));
+
+        for (int i = 0; i < length; i++)
         {
             if (i < num)
                 pieces[i].Select(true);

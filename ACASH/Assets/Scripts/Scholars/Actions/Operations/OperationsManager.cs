@@ -38,6 +38,7 @@ public class OperationsManager
         catch
         {
             Debug.LogError("Несуществующий ключ - " + key);
+            ActionEnd();
         }
     }
 

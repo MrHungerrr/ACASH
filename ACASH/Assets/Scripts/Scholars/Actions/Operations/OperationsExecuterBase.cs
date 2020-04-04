@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Animations;
+using ScholarOptions;
 
 public abstract class OperationsExecuterBase : MonoBehaviour
 {
@@ -326,7 +327,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         }
 
         Scholar.Talk.Stop();
-        Scholar.Emotions.Change("dead");
+        Scholar.Emotions.Change(GetS.faces.Dead);
 
         OperationEnd();
     }

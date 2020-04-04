@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using ScholarOptions;
 
 public class ScholarCheat
 {
@@ -92,11 +92,36 @@ public class ScholarCheat
     }
 
 
+
+
     public bool Probability()
+    {
+        switch(Scholar.Stress.GetMoodType())
+        {
+            case GetS.mood.Chill:
+                {
+                    return BaseMath.Probability(0.75);
+                }
+            case GetS.mood.Normal:
+                {
+                    return BaseMath.Probability(0.25);
+                }
+            case GetS.mood.Panic:
+                {
+                    return false;
+                }
+        }
+
+        return false;
+    }
+
+
+
+    /*public bool Probability()
     {
         if (BaseMath.Probability((70f - Scholar.Stress.value)/100f))
             return true;
         else
             return false;
-    }
+    }*/
 }

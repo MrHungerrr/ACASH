@@ -72,7 +72,7 @@ public class ScholarTeacherCalculate
         direction = BaseGeometry.GetDirection2D(Scholar.Move.Position(), Player.get.Move.Position());
 
         RaycastHit hit;
-        Debug.DrawRay(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction, Color.red);
+        Debug.DrawRay(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction*3, Color.red);
         if (Physics.Raycast(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction, out hit, visible_layerMask))
         {
             if (hit.collider.tag == "Player")

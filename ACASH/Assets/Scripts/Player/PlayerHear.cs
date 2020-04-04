@@ -22,7 +22,8 @@ public class PlayerHear
         RaycastHit hit;
         Vector3 direction = BaseGeometry.GetDirection(Player.get.Camera.transform.position, obj.transform.position);
 
-        Debug.DrawRay(Player.get.Camera.transform.position, direction, Color.red);
+
+        Debug.DrawRay(Player.get.Camera.transform.position, direction, Color.green);
 
         if (Physics.Raycast(Player.get.Camera.transform.position, direction, out hit, visible_layerMask))
         {

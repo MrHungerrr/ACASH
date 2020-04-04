@@ -1,4 +1,6 @@
-﻿namespace ScholarOptions
+﻿using UnityEngine;
+
+namespace ScholarOptions
 {
     public static class GetS
     {
@@ -7,6 +9,18 @@
             Chill,
             Normal,
             Panic
+        }
+
+        public enum faces
+        {
+            Ask,
+            Dead,
+            Happy,
+            Sad,
+            Smile,
+            Suprised,
+            Upset,
+            Ussual
         }
     }
 }

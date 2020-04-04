@@ -10,12 +10,15 @@ public class Level_1 : Singleton<Level_1>
     private KeyWord key = new KeyWord("Level_1");
     private KeyWord key_mistake = new KeyWord("Level_1", "Mistake");
 
+    private KeyAction zoom;
+
 
     private void Start()
     {
         StartLevel();
 
         ExamManager.get.ExamDone += StartEnding;
+        ExamManager.get.PrepareDone += StartTabHint;
     }
 
     private void StartLevel()
@@ -26,8 +29,11 @@ public class Level_1 : Singleton<Level_1>
 
     private IEnumerator ElevatorRoom()
     {
+        //while (!LevelManager.get.IsLoad())
+        //  yield return new WaitForEndOfFrame();
 
         GameManager.get.StartLevel();
+
 
         Player.get.Move.Position(Elevator.get.position);
 
@@ -66,10 +72,33 @@ public class Level_1 : Singleton<Level_1>
         GameManager.get.StartExam();
     }
 
-  
+
+
+    private void StartTabHint()
+    {
+        HUDManager.get.HintHUD(GetP.actions.Hud);
+        zoom.Setup(GetP.actions.Hud);
+
+        zoom.OnKeyDown += CloseTabHint;
+
+        ExamManager.get.PrepareDone -= StartTabHint;
+    }
+
+
+    private void CloseTabHint()
+    {
+        zoom.Remove();
+        HUDManager.get.CloseHintHUD();
+    }
+
+
+
+
+
 
     private void StartEnding()
     {
+        ExamManager.get.ExamDone -= StartEnding;
         StartCoroutine(Ending());
     }
 
@@ -94,6 +123,6 @@ public class Level_1 : Singleton<Level_1>
     private void EndLevel()
     {
         FadeHUDController.get.FastFade(true);
-        //LevelManager.get.LoadInstead("Tutorial_2");
+        LevelManager.get.LoadInstead("Tutorial_2");
     }
 }

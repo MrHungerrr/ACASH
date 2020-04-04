@@ -8,12 +8,15 @@ public class GameManager : Singleton<GameManager>
 
     [HideInInspector]
     public bool game;
+    [HideInInspector]
+    private bool setuped = false;
     [SerializeField]
     private bool test;
 
 
     private void Awake()
     {
+
         Setup();
 
         game = false;
@@ -33,8 +36,12 @@ public class GameManager : Singleton<GameManager>
 
     private void Setup()
     {
-        ScoreManager.get.Setup();
-        ScholarManager.get.Setup();
+        if (!setuped)
+        {
+            setuped = true;
+            ScoreManager.get.Setup();
+            ScholarManager.get.Setup();
+        }
     }
 
 
@@ -131,6 +138,10 @@ public class GameManager : Singleton<GameManager>
 
     public void StartLevel()
     {
+        //В конце концов это можно будет убрать (Костыль на игру без меню)
+        if (!setuped)
+            Setup();
+
         InputManager.get.SwitchGameInput("disable");
         FadeHUDController.get.FastFade(true);
         FadeController.get.FastFade(false);

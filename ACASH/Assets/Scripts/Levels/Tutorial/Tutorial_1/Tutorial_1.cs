@@ -5,9 +5,9 @@ using Single;
 
 public class Tutorial_1 : Singleton<Tutorial_1>
 {
-    public TutorialPlayerWatcher Watcher;
-    private TutorialScholarCheatSet Cheat;
-    private TutorialKeyHint Hint;
+    private TutorialPlayerWatcher Watcher;
+    private TutorialScholarController Cheat;
+    private TutorialKeyHint_1 Hint;
 
     private KeyWord key = new KeyWord("Tutorial_1");
     private KeyWord key_mistake = new KeyWord("Tutorial_1", "Mistake");
@@ -27,15 +27,14 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
  
 
-    private void Awake()
+    private void Start()
     {
         trigger_room.OnEnter += StartTutorial;
         phone.GetComponent<InteractAction>().OnInteraction += StartElevator;
 
         Watcher = new TutorialPlayerWatcher();
-        Cheat = new TutorialScholarCheatSet();
-        Hint = GetComponent<TutorialKeyHint>();
-        Hint.Begin();
+        Cheat = new TutorialScholarController();
+        Hint = GetComponent<TutorialKeyHint_1>();
 
         StartCoroutine(StartLevel());
 
@@ -46,19 +45,14 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
     private IEnumerator StartLevel()
     {
-        while (LevelManager.get.IsLoad())
-            yield return new WaitForEndOfFrame();
+       // while (!LevelManager.get.IsLoad())
+           // yield return new WaitForEndOfFrame();
 
-
+        GameManager.get.StartLevel();
 
         Transform point = GameObject.FindGameObjectWithTag("PlayerPoint").transform;
         Player.get.Move.Position(point.position);
         Destroy(point.gameObject);
-
-        GameManager.get.SetLevel();
-
-        FadeHUDController.get.FastFade(true);
-        FadeController.get.FastFade(false);
 
         yield return new WaitForSeconds(1f);
 
@@ -66,6 +60,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
         HUDManager.get.IntrodactionHUD(key);
         SoundManager.get.Play(SoundManager.sounds.Rain);
+        Hint.Begin();
 
         yield return new WaitForSeconds(2f);
 
@@ -272,7 +267,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
         Player.get.Talk.all_controll = true;
 
-        Cheat.RandomScholarsCheatSet(scholars, TutorialScholarCheatSet.calculate);
+        Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
         Watcher.Reset();
 
         option = true;
@@ -313,7 +308,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
                             while (SubtitleManager.get.act)
                                 yield return new WaitForEndOfFrame();
 
-                            Cheat.RandomScholarsCheatSet(scholars, TutorialScholarCheatSet.calculate);
+                            Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
                             option_num = 0;
                         }
                     }
@@ -351,7 +346,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
         Player.get.Talk.all_controll = true;
 
-        Cheat.RandomScholarsCheatSet(scholars, TutorialScholarCheatSet.note);
+        Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.note);
         Watcher.Reset();
 
         option = true;
@@ -391,7 +386,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
                             while (SubtitleManager.get.act)
                                 yield return new WaitForEndOfFrame();
 
-                            Cheat.RandomScholarsCheatSet(scholars, TutorialScholarCheatSet.calculate);
+                            Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
                             option_num = 0;
                         }
                     }
@@ -589,6 +584,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
     private void EndLevel()
     {
+        InputManager.get.Controls.Gameplay.HUD.Enable();
         FadeHUDController.get.FastFade(true);
         LevelManager.get.LoadInstead("Level_1");
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ScholarOptions;
 
 public class ScholarConverastion
 {
@@ -21,7 +22,7 @@ public class ScholarConverastion
 
     public void HearTeacherTalking(bool strong)
     {
-        Scholar.Emotions.Change("suprised");
+        Scholar.Emotions.Change(GetS.faces.Suprised);
 
         if (strong)
         {
@@ -39,12 +40,12 @@ public class ScholarConverastion
         if (strong)
         {
             Scholar.Stress.Change(30);
-            Scholar.Emotions.Change("upset", "ussual", 4f);
+            Scholar.Emotions.Change(GetS.faces.Upset, GetS.faces.Ussual, 4f);
         }
         else
         {
             Scholar.Stress.Change(10);
-            Scholar.Emotions.Change("happy", "smile", 4f);
+            Scholar.Emotions.Change(GetS.faces.Happy, GetS.faces.Smile, 4f);
         }
 
         Answer(key);
@@ -106,7 +107,7 @@ public class ScholarConverastion
     public void Shout()
     {
         Scholar.Stress.Change(20);
-        Scholar.Emotions.Change("suprised", "upset", "ussual", 2f);
+        Scholar.Emotions.Change(GetS.faces.Suprised, GetS.faces.Upset, GetS.faces.Ussual, 2f);
     }
 
 }

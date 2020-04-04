@@ -450,7 +450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8252646239633009907}
   - component: {fileID: 8758191297047499978}
-  - component: {fileID: 233899159271382817}
+  - component: {fileID: 4121935820945706608}
   m_Layer: 5
   m_Name: WatchSlider 10
   m_TagString: Untagged
@@ -495,7 +495,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558087638113481881}
   m_CullTransparentMesh: 0
---- !u!114 &233899159271382817
+--- !u!114 &4121935820945706608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5558087638113481881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e230f991424f25c479a9a8b72d1e1352, type: 3}
+  m_Script: {fileID: 11500000, guid: b897634eeeec47e4791f7c2722c84ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5664511256923320762

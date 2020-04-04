@@ -18,6 +18,9 @@ public class LevelSettings: Singleton<LevelSettings>
     }
 
 
+
+
+
     public difficultyes difficultyType;
     [SerializeField]
     private next_exam_mode nextExam;

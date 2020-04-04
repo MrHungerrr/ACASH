@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ScholarOptions;
 
 public class ScholarQuestions
 {
@@ -38,7 +39,7 @@ public class ScholarQuestions
         question_t = question_const_t;
         answer = false;
 
-        Scholar.Emotions.Change("ask");
+        Scholar.Emotions.Change(GetS.faces.Ask);
     }
 
 
@@ -79,7 +80,7 @@ public class ScholarQuestions
         Scholar.Talk.Stop();
         question = false;
 
-        Scholar.Emotions.Change("ussual");
+        Scholar.Emotions.Change(GetS.faces.Ussual);
     }
 
 

@@ -2408,6 +2408,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7242951617567368959, guid: c01bf56fdf96ac944b521a5f3f92dac6,
+        type: 3}
+      propertyPath: m_TagString
+      value: DeskScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 7306957605474327452, guid: c01bf56fdf96ac944b521a5f3f92dac6,
         type: 3}
       propertyPath: m_StaticEditorFlags

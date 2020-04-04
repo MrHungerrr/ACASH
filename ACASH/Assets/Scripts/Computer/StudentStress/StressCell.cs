@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
 using ScholarOptions;
@@ -7,25 +8,29 @@ using ScholarOptions;
 
 public class StressCell : MonoBehaviour
 {
+
+
     private bool active = false;
     private Scholar scholar;
-    private TextMeshProUGUI emotion;
+    private Image emotion;
     private TextMeshProUGUI scholar_name;
+    private TextMeshProUGUI scholar_stress;
     private SliderWatch slider;
     private int stress;
 
     private void Awake()
     {
         slider = transform.GetComponentInChildren<SliderWatch>();
-        emotion = transform.Find("Emotion").GetComponent<TextMeshProUGUI>();
+        emotion = transform.Find("Emotion").Find("Face").GetComponent<Image>();
         scholar_name = transform.Find("Name").GetComponent<TextMeshProUGUI>();
+        scholar_stress = transform.Find("Stress").GetComponent<TextMeshProUGUI>();
     }
 
     public void Set(Scholar s)
     {
         active = true;
         scholar = s;
-        scholar_name.text = scholar.Info.surname + " " + scholar.Info.name;
+        scholar_name.text = "Scholar #" + scholar.Info.number;
     }
 
     public void Refresh()
@@ -34,7 +39,8 @@ public class StressCell : MonoBehaviour
         {
             stress = (int) scholar.Stress.value;
             //Debug.Log("Стресс чувака - " + stress/10);
-            slider.Select(stress / 10);
+            scholar_stress.text = "Stress:" + stress + "%";
+            slider.Select(stress);
             Mood(scholar.Stress.GetMoodType());
         }
     }
@@ -45,17 +51,17 @@ public class StressCell : MonoBehaviour
         {
             case GetS.mood.Chill:
                 {
-                    emotion.text = ":)";
+                    emotion.sprite = ScholarFaces.get[GetS.faces.Smile];
                     break;
                 }
             case GetS.mood.Normal:
                 {
-                    emotion.text = ":|";
+                    emotion.sprite = ScholarFaces.get[GetS.faces.Ussual];
                     break;
                 }
             case GetS.mood.Panic:
                 {
-                    emotion.text = ":(";
+                    emotion.sprite = ScholarFaces.get[GetS.faces.Upset];
                     break;
                 }
         }

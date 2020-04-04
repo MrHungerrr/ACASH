@@ -163,7 +163,7 @@ public class ScholarTextBox : MonoBehaviour
     public void StressLevel(int num)
     {
         textBox[2].text = num.ToString() + '%';
-        stressSlider.Select(num / 10);
+        stressSlider.Select(num);
     }
 
 }

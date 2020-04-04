@@ -99,33 +99,19 @@ public class Scholar : MonoBehaviour
 
 
         Anim = new ScholarAnim(transform.Find("Scholar").GetComponent<Animator>());
-        Debug.Log(1);
         Question = new ScholarQuestions(this);
-        Debug.Log(2);
         Location = new ScholarLocation(this);
-        Debug.Log(3);
         Execute = new ScholarExecute(this);
-        Debug.Log(4);
         Objects = new ScholarObjects(this);
-        Debug.Log(5);
         Reaction = new ScholarReactions();
-        Debug.Log(6);
         Action = new ScholarActions(this);
-        Debug.Log(7);
         Senses = new ScholarSenses(this);
-        Debug.Log(8);
         Stress = new ScholarStress(this);
-        Debug.Log(9);
         Conversation = new ScholarConverastion(this);
-        Debug.Log(10);
         Cheat = new ScholarCheat(this);
-        Debug.Log(11);
         Check = new ScholarCheck(this);
-        Debug.Log(12);
         Info = new ScholarInfo(this);
-        Debug.Log(13);
         View = new ScholarView(this);
-        Debug.Log(14);
         Test = new ScholarExam();
     }
 

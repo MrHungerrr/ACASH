@@ -17,7 +17,7 @@ public class ScholarSounds : A_Sound
     public void Setup(Scholar Scholar)
     {
         this.Scholar = Scholar;
-        base.Setup(Scholar.transform.parent.gameObject, "Local/Scholar/");
+        base.Setup(Scholar.gameObject, "Local/Scholar/");
 
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
