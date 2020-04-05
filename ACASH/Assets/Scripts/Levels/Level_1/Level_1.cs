@@ -105,12 +105,32 @@ public class Level_1 : Singleton<Level_1>
 
     private IEnumerator Ending()
     {
+        key *= "Ending";
+        key_mistake *= "Ending";
+        float option_time = 0f;
+
+        key += 0;
+        SubtitleManager.get.Say(key);
 
         while (InputManager.get.gameType != "computer")
-            yield return new WaitForEndOfFrame();
+        {
+            if(!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
 
-        key *= "Ending";
-        key += 0;
+            if(option_time >10f)
+            {
+                key_mistake += 0;
+                SubtitleManager.get.Say(key_mistake);
+                    
+                option_time = 0f;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+
+
+        key += 1;
 
         SubtitleManager.get.Say(key);
         Elevator.get.Open();
@@ -118,11 +138,28 @@ public class Level_1 : Singleton<Level_1>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        option_time = 0f;
 
         while (!Elevator.get.inside)
-            yield return new WaitForEndOfFrame();
+        {
+            if (!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
 
-        key += 1;
+            if (option_time > 10f)
+            {
+                key_mistake += 1;
+                SubtitleManager.get.Say(key_mistake);
+
+                option_time = 0f;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+
+
+
+        key += 2;
 
         SubtitleManager.get.Say(key);
 

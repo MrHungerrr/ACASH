@@ -196,7 +196,9 @@ public class ScholarManager : Singleton<ScholarManager>
             if (!scholars[i].Senses.Teacher.behind_wall && scholars[i].active)
                 result.Add(scholars[i]);
         }
-        Debug.LogError("Меня видят - " + result.Count + " Учеников");
+
+        
+        //Debug.LogError("Меня видят - " + result.Count + " Учеников");
         return result.ToArray();
     }
 

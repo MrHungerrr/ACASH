@@ -11,11 +11,13 @@ public static class OperationsList
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
+        new Verify(GetO.verify.Toilet_Is_Free, true),
         new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
 
-        new Special(GetO.special.Go_To_Toilet, 0),
-        new Special(GetO.special.Pee),
+        new Operation(GetO.operation.Go_To_Toilet),
+
+        new Special(GetO.special.Pee, 5),
         new Operation(GetO.operation.Go_To_Desk),
     };
 
@@ -25,11 +27,13 @@ public static class OperationsList
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
+        new Verify(GetO.verify.Outside_Is_Free, true),
         new Question(GetQ.questions.Air),
         new Verify(GetO.verify.Answer, true),
 
-        new Special(GetO.special.Go_Outside, 0),
-        new Special(GetO.special.Think_Outside),
+        new Operation(GetO.operation.Go_Outside),
+
+        new Special(GetO.special.Think_Outside, 5),
         new Operation(GetO.operation.Go_To_Desk),
     };
 
@@ -38,11 +42,13 @@ public static class OperationsList
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
+        new Verify(GetO.verify.Sink_Is_Free, true),
         new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
 
-        new Special(GetO.special.Go_To_Sink, 0),
-        new Special(GetO.special.Wash_Hands),
+        new Operation(GetO.operation.Go_To_Sink),
+
+        new Special(GetO.special.Wash_Hands, 5),
         new Operation(GetO.operation.Go_To_Desk),
     };
 
@@ -53,10 +59,11 @@ public static class OperationsList
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
+        new Verify(GetO.verify.Toilet_Is_Free, true),
         new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
 
-        new Special(GetO.special.Go_To_Toilet, 0),
+        new Operation(GetO.operation.Go_To_Toilet),
 
         new Operation(GetO.operation.StartCheat),
         new Special(GetO.special.Wait, 5),
@@ -72,10 +79,11 @@ public static class OperationsList
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
+        new Verify(GetO.verify.Outside_Is_Free, true),
         new Question(GetQ.questions.Air),
         new Verify(GetO.verify.Answer, true),
 
-        new Special(GetO.special.Go_Outside, 0),
+        new Operation(GetO.operation.Go_Outside),
 
         new Operation(GetO.operation.StartCheat),
         new Special(GetO.special.Wait, 5),
@@ -90,10 +98,11 @@ public static class OperationsList
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
+        new Verify(GetO.verify.Sink_Is_Free, true),
         new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
 
-        new Special(GetO.special.Go_To_Sink, 0),
+        new Operation(GetO.operation.Go_To_Sink),
 
         new Operation(GetO.operation.StartCheat),
         new Special(GetO.special.Wait, 5),

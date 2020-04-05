@@ -8,7 +8,9 @@ namespace Operations
         private string verify;
         private bool need_condition { get; }
 
-        public Verify(GetO.verify verify, bool need_condition) : base(GetO.operation.Verify)
+
+
+        public Verify(GetO.verify verify, bool need_condition = true) : base(GetO.operation.Verify)
         {
             this.verify = verify.ToString();
             this.need_condition = need_condition;
@@ -27,6 +29,21 @@ namespace Operations
                 case "Answer":
                     {
                         executer.Verify(executer.VerifyAnswer, need_condition);
+                        break;
+                    }
+                case "Toilet_Is_Free":
+                    {
+                        executer.Verify(executer.VerifyToiletAreFree, need_condition);
+                        break;
+                    }
+                case "Sink_Is_Free":
+                    {
+                        executer.Verify(executer.VerifySinkAreFree, need_condition);
+                        break;
+                    }
+                case "Outside_Is_Free":
+                    {
+                        executer.Verify(executer.VerifyOutsideAreFree, need_condition);
                         break;
                     }
             }

@@ -4,16 +4,18 @@ using System;
 
 public class ScholarExam
 {
-
+    private Scholar Scholar;
     public bool writing;
     public int test { get; private set; }
     public double test_buf { get; private set; }
     public float test_bufTime { get; private set; }
     public bool finished { get; private set; }
+    public double speed { get; private set; }
 
 
-    public ScholarExam()
+    public ScholarExam(Scholar Scholar)
     {
+        this.Scholar = Scholar;
         finished = false;
         test = 0;
         test_buf = 0;
@@ -22,16 +24,15 @@ public class ScholarExam
 
     public void Update()
     {
-        if (writing)
-            WritingTest(10);
+        WritingSpeedCalculate();
+        WritingTest();
     }
 
-    public void WritingTest(float value)
+    public void WritingTest()
     {
-        //Debug.Log("Пишу тест");
         if (test_bufTime > 0)
         {
-            test_buf += value * Time.deltaTime;
+            test_buf += speed * Time.deltaTime;
             test_bufTime -= Time.deltaTime;
         }
         else
@@ -39,7 +40,19 @@ public class ScholarExam
             test += Convert.ToInt32(test_buf);
             test_bufTime = 1f;
             test_buf = 0;
+
+            if (test >= 18000)
+                finished = true;
         }
+    }
+
+
+
+
+    private void WritingSpeedCalculate()
+    {
+        speed = (1 / (0.5 * (Scholar.Stress.value / 100) - 1)) + 2;
+        speed *= 100;
     }
 
 }

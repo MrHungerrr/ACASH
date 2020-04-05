@@ -9,10 +9,10 @@ using Single;
 
 public class ComputerManager : Singleton<ComputerManager>
 {
-    private float mouseSensitivity = 0.004f;
-    private float gamepadSensitivity = 0.014f;
-    private float mouseCameraSensitivity = 0.6f;
-    private float gamepadCameraSensitivity = 12f;
+    private float mouseSensitivity = 0.001f;
+    private float gamepadSensitivity = 0.004f;
+    private float mouseCameraSensitivity = 0.2f;
+    private float gamepadCameraSensitivity = 3f;
     [HideInInspector]
     public Vector2 mouseInput;
     [HideInInspector]

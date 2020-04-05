@@ -156,6 +156,19 @@ public class PlaceManager : Singleton<PlaceManager>
 
 
 
+    public bool IsFree(place type_of_place)
+    {
+        for (int i = 0; i < count[type_of_place]; i++)
+        {
+            if (!busy[type_of_place][i])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public int GetRandomFreePlaceIndex(place type_of_place)
     {
         int random = UnityEngine.Random.Range(0, count[type_of_place]);
@@ -175,7 +188,6 @@ public class PlaceManager : Singleton<PlaceManager>
         {
             if (!busy[type_of_place][index])
             {
-                busy[type_of_place][index] = true;
                 return index;
             }
 

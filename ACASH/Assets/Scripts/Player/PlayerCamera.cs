@@ -8,8 +8,8 @@ public class PlayerCamera : MonoBehaviour
 {
     [HideInInspector]
     public float coefSensitivity = 5;
-    private const float mouseSensitivity = 2;
-    private const float gamepadSensitivity = 35; 
+    private const float mouseSensitivity = 0.5f;
+    private const float gamepadSensitivity = 8f; 
 
     private Player Player;
     private CinemachineVirtualCamera cineCam;
@@ -139,8 +139,9 @@ public class PlayerCamera : MonoBehaviour
 
     public void Sensitivity(int coef)
     {
-        coefSensitivity = Mathf.Pow((coef+1)/5, 3);
+        coefSensitivity = coef*2;
     }
+    
 
     public void Enable(bool option)
     {

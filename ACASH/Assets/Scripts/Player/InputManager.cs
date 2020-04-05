@@ -82,6 +82,7 @@ public class InputManager : Singleton<InputManager>
         Controls.Execute.Back.started += ctx => ExecuteBack();
         Controls.Execute.Menu.started += ctx => ExecuteMenu();
 
+        Controls.Cutscene.Menu.started += ctx => GameMenu();
 
         Controls.InputType.Keyboard.performed += ctx => TypeOfInput("keyboard");
         Controls.InputType.PlayStation.performed += ctx => TypeOfInput("playstation");
@@ -135,7 +136,7 @@ public class InputManager : Singleton<InputManager>
                 }
             case "cutscene":
                 {
-                    Controls.Gameplay.Enable();
+                    Controls.Cutscene.Enable();
                     break;
                 }
             case "execute":

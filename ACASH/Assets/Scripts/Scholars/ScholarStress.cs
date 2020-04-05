@@ -187,7 +187,7 @@ public class ScholarStress
 
     public void StressRaise_High()
     {
-        float res = (8f-12f*Scholar.Senses.Teacher.distance);
+        float res = (10f-12f*Scholar.Senses.Teacher.distance);
 
 
         if (res < 0)
@@ -203,7 +203,7 @@ public class ScholarStress
 
     public void StressRaise_Low()
     {
-        float res = (-4f / 3f) * (Scholar.Senses.Teacher.distance - 2f);
+        float res = (-4f / 3f) * (Scholar.Senses.Teacher.distance - 2f)*2;
 
         if (res < 0)
         {

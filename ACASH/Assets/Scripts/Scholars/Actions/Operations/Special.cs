@@ -13,12 +13,6 @@ namespace Operations
             this.index = option;
         }
 
-        public Special(GetO.special operation) : base(operation)
-        {
-            this.index = 1;
-        }
-
-
         public override void Do(OperationsExecuter executer)
         {
             executer.Do(operation, index);

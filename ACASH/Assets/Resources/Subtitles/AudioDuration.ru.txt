@@ -343,7 +343,19 @@
         },
         {
             "key":"Level_1_Ending_1",
+            "duration":[2.0,2.0]
+        },
+        {
+            "key":"Level_1_Ending_2",
             "duration":[2.0,2.0,2.0,2.0,2.0,2.0]
+        },
+        {
+            "key":"Level_1_Mistake_Ending_0",
+            "duration":[2.0]
+        },
+        {
+            "key":"Level_1_Mistake_Ending_1",
+            "duration":[2.0]
         },
         {
             "key":"Tutorial_2_Begining_0",
@@ -383,7 +395,7 @@
         },
         {
             "key":"Tutorial_2_Second_Room_3",
-            "duration":[2.0]
+            "duration":[2.0,2.0]
         },
         {
             "key":"Tutorial_2_Second_Room_4",
@@ -391,15 +403,15 @@
         },
         {
             "key":"Tutorial_2_Second_Room_5",
-            "duration":[2.0,2.0,2.0]
+            "duration":[2.0,2.0,2.0,2.0]
         },
         {
             "key":"Tutorial_2_Mistake_First_Room_0",
-            "duration":[2.0,2.0]
+            "duration":[2.0,2.0,2.0]
         },
         {
             "key":"Tutorial_2_Mistake_First_Room_1",
-            "duration":[2.0,2.0]
+            "duration":[2.0,2.0,2.0]
         },
         {
             "key":"Tutorial_2_Mistake_First_Room_2",

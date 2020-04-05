@@ -4,6 +4,9 @@
     {
         public enum operation
         {
+            Go_To_Toilet,
+            Go_To_Sink,
+            Go_Outside,
             Check,
             Go_Home,
             Go_To_Desk,
@@ -33,9 +36,6 @@
 
         public enum special
         {
-            Go_To_Toilet,
-            Go_To_Sink,
-            Go_Outside,
             Pee,
             Think,
             Write,
@@ -48,7 +48,10 @@
         public enum verify
         {
             Teacher_Is_Here,
-            Answer
+            Answer,
+            Toilet_Is_Free,
+            Sink_Is_Free,
+            Outside_Is_Free,
         }
     }
 }

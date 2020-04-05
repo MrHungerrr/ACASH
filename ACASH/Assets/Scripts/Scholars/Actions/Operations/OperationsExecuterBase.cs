@@ -290,6 +290,21 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     //=========================================================================================================================================================
     // Проверка, можно ли продолжать цепочку действий
 
+    public bool VerifyToiletAreFree()
+    {
+        return PlaceManager.get.IsFree(PlaceManager.place.Toilet);
+    }
+
+    public bool VerifySinkAreFree()
+    {
+        return PlaceManager.get.IsFree(PlaceManager.place.Sink);
+    }
+
+    public bool VerifyOutsideAreFree()
+    {
+        return PlaceManager.get.IsFree(PlaceManager.place.Outside);
+    }
+
     public bool VerifyTeacherIsHere()
     {
         return Scholar.Senses.T_here;

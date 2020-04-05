@@ -48,6 +48,14 @@ public class OperationsExecuter : OperationsExecuterBase
 
     //=========================================================================================================================================================
     //Выход в туалет
+    private IEnumerator Go_To_Toilet()
+    {
+        int index = PlaceManager.get.GetRandomFreePlaceIndex(PlaceManager.place.Toilet);
+        StartCoroutine(Go_To_Toilet(index));
+
+        yield return null;
+    }
+
     private IEnumerator Go_To_Toilet(int index)
     {
         GoTo(PlaceManager.place.Toilet, index);
@@ -76,6 +84,14 @@ public class OperationsExecuter : OperationsExecuterBase
 
     //=========================================================================================================================================================
     //Выход к раковина
+    private IEnumerator Go_To_Sink()
+    {
+        int index = PlaceManager.get.GetRandomFreePlaceIndex(PlaceManager.place.Sink);
+        StartCoroutine(Go_To_Sink(index));
+
+        yield return null;
+    }
+
     private IEnumerator Go_To_Sink(int index)
     {
         GoTo(PlaceManager.place.Sink, index);
@@ -105,6 +121,14 @@ public class OperationsExecuter : OperationsExecuterBase
 
     //=========================================================================================================================================================
     //Выход подышать воздухом
+    private IEnumerator Go_Outside()
+    {
+        int index = PlaceManager.get.GetRandomFreePlaceIndex(PlaceManager.place.Outside);
+        StartCoroutine(Go_Outside(index));
+
+        yield return null;
+    }
+
     private IEnumerator Go_Outside(int index)
     {
         GoTo(PlaceManager.place.Outside, index);

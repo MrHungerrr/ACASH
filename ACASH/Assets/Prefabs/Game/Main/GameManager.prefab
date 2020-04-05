@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1300066095}
   - component: {fileID: 9076347397069098129}
   - component: {fileID: 8020458321740194047}
+  - component: {fileID: 8257917834311462758}
   m_Layer: 0
   m_Name: Computer
   m_TagString: Untagged
@@ -63,9 +64,19 @@ MonoBehaviour:
   mouse: {x: 0, y: 0}
   fast: 0
   end: 0
-  colors:
-  - {r: 0, g: 0, b: 0, a: 0}
-  - {r: 1, g: 1, b: 1, a: 0.3}
+--- !u!114 &8257917834311462758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300066094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b981db9a34b28f409b2b40ee6017341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texture: {fileID: 8400000, guid: 621d049189e9b604b8ffecb3f1523b91, type: 2}
 --- !u!1 &1549456740212830367
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,16 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66536129bf1f9ee439e66aad34de14cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scholars: []
   cheating_count: 0
-  ussual: {fileID: 2800000, guid: 87c1c48b65072a24a941aec7ad64ad4b, type: 3}
-  happy: {fileID: 2800000, guid: 06a47f8b6b61b8841ad11c3d62f20288, type: 3}
-  smile: {fileID: 2800000, guid: 7ce14bec2060c1a4597f433724fc6002, type: 3}
-  sad: {fileID: 2800000, guid: 2d15d2c63f6e9bd4581f77c663f9a37a, type: 3}
-  upset: {fileID: 2800000, guid: 10fb9a8dd0801f84b9922c8a2cc6f92d, type: 3}
-  suprised: {fileID: 2800000, guid: db2cc152395e42246b6b39f0361d80ae, type: 3}
-  ask: {fileID: 2800000, guid: 4fe466d859381eb4881b88356dcc7cd3, type: 3}
-  dead: {fileID: 2800000, guid: 92fced849fdd5dd48b8be70b19e3ad53, type: 3}
 --- !u!114 &304736969996870486
 MonoBehaviour:
   m_ObjectHideFlags: 0

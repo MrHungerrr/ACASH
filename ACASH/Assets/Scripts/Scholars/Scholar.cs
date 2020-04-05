@@ -117,7 +117,7 @@ public class Scholar : MonoBehaviour
         Cheat = new ScholarCheat(this);
         Check = new ScholarCheck(this);
         View = new ScholarView(this);
-        Test = new ScholarExam();
+        Test = new ScholarExam(this);
     }
 
 
@@ -197,6 +197,8 @@ public class Scholar : MonoBehaviour
         Anim.SetAnimation(Animations.GetA.animations.Nothing);
         HUD.Enable(false);
         active = false;
+
+        Debug.LogError("Scholar #" + Info.number + " test = " + Test.test);
     }
 
 

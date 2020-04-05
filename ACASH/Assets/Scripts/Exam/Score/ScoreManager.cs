@@ -46,7 +46,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             200, // Left
             -400, // Cheated
-            -200, // Not Finished
+            -300, // Not Finished
             200, // Executed Right
             -100, // Executed Wrong
             100, // Answered Right
