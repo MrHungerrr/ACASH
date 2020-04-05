@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ScholarOptions;
 
 public class ScholarExecute
 {
@@ -27,6 +28,14 @@ public class ScholarExecute
         executed = true;
         execute_key = key;
         EndExamForScholar();
+    }
+
+    public void LastWord()
+    {
+        Scholar.Talk.Stop();
+        Scholar.Emotions.Change(GetS.faces.Dead);
+
+        Scholar.Action.DoAction("Go_Home");
     }
 
 

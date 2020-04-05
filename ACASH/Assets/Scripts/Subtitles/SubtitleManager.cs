@@ -12,6 +12,8 @@ public class SubtitleManager : Singleton<SubtitleManager>
     [HideInInspector]
     public bool act;
 
+    public event ActionEvent.OnAction TalkDone;
+
 
     private void Awake()
     {
@@ -62,6 +64,9 @@ public class SubtitleManager : Singleton<SubtitleManager>
         HUDManager.get.SubtitleHUD(false);
 
         act = false;
+
+        if (TalkDone != null)
+            TalkDone();
     }
 
 }

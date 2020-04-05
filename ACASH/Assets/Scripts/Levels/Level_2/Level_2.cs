@@ -83,11 +83,6 @@ public class Level_2 : Singleton<Level_2>
         key *= "Ending";
 
 
-        while (InputManager.get.gameType != "computer")
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
         InputManager.get.SwitchGameInput("cutscene");
 
         FadeHUDController.get.FastFade(true);
@@ -95,13 +90,11 @@ public class Level_2 : Singleton<Level_2>
         key += 0;
 
         SubtitleManager.get.Say(key);
-        Elevator.get.Open();
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-
-        EndLevel();
+        StartCoroutine(EndLevel());
     }
 
     private IEnumerator EndLevel()

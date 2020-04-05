@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
 
     [HideInInspector]
-    public bool game;
+    public bool game { get; private set; }
     [HideInInspector]
     private bool setuped = false;
     [SerializeField]
@@ -61,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
-        StartCoroutine(LoadGame());
+        StartCoroutine(LoadGame("Tutorial_1"));
     }
 
     public void Continue()
@@ -71,7 +71,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
-        StartCoroutine(LoadGame());
+        StartCoroutine(LevelManager.get.current_level);
     }
 
     public void Quit()
@@ -92,18 +92,18 @@ public class GameManager : Singleton<GameManager>
         InputManager.get.SwitchGameInput("disable");
 
         Menu.get.MainMenu();
-        LevelManager.get.UnloadLevels();
 
-        yield return new WaitForSeconds(0.1f);
+        LevelManager.get.UnloadLevels();
 
         InputManager.get.SwitchGameInput("menu");
 
+        FadeHUDController.get.Fade(false);
         FadeController.get.Fade(false);
     }
 
 
 
-    public IEnumerator LoadGame()
+    public IEnumerator LoadGame(string level)
     {
         game = true;
         InputManager.get.SwitchGameInput("disable");
@@ -119,11 +119,10 @@ public class GameManager : Singleton<GameManager>
         while (LevelManager.get.IsLoad())
             yield return new WaitForEndOfFrame();
 
-        LevelManager.get.LoadFast("Tutorial");
+        LevelManager.get.LoadFast(level);
 
-        while (!LevelManager.get.IsLoad("Tutorial"))
+        while (!LevelManager.get.IsLoad(level))
             yield return new WaitForEndOfFrame();
-
         //END
     }
 
@@ -147,21 +146,6 @@ public class GameManager : Singleton<GameManager>
         FadeController.get.FastFade(false);
 
         SetLevel();
-    }
-
-
-
-    public void SetLevelForTest()
-    {
-        PlaceManager.get.Setup();
-        ScholarObjectsManager.get.SetLevel();
-        ScholarManager.get.SetLevel();
-        ScoreManager.get.SetLevel();
-        ComputerManager.get.Setup();
-        TimeManager.get.Setup();
-        LevelSettings.get.Setup();
-        OverwatchCameraManager.get.SetLevel();
-        //StartLevel();
     }
 
     public void SetLevel()

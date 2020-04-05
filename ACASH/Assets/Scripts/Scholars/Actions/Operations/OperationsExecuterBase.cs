@@ -338,13 +338,11 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         if (Scholar.Execute.executed)
         {
             Scholar.Talk.SayWithoutStop(Scholar.Execute.execute_key);
-            yield return new WaitForSeconds(1f);
         }
-
-        Scholar.Talk.Stop();
-        Scholar.Emotions.Change(GetS.faces.Dead);
-
-        OperationEnd();
+        else
+        {
+            Scholar.Execute.LastWord();
+        }
     }
 
 

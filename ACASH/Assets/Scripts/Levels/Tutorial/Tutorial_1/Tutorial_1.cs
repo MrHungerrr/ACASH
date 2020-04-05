@@ -584,7 +584,9 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
     private void EndLevel()
     {
+        Player.get.Talk.all_controll = true;
         InputManager.get.Controls.Gameplay.HUD.Enable();
+        InputManager.get.SwitchGameInput("disable");
         FadeHUDController.get.FastFade(true);
         LevelManager.get.LoadInstead("Level_1");
     }

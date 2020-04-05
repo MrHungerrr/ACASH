@@ -109,13 +109,22 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         //================================================================================================================================
         //Сказать что-то жесткое
 
+        scholars_first[0].ResetType();
+
+        Hint.Set(GetP.actions.Zoom);
+
+        while (!Player.get.Camera.zoom)
+            yield return new WaitForEndOfFrame();
+
+        Hint.Disable();
+
         key += 0;
 
         SubtitleManager.get.Say(key);
 
         yield return new WaitForSeconds(1f);
 
-        scholars_first[0].ResetType();
+
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
@@ -637,7 +646,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             yield return new WaitForEndOfFrame();
 
         Player.get.Talk.all_controll = true;
-        EndLevel();
+        StartCoroutine(EndLevel());
     }
 
 
@@ -646,8 +655,10 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
+        Player.get.Talk.AllowAll();
+        InputManager.get.SwitchGameInput("disable");
         FadeHUDController.get.FastFade(true);
-        //LevelManager.get.LoadInstead("Level_2");
+        LevelManager.get.LoadInstead("Level_2");
     }
 
 }

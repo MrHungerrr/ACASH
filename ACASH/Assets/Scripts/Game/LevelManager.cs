@@ -6,7 +6,7 @@ using Single;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    private string current_level;
+    public string current_level { get; private set; }
 
     public void LoadInstead(string sceneName)
     {

@@ -182,6 +182,10 @@ public static class OperationsList
     private static Operation[] Execute = new Operation[]
     {
         new Operation(GetO.operation.Execute),
+    };
+
+    private static Operation[] Go_Home = new Operation[]
+    {
         new Operation(GetO.operation.Go_Home),
     };
 
@@ -196,6 +200,7 @@ public static class OperationsList
         {"Think_Aloud_1", Think_Aloud_1},
         {"Write", Write},
         {"Execute", Execute},
+        {"Go_Home", Go_Home},
         {"Watch_Rules", Watch_Rules},
         {"Answer", Answer},
         {"Cheating_Calculate_1", Calculate},

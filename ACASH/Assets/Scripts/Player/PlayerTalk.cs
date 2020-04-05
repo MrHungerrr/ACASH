@@ -71,7 +71,10 @@ public class PlayerTalk : MonoBehaviour
         if (ShoutStart != null)
             ShoutStart();
 
-        Scholar[] scholars = ScholarManager.get.GetVisibleScholars();
+        //Scholar[] scholars = ScholarManager.get.GetVisibleScholars();
+
+        Scholar[] scholars = ScholarManager.get.scholars;
+
 
         SubtitleManager.get.Say(key_word);
 
@@ -79,7 +82,8 @@ public class PlayerTalk : MonoBehaviour
 
         foreach (Scholar s in scholars)
         {
-            s.Conversation.Shout();
+            if(s.Senses.Teacher.distance < 3f)
+                s.Conversation.Shout();
         }
 
         while (SubtitleManager.get.act)
@@ -239,13 +243,24 @@ public class PlayerTalk : MonoBehaviour
         SubtitleManager.get.Say(key_word);
         scholar.Execute.Execute(key_word);
 
+        SubtitleManager.get.TalkDone += ExecuteEnd;
+
         while (SubtitleManager.get.act)
         {
             yield return new WaitForEndOfFrame();
         }
+    }
+
+
+
+    // Лютый костыль
+    private void ExecuteEnd()
+    {
+        SubtitleManager.get.TalkDone -= ExecuteEnd;
+
+        scholar.Execute.LastWord();
 
         talking = false;
-
 
         if (ExecuteDone != null)
             ExecuteDone();

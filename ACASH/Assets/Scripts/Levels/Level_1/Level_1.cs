@@ -173,6 +173,7 @@ public class Level_1 : Singleton<Level_1>
     private void EndLevel()
     {
         FadeHUDController.get.FastFade(true);
+        InputManager.get.SwitchGameInput("disable");
         LevelManager.get.LoadInstead("Tutorial_2");
     }
 }
