@@ -225,6 +225,16 @@ public class ScholarMove : MonoBehaviour
     }
 
 
+    public void Rotation(Vector3 set_rotation)
+    {
+        //Какого-то хуя РигидБоди просто с катушек слетает и хуево поворачивает студента
+        //RB.rotation = set_rotation;
+        //RB.MoveRotation(set_rotation);
+
+        transform.rotation = BaseGeometry.GetQuaternionToY(transform, set_rotation); 
+    }
+
+
 
 
     public void Continue()

@@ -10,7 +10,7 @@ public class Level_1 : Singleton<Level_1>
     private KeyWord key = new KeyWord("Level_1");
     private KeyWord key_mistake = new KeyWord("Level_1", "Mistake");
 
-    private KeyAction zoom;
+    private KeyAction hint;
 
 
     private void Start()
@@ -77,9 +77,9 @@ public class Level_1 : Singleton<Level_1>
     private void StartTabHint()
     {
         HUDManager.get.HintHUD(GetP.actions.Hud);
-        zoom.Setup(GetP.actions.Hud);
-
-        zoom.OnKeyDown += CloseTabHint;
+        hint = new KeyAction();
+        hint.Setup(GetP.actions.Hud);
+        hint.OnKeyDown += CloseTabHint;
 
         ExamManager.get.PrepareDone -= StartTabHint;
     }
@@ -87,7 +87,7 @@ public class Level_1 : Singleton<Level_1>
 
     private void CloseTabHint()
     {
-        zoom.Remove();
+        hint.Remove();
         HUDManager.get.CloseHintHUD();
     }
 
@@ -110,6 +110,19 @@ public class Level_1 : Singleton<Level_1>
             yield return new WaitForEndOfFrame();
 
         key *= "Ending";
+        key += 0;
+
+        SubtitleManager.get.Say(key);
+        Elevator.get.Open();
+
+        while (SubtitleManager.get.act)
+            yield return new WaitForEndOfFrame();
+
+
+        while (!Elevator.get.inside)
+            yield return new WaitForEndOfFrame();
+
+        key += 1;
 
         SubtitleManager.get.Say(key);
 

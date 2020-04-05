@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Searching;
 
 public class HUDSelect : MonoBehaviour
 {
@@ -16,6 +17,17 @@ public class HUDSelect : MonoBehaviour
     private float targetFade;
     private float currentFade;
     private bool selectNeed;
+
+    [ContextMenu("AutoFill")]
+    public void AutoFill()
+    {
+        SIC<Image>.Components(this.gameObject, out images);
+        SIC<TextMeshProUGUI>.Components(this.gameObject, out texts);
+        Debug.Log(name + " is Filled");
+    }
+
+
+
 
 
     void Awake()

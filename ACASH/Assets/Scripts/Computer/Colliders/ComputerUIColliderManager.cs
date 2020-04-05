@@ -18,36 +18,15 @@ public class ComputerUIColliderManager : MonoBehaviour
     [ContextMenu("Fill")]
     public void Fill()
     {
-        SIC<ComputerUISelect>.Components(transform, out ui_colliders);
-    }
-
-    private GameObject[] FindAllUIObjects()
-    {
-        List<GameObject> res = new List<GameObject>();
-        Search(this.gameObject);
-
-        void Search(GameObject obj)
-        {
-            if (obj.tag == "ComputerUIObject" || obj.GetComponent<ComputerUISelect>() != null)
-            {
-                res.Add(obj);
-                obj.tag = "ComputerUIObject";
-            }
-
-
-            for (int i = 0; i < obj.transform.childCount; i++)
-            {
-                Search(obj.transform.GetChild(i).gameObject);
-            }
-        }
-
-        return res.ToArray();
+        SIC<ComputerUISelect>.Components(gameObject, out ui_colliders);
     }
 
 
-    public void SetColliders()
+
+
+    public void Setup()
     {
-        SIC<ComputerUISelect>.Components(transform, out ui_colliders);
+        SIC<ComputerUISelect>.Components(gameObject, out ui_colliders);
 
         List <ComputerUICollider> colliders_list = new List<ComputerUICollider>();
 
@@ -59,6 +38,7 @@ public class ComputerUIColliderManager : MonoBehaviour
 
         colliders = colliders_list.ToArray();
     }
+
 
 
     public string MouseCollision(Vector2 pos)

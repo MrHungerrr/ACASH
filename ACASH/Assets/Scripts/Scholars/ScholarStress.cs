@@ -10,7 +10,13 @@ public class ScholarStress
     private Scholar Scholar;
 
     //Стресс и настроение
+
     public float value { get; private set; }
+    public int value_show { get; private set; }
+    private const float change_time = 0.075f;
+    private float time;
+
+
     public int threshold_1 { get; private set; } = 33;
     public int threshold_2 { get; private set; } = 66;
     private GetS.mood mood;
@@ -33,7 +39,10 @@ public class ScholarStress
 
     public void Update()
     {
-        StressDistance();
+        if(!Scholar.disabled)
+            StressDistance();
+
+        Changing();
     }
 
 
@@ -55,11 +64,31 @@ public class ScholarStress
         ChangeMood();
     }
 
-
-
     public void Change(float value)
     {
         Set(this.value + value);
+    }
+
+
+
+
+    private void Changing()
+    {
+        if((int) value != value_show)
+        {
+            if(time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            {
+                time = change_time + time;
+
+                if (value > value_show)
+                    value_show++;
+                else
+                    value_show--;
+            }
+        }
     }
 
 
@@ -91,7 +120,7 @@ public class ScholarStress
 
     private void StressDistance()
     {
-        if (Scholar.Senses.T_here)
+        if (Scholar.Senses.T_here && InputManager.get.gameType != "computer")
         {
 
             if (Scholar.Senses.Teacher.distance <= distance_1)
@@ -144,7 +173,7 @@ public class ScholarStress
 
     public void StressBehavior_3()
     {
-        if (Scholar.Senses.T_look_at_us && Scholar.Senses.T_here)
+        if (Scholar.Senses.T_look_at_us && Scholar.Senses.T_here && InputManager.get.gameType != "computer")
         {
             StressRaise_Low();
         }

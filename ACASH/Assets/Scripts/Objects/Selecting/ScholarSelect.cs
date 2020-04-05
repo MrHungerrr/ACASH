@@ -12,6 +12,11 @@ public class ScholarSelect : ObjectSelect
     public bool selectable = true;
 
 
+    protected override void Awake()
+    {
+    }
+
+
     public void Setup(Scholar scholar)
     {
         Scholar = scholar;

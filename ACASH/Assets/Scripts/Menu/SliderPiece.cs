@@ -39,7 +39,7 @@ public class SliderPiece : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         }
         else
         {
-            image.color = new Color(1f, 1f, 1f, 0.3f);
+            image.color = new Color(1f, 1f, 1f, 0.15f);
         }
     }
 

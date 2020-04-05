@@ -7,10 +7,12 @@ public abstract class SliderWatch : MonoBehaviour
 {
     protected SliderPiece[] pieces;
     protected int length;
+    protected int coef;
 
 
     public virtual void Setup()
     {
+        coef = 100 / length;
         pieces = new SliderPiece[length];
 
         for (int i = 0; i < length; i++)
@@ -24,7 +26,7 @@ public abstract class SliderWatch : MonoBehaviour
 
     public void Select(int num)
     {
-        int res = (int) (length * (float) (num / 100));
+        num /= coef;
 
         for (int i = 0; i < length; i++)
         {

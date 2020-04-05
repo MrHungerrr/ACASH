@@ -68,7 +68,7 @@ public abstract class A_Computer : MonoBehaviour
 
     public virtual void SetScholars()
     {
-        SS.SetScholars();
+        //SS.SetScholars();
     }
 
     protected void ExecuteCommand()

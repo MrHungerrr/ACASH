@@ -5,7 +5,7 @@ using ScholarOptions;
 
 public class ScholarEmotions : MonoBehaviour
 {
-
+    public GetS.faces face_now { get; private set; }
     private Material face;
 
 
@@ -27,6 +27,8 @@ public class ScholarEmotions : MonoBehaviour
         if (stop_coroutines)
             StopAllCoroutines();
 
+
+        face_now = emotion;
         SetFace(ScholarFaces.get[emotion].texture);
     }
 

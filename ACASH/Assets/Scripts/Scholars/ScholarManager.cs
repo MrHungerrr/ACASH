@@ -42,7 +42,8 @@ public class ScholarManager : Singleton<ScholarManager>
             {
                 list.Add(all_scholars[i]);
                 all_scholars[i].Info.SetNumber(number);
-                all_scholars[i].Move.Position(PlaceManager.get.GetPlace(PlaceManager.place.Home, number));
+                all_scholars[i].Location.Teleport(PlaceManager.place.Home, number);
+
                 number++;
             }
         }
@@ -195,7 +196,7 @@ public class ScholarManager : Singleton<ScholarManager>
             if (!scholars[i].Senses.Teacher.behind_wall && scholars[i].active)
                 result.Add(scholars[i]);
         }
-
+        Debug.LogError("Меня видят - " + result.Count + " Учеников");
         return result.ToArray();
     }
 

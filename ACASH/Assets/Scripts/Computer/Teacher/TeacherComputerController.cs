@@ -44,7 +44,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
 
 
 
-    public void  SetTeacherComputerController()
+    public void  Setup()
     {
         Computer = GetComponent<TeacherComputer>();
         Transform screen = transform.Find("Screen").Find("UI").Find("Canvas").Find("Screen");
@@ -68,6 +68,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
     public void Interaction()
     {
         Enable(true);
+
         Player.get.Action.Doing(false);
     }
 
@@ -81,11 +82,13 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
             FOV = normFOV;
             Cam.m_Lens.FieldOfView = FOV;
             ComputerManager.get.Set(this);
+            Player.get.Select.active.Add(this.GetType());
         }
         else
         {
             moving = false;
             zooming = false;
+            Player.get.Select.active.Remove(this.GetType());
         }
 
         active = option;

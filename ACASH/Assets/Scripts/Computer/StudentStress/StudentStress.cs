@@ -12,7 +12,6 @@ public class StudentStress : MonoBehaviour
 
     public void Setup()
     {
-
         Transform transform_ss = transform.Find("Student Stress");
 
         GameObject[] ss = new GameObject[]
@@ -66,6 +65,10 @@ public class StudentStress : MonoBehaviour
         {
             cells[i] = transform_ss.Find("Cell_" + i).GetComponent<StressCell>();
         }
+
+        SetScholars();
+
+        InvokeRepeating("Refresh", 0f, 1f);
     }
 
 
@@ -84,6 +87,8 @@ public class StudentStress : MonoBehaviour
             }
         }
     }
+
+
 
 
     public void Refresh()

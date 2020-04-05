@@ -9,7 +9,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 {
     private TutorialPlayerEyes Eyes;
     private TutorialPlayerWatcher Watcher;
-    private TutorialScholarController Scholars;
+    private TutorialScholarController ScholarController;
     private KeyHint Hint;
 
     private KeyWord key = new KeyWord("Tutorial_2");
@@ -25,7 +25,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
     [Header("Second Room")]
     public TriggerAction second_room;
-    public Scholar[] scholars;
+    private Scholar[] scholars;
     public Door door_enter;
     public TeacherComputer computer;
     public GameObject pointer;
@@ -35,11 +35,12 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
     private void Start()
     {
+
         Watcher = new TutorialPlayerWatcher(false);
 
         Hint = GetComponent<KeyHint>();
         Eyes = GetComponent<TutorialPlayerEyes>();
-        Scholars = new TutorialScholarController();
+        ScholarController = new TutorialScholarController();
 
         second_room.OnEnter += StartSecondRoom;
         Player.get.Talk.DenyAll();
@@ -70,6 +71,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         HUDManager.get.CloseIntrodactionHUD();
         door_exit.locked = true;
         pointer.SetActive(false);
+        scholars = ScholarManager.get.scholars;
 
         yield return new WaitForSeconds(1f);
 
@@ -102,8 +104,6 @@ public class Tutorial_2 : Singleton<Tutorial_2>
     {
         key *= "First_Room";
         key_mistake *= "First_Room";
-
-
 
 
         //================================================================================================================================
@@ -143,8 +143,6 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         //================================================================================================================================
         //Поднять стресс до 70 жесткими
 
-        Debug.LogError("Поднять стресс до 70 жесткими");
-
         Player.get.Talk.all_controll = false;
 
         key += 1;
@@ -154,24 +152,19 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        Debug.LogError("Что за хуйня");
-
 
         Watcher.Reset();
         Player.get.Talk.all_controll = true;
         float option_time = 0f;
         bool option = true;
 
-        scholars_first[0].Stress.Reset();
-
         while (option)
         {
             if(Watcher.talk_bad)
             {
 
-                if (scholars_first[0].Stress.value >= 70f)
+                if (scholars_first[0].Stress.value >= 99f)
                 {
-                    Debug.LogError("Ес");
                     option = false;
                 }
 
@@ -271,7 +264,6 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        scholars_first[0].Stress.Reset();
         Watcher.Reset();
         Player.get.Talk.all_controll = true;
         option_time = 0f;
@@ -294,7 +286,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                     while (SubtitleManager.get.act)
                         yield return new WaitForEndOfFrame();
 
-                    key_mistake += 2;
+                    key_mistake += 1;
                     SubtitleManager.get.Say(key_mistake);
                     scholars_first[0].Stress.Reset();
                 }
@@ -312,7 +304,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 while (SubtitleManager.get.act)
                     yield return new WaitForEndOfFrame();
 
-                key_mistake += 3;
+                key_mistake += 2;
 
                 SubtitleManager.get.Say(key_mistake);
 
@@ -383,6 +375,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         yield return new WaitForSeconds(1f);
 
         scholars[0].ResetType();
+        scholars[0].Action.DoAction("Desk");
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
@@ -401,8 +394,8 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 option = false;
             }
 
-
-            option_time += Time.deltaTime;
+            if(!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
 
             if(option_time > 7f)
             {
@@ -453,8 +446,8 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 option = false;
             }
 
-
-            option_time += Time.deltaTime;
+            if(!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
 
             if (option_time > 7f)
             {
@@ -499,8 +492,8 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 option = false;
             }
 
-
-            option_time += Time.deltaTime;
+            if (!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
 
             if (option_time > 7f)
             {
@@ -530,13 +523,13 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
             while (option)
             {
-                if (computer.Windows.current_window != "Student Stress")
+                if (computer.Windows.current_window == "Student Stress")
                 {
                     option = false;
                 }
 
-
-                option_time += Time.deltaTime;
+                if (!SubtitleManager.get.act)
+                    option_time += Time.deltaTime;
 
                 if (option_time > 7f)
                 {
@@ -548,10 +541,9 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
                 yield return new WaitForEndOfFrame();
             }
-
-            Debug.LogWarning("Rules!");
         }
 
+        InputManager.get.Controls.Computer.Disable();
 
         //================================================================================================================================
         //Держите оптимальный стресс у всех учеников
@@ -564,10 +556,19 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         key += 4;
         SubtitleManager.get.Say(key);
 
+        yield return new WaitForSeconds(4f);
+
+        computer.ExecuteCommand(ComputerActions.GetC.commands.Info);
+
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        Scholars.RandomScholarsCheatSet(scholars, TutorialScholarController.answer);
+
+        ComputerManager.get.Exit();
+        InputManager.get.SwitchGameInput("gameplay");
+        InputManager.get.Controls.Computer.Enable();
+
+        ScholarController.RandomScholarsCheatSet(scholars, TutorialScholarController.answer);
         
         Player.get.Talk.all_controll = true;
         option = true;
@@ -578,7 +579,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
         while (option)
         {
-            if(Scholars.StressCheck(scholars))
+            if(ScholarController.StressCheck(scholars))
             {
                 option_time_2 += Time.deltaTime;
                 option_time = 0f;
@@ -594,7 +595,9 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             }
             else
             {
-                option_time += Time.deltaTime;
+                if (!SubtitleManager.get.act)
+                    option_time += Time.deltaTime;
+
                 option_time_2 = 0f;
 
 

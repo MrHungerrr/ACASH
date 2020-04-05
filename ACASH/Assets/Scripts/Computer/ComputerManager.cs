@@ -30,7 +30,7 @@ public class ComputerManager : Singleton<ComputerManager>
 
 
     [HideInInspector]
-    public Color[] colors = new Color[2]
+    public static Color[] colors = new Color[2]
     {
         new Color(0f,0f,0f,0f),
         new Color(1f,1f,1f,0.3f),

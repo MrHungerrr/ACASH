@@ -22,7 +22,7 @@ public class ComputerUISelect : MonoBehaviour
 
         for (int i = 0; i < images.Length; i++)
         {
-            images[i].color = ComputerManager.get.colors[buf];
+            images[i].color = ComputerManager.colors[buf];
         }
     }
 }

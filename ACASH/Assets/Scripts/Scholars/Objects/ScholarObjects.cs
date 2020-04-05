@@ -25,7 +25,7 @@ public class ScholarObjects
     {
         holding = false;
         objects_holder = Scholar.transform.Find("Objects");
-        SIC.Component(Scholar.transform, "Arm_Target_R_2", out objects_target);
+        SIC.Component(Scholar.gameObject, "Arm_Target_R_2", out objects_target);
 
         for (int i = 0; i < Enum.GetNames(typeof(ScholarObjectsManager.obj_name)).Length; i++)
         {

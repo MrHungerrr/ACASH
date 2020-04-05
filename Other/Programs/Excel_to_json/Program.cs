@@ -303,6 +303,7 @@ namespace Excel_to_json
             }
 
             Console.WriteLine();
+            Console.WriteLine("Fuck Microsoft");
             Console.WriteLine("AudioDuration Complete\n\n");
         }
 

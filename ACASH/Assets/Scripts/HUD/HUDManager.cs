@@ -39,6 +39,10 @@ public class HUDManager : Singleton<HUDManager>
                         introdaction = buf;
                         break;
                     }
+                case "Student":
+                    {
+                        break;
+                    }
                 default:
                     {
                         huds.Add(buf.name, buf);

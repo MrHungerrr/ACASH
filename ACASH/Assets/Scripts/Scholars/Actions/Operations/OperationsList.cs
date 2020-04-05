@@ -165,6 +165,11 @@ public static class OperationsList
         new Operation(GetO.operation.EndCheat),
     };
 
+    private static Operation[] Desk = new Operation[]
+{
+        new Operation(GetO.operation.Go_To_Desk),
+};
+
     private static Operation[] Execute = new Operation[]
     {
         new Operation(GetO.operation.Execute),
@@ -190,6 +195,7 @@ public static class OperationsList
         {"Cheating_Air_2", Cheating_Air_2},
         {"Cheating_Sink_2", Cheating_Sink_2},
         {"Login", Login },
+        {"Desk", Desk },
     };
 
 

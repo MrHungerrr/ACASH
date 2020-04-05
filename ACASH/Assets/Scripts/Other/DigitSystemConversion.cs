@@ -1,5 +1,9 @@
 ﻿using System;
 
+
+/// <summary>
+/// Работает только с системами ниже десятеричной
+/// </summary>
 public static class DigitSystemConversion
 {
 

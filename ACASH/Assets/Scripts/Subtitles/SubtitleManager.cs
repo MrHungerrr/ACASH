@@ -55,7 +55,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
         {
             yield return new WaitForSeconds(0.05f);
             subPlay.SetText(script[i]);
-            yield return new WaitForSeconds(duration[i]);
+            yield return new WaitForSeconds(duration[i] - 0.05f);
             subPlay.Clear();
         }
 

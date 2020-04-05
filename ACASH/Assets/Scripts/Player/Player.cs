@@ -38,7 +38,10 @@ public class Player : Singleton<Player>
 
     protected void Update()
     {
-        Select.Update();
-        Action.Update();
+        if (InputManager.get.gameType == "gameplay")
+        {
+            Select.Update();
+            Action.Update();
+        }
     }
 }

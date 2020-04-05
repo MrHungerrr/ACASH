@@ -28,7 +28,7 @@ namespace Searching
 
 
         // Функции для использования пользователем
-        public static void Components(Transform obj, out GameObject[] array)
+        private static void Components(Transform obj, out GameObject[] array)
         {
             T[] buf_array = Components(obj.transform);
             List<GameObject> list = new List<GameObject>();
@@ -41,7 +41,7 @@ namespace Searching
             array = list.ToArray();
         }
 
-        public static void Components(Transform obj, out T[] array)
+        private static void Components(Transform obj, out T[] array)
         {
             array = Components(obj);
         }
@@ -88,12 +88,12 @@ namespace Searching
 
 
         // Функции для использования пользователем
-        public static void Component(Transform obj, out GameObject goal)
+        private static void Component(Transform obj, out GameObject goal)
         {
             goal = Component(obj.transform).gameObject;
         }
 
-        public static void Component(Transform obj, out T goal)
+        private static void Component(Transform obj, out T goal)
         {
             goal = Component(obj.transform);
         }

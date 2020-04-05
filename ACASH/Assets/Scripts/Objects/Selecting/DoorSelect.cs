@@ -5,10 +5,6 @@ using TMPro;
 public class DoorSelect : ObjectSelect
 {
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     public override bool CanISelect()
     {

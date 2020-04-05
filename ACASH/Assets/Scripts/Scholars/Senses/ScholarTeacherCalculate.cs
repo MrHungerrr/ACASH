@@ -19,7 +19,7 @@ public class ScholarTeacherCalculate
 
 
     //Behind Wall
-    private LayerMask visible_layerMask = LayerMask.GetMask("Wall", "Teacher");
+    private LayerMask visible_layerMask;
     public bool behind_wall { get; private set; }
 
 
@@ -34,6 +34,7 @@ public class ScholarTeacherCalculate
     public ScholarTeacherCalculate(Scholar s)
     {
         Scholar = s;
+        visible_layerMask = LayerMask.GetMask("Wall", "Teacher");
     }
 
 
@@ -72,17 +73,20 @@ public class ScholarTeacherCalculate
         direction = BaseGeometry.GetDirection2D(Scholar.Move.Position(), Player.get.Move.Position());
 
         RaycastHit hit;
-        Debug.DrawRay(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction*3, Color.red);
+
         if (Physics.Raycast(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction, out hit, visible_layerMask))
         {
-            if (hit.collider.tag == "Player")
+            Debug.Log(hit.collider.tag);
+            if (hit.collider.gameObject.tag == "Player")
             {
                 behind_wall = false;
             }
             else
             {
+                Debug.DrawRay(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction * hit.distance, Color.red);
                 behind_wall = true;
-            }
+            }           
+
         }
         else
         {

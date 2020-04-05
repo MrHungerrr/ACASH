@@ -103,7 +103,7 @@ namespace Excel_to_json
                 case '"':
                     return "\\\"";
                 case '\'':
-                    return "\\\"";
+                    return "\\\\";
                 case 'ё':
                     return "е";
                 case 'Ё':

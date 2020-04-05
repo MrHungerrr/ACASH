@@ -45,7 +45,7 @@ public class ElevatorController : Singleton<ElevatorController>, I_Interaction
         if(ready)
         {
             Elevator.get.Sound.Play(ElevatorSounds.sounds.Ring);
-            Elevator.get.Open();
+            Elevator.get.Open(false);
             ready = false;
         }
     }

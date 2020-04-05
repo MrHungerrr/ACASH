@@ -12,14 +12,14 @@ public class TeacherComputer : A_Computer
     public override void Setup()
     {
         Col = transform.Find("Screen").Find("UI").GetComponent<ComputerUIColliderManager>();
-        Col.SetColliders();
+        Col.Setup();
 
         base.Setup();
 
         Exam.SetExamController(this);
 
         Controller = GetComponent<TeacherComputerController>();
-        Controller.SetTeacherComputerController();
+        Controller.Setup();
 
         ExamManager.get.ExamDone += ExamDone;
     }

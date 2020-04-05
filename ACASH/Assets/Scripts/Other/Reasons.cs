@@ -27,6 +27,8 @@ public class Reasons
         if (!reasons.Contains(type))
         {
             reasons.Add(type);
+
+            Debug.LogError("+1 Причина - " + type);
         }
     }
 
@@ -35,6 +37,8 @@ public class Reasons
         if (reasons.Contains(type))
         {
             reasons.Remove(type);
+
+            Debug.LogError("-1 Причина - " + type);
         }
     }
 

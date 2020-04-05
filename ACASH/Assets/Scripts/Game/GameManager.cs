@@ -160,6 +160,7 @@ public class GameManager : Singleton<GameManager>
         ComputerManager.get.Setup();
         TimeManager.get.Setup();
         LevelSettings.get.Setup();
+        OverwatchCameraManager.get.SetLevel();
         //StartLevel();
     }
 
@@ -172,6 +173,7 @@ public class GameManager : Singleton<GameManager>
         ComputerManager.get.Setup();
         TimeManager.get.Setup();
         LevelSettings.get.Setup();
+        OverwatchCameraManager.get.SetLevel();
     }
 
 

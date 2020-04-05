@@ -11,6 +11,7 @@ public class ScholarLocation
     public ScholarLocation(Scholar Scholar)
     {
         this.Scholar = Scholar;
+        index = -1;
     }
 
     public void ChangeLocation(PlaceManager.place place, int index)
@@ -28,6 +29,21 @@ public class ScholarLocation
     {
         Vector3 destination = PlaceManager.get.GetPlace(place, index);
         Scholar.Move.SetDestination(destination);
+    }
+
+
+    public void Teleport(PlaceManager.place place, int index)
+    {
+        if(this.index != -1)
+            PlaceManager.get.MakeFree(this.place, this.index);
+
+        PlaceManager.get.MakeBusy(place, index);
+
+        Scholar.Move.Rotation(PlaceManager.get.GetSightGoal(place, index));
+        Scholar.Move.Position(PlaceManager.get.GetPlace(place, index));
+
+        this.place = place;
+        this.index = index;
     }
 
 

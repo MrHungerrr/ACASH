@@ -65,6 +65,8 @@ public class Scholar : MonoBehaviour
     public ScholarSounds Sound { get; private set; }
     [HideInInspector]
     public ScholarBody Body { get; private set; }
+    [HideInInspector]
+    public ScholarHUD HUD { get; private set; }
 
 
 
@@ -98,19 +100,22 @@ public class Scholar : MonoBehaviour
         Sound.Setup(this);
 
 
+
+
         Anim = new ScholarAnim(transform.Find("Scholar").GetComponent<Animator>());
         Question = new ScholarQuestions(this);
+        Info = new ScholarInfo(this);
         Location = new ScholarLocation(this);
         Execute = new ScholarExecute(this);
         Objects = new ScholarObjects(this);
         Reaction = new ScholarReactions();
         Action = new ScholarActions(this);
+        HUD = new ScholarHUD(this);
         Senses = new ScholarSenses(this);
         Stress = new ScholarStress(this);
         Conversation = new ScholarConverastion(this);
         Cheat = new ScholarCheat(this);
         Check = new ScholarCheck(this);
-        Info = new ScholarInfo(this);
         View = new ScholarView(this);
         Test = new ScholarExam();
     }
@@ -161,6 +166,8 @@ public class Scholar : MonoBehaviour
             Objects.Update();
             Stress.Update();
         }
+
+        HUD.Update();
     }
 
 
@@ -188,6 +195,7 @@ public class Scholar : MonoBehaviour
         Talk.Stop();
         Objects.ThrowOut();
         Anim.SetAnimation(Animations.GetA.animations.Nothing);
+        HUD.Enable(false);
         active = false;
     }
 

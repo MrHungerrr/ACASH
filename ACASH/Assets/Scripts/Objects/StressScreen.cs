@@ -18,6 +18,9 @@ public class StressScreen : MonoBehaviour
 
     private void Update()
     {
+        Text.text = "Stress\n " + (int)Scholar.Stress.value_show + "%";
+
+        /*
         if (timer < 0f)
         {
             Text.text = "Stress\n " + (int) Scholar.Stress.value + "%";
@@ -27,6 +30,7 @@ public class StressScreen : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
+        */
     }
 
 }

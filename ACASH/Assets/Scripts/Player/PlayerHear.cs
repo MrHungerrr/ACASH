@@ -4,8 +4,14 @@ using System.Collections;
 public class PlayerHear
 {
     private const float hear_distance = 15f;
-    private static LayerMask visible_layerMask = LayerMask.GetMask("Wall", "Selectable", "Default");
+    private static LayerMask visible_layerMask;
 
+
+    public PlayerHear()
+    {
+
+        visible_layerMask = LayerMask.GetMask("Wall", "Selectable", "Default");
+    }
     public bool GetOcclusion(GameObject obj)
     {
         return GetOcclusion(obj, string.Empty);

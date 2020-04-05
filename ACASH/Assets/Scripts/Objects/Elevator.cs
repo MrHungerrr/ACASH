@@ -88,15 +88,14 @@ public class Elevator : Singleton<Elevator>
     }
 
 
-    public void Open()     
+    public void Open(bool toEnter = true)     
     {
         if (!open)
         {
             open = true;
 
             //(bool toEnter) выходишь или заходишь в лифт?
-            //enter = toEnter;
-            enter = !inside;
+            enter = toEnter;
 
 
             if (ninety)

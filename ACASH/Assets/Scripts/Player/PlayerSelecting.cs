@@ -6,8 +6,8 @@ public class PlayerSelecting
 {
     public Reasons active { get;}
 
-    private LayerMask select_layer_mask = LayerMask.GetMask("Selectable", "Default");
-    private LayerMask sight_layer_mask = LayerMask.GetMask("Sight Layer");
+    private LayerMask select_layer_mask;
+    private LayerMask sight_layer_mask;
     private float select_max_range { get; } = 2f;
 
 
@@ -20,6 +20,9 @@ public class PlayerSelecting
     {
         active = new Reasons();
         Deselect();
+
+        select_layer_mask = LayerMask.GetMask("Selectable", "Default");
+        sight_layer_mask = LayerMask.GetMask("Sight Layer");
     }
 
 
@@ -35,7 +38,6 @@ public class PlayerSelecting
         {
             Deselect();
         }
-
 
         LookingAtScholars();
     }

@@ -31,12 +31,12 @@ namespace Searching
 
 
         //Фунуции для использования пользователем
-        public static void Components(Transform obj, string key, out Transform[] array)
+        private static void Components(Transform obj, string key, out Transform[] array)
         {
             array = Components(obj.transform, key);
         }
 
-        public static void Components(Transform obj, string key, out GameObject[] array)
+        private static void Components(Transform obj, string key, out GameObject[] array)
         {
             Transform[] buf_array = Components(obj, key);
             List<GameObject> list = new List<GameObject>();
@@ -89,12 +89,12 @@ namespace Searching
 
 
         //Фунуции для использования пользователем
-        public static void Component(Transform obj, string key, out Transform goal)
+        private static void Component(Transform obj, string key, out Transform goal)
         {
             goal = Component(obj.transform, key);
         }
 
-        public static void Component(Transform obj, string key, out GameObject goal)
+        private static void Component(Transform obj, string key, out GameObject goal)
         {
             goal = Component(obj.transform, key).gameObject;
         }
