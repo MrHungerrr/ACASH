@@ -2,22 +2,6 @@
     "lines":
     [
         {
-            "key":"Menu_Main_Continue",
-            "line":["Continue"]
-        },
-        {
-            "key":"Menu_Main_New_Game",
-            "line":["New Game"]
-        },
-        {
-            "key":"Menu_Main_Settings",
-            "line":["Settings"]
-        },
-        {
-            "key":"Menu_Main_Exit",
-            "line":["Exit"]
-        },
-        {
             "key":"Dictionary_Air",
             "line":["Air"]
         },
@@ -1016,6 +1000,22 @@
         {
             "key":"Dictionary_Description_Wrong",
             "line":["Description of word: \"Wrong\""]
+        },
+        {
+            "key":"Menu_Main_Continue",
+            "line":["Continue"]
+        },
+        {
+            "key":"Menu_Main_New_Game",
+            "line":["New Game"]
+        },
+        {
+            "key":"Menu_Main_Settings",
+            "line":["Settings"]
+        },
+        {
+            "key":"Menu_Main_Exit",
+            "line":["Exit"]
         },
     ]
 }

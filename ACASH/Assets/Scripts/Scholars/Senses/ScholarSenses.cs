@@ -24,7 +24,7 @@ public class ScholarSenses
 
     //Vanish Time
     private float T_look_vanish_time;
-    private const float T_look_vanish_time_const = 0.1f;
+    private const float T_look_vanish_time_const = 0.2f;
 
     private float T_vanish_time;
     private const float T_vanish_time_const = 4f;
@@ -63,7 +63,7 @@ public class ScholarSenses
         T_look_at_us = true;
         T_look_vanish_time = T_look_vanish_time_const;
 
-        Scholar.HUD.Enable(true);
+        Scholar.HUD.Enable();
     }
 
 
@@ -130,7 +130,6 @@ public class ScholarSenses
         }
         else
         {
-            Scholar.HUD.Enable(false);
             T_look_at_us = false;
         }
     }

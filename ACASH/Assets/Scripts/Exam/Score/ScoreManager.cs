@@ -45,11 +45,11 @@ public class ScoreManager : Singleton<ScoreManager>
         int[] rep_coef = new int[7]
         {
             200, // Left
-            -400, // Cheated
-            -300, // Not Finished
+            -600, // Cheated
+            -500, // Not Finished
             200, // Executed Right
             -100, // Executed Wrong
-            100, // Answered Right
+            50, // Answered Right
             -100, // Answered Wrong
         };
 

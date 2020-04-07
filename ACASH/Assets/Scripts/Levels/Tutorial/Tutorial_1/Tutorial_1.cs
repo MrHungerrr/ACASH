@@ -5,6 +5,7 @@ using Single;
 
 public class Tutorial_1 : Singleton<Tutorial_1>
 {
+    private TutorialPlayerEyes Eyes;
     private TutorialPlayerWatcher Watcher;
     private TutorialScholarController Cheat;
     private TutorialKeyHint_1 Hint;
@@ -35,6 +36,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         Watcher = new TutorialPlayerWatcher();
         Cheat = new TutorialScholarController();
         Hint = GetComponent<TutorialKeyHint_1>();
+        Eyes = GetComponent<TutorialPlayerEyes>();
 
         StartCoroutine(StartLevel());
 
@@ -223,20 +225,28 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         SubtitleManager.get.Say(key);
 
 
+
+        float option_time = 0f;
+
         while (InputManager.get.gameType != "computer")
         {
+            if (!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
+
+            if (option_time > 10f)
+            {
+                key_mistake += 10;
+                SubtitleManager.get.Say(key_mistake);
+
+                option_time = 0f;
+            }
+
             yield return new WaitForEndOfFrame();
         }
 
+        option_time = 0f;
 
-        if (computer.Windows.current_window == "Rules")
-        {
-            key += 4;
-            SubtitleManager.get.Say(key);
-
-            Debug.LogWarning("Rules!");
-        }
-        else
+        if (computer.Windows.current_window != "Rules") 
         {
             key += 2;
             SubtitleManager.get.Say(key);
@@ -246,21 +256,28 @@ public class Tutorial_1 : Singleton<Tutorial_1>
                 yield return new WaitForEndOfFrame();
             }
 
-
             key += 3;
             SubtitleManager.get.Say(key);
 
             while (computer.Windows.current_window != "Rules")
             {
+                if (!SubtitleManager.get.act)
+                    option_time += Time.deltaTime;
+
+                if (option_time > 10f)
+                {
+                    key_mistake += 11;
+                    SubtitleManager.get.Say(key_mistake);
+
+                    option_time = 0f;
+                }
+
                 yield return new WaitForEndOfFrame();
             }
-
-            key += 4;
-            SubtitleManager.get.Say(key);
-
-            Debug.LogWarning("Rules!");
         }
 
+        key += 4;
+        SubtitleManager.get.Say(key);
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
@@ -272,59 +289,68 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
         option = true;
         int option_num = 0;
+        option_time = 0f;
 
         while (option)
         {
-            if (Watcher.done)
+            if (Watcher.execute)
             {
-                if (Watcher.execute)
+                if (Player.get.Talk.scholar.Cheat.cheating)
                 {
-                    if (Player.get.Talk.scholar.Cheat.cheating)
-                    {
-                        option = false;
-                    }
-                    else
-                    {
-                        while (SubtitleManager.get.act)
-                            yield return new WaitForEndOfFrame();
-
-                        key_mistake += 2;
-                        SubtitleManager.get.Say(key_mistake);
-                        option_num++;
-
-                        if(option_num == 3)
-                        {
-                            foreach (Scholar s in scholars)
-                            {
-                                s.Execute.EndExamForScholar();
-                            }
-
-                            while (SubtitleManager.get.act)
-                                yield return new WaitForEndOfFrame();
-
-                            key_mistake += 3;
-                            SubtitleManager.get.Say(key_mistake);
-
-                            while (SubtitleManager.get.act)
-                                yield return new WaitForEndOfFrame();
-
-                            Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
-                            option_num = 0;
-                        }
-                    }
+                    option = false;
                 }
                 else
                 {
                     while (SubtitleManager.get.act)
                         yield return new WaitForEndOfFrame();
 
-                    key_mistake += 1;
+                    key_mistake += 2;
                     SubtitleManager.get.Say(key_mistake);
+                    option_num++;
+
+                    if (option_num == 3)
+                    {
+                        foreach (Scholar s in scholars)
+                        {
+                            s.Execute.EndExamForScholar();
+                        }
+
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                        key_mistake += 3;
+                        SubtitleManager.get.Say(key_mistake);
+
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                        Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
+                        option_num = 0;
+                    }
                 }
+
+                option_time = 0f;
                 Watcher.Reset();
             }
+
+
+
+
+            if (!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
+
+            if (option_time > 10f)
+            {
+                key_mistake += 8;
+                SubtitleManager.get.Say(key_mistake);
+
+                option_time = 0f;
+            }
+
             yield return new WaitForEndOfFrame();
         }
+
+
         Player.get.Talk.all_controll = false;
 
         while (SubtitleManager.get.act)
@@ -351,56 +377,64 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
         option = true;
 
+        option_time = 0f;
+
         while (option)
         {
-            if (Watcher.done)
+
+            if (Watcher.execute)
             {
-                if (Watcher.execute)
+                if (Player.get.Talk.scholar.Cheat.IsTryToCheat())
                 {
-                    if (Player.get.Talk.scholar.Cheat.cheating)
-                    {
-                        option = false;
-                    }
-                    else
-                    {
-                        while (SubtitleManager.get.act)
-                            yield return new WaitForEndOfFrame();
-
-                        key_mistake += 4;
-                        SubtitleManager.get.Say(key_mistake);
-                        option_num++;
-
-                        if (option_num == 3)
-                        {
-                            foreach (Scholar s in scholars)
-                            {
-                                s.Execute.EndExamForScholar();
-                            }
-
-                            while (SubtitleManager.get.act)
-                                yield return new WaitForEndOfFrame();
-
-                            key_mistake += 5;
-                            SubtitleManager.get.Say(key_mistake);
-
-                            while (SubtitleManager.get.act)
-                                yield return new WaitForEndOfFrame();
-
-                            Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
-                            option_num = 0;
-                        }
-                    }
+                    option = false;
                 }
                 else
                 {
                     while (SubtitleManager.get.act)
                         yield return new WaitForEndOfFrame();
 
-                    key_mistake += 1;
+                    key_mistake += 4;
                     SubtitleManager.get.Say(key_mistake);
+                    option_num++;
+
+                    if (option_num == 3)
+                    {
+                        foreach (Scholar s in scholars)
+                        {
+                            s.Execute.EndExamForScholar();
+                        }
+
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                        key_mistake += 5;
+                        SubtitleManager.get.Say(key_mistake);
+
+                        while (SubtitleManager.get.act)
+                            yield return new WaitForEndOfFrame();
+
+                        Cheat.RandomScholarsCheatSet(scholars, TutorialScholarController.calculate);
+                        option_num = 0;
+                    }
                 }
+                option_time = 0f;
                 Watcher.Reset();
+
             }
+
+
+            if (!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
+
+            if (option_time > 10f)
+            {
+                key_mistake += 9;
+                SubtitleManager.get.Say(key_mistake);
+
+                option_time = 0f;
+            }
+
+
             yield return new WaitForEndOfFrame();
         }
 
@@ -560,8 +594,37 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         Player.get.Talk.execute_control = true;
 
 
+
+
+
+        option = true;
+        float option_time = 0f;
+
         while (!Watcher.execute)
         {
+
+            if(Eyes.obj.tag == "Note" && option)
+            {
+                option = false;
+                key += 9;
+                SubtitleManager.get.Say(key);
+            }
+
+            if (!option)
+            {
+
+                if (!SubtitleManager.get.act)
+                    option_time += Time.deltaTime;
+
+                if (option_time > 10f)
+                {
+                    key_mistake += 12;
+                    SubtitleManager.get.Say(key);
+
+                    option_time = 0f;
+                }
+            }
+
             yield return new WaitForEndOfFrame();
         }
 

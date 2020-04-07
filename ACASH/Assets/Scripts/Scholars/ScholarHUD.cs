@@ -62,7 +62,7 @@ public class ScholarHUD
             Fading();
         }
     }
-   
+
 
     private void Changing()
     {
@@ -70,6 +70,8 @@ public class ScholarHUD
         Set(Scholar.Stress.value_show);
 
         Rotate();
+
+        Disapearing();
     }
 
 
@@ -82,23 +84,36 @@ public class ScholarHUD
     }
 
 
-    public void Enable(bool option)
+    public void Enable()
     {
-        if (active != option && Scholar.active)
+        if (Scholar.active)
         {
-            active = option;
-            fade_previous = fade;
-            fading = true;
-
-            if (option)
+            if (!active)
             {
+                active = true;
+                fade_previous = fade;
+                fading = true;
+
                 fade_target = 1f;
                 Set((int)Scholar.Stress.value);
                 time = time_const;
+
             }
             else
-                fade_target = 0f;
+            {
+                time = time_const;
+            }
         }
+    }
+
+
+
+    private void Disable()
+    {
+        active = false;
+        fade_previous = fade;
+        fading = true;
+        fade_target = 0f;
     }
 
     private void Fading()
@@ -107,7 +122,7 @@ public class ScholarHUD
 
         if (time_fade < time_fade_const)
         {
-            Fade(Mathf.Lerp(fade_previous, fade_target, (time_fade/time_fade_const)));
+            Fade(Mathf.Lerp(fade_previous, fade_target, (time_fade / time_fade_const)));
         }
         else
         {
@@ -116,7 +131,7 @@ public class ScholarHUD
             fading = false;
         }
     }
-    
+
 
 
 
@@ -139,5 +154,17 @@ public class ScholarHUD
     private void Rotate()
     {
         main.rotation = BaseGeometry.GetQuaternionToY(main, Player.get.Camera.transform.position);
+    }
+
+
+    private void Disapearing()
+    {
+
+        if (time <= 0)
+        {
+            Disable();
+        }
+        else
+            time -= Time.deltaTime;
     }
 }

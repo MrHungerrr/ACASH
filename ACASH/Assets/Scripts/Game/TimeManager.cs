@@ -39,7 +39,6 @@ public class TimeManager : Singleton<TimeManager>
     {
         active = false;
         timers = FindObjectsOfType<Timer>();
-        ScholarActionTime.get.Setup();
     }
 
     public void Reset()

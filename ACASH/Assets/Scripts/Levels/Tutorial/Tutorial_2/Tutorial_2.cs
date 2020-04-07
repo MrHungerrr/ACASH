@@ -21,6 +21,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
     [Header("First Room")]
     public Scholar[] scholars_first;
     public Door door_exit;
+    public TriggerAction first_room;
 
 
     [Header("Second Room")]
@@ -339,6 +340,30 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             yield return new WaitForEndOfFrame();
 
         Player.get.Talk.all_controll = true;
+
+
+        option_time = 0f;
+
+        while(first_room.inside)
+        {
+            if (!SubtitleManager.get.act)
+                option_time += Time.deltaTime;
+
+            if (option_time >= 10f)
+            {
+                while (SubtitleManager.get.act)
+                    yield return new WaitForEndOfFrame();
+
+                key_mistake += 3;
+
+                SubtitleManager.get.Say(key_mistake);
+
+                option_time = 0f;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+        first_room.Remove();
     }
 
 

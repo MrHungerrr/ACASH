@@ -14,8 +14,7 @@ public class ScriptManager : Singleton<ScriptManager>
     private string resourceFile_duration = "AudioDuration";
 
     private string textLanguage = "ru";
-
-    private string voiceLanguage = "ru";
+    public string voiceLanguage = "ru";
 
 
     private void Awake()

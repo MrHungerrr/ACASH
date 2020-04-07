@@ -41,7 +41,7 @@ public class ScholarExam
             test_bufTime = 1f;
             test_buf = 0;
 
-            if (test >= 18000)
+            if (test >= 20000)
                 finished = true;
         }
     }

@@ -65,6 +65,7 @@ public class ExamManager : Singleton<ExamManager>
         exam = true;
         exam_part = part.Exam;
         TimeManager.get.SetTime(exam_part);
+        ScholarActionTime.get.Setup();
 
         exam_key += 2;
         HUDManager.get.ExamHUD(exam_key);

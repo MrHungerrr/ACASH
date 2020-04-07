@@ -15,10 +15,12 @@ public class ScholarActionTime : Singleton<ScholarActionTime>
 
     public void Setup()
     {
+        index = 0;
+
         for(int i = 0; i < length_of_points/2; i++)
         {
             time_points[i] = Random.Range(15, 45);
-            time_points[i + 4] = 60 - time_points[i];
+            time_points[i + length_of_points / 2] = 60 - time_points[i];
         }
 
         time_points[length_of_points/2] += 30;

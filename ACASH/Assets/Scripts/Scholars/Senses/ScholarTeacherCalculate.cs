@@ -76,7 +76,7 @@ public class ScholarTeacherCalculate
 
         if (Physics.Raycast(Scholar.Move.Position() + Scholar.Move.transform.up.normalized * 0.3f, direction, out hit, visible_layerMask))
         {
-            Debug.Log(hit.collider.tag);
+            //Debug.Log(hit.collider.tag);
             if (hit.collider.gameObject.tag == "Player")
             {
                 behind_wall = false;

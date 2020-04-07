@@ -195,7 +195,6 @@ public class Scholar : MonoBehaviour
         Talk.Stop();
         Objects.ThrowOut();
         Anim.SetAnimation(Animations.GetA.animations.Nothing);
-        HUD.Enable(false);
         active = false;
 
         Debug.LogError("Scholar #" + Info.number + " test = " + Test.test);

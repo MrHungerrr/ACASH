@@ -3,35 +3,34 @@
 
 public class TriggerAction: MonoBehaviour
 {
+    [HideInInspector]
     public event ActionEvent.OnAction OnEnter;
+    [HideInInspector]
     public event ActionEvent.OnAction OnExit;
-    public event ActionEvent.OnAction OnStay;
+    [HideInInspector]
+    public bool inside;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && OnEnter != null)
             OnEnter();
-    }
 
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player" && OnStay != null)
-            OnStay();
+        inside = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player" && OnExit != null)
             OnExit();
+
+        inside = false;
     }
 
 
     public void Remove()
     {
         ActionEvent.Unsubscribe(OnEnter);
-        ActionEvent.Unsubscribe(OnStay);
         ActionEvent.Unsubscribe(OnExit);
         Destroy(this.gameObject);
     }

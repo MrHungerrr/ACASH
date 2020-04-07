@@ -73,10 +73,12 @@ namespace Excel_to_json
                                 {
                                     file.WriteLine("        {");
                                     file.WriteLine("            \"key\":\"{0}\",", excel[s].ReadCellText(i, 1));
+
                                     if(c == 0)
                                         file.Write("            \"line\":[\"{0}\"]", excel[s].ReadCellText(i, j));
                                     else
                                         file.Write("            \"duration\":[{0}]", excel[s].ReadCellNumber(i, j));
+
                                     file.WriteLine();
                                     file.Write("        }");
                                     if (((s + 1) == quantOfSheets[c]) && ((i + 1) == nSentence[s]))
@@ -103,12 +105,12 @@ namespace Excel_to_json
 
                 if (c == 0)
                 {
-                    DictionaryWords(nSentence[4], 5);
+                    DictionaryWords(nSentence[3], 4);
                 }
 
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("File {0} is DONE\n\n", nameOfFiles[c]);
+                Console.WriteLine("File {0}.txt is DONE\n\n", nameOfFiles[c]);
                 Console.ResetColor();
 
                 for (byte s = 0; s < (quantOfSheets[c]); s++)
@@ -153,159 +155,195 @@ namespace Excel_to_json
 
 
 
-        private void WriteText()
-        {
-
-        }
-
-
-        private void WriteFloat()
-        {
-
-        }
-
-
 
         static private void AudioDuration()
         {
-
             Console.WriteLine("AudioDuration Begin");
             Console.WriteLine();
 
+            Excel[] excelAudio = new Excel[quantOfSheets[1]];
+            Excel[] excelScript = new Excel[quantOfSheets[1]];
+            int[] nSentence = new int[quantOfSheets[1]];
 
-            for (int s = 1; s <= quantOfSheets[1]; s++)
+            int i = 2;
+
+            for (byte s = 1; s < (quantOfSheets[1] + 1); s++)
             {
+                excelAudio[s - 1] = new Excel(excelPath + nameOfFiles[1] + ".xlsx", s);
+                excelScript[s - 1] = new Excel(excelPath + nameOfFiles[0] + ".xlsx", s);
 
-                Excel excelAudio = new Excel(excelPath + nameOfFiles[1] + ".xlsx", s);
-                Excel excelScript = new Excel(excelPath + nameOfFiles[0] + ".xlsx", s);
-                int i = 1;
-                int j = 1;
-
-
-                //Количество фраз в файле с фразами
-                while (excelScript.ReadCellText(i, 1) != "")
+                while (excelScript[s - 1].ReadCellText(i, 1) != "")
                 {
                     i++;
                 }
-                int nSentence = i;
+
+                nSentence[s - 1] = i;
+            }
 
 
-                //Количество языков озвучки в файле с длительностью озвучки
-                while (excelAudio.ReadCellText(0, j) != "")
+            i = 2;
+
+            while (excelAudio[0].ReadCellText(0, i) != "")
+            {
+                i++;
+            }
+
+            int nLang = i;
+
+            //Количество языков озвучки в файле с длительностью озвучки
+
+
+            try
+            {
+                for (byte s = 0; s < (quantOfSheets[1]); s++)
                 {
-                    j++;
-                }
-
-                int nLang = j;
-
-
-                try
-                {
-                    for (i = 2; i < nSentence; i++)
+                    for (i = 2; i < nSentence[s]; i++)
                     {
-                        string KeyWord = excelScript.ReadCellText(i, 1);
+                        string KeyWord = excelScript[s].ReadCellText(i, 1);
 
-                        if (excelAudio.ReadCellText(i, 1) == "" || (excelScript.ReadCellText(i, 1) != excelAudio.ReadCellText(i, 1)))
+                        if (excelAudio[s].ReadCellText(i, 1) == "" || KeyWord != excelAudio[s].ReadCellText(i, 1))
                         {
-                            excelAudio.WriteCell(i, 1, excelScript.ReadCellText(i, 1));
-
+                            excelAudio[s].WriteCell(i, 1, KeyWord);
                         }
                     }
-
                 }
-                catch (Exception e)
-                {
-                    Console.Write(e);
-                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
 
 
-                try
+            try
+            {
+                for (int j = 2; j < nLang; j++)
                 {
-                    for (j = 2; j < nLang; j++)
+                    string language = excelAudio[0].ReadCellText(0, j);
+
+                    File.Create(excelPath + "Info/Missing Voice." + language + ".txt").Close();
+                    TextWriter file = new StreamWriter(excelPath + "Info/Missing Voice." + language + ".txt", true);
+
+
+                    for (byte s = 0; s < (quantOfSheets[1]); s++)
                     {
-                        string language = excelAudio.ReadCellText(0, j);
-
-                        for (i = 2; i < nSentence; i++)
+                        for (i = 2; i < nSentence[s]; i++)
                         {
-                            int n = excelScript.QuantOfSentences(i, j);
 
-                            if ((excelAudio.ReadCellText(i, j) == "" || (n + 1) != excelAudio.QuantOfSentences(i, j)) && n!=0)
+                            int n = excelScript[s].QuantOfSentences(i, j);
+
+                            if (n != 0)
                             {
 
-                                string nameFile = audioPath + language + "/" + excelAudio.ReadCellText(i, 1);
-                                double duration = 0;
-                                string cell = "";
+                                string nameFile = audioPath + language + "/" + excelAudio[s].ReadCellText(i, 1);
 
-                                if (File.Exists(nameFile + ".wav"))
+                                if (excelAudio[s].ReadCellText(i, j) == "" || (n + 1) != excelAudio[s].QuantOfSentences(i, j) || !AudioIsExist(nameFile))
                                 {
-                                    NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(nameFile + ".wav");
-                                    duration = wf.TotalTime.TotalSeconds;
-                                    cell += string.Format("{0:N1}", duration) + ';';
-                                    duration /= n;
 
-                                    string durStr = string.Format("{0:N1}", duration);
+                                    double duration = 0;
+                                    string cell = "";
 
-                                    for (int c = 0; c < n - 1; c++)
+                                    if (File.Exists(nameFile + ".wav"))
                                     {
-                                        cell += durStr + ';';
+                                        NAudio.Wave.WaveFileReader wf = new NAudio.Wave.WaveFileReader(nameFile + ".wav");
+                                        duration = wf.TotalTime.TotalSeconds;
+                                        cell += string.Format("{0:N1}", duration) + ';';
+                                        duration /= n;
+
+                                        string durStr = string.Format("{0:N1}", duration);
+
+                                        for (int c = 0; c < n - 1; c++)
+                                        {
+                                            cell += durStr + ';';
+                                        }
+                                        cell += durStr;
+
+                                        excelAudio[s].WriteCell(i, j, cell);
                                     }
-                                    cell += durStr;
-
-                                    excelAudio.WriteCell(i, j, cell);
-                                }
-                                else if (File.Exists(nameFile + ".mp3"))
-                                {
-                                    NAudio.Wave.Mp3FileReader mp3f = new NAudio.Wave.Mp3FileReader(nameFile + ".mp3");
-                                    duration = mp3f.TotalTime.TotalSeconds;
-                                    cell += string.Format("{0:N1}", duration) + ';';
-                                    duration /= n;
-
-                                    string durStr = string.Format("{0:N1}", duration);
-
-                                    for (int c = 0; c < n - 1; c++)
+                                    else if (File.Exists(nameFile + ".mp3"))
                                     {
-                                        cell += durStr + ';';
+                                        NAudio.Wave.Mp3FileReader mp3f = new NAudio.Wave.Mp3FileReader(nameFile + ".mp3");
+                                        duration = mp3f.TotalTime.TotalSeconds;
+                                        cell += string.Format("{0:N1}", duration) + ';';
+                                        duration /= n;
+
+                                        string durStr = string.Format("{0:N1}", duration);
+
+                                        for (int c = 0; c < n - 1; c++)
+                                        {
+                                            cell += durStr + ';';
+                                        }
+                                        cell += durStr;
+
+                                        excelAudio[s].WriteCell(i, j, cell);
                                     }
-                                    cell += durStr;
-
-                                    excelAudio.WriteCell(i, j, cell);
-                                }
-                                else
-                                {
-                                    duration = 2f;
-
-                                    string durStr = string.Format("{0:N1}", duration);
-
-                                    for (int c = 0; c < n - 1; c++)
+                                    else
                                     {
-                                        cell += durStr + ';';
+                                        duration = 2f;
+
+                                        string durStr = string.Format("{0:N1}", duration);
+
+                                        for (int c = 0; c < n - 1; c++)
+                                        {
+                                            cell += durStr + ';';
+                                        }
+                                        cell += durStr;
+
+                                        excelAudio[s].WriteCell(i, j, cell);
+
+                                        file.WriteLine(nameFile);
+
+                                        Console.ForegroundColor = ConsoleColor.Red;
+                                        Console.WriteLine("    File {0} was not found", excelAudio[s].ReadCellText(i, 1));
+                                        Console.ResetColor();
                                     }
-                                    cell += durStr;
-
-                                    excelAudio.WriteCell(i, j, cell);
-
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("    File {0} was not found", nameFile);
-                                    Console.ResetColor();
                                 }
                             }
                         }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.Write(e);
-                }
 
-                excelAudio.Save();
-                excelAudio.Close();
-                excelScript.Close();
+
+                    }
+
+
+                    file.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
             }
 
+
+            for (byte s = 0; s < (quantOfSheets[1]); s++)
+            {
+                excelAudio[s].Save();
+                excelAudio[s].Close();
+                excelScript[s].Close();
+            }
+
+
             Console.WriteLine();
-            Console.WriteLine("Fuck Microsoft");
             Console.WriteLine("AudioDuration Complete\n\n");
         }
+
+
+
+
+        static private bool AudioIsExist(string nameFile)
+        {
+            if(File.Exists(nameFile + ".mp3"))
+            {
+                return true;
+            }
+
+
+            if (File.Exists(nameFile + ".wav"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
 
     }
 }

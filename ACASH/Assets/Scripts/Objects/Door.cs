@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, I_Interaction
 {
+
+
     [HideInInspector]
     public bool open { get; private set; } = false;
     public bool locked;
@@ -20,6 +22,7 @@ public class Door : MonoBehaviour, I_Interaction
     private const float close_distance = 1f;
     private float close_time;
     private const float close_time_cd = 3f;
+
     private bool scholar_open;
     private bool in_range;
 
@@ -173,11 +176,11 @@ public class Door : MonoBehaviour, I_Interaction
         {
             try
             { 
-                if (Vector3.Distance(doorT.position, ScholarManager.get.scholars[i].transform.position) < 0.4f)
+                if (Vector3.Distance(doorT.position, ScholarManager.get.scholars[i].transform.position) < 0.3f)
                 {
                     if (!open)
                     {
-                        if (Mathf.Abs(BaseGeometry.GetQuaternionToY(ScholarManager.get.scholars[i].Move.transform, doorT.position).eulerAngles.y - ScholarManager.get.scholars[i].Move.Rotation().eulerAngles.y) < 45)
+                        if (Mathf.Abs(BaseGeometry.LookingAngle2D(ScholarManager.get.scholars[i].Move.transform, doorT.position)) < 60)
                         {
                             in_range = true;
                             break;
@@ -199,12 +202,15 @@ public class Door : MonoBehaviour, I_Interaction
         if (in_range && !open && !scholar_open)
         {
             DoorInteract(ScholarManager.get.scholars[i].Move.Position());
+
             scholar_open = true;
         }
         else if (!in_range && open && scholar_open)
         {
             Close();
+
             scholar_open = false;
         }
+
     }
 }

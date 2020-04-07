@@ -71,19 +71,23 @@ namespace Excel_to_json
             {
                 string buf = ws.Cells[i, j].Value2.ToString();
                 string res = "";
+                bool first_number = true;
 
                 for (int c = 0; c < buf.Length; c++)
                 {
                     if (buf[c] != ';')
                     {
-                        res += buf[c];
+                        if(!first_number)
+                            res += buf[c];
                     }
                     else
                     {
-                        if (c != (buf.Length - 1))
+                        if (c != (buf.Length - 1) && !first_number)
                         {
                             res += ",";
                         }
+
+                        first_number = false;
                     }
                 }
                 res = res.Replace("\n", String.Empty);

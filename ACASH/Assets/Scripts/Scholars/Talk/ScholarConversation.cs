@@ -108,6 +108,8 @@ public class ScholarConverastion
     {
         Scholar.Stress.Change(20);
         Scholar.Emotions.Change(GetS.faces.Suprised, GetS.faces.Upset, GetS.faces.Ussual, 2f);
+
+        Scholar.HUD.Enable();
     }
 
 }

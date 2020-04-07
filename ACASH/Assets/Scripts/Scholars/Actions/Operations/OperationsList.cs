@@ -22,13 +22,13 @@ public static class OperationsList
     };
 
 
-    private static Operation[] Air_2 = new Operation[]
+    private static Operation[] Outside_2 = new Operation[]
     {
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Outside_Is_Free, true),
-        new Question(GetQ.questions.Air),
+        new Question(GetQ.questions.Outside),
         new Verify(GetO.verify.Answer, true),
 
         new Operation(GetO.operation.Go_Outside),
@@ -74,13 +74,13 @@ public static class OperationsList
     };
 
 
-    private static Operation[] Cheating_Air_2 = new Operation[]
+    private static Operation[] Cheating_Outside_2 = new Operation[]
     {
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Outside_Is_Free, true),
-        new Question(GetQ.questions.Air),
+        new Question(GetQ.questions.Outside),
         new Verify(GetO.verify.Answer, true),
 
         new Operation(GetO.operation.Go_Outside),
@@ -191,10 +191,10 @@ public static class OperationsList
 
 
 
-    public static Dictionary<string, Operation[]> operations = new Dictionary<string, Operation[]>()
+    public static Dictionary<string, Operation[]> operations { get; private set; } = new Dictionary<string, Operation[]>()
     {
         {"Toilet_3", Toilet_3},
-        {"Air_2", Air_2},
+        {"Outside_2", Outside_2},
         {"Sink_2", Sink_2},
         {"Ask_1", Ask_1},
         {"Think_Aloud_1", Think_Aloud_1},
@@ -206,7 +206,7 @@ public static class OperationsList
         {"Cheating_Calculate_1", Calculate},
         {"Cheating_Note_1", Note},
         {"Cheating_Toilet_3", Cheating_Toilet_3},
-        {"Cheating_Air_2", Cheating_Air_2},
+        {"Cheating_Outside_2", Cheating_Outside_2},
         {"Cheating_Sink_2", Cheating_Sink_2},
         {"Login", Login },
         {"Desk", Desk },

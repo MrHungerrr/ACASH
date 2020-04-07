@@ -6,7 +6,7 @@
         {
             Toilet,
             Sink,
-            Air,
+            Outside,
             Simple,
         }
     }

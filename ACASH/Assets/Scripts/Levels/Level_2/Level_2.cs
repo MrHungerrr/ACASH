@@ -10,12 +10,15 @@ public class Level_2 : Singleton<Level_2>
     private KeyWord key = new KeyWord("Level_2");
     private KeyWord key_mistake = new KeyWord("Level_2", "Mistake");
 
+    private KeyAction hint;
+
 
     private void Start()
     {
         StartLevel();
 
         LevelSettings.get.ExamOver += StartEnding;
+        ExamManager.get.ChillDone += StartShoutHint;
     }
 
     private void StartLevel()
@@ -69,6 +72,30 @@ public class Level_2 : Singleton<Level_2>
     }
 
 
+    private void StartShoutHint()
+    {
+        StartCoroutine(Hinting());
+        ExamManager.get.ChillDone -= StartShoutHint;
+    }
+
+
+    private IEnumerator Hinting()
+    {
+        yield return new WaitForSeconds(10f);
+
+        HUDManager.get.HintHUD(GetP.actions.Shout);
+        hint = new KeyAction();
+        hint.Setup(GetP.actions.Shout);
+        hint.OnKeyDown += CloseShoutHint;
+    }
+
+    private void CloseShoutHint()
+    {
+        hint.Remove();
+        HUDManager.get.CloseHintHUD();
+    }
+
+
 
 
     private void StartEnding()
@@ -103,7 +130,7 @@ public class Level_2 : Singleton<Level_2>
 
         HUDManager.get.IntrodactionHUD(key);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
 
         HUDManager.get.CloseIntrodactionHUD();
 
