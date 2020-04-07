@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{843315f7-0d95-4269-ab9c-c2b22c343c6e}">
+		<property name="assetPath">
+			<value>Sounds/Computer/Fan/Fan Working 2.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>36.216854166666664</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7cee24ac-f0db-4683-9259-a97482156a0f}</destination>
+		</relationship>
+	</object>
+</objects>
