@@ -5,23 +5,29 @@ using UnityEngine.UI;
 
 public class ComputerUICollider
 {
+
+    public bool active { get; set; }
+
+
     //x_pivot
-    public int x_p;
+    private int x_p;
     //x_corner
-    public int x_c;
+    private int x_c;
 
 
     //y_pivot
-    public int y_p;
+    private int y_p;
     //y_corner
-    public int y_c;
+    private int y_c;
 
     public GameObject obj;
     private ComputerUISelect select;
 
-    public ComputerUICollider(GameObject o)
+    public ComputerUICollider(ComputerUISelect select)
     {
-        obj = o;
+        active = true;
+
+        obj = select.gameObject;
 
         RectTransform rt = obj.GetComponentInParent<RectTransform>();
         rt.anchorMax = new Vector2(0, 1);
@@ -38,7 +44,7 @@ public class ComputerUICollider
         x_c = x_p + (int)rt.rect.width;
         y_c = y_p - (int)rt.rect.height;
 
-        select = obj.GetComponent<ComputerUISelect>();
+        this.select = select;
     }
 
     public void DebugWrite()

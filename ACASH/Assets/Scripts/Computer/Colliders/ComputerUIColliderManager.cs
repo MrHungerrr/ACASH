@@ -10,29 +10,21 @@ public class ComputerUIColliderManager : MonoBehaviour
 
     [HideInInspector]
     private ComputerUICollider[] colliders;
-    [SerializeField]
-    private GameObject[] ui_colliders;
-
-
-
-    [ContextMenu("Fill")]
-    public void Fill()
-    {
-        SIC<ComputerUISelect>.Components(gameObject, out ui_colliders);
-    }
 
 
 
 
     public void Setup()
     {
-        SIC<ComputerUISelect>.Components(gameObject, out ui_colliders);
+        ComputerUISelect[] selects;
+
+        SIC<ComputerUISelect>.Components(gameObject, out selects);
 
         List <ComputerUICollider> colliders_list = new List<ComputerUICollider>();
 
-        foreach (GameObject i in ui_colliders)
+        foreach (ComputerUISelect select in selects)
         {
-            ComputerUICollider buf_collider = new ComputerUICollider(i);
+            ComputerUICollider buf_collider = new ComputerUICollider(select);
             colliders_list.Add(buf_collider);
         }
 

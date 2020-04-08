@@ -135,7 +135,14 @@ public class ScoreManager : Singleton<ScoreManager>
         foreach(ScoreAgent a in agents)
         {
             a.SetScore();
+
+            if (reputation <= 0)
+                a.Continue.SetActive(false);
+            else
+                a.Continue.SetActive(true);
         }
+
+
     }
 
     public void Accept()

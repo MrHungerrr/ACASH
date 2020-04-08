@@ -7,31 +7,49 @@ public class OverwatchCameraManager : Singleton<OverwatchCameraManager>
 {
     private Camera[] cameras;
     [SerializeField]
-    private RenderTexture texture;
-    private int index = -1;
+    private RenderTexture reference;
+    private RenderTexture[] textures;
+    [HideInInspector]
+    public int count;
 
 
     public void SetLevel()
     {
         GameObject[] buf = GameObject.FindGameObjectsWithTag("OverwatchCamera");
 
-        cameras = new Camera[buf.Length];
+        count = buf.Length;
 
-        for(int i = 0; i< cameras.Length; i++)
+        cameras = new Camera[count];
+        textures = new RenderTexture[count];
+
+
+        for (int i = 0; i < count; i++)
         {
             cameras[i] = buf[i].GetComponent<Camera>();
+            textures[i] = new RenderTexture(reference);
+            cameras[i].targetTexture = textures[i];
         }
-
-        SetCamera(0);
     }
 
-    private void SetCamera(int index)
+    public RenderTexture GetTexture(int camera)
     {
-        if (this.index != -1)
-            cameras[this.index].targetTexture = null;   
+        return textures[camera];
+    }
 
-        this.index = index;
-        cameras[this.index].targetTexture = texture;
+
+    public int GetCameraNumber(int camera)
+    {
+        if (camera < 0)
+        {
+            return count - 1;
+        }
+
+        if (camera >= count)
+        {
+            return 0;
+        }
+
+        return camera;
     }
 
 

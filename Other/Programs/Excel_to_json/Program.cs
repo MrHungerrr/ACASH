@@ -132,8 +132,8 @@ namespace Excel_to_json
 
             try
             {
-                File.Create(filesPath + "Dictionary/Words.txt").Close();
-                TextWriter file = new StreamWriter(filesPath + "Dictionary/Words.txt", true);
+                File.Create(filesPath + "Computer/Dictionary/Words.txt").Close();
+                TextWriter file = new StreamWriter(filesPath + "Computer/Dictionary/Words.txt", true);
 
                 for (int i = 2; i < nSentence; i++)
                 {

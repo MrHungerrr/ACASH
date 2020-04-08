@@ -6,10 +6,14 @@ using Single;
 
 public class ScoreAgent : MonoBehaviour
 {
-
     private Dictionary<ScoreManager.scores_names, ScoreLine> score_lines;
     private ScoreLine amount;
     private ScoreLine total;
+
+    [HideInInspector]
+    public GameObject Continue { get; private set; }
+    [HideInInspector]
+    public GameObject Restart { get; private set; }
 
 
 
@@ -19,6 +23,9 @@ public class ScoreAgent : MonoBehaviour
         Transform Var = Scores.Find("Variables");
         Transform Count = Var.Find("Count");
         Transform Reputation = Var.Find("Reputation");
+
+        Continue = transform.Find("Score").Find("Continue Score").gameObject;
+        Restart = transform.Find("Score").Find("Restart Score").gameObject;
 
         TextMeshProUGUI text_count;
         TextMeshProUGUI text_rep;

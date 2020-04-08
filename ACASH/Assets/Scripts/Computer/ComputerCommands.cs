@@ -236,6 +236,29 @@ public class ComputerCommands
                     Comp.Question.SetAnswer(3);
                     break;
                 }
+            case "Camera Right":
+                {
+                    Comp.Overwatch.ChangeCameraRight();
+                    break;
+                }
+            case "Camera Left":
+                {
+                    Comp.Overwatch.ChangeCameraLeft();
+                    break;
+                }
+            case "Second Page Score":
+                {
+                    ScoreManager.get.Accept();
+                    LevelSettings.get.NextExam();
+                    ComputerManager.get.end = false;
+
+                    if (Comp.Login.loged)
+                        Do("Desktop");
+                    else
+                        Do("Login");
+                    //Новый экзамен
+                    break;
+                }
             case "Continue Score":
                 {
                     ScoreManager.get.Accept();
@@ -243,6 +266,19 @@ public class ComputerCommands
                     ComputerManager.get.end = false;
 
                     if(Comp.Login.loged)
+                        Do("Desktop");
+                    else
+                        Do("Login");
+                    //Новый экзамен
+                    break;
+                }
+            case "Restart Score":
+                {
+                    ScoreManager.get.Zeroing();
+                    LevelSettings.get.RestartExam();
+                    ComputerManager.get.end = false;
+
+                    if (Comp.Login.loged)
                         Do("Desktop");
                     else
                         Do("Login");

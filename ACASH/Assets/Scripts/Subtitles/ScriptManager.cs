@@ -14,6 +14,7 @@ public class ScriptManager : Singleton<ScriptManager>
     private string resourceFile_duration = "AudioDuration";
 
     private string textLanguage = "ru";
+    [HideInInspector]
     public string voiceLanguage = "ru";
 
 

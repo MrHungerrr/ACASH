@@ -47,6 +47,7 @@ public class Level_2 : A_Level
 
         key *= "Begining";
 
+        key += 0;
         SubtitleManager.get.Say(key);
 
         while (SubtitleManager.get.act)
@@ -61,6 +62,9 @@ public class Level_2 : A_Level
 
         while (Elevator.get.inside)
             yield return new WaitForEndOfFrame();
+
+        key += 1;
+        SubtitleManager.get.Say(key);
 
         GameManager.get.StartExam();
 

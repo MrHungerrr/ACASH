@@ -58,6 +58,12 @@ public class LevelSettings: Singleton<LevelSettings>
         exam_index = 1;
     }
 
+    public void RestartExam()
+    {
+        if (ExamNext != null)
+            ExamNext();
+    }
+
     public void NextExam()
     {
         if( exam_index < examsCount)

@@ -61,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
-        StartCoroutine(LoadGame(LevelManager.levels.Tutorial_1));
+        StartCoroutine(LoadGame(LevelManager.levels.Level_2));
     }
 
     public void Continue()
@@ -178,6 +178,9 @@ public class GameManager : Singleton<GameManager>
         ScoreManager.get.SetLevel();
         yield return new WaitForEndOfFrame();
 
+        OverwatchCameraManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
         ComputerManager.get.Setup();
         yield return new WaitForEndOfFrame();
 
@@ -185,9 +188,6 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForEndOfFrame();
 
         LevelSettings.get.Setup();
-        yield return new WaitForEndOfFrame();
-
-        OverwatchCameraManager.get.SetLevel();
         yield return new WaitForEndOfFrame();
 
         SoundManager.get.SetLevel();
