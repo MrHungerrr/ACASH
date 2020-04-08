@@ -36,7 +36,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
         }
 
         subPlay.Clear();
-        //Остановка аудиозаписи
+        VoiceManager.get.Stop();
     }
 
 
@@ -49,14 +49,8 @@ public class SubtitleManager : Singleton<SubtitleManager>
 
         var script = ScriptManager.get.GetText(key_word);
         var duration = ScriptManager.get.GetFloat(key_word);
-        try 
-        {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Voice/" + ScriptManager.get.voiceLanguage+"/" + key_word.GetFullWord());
-        }
-        catch
-        {
 
-        }
+        VoiceManager.get.Play(key_word);
 
 
         //Debug.Log("<color=#0000ff>PlaySub</color>");

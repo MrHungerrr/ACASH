@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FMODUnity;
 [RequireComponent(typeof(Rigidbody))]
 
-public class ObjectSound : A_Sound
+public class ObjectSound : A_Sound3D
 {
 
     [SerializeField]
@@ -21,7 +21,7 @@ public class ObjectSound : A_Sound
     }
 
 
-    protected override void Setup()
+    protected void Setup()
     {
         name = "";
 
@@ -42,7 +42,7 @@ public class ObjectSound : A_Sound
 
         Setup(gameObject, path);
 
-        AddSound(name);
+        AddSound3D(name);
     }
 
 

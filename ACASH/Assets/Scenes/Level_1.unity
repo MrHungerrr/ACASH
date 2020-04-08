@@ -4531,6 +4531,81 @@ Transform:
   m_Father: {fileID: 367299688}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &279045277
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1937981500}
+    m_Modifications:
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8793
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.2343
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9973907
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.07219387
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -171.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328916915365082330, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+        type: 3}
+      propertyPath: m_Name
+      value: PC
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 432ba5a9ca0c1724ba2944980a35abf8, type: 3}
+--- !u!4 &279045278 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 740911576866162377, guid: 432ba5a9ca0c1724ba2944980a35abf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 279045277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &331019121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15961,6 +16036,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Computer
       objectReference: {fileID: 0}
+    - target: {fileID: 2587215636408677942, guid: ebdfff3b297093a479436dcaf419a659,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5745387303227369598, guid: ebdfff3b297093a479436dcaf419a659,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21468,7 +21548,7 @@ PrefabInstance:
     - target: {fileID: 6611121186512048606, guid: 8a5afe8c0c91017489767b894000e879,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6611121186512048606, guid: 8a5afe8c0c91017489767b894000e879,
         type: 3}
@@ -25313,7 +25393,7 @@ PrefabInstance:
     - target: {fileID: 3086448456706112774, guid: 4f6480ef2d7eb634a9a63a35c0d7dbc0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3131895472265291570, guid: 4f6480ef2d7eb634a9a63a35c0d7dbc0,
         type: 3}
@@ -25456,6 +25536,7 @@ Transform:
   m_Children:
   - {fileID: 825807523}
   - {fileID: 121908312}
+  - {fileID: 279045278}
   - {fileID: 1696521766}
   m_Father: {fileID: 1517222878}
   m_RootOrder: 1

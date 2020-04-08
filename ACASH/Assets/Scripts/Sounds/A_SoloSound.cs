@@ -2,7 +2,7 @@
 using FMODUnity;
 using System.Collections.Generic;
 
-public abstract class A_SoloSound: A_Sound
+public abstract class A_SoloSound: A_Sound3D
 {
     [HideInInspector]
     public bool playing;

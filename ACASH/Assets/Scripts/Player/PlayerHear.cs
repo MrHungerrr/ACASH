@@ -12,14 +12,12 @@ public class PlayerHear
 
         visible_layerMask = LayerMask.GetMask("Wall", "Selectable", "Default");
     }
+
+
+
     public bool GetOcclusion(GameObject obj)
     {
-        return GetOcclusion(obj, string.Empty);
-    }
-
-    public bool GetOcclusion(GameObject obj, string ignore_tag)
-    {
-        return GetOcclusion(obj, new string[]{ignore_tag});
+        return GetOcclusion(obj, new string[]{});
     }
 
 

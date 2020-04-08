@@ -196,8 +196,6 @@ public class Scholar : MonoBehaviour
         Objects.ThrowOut();
         Anim.SetAnimation(Animations.GetA.animations.Nothing);
         active = false;
-
-        Debug.LogError("Scholar #" + Info.number + " test = " + Test.test);
     }
 
 

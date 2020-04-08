@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class ScholarSounds : A_Sound
+public class ScholarSounds : A_Sound3D
 {
     Scholar Scholar;
 
@@ -22,7 +22,7 @@ public class ScholarSounds : A_Sound
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;
-            AddSound(name.ToString());
+            AddSound3D(name.ToString());
         }
     }
 

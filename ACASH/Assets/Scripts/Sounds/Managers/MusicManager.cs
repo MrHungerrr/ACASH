@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class MusicManager : A_Sound
+public class MusicManager : A_Sound2D
 {
     public enum music
     {
@@ -51,14 +51,14 @@ public class MusicManager : A_Sound
     }
 
 
-    protected override void Setup()
+    protected void Setup()
     {
         base.Setup("Global/Music/");
 
         for (int i = 0; i < Enum.GetNames(typeof(music)).Length; i++)
         {
             music name = (music)i;
-            AddSoundWithoutAttach(name.ToString());
+            AddSound2D(name.ToString());
         }
     }
 

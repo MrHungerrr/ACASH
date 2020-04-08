@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class SoundManager : A_Sound
+public class SoundManager : A_Sound2D
 {
     public enum sounds
     {
@@ -49,14 +49,14 @@ public class SoundManager : A_Sound
     }
 
 
-    protected override void Setup()
+    protected void Setup()
     {
         base.Setup("Global/Sounds/");
 
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;
-            AddSoundWithoutAttach(name.ToString());
+            AddSound2D(name.ToString());
         }
     }
 

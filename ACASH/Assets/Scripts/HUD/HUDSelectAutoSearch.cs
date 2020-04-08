@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 
 public static class HUDSelectAutoSearch
@@ -16,3 +17,4 @@ public static class HUDSelectAutoSearch
     }
 
 }
+#endif

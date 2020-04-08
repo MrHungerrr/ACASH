@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{44033abb-d0b6-4960-b71d-bf022cc46abf}</destination>
+			<destination>{b23132cd-3496-4747-a1e4-39559b5fc25a}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{3806384c-b997-4ae6-80ed-748e4fb6fbab}</destination>
@@ -90,7 +90,10 @@
 	<object class="MixerBusPanner" id="{749c97d7-e211-4295-9c20-defff263a61d}" />
 	<object class="SingleSound" id="{031c8fd4-1fab-49c8-928b-585fc35725ca}">
 		<property name="length">
-			<value>4.410916666666667</value>
+			<value>4.3609166666666672</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.050000000000000003</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{0ca64ad4-5e43-48e7-a729-86be000172c2}</destination>

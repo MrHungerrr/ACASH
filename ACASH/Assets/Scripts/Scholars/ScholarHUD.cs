@@ -7,7 +7,7 @@ public class ScholarHUD
 {
     private Scholar Scholar;
 
-    Transform main;
+    Transform HUD;
 
     TextMeshProUGUI text;
     private bool active = false;
@@ -40,11 +40,11 @@ public class ScholarHUD
     {
         this.Scholar = Scholar;
 
-        main = Scholar.transform.Find("HUD");
-        text = main.Find("Canvas").Find("Stress").GetComponent<TextMeshProUGUI>();
+        HUD = Scholar.transform.Find("HUD");
+        text = HUD.Find("Canvas").Find("Stress").GetComponent<TextMeshProUGUI>();
 
-        SIC<Image>.Components(main.gameObject, out images);
-        SIC<TextMeshProUGUI>.Components(main.gameObject, out texts);
+        SIC<Image>.Components(HUD.gameObject, out images);
+        SIC<TextMeshProUGUI>.Components(HUD.gameObject, out texts);
 
         Fade(0f);
     }
@@ -153,7 +153,7 @@ public class ScholarHUD
 
     private void Rotate()
     {
-        main.rotation = BaseGeometry.GetQuaternionToY(main, Player.get.Camera.transform.position);
+        HUD.rotation = BaseGeometry.GetQuaternionToY(HUD, Player.get.Camera.transform.position);
     }
 
 

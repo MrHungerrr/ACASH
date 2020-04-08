@@ -23,7 +23,7 @@ public class DoorSounds : A_SoloSound
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;
-            AddSound(name.ToString());
+            AddSound3D(name.ToString());
         }
     }
 

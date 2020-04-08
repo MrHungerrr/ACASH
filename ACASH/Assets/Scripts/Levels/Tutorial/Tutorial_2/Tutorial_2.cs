@@ -155,6 +155,8 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
         Player.get.Talk.all_controll = false;
 
+        yield return new WaitForSeconds(1f);
+
         key += 1;
 
         SubtitleManager.get.Say(key);
@@ -187,7 +189,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 option_time += Time.deltaTime;
             }
 
-            if(option_time >= 10f)
+            if(option_time >= 15f)
             {
                 while (SubtitleManager.get.act)
                     yield return new WaitForEndOfFrame();
@@ -211,8 +213,9 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         //================================================================================================================================
         //Сказать че-нить легкое
 
-
         Player.get.Talk.all_controll = false;
+
+        yield return new WaitForSeconds(1f);
 
         key += 2;
 
@@ -264,8 +267,9 @@ public class Tutorial_2 : Singleton<Tutorial_2>
         //================================================================================================================================
         //Поднять стресс до 30 легкими
 
-
         Player.get.Talk.all_controll = false;
+
+        yield return new WaitForSeconds(1f);
 
         key += 3;
 
@@ -309,7 +313,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             if (!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if (option_time >= 10f)
+            if (option_time >= 15f)
             {
                 while (SubtitleManager.get.act)
                     yield return new WaitForEndOfFrame();
@@ -332,6 +336,8 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
         Player.get.Talk.all_controll = false;
 
+        yield return new WaitForSeconds(1f);
+
         key += 4;
 
         SubtitleManager.get.Say(key);
@@ -349,7 +355,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             if (!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if (option_time >= 10f)
+            if (option_time >= 20f)
             {
                 while (SubtitleManager.get.act)
                     yield return new WaitForEndOfFrame();
@@ -431,7 +437,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             if(!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if(option_time > 7f)
+            if(option_time > 15f)
             {
                 key_mistake += 0;
                 SubtitleManager.get.Say(key_mistake);
@@ -483,7 +489,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             if(!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if (option_time > 7f)
+            if (option_time > 15f)
             {
                 key_mistake += 1;
                 SubtitleManager.get.Say(key_mistake);
@@ -529,7 +535,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             if (!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if (option_time > 7f)
+            if (option_time > 15f)
             {
                 key_mistake += 2;
                 SubtitleManager.get.Say(key_mistake);
@@ -618,11 +624,11 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 option_time_2 += Time.deltaTime;
                 option_time = 0f;
 
-                string text = "Hold on this stress...\n" + string.Format("{0:N1}",(10f - option_time_2));
+                string text = "Hold on this stress...\n" + string.Format("{0:N1}",(30f - option_time_2));
 
                 countdown.text = text;
 
-                if(option_time_2 >= 10f)
+                if(option_time_2 >= 30f)
                 {
                     option = false;
                 }
@@ -635,7 +641,7 @@ public class Tutorial_2 : Singleton<Tutorial_2>
                 option_time_2 = 0f;
 
 
-                if (option_time >= 10f)
+                if (option_time >= 40f)
                 {
                     key_mistake += 4;
                     SubtitleManager.get.Say(key_mistake);
@@ -662,7 +668,10 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             s.Execute.EndExamForScholar();
         }
 
+
         Player.get.Talk.all_controll = false;
+
+        yield return new WaitForSeconds(1f);
 
         key += 5;
         SubtitleManager.get.Say(key);

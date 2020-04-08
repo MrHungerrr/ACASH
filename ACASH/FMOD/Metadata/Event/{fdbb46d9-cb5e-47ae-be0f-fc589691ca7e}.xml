@@ -5,10 +5,10 @@
 			<value>Tutorial_1_Mistake_Room_9</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{44033abb-d0b6-4960-b71d-bf022cc46abf}</destination>
+			<destination>{c806e330-001d-470f-8fb1-4325bd0d61cd}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{ba204666-e6b5-48c9-bd89-ad43d106098b}</destination>
@@ -59,11 +59,18 @@
 	<object class="EventAutomatableProperties" id="{a07fe98c-c722-4d90-b614-f822f9b74c9b}" />
 	<object class="MarkerTrack" id="{6b7222e6-6d50-4f67-a9fc-aea9dee563ea}" />
 	<object class="GroupTrack" id="{f616eea9-9508-4425-8c66-fb985e44a289}">
+		<relationship name="modules">
+			<destination>{db0e66ea-ce73-40ee-ac79-5d4847aefb92}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{375fe87e-fd22-4417-85b5-8f1b799a67c8}</destination>
 		</relationship>
 	</object>
-	<object class="Timeline" id="{72b8caa6-7f13-441a-a95e-fae67bede4cd}" />
+	<object class="Timeline" id="{72b8caa6-7f13-441a-a95e-fae67bede4cd}">
+		<relationship name="modules">
+			<destination>{db0e66ea-ce73-40ee-ac79-5d4847aefb92}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerMaster" id="{8512136b-679b-47e2-9495-9ac71fb35084}">
 		<relationship name="effectChain">
 			<destination>{1c65238d-c1fd-4fa0-a006-2abb8cf99a30}</destination>
@@ -81,6 +88,17 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ac2aaf1a-b27c-4018-a8b9-b87982390678}" />
+	<object class="SingleSound" id="{db0e66ea-ce73-40ee-ac79-5d4847aefb92}">
+		<property name="length">
+			<value>4.6000000000000014</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.40000000000000002</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{ffa02588-8101-41eb-b4d6-1dcdc11015f0}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{375fe87e-fd22-4417-85b5-8f1b799a67c8}">
 		<property name="name">
 			<value>Audio 1</value>

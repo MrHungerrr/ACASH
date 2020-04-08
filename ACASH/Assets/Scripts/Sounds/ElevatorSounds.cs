@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FMODUnity;
 using Single;
 
-public class ElevatorSounds: A_Sound
+public class ElevatorSounds: A_Sound3D
 {
     public enum sounds
     {
@@ -16,7 +16,7 @@ public class ElevatorSounds: A_Sound
 
 
 
-    public new void Setup(GameObject obj)
+    public void Setup(GameObject obj)
     {
         base.Setup(obj, "Local/Elevator/");
 
@@ -25,7 +25,7 @@ public class ElevatorSounds: A_Sound
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;
-            AddSound(name.ToString());
+            AddSound3D(name.ToString());
         }
     }
 

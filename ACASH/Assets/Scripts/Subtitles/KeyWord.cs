@@ -122,6 +122,7 @@ public class KeyWord
 
 
 
+
     public int GetNumber()
     {
         return number;
@@ -150,6 +151,13 @@ public class KeyWord
             Debug.LogError("Ошибка в KeyWord - " + full_key);
             return string.Empty;
         }
+    }
+
+
+
+    public string GetMain()
+    {
+        return main;
     }
 
 

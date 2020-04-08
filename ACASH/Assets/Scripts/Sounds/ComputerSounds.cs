@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class ComputerSounds : A_Sound
+public class ComputerSounds : A_Sound3D
 {
     A_Computer Computer;
 
@@ -23,7 +23,7 @@ public class ComputerSounds : A_Sound
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;
-            AddSound(name.ToString());
+            AddSound3D(name.ToString());
         }
     }
 

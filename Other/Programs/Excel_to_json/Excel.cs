@@ -11,25 +11,74 @@ namespace Excel_to_json
 {
     class Excel
     {
-        string path = "";
-        _Application excel = new _Excel.Application();
-        Workbook wb;
-        Worksheet ws;
+        private string path = "";
+        public int count;
+        private int sheet = -1;
+        private int number;
+        private _Application excel = new _Excel.Application();
+        private Workbook wb;
+        private Worksheet ws;
 
-        public Excel(string path, int Sheet)
+
+        public Excel(string path)
         {
             this.path = path;
             wb = excel.Workbooks.Open(path);
-            ws = wb.Worksheets[Sheet];
+            count = wb.Worksheets.Count;
         }
+
+        public void SetSheet(int sheet)
+        {
+            if (sheet < count && sheet >= 0)
+            {
+                this.sheet = sheet + 1;
+                ws = wb.Worksheets[this.sheet];
+            }
+            else
+            {
+                this.sheet = -1;
+            }
+        }
+
 
         public string ReadCellText(int i, int j)
         {
+            if (sheet != -1)
+                return ReadCellText(i, j, ws);
+            else
+                return "";
+        }
+
+        public string ReadCellText(int i, int j, int sheet)
+        {
+            if (sheet < count && sheet >= 0)
+            {
+                sheet++;
+                Worksheet ws = wb.Worksheets[sheet];
+
+                return ReadCellText(i, j, ws);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+
+
+        private string ReadCellText(int i, int j, Worksheet sheet)
+        {
             i++;
             j++;
-            if (ws.Cells[i, j].Value2 != null)
+
+            if (sheet.Cells[i, j].Value2 != null)
             {
-                string buf = ws.Cells[i, j].Value2.ToString();
+
+                string buf = sheet.Cells[i, j].Value2.ToString();
+
+                buf = buf.Replace("\n", String.Empty);
+                buf = buf.Replace("\r", String.Empty);
+
                 string res = "";
                 bool first_char = true;
 
@@ -55,22 +104,56 @@ namespace Excel_to_json
                         }
                     }
                 }
-                res = res.Replace("\n", String.Empty);
-                res = res.Replace("\r", String.Empty);
+
                 return res;
             }
             else
                 return "";
         }
 
+
+
         public string ReadCellNumber(int i, int j)
+        {
+            if (sheet != -1)
+                return ReadCellNumber(i, j, ws);
+            else
+                return "";
+        }
+
+        public string ReadCellNumber(int i, int j, int sheet)
+        {
+            if (sheet < count && sheet >= 0)
+            {
+                sheet++;
+                Worksheet ws = wb.Worksheets[sheet];
+
+                return ReadCellNumber(i, j, ws);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+
+        private string ReadCellNumber(int i, int j, Worksheet ws)
         {
             i++;
             j++;
+
             if (ws.Cells[i, j].Value2 != null)
             {
                 string buf = ws.Cells[i, j].Value2.ToString();
+
+                buf = buf.Replace("\n", String.Empty);
+                buf = buf.Replace("\r", String.Empty);
+                buf = buf.Replace(" ", String.Empty);
+
                 string res = "";
+                string buf_res = "";
+                double number = 0;
+                double previous_number = 0;
                 bool first_number = true;
 
                 for (int c = 0; c < buf.Length; c++)
@@ -78,20 +161,35 @@ namespace Excel_to_json
                     if (buf[c] != ';')
                     {
                         if(!first_number)
-                            res += buf[c];
+                            buf_res += buf[c];
                     }
-                    else
+
+                    if (buf[c] == ';' || c == buf.Length - 1)
                     {
-                        if (c != (buf.Length - 1) && !first_number)
+                        if (!first_number)
                         {
-                            res += ",";
+                            number = double.Parse(buf_res);
+                            previous_number = number - previous_number;
+
+                            previous_number = Math.Round(previous_number, 2);
+
+                            buf_res = previous_number.ToString();
+                            
+                            res += buf_res;
+
+                            previous_number = number;
+                            buf_res = "";
+
+                            if (c != (buf.Length - 1))
+                                res += ',';
+                        }
+                        else
+                        {
+                            first_number = false;
                         }
 
-                        first_number = false;
                     }
                 }
-                res = res.Replace("\n", String.Empty);
-                res = res.Replace("\r", String.Empty);
                 return res;
             }
             else
@@ -121,20 +219,66 @@ namespace Excel_to_json
 
         public void WriteCell(int i, int j, string s)
         {
-            i++;
-            j++;
-            ws.Cells[i, j].Value2 = s;
+            if (sheet != -1)
+                WriteCell(i, j, ws, s);
         }
 
-        public int QuantOfSentences(int i, int j)
+        public void WriteCell(int i, int j, int sheet, string s)
+        {
+            if (sheet < count && sheet >= 0)
+            {
+                sheet++;
+                Worksheet ws = wb.Worksheets[sheet];
+
+                WriteCell(i, j, ws, s);
+            }
+        }
+
+        private void WriteCell(int i, int j, Worksheet ws, string s)
         {
             i++;
             j++;
+
+            ws.Cells[i, j].Value2 = s;
+        }
+
+
+
+        public int QuantOfSentences(int i, int j)
+        {
+            if (sheet != -1)
+                return QuantOfSentences(i, j, ws);
+            else
+                return 0;
+
+        }
+
+        public int QuantOfSentences(int i, int j, int sheet)
+        {
+            if (sheet < count && sheet >= 0)
+            {
+                sheet++;
+                Worksheet ws = wb.Worksheets[sheet];
+
+                return QuantOfSentences(i, j, ws);
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+
+        private int QuantOfSentences(int i, int j, Worksheet ws)
+        {
+            i++;
+            j++;
+
             if (ws.Cells[i, j].Value2 != null)
             {
                 string buf = ws.Cells[i, j].Value2.ToString();
                 int quant = 1;
-                for (int c = 0; c < buf.Length; c++)
+                for (int c = 0; c < buf.Length - 1; c++)
                 {
                     if (buf[c] == ';')
                     {

@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.00.00">
 	<object class="Event" id="{7bc89a4f-b97b-4ad2-aa9f-e9a931fc5013}">
 		<property name="name">
-			<value>Teacher_Answer _Asshole_Question_Outside_Yes_0</value>
+			<value>Teacher_Answer_Asshole_Question_Outside_Yes_0</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>
 		</property>
 		<relationship name="folder">
-			<destination>{44033abb-d0b6-4960-b71d-bf022cc46abf}</destination>
+			<destination>{76f66ebd-dfb9-4081-b6fa-8804f654279f}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{6de7511d-3a27-4fff-b4ba-74356fc1c4e7}</destination>

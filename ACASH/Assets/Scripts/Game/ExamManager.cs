@@ -14,7 +14,7 @@ public class ExamManager : Singleton<ExamManager>
         Afterhours,
     }
 
-    KeyWord exam_key = new KeyWordWithoutMain("Exam_Part");
+    KeyWord exam_key = new KeyWord("Exam","Part");
 
     public bool exam;
 

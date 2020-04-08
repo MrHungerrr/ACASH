@@ -7,6 +7,7 @@ public class ScholarExam
     private Scholar Scholar;
     public bool writing;
     public int test { get; private set; }
+    public int test_procent { get; private set; }
     public double test_buf { get; private set; }
     public float test_bufTime { get; private set; }
     public bool finished { get; private set; }
@@ -41,8 +42,13 @@ public class ScholarExam
             test_bufTime = 1f;
             test_buf = 0;
 
+            test_procent = (int) (test / 20000f);
+
             if (test >= 20000)
+            {
+                test_procent = 100;
                 finished = true;
+            }
         }
     }
 

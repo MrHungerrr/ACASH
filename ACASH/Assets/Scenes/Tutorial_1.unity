@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5298d63c96c5f54cb731faaf0d694eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainLine: 1
+  MainLine: 0
   First_Obj_X: 0
   First_Obj_Z: 0
 --- !u!114 &33251681
@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20459ff9fa050e41ab405f3cbc25e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainLine: 1
+  MainLine: 0
   First_Desk_X: 0
   First_Desk_Z: 0
   desks: []
@@ -11568,6 +11568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587215636408677942, guid: ebdfff3b297093a479436dcaf419a659,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2752092977646092873, guid: ebdfff3b297093a479436dcaf419a659,
         type: 3}
