@@ -7,6 +7,7 @@ public class PlayerTalk : MonoBehaviour
 {
     [HideInInspector]
     public Scholar scholar { get; private set; }
+    private Scholar scholar_execute;
     protected KeyWord key_word = new KeyWord("Teacher");
     public bool talking { get; private set; } = false;
 
@@ -243,6 +244,8 @@ public class PlayerTalk : MonoBehaviour
         SubtitleManager.get.Say(key_word);
         scholar.Execute.Execute(key_word);
 
+        scholar_execute = scholar;
+
         SubtitleManager.get.TalkDone += ExecuteEnd;
 
         while (SubtitleManager.get.act)
@@ -258,7 +261,7 @@ public class PlayerTalk : MonoBehaviour
     {
         SubtitleManager.get.TalkDone -= ExecuteEnd;
 
-        scholar.Execute.LastWord();
+        scholar_execute.Execute.LastWord();
 
         talking = false;
 

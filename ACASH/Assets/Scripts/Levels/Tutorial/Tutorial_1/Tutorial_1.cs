@@ -3,16 +3,12 @@ using PlayerOptions;
 using UnityEngine;
 using Single;
 
-public class Tutorial_1 : Singleton<Tutorial_1>
+public class Tutorial_1 : A_Level
 {
     private TutorialPlayerEyes Eyes;
     private TutorialPlayerWatcher Watcher;
     private TutorialScholarController Cheat;
     private TutorialKeyHint_1 Hint;
-
-    private KeyWord key = new KeyWord("Tutorial_1");
-    private KeyWord key_mistake = new KeyWord("Tutorial_1", "Mistake");
-
 
 
     [Header("Begining")]
@@ -26,10 +22,11 @@ public class Tutorial_1 : Singleton<Tutorial_1>
     public TeacherComputer computer;
 
 
- 
 
-    private void Start()
+
+    protected override void Setup()
     {
+        Key("Tutorial_1");
         trigger_room.OnEnter += StartTutorial;
         phone.GetComponent<InteractAction>().OnInteraction += StartElevator;
 
@@ -38,19 +35,23 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         Hint = GetComponent<TutorialKeyHint_1>();
         Eyes = GetComponent<TutorialPlayerEyes>();
 
-        StartCoroutine(StartLevel());
-
-
         InputManager.get.Controls.Gameplay.HUD.Disable();
     }
 
 
-    private IEnumerator StartLevel()
+    protected override void Begin()
+    {
+        StartCoroutine(Begining());
+    }
+
+
+
+
+
+        private IEnumerator Begining()
     {
        // while (!LevelManager.get.IsLoad())
            // yield return new WaitForEndOfFrame();
-
-        GameManager.get.StartLevel();
 
         Transform point = GameObject.FindGameObjectWithTag("PlayerPoint").transform;
         Player.get.Move.Position(point.position);
@@ -61,7 +62,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         key *= "Introdaction_Home";
 
         HUDManager.get.IntrodactionHUD(key);
-        SoundManager.get.Play(SoundManager.sounds.Rain);
+        NoiseManager.get.Play(NoiseManager.sounds.Rain);
         Hint.Begin();
 
         yield return new WaitForSeconds(2f);
@@ -75,6 +76,8 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         scholars = ScholarManager.get.scholars;
 
         GameManager.get.StartGame();
+
+        yield return new WaitForSeconds(1f);
     }
 
 
@@ -90,6 +93,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
         InputManager.get.SwitchGameInput("cutscene");
 
         StartCoroutine(ElevatorRoom());
+
     }
 
 
@@ -108,7 +112,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
 
         HUDManager.get.IntrodactionHUD(key);
 
-        SoundManager.get.Stop(SoundManager.sounds.Rain);
+        NoiseManager.get.Stop(NoiseManager.sounds.Rain);
 
 
         yield return new WaitForSeconds(3f);
@@ -661,8 +665,7 @@ public class Tutorial_1 : Singleton<Tutorial_1>
     {
         Player.get.Talk.all_controll = true;
         InputManager.get.Controls.Gameplay.HUD.Enable();
-        InputManager.get.SwitchGameInput("disable");
-        FadeHUDController.get.FastFade(true);
-        LevelManager.get.LoadInstead("Level_1");
+
+        GameManager.get.SwitchLevel(LevelManager.levels.Level_1);
     }
 }

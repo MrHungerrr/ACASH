@@ -3,25 +3,21 @@ using PlayerOptions;
 using UnityEngine;
 using Single;
 
-public class Level_2 : Singleton<Level_2>
+public class Level_2 : A_Level
 {
-
-
-    private KeyWord key = new KeyWord("Level_2");
-    private KeyWord key_mistake = new KeyWord("Level_2", "Mistake");
 
     private KeyAction hint;
 
 
-    private void Start()
+    protected override void Setup()
     {
-        StartLevel();
+        Key("Level_2");
 
         LevelSettings.get.ExamOver += StartEnding;
         ExamManager.get.ChillDone += StartShoutHint;
     }
 
-    private void StartLevel()
+    protected override void Begin()
     {
         StartCoroutine(ElevatorRoom());
     }
@@ -31,8 +27,6 @@ public class Level_2 : Singleton<Level_2>
     {
         //while (!LevelManager.get.IsLoad())
         //  yield return new WaitForEndOfFrame();
-
-        GameManager.get.StartLevel();
 
         Player.get.Move.Position(Elevator.get.position);
 
@@ -69,6 +63,8 @@ public class Level_2 : Singleton<Level_2>
             yield return new WaitForEndOfFrame();
 
         GameManager.get.StartExam();
+
+        Player.get.Talk.AllowAll();
     }
 
 

@@ -10,8 +10,7 @@ public abstract class A_Sound3D: A_Sound2D
 
     public event ActionEvent.OnActionBool OcclusionUpdate;
     private bool occlusion;
-
-
+    protected bool active = false;
 
 
 
@@ -19,6 +18,11 @@ public abstract class A_Sound3D: A_Sound2D
     {
         this.obj = obj;
         base.Setup(path);
+    }
+
+    public void Enable(bool option)
+    {
+        active = option;
     }
 
 
@@ -29,10 +33,17 @@ public abstract class A_Sound3D: A_Sound2D
         {
             if (obj != null)
             {
-                FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + name);
-                RuntimeManager.AttachInstanceToGameObject(sound, obj.transform, obj.GetComponent<Rigidbody>());
-                FMODAudio3D audio = new FMODAudio3D(this, sound);
-                FMODsounds.Add(name, audio);
+                if (!FMODsounds.ContainsKey(name))
+                {
+                    FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + name);
+                    RuntimeManager.AttachInstanceToGameObject(sound, obj.transform, obj.GetComponent<Rigidbody>());
+                    FMODAudio3D audio = new FMODAudio3D(this, sound);
+                    FMODsounds.Add(name, audio);
+                }
+                else
+                {
+                    Debug.LogError("Sound is Already Added - " + name);
+                }
             }
             else
             {
@@ -50,10 +61,13 @@ public abstract class A_Sound3D: A_Sound2D
 
     protected override void Update()
     {
-        if (OcclusionCalculate() && OcclusionUpdate != null)
-            OcclusionUpdate(occlusion);
+        if (active)
+        {
+            if (OcclusionCalculate() && OcclusionUpdate != null)
+                OcclusionUpdate(occlusion);
 
-        base.Update();
+            base.Update();
+        }
     }
 
 

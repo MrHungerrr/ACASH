@@ -5,11 +5,12 @@ using UnityEngine;
 public class Door : MonoBehaviour, I_Interaction
 {
 
+    private bool active = false;
 
     [HideInInspector]
     public bool open { get; private set; } = false;
     public bool locked;
-    private bool active = false;
+    private bool changing = false;
 
     private Rigidbody RB;
     private Quaternion commonRot;
@@ -41,16 +42,24 @@ public class Door : MonoBehaviour, I_Interaction
         this.tag = "Door";
         in_range = false;
 
-        active = false;
+        changing = false;
     }
 
+
+    public void Enable(bool option)
+    {
+        active = option;
+    }
 
     void FixedUpdate()
     {
         if (active)
-            DoorRot();
+        {
+            if (changing)
+                DoorRot();
 
-        ScholarOpen();
+            ScholarOpen();
+        }
     }
 
 
@@ -103,7 +112,7 @@ public class Door : MonoBehaviour, I_Interaction
 
             ScholarManager.get.SpecialHear(doorT.position);
             Sound.Play(DoorSounds.sounds.Open);
-            active = true;
+            changing = true;
         }
 
     }
@@ -123,7 +132,7 @@ public class Door : MonoBehaviour, I_Interaction
                 TargetRotate(-50);
             }
 
-            active = true;
+            changing = true;
         }
     }
 
@@ -134,7 +143,7 @@ public class Door : MonoBehaviour, I_Interaction
         Sound.Play(DoorSounds.sounds.Close);
         targetRot = commonRot;
         open = false;
-        active = true;
+        changing = true;
     }
 
 
@@ -160,7 +169,7 @@ public class Door : MonoBehaviour, I_Interaction
             }
             else
             {
-                active = false;
+                changing = false;
             }
         }
     }

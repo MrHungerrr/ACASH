@@ -172,6 +172,38 @@ public class FiveDigitInt
 
 
 
+    public static bool operator ==(FiveDigitInt number_1, int number_2)
+    {
+        return number_1.decimal_number == number_2;
+    }
+
+    public static bool operator !=(FiveDigitInt number_1, int number_2)
+    {
+        return number_1.decimal_number != number_2;
+    }
+
+    public static bool operator >(FiveDigitInt number_1, int number_2)
+    {
+        return number_1.decimal_number > number_2;
+    }
+
+    public static bool operator <(FiveDigitInt number_1, int number_2)
+    {
+        return number_1.decimal_number < number_2;
+    }
+
+    public static bool operator <=(FiveDigitInt number_1, int number_2)
+    {
+        return number_1.decimal_number <= number_2;
+    }
+
+    public static bool operator >=(FiveDigitInt number_1, int number_2)
+    {
+        return number_1.decimal_number >= number_2;
+    }
+
+
+
 
 
 

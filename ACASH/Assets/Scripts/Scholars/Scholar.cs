@@ -167,7 +167,8 @@ public class Scholar : MonoBehaviour
             Stress.Update();
         }
 
-        HUD.Update();
+        if(HUD != null)
+            HUD.Update();
     }
 
 

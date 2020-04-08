@@ -5,7 +5,7 @@ using Single;
 using ScholarOptions;
 using TMPro;
 
-public class Tutorial_2 : Singleton<Tutorial_2>
+public class Tutorial_2 : A_Level
 {
     private TutorialPlayerEyes Eyes;
     private TutorialPlayerWatcher Watcher;
@@ -34,8 +34,9 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
 
 
-    private void Start()
+    protected override void Setup()
     {
+        Key("Tutorial_2");
 
         Watcher = new TutorialPlayerWatcher(false);
 
@@ -45,17 +46,18 @@ public class Tutorial_2 : Singleton<Tutorial_2>
 
         second_room.OnEnter += StartSecondRoom;
         Player.get.Talk.DenyAll();
-
-        StartCoroutine(StartLevel());
     }
 
 
-    private IEnumerator StartLevel()
+    protected override void Begin()
+    {
+        StartCoroutine(Begining());
+    }
+
+    private IEnumerator Begining()
     {
         //while (!LevelManager.get.IsLoad())
           //  yield return new WaitForEndOfFrame();
-
-        GameManager.get.StartLevel();
 
         Transform point = GameObject.FindGameObjectWithTag("PlayerPoint").transform;
         Player.get.Move.Position(point.position);
@@ -690,9 +692,8 @@ public class Tutorial_2 : Singleton<Tutorial_2>
             yield return new WaitForEndOfFrame();
 
         Player.get.Talk.AllowAll();
-        InputManager.get.SwitchGameInput("disable");
-        FadeHUDController.get.FastFade(true);
-        LevelManager.get.LoadInstead("Level_2");
+
+        GameManager.get.SwitchLevel(LevelManager.levels.Level_2);
     }
 
 }

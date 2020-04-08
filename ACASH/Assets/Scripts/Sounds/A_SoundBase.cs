@@ -29,7 +29,7 @@ public abstract class A_SoundBase: MonoBehaviour
         {
             if(sound.Play())
             {
-                Debug.Log("Sound Play - " + sound);
+                //Debug.Log("Sound Play - " + sound);
                 return true;
             }
             else
@@ -40,7 +40,7 @@ public abstract class A_SoundBase: MonoBehaviour
         }
         catch
         {
-            Debug.LogError("Sound is MISSING - " + sound);
+            Debug.LogError("Sound is MISSING");
         }
         return false;
     }
@@ -50,11 +50,11 @@ public abstract class A_SoundBase: MonoBehaviour
         try
         {
             sound.PlayAnyway();
-            Debug.Log("Sound Play - " + sound);
+            //Debug.Log("Sound Play - " + sound);
         }
         catch
         {
-            Debug.LogError("Sound is MISSING - " + sound);
+            Debug.LogError("Sound is MISSING!");
         }
     }
 

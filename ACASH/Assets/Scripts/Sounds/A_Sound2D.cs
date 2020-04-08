@@ -12,9 +12,16 @@ public abstract class A_Sound2D: A_SoundBase
     {
         try
         {
-            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + name);
-            FMODAudioBase audio = new FMODAudioBase(this, sound);
-            FMODsounds.Add(name, audio);
+            if (!FMODsounds.ContainsKey(name))
+            {
+                FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(sounds_path + name);
+                FMODAudioBase audio = new FMODAudioBase(this, sound);
+                FMODsounds.Add(name, audio);
+            }
+            else
+            {
+                Debug.LogError("Sound is Already Added - " + name);
+            }
         }
         catch
         {

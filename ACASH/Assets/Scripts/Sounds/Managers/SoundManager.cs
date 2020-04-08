@@ -1,91 +1,36 @@
 ﻿using System;
 using UnityEngine;
+using Single;
 
-public class SoundManager : A_Sound2D
+public class SoundManager : Singleton<SoundManager>
 {
-    public enum sounds
+
+    A_Sound3D[] sounds;
+
+
+    public void SetLevel()
     {
-        Rain,
+        UnsetLevel();
+
+        sounds = FindObjectsOfType<A_Sound3D>();
+
+        foreach (A_Sound3D sound in sounds)
+        {
+            sound.Enable(false);
+        }
     }
 
 
-
-    private static SoundManager _get;
-    private static System.Object _lock = new System.Object();
-
-    public static SoundManager get
+    public void UnsetLevel()
     {
-        get
+        if (sounds != null)
         {
-            if (_get == null)
+            foreach (A_Sound3D sound in sounds)
             {
-                
-                lock(_lock)
-                {
-                    _get = FindObjectOfType<SoundManager>();
-
-                    if (FindObjectsOfType<SoundManager>().Length > 1)
-                    {
-                        Debug.LogError("Несколько Синглтонов '" + typeof(SoundManager).ToString() + "' найдено! ");
-                    }
-
-                    if (_get == null)
-                    {
-                        Debug.Log("На сцене отсутсвует " + typeof(SoundManager).ToString());
-                        return null;
-                    }
-                }
+                sound.Enable(false);
             }
 
-            return _get;
+            sounds = null;
         }
-    }
-
-
-
-    private void Awake()
-    {
-        Setup();
-    }
-
-
-    protected void Setup()
-    {
-        base.Setup("Global/Sounds/");
-
-        for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
-        {
-            sounds name = (sounds)i;
-            AddSound2D(name.ToString());
-        }
-    }
-
-
-
-
-
-
-    //========================================================================================================================
-    //========================================================================================================================
-    //Не трогать
-
-    public void Play(sounds sound)
-    {
-        base.Play(sound.ToString());
-    }
-
-    public void Pause(sounds sound)
-    {
-        base.Pause(sound.ToString());
-    }
-
-    public void Stop(sounds sound)
-    {
-        base.Stop(sound.ToString());
-    }
-
-    public void Stop(sounds sound, bool immediate)
-    {
-        base.Stop(sound.ToString(), immediate);
     }
 }

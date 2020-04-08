@@ -9,24 +9,35 @@ public static class ActionEvent
 
     public static void Unsubscribe(OnAction ConcreteDelegate)
     {
-        if (ConcreteDelegate != null)
-        {
-            Delegate[] clientList = ConcreteDelegate.GetInvocationList();
+        ConcreteDelegate = null;
 
-            foreach (var d in clientList)
-                ConcreteDelegate -= (d as OnAction);
-        }
-    }
 
-    public static void Unsubscribe(OnActionBool ConcreteDelegate)
-    {
-        if (ConcreteDelegate != null)
-        {
-            Delegate[] clientList = ConcreteDelegate.GetInvocationList();
+        /*
+         if (ConcreteDelegate != null)
+         {
+             Delegate[] clientList = ConcreteDelegate.GetInvocationList();
 
-            foreach (var d in clientList)
-                ConcreteDelegate -= (d as OnActionBool);
-        }
+             foreach (var d in clientList)
+                 ConcreteDelegate -= (d as OnAction);
+         }
+         
+       */
+     }
+
+     public static void Unsubscribe(OnActionBool ConcreteDelegate)
+     {
+
+         ConcreteDelegate = null;
+
+        /*
+          if (ConcreteDelegate != null)
+         {
+             Delegate[] clientList = ConcreteDelegate.GetInvocationList();
+
+             foreach (var d in clientList)
+                 ConcreteDelegate -= (d as OnActionBool);
+         }
+         */
     }
 }
 

@@ -3,25 +3,19 @@ using PlayerOptions;
 using UnityEngine;
 using Single;
 
-public class Level_1 : Singleton<Level_1>
+public class Level_1 : A_Level
 {
-
-
-    private KeyWord key = new KeyWord("Level_1");
-    private KeyWord key_mistake = new KeyWord("Level_1", "Mistake");
-
     private KeyAction hint;
 
-
-    private void Start()
+    protected override void Setup()
     {
-        StartLevel();
+        Key("Level_1");
 
         ExamManager.get.ExamDone += StartEnding;
         ExamManager.get.PrepareDone += StartTabHint;
     }
 
-    private void StartLevel()
+    protected override void Begin()
     {
         StartCoroutine(ElevatorRoom());
     }
@@ -32,8 +26,7 @@ public class Level_1 : Singleton<Level_1>
         //while (!LevelManager.get.IsLoad())
         //  yield return new WaitForEndOfFrame();
 
-        GameManager.get.StartLevel();
-
+        yield return new WaitForSeconds(0.5f);
 
         Player.get.Move.Position(Elevator.get.position);
 
@@ -70,6 +63,10 @@ public class Level_1 : Singleton<Level_1>
             yield return new WaitForEndOfFrame();
 
         GameManager.get.StartExam();
+
+        Player.get.Talk.DenyAll();
+        Player.get.Talk.execute_control = true;
+        Player.get.Talk.all_controll = true;
     }
 
 
@@ -117,7 +114,7 @@ public class Level_1 : Singleton<Level_1>
             if(!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if(option_time >10f)
+            if(option_time >20f)
             {
                 key_mistake += 0;
                 SubtitleManager.get.Say(key_mistake);
@@ -145,7 +142,7 @@ public class Level_1 : Singleton<Level_1>
             if (!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if (option_time > 10f)
+            if (option_time > 20f)
             {
                 key_mistake += 1;
                 SubtitleManager.get.Say(key_mistake);
@@ -172,8 +169,6 @@ public class Level_1 : Singleton<Level_1>
 
     private void EndLevel()
     {
-        FadeHUDController.get.FastFade(true);
-        InputManager.get.SwitchGameInput("disable");
-        LevelManager.get.LoadInstead("Tutorial_2");
+        GameManager.get.SwitchLevel(LevelManager.levels.Tutorial_2);
     }
 }

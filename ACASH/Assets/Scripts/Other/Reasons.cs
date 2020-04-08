@@ -28,7 +28,7 @@ public class Reasons
         {
             reasons.Add(type);
 
-            Debug.LogError("+1 Причина - " + type);
+            //Debug.LogError("+1 Причина - " + type);
         }
     }
 

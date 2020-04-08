@@ -21,6 +21,15 @@ public static class Calculator
 
         Recount(expression, ref calculate_objects_buf);
 
+        for (int i = 0; i < calculate_objects_buf.Count; i++)
+        {
+
+            if (calculate_objects_buf[i].number == 0)
+                if (calculate_objects_buf[i].operation == Calculator.operations.Divide || calculate_objects_buf[i].operation == Calculator.operations.Mod)
+                    return "ERROR";
+
+        }
+
         List<CalculatorItem> calculate_objects = new List<CalculatorItem>();
 
 
@@ -120,6 +129,7 @@ public static class Calculator
         return false;
     }
 
+
     public static bool IsFirstClassOperation(operations operation)
     {
         switch (operation)
@@ -134,6 +144,7 @@ public static class Calculator
 
         return false;
     }
+
 
     public static operations Operation(char operation)
     {

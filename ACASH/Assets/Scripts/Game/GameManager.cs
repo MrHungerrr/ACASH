@@ -61,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
-        StartCoroutine(LoadGame("Tutorial_1"));
+        StartCoroutine(LoadGame(LevelManager.levels.Tutorial_1));
     }
 
     public void Continue()
@@ -71,7 +71,6 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
-        StartCoroutine(LevelManager.get.current_level);
     }
 
     public void Quit()
@@ -103,7 +102,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public IEnumerator LoadGame(string level)
+    public IEnumerator LoadGame(LevelManager.levels level)
     {
         game = true;
         InputManager.get.SwitchGameInput("disable");
@@ -114,15 +113,31 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForEndOfFrame();
 
         Menu.get.MenuEnable(false);
-        LevelManager.get.UnloadLevels();
 
-        while (LevelManager.get.IsLoad())
-            yield return new WaitForEndOfFrame();
+        LevelManager.get.Load(level);
 
-        LevelManager.get.LoadFast(level);
+        /* while (!LevelManager.get.IsLoad(level))
+         {
+             Debug.Log(LevelManager.get.IsLoad(level));
+             yield return new WaitForEndOfFrame();
+         }
+         */
+        //END
+    }
 
-        while (!LevelManager.get.IsLoad(level))
-            yield return new WaitForEndOfFrame();
+
+
+    public IEnumerator SwitchLevel(LevelManager.levels level)
+    {
+
+
+        InputManager.get.SwitchGameInput("disable");
+        FadeHUDController.get.FastFade(true);
+        UnsetLevel();
+
+        LevelManager.get.LoadInstead(level);
+
+        yield return null;
         //END
     }
 
@@ -137,6 +152,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartLevel()
     {
+        Debug.LogError("Start Level");
         //В конце концов это можно будет убрать (Костыль на игру без меню)
         if (!setuped)
             Setup();
@@ -145,19 +161,48 @@ public class GameManager : Singleton<GameManager>
         FadeHUDController.get.FastFade(true);
         FadeController.get.FastFade(false);
 
-        SetLevel();
+       StartCoroutine(SetLevel());
     }
 
-    public void SetLevel()
+    
+
+    public IEnumerator SetLevel()
     {
+        Debug.LogError("SetLevel");
+
         PlaceManager.get.Setup();
         ScholarObjectsManager.get.SetLevel();
         ScholarManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
         ScoreManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
         ComputerManager.get.Setup();
+        yield return new WaitForEndOfFrame();
+
         TimeManager.get.Setup();
+        yield return new WaitForEndOfFrame();
+
         LevelSettings.get.Setup();
+        yield return new WaitForEndOfFrame();
+
         OverwatchCameraManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
+        SoundManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
+        ObjectManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
+        A_Level.get.StartLevel();
+    }
+
+    public void UnsetLevel()
+    {
+        ObjectManager.get.UnsetLevel();
+        SoundManager.get.UnsetLevel();
     }
 
 
