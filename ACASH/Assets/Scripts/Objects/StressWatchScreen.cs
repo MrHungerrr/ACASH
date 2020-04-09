@@ -16,20 +16,38 @@ public class StressWatchScreen : MonoBehaviour
     private TextMeshPro text;
 
 
-    void Start()
+    public void Setup()
     {
         SIC<TextMeshPro>.Component(this.gameObject, out text);
 
-        if (scholar == null)
-            scholar = ScholarManager.get.scholars[number];
+        try
+        {
+            if (scholar == null)
+                scholar = ScholarManager.get.scholars[number];
+        }
+        catch
+        {
+
+        }
     }
 
-
-
-    private void Update()
+    private void LateUpdate()
     {
-        text.text = "Stress:" + scholar.Stress.value_show.ToString() + "%";
+        if (scholar != null)
+        {
+            if (text != null)
+                text.text = "Stress\n " + scholar.Stress.value_show.ToString() + "%";
+            else
+                Setup();
+        }
+        else
+        {
+            Setup();
+        }
     }
+
+
+
 
 
 }

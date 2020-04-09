@@ -64,7 +64,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
-        StartCoroutine(LoadGame(LevelManager.levels.Tutorial_2));
+        StartCoroutine(LoadGame(LevelManager.levels.Tutorial_1));
     }
 
     public void Continue()
