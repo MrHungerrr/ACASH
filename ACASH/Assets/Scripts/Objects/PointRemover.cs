@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PointRemover : MonoBehaviour
 {
-
-
     private void Start()
     {
         GetComponent<Renderer>().enabled = false;

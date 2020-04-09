@@ -104,10 +104,41 @@ public class TutorialScholarController
         scholar.Action.AddAction(cheat);
         scholar.Action.AddAction("Answer");
         scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Answer");
+        scholar.Action.AddAction(cheat);
     }
 
     private void SetScholarCheat_1(ref Scholar scholar, string cheat)
     {
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
         scholar.Action.AddAction(cheat);
         scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
@@ -144,10 +175,42 @@ public class TutorialScholarController
         scholar.Action.AddAction(cheat);
         scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
     }
 
     private void SetScholarCheat_3(ref Scholar scholar, string cheat)
     {
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Watch_Rules");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction("Write");
+        scholar.Action.AddAction(cheat);
+        scholar.Action.AddAction("Write");
         scholar.Action.AddAction("Write");
         scholar.Action.AddAction("Write");
         scholar.Action.AddAction(cheat);

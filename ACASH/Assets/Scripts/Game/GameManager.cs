@@ -13,6 +13,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private bool test;
 
+    private string setuped_level;
+
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class GameManager : Singleton<GameManager>
             setuped = true;
             ScoreManager.get.Setup();
             ScholarManager.get.Setup();
+            ExamManager.get.Setup();
         }
     }
 
@@ -61,7 +64,7 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
-        StartCoroutine(LoadGame(LevelManager.levels.Level_2));
+        StartCoroutine(LoadGame(LevelManager.levels.Tutorial_2));
     }
 
     public void Continue()
@@ -71,6 +74,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
+        StartCoroutine(ReloadGame());
     }
 
     public void Quit()
@@ -125,20 +129,35 @@ public class GameManager : Singleton<GameManager>
         //END
     }
 
-
-
-    public IEnumerator SwitchLevel(LevelManager.levels level)
+    public IEnumerator ReloadGame()
     {
+        InputManager.get.SwitchGameInput("disable");
+        FadeHUDController.get.Fade(true);
+        UnsetLevel();
+
+        while (FadeHUDController.get.active)
+            yield return new WaitForEndOfFrame();
+
+        LevelManager.get.Reload();
+
+        /* while (!LevelManager.get.IsLoad(level))
+         {
+             Debug.Log(LevelManager.get.IsLoad(level));
+             yield return new WaitForEndOfFrame();
+         }
+         */
+        //END
+    }
 
 
+
+    public void SwitchLevel(LevelManager.levels level)
+    {
         InputManager.get.SwitchGameInput("disable");
         FadeHUDController.get.FastFade(true);
         UnsetLevel();
 
         LevelManager.get.LoadInstead(level);
-
-        yield return null;
-        //END
     }
 
 
@@ -152,7 +171,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartLevel()
     {
-        Debug.LogError("Start Level");
+        //Debug.LogError("Start Level");
         //В конце концов это можно будет убрать (Костыль на игру без меню)
         if (!setuped)
             Setup();
@@ -168,9 +187,9 @@ public class GameManager : Singleton<GameManager>
 
     public IEnumerator SetLevel()
     {
-        Debug.LogError("SetLevel");
-
-        PlaceManager.get.Setup();
+        //Debug.LogError("SetLevel");
+        ExamManager.get.SetLevel();
+        PlaceManager.get.SetLevel();
         ScholarObjectsManager.get.SetLevel();
         ScholarManager.get.SetLevel();
         yield return new WaitForEndOfFrame();
@@ -181,19 +200,19 @@ public class GameManager : Singleton<GameManager>
         OverwatchCameraManager.get.SetLevel();
         yield return new WaitForEndOfFrame();
 
+        LevelSettings.get.Setup();
+        yield return new WaitForEndOfFrame();
+
+        ObjectManager.get.SetLevel();
+        yield return new WaitForEndOfFrame();
+
         ComputerManager.get.Setup();
         yield return new WaitForEndOfFrame();
 
         TimeManager.get.Setup();
         yield return new WaitForEndOfFrame();
 
-        LevelSettings.get.Setup();
-        yield return new WaitForEndOfFrame();
-
         SoundManager.get.SetLevel();
-        yield return new WaitForEndOfFrame();
-
-        ObjectManager.get.SetLevel();
         yield return new WaitForEndOfFrame();
 
         A_Level.get.StartLevel();
@@ -201,6 +220,7 @@ public class GameManager : Singleton<GameManager>
 
     public void UnsetLevel()
     {
+        ExamManager.get.UnsetLevel();
         ObjectManager.get.UnsetLevel();
         SoundManager.get.UnsetLevel();
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 using Single;
 
@@ -14,26 +15,41 @@ public class ExamManager : Singleton<ExamManager>
         Afterhours,
     }
 
-    KeyWord exam_key = new KeyWord("Exam","Part");
+    KeyWord exam_key = new KeyWord("Exam", "Part");
 
     public bool exam;
 
 
-    public event ActionEvent.OnAction ChillDone;
-    public event ActionEvent.OnAction PrepareDone;
-    public event ActionEvent.OnAction ExamDone;
+    [HideInInspector]
+    public UnityEvent ChillDone;
+    [HideInInspector]
+    public UnityEvent PrepareDone;
+    [HideInInspector]
+    public UnityEvent ExamDone;
 
 
     [HideInInspector]
     public part exam_part;
 
 
-
-    public void Awake()
+    public void Setup()
     {
-        ChillDone += StartPrepare;
-        PrepareDone += StartExam;
-        ExamDone += FinishExam;
+        Player.get.Talk.ExecuteDone.AddListener(EarlyFinish);
+    }
+
+    public void SetLevel()
+    {
+        ChillDone.AddListener(StartPrepare);
+        PrepareDone.AddListener(StartExam);
+        ExamDone.AddListener(FinishExam);
+    }
+
+
+    public void UnsetLevel()
+    {
+        ChillDone.RemoveAllListeners();
+        PrepareDone.RemoveAllListeners();
+        ExamDone.RemoveAllListeners();
     }
 
 
@@ -85,29 +101,36 @@ public class ExamManager : Singleton<ExamManager>
 
     public void TimeDone()
     {
-        switch(exam_part)
+        switch (exam_part)
         {
             case part.Chill:
                 {
-                    if (ChillDone != null)
-                        ChillDone();
+                    ChillDone.Invoke();
 
                     break;
                 }
             case part.Prepare:
                 {
-                    if(PrepareDone != null)
-                        PrepareDone();
+                    PrepareDone.Invoke();
 
                     break;
                 }
             case part.Exam:
                 {
-                    if(ExamDone != null)
-                        ExamDone();
+                    ExamDone.Invoke();
 
                     break;
                 }
+        }
+    }
+
+
+
+    public void EarlyFinish()
+    {
+        if(ScholarManager.get.GetCount(ScholarManager.Left) == 0)
+        {
+            FinishExam();
         }
     }
 }

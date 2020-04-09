@@ -2,17 +2,13 @@
 using System.Collections;
 using TMPro;
 
-public class ComputerSelect : ObjectSelect, I_ObjectSelect
+public class ComputerSelect : ObjectSelect
 {
-    private void Awake()
-    {
-        SetSelect();
-    }
 
 
     public override bool CanISelect()
     {
-        if (BaseGeometry.LookingAngle2D(transform, Player.get.Move.Position()) < 70)
+        if (BaseGeometry.LookingAngle2D(transform, Player.get.Move.Position()) < 70 && Player.get.Select.active.GiveMeChance())
         {
             return base.CanISelect();
         }

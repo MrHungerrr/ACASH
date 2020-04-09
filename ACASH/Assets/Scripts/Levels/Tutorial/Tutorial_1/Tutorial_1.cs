@@ -27,8 +27,8 @@ public class Tutorial_1 : A_Level
     protected override void Setup()
     {
         Key("Tutorial_1");
-        trigger_room.OnEnter += StartTutorial;
-        phone.GetComponent<InteractAction>().OnInteraction += StartElevator;
+        trigger_room.OnEnter.AddListener(StartTutorial);
+        phone.GetComponent<InteractAction>().OnInteraction.AddListener(StartElevator);
 
         Watcher = new TutorialPlayerWatcher();
         Cheat = new TutorialScholarController();
@@ -663,9 +663,11 @@ public class Tutorial_1 : A_Level
 
     private void EndLevel()
     {
+
         Player.get.Talk.all_controll = true;
         InputManager.get.Controls.Gameplay.HUD.Enable();
 
         GameManager.get.SwitchLevel(LevelManager.levels.Level_1);
+
     }
 }

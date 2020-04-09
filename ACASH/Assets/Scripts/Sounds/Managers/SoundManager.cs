@@ -5,7 +5,7 @@ using Single;
 public class SoundManager : Singleton<SoundManager>
 {
 
-    A_Sound3D[] sounds;
+    private A_Sound3D[] sounds;
 
 
     public void SetLevel()
@@ -13,22 +13,53 @@ public class SoundManager : Singleton<SoundManager>
         UnsetLevel();
 
         sounds = FindObjectsOfType<A_Sound3D>();
+    }
 
-        foreach (A_Sound3D sound in sounds)
+    public void Pause(bool option)
+    {
+        if (sounds != null)
         {
-            sound.Enable(false);
+            if (option)
+            {
+                for (int i = 0; i < sounds.Length; i++)
+                {
+                    sounds[i].Pause();
+                }
+
+                VoiceManager.get.Pause();
+                MusicManager.get.Pause();
+                NoiseManager.get.Pause();
+
+            }
+            else
+            {
+                for (int i = 0; i < sounds.Length; i++)
+                {
+                    sounds[i].Continue();
+                }
+
+                VoiceManager.get.Continue();
+                MusicManager.get.Continue();
+                NoiseManager.get.Continue();
+            }
         }
     }
+
+
 
 
     public void UnsetLevel()
     {
         if (sounds != null)
         {
-            foreach (A_Sound3D sound in sounds)
+            for (int i = 0; i < sounds.Length; i++)
             {
-                sound.Enable(false);
+                sounds[i].Stop();
             }
+
+            VoiceManager.get.Stop();
+            MusicManager.get.Pause();
+            NoiseManager.get.Stop();
 
             sounds = null;
         }

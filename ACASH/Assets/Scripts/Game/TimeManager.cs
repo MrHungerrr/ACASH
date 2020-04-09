@@ -27,7 +27,7 @@ public class TimeManager : Singleton<TimeManager>
     {
         {ExamManager.part.Chill, new TimeStorage(5, "Time before exam") },
         {ExamManager.part.Prepare, new TimeStorage(15, "Exam need start in") },
-        {ExamManager.part.Exam, new TimeStorage(30, "Exam will end in") },
+        {ExamManager.part.Exam, new TimeStorage(300 ,"Exam will end in") },
         {ExamManager.part.Afterhours, new TimeStorage(0, "Exam is OVER") },
     };
 

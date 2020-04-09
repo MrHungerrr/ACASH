@@ -43,13 +43,16 @@ public class ComputerWindows : MonoBehaviour
         current_window = null;
 
         Computer = c;
+
+        program_bar.SetActive(false);
+        program_name.text = null;
     }
 
 
 
     public void Set(string window)
     {
-        //Debug.Log(window);
+        Debug.LogWarning(window);
         Disable();
         windows[window].SetActive(true);
         current_window = window;
@@ -65,6 +68,7 @@ public class ComputerWindows : MonoBehaviour
 
     public void Disable(string window)
     {
+        Debug.LogWarning(window);
         windows[window].SetActive(false);
     }
 
@@ -80,7 +84,7 @@ public class ComputerWindows : MonoBehaviour
     {
         if (current_window != null)
         {
-            windows[current_window].SetActive(false);
+            Disable(current_window);
             current_window = null;
         }
     }
@@ -100,6 +104,6 @@ public class ComputerWindows : MonoBehaviour
 
     public void EnableTaskBar(bool option)
     {
-        task_bar.SetActive(option);
+            task_bar.SetActive(option);
     }
 }

@@ -38,7 +38,7 @@ public class Reasons
         {
             reasons.Remove(type);
 
-            Debug.LogError("-1 Причина - " + type);
+           //Debug.LogError("-1 Причина - " + type);
         }
     }
 

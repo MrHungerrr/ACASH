@@ -19,15 +19,16 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public void Setup()
     {
-        ExamManager.get.ChillDone += StartPrepare;
-        ExamManager.get.PrepareDone += StartExam;
-        ExamManager.get.ExamDone += EndExam;
         ScholarFaces.Setup();
     }
 
 
     public void SetLevel()
     {
+        ExamManager.get.ChillDone.AddListener(StartPrepare);
+        ExamManager.get.PrepareDone.AddListener(StartExam);
+        ExamManager.get.ExamDone.AddListener(EndExam);
+
         all_scholars = GameObject.FindObjectsOfType<Scholar>();
         List<Scholar> list = new List<Scholar>();
 
@@ -201,6 +202,7 @@ public class ScholarManager : Singleton<ScholarManager>
         //Debug.LogError("Меня видят - " + result.Count + " Учеников");
         return result.ToArray();
     }
+
 
 
 

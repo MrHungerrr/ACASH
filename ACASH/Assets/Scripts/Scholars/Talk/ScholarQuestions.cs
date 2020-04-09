@@ -5,6 +5,8 @@ using ScholarOptions;
 public class ScholarQuestions
 {
     private Scholar Scholar;
+
+
     public bool question { get; private set; }
     public bool answer { get; private set; }
     public bool question_answered { get; private set; }
@@ -70,12 +72,15 @@ public class ScholarQuestions
         answer_key.Reset();
         answer_key.Answer(answer);
 
+
         Scholar.Talk.SayWithoutStop(answer_key);
     }
 
 
     private void QuestionEnd()
     {
+        PlayerCheat.IsAnswerRight(Scholar, answer);
+
         Debug.Log("Конец вопроса");
         Scholar.Talk.Stop();
         question = false;

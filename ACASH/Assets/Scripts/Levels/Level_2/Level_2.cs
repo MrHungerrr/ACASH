@@ -13,8 +13,8 @@ public class Level_2 : A_Level
     {
         Key("Level_2");
 
-        LevelSettings.get.ExamOver += StartEnding;
-        ExamManager.get.ChillDone += StartShoutHint;
+        LevelSettings.get.ExamOver.AddListener(StartEnding);
+        ExamManager.get.ChillDone.AddListener(StartShoutHint);
     }
 
     protected override void Begin()
@@ -75,7 +75,7 @@ public class Level_2 : A_Level
     private void StartShoutHint()
     {
         StartCoroutine(Hinting());
-        ExamManager.get.ChillDone -= StartShoutHint;
+        ExamManager.get.ChillDone.RemoveListener(StartShoutHint);
     }
 
 
@@ -86,7 +86,7 @@ public class Level_2 : A_Level
         HUDManager.get.HintHUD(GetP.actions.Shout);
         hint = new KeyAction();
         hint.Setup(GetP.actions.Shout);
-        hint.OnKeyDown += CloseShoutHint;
+        hint.OnKeyDown.AddListener(CloseShoutHint);
     }
 
     private void CloseShoutHint()
@@ -100,7 +100,7 @@ public class Level_2 : A_Level
 
     private void StartEnding()
     {
-        LevelSettings.get.ExamOver -= StartEnding;
+        LevelSettings.get.ExamOver.RemoveListener(StartEnding);
         StartCoroutine(Ending());
     }
 

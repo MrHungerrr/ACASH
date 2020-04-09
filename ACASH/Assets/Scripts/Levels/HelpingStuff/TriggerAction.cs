@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-
+using UnityEngine.Events;
 
 public class TriggerAction: MonoBehaviour
 {
     [HideInInspector]
-    public event ActionEvent.OnAction OnEnter;
+    public UnityEvent OnEnter;
     [HideInInspector]
-    public event ActionEvent.OnAction OnExit;
+    public UnityEvent OnExit;
     [HideInInspector]
     public bool inside;
 
@@ -14,7 +14,7 @@ public class TriggerAction: MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && OnEnter != null)
-            OnEnter();
+            OnEnter.Invoke();
 
         inside = true;
     }
@@ -22,7 +22,7 @@ public class TriggerAction: MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player" && OnExit != null)
-            OnExit();
+            OnExit.Invoke();
 
         inside = false;
     }
@@ -30,8 +30,8 @@ public class TriggerAction: MonoBehaviour
 
     public void Remove()
     {
-        ActionEvent.Unsubscribe(OnEnter);
-        ActionEvent.Unsubscribe(OnExit);
+        OnEnter.RemoveAllListeners();
+        OnExit.RemoveAllListeners();
         Destroy(this.gameObject);
     }
 

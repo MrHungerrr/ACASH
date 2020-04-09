@@ -30,6 +30,7 @@ public class LevelManager : Singleton<LevelManager>
         if(loading)
         {
             IsLoading();
+          //  IsUnloading();
         }
     }
 
@@ -43,7 +44,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (!SceneManager.GetSceneByBuildIndex(scene_index).isLoaded)
         {
-            Unload(current_level);
+            UnloadFast(current_level);
             Load(scene_index);
         }
     }
@@ -59,12 +60,10 @@ public class LevelManager : Singleton<LevelManager>
         {
             if (!SceneManager.GetSceneByBuildIndex(scene_index).isLoaded)
             {
-                loading = true;
-
                 OnLoad += GameManager.get.StartLevel;
                 SceneManager.LoadSceneAsync(scene_index, LoadSceneMode.Additive);
-
                 current_level = scene_index;
+                loading = true;
             }
         }
         catch
@@ -93,17 +92,35 @@ public class LevelManager : Singleton<LevelManager>
      */
 
 
+    public void Reload()
+    {
+        UnloadFast(current_level);
+        Load(current_level);
+    }
+
+
+
     private void IsLoading()
     {
         if(SceneManager.GetSceneByBuildIndex(current_level).isLoaded)
         {
-            loading = false;
-
-            if(OnLoad != null)
+            if (loading)
             {
-                ActionEvent.Unsubscribe(OnLoad);
-                OnLoad();
+                loading = false;
+
+                if (OnLoad != null)
+                {
+                    OnLoad();
+                    OnLoad -= GameManager.get.StartLevel;
+                }
             }
+        }
+    }
+
+    private void IsUnloading()
+    {
+        if (!SceneManager.GetSceneByBuildIndex(current_level).isLoaded)
+        {
         }
     }
 
@@ -118,6 +135,13 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (SceneManager.GetSceneByBuildIndex(scene_index).isLoaded)
             SceneManager.UnloadSceneAsync(scene_index);
+    }
+
+
+    private void UnloadFast(int scene_index)
+    {
+        if (SceneManager.GetSceneByBuildIndex(scene_index).isLoaded)
+            SceneManager.UnloadScene(scene_index);
     }
 
 

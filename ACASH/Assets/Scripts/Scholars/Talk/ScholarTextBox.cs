@@ -12,7 +12,8 @@ public class ScholarTextBox : MonoBehaviour
     private SliderWatch stressSlider;
     private bool saying = false;
     private bool question = false;
-    private bool act = false;
+    [HideInInspector]
+    public bool act = false;
     private bool filled = false;
     private float timeClear_N;
     private float timeClear = 0;

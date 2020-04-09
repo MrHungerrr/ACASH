@@ -37,10 +37,11 @@ public class ScholarLocation
         if(this.index != -1)
             PlaceManager.get.MakeFree(this.place, this.index);
 
+
         PlaceManager.get.MakeBusy(place, index);
 
-        Scholar.Move.Rotation(PlaceManager.get.GetSightGoal(place, index));
         Scholar.Move.Position(PlaceManager.get.GetPlace(place, index));
+        Scholar.Move.Rotation(PlaceManager.get.GetSightGoal(place, index));
 
         this.place = place;
         this.index = index;

@@ -72,9 +72,6 @@ public class ScoreManager : Singleton<ScoreManager>
             ScoreItem buf = new ScoreItem(rep_coef[i], kind_coef[i]);
             scores.Add((scores_names)i, buf);
         }
-
-
-        ExamManager.get.ExamDone += FinalScore;
     }
 
     public void SetLevel()
@@ -85,6 +82,8 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             a.Setup();
         }
+
+        ExamManager.get.ExamDone.AddListener(FinalScore);
     }
 
 

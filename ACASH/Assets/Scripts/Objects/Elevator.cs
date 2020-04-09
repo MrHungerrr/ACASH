@@ -36,8 +36,6 @@ public class Elevator : Singleton<Elevator>
 
     void Awake()
     {
-        Sound = new ElevatorSounds();
-
         Sound = GetComponent<ElevatorSounds>();
         Sound.Setup(transform.parent.Find("Elevator Sounds").gameObject);
 

@@ -48,7 +48,7 @@ public class ScholarSelect : ObjectSelect
 
     public override bool CanISelect()
     {
-            return selectable;
+        return selectable;
     }
 
 

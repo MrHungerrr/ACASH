@@ -50,10 +50,11 @@ public abstract class A_Computer : MonoBehaviour
         SS = win.GetComponent<StudentStress>();
         SS.Setup();
 
-        Windows= win.GetComponent<ComputerWindows>();
-        Windows.Setup(this);
+        Overwatch = win.GetComponent<OverwatchCameraController>();
+        Overwatch.Setup();
 
-        Commands = new ComputerCommands(this);
+        Windows = win.GetComponent<ComputerWindows>();
+        Windows.Setup(this);
 
         Calculator = win.GetComponent<CalculatorController>();
         Calculator.Setup();
@@ -66,8 +67,7 @@ public abstract class A_Computer : MonoBehaviour
         Text = win.GetComponent<TextController>();
         Text.Setup();
 
-        Overwatch = win.GetComponent<OverwatchCameraController>();
-        Overwatch.Setup();
+        Commands = new ComputerCommands(this);
     }
 
     public virtual void SetScholars()

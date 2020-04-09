@@ -96,16 +96,23 @@ public class ScholarTalk
         {
             case "hard_talk":
                 {
+
                     if (Scholar.TextBox.IsTalking())
                     {
+
                         Scholar.Move.SetRotateGoal(Player.get.transform.position);
+
+                        if (!Scholar.TextBox.act && !Scholar.Select.selectable)
+                            Scholar.Select.Selectable(true);
                     }
                     else
                     {
                         Scholar.Move.SetRotateGoal(last_rotate_goal);
                         Scholar.Continue();
-                        Scholar.Select.Selectable(true);
                         talking = false;
+
+                        if (!Scholar.Select.selectable)
+                            Scholar.Select.Selectable(true);
                     }
                     break;
                 }
@@ -128,11 +135,16 @@ public class ScholarTalk
                     if (Scholar.TextBox.IsTalking())
                     {
                         Scholar.Move.SetRotateGoal(Player.get.transform.position);
+
+                        if (!Scholar.TextBox.act && !Scholar.Select.selectable)
+                            Scholar.Select.Selectable(true);
                     }
                     else
                     {
                         Scholar.Move.SetRotateGoal(last_rotate_goal);
-                        Scholar.Select.Selectable(true);
+
+                        if (!Scholar.Select.selectable)
+                            Scholar.Select.Selectable(true);
                         talking = false;
                     }
                     break;

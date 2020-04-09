@@ -28,7 +28,7 @@ public class PlaceManager : Singleton<PlaceManager>
     [HideInInspector]
     public Dictionary<place, bool[]> busy;
 
-    public void Setup()
+    public void SetLevel()
     {
         ResetLevel();
 

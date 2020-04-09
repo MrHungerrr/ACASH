@@ -6,6 +6,15 @@ using FMODUnity;
 
 public class ObjectSound : A_Sound3D
 {
+    public enum type
+    {
+        Auto,
+        Manual,
+    }
+
+    [SerializeField]
+    private type type_start;
+
 
     [SerializeField]
     [EventRef]
@@ -15,7 +24,7 @@ public class ObjectSound : A_Sound3D
 
 
 
-    public void Awake()
+    public void Start()
     {
         Setup();
     }
@@ -43,6 +52,10 @@ public class ObjectSound : A_Sound3D
         Setup(gameObject, path);
 
         AddSound3D(name);
+
+
+        if(type_start == type.Auto)
+            Play();
     }
 
 

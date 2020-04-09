@@ -11,8 +11,10 @@ public class Level_1 : A_Level
     {
         Key("Level_1");
 
-        ExamManager.get.ExamDone += StartEnding;
-        ExamManager.get.PrepareDone += StartTabHint;
+
+        LevelSettings.get.ExamOver.AddListener(StartEnding);
+        ExamManager.get.ExamDone.AddListener(StartPreEnding);
+        ExamManager.get.PrepareDone.AddListener(StartTabHint);
     }
 
     protected override void Begin()
@@ -66,6 +68,8 @@ public class Level_1 : A_Level
 
         Player.get.Talk.DenyAll();
         Player.get.Talk.execute_control = true;
+        Player.get.Talk.answer_no_control = true;
+        Player.get.Talk.answer_yes_control = true;
         Player.get.Talk.all_controll = true;
     }
 
@@ -76,9 +80,9 @@ public class Level_1 : A_Level
         HUDManager.get.HintHUD(GetP.actions.Hud);
         hint = new KeyAction();
         hint.Setup(GetP.actions.Hud);
-        hint.OnKeyDown += CloseTabHint;
+        hint.OnKeyDown.AddListener(CloseTabHint);
 
-        ExamManager.get.PrepareDone -= StartTabHint;
+        ExamManager.get.PrepareDone.RemoveListener(StartTabHint);
     }
 
 
@@ -95,12 +99,17 @@ public class Level_1 : A_Level
 
     private void StartEnding()
     {
-        ExamManager.get.ExamDone -= StartEnding;
+        LevelSettings.get.ExamOver.RemoveListener(StartEnding);
         StartCoroutine(Ending());
     }
 
+    private void StartPreEnding()
+    {
+        ExamManager.get.ExamDone.RemoveListener(StartPreEnding);
+        StartCoroutine(PreEnding());
+    }
 
-    private IEnumerator Ending()
+    private IEnumerator PreEnding()
     {
         key *= "Ending";
         key_mistake *= "Ending";
@@ -111,22 +120,25 @@ public class Level_1 : A_Level
 
         while (InputManager.get.gameType != "computer")
         {
-            if(!SubtitleManager.get.act)
+            if (!SubtitleManager.get.act)
                 option_time += Time.deltaTime;
 
-            if(option_time >20f)
+            if (option_time > 20f)
             {
                 key_mistake += 0;
                 SubtitleManager.get.Say(key_mistake);
-                    
+
                 option_time = 0f;
             }
 
             yield return new WaitForEndOfFrame();
         }
+    }
 
-
-
+    private IEnumerator Ending()
+    {
+        key *= "Ending";
+        key_mistake *= "Ending";
         key += 1;
 
         SubtitleManager.get.Say(key);
@@ -135,7 +147,7 @@ public class Level_1 : A_Level
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
 
-        option_time = 0f;
+        float option_time = 0f;
 
         while (!Elevator.get.inside)
         {

@@ -59,7 +59,7 @@ public class HintController: MonoBehaviour
         {
             Enable();
             onAction.Setup(action); 
-            onAction.OnKeyDown += Disable;
+            onAction.OnKeyDown.AddListener(Disable);
         }
     }
 

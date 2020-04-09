@@ -113,11 +113,11 @@ public class ComputerCommands
                 }
             case "Score":
                 {
-                    CloseProgram();
-                    EnableTaskBar(false);
                     Set(type);
                     Comp.Numpad.Enable(false);
                     ComputerManager.get.end = true;
+                    CloseProgram();
+                    EnableTaskBar(false);
                     break;
                 }
 

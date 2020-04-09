@@ -47,6 +47,7 @@ public class Menu : Singleton<Menu>
     {
         state = option;
         PostProcessManager.get.Blur(option);
+        SoundManager.get.Pause(option);
 
         if (option)
         {

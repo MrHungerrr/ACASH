@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using Single;
 
 
@@ -25,9 +26,10 @@ public class LevelSettings: Singleton<LevelSettings>
     [SerializeField]
     private next_exam_mode nextExam;
 
-   
-    public event ActionEvent.OnAction ExamNext;
-    public event ActionEvent.OnAction ExamOver;
+    [HideInInspector]
+    public UnityEvent ExamNext;
+    [HideInInspector]
+    public UnityEvent ExamOver;
 
 
     [Range(0,20)]
@@ -46,7 +48,7 @@ public class LevelSettings: Singleton<LevelSettings>
         {
             case next_exam_mode.Auto:
                 {
-                    ExamNext += ExamManager.get.ResetExam;
+                    ExamNext.AddListener(ExamManager.get.ResetExam);
                     break;
                 }
             case next_exam_mode.Manual:
@@ -60,22 +62,19 @@ public class LevelSettings: Singleton<LevelSettings>
 
     public void RestartExam()
     {
-        if (ExamNext != null)
-            ExamNext();
+            ExamNext.Invoke();
     }
 
     public void NextExam()
     {
-        if( exam_index < examsCount)
+        if (exam_index < examsCount)
         {
             exam_index++;
-            if(ExamNext != null)
-                ExamNext();
+            ExamNext.Invoke();
         }
         else
         {
-            if (ExamOver != null)
-                ExamOver();
+            ExamOver.Invoke();
         }
     }
 

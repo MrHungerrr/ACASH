@@ -67,7 +67,7 @@ public class ObjectSelect : MonoBehaviour, I_ObjectSelect
 
     public virtual bool CanISelect()
     {
-        if (Vector3.Distance(Player.get.transform.position, transform.position) < range)
+        if (Vector3.Distance(Player.get.transform.position, transform.position) < range && Player.get.Select.active.GiveMeChance())
             return true;
         else
             return false;

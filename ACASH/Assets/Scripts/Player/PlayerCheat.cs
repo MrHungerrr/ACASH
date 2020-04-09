@@ -39,13 +39,18 @@ public static class PlayerCheat
         else
         {
             ScoreManager.get.Plus(ScoreManager.scores_names.Answered_Wrong);
-            key += "Answered_Wrong";
+
+            if (scholar.Question.question_answered)
+            {
+                key += "Answered_Wrong";
+            }
+            else
+            {
+                key += "Answered_No_Answer";
+            }
+
             HUDManager.get.ReportHUD(key);
         }
-
-
-
-
         //Report(key_buf);
         //Вставить показывание очков за действие.
     }

@@ -213,7 +213,7 @@ public class ScholarMove : MonoBehaviour
 
     public void Position(Vector3 set_position)
     {
-        RB.MovePosition(set_position);
+        transform.position = set_position;
     }
 
     public void Rotation(Quaternion set_rotation)

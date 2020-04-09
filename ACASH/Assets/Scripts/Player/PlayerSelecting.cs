@@ -29,15 +29,9 @@ public class PlayerSelecting
 
     public void Update()
     {
-        if (active.GiveMeChance())
-        {
-            RayCasting();
-            CrossHair.get.SelectHair();
-        }
-        else
-        {
-            Deselect();
-        }
+
+        RayCasting();
+        CrossHair.get.SelectHair();
 
         LookingAtScholars();
     }

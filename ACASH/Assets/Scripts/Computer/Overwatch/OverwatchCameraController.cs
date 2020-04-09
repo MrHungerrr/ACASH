@@ -14,7 +14,7 @@ public class OverwatchCameraController: MonoBehaviour
     {
         image = transform.Find("Overwatch").GetComponentInChildren<RawImage>();
 
-        if(OverwatchCameraManager.get.count == 0)
+        if(OverwatchCameraManager.get.count == 1)
         {
             transform.Find("Overwatch").Find("Camera Right").gameObject.SetActive(false);
             transform.Find("Overwatch").Find("Camera Left").gameObject.SetActive(false);

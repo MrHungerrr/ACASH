@@ -12,11 +12,6 @@ public class Tutorial_2 : A_Level
     private TutorialScholarController ScholarController;
     private KeyHint Hint;
 
-    private KeyWord key = new KeyWord("Tutorial_2");
-    private KeyWord key_mistake = new KeyWord("Tutorial_2", "Mistake");
-
-
-
 
     [Header("First Room")]
     public Scholar[] scholars_first;
@@ -44,7 +39,7 @@ public class Tutorial_2 : A_Level
         Eyes = GetComponent<TutorialPlayerEyes>();
         ScholarController = new TutorialScholarController();
 
-        second_room.OnEnter += StartSecondRoom;
+        second_room.OnEnter.AddListener(StartSecondRoom);
         Player.get.Talk.DenyAll();
     }
 
@@ -86,6 +81,8 @@ public class Tutorial_2 : A_Level
 
         while (SubtitleManager.get.act)
             yield return new WaitForEndOfFrame();
+
+        EndLevel();
 
         StartFirstRoom();
     }
@@ -623,14 +620,14 @@ public class Tutorial_2 : A_Level
         {
             if(ScholarController.StressCheck(scholars))
             {
-                option_time_2 += Time.deltaTime;
+                option_time_2 += Time.deltaTime*1.2f;
                 option_time = 0f;
 
                 string text = "Hold on this stress...\n" + string.Format("{0:N1}",(30f - option_time_2));
 
                 countdown.text = text;
 
-                if(option_time_2 >= 30f)
+                if(option_time_2 >= 29.7f)
                 {
                     option = false;
                 }

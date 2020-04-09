@@ -91,10 +91,16 @@ public class  FMODAudioBase
             return false;
     }
 
-    protected void Continue()
+    public bool Continue()
     {
-        sound.setPaused(false);
-        playing = true;
+        if (active && !playing)
+        {
+            sound.setPaused(false);
+            playing = true;
+            return true;
+        }
+        else
+            return false;
     }
 
     public bool Stop(bool immediate)

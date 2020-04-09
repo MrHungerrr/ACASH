@@ -72,6 +72,18 @@ public class VoiceManager : A_SoundBase
         }
     }
 
+    public void Pause()
+    {
+        if (voice != null)
+            voice.Pause();
+    }
+
+    public void Continue()
+    {
+        if(voice != null)
+            voice.Continue();
+    }
+
 
     public void Stop()
     {

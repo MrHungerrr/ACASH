@@ -66,7 +66,14 @@ public abstract class A_SoundBase: MonoBehaviour
         {
             //Debug.Log("Sound is not playing - " + sound);
         }
+    }
 
+    protected virtual void Continue(FMODAudioBase sound)
+    {
+        if (!sound.Continue())
+        {
+            //Debug.Log("Sound is not playing - " + sound);
+        }
     }
 
     //Остановка Sound

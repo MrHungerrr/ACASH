@@ -287,7 +287,7 @@
         },
         {
             "key":"Tutorial_1_Room_8",
-            "line":["Ученик пошел в туалет!  Но не радуйтесь так быстро.","Возможно он там хочет списать.","Дождитесь когда ученик выйдет","И проверьте кабинку."]
+            "line":["Ученик пошел в туалет!","Но не радуйтесь так быстро.","Возможно он там хочет списать.","Дождитесь когда ученик выйдет","И проверьте кабинку."]
         },
         {
             "key":"Tutorial_1_Room_9",
@@ -323,19 +323,19 @@
         },
         {
             "key":"Tutorial_1_Mistake_Room_8",
-            "line":["Напоминаю, что вам нужно казнить учеников","использующих запрещенные программы"]
+            "line":["Напоминаю, что вам нужно казнить учеников","использующих запрещенные программы/"]
         },
         {
             "key":"Tutorial_1_Mistake_Room_9",
-            "line":["Напоминаю, что вам нужно казнить учеников","использующих посторонние предметы"]
+            "line":["Напоминаю, что вам нужно казнить учеников","использующих посторонние предметы."]
         },
         {
             "key":"Tutorial_1_Mistake_Room_10",
-            "line":["Пожалуйста, зайдите в компьютер"]
+            "line":["Пожалуйста, зайдите в компьютер."]
         },
         {
             "key":"Tutorial_1_Mistake_Room_11",
-            "line":["Пожалуйста, зайдите в программу \"Правила\""]
+            "line":["Пожалуйста, зайдите в программу \"Правила\"."]
         },
         {
             "key":"Tutorial_1_Mistake_Room_12",
@@ -610,6 +610,54 @@
             "line":["Иначе и быть не может!"]
         },
         {
+            "key":"Asshole_Joke_Talking_No_0",
+            "line":["Хотел бы я быть таким как Ваня"]
+        },
+        {
+            "key":"Asshole_Joke_Talking_No_1",
+            "line":["А Вы смешной такой"]
+        },
+        {
+            "key":"Asshole_Joke_Talking_No_2",
+            "line":["Ух ты! Я Ваш любимчик получается"]
+        },
+        {
+            "key":"Asshole_Joke_Talking_Sec_No_0",
+            "line":["Хотел бы я быть таким как Ваня"]
+        },
+        {
+            "key":"Asshole_Joke_Talking_Sec_No_1",
+            "line":["А Вы смешной такой"]
+        },
+        {
+            "key":"Asshole_Joke_Talking_Sec_No_2",
+            "line":["Ух ты! Я Ваш любимчик получается"]
+        },
+        {
+            "key":"Asshole_Joke_Walking_No_0",
+            "line":["Хотел бы я быть таким как Ваня"]
+        },
+        {
+            "key":"Asshole_Joke_Walking_No_1",
+            "line":["А Вы смешной такой"]
+        },
+        {
+            "key":"Asshole_Joke_Walking_No_2",
+            "line":["Ух ты! Я Ваш любимчик получается"]
+        },
+        {
+            "key":"Asshole_Joke_Walking_Sec_No_0",
+            "line":["Это уже футбол получается"]
+        },
+        {
+            "key":"Asshole_Joke_Walking_Sec_No_1",
+            "line":["Тогда - не сейчас, сейчас - не тогда "]
+        },
+        {
+            "key":"Asshole_Joke_Walking_Sec_No_2",
+            "line":["А теперь я запутался что можно, а что нельзя "]
+        },
+        {
             "key":"Asshole_Question_Toilet_0",
             "line":["Слышь, дай выйти в туалет."]
         },
@@ -786,6 +834,54 @@
             "line":["Сам в шоке. Я тоже это заметил "]
         },
         {
+            "key":"Dumb_Joke_Talking_No_0",
+            "line":["А вы за базар ответите?"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_No_1",
+            "line":["Мы так похожи, учитель"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_No_2",
+            "line":["Зато девочки от меня без ума"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_No_0",
+            "line":["Вы уже сказали, вонючка"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_No_1",
+            "line":["Я смотрю, вы на ошибках не учитесь"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_No_2",
+            "line":["Говоришь на меня - переводишь на себя"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_No_0",
+            "line":["Мое уважение Ване"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_No_1",
+            "line":["Если только ходки в тюрьму "]
+        },
+        {
+            "key":"Dumb_Joke_Walking_No_2",
+            "line":["Не хотел бы я таким стать "]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_No_0",
+            "line":["Я бы вам сломал тогда обе ноги"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_No_1",
+            "line":["Надеюсь, что с закрытым ртом вы это делали"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_No_2",
+            "line":["Куда меня шлешь - сам туда и пойдешь!"]
+        },
+        {
             "key":"Dumb_Question_Toilet_0",
             "line":["Я хочу в туалет. Можно я пойду?"]
         },
@@ -960,6 +1056,54 @@
         {
             "key":"Nerd_Joke_Cheating_Sec_No_2",
             "line":["Не зря готовился "]
+        },
+        {
+            "key":"Nerd_Joke_Talking_No_0",
+            "line":["Я должен молчать"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_No_1",
+            "line":["Не мешайте писать"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_No_2",
+            "line":["Вообще не смешно"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_Sec_No_0",
+            "line":["Прекратите, Вы же взрослый человек"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_Sec_No_1",
+            "line":["Я даже слова не сказал "]
+        },
+        {
+            "key":"Nerd_Joke_Talking_Sec_No_2",
+            "line":["Гниение и размножение микробов - это естественно"]
+        },
+        {
+            "key":"Nerd_Joke_Walking_No_0",
+            "line":["Герой нашего времени"]
+        },
+        {
+            "key":"Nerd_Joke_Walking_No_1",
+            "line":["Я бы не отказался, но времени мало на тест"]
+        },
+        {
+            "key":"Nerd_Joke_Walking_No_2",
+            "line":["Как некультурно "]
+        },
+        {
+            "key":"Nerd_Joke_Walking_Sec_No_0",
+            "line":["А я то думал почему у моего папы нога была сломана"]
+        },
+        {
+            "key":"Nerd_Joke_Walking_Sec_No_1",
+            "line":["Это сансара получается"]
+        },
+        {
+            "key":"Nerd_Joke_Walking_Sec_No_2",
+            "line":["Ха, я на выши уловки не поведусь"]
         },
         {
             "key":"Nerd_Question_Toilet_0",
@@ -2024,6 +2168,10 @@
         {
             "key":"Report_Answered_Wrong_0",
             "line":["Вы ответили неверно этому ученику"]
+        },
+        {
+            "key":"Report_Answered_No_Answer_0",
+            "line":["Вы не ответили ученику"]
         },
         {
             "key":"Hint_Talk_Good_0",

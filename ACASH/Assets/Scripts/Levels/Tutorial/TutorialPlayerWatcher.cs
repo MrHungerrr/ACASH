@@ -1,6 +1,7 @@
 ﻿public class TutorialPlayerWatcher
 {
 
+    private bool start;
     public bool talk { get; private set; }
     public bool talk_good { get; private set; }
     public bool talk_bad { get; private set; }
@@ -23,19 +24,39 @@
     {
         Reset();
 
+        this.start = start;
+
         if (start)
         {
             Player.get.Talk.TalkStart += PlayerTalk;
             Player.get.Talk.AnswerStart += PlayerAnswer;
-            Player.get.Talk.ShoutStart += PlayerShout;
-            Player.get.Talk.ExecuteStart += PlayerExecute;
+            Player.get.Talk.ShoutStart.AddListener(PlayerShout);
+            Player.get.Talk.ExecuteStart.AddListener(PlayerExecute);
         }
         else
         {
             Player.get.Talk.TalkDone += PlayerTalk;
             Player.get.Talk.AnswerDone += PlayerAnswer;
-            Player.get.Talk.ShoutDone += PlayerShout;
-            Player.get.Talk.ExecuteDone += PlayerExecute;
+            Player.get.Talk.ShoutDone.AddListener(PlayerShout);
+            Player.get.Talk.ExecuteDone.AddListener(PlayerExecute);
+        }
+    }
+
+    public void Unsetup()
+    {
+        if (start)
+        {
+            Player.get.Talk.TalkStart -= PlayerTalk;
+            Player.get.Talk.AnswerStart -= PlayerAnswer;
+            Player.get.Talk.ShoutStart.RemoveListener(PlayerShout);
+            Player.get.Talk.ExecuteStart.RemoveListener(PlayerExecute);
+        }
+        else
+        {
+            Player.get.Talk.TalkDone -= PlayerTalk;
+            Player.get.Talk.AnswerDone -= PlayerAnswer;
+            Player.get.Talk.ShoutDone.RemoveListener(PlayerShout);
+            Player.get.Talk.ExecuteDone.RemoveListener(PlayerExecute);
         }
     }
 

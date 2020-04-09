@@ -6,6 +6,14 @@ public abstract class A_Sound2D: A_SoundBase
 {
 
     protected Dictionary<string, FMODAudioBase> FMODsounds = new Dictionary<string, FMODAudioBase>();
+    protected bool active = false;
+
+
+    protected override void Setup(string path)
+    {
+        active = true;
+        base.Setup(path);
+    }
 
 
     protected void AddSound2D(string name)
@@ -30,6 +38,12 @@ public abstract class A_Sound2D: A_SoundBase
     }
 
 
+    protected override void Update()
+    {
+        if(active)
+            base.Update();
+    }
+
 
 
     protected virtual void Play(string sound)
@@ -43,11 +57,33 @@ public abstract class A_Sound2D: A_SoundBase
     }
 
 
+    public void Pause()
+    {
+        foreach(KeyValuePair<string, FMODAudioBase> pair in FMODsounds)
+        {
+            Pause(pair.Value);
+        }
+    }
+
+    public void Continue()
+    {
+        foreach (KeyValuePair<string, FMODAudioBase> pair in FMODsounds)
+        {
+            Continue(pair.Value);
+        }
+    }
 
     protected virtual void Pause(string sound)
     {
         base.Pause(FMODsounds[sound]);
     }
+
+    protected virtual void Continue(string sound)
+    {
+        base.Continue(FMODsounds[sound]);
+    }
+
+
 
     //Остановка Sound
     protected void Stop(string sound)
@@ -59,4 +95,16 @@ public abstract class A_Sound2D: A_SoundBase
     {
         base.Stop(FMODsounds[sound], immediate);
     }
+
+    public void Stop()
+    {
+        active = false;
+
+        foreach (KeyValuePair<string, FMODAudioBase> pair in FMODsounds)
+        {
+            Stop(pair.Value);
+        }
+    }
+
+
 }

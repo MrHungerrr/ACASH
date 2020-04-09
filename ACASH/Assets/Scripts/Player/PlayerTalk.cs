@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class PlayerTalk : MonoBehaviour
@@ -12,15 +13,16 @@ public class PlayerTalk : MonoBehaviour
     public bool talking { get; private set; } = false;
 
 
+    //Надо будет заменить
     public event ActionEvent.OnActionBool AnswerStart;
     public event ActionEvent.OnActionBool TalkStart;
     public event ActionEvent.OnActionBool AnswerDone;
     public event ActionEvent.OnActionBool TalkDone;
 
-    public event ActionEvent.OnAction ShoutStart;
-    public event ActionEvent.OnAction ExecuteStart;
-    public event ActionEvent.OnAction ShoutDone;
-    public event ActionEvent.OnAction ExecuteDone;
+    public UnityEvent ShoutStart;
+    public UnityEvent ExecuteStart;
+    public UnityEvent ShoutDone;
+    public UnityEvent ExecuteDone;
 
 
 
@@ -69,8 +71,7 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Shouting()
     {
-        if (ShoutStart != null)
-            ShoutStart();
+        ShoutStart.Invoke();
 
         //Scholar[] scholars = ScholarManager.get.GetVisibleScholars();
 
@@ -94,8 +95,7 @@ public class PlayerTalk : MonoBehaviour
 
         talking = false;
 
-        if (ShoutDone != null)
-            ShoutDone();
+        ShoutDone.Invoke();
     }
 
 
@@ -183,7 +183,6 @@ public class PlayerTalk : MonoBehaviour
     {
         BeginOfTalk();
         key_word += "Answer";
-        PlayerCheat.IsAnswerRight(scholar, answer);
 
         StartCoroutine(Answering(scholar, answer));
     }
@@ -238,8 +237,7 @@ public class PlayerTalk : MonoBehaviour
 
     protected IEnumerator Execute(Scholar scholar)
     {
-        if (ExecuteStart != null)
-            ExecuteStart();
+        ExecuteStart.Invoke();
 
         SubtitleManager.get.Say(key_word);
         scholar.Execute.Execute(key_word);
@@ -265,7 +263,6 @@ public class PlayerTalk : MonoBehaviour
 
         talking = false;
 
-        if (ExecuteDone != null)
-            ExecuteDone();
+        ExecuteDone.Invoke();
     }
 }

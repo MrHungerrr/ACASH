@@ -40841,6 +40841,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultyType: 1
   nextExam: 0
+  ExamNext:
+    m_PersistentCalls:
+      m_Calls: []
+  ExamOver:
+    m_PersistentCalls:
+      m_Calls: []
   actionsCount: 3
   examsCount: 2
 --- !u!4 &2059615432

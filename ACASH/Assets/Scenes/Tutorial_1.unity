@@ -1900,6 +1900,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7837d6bf122de5c499622d8d17bf0a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
   inside: 0
 --- !u!1001 &290305280
 PrefabInstance:
@@ -5810,6 +5816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d510b4a9a1b434498054f3176c99e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &502513794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5838,6 +5847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035079d11d19e4f459e588531474a05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type_start: 1
   path: event:/Local/Other/Phone/Ring
 --- !u!1001 &553162434
 PrefabInstance:
@@ -20117,7 +20127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558437179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.155, y: 0, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1117394108}
@@ -20904,6 +20914,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7837d6bf122de5c499622d8d17bf0a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
+    m_PersistentCalls:
+      m_Calls: []
   inside: 0
 --- !u!1 &1854103238
 GameObject:
@@ -22025,7 +22041,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyType: 0
-  nextExam: 0
+  nextExam: 1
+  ExamNext:
+    m_PersistentCalls:
+      m_Calls: []
+  ExamOver:
+    m_PersistentCalls:
+      m_Calls: []
   actionsCount: 2
   examsCount: 1
 --- !u!4 &2059615432

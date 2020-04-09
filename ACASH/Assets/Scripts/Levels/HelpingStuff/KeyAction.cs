@@ -1,11 +1,12 @@
 ﻿using PlayerOptions;
+using UnityEngine.Events;
 
 
 public class KeyAction
 {
 
-    public ActionEvent.OnAction OnKeyDown;
-    public ActionEvent.OnAction OnKeyUp;
+    public UnityEvent OnKeyDown = new UnityEvent();
+    public UnityEvent OnKeyUp = new UnityEvent();
 
     public bool pressing;
 
@@ -105,8 +106,7 @@ public class KeyAction
 
     private void KeyDown()
     {
-        if(OnKeyDown != null)
-            OnKeyDown();
+        OnKeyDown.Invoke();
 
         pressing = true;
     }
@@ -114,8 +114,7 @@ public class KeyAction
 
     private void KeyUp()
     {
-        if (OnKeyUp != null)
-            OnKeyUp();
+        OnKeyUp.Invoke();
 
         pressing = false;
     }
@@ -123,8 +122,8 @@ public class KeyAction
 
     public void Remove()
     {
-        ActionEvent.Unsubscribe(OnKeyDown);
-        ActionEvent.Unsubscribe(OnKeyUp);
+        OnKeyDown.RemoveAllListeners();
+        OnKeyUp.RemoveAllListeners();
 
         pressing = false;
     }

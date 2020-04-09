@@ -50,15 +50,17 @@ namespace Searching
 
 
         //Перегрузки для GameObjects Вместо Transform
+        public static void Components(GameObject obj, out T[] array)
+        {
+            Components(obj.transform, out array);
+        }
+
         public static void Components(GameObject obj, out GameObject[] array)
         {
             Components(obj.transform, out array);
         }
 
-        public static void Components(GameObject obj, out T[] array)
-        {
-            Components(obj.transform, out array);
-        }
+
 
 
 
@@ -101,14 +103,16 @@ namespace Searching
 
 
         //Перегрузки для GameObjects Вместо Transform
+        public static void Component(GameObject obj, out T goal)
+        {
+            Component(obj.transform, out goal);
+        }
+
         public static void Component(GameObject obj, out GameObject goal)
         {
             Component(obj.transform, out goal);
         }
 
-        public static void Component(GameObject obj, out T goal)
-        {
-            Component(obj.transform, out goal);
-        }
+
     }
 }

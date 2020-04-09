@@ -2,14 +2,8 @@
 using System.Collections;
 using TMPro;
 
-public class ElevatorSelect : ObjectSelect, I_ObjectSelect
+public class ElevatorSelect : ObjectSelect
 {
-    private void Awake()
-    {
-        SetSelect();
-    }
-
-
     public override bool CanISelect()
     {
         if (ElevatorController.get.ready)

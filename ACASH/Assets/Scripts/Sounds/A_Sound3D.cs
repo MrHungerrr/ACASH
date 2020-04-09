@@ -10,21 +10,16 @@ public abstract class A_Sound3D: A_Sound2D
 
     public event ActionEvent.OnActionBool OcclusionUpdate;
     private bool occlusion;
-    protected bool active = false;
 
 
 
     protected virtual void Setup(GameObject obj, string path)
     {
+        // FMODsounds = new Dictionary<string, FMODAudioBase>();
         this.obj = obj;
         base.Setup(path);
+        active = true;
     }
-
-    public void Enable(bool option)
-    {
-        active = option;
-    }
-
 
 
     protected void AddSound3D(string name)

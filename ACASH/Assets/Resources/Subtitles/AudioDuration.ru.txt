@@ -39,19 +39,19 @@
         },
         {
             "key":"Teacher_Bull_Cheating_Sec_2",
-            "duration":[1.3,2.3]
+            "duration":[1.8,1.8]
         },
         {
             "key":"Teacher_Bull_Talking_0",
-            "duration":[1.7]
+            "duration":[3.5]
         },
         {
             "key":"Teacher_Bull_Talking_1",
-            "duration":[2.3]
+            "duration":[2.6]
         },
         {
             "key":"Teacher_Bull_Talking_2",
-            "duration":[3.3]
+            "duration":[4.7]
         },
         {
             "key":"Teacher_Bull_Talking_Sec_0",
@@ -63,11 +63,11 @@
         },
         {
             "key":"Teacher_Bull_Talking_Sec_2",
-            "duration":[2.2,1.6]
+            "duration":[1.9,1.9]
         },
         {
             "key":"Teacher_Bull_Walking_0",
-            "duration":[1.3,2.5]
+            "duration":[1.9,1.9]
         },
         {
             "key":"Teacher_Bull_Walking_1",
@@ -79,39 +79,39 @@
         },
         {
             "key":"Teacher_Bull_Walking_Sec_0",
-            "duration":[1.4,2.2]
+            "duration":[1.8,1.8]
         },
         {
             "key":"Teacher_Bull_Walking_Sec_1",
-            "duration":[2.1]
+            "duration":[1.7]
         },
         {
             "key":"Teacher_Bull_Walking_Sec_2",
-            "duration":[2.6,1.8]
+            "duration":[2.2,2.2]
         },
         {
             "key":"Teacher_Joke_Cheating_0",
-            "duration":[3.2,1.4,2]
+            "duration":[2.2,2.2,2.2]
         },
         {
             "key":"Teacher_Joke_Cheating_1",
-            "duration":[2.3,1.7,1.1]
+            "duration":[1.7,1.7,1.7]
         },
         {
             "key":"Teacher_Joke_Cheating_2",
-            "duration":[1.6,1.6,1]
+            "duration":[1.4,1.4,1.4]
         },
         {
             "key":"Teacher_Joke_Cheating_Sec_0",
-            "duration":[1.1,1.9]
+            "duration":[1.5,1.5]
         },
         {
             "key":"Teacher_Joke_Cheating_Sec_1",
-            "duration":[1.7,1.3,2.7]
+            "duration":[2,2,2]
         },
         {
             "key":"Teacher_Joke_Cheating_Sec_2",
-            "duration":[1.3,1.7,2.8]
+            "duration":[2,2,2]
         },
         {
             "key":"Teacher_Joke_Talking_0",
@@ -119,11 +119,11 @@
         },
         {
             "key":"Teacher_Joke_Talking_1",
-            "duration":[2.8]
+            "duration":[2.9]
         },
         {
             "key":"Teacher_Joke_Talking_2",
-            "duration":[1.8,1.4,2.5]
+            "duration":[1.9,1.9,1.9]
         },
         {
             "key":"Teacher_Joke_Talking_Sec_0",
@@ -131,39 +131,39 @@
         },
         {
             "key":"Teacher_Joke_Talking_Sec_1",
-            "duration":[1.7,0.3]
+            "duration":[1.7,1.7]
         },
         {
             "key":"Teacher_Joke_Talking_Sec_2",
-            "duration":[2.8,1.6]
+            "duration":[2.6,1.8]
         },
         {
             "key":"Teacher_Joke_Walking_0",
-            "duration":[1.5,1.5,1.7,1.3]
+            "duration":[1.5,1.5,1.5,1.5]
         },
         {
             "key":"Teacher_Joke_Walking_1",
-            "duration":[2.2,2.6]
+            "duration":[2.4,2.4]
         },
         {
             "key":"Teacher_Joke_Walking_2",
-            "duration":[2.7,2.1]
+            "duration":[2.4,2.4]
         },
         {
             "key":"Teacher_Joke_Walking_Sec_0",
-            "duration":[1.3,3.2,2.1]
+            "duration":[2.3,2.3,2.3]
         },
         {
             "key":"Teacher_Joke_Walking_Sec_1",
-            "duration":[2.2,2.1,1.3,1.6]
+            "duration":[1.8,1.8,1.8,1.8]
         },
         {
             "key":"Teacher_Joke_Walking_Sec_2",
-            "duration":[3.4,1.1,1.8]
+            "duration":[2.1,2.1,2.1]
         },
         {
             "key":"Teacher_Answer_Asshole_Question_Toilet_Yes_0",
-            "duration":[1,2,2.5]
+            "duration":[1.7,1.3,2.7]
         },
         {
             "key":"Teacher_Answer_Asshole_Question_Toilet_No_0",
@@ -171,6 +171,78 @@
         },
         {
             "key":"Teacher_Answer_Asshole_Question_Sink_Yes_0",
+            "duration":[1.6,1.6,1.6]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Sink_No_0",
+            "duration":[2.1,2.1]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Outside_Yes_0",
+            "duration":[1.8,1.8,1.8]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Outside_No_0",
+            "duration":[2.2,2.2]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Toilet_Yes_0",
+            "duration":[1.7]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Toilet_No_0",
+            "duration":[2.5]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Sink_Yes_0",
+            "duration":[2.9]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Sink_No_0",
+            "duration":[2.5]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Outside_Yes_0",
+            "duration":[1.7]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Outside_No_0",
+            "duration":[2.4]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Toilet_Yes_0",
+            "duration":[1.7]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Toilet_No_0",
+            "duration":[2.2,2.6]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Sink_Yes_0",
+            "duration":[1.7]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Sink_No_0",
+            "duration":[0.8,0.8]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Outside_Yes_0",
+            "duration":[1.7]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Outside_No_0",
+            "duration":[1.4,1.4]
+        },
+        {
+            "key":"Teacher_Execute_0",
+            "duration":[1,2,2.5]
+        },
+        {
+            "key":"Teacher_Execute_1",
+            "duration":[1.7,1.7,1.7]
+        },
+        {
+            "key":"Teacher_Execute_2",
             "duration":[0.9,1.8,1.9]
         },
         {
@@ -287,7 +359,7 @@
         },
         {
             "key":"Tutorial_1_Room_8",
-            "duration":[1.6,1.8,2,1.7]
+            "duration":[1.6,1.8,2,1.7,1.2]
         },
         {
             "key":"Tutorial_1_Room_9",
