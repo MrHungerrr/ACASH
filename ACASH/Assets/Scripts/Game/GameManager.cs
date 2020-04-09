@@ -131,6 +131,8 @@ public class GameManager : Singleton<GameManager>
 
     public IEnumerator ReloadGame()
     {
+        Menu.get.MenuEnable(false);
+
         InputManager.get.SwitchGameInput("disable");
         FadeHUDController.get.Fade(true);
         UnsetLevel();
