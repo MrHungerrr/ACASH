@@ -51,6 +51,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     }
 
 
+
     public void Stop()
     {
         Scholar.Anim.SetAnimation(GetA.animations.Nothing);
@@ -139,9 +140,18 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     //=========================================================================================================================================================
     //Местоположение и передвижение
 
-    protected void GoTo(PlaceManager.place place, int index)
+    public void GoTo(PlaceManager.place place, int index)
     {
-        Scholar.Location.ChangeLocation(place, index);
+        Stop();
+        //Debug.Log("Я начал делать" + key);
+        doing = true;
+        StartCoroutine(Go_To(place, index));
+    }
+
+    public void GoTo(PlaceManager.place place)
+    {
+        int index = PlaceManager.get.GetRandomFreePlaceIndex(place);
+        GoTo(place, index);
     }
 
     protected bool IsHere()
@@ -177,8 +187,6 @@ public abstract class OperationsExecuterBase : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
-
-        Debug.Log("Ура учитель ответил на вопрос");
 
         if (Scholar.Question.question_answered)
         {
@@ -349,9 +357,10 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     //=========================================================================================================================================================
     // Идти домой
-    private IEnumerator Go_Home()
+    private IEnumerator Go_To(PlaceManager.place place, int index)
     {
-        GoTo(PlaceManager.place.Home, Scholar.Info.number);
+
+        Scholar.Location.ChangeLocation(place, index);
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();

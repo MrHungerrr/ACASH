@@ -49,6 +49,11 @@ public class ComputerManager : Singleton<ComputerManager>
         }
     }
 
+    public void Unsetup()
+    {
+        Exit();
+    }
+
     public void SetScholars()
     {
         foreach (A_Computer comp in computers)
@@ -149,6 +154,8 @@ public class ComputerManager : Singleton<ComputerManager>
         CompControl.Enable(false);
         Disable();
     }
+
+
 
 
 

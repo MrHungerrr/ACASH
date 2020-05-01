@@ -17,6 +17,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &-9217143916295961151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Work
+  m_EditorClassIdentifier: 
+  Name: Work
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 0
 --- !u!114 &-9163516862350105029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,16 +66,33 @@ MonoBehaviour:
   Path: event:/Local/Other/Phone/Ring
   guid: 708c686a6b2ae744b47a86417e811fdd
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -5048394566868595797}
-  - {fileID: 6972634542035289396}
+  - {fileID: -9083644317665728428}
+  - {fileID: -3387862621057894651}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 3000
+--- !u!114 &-9145723391150780921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-9122553024898845810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +127,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-9083644317665728428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-9078408053041055415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +193,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_2
   guid: 80e4e5f69b3dcf4e845baac4c5e26d9a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -184,6 +235,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-9001558842436557609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-8998405061448687678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +461,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8838252029965779629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +556,40 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+  Exists: 0
+--- !u!114 &-8779018276891866790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &-8761067342672255264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 0
 --- !u!114 &-8736701028509938113
 MonoBehaviour:
@@ -592,6 +694,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-8648271357824008625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-8616051821316673440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +744,23 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
+  Exists: 0
+--- !u!114 &-8613622488112086872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
   Exists: 0
 --- !u!114 &-8604974028226303558
 MonoBehaviour:
@@ -729,6 +865,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-8514863436536333586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-8509214293476471255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +897,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_4
   guid: 5bf51c10e3c0cb42927285909075ec5c
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -966,6 +1119,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-8338168387549734302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-8335493919729035194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +1187,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8296157386426833109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1255,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8206391897627892659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,7 +1490,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_5
   guid: f4fcea6995e94f4589adf8fc9fc17fcc
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1343,7 +1513,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_1
   guid: 3936d8c9511c7e41a64e5fa86874022d
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1470,6 +1640,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-7934381183215920693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-7903582502996764883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,7 +1689,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_2
   guid: 86367faa56c3ba4ca9795af33f836505
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1526,6 +1713,23 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+  Exists: 0
+--- !u!114 &-7863185504286829397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 0
 --- !u!114 &-7856345232558183767
 MonoBehaviour:
@@ -1719,6 +1923,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &-7686706115636475030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-7684304706897012742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,7 +2040,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Sink_No_0
   guid: 9bdf4419df24294ca3fa33365b20cfb0
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1912,6 +2133,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-7479638779173470176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-7473178328692285486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1927,7 +2165,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Sink_Yes_0
   guid: 5bd7ddc3317dd84cad10285ec33b8392
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2001,7 +2239,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_1
   guid: 60d1695feff27e4ab92f3523a83652ca
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2043,6 +2281,24 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-7394857935523323643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637220744607836120
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &-7388056550780264755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2075,7 +2331,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_0
   guid: dbc16dae3a54064f9269ca2b7f9b6eb5
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2154,7 +2410,7 @@ MonoBehaviour:
   Path: event:/Local/Elevator/Move
   guid: c9e79ee03134dc49a0b3c6ede5bf4bfe
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2199,7 +2455,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Sink_Yes_0
   guid: 94a95a3f3af8674d904587c8b3823544
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2292,6 +2548,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-7298028871009037061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-7294723784662358853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2324,7 +2597,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_0
   guid: e65873edb3254f42925de8c0a261302a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2347,7 +2620,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_3
   guid: 9394f52a8a35b048a65c328c52550506
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2513,6 +2786,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-7151398042117444111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-7150264983282022184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2528,7 +2818,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Sink_No_0
   guid: b2858bb04313654ca8d6174ca48c3f6d
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2585,7 +2875,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_2
   guid: d7b00e2da70a9043b22972b69fb82aec
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2615,6 +2905,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2120
+--- !u!114 &-7120028815736113169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-7112081487497649825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2717,6 +3024,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-6992634054104333976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-6978371066955922920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,7 +3073,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Toilet_Yes_0
   guid: ef2a17f58fe1b84abda5017339bc95fe
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2933,6 +3257,24 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &-6862411633413047679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637221045489488593
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-6826270317561927179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3043,7 +3385,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_0
   guid: fe503b1c77344a4bb55a3100fe82c732
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3083,7 +3425,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_0
   guid: 77291a4d25e74043a23b7eae7393f982
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3321,13 +3663,13 @@ MonoBehaviour:
   Path: event:/Local/Computer/Load
   guid: 6c43c64e24bb8244a6ffe2792ffcd6a0
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 5594429164921167103}
-  - {fileID: -5486624088319187458}
+  - {fileID: 2144653728326414526}
+  - {fileID: -3123271930095807261}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -3380,7 +3722,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_2/Level_2_Begining_0
   guid: 2e5321b967d78049bc4704c1d1576d8f
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3607,7 +3949,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Outside_Yes_0
   guid: 08a41f73c8d6c74b9d3538544496e92b
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3818,7 +4160,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Mistake_Ending_0
   guid: 74fc1d209244f14ab74aee3360ba66f1
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4140,7 +4482,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Shout_1
   guid: 6f6bcafe4769564090c7bf76f67d159a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4328,7 +4670,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5752825669606119887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4361,7 +4703,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Toilet_No_0
   guid: 740b93bf57d9b843a2faed50f97c5d64
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4441,7 +4783,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5656186317683686926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4530,7 +4872,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Ending_2
   guid: 9b50750c3454df44808a457201075a15
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4734,7 +5076,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5432420940046892063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4750,7 +5092,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_2
   guid: c011c675e881c049ace586d8214e8145
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4758,6 +5100,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3200
+--- !u!114 &-5428496643916079886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-5422565528333310020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4874,7 +5233,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_6
   guid: 6cb8e1cbec85764d862a6f241e225d8d
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4897,7 +5256,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_2
   guid: f631bc9bb6d8bd449a10af20f1d71f1c
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5013,7 +5372,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5287747017150715049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5100,6 +5459,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-5130726569340016718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-5115573806690936872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5167,7 +5543,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5048394566868595797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5184,7 +5560,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5039542723639280312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5222,7 +5598,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_3
   guid: 2617c5966e7f99449b1e3b300fa8cf03
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5245,7 +5621,7 @@ MonoBehaviour:
   Path: event:/Global/Music/Track_1
   guid: e906f8f662b83540a9149578fa7dc3b2
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5329,7 +5705,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_0
   guid: 3592ee407ec4db4f88e40daf4f387eef
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5447,7 +5823,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_2/Level_2_Begining_1
   guid: d1380c22bb5e1e4d9c0ef09fe26a76bc
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5542,6 +5918,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-4747398179326714696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Work
+  m_EditorClassIdentifier: 
+  Name: Work
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &-4746938357888261761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5625,14 +6018,14 @@ MonoBehaviour:
   Path: event:/Local/Player/Steps
   guid: 6dfb7c89fd8b4a4d8723a83ca0c268bf
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 9093341213411400371}
-  - {fileID: 3887412157336624371}
-  - {fileID: -1870094437609384548}
+  - {fileID: 741252052559200505}
+  - {fileID: 5920673495268101274}
+  - {fileID: -7479638779173470176}
   MinDistance: 0
   MaxDistance: 2
   Length: 575
@@ -5704,7 +6097,7 @@ MonoBehaviour:
   lastModified: 637220596439012241
   LoadResult: 0
   FileSizes: []
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4645012107747454223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5737,7 +6130,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_0
   guid: e8e36aa42e08354faf53ce1c557d4d98
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5800,7 +6193,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4579098885768437255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5958,7 +6351,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_0
   guid: 8fdae13675e74c48a3d33989a9322fbc
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6127,13 +6520,13 @@ MonoBehaviour:
   Path: event:/Local/Door/Close
   guid: 6fd2824dfb2e86459af756ff65073cf7
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -5296087682108634656}
-  - {fileID: -8231038474389466489}
+  - {fileID: -3411359628973376948}
+  - {fileID: -2430677739010619399}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 0
@@ -6169,7 +6562,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_4
   guid: bf3821f3faf4fc47879d309b70fb34c9
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -6210,7 +6603,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Begining_1
   guid: ffc06baeb0f6434b89b92ea83d04b806
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6317,7 +6710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637220596439731829
+  lastModified: 637221045490078110
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -6372,7 +6765,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_12
   guid: ebea56a2cf5ec64fa48f285660b5f64f
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6446,7 +6839,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_3
   guid: 5fff0417fd5e8946bc4ecfb824859620
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6486,7 +6879,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Execute_2
   guid: 4edd45fbede66b41b745379f2112ade3
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6544,6 +6937,23 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
+  Exists: 0
+--- !u!114 &-4051336786891335547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Walk
+  m_EditorClassIdentifier: 
+  Name: Walk
+  Min: 0
+  Max: 3
+  Default: 1
   Exists: 0
 --- !u!114 &-4035970068248616311
 MonoBehaviour:
@@ -6638,7 +7048,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_10
   guid: 8bc038171fcc644eae98273bb8c684dd
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6661,7 +7071,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_2
   guid: bcffd4e70bd32846946bbf8a8143a576
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6708,6 +7118,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-3946550873735971036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-3943053095166454157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6988,7 +7415,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_2
   guid: 0811a3809e838b479050b434a9cd515d
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7028,7 +7455,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_4
   guid: 2711ae88f77cfe40a89e41feaa48efcd
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -7051,7 +7478,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Shout_3
   guid: 0c3cce6b3d319645ad19f21d60f70629
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7097,6 +7524,23 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+  Exists: 0
+--- !u!114 &-3629183713756306716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Work
+  m_EditorClassIdentifier: 
+  Name: Work
+  Min: 0
+  Max: 2
+  Default: 0
   Exists: 0
 --- !u!114 &-3605363693788639271
 MonoBehaviour:
@@ -7187,7 +7631,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3522306228362602540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7216,6 +7660,40 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &-3503944914066746018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-3494596654669299099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
   m_EditorClassIdentifier: 
   Name: Volume
   Min: 0
@@ -7290,6 +7768,40 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-3411359628973376948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-3387862621057894651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-3380397716443615631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7356,7 +7868,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_1
   guid: 18e1877c88e64d4eb29749c8b54c2318
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7396,7 +7908,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_2
   guid: caf16c86b281934fb661ff917722f5fa
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7455,6 +7967,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-3267539249120418050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-3260351621315219134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7487,17 +8016,34 @@ MonoBehaviour:
   Path: event:/Local/Computer/Hard Drive
   guid: 441688ed9ff6f041bb68e30c287cc5a4
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 6130447085609752012}
-  - {fileID: -1166867227069647328}
-  - {fileID: -8849717513466397625}
+  - {fileID: -2554173419078112131}
+  - {fileID: -4747398179326714696}
+  - {fileID: 1358382771274730937}
   MinDistance: 0
   MaxDistance: 1.6
   Length: 35000
+--- !u!114 &-3208764592685149471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-3205475056560064149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7600,6 +8146,40 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-3123271930095807261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-3063389434523782685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-3039493034692075557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7649,7 +8229,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_1
   guid: 882d1b91d48c6a41afcc942c7acf895a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7785,7 +8365,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2838079639994824450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7814,6 +8394,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Move/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &-2795496919397155075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/Volume
   m_EditorClassIdentifier: 
   Name: Volume
   Min: 0
@@ -7853,7 +8450,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2763283507210759294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7938,7 +8535,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2658562333509871153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8007,6 +8604,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-2554173419078112131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-2553931549046855740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8112,7 +8726,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Shout_2
   guid: ddfbb51fe3e48c46af8e6336f88cd0de
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8284,6 +8898,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &-2430677739010619399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-2429888068450626916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8299,7 +8930,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_9
   guid: 75e78bd9638ca946b7a6c8f2e87c13a8
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8357,7 +8988,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2351940976320800763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8446,7 +9077,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_7
   guid: c16b5bac3bfb8f458c4f672807a085a9
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8488,6 +9119,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &-2295679294565615050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-2286699865249218151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8658,6 +9306,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &-2130803233340093459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-2101490382968916938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8793,7 +9458,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Toilet_No_0
   guid: cfbe2b57d1488e4eb353d5db8a7190c3
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8946,7 +9611,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1869639511528666984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8963,7 +9628,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1863440722950567738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9014,6 +9679,23 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
+  Exists: 0
+--- !u!114 &-1844179963504897638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
   Exists: 0
 --- !u!114 &-1840660909000949733
 MonoBehaviour:
@@ -9139,6 +9821,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &-1799715958366081569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &-1785914622160374202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9154,7 +9853,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Begining_0
   guid: 2701830a5d7aef4989af418bf353e774
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -9194,7 +9893,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_0
   guid: c0d383408159e24ebe152c52077f9138
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -9513,6 +10212,57 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3816
+--- !u!114 &-1570787298893771967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-1521179170824529561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-1498597033174189142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-1489200226185238579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9530,6 +10280,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &-1487962550742334182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-1484083987459455365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9635,7 +10402,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Elevator_0
   guid: 56c85d3d2f501842bc0eadc9aeb2c12c
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -9731,16 +10498,16 @@ MonoBehaviour:
   Path: event:/Local/Other/Atmosphere/Lamp
   guid: 35d667f75a6ce848a1ee8522c6fcdf22
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -4584039807589688028}
-  - {fileID: -5757794325222813392}
+  - {fileID: 8293543601229887670}
+  - {fileID: -582934441503659607}
   MinDistance: 0
-  MaxDistance: 5.2000003
-  Length: 10415
+  MaxDistance: 2.6000001
+  Length: 8200
 --- !u!114 &-1288396581499438187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9881,7 +10648,7 @@ MonoBehaviour:
   Min: 0
   Max: 2
   Default: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1165436172383045032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9914,7 +10681,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_2
   guid: d562e960ad04b14384d72029843c0f68
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -9993,7 +10760,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Shout_0
   guid: 69c089a4e09f784594be4e906e7917d8
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -10016,13 +10783,13 @@ MonoBehaviour:
   Path: event:/Local/Computer/Click
   guid: 7998191dd5ed2b45bf0cd4f73501dc97
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -1869639511528666984}
-  - {fileID: -8297999976489816449}
+  - {fileID: 4756561515840405414}
+  - {fileID: 1951647498209768636}
   MinDistance: 0
   MaxDistance: 2
   Length: 200
@@ -10043,6 +10810,23 @@ MonoBehaviour:
   lastModified: 637209344454822706
   LoadResult: 0
   FileSizes: []
+  Exists: 0
+--- !u!114 &-1071234513117823243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
   Exists: 0
 --- !u!114 &-1069735749278827020
 MonoBehaviour:
@@ -10077,7 +10861,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_6
   guid: cd0b83f117fe4641ab6d21086705542a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -10152,7 +10936,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_2
   guid: b4a24619abbeaa4683e1666ac09dd311
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -10345,13 +11129,13 @@ MonoBehaviour:
   Path: event:/Local/Computer/Open_Window
   guid: 1efb385817f9b6408c2d359e6e737492
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 1532183119498394712}
-  - {fileID: -5102247915060035819}
+  - {fileID: 8571388084951169350}
+  - {fileID: -3503944914066746018}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -10366,6 +11150,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Load/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &-789549090443650942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Volume
   m_EditorClassIdentifier: 
   Name: Volume
   Min: 0
@@ -10472,16 +11273,33 @@ MonoBehaviour:
   Path: event:/Local/Computer/Fan
   guid: 854db3232743464cb24a7a635c40230b
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 5993084486177765885}
-  - {fileID: -3527370098476591308}
+  - {fileID: -5130726569340016718}
+  - {fileID: 8213933126004159577}
   MinDistance: 0
   MaxDistance: 1.6
   Length: 36216
+--- !u!114 &-685553260063641901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &-673034385928223211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10515,6 +11333,23 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
+  Exists: 0
+--- !u!114 &-650929254480604869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
   Exists: 0
 --- !u!114 &-633170739738387073
 MonoBehaviour:
@@ -10587,7 +11422,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Mistake_Ending_1
   guid: 66e5d94585c54243a6bd220648b6ddb3
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -10644,7 +11479,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_10
   guid: cd4b8ae722bce34db0b90d6b50477a58
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -10669,6 +11504,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &-582934441503659607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-568397352036034109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10797,7 +11649,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-474371041033251280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10831,6 +11683,23 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+  Exists: 0
+--- !u!114 &-437008952087348761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 0
 --- !u!114 &-402515020840439276
 MonoBehaviour:
@@ -10915,7 +11784,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_3
   guid: 68c3214c68cdca4590718409a49b2763
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -10955,7 +11824,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Outside_No_0
   guid: 9f2d409ffc78fb47a5f813c0c226509b
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -11001,6 +11870,23 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 10
+  Exists: 0
+--- !u!114 &-200125006580943288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Walk
+  m_EditorClassIdentifier: 
+  Name: Walk
+  Min: 0
+  Max: 3
+  Default: 1
   Exists: 0
 --- !u!114 &-198300011464870716
 MonoBehaviour:
@@ -11124,7 +12010,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_1
   guid: b9e188850a144440a328a3b6fe236540
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -11164,13 +12050,13 @@ MonoBehaviour:
   Path: event:/Local/Scholar/Walk
   guid: 2e67aac33996eb4aa0238dccdfd4c201
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 3668541920549565322}
-  - {fileID: -2686055210039320457}
+  - {fileID: -1521179170824529561}
+  - {fileID: -1570787298893771967}
   MinDistance: 5
   MaxDistance: 20
   Length: 0
@@ -11223,7 +12109,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Toilet_Yes_0
   guid: 395c73353029634a86c94f5a7e379959
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -11262,7 +12148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -4219682081549466480}
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   EditorEvents:
   - {fileID: -9162766533894367929}
   - {fileID: 8957806696194355706}
@@ -11400,10 +12286,10 @@ MonoBehaviour:
   - {fileID: 2950895389157198276}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   StringsBanks:
   - {fileID: -4219682081549466480}
-  stringsBankWriteTime: 637220596439731829
+  stringsBankWriteTime: 637221045490078110
   cacheVersion: 3
 --- !u!114 &18264120336646124
 MonoBehaviour:
@@ -11550,7 +12436,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &98142941135433111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11584,6 +12470,23 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 10
+  Exists: 0
+--- !u!114 &106573457911755195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 0
 --- !u!114 &108571267939524293
 MonoBehaviour:
@@ -11826,7 +12729,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_8
   guid: 201bb765e5c60f4ab634e05eced80823
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -11849,7 +12752,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Begining_0
   guid: 14c22e391b66d441bb8eff0b5ff293e4
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -11894,7 +12797,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Ending_0
   guid: 1a36b6b9c1bff14da46317681d3d6246
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -12026,7 +12929,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_2
   guid: b67fe85c3e37a849bc04fa4ba2b1cef0
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -12049,7 +12952,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_1
   guid: 2d4fd517bf9bf94d968fff7ec7e65c78
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -12216,6 +13119,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &464458698809451659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &477546613267419808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12306,6 +13226,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &545372409129482723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &547511703822748526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12357,6 +13294,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &591666749997106510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &601889057864173031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12389,7 +13343,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_1
   guid: 455171584d5547428c864b357d788ff7
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -12487,6 +13441,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &697036133269356000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637220765065559128
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
 --- !u!114 &701709539595902921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12591,6 +13563,40 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &737594093091507888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &741252052559200505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &755696544377138516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12832,6 +13838,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &950457240480700788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &951950887977502196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12923,6 +13946,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &1008527235353137949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &1011217443139271373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12979,6 +14019,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 9064
+--- !u!114 &1075981689406742393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &1086334499208859411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12995,6 +14052,40 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 10
+  Exists: 0
+--- !u!114 &1090128524358843571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
+--- !u!114 &1100898620219219726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 0
 --- !u!114 &1109924239832335958
 MonoBehaviour:
@@ -13028,7 +14119,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Toilet_No_0
   guid: d7537829d905ff4ebaf5a6be37714be9
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -13119,7 +14210,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Sink_No_0
   guid: 1bf4aac45a0a1e4c86dfc92bdbdbd5f2
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -13199,7 +14290,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &1273516546521197297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13370,6 +14461,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &1358382771274730937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &1393699668736488064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13527,7 +14635,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &1573418373046737930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13685,7 +14793,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_3
   guid: 171195a12fc6314393917062d3fdb3d3
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -13827,7 +14935,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_2
   guid: b273c9834cfb1d439153f6a520cae498
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -13852,6 +14960,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &1951647498209768636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &1976090711243334336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13959,6 +15084,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &2005117229431449162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &2018363131201280049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14014,7 +15156,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Sink_Yes_0
   guid: 95062fb77b9f294e9fc3de165fd7ce33
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -14095,6 +15237,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4210
+--- !u!114 &2144653728326414526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &2151722248249774728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14268,7 +15427,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_9
   guid: d946bbfd5ecbae47be0ffc589691ca7e
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -14325,7 +15484,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_4
   guid: 6c4a58eac5772247adb187b517b72e17
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -14333,6 +15492,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2735
+--- !u!114 &2357946262754710208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &2361615465611088233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14382,7 +15558,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_0
   guid: 1c894a66af49b441949248ea6a210db5
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -14390,6 +15566,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6016
+--- !u!114 &2368088758617245726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &2399607915731183349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14878,6 +16071,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &2832065957533645274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &2835618477276486837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14927,7 +16137,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_3
   guid: ddd1bfab734b04488c5ca0e1ea1252c4
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -14967,7 +16177,7 @@ MonoBehaviour:
   Path: event:/Global/Sounds/Rain
   guid: 3841761de74b914480e2bc15dfe40b98
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -15065,6 +16275,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &2945198355890574203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &2949464439487058706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15119,7 +16346,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Outside_Yes_0
   guid: 4f9ac87b7bb9d24aaa9fe9a931fc5013
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -15184,6 +16411,23 @@ MonoBehaviour:
   Default: 22000
   Exists: 0
 --- !u!114 &3006541764305285478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &3021824530053176668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15289,13 +16533,13 @@ MonoBehaviour:
   Path: event:/Local/Elevator/Ring
   guid: d039c4d7042c8f478ade1de83b7d8475
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 5265564647100678783}
-  - {fileID: 4158951422720769052}
+  - {fileID: -3946550873735971036}
+  - {fileID: -3267539249120418050}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 1936
@@ -15477,7 +16721,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_2
   guid: f3575241a863cb4c99b210a50cef3770
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -15500,7 +16744,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_0
   guid: 9e52d8a091bc754db1117b274a5fb5e9
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -15730,7 +16974,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &3670661612651772042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15780,7 +17024,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_5
   guid: 0301685bc89217449c8141d3560d3d59
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -15816,6 +17060,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
+--- !u!114 &3734036497269197454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
   m_EditorClassIdentifier: 
   Name: LPF
   Min: 10
@@ -15992,6 +17253,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &3867789852817249169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &3881943077597093387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16025,7 +17303,7 @@ MonoBehaviour:
   Min: 0
   Max: 3
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &3891816907314619528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16063,7 +17341,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Outside_No_0
   guid: 6b095dcbc571a44b8e3b3cae5af0417a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -16103,7 +17381,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Outside_No_0
   guid: 145da1fb2906f24cb9ba8ab75159d9a5
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -16229,7 +17507,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_1
   guid: 7fe4dd513547414589331dddaee37e6a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -16338,7 +17616,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &4165023662145097302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16456,6 +17734,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1600
+--- !u!114 &4236446961442752644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &4256286466191529912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16490,6 +17785,23 @@ MonoBehaviour:
   lastModified: 637209953734515494
   LoadResult: 0
   FileSizes: []
+  Exists: 0
+--- !u!114 &4260328685719155672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 0
 --- !u!114 &4283255281857671089
 MonoBehaviour:
@@ -16610,6 +17922,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &4414418799993967783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &4441792689896582037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16625,7 +17954,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Outside_Yes_0
   guid: 72699a1c966b9e429e5dbe332e6c2204
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -16860,6 +18189,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &4756561515840405414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &4773709567870149308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16916,6 +18262,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &4795741339542616656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &4864088510956967262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16932,6 +18295,23 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+  Exists: 0
+--- !u!114 &4868235263005940857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
   Exists: 0
 --- !u!114 &4912125863628943079
 MonoBehaviour:
@@ -17026,7 +18406,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_0
   guid: d118e2db1735f347a75323492d0d3eb0
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17191,7 +18571,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_0
   guid: 11d96410cce6ff4585b9d92aae5ed72e
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -17216,6 +18596,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &5097297186076614793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &5120727789277713147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17248,7 +18645,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_1
   guid: de0737dcb1a9334ca9515b9c6e1a4937
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17288,7 +18685,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_0
   guid: 7b61f945b9f86642981d74e15a11e014
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17330,6 +18727,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &5263987025273259045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &5265564647100678783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17346,7 +18760,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &5278926585468663156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17379,13 +18793,13 @@ MonoBehaviour:
   Path: event:/Local/Elevator/Close
   guid: 2dea561216724d4eb2d993682fd7726b
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -2365928902348098119}
-  - {fileID: 7950115694736343071}
+  - {fileID: 2832065957533645274}
+  - {fileID: -1487962550742334182}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 1862
@@ -17523,7 +18937,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_0
   guid: d85889cbee596b42a701f1e877738e5d
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17586,7 +19000,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &5599601751362509811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17619,7 +19033,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_1
   guid: f7edd6c047a89b4cb449de3b80d65823
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17642,7 +19056,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_0
   guid: 1f5a29d7fcb856418d404f0d506e58f3
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17794,7 +19208,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_1
   guid: 01614e532f3d664da2c1a9498de6fbc5
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17836,6 +19250,23 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &5783107058361381515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &5783948330435432149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17851,7 +19282,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_1
   guid: e48758599f5e3142a2c25fd6cfad3e35
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -17995,6 +19426,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &5920673495268101274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Walk
+  m_EditorClassIdentifier: 
+  Name: Walk
+  Min: 0
+  Max: 3
+  Default: 1
+  Exists: 1
 --- !u!114 &5929790179081149064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18027,7 +19475,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Toilet_Yes_0
   guid: bc3dded4215e064a97e8fb94dc3c190b
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18050,7 +19498,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_2
   guid: 8886fd146de0384ba570a8a5241ef5cd
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18135,7 +19583,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &5998032553425712865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18221,6 +19669,40 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &6061079316539592132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &6087483075437464960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &6095513965389288635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18271,7 +19753,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &6137562545743828072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18423,7 +19905,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_8
   guid: 15de7f358538ea4b9c0fd82ed14a5058
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18463,7 +19945,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Execute_1
   guid: 964a36151331924aae171190852fb92f
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18503,7 +19985,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_2
   guid: 83a1c5f4b9740f45a4331dcdaaa83fa9
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18543,7 +20025,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_2
   guid: 876dba0cfc5e074bb02812f5e105bc3d
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18859,7 +20341,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_1
   guid: b9272454e5b15646839e971d40988760
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18935,6 +20417,23 @@ MonoBehaviour:
   Max: 22000
   Default: 22000
   Exists: 0
+--- !u!114 &6757094385523780327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &6757599161136300135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18957,6 +20456,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5287
+--- !u!114 &6775844375571420506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &6781016348089447266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18972,7 +20488,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_7
   guid: 956a70b768659145921246511c3317f9
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -18995,7 +20511,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_5
   guid: 3b98c708890a6b48a4b86471ff6299ac
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -19088,6 +20604,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &6947039736909614181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &6949360650280683781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19121,7 +20654,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &6986037519394265418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19298,6 +20831,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &7103474141715569351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &7107892293635882399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19399,7 +20949,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_1
   guid: ddb89e411ceb6e4e9aaac4510ccb232c
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -19473,7 +21023,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_2
   guid: 4a4290fef6b00e4d8469212343284760
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -19557,7 +21107,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_4
   guid: 1bc5b9cc3eb46849812f83cb2c5dd3eb
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -19665,13 +21215,13 @@ MonoBehaviour:
   Path: event:/Local/Scholar/Talk
   guid: d54d624962422a4faf8a601f085ac93e
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -2785496016104654423}
-  - {fileID: 95518854944000632}
+  - {fileID: 464458698809451659}
+  - {fileID: -2295679294565615050}
   MinDistance: 0
   MaxDistance: 3
   Length: 50
@@ -19707,7 +21257,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_1
   guid: 32c7bfee3a67b149b33380ae6d585f5f
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -20030,7 +21580,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_1/Level_1_Ending_1
   guid: 5c356b4c42bca8449006b43451a8f6da
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -20162,6 +21712,23 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &7850349719520674052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &7878856418112199280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20211,7 +21778,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Level_2/Level_2_Ending_0
   guid: 471eb3011634404d9186b6db506b200a
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -20286,7 +21853,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &7959923988494974789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20453,7 +22020,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_2
   guid: c5582c89f8ad3a4292cda68ef5f26ccc
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -20510,7 +22077,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_1
   guid: 37f735c215e96244b979d6db0c542f3b
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -20569,6 +22136,40 @@ MonoBehaviour:
   Max: 1
   Default: 0
   Exists: 0
+--- !u!114 &8206300090479549013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
+--- !u!114 &8213933126004159577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &8215328941269022777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20706,6 +22307,40 @@ MonoBehaviour:
   Max: 1
   Default: 1
   Exists: 0
+--- !u!114 &8293543601229887670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &8296230398947746675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
 --- !u!114 &8344874027232657291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20807,7 +22442,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_11
   guid: 00de4e5a77ffef469233635e15768d71
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -20886,7 +22521,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_0
   guid: d98f93042836fe478746157fc3c17cf3
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -21068,6 +22703,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5781
+--- !u!114 &8571388084951169350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &8609731010066317587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21187,6 +22839,23 @@ MonoBehaviour:
   Max: 22000
   Default: 10
   Exists: 0
+--- !u!114 &8698513547844974075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
 --- !u!114 &8707417800381002390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21271,13 +22940,13 @@ MonoBehaviour:
   Path: event:/Local/Door/Open
   guid: 8d6eba30ce850546ab823dc5051c12d6
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -479055298853993651}
-  - {fileID: -2880782410398075568}
+  - {fileID: 2945198355890574203}
+  - {fileID: -1498597033174189142}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 0
@@ -21481,13 +23150,13 @@ MonoBehaviour:
   Path: event:/Local/Elevator/Open
   guid: 0b82aba726c5944fb92050dc0561d207
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -5662182275155510502}
-  - {fileID: 1269923588396839496}
+  - {fileID: 5097297186076614793}
+  - {fileID: -9001558842436557609}
   MinDistance: 0
   MaxDistance: 5.2
   Length: 1935
@@ -21545,7 +23214,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Begining_0
   guid: ca0104a3da43414a88715b9c7cbd5008
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -21585,7 +23254,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_1
   guid: 3b7d8469b490024c9967bfd7aca7ebe1
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -21608,7 +23277,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Execute_0
   guid: 95630b024aed594eb01baed4db60e417
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -21632,7 +23301,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &9103564768908333008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21682,7 +23351,7 @@ MonoBehaviour:
   Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_0
   guid: acc5ddf0c838564f8f1c7a31d1f7ca4e
   Banks:
-  - {fileID: -4658156544435511080}
+  - {fileID: -6862411633413047679}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -21708,6 +23377,23 @@ MonoBehaviour:
   Default: 1
   Exists: 0
 --- !u!114 &9131093581242298018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
+--- !u!114 &9147784713464246970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

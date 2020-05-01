@@ -212,6 +212,7 @@ public class OperationsExecuter : OperationsExecuterBase
 
     private IEnumerator Computer_Text()
     {
+        
         Scholar.Anim.SetAnimation(GetA.animations.Writing);
         yield return new WaitForSeconds(0.5f);
 
@@ -223,7 +224,8 @@ public class OperationsExecuter : OperationsExecuterBase
         Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 15)));
 
         while(Scholar.Desk.Controller.Typing.typing)
-            yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
 
         Scholar.Anim.SetAnimation(GetA.animations.Nothing);
         yield return new WaitForSeconds(1f);
@@ -231,8 +233,8 @@ public class OperationsExecuter : OperationsExecuterBase
         Scholar.Anim.SetAnimation(GetA.animations.Writing);
         Scholar.Desk.Controller.Typing.Type(FiveDigitInt.R_Count(Random.Range(6, 15)));
 
-        while (Scholar.Desk.Controller.Typing.typing)
-            yield return new WaitForEndOfFrame();
+        while(Scholar.Desk.Controller.Typing.typing)
+        yield return new WaitForEndOfFrame();
 
         Scholar.Anim.SetAnimation(GetA.animations.Nothing);
         yield return new WaitForSeconds(1f);
@@ -242,6 +244,8 @@ public class OperationsExecuter : OperationsExecuterBase
         yield return new WaitForSeconds(0.5f);
 
         Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+   
+        
         OperationEnd();
     }
 

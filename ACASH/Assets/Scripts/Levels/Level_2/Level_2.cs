@@ -130,9 +130,10 @@ public class Level_2 : A_Level
 
         HUDManager.get.IntrodactionHUD(key);
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(25f);
 
         HUDManager.get.CloseIntrodactionHUD();
+
 
         GameManager.get.MainMenu();
     }

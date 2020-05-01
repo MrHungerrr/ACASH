@@ -91,7 +91,8 @@ public class PlayerSelecting
             {
                 Scholar scholar = hits[i].collider.transform.parent.GetComponent<Scholar>();
 
-                scholar.Senses.TeacherLookAtUs();
+                if(scholar.active)
+                    scholar.Senses.TeacherLookAtUs();
             }
         }
     }

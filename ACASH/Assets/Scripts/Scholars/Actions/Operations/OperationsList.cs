@@ -14,8 +14,9 @@ public static class OperationsList
         new Verify(GetO.verify.Toilet_Is_Free, true),
         new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
+        new Verify(GetO.verify.Toilet_Is_Free, true),
 
-        new Operation(GetO.operation.Go_To_Toilet),
+        new GoTo(PlaceManager.place.Toilet),
 
         new Special(GetO.special.Pee, 5),
         new Operation(GetO.operation.Go_To_Desk),
@@ -30,6 +31,7 @@ public static class OperationsList
         new Verify(GetO.verify.Outside_Is_Free, true),
         new Question(GetQ.questions.Outside),
         new Verify(GetO.verify.Answer, true),
+        new Verify(GetO.verify.Outside_Is_Free, true),
 
         new Operation(GetO.operation.Go_Outside),
 
@@ -45,6 +47,7 @@ public static class OperationsList
         new Verify(GetO.verify.Sink_Is_Free, true),
         new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
+        new Verify(GetO.verify.Sink_Is_Free, true),
 
         new Operation(GetO.operation.Go_To_Sink),
 
@@ -62,6 +65,7 @@ public static class OperationsList
         new Verify(GetO.verify.Toilet_Is_Free, true),
         new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
+        new Verify(GetO.verify.Toilet_Is_Free, true),
 
         new Operation(GetO.operation.Go_To_Toilet),
 
@@ -82,6 +86,7 @@ public static class OperationsList
         new Verify(GetO.verify.Outside_Is_Free, true),
         new Question(GetQ.questions.Outside),
         new Verify(GetO.verify.Answer, true),
+        new Verify(GetO.verify.Outside_Is_Free, true),
 
         new Operation(GetO.operation.Go_Outside),
 
@@ -101,6 +106,7 @@ public static class OperationsList
         new Verify(GetO.verify.Sink_Is_Free, true),
         new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
+        new Verify(GetO.verify.Sink_Is_Free, true),
 
         new Operation(GetO.operation.Go_To_Sink),
 

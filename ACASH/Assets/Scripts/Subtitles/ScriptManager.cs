@@ -13,9 +13,9 @@ public class ScriptManager : Singleton<ScriptManager>
     private string resourceFile_script = "Script";
     private string resourceFile_duration = "AudioDuration";
 
-    private string textLanguage = "ru";
+    private string textLanguage = "en";
     [HideInInspector]
-    public string voiceLanguage = "ru";
+    public string voiceLanguage { get; private set; } = "ru";
 
 
     private void Awake()
@@ -95,6 +95,8 @@ public class ScriptManager : Singleton<ScriptManager>
             lines[t.key] = t.line;
         }
     }
+
+
 
     public void SwitchLanguageVoice(string lang)
     {

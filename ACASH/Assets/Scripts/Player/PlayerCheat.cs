@@ -48,9 +48,10 @@ public static class PlayerCheat
             {
                 key += "Answered_No_Answer";
             }
-
-            HUDManager.get.ReportHUD(key);
         }
+
+        HUDManager.get.ReportHUD(key);
+
         //Report(key_buf);
         //Вставить показывание очков за действие.
     }

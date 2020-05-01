@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LanguageHelper
+public static class LanguageHelper
 {
 
     /// <summary>
@@ -12,6 +12,22 @@ public class LanguageHelper
     /// Schultz)
     /// </summary>
     /// <returns>The 2-letter ISO code from system language.</returns>
+    /// 
+
+
+
+
+
+    public enum languange
+    {
+        en,
+        ru,
+    }
+
+
+
+
+
     public static string Get2LetterISOCodeFromSystemLanguage()
     {
         SystemLanguage lang = Application.systemLanguage;
@@ -61,6 +77,21 @@ public class LanguageHelper
             //case SystemLanguage.Vietnamese: res = "vi"; break;
         }
         //		Debug.Log ("Lang: " + res);
+        return res;
+    }
+
+
+
+    public static string Get2LetterFromFullWord(string word)
+    {
+        string res = "en";
+
+        switch(word)
+        {
+            case "Eng": res = "en"; break;
+            case "Rus": res = "ru"; break;
+        }
+
         return res;
     }
 }

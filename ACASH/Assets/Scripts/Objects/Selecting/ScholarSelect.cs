@@ -9,7 +9,7 @@ public class ScholarSelect : ObjectSelect
     //Возможность выбрать объект
     private Scholar Scholar;
     [HideInInspector]
-    public bool selectable = true;
+    public bool selectable { get; private set; } = false;
 
 
     protected override void Awake()

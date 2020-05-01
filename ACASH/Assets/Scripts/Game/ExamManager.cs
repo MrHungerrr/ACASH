@@ -130,7 +130,7 @@ public class ExamManager : Singleton<ExamManager>
     {
         if(ScholarManager.get.GetCount(ScholarManager.Left) == 0)
         {
-            FinishExam();
+            ExamDone.Invoke();
         }
     }
 }

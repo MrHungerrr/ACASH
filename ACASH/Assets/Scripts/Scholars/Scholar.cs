@@ -12,7 +12,7 @@ public class Scholar : MonoBehaviour
 
     [HideInInspector]
     public bool active { get; private set; }
-
+    public int number;
 
 
 
@@ -131,13 +131,15 @@ public class Scholar : MonoBehaviour
         Emotions.Reset();
         Execute.Reset();
         Stress.Reset();
+        
 
         Talk = new ScholarTalk(this);
         Answers = new ScholarAnswers();
         Cheat.Reset();
 
-        if(Desk != null)
+        if (Desk != null)
             Desk.ResetComputer();
+
         Body.Enable();
     }
 
@@ -167,7 +169,7 @@ public class Scholar : MonoBehaviour
             Stress.Update();
         }
 
-        if(HUD != null)
+        if (HUD != null)
             HUD.Update();
     }
 

@@ -105,7 +105,6 @@ public class SettingsManager : Singleton<SettingsManager>
     private string[] voice_language = new string[]
     {
           /*00*/  "Rus",
-          /*01*/  "Eng",
     };
 
     private string[] subtitles = new string[]

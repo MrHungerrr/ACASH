@@ -18,7 +18,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-
         Setup();
 
         game = false;
@@ -96,6 +95,7 @@ public class GameManager : Singleton<GameManager>
 
         Menu.get.MainMenu();
 
+        UnsetLevel();
         LevelManager.get.UnloadLevels();
 
         InputManager.get.SwitchGameInput("menu");
@@ -194,30 +194,18 @@ public class GameManager : Singleton<GameManager>
         PlaceManager.get.SetLevel();
         ScholarObjectsManager.get.SetLevel();
         ScholarManager.get.SetLevel();
-        yield return new WaitForEndOfFrame();
-
         ScoreManager.get.SetLevel();
-        yield return new WaitForEndOfFrame();
-
         OverwatchCameraManager.get.SetLevel();
-        yield return new WaitForEndOfFrame();
-
         LevelSettings.get.Setup();
-        yield return new WaitForEndOfFrame();
-
         ObjectManager.get.SetLevel();
-        yield return new WaitForEndOfFrame();
-
         ComputerManager.get.Setup();
-        yield return new WaitForEndOfFrame();
-
         TimeManager.get.Setup();
-        yield return new WaitForEndOfFrame();
-
         SoundManager.get.SetLevel();
-        yield return new WaitForEndOfFrame();
 
-        A_Level.get.StartLevel();
+        if(!test)
+            A_Level.get.StartLevel();
+
+        yield return null;
     }
 
     public void UnsetLevel()
@@ -225,6 +213,7 @@ public class GameManager : Singleton<GameManager>
         ExamManager.get.UnsetLevel();
         ObjectManager.get.UnsetLevel();
         SoundManager.get.UnsetLevel();
+        ComputerManager.get.Unsetup();
     }
 
 

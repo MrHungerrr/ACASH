@@ -42,7 +42,7 @@ public class ScholarExam
             test_bufTime = 1f;
             test_buf = 0;
 
-            test_procent = (int) (test / 20000f);
+            test_procent = (int) (test / 200f);
 
             if (test >= 20000)
             {

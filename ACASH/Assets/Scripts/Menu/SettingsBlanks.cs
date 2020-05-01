@@ -50,12 +50,20 @@ public static class SettingsBlanks
 
     private static void Language(int option)
     {
-        Debug.Log("Язык - " + SettingsManager.get.settings["Language"][option]);
+        string language = SettingsManager.get.settings["Language"][option];
+        Debug.Log("Язык - " + language);
+
+        language = LanguageHelper.Get2LetterFromFullWord(language);
+        ScriptManager.get.SwitchLanguageText(language);
     }
 
     private static void VoiceLanguage(int option)
     {
-        Debug.Log("Язык озвучки - " + SettingsManager.get.settings["Voice Language"][option]);
+        string language = SettingsManager.get.settings["Voice Language"][option];
+        Debug.Log("Язык - " + language);
+
+        language = LanguageHelper.Get2LetterFromFullWord(language);
+        ScriptManager.get.SwitchLanguageVoice(language);
     }
 
     private static void Subtitles(int option)

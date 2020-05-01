@@ -35,6 +35,7 @@ public abstract class A_Computer : MonoBehaviour
 
     public virtual void Setup()
     {
+
         Transform win = transform.Find("Screen").Find("UI").Find("Canvas").Find("Windows");
         Numpad = win.parent.Find("Screen").GetComponentInChildren<NumpadController>();
 
@@ -68,6 +69,7 @@ public abstract class A_Computer : MonoBehaviour
         Text.Setup();
 
         Commands = new ComputerCommands(this);
+
     }
 
     public virtual void SetScholars()
@@ -78,28 +80,35 @@ public abstract class A_Computer : MonoBehaviour
     protected void ExecuteCommand()
     {
         Commands.Do(command);
+
     }
 
     public void ExecuteCommand(string command)
     {
+
         this.command = command;
         ExecuteCommand();
+
     }
 
     public void ExecuteCommand(GetC.commands command)
     {
+
         this.command = GetC.GetString(command);
         ExecuteCommand();
+
     }
 
 
 
     public void ResetComputer()
     {
+
         Calculator.Reset();
         Exam.Reset();
         Text.Reset();
 
         Commands.Do(GetC.commands.Login);
+
     }
 }

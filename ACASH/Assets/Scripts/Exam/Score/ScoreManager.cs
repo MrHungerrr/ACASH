@@ -76,6 +76,8 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void SetLevel()
     {
+        Zeroing();
+
         agents = FindObjectsOfType<ScoreAgent>();
 
         foreach (ScoreAgent a in agents)

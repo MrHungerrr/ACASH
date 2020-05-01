@@ -74,7 +74,8 @@ public class PlaceManager : Singleton<PlaceManager>
         {
             case place.Home:
                 {
-                    SortManager.get.Sort(places);
+                    if(places != null)
+                        SortManager.get.Sort(places);
                     break;
                 }
         }

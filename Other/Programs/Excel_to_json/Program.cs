@@ -281,7 +281,7 @@ namespace Excel_to_json
 
                                         file.WriteLine("File {0} was not found\nSearch Location:{1}", name_file, path_to_file);
                                         Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("    File {0} was not found", name_file);
+                                        Console.WriteLine("    File {1} {0} was not found", name_file, language);
                                         Console.ResetColor();
                                     }
                                 }

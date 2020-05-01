@@ -16,10 +16,19 @@ public class ScholarLocation
 
     public void ChangeLocation(PlaceManager.place place, int index)
     {
-        GoTo(place, index);
+        try
+        {
 
-        PlaceManager.get.MakeFree(this.place, this.index);
-        PlaceManager.get.MakeBusy(place, index);
+
+            GoTo(place, index);
+
+            PlaceManager.get.MakeFree(this.place, this.index);
+            PlaceManager.get.MakeBusy(place, index);
+        }
+        catch
+        {
+            Debug.LogError( "Не существующее место "+ place.ToString() + " " + index + " в ScholarLocation");
+        }
 
         this.place = place;
         this.index = index;
@@ -34,14 +43,21 @@ public class ScholarLocation
 
     public void Teleport(PlaceManager.place place, int index)
     {
-        if(this.index != -1)
+        if (this.index != -1)
             PlaceManager.get.MakeFree(this.place, this.index);
 
+        try
+        {
+            PlaceManager.get.MakeBusy(place, index);
 
-        PlaceManager.get.MakeBusy(place, index);
+            Scholar.Move.Position(PlaceManager.get.GetPlace(place, index));
+            Scholar.Move.Rotation(PlaceManager.get.GetSightGoal(place, index));
+        }
+        catch
+        {
+            Debug.LogError("Не существующее место " + place.ToString() + " " + index + " в ScholarLocation");
+        }
 
-        Scholar.Move.Position(PlaceManager.get.GetPlace(place, index));
-        Scholar.Move.Rotation(PlaceManager.get.GetSightGoal(place, index));
 
         this.place = place;
         this.index = index;

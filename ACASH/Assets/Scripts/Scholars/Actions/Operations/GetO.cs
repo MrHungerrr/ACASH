@@ -4,12 +4,8 @@
     {
         public enum operation
         {
-            Go_To_Toilet,
-            Go_To_Sink,
-            Go_Outside,
+            Go_To,
             Check,
-            Go_Home,
-            Go_To_Desk,
             Question,
             Computer,
             Verify,

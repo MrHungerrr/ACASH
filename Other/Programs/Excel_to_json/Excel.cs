@@ -14,7 +14,6 @@ namespace Excel_to_json
         private string path = "";
         public int count;
         private int sheet = -1;
-        private int number;
         private _Application excel = new _Excel.Application();
         private Workbook wb;
         private Worksheet ws;
@@ -205,6 +204,8 @@ namespace Excel_to_json
                 case '"':
                     return "\\\"";
                 case '\'':
+                    return "\'";
+                case '\\':
                     return "\\\\";
                 case 'ё':
                     return "е";

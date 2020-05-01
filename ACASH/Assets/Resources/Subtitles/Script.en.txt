@@ -2,6 +2,1142 @@
     "lines":
     [
         {
+            "key":"Teacher_Shout_0",
+            "line":["No one can cheat in this room."]
+        },
+        {
+            "key":"Teacher_Shout_1",
+            "line":["Don't even think about cheating"]
+        },
+        {
+            "key":"Teacher_Shout_2",
+            "line":["Violation of the rules in this room","Will lead to serious consequences."]
+        },
+        {
+            "key":"Teacher_Shout_3",
+            "line":["I warn everyone. Don't play with me."]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_0",
+            "line":["Hey, why are you cheating?"]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_1",
+            "line":["Stop cheating."]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_2",
+            "line":["If you think I don't see - I see everything."]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_0",
+            "line":["From now on don't even try to cheat."]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_1",
+            "line":["I repeat, stop cheating."]
+        },
+        {
+            "key":"Teacher_Bull_Cheating_Sec_2",
+            "line":["Can't you hear me?","Stop cheating, I see everything."]
+        },
+        {
+            "key":"Teacher_Bull_Talking_0",
+            "line":["Why are you talking?"]
+        },
+        {
+            "key":"Teacher_Bull_Talking_1",
+            "line":["I suggest you shut up."]
+        },
+        {
+            "key":"Teacher_Bull_Talking_2",
+            "line":["Please shut up."]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_0",
+            "line":["I said shut up."]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_1",
+            "line":["I repeat, shout your mouth."]
+        },
+        {
+            "key":"Teacher_Bull_Talking_Sec_2",
+            "line":["If you open your mouth again","you will be dead"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_0",
+            "line":["Are you sure","you can walk?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_1",
+            "line":["Where are you going?"]
+        },
+        {
+            "key":"Teacher_Bull_Walking_2",
+            "line":["Stop walking."]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_0",
+            "line":["I repeat","stop walking, holy shit."]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_1",
+            "line":["Go to your place."]
+        },
+        {
+            "key":"Teacher_Bull_Walking_Sec_2",
+            "line":["You can't walk like that","Return to your place."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_0",
+            "line":["You know, I cheated before.","But now...","But now it's bad to cheat."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_1",
+            "line":["I remember, Peter was with us","And then Peter wrote off","And there is no Peter."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_2",
+            "line":["Wow you do not write off","You do not write off at all","Well done!"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_0",
+            "line":["You stink","Ha, this is a joke."]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_1",
+            "line":["And I remember Victor","He was like you","But now Victor is gone"]
+        },
+        {
+            "key":"Teacher_Joke_Cheating_Sec_2",
+            "line":["You know, I was looking at you","And you haven't written off:Well done! Well done."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_0",
+            "line":["Hey, let's talk together."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_1",
+            "line":["I like talking. You too?"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_2",
+            "line":["Do you want a joke?","But joke doesn't want you","Ha, that funny."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_0",
+            "line":["Let's talk again!"]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_1",
+            "line":["I see you like to talk","So, let's have a talk."]
+        },
+        {
+            "key":"Teacher_Joke_Talking_Sec_2",
+            "line":["You have bad breath","Please, shut your mouth."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_0",
+            "line":["We had Vanya","Vanya like to walk","But I do not like such","Vanya has gone.We had Vanya","Vanya like to walk","But I do not like such","Vanya has gone."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_1",
+            "line":["Oh, let's walk together","I like walking with my students."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_2",
+            "line":["My favorite students are students","who cannot walk."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_0",
+            "line":["I remember there were times","when walking on the exam was allowed","Oh, there was a time."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_1",
+            "line":["You know, in my time on exams","you couldn’t get up","And everyone obeyed","Oh, sorry, go wherever you go."]
+        },
+        {
+            "key":"Teacher_Joke_Walking_Sec_2",
+            "line":["Stop! Ha, it's a joke","Go wherever you want","of course go-go-go. Go."]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Toilet_Yes_0",
+            "line":["You’ll talk to your mother","at home this way","And now go to the toilet."]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Toilet_No_0",
+            "line":["Learn manners first","And then I will give you permission."]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Sink_Yes_0",
+            "line":["You’ll talk to your mother","at home this way","And now go to the sink."]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Sink_No_0",
+            "line":["Learn manners first","And then I will give you permission."]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Outside_Yes_0",
+            "line":["You’ll talk to your mother","at home this way","And now go to the outside."]
+        },
+        {
+            "key":"Teacher_Answer_Asshole_Question_Outside_No_0",
+            "line":["Learn manners first","And then I will give you permission."]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Toilet_Yes_0",
+            "line":["Yes, only faster."]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Toilet_No_0",
+            "line":["No, I can’t let you go now."]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Sink_Yes_0",
+            "line":["Yes, only faster."]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Sink_No_0",
+            "line":["No, I can’t let you go now."]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Outside_Yes_0",
+            "line":["Yes, only faster."]
+        },
+        {
+            "key":"Teacher_Answer_Dumb_Question_Outside_No_0",
+            "line":["No, I can’t let you go now."]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Toilet_Yes_0",
+            "line":["Yes, of course, come out."]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Toilet_No_0",
+            "line":["Are you kidding?","Sit still."]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Sink_Yes_0",
+            "line":["Yes, of course, come out."]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Sink_No_0",
+            "line":["Are you kidding?","Sit still."]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Outside_Yes_0",
+            "line":["Yes, of course, come out."]
+        },
+        {
+            "key":"Teacher_Answer_Nerd_Question_Outside_No_0",
+            "line":["Are you kidding?","Sit still."]
+        },
+        {
+            "key":"Teacher_Execute_0",
+            "line":["In the name of ACASH examiner","I exclude you from the exam","Execute."]
+        },
+        {
+            "key":"Teacher_Execute_1",
+            "line":["For violation of exam rules","I have to expel you","Execute."]
+        },
+        {
+            "key":"Teacher_Execute_2",
+            "line":["Unfortunately you have violated the rules","I can do nothing but ...","Execute."]
+        },
+        {
+            "key":"Tutorial_1_Begining_0",
+            "line":["","-Hello?","- I need your help","-What do you need?","-I want you to conduct an exam","-I told you","I don't conduct exams anymore","-yeah, I know…I wouldn't call you","if someone else could help me.","It's a matter of life and death.","","-say the address.",""]
+        },
+        {
+            "key":"Tutorial_1_Elevator_0",
+            "line":["Welcome","To the examenators training programm.","Here you will be taught","How to conduct the ACASH exam.","To continue please go to the first room."]
+        },
+        {
+            "key":"Tutorial_1_Room_0",
+            "line":["Now we are gonna teach you to ''execute''.","don't worry about that","''execute'' - is just a code word","For the removing a student","imagine that student is cheating.","please, ''execute'' him for it."]
+        },
+        {
+            "key":"Tutorial_1_Room_1",
+            "line":["Super!","You can see, that you lost some points.","Because the student wasn't cheating.","That's why log in to the computer","To learn the rules of exam."]
+        },
+        {
+            "key":"Tutorial_1_Room_2",
+            "line":["And memorize please","your login and password - 0000.","according to numerous calculations","it's the safest password in our universe."]
+        },
+        {
+            "key":"Tutorial_1_Room_3",
+            "line":["now open the \"Rules\" please"]
+        },
+        {
+            "key":"Tutorial_1_Room_4",
+            "line":["As you can see, on exam is allowed for using","only some of programms.","watch the students and ''execute'' each one","who tryes to use prohibited programms."]
+        },
+        {
+            "key":"Tutorial_1_Room_5",
+            "line":["Well done!","also on exam isn't allowed","to use additional things.","that's why ''execute'' each one","who tryes to use something not allowed."]
+        },
+        {
+            "key":"Tutorial_1_Room_6",
+            "line":["Very good!","you know how to ''execute'' students.","now we will teach you to answer","the questions.","try to say ''no'' to that student."]
+        },
+        {
+            "key":"Tutorial_1_Room_7",
+            "line":["If you answer ''not''","when you should have said ''yes''","your reputation is decreasing.","so watch your mouth.","and now answer ''yes''."]
+        },
+        {
+            "key":"Tutorial_1_Room_8",
+            "line":["Student goes to the toilet!","but don't be exited.","maybe he wants to cheat there.","wait until the student leaves toilet And check the stall."]
+        },
+        {
+            "key":"Tutorial_1_Room_9",
+            "line":["The cheat sheet!","it's a good reason to ''execute'' !"]
+        },
+        {
+            "key":"Tutorial_1_Room_10",
+            "line":["Welldone!","you have passed the course.","now you are ready to conduct your first exam.","good luck on the exam!"]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_2",
+            "line":["Unfortunately, you have ''executed'' the student","who hasn't used any prohibited programs.","try again."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_3",
+            "line":["remind, that list of prohibited","and allowed programms is on your computer.","Check it again."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_4",
+            "line":["Unfortunately, you have ''executed'' the student","who hasn't used any additional things.","try again."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_5",
+            "line":["Additional things are such as","different papers, mobile phones","and so on."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_6",
+            "line":["Student won't be waiting for answer too long.","Please, say something."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_7",
+            "line":["You have to let student go out to the toilet.","Please, answer again."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_8",
+            "line":["Remind, that you need to ''execute'' students","who use prohibited programms."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_9",
+            "line":["Remind, that you need to ''execute'' students","who use additional things."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_10",
+            "line":["Please log in to your computer."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_11",
+            "line":["Now open the \"rules\" please."]
+        },
+        {
+            "key":"Tutorial_1_Mistake_Room_12",
+            "line":["\"Execute'' this student please.","He has broken the exam rules."]
+        },
+        {
+            "key":"Level_1_Begining_0",
+            "line":["","- Yeah?","- Do you still remember how to conduct exams?","- I remember.","- Well…","Then just don't let them","to cheat during an exam.","Good luck…"]
+        },
+        {
+            "key":"Level_1_Begining_1",
+            "line":["Wellcome to the exam, sir."]
+        },
+        {
+            "key":"Level_1_Ending_0",
+            "line":["Exam is finished. Check the computer."]
+        },
+        {
+            "key":"Level_1_Ending_1",
+            "line":["Exam on this floor is finished.","Please go to the elevator."]
+        },
+        {
+            "key":"Level_1_Ending_2",
+            "line":["","- Wait","You sure you remember","how to conduct exams?","- Yes.","- I have a such feeling abour this","that you strain students too much.",""]
+        },
+        {
+            "key":"Level_1_Mistake_Ending_0",
+            "line":["Sir, check the computer please."]
+        },
+        {
+            "key":"Level_1_Mistake_Ending_1",
+            "line":["Sir, go to elevator please","for conducting of next exam."]
+        },
+        {
+            "key":"Tutorial_2_Begining_0",
+            "line":["Now you will understand","how to controll the student's stress."]
+        },
+        {
+            "key":"Tutorial_2_First_Room_0",
+            "line":["Try to say something sharp to this student."]
+        },
+        {
+            "key":"Tutorial_2_First_Room_1",
+            "line":["Wonderful!","As you can see","when you say something sharp","stress of a student increases.","Try to raise his stress level to 100%"]
+        },
+        {
+            "key":"Tutorial_2_First_Room_2",
+            "line":["Now say to the student something a bit lighter."]
+        },
+        {
+            "key":"Tutorial_2_First_Room_3",
+            "line":["Very good!","As you see","in this case student's stress","increases much less.","That's why raise stress of this student only to 30%"]
+        },
+        {
+            "key":"Tutorial_2_First_Room_4",
+            "line":["Well done! Go to the next room."]
+        },
+        {
+            "key":"Tutorial_2_Second_Room_0",
+            "line":["Now we will see","how your decisions affect on a student's stress.","Approach to this student","and look at his monitor screen."]
+        },
+        {
+            "key":"Tutorial_2_Second_Room_1",
+            "line":["As you can notice","in this case his stress level increases really quickly.","Now step back from the student","but continue to look at him."]
+        },
+        {
+            "key":"Tutorial_2_Second_Room_2",
+            "line":["And now log in to the computer."]
+        },
+        {
+            "key":"Tutorial_2_Second_Room_3",
+            "line":["Enter to the programm ''SS''."]
+        },
+        {
+            "key":"Tutorial_2_Second_Room_4",
+            "line":["Because of you are enough far from the student","and don't stare at him - his stress level is decreases.","And to understand on what affects stress","look at the chart.","As you can see","the more stress the less probability of cheating","But also the less speed of writing an exam.","That's why the optimal value of stress is 40%-60%.","Now try to keep the optimal stress level","of all students for 30 seconds."]
+        },
+        {
+            "key":"Tutorial_2_Second_Room_5",
+            "line":["Excellent result!","Here we finish your trenning.","Good luck on the exam."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_First_Room_0",
+            "line":["Remind","you have to raise stress level to 100%"]
+        },
+        {
+            "key":"Tutorial_2_Mistake_First_Room_1",
+            "line":["Remind","you have to raise stress level of the student to 100%"]
+        },
+        {
+            "key":"Tutorial_2_Mistake_First_Room_2",
+            "line":["Remind","you have to raise stress level","not by sharp saying.","Try lighter one."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_First_Room_3",
+            "line":["Please go to the next room."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_Second_Room_0",
+            "line":["Please","approach to the student","and look at his monitor."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_Second_Room_1",
+            "line":["Please","step back from the student","and look at him from afar."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_Second_Room_2",
+            "line":["Please log in to your computer."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_Second_Room_3",
+            "line":["Please open the ''SS'' programm."]
+        },
+        {
+            "key":"Tutorial_2_Mistake_Second_Room_4",
+            "line":["Remind","you have to keep the stress level of all students","in the range 40%-60%."]
+        },
+        {
+            "key":"Level_2_Begining_0",
+            "line":["","Well…Call me after exams","Good luck…"]
+        },
+        {
+            "key":"Level_2_Begining_1",
+            "line":["Sir, I remind","If students won't have passed","the exam due to high stress","we'll have to take actions","That's why please","don't pressure on students."]
+        },
+        {
+            "key":"Level_2_Ending_0",
+            "line":["","- Hello, Vanya?","","- If you want to hear Vanya","don't hang up","and listen to me.","From that moment you are","under my control.","Any disobedience will be punished by","your liquidation","and loquidation of your friend.","From tomorrow","You will be conducting exams.","Just as","you were cunducting them in your best years.","Any superfluous questions aren't welcome.","And yeah...","I forgot to introduce myself.","I am Egor Akimov - a creator of the ''ACASH'' exam.","So","it was nice to meet you.","I'll be glad to see you tomorrow.","Gool luck on the exam..."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Yes_0",
+            "line":["Well, is there a problem with that?"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Yes_1",
+            "line":["No"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Yes_2",
+            "line":["And what do you see?"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_No_0",
+            "line":["I just want to"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_No_1",
+            "line":["Go to hell"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_No_2",
+            "line":["I didn't do anything. No need to spy on me."]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_Yes_0",
+            "line":["When I want, then I write off"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_Yes_1",
+            "line":["No one can stop me "]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_Yes_2",
+            "line":["If you see, then why ask?"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_No_0",
+            "line":["Go to hell"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_No_1",
+            "line":["I repeat, Go to hell"]
+        },
+        {
+            "key":"Asshole_Bull_Cheating_Sec_No_2",
+            "line":["Can't you hear me? Go to hell."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_No_0",
+            "line":["Because of freedom of speech."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_No_1",
+            "line":["Good suggestion, I will think."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_No_2",
+            "line":["Only after you."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_Sec_No_0",
+            "line":["I will shut up when I want"]
+        },
+        {
+            "key":"Asshole_Bull_Talking_Sec_No_1",
+            "line":["Tell your mom that."]
+        },
+        {
+            "key":"Asshole_Bull_Talking_Sec_No_2",
+            "line":["So let it happen"]
+        },
+        {
+            "key":"Asshole_Bull_Walking_No_0",
+            "line":["I do not need permission"]
+        },
+        {
+            "key":"Asshole_Bull_Walking_No_1",
+            "line":["This is an intimate question."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_No_2",
+            "line":["Why?"]
+        },
+        {
+            "key":"Asshole_Bull_Walking_Sec_No_0",
+            "line":["Go to hell."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_Sec_No_1",
+            "line":["Ok, But first I'll do my thing."]
+        },
+        {
+            "key":"Asshole_Bull_Walking_Sec_No_2",
+            "line":["No, I can."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Yes_0",
+            "line":["Go to hell."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Yes_1",
+            "line":["Ok, But first I'll do my thing."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Yes_2",
+            "line":["No, I can."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_No_0",
+            "line":["No, now it's good to cheat."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_No_1",
+            "line":["The same thing will happen to you."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_No_2",
+            "line":["Yes, I'm good."]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_Yes_0",
+            "line":["Так я списываю, а не воняю "]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_Yes_1",
+            "line":["I am not afraid of your threats"]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_Yes_2",
+            "line":["I am doing my best!"]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_No_0",
+            "line":["What is natural is not ugly"]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_No_1",
+            "line":["Rest in peace…"]
+        },
+        {
+            "key":"Asshole_Joke_Cheating_Sec_No_2",
+            "line":["Yes, I'm good."]
+        },
+        {
+            "key":"Asshole_Joke_Talking_No_0",
+            "line":["Go to hell."]
+        },
+        {
+            "key":"Asshole_Joke_Talking_No_1",
+            "line":["We are so similar, Teacher."]
+        },
+        {
+            "key":"Asshole_Joke_Talking_No_2",
+            "line":["But girls want me."]
+        },
+        {
+            "key":"Asshole_Joke_Talking_Sec_No_0",
+            "line":["Go to hell again."]
+        },
+        {
+            "key":"Asshole_Joke_Talking_Sec_No_1",
+            "line":["I see you don't learn from mistakes."]
+        },
+        {
+            "key":"Asshole_Joke_Talking_Sec_No_2",
+            "line":["Holy crap, why haven't you said this before?"]
+        },
+        {
+            "key":"Asshole_Joke_Walking_No_0",
+            "line":["My respect for Vanya."]
+        },
+        {
+            "key":"Asshole_Joke_Walking_No_1",
+            "line":["Only to hell."]
+        },
+        {
+            "key":"Asshole_Joke_Walking_No_2",
+            "line":["I wouldn't to become like that."]
+        },
+        {
+            "key":"Asshole_Joke_Walking_Sec_No_0",
+            "line":["I'm busy, get lost."]
+        },
+        {
+            "key":"Asshole_Joke_Walking_Sec_No_1",
+            "line":["I'm busy, get lost."]
+        },
+        {
+            "key":"Asshole_Joke_Walking_Sec_No_2",
+            "line":["Ha-ha. It's not funny."]
+        },
+        {
+            "key":"Asshole_Question_Toilet_0",
+            "line":["Hey, let me go to the toilet."]
+        },
+        {
+            "key":"Asshole_Question_Sink_0",
+            "line":["Hey, let me go to the sink."]
+        },
+        {
+            "key":"Asshole_Question_Outside_0",
+            "line":["Hey, let me go outside."]
+        },
+        {
+            "key":"Asshole_Answer_Yes_0",
+            "line":["Thanks, bro! Already in the way."]
+        },
+        {
+            "key":"Asshole_Answer_No_0",
+            "line":["What the hell, man?"]
+        },
+        {
+            "key":"Asshole_Execute_0",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Asshole_Execute_1",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Asshole_Execute_2",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Yes_0",
+            "line":["I thought you weren't looking"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Yes_1",
+            "line":["Чуть-чуть то можно "]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Yes_2",
+            "line":["Cool! Will you teach me to see everything?"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_No_0",
+            "line":["I haven't started yet"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_No_1",
+            "line":["I didn't cheat today"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_No_2",
+            "line":["Wow! I want to do that."]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_Yes_0",
+            "line":["I don’t understand anything here"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_Yes_1",
+            "line":["Sorry, I myself can’t"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_Yes_2",
+            "line":["Help me then, please."]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_No_0",
+            "line":["Even if I cheated, it wouldn't help"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_No_1",
+            "line":["I'm just writing"]
+        },
+        {
+            "key":"Dumb_Bull_Cheating_Sec_No_2",
+            "line":["This is some kind of bullying"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_No_0",
+            "line":["I'm talking with myself"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_No_1",
+            "line":["Ok i'm silent"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_No_2",
+            "line":["I will continue to speak with closed mouth."]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_No_0",
+            "line":["I don't want"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_No_1",
+            "line":["I don't want"]
+        },
+        {
+            "key":"Dumb_Bull_Talking_Sec_No_2",
+            "line":["I will be dad? Yeeees!"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_No_0",
+            "line":["I don't understand the question"]
+        },
+        {
+            "key":"Dumb_Bull_Walking_No_1",
+            "line":["This is an intimate question."]
+        },
+        {
+            "key":"Dumb_Bull_Walking_No_2",
+            "line":["I have already forgotten where my place is."]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_No_0",
+            "line":["Sorry, I'can't."]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_No_1",
+            "line":["Ok, But first I'll do my thing."]
+        },
+        {
+            "key":"Dumb_Bull_Walking_Sec_No_2",
+            "line":["Yes, of corse, but later."]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Yes_0",
+            "line":["I don't think so"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Yes_1",
+            "line":["My dad is also called Petya"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Yes_2",
+            "line":["Yes, I'm good."]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_No_0",
+            "line":["You should be old."]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_No_1",
+            "line":["But he just died, right?"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_No_2",
+            "line":["I'm like my dad."]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_Yes_0",
+            "line":["But I washed."]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_Yes_1",
+            "line":["I don't want to be like Vitya"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_Yes_2",
+            "line":["I write off actually!"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_No_0",
+            "line":["Ha-ha-ha."]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_No_1",
+            "line":["Wow! I have a double!"]
+        },
+        {
+            "key":"Dumb_Joke_Cheating_Sec_No_2",
+            "line":["I noticed it too"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_No_0",
+            "line":["I can rap."]
+        },
+        {
+            "key":"Dumb_Joke_Talking_No_1",
+            "line":["Why aren't you my dad?"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_No_2",
+            "line":["Funny joke!"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_No_0",
+            "line":["About what?"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_No_1",
+            "line":["Now I'm busy"]
+        },
+        {
+            "key":"Dumb_Joke_Talking_Sec_No_2",
+            "line":["Don't lie, I brush my teeth"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_No_0",
+            "line":["I want to be like Banya"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_No_1",
+            "line":["You are so funny!"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_No_2",
+            "line":["Wow! I am your favorite"]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_No_0",
+            "line":["You are so old."]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_No_1",
+            "line":["Then - not now, now - not then."]
+        },
+        {
+            "key":"Dumb_Joke_Walking_Sec_No_2",
+            "line":["Now I'm confused."]
+        },
+        {
+            "key":"Dumb_Question_Toilet_0",
+            "line":["I want to go to the toilet. Can I go?"]
+        },
+        {
+            "key":"Dumb_Question_Sink_0",
+            "line":["I want to go to the sink. Can I go?"]
+        },
+        {
+            "key":"Dumb_Question_Outside_0",
+            "line":["I want to go to outside. Can I go?"]
+        },
+        {
+            "key":"Dumb_Answer_Yes_0",
+            "line":["Yes! I'm off."]
+        },
+        {
+            "key":"Dumb_Answer_No_0",
+            "line":["Well, damn it. Okay."]
+        },
+        {
+            "key":"Dumb_Execute_0",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Dumb_Execute_1",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Dumb_Execute_2",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Yes_0",
+            "line":["I'm sorry I won't."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Yes_1",
+            "line":["I'm sorry I won't."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Yes_2",
+            "line":["I won’t do it anymore, just don't execute me."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_No_0",
+            "line":["No, I didn't write off."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_No_1",
+            "line":["No, I didn't write off."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_No_2",
+            "line":["I didn't  understand what are you talking about."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_Yes_0",
+            "line":["It's a draft, really."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_Yes_1",
+            "line":["My parents will punish me for \"B\"."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_Yes_2",
+            "line":["I promise this is the last time."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_No_0",
+            "line":["I didn't do anything."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_No_1",
+            "line":["I didn't  do anything."]
+        },
+        {
+            "key":"Nerd_Bull_Cheating_Sec_No_2",
+            "line":["I didn't  do anything, really."]
+        },
+        {
+            "key":"Nerd_Bull_Talking_No_0",
+            "line":["That helps me think."]
+        },
+        {
+            "key":"Nerd_Bull_Talking_No_1",
+            "line":["I agree with you."]
+        },
+        {
+            "key":"Nerd_Bull_Talking_No_2",
+            "line":["Oh, I thought I was talking in my head."]
+        },
+        {
+            "key":"Nerd_Bull_Talking_Sec_No_0",
+            "line":["Why so rude?"]
+        },
+        {
+            "key":"Nerd_Bull_Talking_Sec_No_1",
+            "line":["I have the right to speak"]
+        },
+        {
+            "key":"Nerd_Bull_Talking_Sec_No_2",
+            "line":["I'll call my mom now!"]
+        },
+        {
+            "key":"Nerd_Bull_Walking_No_0",
+            "line":["I didn't know that it is prohibited"]
+        },
+        {
+            "key":"Nerd_Bull_Walking_No_1",
+            "line":["What is so rude?"]
+        },
+        {
+            "key":"Nerd_Bull_Walking_No_2",
+            "line":["Sorry, but you allowed me to do that."]
+        },
+        {
+            "key":"Nerd_Bull_Walking_Sec_No_0",
+            "line":["I am allowed to do this."]
+        },
+        {
+            "key":"Nerd_Bull_Walking_Sec_No_1",
+            "line":["Ok, But first I'll do my thing."]
+        },
+        {
+            "key":"Nerd_Bull_Walking_Sec_No_2",
+            "line":["Yes, of corse, but later."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Yes_0",
+            "line":["I am allowed to do this."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Yes_1",
+            "line":["Ok, But first I'll do my thing."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Yes_2",
+            "line":["Yes, of corse, but later."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_No_0",
+            "line":["Well, we've all been there."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_No_1",
+            "line":["I don't remember that."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_No_2",
+            "line":["Thank you!"]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_Yes_0",
+            "line":["Not funny."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_Yes_1",
+            "line":["No, I'm not like Victor."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_Yes_2",
+            "line":["You like my mom."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_No_0",
+            "line":["They shut my water off."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_No_1",
+            "line":["So that's why he disappeared."]
+        },
+        {
+            "key":"Nerd_Joke_Cheating_Sec_No_2",
+            "line":["Thank you!"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_No_0",
+            "line":["I must be silent"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_No_1",
+            "line":["Do not bother me."]
+        },
+        {
+            "key":"Nerd_Joke_Talking_No_2",
+            "line":["That's not funny"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_Sec_No_0",
+            "line":["Do not bother me."]
+        },
+        {
+            "key":"Nerd_Joke_Talking_Sec_No_1",
+            "line":["I didn't even say a word"]
+        },
+        {
+            "key":"Nerd_Joke_Talking_Sec_No_2",
+            "line":["It's natural."]
+        },
+        {
+            "key":"Nerd_Joke_Walking_No_0",
+            "line":["Real Bad Guy."]
+        },
+        {
+            "key":"Nerd_Joke_Walking_No_1",
+            "line":["Do not bother me."]
+        },
+        {
+            "key":"Nerd_Joke_Walking_No_2",
+            "line":["Do not bother me."]
+        },
+        {
+            "key":"Nerd_Joke_Walking_Sec_No_0",
+            "line":["Real Bad Guy."]
+        },
+        {
+            "key":"Nerd_Joke_Walking_Sec_No_1",
+            "line":["Do not bother me."]
+        },
+        {
+            "key":"Nerd_Joke_Walking_Sec_No_2",
+            "line":["Do not bother me."]
+        },
+        {
+            "key":"Nerd_Question_Toilet_0",
+            "line":["Sorry, can I go to the toilet?"]
+        },
+        {
+            "key":"Nerd_Question_Sink_0",
+            "line":["Sorry, can I go to the sink?"]
+        },
+        {
+            "key":"Nerd_Question_Outside_0",
+            "line":["Sorry, can I go outside?"]
+        },
+        {
+            "key":"Nerd_Answer_Yes_0",
+            "line":["Thank you teacher!"]
+        },
+        {
+            "key":"Nerd_Answer_No_0",
+            "line":["But… Ok…"]
+        },
+        {
+            "key":"Nerd_Execute_0",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Nerd_Execute_1",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
+            "key":"Nerd_Execute_2",
+            "line":["No, no, please, I’ll do everything"]
+        },
+        {
             "key":"Dictionary_Air",
             "line":["Air"]
         },
@@ -1017,5 +2153,149 @@
             "key":"Menu_Main_Exit",
             "line":["Exit"]
         },
+        {
+            "key":"Report_Executed_Right_0",
+            "line":["This student have cheated"]
+        },
+        {
+            "key":"Report_Executed_Wrong_0",
+            "line":["This student haven't cheated"]
+        },
+        {
+            "key":"Report_Answered_Right_0",
+            "line":["You have answered correctly to this student"]
+        },
+        {
+            "key":"Report_Answered_Wrong_0",
+            "line":["You have answered incorrectly to this student"]
+        },
+        {
+            "key":"Report_Answered_No_Answer_0",
+            "line":["You haven't answered the student"]
+        },
+        {
+            "key":"Hint_Talk_Good_0",
+            "line":["To make fun of the student"]
+        },
+        {
+            "key":"Hint_Talk_Bad_0",
+            "line":["To bully student"]
+        },
+        {
+            "key":"Hint_Answer_Yes_0",
+            "line":["To answer \"Yes\" to the student"]
+        },
+        {
+            "key":"Hint_Answer_No_0",
+            "line":["To answer \"No\" to the student"]
+        },
+        {
+            "key":"Hint_Action_0",
+            "line":["To Interact"]
+        },
+        {
+            "key":"Hint_Zoom_0",
+            "line":["To zoom"]
+        },
+        {
+            "key":"Hint_Shout_0",
+            "line":["To shout at everyone"]
+        },
+        {
+            "key":"Hint_Hud_0",
+            "line":["To see the remaining time"]
+        },
+        {
+            "key":"Hint_Execute_0",
+            "line":["To \"Execute\" student"]
+        },
+        {
+            "key":"Hint_Move_0",
+            "line":["To move"]
+        },
+        {
+            "key":"Hint_Rotate_0",
+            "line":["To look around"]
+        },
+        {
+            "key":"Hint_Run_0",
+            "line":["To run"]
+        },
+        {
+            "key":"Hint_Crouch_0",
+            "line":["To crouch"]
+        },
+        {
+            "key":"Hint_Menu_0",
+            "line":["To enter the menu"]
+        },
+        {
+            "key":"Hint_Press_0",
+            "line":["Press"]
+        },
+        {
+            "key":"Exam_Part_0",
+            "line":["Exam will start soon"]
+        },
+        {
+            "key":"Exam_Part_1",
+            "line":["Preparation has begun"]
+        },
+        {
+            "key":"Exam_Part_2",
+            "line":["Exam has begun"]
+        },
+        {
+            "key":"Exam_Part_3",
+            "line":["Exam is OVER"]
+        },
+        {
+            "key":"Tutorial_1_Introdaction_Home_0",
+            "line":["Home"]
+        },
+        {
+            "key":"Tutorial_1_Introdaction_Home_1",
+            "line":["Our time"]
+        },
+        {
+            "key":"Tutorial_1_Introdaction_Training_0",
+            "line":["ACASH Examiners Training Center"]
+        },
+        {
+            "key":"Tutorial_1_Introdaction_Training_1",
+            "line":["10 years ago"]
+        },
+        {
+            "key":"Level_1_Introdaction_0",
+            "line":["ACASH Exam Center"]
+        },
+        {
+            "key":"Level_1_Introdaction_1",
+            "line":["Day 0 - Exam 1"]
+        },
+        {
+            "key":"Tutorial_2_Introdaction_0",
+            "line":["ACASH Examiners Training Center"]
+        },
+        {
+            "key":"Tutorial_2_Introdaction_1",
+            "line":["10 years ago"]
+        },
+        {
+            "key":"Level_2_Introdaction_0",
+            "line":["ACASH Exam Center"]
+        },
+        {
+            "key":"Level_2_Introdaction_1",
+            "line":["Day 0 - Exam 2"]
+        },
+        {
+            "key":"Level_2_Thanks_0",
+            "line":["Thank you for playing in ACASH"]
+        },
+        {
+            "key":"Level_2_Thanks_1",
+            "line":["Your feedback will help make the game better."]
+        }
     ]
 }

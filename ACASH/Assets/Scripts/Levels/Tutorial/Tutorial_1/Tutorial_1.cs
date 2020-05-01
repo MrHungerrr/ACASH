@@ -100,6 +100,7 @@ public class Tutorial_1 : A_Level
     private IEnumerator ElevatorRoom()
     {
         Player.get.Move.Position(Elevator.get.position);
+        Player.get.Talk.DenyAll();
 
         key *= "Begining";
 
@@ -141,6 +142,7 @@ public class Tutorial_1 : A_Level
 
         while (!Elevator.get.open)
             yield return new WaitForEndOfFrame();
+
     }
 
 
@@ -172,7 +174,6 @@ public class Tutorial_1 : A_Level
             yield return new WaitForEndOfFrame();
 
 
-        Player.get.Talk.DenyAll();
         Player.get.Talk.all_controll = false;
 
         SubtitleManager.get.Say(key);

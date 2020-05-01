@@ -58,8 +58,10 @@ public abstract class A_Sound3D: A_Sound2D
     {
         if (active)
         {
+            /*
             if (OcclusionCalculate() && OcclusionUpdate != null)
                 OcclusionUpdate(occlusion);
+                */
 
             base.Update();
         }
