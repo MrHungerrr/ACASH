@@ -5,9 +5,9 @@ namespace Excel_to_json
 {
     class Program
     {
-        static string filesPath = "D:/GameDev/Unity/ACASH/ACASH/Assets/Resources/";
-        static string excelPath = "D:/GameDev/Unity/ACASH/Docs/";
-        static string audioPath = "D:/GameDev/Unity/ACASH/ACASH/FMOD/Assets/Voice/";
+        static string filesPath = "D:/GameDev/Unity/ACASH/Project_ACASH/Assets/Resources/";
+        static string excelPath = "D:/GameDev/Unity/ACASH/Other/Docs/";
+        static string audioPath = "D:/GameDev/Unity/ACASH/Project_ACASH/FMOD/Assets/Voice/";
         static string[] nameOfFiles = new string[2] { "Script", "AudioDuration"};
 
         static void Main(string[] args)
