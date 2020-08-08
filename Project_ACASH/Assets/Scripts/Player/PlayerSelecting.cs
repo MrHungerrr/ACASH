@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerSelecting
 {
-    public Reasons active { get;}
+    public Reason active { get;}
 
     private LayerMask select_layer_mask;
     private LayerMask sight_layer_mask;
@@ -12,13 +12,13 @@ public class PlayerSelecting
 
 
     public bool selected { get; private set; }
-    private I_ObjectSelect select;
+    private IObjectSelect select;
     public GameObject selected_obj { get; private set; }
 
 
     public PlayerSelecting()
     {
-        active = new Reasons();
+        active = new Reason();
         Deselect();
 
         select_layer_mask = LayerMask.GetMask("Selectable", "Default");
@@ -31,7 +31,7 @@ public class PlayerSelecting
     {
 
         RayCasting();
-        CrossHair.get.SelectHair();
+        CrossHair.Instance.SelectHair();
 
         LookingAtScholars();
     }
@@ -108,13 +108,13 @@ public class PlayerSelecting
             {
                 if (scholar.active)
                 {
-                    Player.get.Talk.SetScholar(scholar);
+                    Player.Instance.Talk.SetScholar(scholar);
                     return true;
                 }
             }
         }
 
-        Player.get.Talk.ResetScholar();
+        Player.Instance.Talk.ResetScholar();
         return false;
     }
 

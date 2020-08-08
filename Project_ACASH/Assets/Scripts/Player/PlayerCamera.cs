@@ -6,23 +6,25 @@ using Single;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [HideInInspector]
-    public float coefSensitivity = 5;
-    private const float mouseSensitivity = 0.5f;
-    private const float gamepadSensitivity = 8f; 
+    private CinemachineVirtualCamera _cineCam;
 
-    private Player Player;
-    private CinemachineVirtualCamera cineCam;
-    private float xAxisClamp;
-    [HideInInspector]
-    public Vector2 rotateInput;
-    private Vector2 rotate;
-    [HideInInspector]
-    public bool zoom { get; private set; } = false;
-    private bool zooming;
-    private float normFOV = 70;
-    private float zoomFOV = 15;
-    private float FOV;
+    private const float MOUSE_SENSITIVITY = 1f;
+    private const float GAMEPAD_SENSITIVITY = 8f; 
+
+    private Vector2 _rotateInput;
+    private Vector2 _rotate;
+    private float _xAxisClamp;
+
+    private bool _zoom;
+    private bool _zooming;
+
+    private float _FOV;
+    private const float NORM_FOV = 70;
+    private const float ZOOM_FOV = 15;
+
+
+
+
 
 
 
@@ -30,12 +32,10 @@ public class PlayerCamera : MonoBehaviour
     public void Setup(Player Player)
     {
         LockCursor(true);
-        xAxisClamp = 0.0f;
+        _xAxisClamp = 0.0f;
 
-        cineCam = GetComponent<CinemachineVirtualCamera>();
-        cineCam.m_Lens.FieldOfView = normFOV;
-
-        this.Player = Player;
+        _cineCam = GetComponent<CinemachineVirtualCamera>();
+        _cineCam.m_Lens.FieldOfView = NORM_FOV;
     }
 
 
@@ -50,47 +50,50 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         CameraRotation();
-        if (zoom || zooming)
+        if (_zoom || _zooming)
             Zoom();
     }
 
     private void CameraRotation()
     {
-        if (rotateInput != Vector2.zero)
+        if (_rotateInput != Vector2.zero)
         {
-            switch (InputManager.get.inputType)
+            RotateCalculate();
+
+            _xAxisClamp += _rotate.y;
+
+            if (_xAxisClamp > 90.0f)
             {
-                case "keyboard":
-                    {
-                        rotate = rotateInput * Time.deltaTime * (mouseSensitivity + (mouseSensitivity * coefSensitivity));
-                        break;
-                    }
-                default:
-                    {
-                        rotate = rotateInput * Time.deltaTime * (gamepadSensitivity + (gamepadSensitivity * coefSensitivity));
-                        break;
-                    }
-            }
-
-
-
-            xAxisClamp += rotate.y;
-
-            if (xAxisClamp > 90.0f)
-            {
-                xAxisClamp = 90.0f;
-                rotate.y = 0.0f;
+                _xAxisClamp = 90.0f;
+                _rotate.y = 0.0f;
                 ClampXAxisRotationToValue(270.0f);
             }
-            else if (xAxisClamp < -90.0f)
+            else if (_xAxisClamp < -90.0f)
             {
-                xAxisClamp = -90.0f;
-                rotate.y = 0.0f;
+                _xAxisClamp = -90.0f;
+                _rotate.y = 0.0f;
                 ClampXAxisRotationToValue(90.0f);
             }
 
-            transform.Rotate(Vector3.left * rotate.y);
-            Player.Move.rotateAngle += rotate.x;
+            transform.Rotate(Vector3.left * _rotate.y);
+            Player.Instance.Move.rotateAngle += _rotate.x;
+        }
+    }
+
+    private void RotateCalculate()
+    {
+        switch (InputManager.InputType)
+        {
+            case InputManager.Input.Keyboard:
+                {
+                    _rotate = _rotateInput * Time.deltaTime * (MOUSE_SENSITIVITY + (MOUSE_SENSITIVITY * PlayerSettings.SensetivityCoef));
+                    break;
+                }
+            default:
+                {
+                    _rotate = _rotateInput * Time.deltaTime * (GAMEPAD_SENSITIVITY + (GAMEPAD_SENSITIVITY * PlayerSettings.SensetivityCoef));
+                    break;
+                }
         }
     }
 
@@ -103,15 +106,21 @@ public class PlayerCamera : MonoBehaviour
 
 
 
+    public void RotateInput(Vector2 input)
+    {
+        _rotateInput = input;
+    }
+
+
     public void Zoom(bool option)
     {
-        zoom = option;
-        zooming = true;
+        _zoom = option;
+        _zooming = true;
 
         if (option)
-            Player.Select.Disable(this.GetType());
+            Player.Instance.Select.Disable(this.GetType());
         else
-            Player.Select.Enable(this.GetType());
+            Player.Instance.Select.Enable(this.GetType());
 
     }
 
@@ -120,31 +129,25 @@ public class PlayerCamera : MonoBehaviour
 
     private void Zoom()
     {
-        if(zoom)
+        if(_zoom)
         {
-            FOV = Mathf.Lerp(cineCam.m_Lens.FieldOfView, zoomFOV, 4 * Time.deltaTime);
+            _FOV = Mathf.Lerp(_cineCam.m_Lens.FieldOfView, ZOOM_FOV, 4 * Time.deltaTime);
         }
         else
         {
-            FOV = Mathf.Lerp(cineCam.m_Lens.FieldOfView, normFOV, 4 * Time.deltaTime);
+            _FOV = Mathf.Lerp(_cineCam.m_Lens.FieldOfView, NORM_FOV, 4 * Time.deltaTime);
         }
-        cineCam.m_Lens.FieldOfView = FOV;
+        _cineCam.m_Lens.FieldOfView = _FOV;
 
 
-        if((normFOV - FOV) < 0.01f)
+        if((NORM_FOV - _FOV) < 0.01f)
         {
-            zooming = false;
+            _zooming = false;
         }
     }
-
-    public void Sensitivity(int coef)
-    {
-        coefSensitivity = coef*2;
-    }
-    
 
     public void Enable(bool option)
     {
-        cineCam.enabled = option;
+        _cineCam.enabled = option;
     }
 }

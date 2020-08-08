@@ -153,7 +153,7 @@ public class ScholarHUD
 
     private void Rotate()
     {
-        HUD.rotation = BaseGeometry.GetQuaternionToY(HUD, Player.get.Camera.transform.position);
+        HUD.rotation = BaseGeometry.GetQuaternionToY(HUD, Player.Instance.Camera.transform.position);
     }
 
 

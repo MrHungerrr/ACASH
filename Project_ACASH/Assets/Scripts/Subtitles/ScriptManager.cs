@@ -4,7 +4,7 @@ using UnityEngine;
 using Single;
 
 
-public class ScriptManager : Singleton<ScriptManager>
+public class ScriptManager : MonoSingleton<ScriptManager>
 {
     private Dictionary<string, string[]> lines = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
     private Dictionary<string, float[]> durations = new Dictionary<string, float[]>();

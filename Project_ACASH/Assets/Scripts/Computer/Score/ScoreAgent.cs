@@ -32,7 +32,7 @@ public class ScoreAgent : MonoBehaviour
 
         score_lines = new Dictionary<ScoreManager.scores_names, ScoreLine>();
 
-        for (int i = 0; i < ScoreManager.get.scores_length; i++)
+        for (int i = 0; i < ScoreManager.Instance.scores_length; i++)
         {
             ScoreManager.scores_names score = (ScoreManager.scores_names)i;
 
@@ -56,20 +56,20 @@ public class ScoreAgent : MonoBehaviour
 
     public void SetScore()
     {
-        for (int i = 0; i < ScoreManager.get.scores_length; i++)
+        for (int i = 0; i < ScoreManager.Instance.scores_length; i++)
         {
             GetScoreLine(i).SetScore(GetScore(i));
         }
 
-        amount.AmountSet(ScoreManager.get.reputation_amount);
-        total.TotalSet(ScoreManager.get.reputation);
+        amount.AmountSet(ScoreManager.Instance.reputation_amount);
+        total.TotalSet(ScoreManager.Instance.reputation);
     }
 
 
 
     private ScoreItem GetScore(int i)
     {
-        return ScoreManager.get.GetScore(i);
+        return ScoreManager.Instance.GetScore(i);
     }
 
     private ScoreLine GetScoreLine(int i)

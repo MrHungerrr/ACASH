@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Single;
+using PostProcessing;
 
 
-public class Menu : Singleton<Menu>
+public class Menu : MonoSingleton<Menu>
 {
     private bool state;
 
@@ -46,13 +47,13 @@ public class Menu : Singleton<Menu>
     public void MenuEnable(bool option)
     {
         state = option;
-        PostProcessManager.get.Blur(option);
-        SoundManager.get.Pause(option);
+        PostProcessActions.Instance.Blur(option);
+        SoundManager.Instance.Pause(option);
 
         if (option)
         {
             Time.timeScale = 0;
-            MenuAgent.get.Set("Pause");
+            MenuAgent.Instance.Set("Pause");
             InputType();
         }
         else
@@ -63,7 +64,7 @@ public class Menu : Singleton<Menu>
 
             if (current_menu != null)
             {
-                MenuAgent.get.Disable(current_menu);
+                MenuAgent.Instance.Disable(current_menu);
             }
         }
     }
@@ -73,7 +74,7 @@ public class Menu : Singleton<Menu>
         Time.timeScale = 0;
 
         state = true;
-        MenuAgent.get.Set("Main Menu");
+        MenuAgent.Instance.Set("Main Menu");
 
         InputType();
     }
@@ -100,14 +101,14 @@ public class Menu : Singleton<Menu>
 
     public void Enter()
     {
-        MenuAgent.get.Enter(select_name);
+        MenuAgent.Instance.Enter(select_name);
     }
 
 
 
     public void Escape()
     {
-        MenuAgent.get.Escape(current_menu);
+        MenuAgent.Instance.Escape(current_menu);
     }
 
 
@@ -188,11 +189,11 @@ public class Menu : Singleton<Menu>
 
                 if (moveInput.x > 0)
                 {
-                    SettingsManager.get.SwtichSettings(true);
+                    SettingsManager.Instance.SwtichSettings(true);
                 }
                 else
                 {
-                    SettingsManager.get.SwtichSettings(false);
+                    SettingsManager.Instance.SwtichSettings(false);
                 }
 
 
@@ -203,9 +204,9 @@ public class Menu : Singleton<Menu>
 
     public void MoveCD()
     {
-        switch (InputManager.get.inputType)
+        switch (InputManager.InputType)
         {
-            case "keyboard":
+            case InputManager.Input.Keyboard:
                 {
                     move_cd = move_const_keyboard_cd;
                     break;
@@ -224,15 +225,15 @@ public class Menu : Singleton<Menu>
     {
         if (state)
         {
-            switch (InputManager.get.inputType)
+            switch (InputManager.InputType)
             {
-                case "playstation":
+                case InputManager.Input.Playstation:
                     {
                         Cursor.lockState = CursorLockMode.Locked;
                         Cursor.visible = false;
                         break;
                     }
-                case "xbox":
+                case InputManager.Input.Xbox:
                     {
                         Cursor.lockState = CursorLockMode.Locked;
                         Cursor.visible = false;

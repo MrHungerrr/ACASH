@@ -43,35 +43,35 @@ public static class SettingsBlanks
 
     private static void Main()
     {
-        Language(SettingsManager.get.settings_current["Language"]);
-        VoiceLanguage(SettingsManager.get.settings_current["Voice Language"]);
-        Subtitles(SettingsManager.get.settings_current["Subtitles"]);
+        Language(SettingsManager.Instance.settings_current["Language"]);
+        VoiceLanguage(SettingsManager.Instance.settings_current["Voice Language"]);
+        Subtitles(SettingsManager.Instance.settings_current["Subtitles"]);
     }
 
     private static void Language(int option)
     {
-        string language = SettingsManager.get.settings["Language"][option];
+        string language = SettingsManager.Instance.settings["Language"][option];
         Debug.Log("Язык - " + language);
 
         language = LanguageHelper.Get2LetterFromFullWord(language);
-        ScriptManager.get.SwitchLanguageText(language);
+        ScriptManager.Instance.SwitchLanguageText(language);
     }
 
     private static void VoiceLanguage(int option)
     {
-        string language = SettingsManager.get.settings["Voice Language"][option];
+        string language = SettingsManager.Instance.settings["Voice Language"][option];
         Debug.Log("Язык - " + language);
 
         language = LanguageHelper.Get2LetterFromFullWord(language);
-        ScriptManager.get.SwitchLanguageVoice(language);
+        ScriptManager.Instance.SwitchLanguageVoice(language);
     }
 
     private static void Subtitles(int option)
     {
         if (option == 0)
-            HUDManager.get.SubtitleDisable(false);
+            HUDManager.Instance.SubtitleDisable(false);
         else
-            HUDManager.get.SubtitleDisable(true);
+            HUDManager.Instance.SubtitleDisable(true);
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Gameplay Settings 
@@ -80,21 +80,12 @@ public static class SettingsBlanks
 
     private static void Gameplay()
     {
-        Sensitivity(SettingsManager.get.settings_current["Sensitivity"]);
-        Crouch(SettingsManager.get.settings_current["Crouch"]);
+        Sensitivity(SettingsManager.Instance.settings_current["Sensitivity"]);
     }
 
     private static void Sensitivity(int option)
     {
-        Player.get.Camera.Sensitivity(option);
-    }
-
-    private static void Crouch(int option)
-    {
-        if (option == 0)
-            InputManager.get.hold_crouch = true;
-        else
-            InputManager.get.hold_crouch = false;
+        PlayerSettings.Sensetivity(option);
     }
 
 
@@ -105,10 +96,10 @@ public static class SettingsBlanks
 
     private static void Sound()
     {
-        VolumeGeneral(SettingsManager.get.settings_current["Volume General"]);
-        VolumeVoice(SettingsManager.get.settings_current["Volume Voice"]);
-        VolumeMusic(SettingsManager.get.settings_current["Volume Music"]);
-        VolumeSFX(SettingsManager.get.settings_current["Volume SFX"]);
+        VolumeGeneral(SettingsManager.Instance.settings_current["Volume General"]);
+        VolumeVoice(SettingsManager.Instance.settings_current["Volume Voice"]);
+        VolumeMusic(SettingsManager.Instance.settings_current["Volume Music"]);
+        VolumeSFX(SettingsManager.Instance.settings_current["Volume SFX"]);
     }
 
     private static void VolumeGeneral(int option)
@@ -145,8 +136,8 @@ public static class SettingsBlanks
 
     private static void Video()
     {
-        SetResolution(SettingsManager.get.settings_current["Resolution"]);
-        ScreenType(SettingsManager.get.settings_current["Screen Mode"]);
+        SetResolution(SettingsManager.Instance.settings_current["Resolution"]);
+        ScreenType(SettingsManager.Instance.settings_current["Screen Mode"]);
     }
 
     private static void SetResolution(int option)

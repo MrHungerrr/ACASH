@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, I_Interaction
+public class Door : MonoBehaviour, IInteraction
 {
 
     private bool active = false;
@@ -69,22 +69,14 @@ public class Door : MonoBehaviour, I_Interaction
         if (!open)
         {
             open = true;
-
-            if (Player.get.Move.type_movement != PlayerMove.movement.Crouch)
-            {
-                DoorInteract(Player.get.Move.Position());
-            }
-            else
-            {
-                DoorQuietInteract(Player.get.Move.Position());
-            }
+            DoorInteract(Player.Instance.Move.Position());
         }
         else
         {
             Close();
         }
 
-        Player.get.Action.Doing(false);
+        Player.Instance.Action.Doing(false);
     }
 
 
@@ -110,7 +102,7 @@ public class Door : MonoBehaviour, I_Interaction
                 TargetRotate(-90);
             }
 
-            ScholarManager.get.SpecialHear(doorT.position);
+            ScholarManager.Instance.SpecialHear(doorT.position);
             Sound.Play(DoorSounds.sounds.Open);
             changing = true;
         }
@@ -161,7 +153,7 @@ public class Door : MonoBehaviour, I_Interaction
                 {
                     close_time -= Time.deltaTime;
                 }
-                else if(Vector3.Distance(doorT.position, Player.get.transform.position) > close_distance)
+                else if(Vector3.Distance(doorT.position, Player.Instance.transform.position) > close_distance)
                 {
                     close_time = close_time_cd;
                     Close();
@@ -181,15 +173,15 @@ public class Door : MonoBehaviour, I_Interaction
         int i;
         in_range = false;
 
-        for(i = 0; i < ScholarManager.get.scholars.Length; i++)
+        for(i = 0; i < ScholarManager.Instance.scholars.Length; i++)
         {
             try
             { 
-                if (Vector3.Distance(doorT.position, ScholarManager.get.scholars[i].transform.position) < 0.3f)
+                if (Vector3.Distance(doorT.position, ScholarManager.Instance.scholars[i].transform.position) < 0.3f)
                 {
                     if (!open)
                     {
-                        if (Mathf.Abs(BaseGeometry.LookingAngle2D(ScholarManager.get.scholars[i].Move.transform, doorT.position)) < 60)
+                        if (Mathf.Abs(BaseGeometry.LookingAngle2D(ScholarManager.Instance.scholars[i].Move.transform, doorT.position)) < 60)
                         {
                             in_range = true;
                             break;
@@ -210,7 +202,7 @@ public class Door : MonoBehaviour, I_Interaction
 
         if (in_range && !open && !scholar_open)
         {
-            DoorInteract(ScholarManager.get.scholars[i].Move.Position());
+            DoorInteract(ScholarManager.Instance.scholars[i].Move.Position());
 
             scholar_open = true;
         }

@@ -49,7 +49,7 @@ public class ScholarQuestions
     {
         if ((question_t > 0 || Scholar.Senses.T_look_at_us))
         {
-            Scholar.Move.SetRotateGoal(Player.get.transform.position);
+            Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
 
             if (!Scholar.Talk.talking && !Scholar.Senses.T_look_at_us)
             {

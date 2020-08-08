@@ -5,7 +5,7 @@ using Single;
 
 
 
-public class SubtitleManager : Singleton<SubtitleManager>
+public class SubtitleManager : MonoSingleton<SubtitleManager>
 {
     private SubtitleHUDController subPlay;
     private KeyWord last_key;
@@ -43,12 +43,12 @@ public class SubtitleManager : Singleton<SubtitleManager>
 
     private IEnumerator PlaySub(KeyWord key_word)
     {
-        HUDManager.get.SubtitleHUD(true);
+        HUDManager.Instance.SubtitleHUD(true);
         act = true;
         last_key = key_word;
 
-        var script = ScriptManager.get.GetText(key_word);
-        var duration = ScriptManager.get.GetFloat(key_word);
+        var script = ScriptManager.Instance.GetText(key_word);
+        var duration = ScriptManager.Instance.GetFloat(key_word);
 
         VoiceManager.get.Play(key_word);
 
@@ -63,7 +63,7 @@ public class SubtitleManager : Singleton<SubtitleManager>
             subPlay.Clear();
         }
 
-        HUDManager.get.SubtitleHUD(false);
+        HUDManager.Instance.SubtitleHUD(false);
 
         act = false;
 

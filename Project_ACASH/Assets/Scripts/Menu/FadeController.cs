@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using Single;
 
-public class FadeController : Singleton<FadeController>
+public class FadeController : MonoSingleton<FadeController>
 {
     [HideInInspector]
     public bool active;

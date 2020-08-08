@@ -6,7 +6,7 @@ using UnityEngine;
 using Cinemachine;
 
 
-public class TeacherComputerController: MonoBehaviour, I_Interaction
+public class TeacherComputerController: MonoBehaviour, IInteraction
 {
     [HideInInspector]
     public TeacherComputer Computer { get; private set; }
@@ -69,7 +69,7 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
     {
         Enable(true);
 
-        Player.get.Action.Doing(false);
+        Player.Instance.Action.Doing(false);
     }
 
 
@@ -81,19 +81,19 @@ public class TeacherComputerController: MonoBehaviour, I_Interaction
             Cam.transform.rotation = normRotation;
             FOV = normFOV;
             Cam.m_Lens.FieldOfView = FOV;
-            ComputerManager.get.Set(this);
-            Player.get.Select.active.Add(this.GetType());
+            ComputerManager.Instance.Set(this);
+            Player.Instance.Select.active.Add(this.GetType());
         }
         else
         {
             moving = false;
             zooming = false;
-            Player.get.Select.active.Remove(this.GetType());
+            Player.Instance.Select.active.Remove(this.GetType());
         }
 
         active = option;
         Computer.Col.enabled = option;
-        Player.get.Camera.Enable(!option);
+        Player.Instance.Camera.Enable(!option);
         Cam.enabled = option;
     }
 

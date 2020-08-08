@@ -11,14 +11,14 @@ public static class PlayerCheat
 
         if (scholar.Cheat.IsTryToCheat())
         {
-            ScoreManager.get.Plus(ScoreManager.scores_names.Executed_Right);
+            ScoreManager.Instance.Plus(ScoreManager.scores_names.Executed_Right);
             key += "Executed_Right";
         }
         else
         {
-            ScoreManager.get.Plus(ScoreManager.scores_names.Executed_Wrong);
+            ScoreManager.Instance.Plus(ScoreManager.scores_names.Executed_Wrong);
             key += "Executed_Wrong";
-            HUDManager.get.ReportHUD(key);
+            HUDManager.Instance.ReportHUD(key);
         }
 
 
@@ -33,12 +33,12 @@ public static class PlayerCheat
 
         if (answer)
         {
-            ScoreManager.get.Plus(ScoreManager.scores_names.Answered_Right);
+            ScoreManager.Instance.Plus(ScoreManager.scores_names.Answered_Right);
             key += "Answered_Right";
         }
         else
         {
-            ScoreManager.get.Plus(ScoreManager.scores_names.Answered_Wrong);
+            ScoreManager.Instance.Plus(ScoreManager.scores_names.Answered_Wrong);
 
             if (scholar.Question.question_answered)
             {
@@ -50,7 +50,7 @@ public static class PlayerCheat
             }
         }
 
-        HUDManager.get.ReportHUD(key);
+        HUDManager.Instance.ReportHUD(key);
 
         //Report(key_buf);
         //Вставить показывание очков за действие.
@@ -61,6 +61,6 @@ public static class PlayerCheat
     {
         yield return new WaitForSeconds(2f);
 
-        HUDManager.get.ReportHUD(key);
+        HUDManager.Instance.ReportHUD(key);
     }
 }

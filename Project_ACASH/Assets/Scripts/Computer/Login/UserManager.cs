@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Single;
 
-public class UserManager : Singleton<UserManager>
+public class UserManager : MonoSingleton<UserManager>
 {
     [SerializeField] 
     private User[] users;

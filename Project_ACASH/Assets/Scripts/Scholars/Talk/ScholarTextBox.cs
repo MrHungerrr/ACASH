@@ -104,7 +104,7 @@ public class ScholarTextBox : MonoBehaviour
     private IEnumerator PlaySub(KeyWord key_word)
     {
         act = true;
-        var script = ScriptManager.get.GetText(key_word);
+        var script = ScriptManager.Instance.GetText(key_word);
 
         if (script != null)
         {

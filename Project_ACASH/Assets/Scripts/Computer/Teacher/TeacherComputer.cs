@@ -21,12 +21,7 @@ public class TeacherComputer : A_Computer
         Controller = GetComponent<TeacherComputerController>();
         Controller.Setup();
 
-        ExamManager.get.ExamDone.AddListener(ExamDone);
-    }
-
-    public override void SetScholars()
-    {
-        base.SetScholars();
+        ExamManager.Instance.ExamDone.AddListener(ExamDone);
     }
 
 

@@ -50,7 +50,7 @@ public class LoginController : MonoBehaviour
 
         try
         {
-            user = UserManager.get.login_user[login.text];
+            user = UserManager.Instance.login_user[login.text];
         }
         catch
         {

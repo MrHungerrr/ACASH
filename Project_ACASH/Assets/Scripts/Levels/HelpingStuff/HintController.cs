@@ -47,7 +47,7 @@ public class HintController: MonoBehaviour
 
         key_word *= action.ToString();
         key_word += 0;
-        string text = ScriptManager.get.GetLine(key_word);
+        string text = ScriptManager.Instance.GetLine(key_word);
         information.text = text;
 
         Sprite buf = Resources.Load<Sprite>("Keys/Keyboard/" + action.ToString());

@@ -26,8 +26,6 @@ public abstract class A_Computer : MonoBehaviour
     public TextController Text;
     [HideInInspector]
     public ComputerSounds Sound;
-    [HideInInspector]
-    public OverwatchCameraController Overwatch;
 
     [HideInInspector]
     public string command;
@@ -51,9 +49,6 @@ public abstract class A_Computer : MonoBehaviour
         SS = win.GetComponent<StudentStress>();
         SS.Setup();
 
-        Overwatch = win.GetComponent<OverwatchCameraController>();
-        Overwatch.Setup();
-
         Windows = win.GetComponent<ComputerWindows>();
         Windows.Setup(this);
 
@@ -70,11 +65,6 @@ public abstract class A_Computer : MonoBehaviour
 
         Commands = new ComputerCommands(this);
 
-    }
-
-    public virtual void SetScholars()
-    {
-        //SS.SetScholars();
     }
 
     protected void ExecuteCommand()

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using Single;
 
 
-public class LevelSettings: Singleton<LevelSettings>
+public class LevelSettings: MonoSingleton<LevelSettings>
 {
     public enum difficultyes
     {
@@ -12,19 +12,16 @@ public class LevelSettings: Singleton<LevelSettings>
         Hard
     }
 
-    private enum next_exam_mode
+    private enum nextExamMode
     {
         Auto,
         Manual,
     }
 
 
-
-
-
     public difficultyes difficultyType;
     [SerializeField]
-    private next_exam_mode nextExam;
+    private nextExamMode nextExam;
 
     [HideInInspector]
     public UnityEvent ExamNext;
@@ -42,16 +39,16 @@ public class LevelSettings: Singleton<LevelSettings>
     private int exam_index;
 
 
-    public void Setup()
+    public void SetLevel()
     {
         switch(nextExam)
         {
-            case next_exam_mode.Auto:
+            case nextExamMode.Auto:
                 {
-                    ExamNext.AddListener(ExamManager.get.ResetExam);
+                    ExamNext.AddListener(ExamManager.Instance.ResetExam);
                     break;
                 }
-            case next_exam_mode.Manual:
+            case nextExamMode.Manual:
                 {
                     break;
                 }

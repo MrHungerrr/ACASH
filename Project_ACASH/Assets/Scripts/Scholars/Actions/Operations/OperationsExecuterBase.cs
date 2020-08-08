@@ -108,7 +108,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     protected void WatchTo(PlaceManager.place place, int index)
     {
-        Watch(PlaceManager.get.GetSightGoal(place, index));
+        Watch(PlaceManager.Instance.GetSightGoal(place, index));
     }
 
     protected void Watch(Vector3 target)
@@ -150,7 +150,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     public void GoTo(PlaceManager.place place)
     {
-        int index = PlaceManager.get.GetRandomFreePlaceIndex(place);
+        int index = PlaceManager.Instance.GetRandomFreePlaceIndex(place);
         GoTo(place, index);
     }
 
@@ -300,17 +300,17 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     public bool VerifyToiletAreFree()
     {
-        return PlaceManager.get.IsFree(PlaceManager.place.Toilet);
+        return PlaceManager.Instance.IsFree(PlaceManager.place.Toilet);
     }
 
     public bool VerifySinkAreFree()
     {
-        return PlaceManager.get.IsFree(PlaceManager.place.Sink);
+        return PlaceManager.Instance.IsFree(PlaceManager.place.Sink);
     }
 
     public bool VerifyOutsideAreFree()
     {
-        return PlaceManager.get.IsFree(PlaceManager.place.Outside);
+        return PlaceManager.Instance.IsFree(PlaceManager.place.Outside);
     }
 
     public bool VerifyTeacherIsHere()

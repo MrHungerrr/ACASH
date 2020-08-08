@@ -51,16 +51,12 @@ public class ScholarTeacherCalculate
     {
         IsTeacherBehindWall();
 
-        if (Player.get.Camera.zoom)
-            look_coef = 2;
-        else
-            look_coef = 1;
 
-        looking_angle_y = BaseGeometry.LookingAngle2D(Player.get.transform, Scholar.Move.transform.position);
-        looking_angle_x = (Player.get.Camera.transform.rotation.eulerAngles.x + 30) % 360;
+        looking_angle_y = BaseGeometry.LookingAngle2D(Player.Instance.transform, Scholar.Move.transform.position);
+        looking_angle_x = (Player.Instance.Camera.transform.rotation.eulerAngles.x + 30) % 360;
 
-        distance = Vector3.Distance(Scholar.Move.Position(), Player.get.Move.Position());
-        angle_to = BaseGeometry.LookingAngle2D(Scholar.Move.transform, Player.get.Move.Position());
+        distance = Vector3.Distance(Scholar.Move.Position(), Player.Instance.Move.Position());
+        angle_to = BaseGeometry.LookingAngle2D(Scholar.Move.transform, Player.Instance.Move.Position());
 
         //Debug.Log("Distance to Teacher: " + distance);
         //Debug.Log("Angle to Teacher: " + angle_to);
@@ -70,7 +66,7 @@ public class ScholarTeacherCalculate
 
     private void IsTeacherBehindWall()
     {
-        direction = BaseGeometry.GetDirection2D(Scholar.Move.Position(), Player.get.Move.Position());
+        direction = BaseGeometry.GetDirection2D(Scholar.Move.Position(), Player.Instance.Move.Position());
 
         RaycastHit hit;
 

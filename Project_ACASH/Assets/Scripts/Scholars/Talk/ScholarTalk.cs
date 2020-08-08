@@ -100,7 +100,7 @@ public class ScholarTalk
                     if (Scholar.TextBox.IsTalking())
                     {
 
-                        Scholar.Move.SetRotateGoal(Player.get.transform.position);
+                        Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
 
                         if (!Scholar.TextBox.act && !Scholar.Select.selectable)
                             Scholar.Select.Selectable(true);
@@ -120,7 +120,7 @@ public class ScholarTalk
                 {
                     if (Scholar.TextBox.IsTalking())
                     {
-                        Scholar.Move.SetRotateGoal(Player.get.transform.position);
+                        Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
                     }
                     else
                     {
@@ -134,7 +134,7 @@ public class ScholarTalk
                 {
                     if (Scholar.TextBox.IsTalking())
                     {
-                        Scholar.Move.SetRotateGoal(Player.get.transform.position);
+                        Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
 
                         if (!Scholar.TextBox.act && !Scholar.Select.selectable)
                             Scholar.Select.Selectable(true);

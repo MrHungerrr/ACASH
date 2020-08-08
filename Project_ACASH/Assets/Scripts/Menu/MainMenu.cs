@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Single;
 
-public class MainMenu : Singleton<MainMenu>
+public class MainMenu : MonoSingleton<MainMenu>
 {
 
 

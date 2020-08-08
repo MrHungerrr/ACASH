@@ -38,7 +38,7 @@ public class SliderController: MonoBehaviour, IPointerEnterHandler
 
     private void OnEnable()
     {
-        number = SettingsManager.get.settings_current[section.name];
+        number = SettingsManager.Instance.settings_current[section.name];
         SetValue();
     }
 
@@ -47,15 +47,15 @@ public class SliderController: MonoBehaviour, IPointerEnterHandler
         if (u)
         {
             select_image.enabled = false;
-            SettingsManager.get.slider = this;
-            SettingsManager.get.type_of_setting = "slider";
+            SettingsManager.Instance.slider = this;
+            SettingsManager.Instance.type_of_setting = "slider";
             Arrows(true);
         }
         else
         {
             select_image.enabled = true;
-            SettingsManager.get.slider = null;
-            SettingsManager.get.type_of_setting = null;
+            SettingsManager.Instance.slider = null;
+            SettingsManager.Instance.type_of_setting = null;
             SetValue();
             Arrows(false);
         }
@@ -73,7 +73,7 @@ public class SliderController: MonoBehaviour, IPointerEnterHandler
     {
         current_nomber = number;
         Select(number);
-        SettingsManager.get.settings_new[section.name] = number;    
+        SettingsManager.Instance.settings_new[section.name] = number;    
     }
 
 
@@ -121,6 +121,6 @@ public class SliderController: MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(select_image.enabled)
-            Menu.get.Select(section.menu_number);
+            Menu.Instance.Select(section.menu_number);
     }
 }

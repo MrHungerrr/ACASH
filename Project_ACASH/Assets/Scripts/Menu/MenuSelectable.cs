@@ -21,12 +21,12 @@ public class MenuSelectable : MonoBehaviour, IPointerEnterHandler, IPointerClick
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Menu.get.Select(section.menu_number);
+        Menu.Instance.Select(section.menu_number);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if(!section.settings)
-            Menu.get.Enter();
+            Menu.Instance.Enter();
     }
 }

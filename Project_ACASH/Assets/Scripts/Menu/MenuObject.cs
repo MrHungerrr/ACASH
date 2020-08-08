@@ -9,6 +9,6 @@ public class MenuObject : MonoBehaviour
 
     private void OnEnable()
     {
-        Menu.get.Set(sections, gameObject.name);
+        Menu.Instance.Set(sections, gameObject.name);
     }
 }

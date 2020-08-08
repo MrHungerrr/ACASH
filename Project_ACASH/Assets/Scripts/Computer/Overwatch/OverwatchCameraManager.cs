@@ -3,37 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using Single;
 
-public class OverwatchCameraManager : Singleton<OverwatchCameraManager>
+public class OverwatchCameraManager : MonoSingleton<OverwatchCameraManager>
 {
-    private Camera[] cameras;
+    public OverwatchCamera[] CamerasHolders => _camerasHolders;
+    public RenderTexture renderTextureReference => _reference;
+
+
+    private OverwatchCamera[] _camerasHolders;
     [SerializeField]
-    private RenderTexture reference;
-    private RenderTexture[] textures;
-    [HideInInspector]
-    public int count;
+    private RenderTexture _reference;
 
 
     public void SetLevel()
     {
-        GameObject[] buf = GameObject.FindGameObjectsWithTag("OverwatchCamera");
+        _camerasHolders = GameObject.FindObjectsOfType<OverwatchCamera>();
 
-        count = buf.Length;
-
-        cameras = new Camera[count];
-        textures = new RenderTexture[count];
-
-
-        for (int i = 0; i < count; i++)
+        if (_camerasHolders != null)
         {
-            cameras[i] = buf[i].GetComponent<Camera>();
-            textures[i] = new RenderTexture(reference);
-            cameras[i].targetTexture = textures[i];
+            for (int i = 0; i < _camerasHolders.Length; i++)
+            {
+                _camerasHolders[i].Setup();
+            }
         }
     }
 
     public RenderTexture GetTexture(int camera)
     {
-        return textures[camera];
+        return _camerasHolders[camera].Texture;
     }
 
 
@@ -41,10 +37,10 @@ public class OverwatchCameraManager : Singleton<OverwatchCameraManager>
     {
         if (camera < 0)
         {
-            return count - 1;
+            return _camerasHolders.Length - 1;
         }
 
-        if (camera >= count)
+        if (camera >= _camerasHolders.Length)
         {
             return 0;
         }

@@ -2,7 +2,7 @@
 using Single;
 
 
-public class DeskManager : Singleton<DeskManager>
+public class DeskManager : MonoSingleton<DeskManager>
 {
     private enum TypeOfSort
     {

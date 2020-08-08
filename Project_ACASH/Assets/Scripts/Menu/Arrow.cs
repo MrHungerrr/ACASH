@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        SettingsManager.get.SwtichSettings(plus);
+        SettingsManager.Instance.SwtichSettings(plus);
     }
 
 

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
-[RequireComponent(typeof(I_ObjectSelect))]
+[RequireComponent(typeof(IObjectSelect))]
 
 
-public class InteractAction : MonoBehaviour, I_Interaction
+public class InteractAction : MonoBehaviour, IInteraction
 {
     public UnityEvent OnInteraction;
 

@@ -18,7 +18,6 @@ public class PlayerMove : MonoBehaviour
 
     public enum movement
     {
-        Crouch,
         Normal,
         Run,
     }
@@ -26,14 +25,9 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public movement type_movement;
     private const int RB_coef = 2500;
-    private float crouchSpeed = 1f;
     private float normalSpeed = 2f;
     private float runSpeed = 3.5f;
-    private float crouchSound = 0.5f;
-    private float normalSound = 3f;
-    private float runSound = 5f;
     private float movementSpeed;
-    private float movementSound;
     
 
 
@@ -79,20 +73,11 @@ public class PlayerMove : MonoBehaviour
             case movement.Normal:
                 {
                     movementSpeed = normalSpeed;
-                    movementSound = normalSound;
                     break;
                 }
             case movement.Run:
                 {
                     movementSpeed = runSpeed;
-                    movementSound = runSound;
-                    break;
-                }
-            case movement.Crouch:
-                {
-                    //Присесть на корточки
-                    movementSpeed = crouchSpeed;
-                    movementSound = crouchSound;
                     break;
                 }
         }
@@ -116,8 +101,6 @@ public class PlayerMove : MonoBehaviour
         //Vector3 new_position = transform.position + new_move;
 
         RB.AddForce(new_move);
-
-        ScholarManager.get.Hear(movementSound);
 
         move = Vector3.zero;
     }

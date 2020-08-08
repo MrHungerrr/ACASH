@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace Searching
     { 
 
         //Поиск компонентов
-        private static T[] Components(Transform obj)
+        public static T[] Components(Transform obj)
         {
             List<T> list = new List<T>();
             T buf;
@@ -27,37 +27,36 @@ namespace Searching
         }
 
 
-        // Функции для использования пользователем
-        private static void Components(Transform obj, out GameObject[] array)
+        public static T[] ComponentsDown(Transform obj)
         {
-            T[] buf_array = Components(obj.transform);
-            List<GameObject> list = new List<GameObject>();
+            List<T> list = new List<T>();
 
-            foreach (T t in buf_array)
+            for (int i = 0; i < obj.childCount; i++)
             {
-                list.Add(t.gameObject);
+                list.AddRange(Components(obj.GetChild(i)));
             }
 
-            array = list.ToArray();
+            return list.ToArray();
         }
-
-        private static void Components(Transform obj, out T[] array)
-        {
-            array = Components(obj);
-        }
-
-
 
 
         //Перегрузки для GameObjects Вместо Transform
         public static void Components(GameObject obj, out T[] array)
         {
-            Components(obj.transform, out array);
+            array = Components(obj.transform);
         }
 
         public static void Components(GameObject obj, out GameObject[] array)
         {
-            Components(obj.transform, out array);
+            T[] buf_array = Components(obj.transform);
+            List<GameObject> list = new List<GameObject>();
+
+            for (int i = 0; i < buf_array.Length; i++)
+            {
+                list.Add(buf_array[i].gameObject);
+            }
+
+            array = list.ToArray();
         }
 
 
@@ -66,7 +65,7 @@ namespace Searching
 
 
         //Поиск компонента
-        private static T Component(Transform obj)
+        public static T Component(Transform obj)
         {
             T buf;
 
@@ -84,20 +83,45 @@ namespace Searching
                 }
             }
 
+            return default(T);
+        }
+
+        public static T ComponentDown(Transform obj)
+        {
+            T buf;
+
+            for (int i = 0; i < obj.childCount; i++)
+            {
+                buf = Component(obj.GetChild(i));
+                if (buf != null)
+                {
+                    return buf;
+                }
+            }
+
             return default;
         }
 
 
-
-        // Функции для использования пользователем
-        private static void Component(Transform obj, out GameObject goal)
+        public static T Component(Transform obj, string key)
         {
-            goal = Component(obj.transform).gameObject;
-        }
+            T buf;
 
-        private static void Component(Transform obj, out T goal)
-        {
-            goal = Component(obj.transform);
+            if (obj.name == key  && obj.TryGetComponent<T>(out buf))
+            {
+                return buf;
+            }
+
+            for (int i = 0; i < obj.childCount; i++)
+            {
+                buf = Component(obj.GetChild(i), key);
+                if (buf != default(T))
+                {
+                    return buf;
+                }
+            }
+
+            return default(T);
         }
 
 
@@ -105,12 +129,12 @@ namespace Searching
         //Перегрузки для GameObjects Вместо Transform
         public static void Component(GameObject obj, out T goal)
         {
-            Component(obj.transform, out goal);
+            goal = Component(obj.transform);
         }
 
         public static void Component(GameObject obj, out GameObject goal)
         {
-            Component(obj.transform, out goal);
+            goal = Component(obj.transform).gameObject;
         }
 
 

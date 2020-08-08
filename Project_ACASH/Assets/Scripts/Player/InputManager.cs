@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,144 +6,126 @@ using Single;
 
 
 
-public class InputManager : Singleton<InputManager>
+public static class InputManager
 {
-
-    private Player Player;
-    public PlayerControls Controls { get; private set; }
-
-
-    [HideInInspector]
-    public string inputType;
-    [HideInInspector]
-    public string gameType;
-    [HideInInspector]
-    public string gameType_last;
-
-
-    [HideInInspector]
-    public bool hold_crouch;
-
-
-
-    private void Awake()
-    {
-        Player = GameObject.FindObjectOfType<Player>();
-        Controls = new PlayerControls();
-
-        Controls.Gameplay.Camera.performed += ctx => Player.Camera.rotateInput = ctx.ReadValue<Vector2>();
-        Controls.Gameplay.Camera.canceled += ctx => Player.Camera.rotateInput = Vector2.zero;
-        Controls.Gameplay.Move.performed += ctx => Player.Move.moveInput = ctx.ReadValue<Vector2>();
-        Controls.Gameplay.Move.canceled += ctx => Player.Move.moveInput = Vector2.zero;
-        Controls.Gameplay.Action.started += ctx => GameAction(true);
-        Controls.Gameplay.Action.canceled += ctx => GameAction(false);
-        Controls.Gameplay.Zoom.started += ctx => GameZoom(true);
-        Controls.Gameplay.Zoom.canceled += ctx => GameZoom(false);
-        Controls.Gameplay.Run.started += ctx => GameRun(true);
-        Controls.Gameplay.Run.canceled += ctx => GameRun(false);
-        Controls.Gameplay.Crouch.started += ctx => GameCrouch(true);
-        Controls.Gameplay.Crouch.canceled += ctx => GameCrouch(false);
-        Controls.Gameplay.Bull.started += ctx => GameTalkBad(true);
-        Controls.Gameplay.Joke.started += ctx => GameTalkGood(true);
-        Controls.Gameplay.Bull.canceled += ctx => GameTalkBad(false);
-        Controls.Gameplay.Joke.canceled += ctx => GameTalkGood(false);
-        Controls.Gameplay.Shout.started += ctx => GameShout();
-        Controls.Gameplay.Execute.started += ctx => GameExecute();
-        Controls.Gameplay.HUD.started += ctx => GameHUD();
-        Controls.Gameplay.Menu.started += ctx => GameMenu();
-
-        Controls.Menu.Move.performed += ctx => Menu.get.moveInput = ctx.ReadValue<Vector2>();
-        Controls.Menu.Move.canceled += ctx => Menu.get.moveInput = Vector2.zero;
-        Controls.Menu.Select.started += ctx => MenuSelect();
-        Controls.Menu.Escape.started += ctx => MenuEscape();
-        Controls.Menu.Resume.started += ctx => MenuResume();
-
-        Controls.Computer.Move.performed += ctx => ComputerManager.get.mouseInput = ctx.ReadValue<Vector2>();
-        Controls.Computer.Move.canceled += ctx => ComputerManager.get.mouseInput = Vector2.zero;
-        Controls.Computer.Fast.started += ctx => ComputerFast(true);
-        Controls.Computer.Fast.canceled += ctx => ComputerFast(false);
-        Controls.Computer.Zoom.started += ctx => ComputerZoom(true);
-        Controls.Computer.Zoom.canceled += ctx => ComputerZoom(false);
-        Controls.Computer.Select.started += ctx => ComputerSelect();
-        Controls.Computer.Exit.started += ctx => ComputerExit();
-        Controls.Computer.Menu.started += ctx => ComputerMenu();
-
-        Controls.DoorLock.Camera.performed += ctx => DoorLockManager.get.rotInput = ctx.ReadValue<Vector2>();
-        Controls.DoorLock.Camera.canceled += ctx => DoorLockManager.get.rotInput = Vector2.zero;
-        Controls.DoorLock.Zoom.started += ctx => DoorLockZoom(true);
-        Controls.DoorLock.Zoom.canceled += ctx => DoorLockZoom(false);
-        Controls.DoorLock.Exit.started += ctx => DoorLockExit();
-        Controls.DoorLock.Menu.started += ctx => DoorLockMenu();
-
-        Controls.Execute.Move.performed += ctx => ExecuteHUDController.get.moveInput = ctx.ReadValue<float>();
-        Controls.Execute.Move.canceled += ctx => ExecuteHUDController.get.moveInput = 0f;
-        Controls.Execute.Accept.started += ctx => ExecuteAccept();
-        Controls.Execute.Back.started += ctx => ExecuteBack();
-        Controls.Execute.Menu.started += ctx => ExecuteMenu();
-
-        Controls.Cutscene.Menu.started += ctx => GameMenu();
-
-        Controls.InputType.Keyboard.performed += ctx => TypeOfInput("keyboard");
-        Controls.InputType.PlayStation.performed += ctx => TypeOfInput("playstation");
-        Controls.InputType.Xbox.performed += ctx => TypeOfInput("xbox");
+    public enum Input
+    { 
+        Xbox,
+        Playstation,
+        Keyboard
     }
 
-    private void Start()
+    public enum GameplayType
     {
-        Controls.InputType.Enable();
+        FirstPerson,
+        Menu,
+        Computer,
+        Cutscene,
+        Disable,
     }
 
 
+    public static PlayerControls Controls => _controls;
+    public static Action OnGameTypeChanged;
+    public static Input InputType => _inputType;
+    public static GameplayType GameType => _gameType;
+
+
+    private static PlayerControls _controls;
+
+    private static Input _inputType;
+    private static GameplayType _gameType;
+    private static GameplayType _gameTypeLast;
 
 
 
 
-
-
-
-
-    public void SwitchGameInput(string type)
+    public static void Setup()
     {
-        Controls.Gameplay.Disable();
-        Controls.Menu.Disable();
-        Controls.Computer.Disable();
-        Controls.Cutscene.Disable();
-        Controls.Execute.Disable();
-        Controls.DoorLock.Disable();
+        _controls = new PlayerControls();
+
+        #region First Person Gameplay
+        _controls.Gameplay.Camera.performed += ctx => Player.Instance.Camera.RotateInput(ctx.ReadValue<Vector2>());
+        _controls.Gameplay.Camera.canceled += ctx => Player.Instance.Camera.RotateInput(Vector2.zero);
+        _controls.Gameplay.Move.performed += ctx => Player.Instance.Move.moveInput = ctx.ReadValue<Vector2>();
+        _controls.Gameplay.Move.canceled += ctx => Player.Instance.Move.moveInput = Vector2.zero;
+        _controls.Gameplay.Action.started += ctx => GameAction(true);
+        _controls.Gameplay.Action.canceled += ctx => GameAction(false);
+        _controls.Gameplay.Zoom.started += ctx => GameZoom(true);
+        _controls.Gameplay.Zoom.canceled += ctx => GameZoom(false);
+        _controls.Gameplay.Run.started += ctx => GameRun(true);
+        _controls.Gameplay.Run.canceled += ctx => GameRun(false);
+        _controls.Gameplay.Execute.started += ctx => GameExecute();
+        _controls.Gameplay.HUD.started += ctx => GameHUD();
+        _controls.Gameplay.Menu.started += ctx => GameMenu();
+        #endregion
+
+        #region Menu
+        _controls.Menu.Move.performed += ctx => Menu.Instance.moveInput = ctx.ReadValue<Vector2>();
+        _controls.Menu.Move.canceled += ctx => Menu.Instance.moveInput = Vector2.zero;
+        _controls.Menu.Select.started += ctx => MenuSelect();
+        _controls.Menu.Escape.started += ctx => MenuEscape();
+        _controls.Menu.Resume.started += ctx => MenuResume();
+        #endregion
+
+        #region Computer
+        _controls.Computer.Move.performed += ctx => ComputerManager.Instance.MouseInput(ctx.ReadValue<Vector2>());
+        _controls.Computer.Move.canceled += ctx => ComputerManager.Instance.MouseInput(Vector2.zero);
+        _controls.Computer.Zoom.started += ctx => ComputerZoom(true);
+        _controls.Computer.Zoom.canceled += ctx => ComputerZoom(false);
+        _controls.Computer.Select.started += ctx => ComputerSelect();
+        _controls.Computer.Exit.started += ctx => ComputerExit();
+        _controls.Computer.Menu.started += ctx => ComputerMenu();
+        #endregion
+
+        #region Cutscene 
+        _controls.Cutscene.Menu.started += ctx => GameMenu();
+        #endregion
+
+        #region Type of Input
+        _controls.InputType.Keyboard.performed += ctx => TypeOfInput(Input.Keyboard);
+        _controls.InputType.PlayStation.performed += ctx => TypeOfInput(Input.Playstation);
+        _controls.InputType.Xbox.performed += ctx => TypeOfInput(Input.Xbox);
+        #endregion
+
+
+        _controls.InputType.Enable();
+
+
+    }
+
+
+
+    public static void SwitchGameInput(GameplayType type)
+    {
+        _controls.Gameplay.Disable();
+        _controls.Menu.Disable();
+        _controls.Computer.Disable();
+        _controls.Cutscene.Disable();
 
         switch (type)
         {
-            case "gameplay":
+            case GameplayType.FirstPerson:
                 {
-                    Controls.Gameplay.Enable();
+                    _controls.Gameplay.Enable();
                     break;
                 }
-            case "menu":
+            case GameplayType.Menu:
                 {
-                    Controls.Menu.Enable();
+                    _controls.Menu.Enable();
                     break;
                 }
-            case "computer":
+            case GameplayType.Computer:
                 {
-                    Controls.Computer.Enable();
+                    _controls.Computer.Enable();
                     break;
                 }
-            case "doorlock":
+            case GameplayType.Cutscene:
                 {
-                    Controls.DoorLock.Enable();
+                    _controls.Cutscene.Enable();
                     break;
                 }
-            case "cutscene":
-                {
-                    Controls.Cutscene.Enable();
-                    break;
-                }
-            case "execute":
-                {
-                    Controls.Execute.Enable();
-                    break;
-                }
-            case "disable":
+            case GameplayType.Disable:
                 {
                     break;
                 }
@@ -154,31 +135,31 @@ public class InputManager : Singleton<InputManager>
                     break;
                 }
         }
-        gameType_last = gameType;
-        gameType = type;
-        CameraManager.get.GameplayType();
+        _gameTypeLast = _gameType;
+        _gameType = type;
+
+        OnGameTypeChanged?.Invoke();
     }
 
 
-    private void TypeOfInput(string type)
+    private static void TypeOfInput(Input type)
     {
-        if (inputType != type)
+        if (_inputType != type)
         {
-            inputType = type;
-            Menu.get.InputType();
-            //ExecuteHUDController.get.InputType();
+            _inputType = type;
+            Menu.Instance.InputType();
 
             switch (type)
             {
-                case "keyboard":
+                case Input.Keyboard:
                     {
                         break;
                     }
-                case "playstation":
+                case Input.Playstation:
                     {
                         break;
                     }
-                case "xbox":
+                case Input.Xbox:
                     {
                         break;
                     }
@@ -191,123 +172,99 @@ public class InputManager : Singleton<InputManager>
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    private bool GameCanITalk()
+    private static bool GameCanITalk()
     {
-        return !Player.Talk.talking && !Player.Action.doing;
+        return !Player.Instance.Talk.talking && !Player.Instance.Action.doing;
     }
 
-    private bool GameCanIDoAction()
+    private static bool GameCanIDoAction()
     {
-        return !Player.Action.doing;
+        return !Player.Instance.Action.doing;
     }
 
-    private void GameAction(bool option)
+    private static void GameAction(bool option)
     {
         if (option)
         {
             if(GameCanIDoAction())
-                Player.Action.Doing(true);
+                Player.Instance.Action.Doing(true);
         }
         else
         {
-            Player.Action.Doing(false);
+            Player.Instance.Action.Doing(false);
         }
     }
 
-    private void GameZoom(bool option)
+    private static void GameZoom(bool option)
     {
         if (option)
         {
-                Player.Camera.Zoom(true);
+                Player.Instance.Camera.Zoom(true);
         }
         else
         {
-            Player.Camera.Zoom(false);
+            Player.Instance.Camera.Zoom(false);
         }
     }
 
-    private void GameRun(bool option)
+    private static void GameRun(bool option)
     {
         if (option)
         {
-            Player.Move.SwitchMove(PlayerMove.movement.Run);
+            Player.Instance.Move.SwitchMove(PlayerMove.movement.Run);
         }
-        else if (Player.Move.type_movement == PlayerMove.movement.Run)
+        else if (Player.Instance.Move.type_movement == PlayerMove.movement.Run)
         {
-            Player.Move.SwitchMove(PlayerMove.movement.Normal);
+            Player.Instance.Move.SwitchMove(PlayerMove.movement.Normal);
         }
     }
 
-    private void GameCrouch(bool option)
-    {
-        if(option)
-        {
-            if (hold_crouch)
-            {
-                Player.Move.SwitchMove(PlayerMove.movement.Crouch);
-            }
-            else
-            {
-                if (Player.Move.type_movement != PlayerMove.movement.Crouch)
-                    Player.Move.SwitchMove(PlayerMove.movement.Crouch);
-                else
-                    Player.Move.SwitchMove(PlayerMove.movement.Normal);
-            }
-        }
-        else
-        {
-            if (hold_crouch)
-            {
-                Player.Move.SwitchMove(PlayerMove.movement.Normal);
-            }
-        }
-    }
 
-    private void GameTalkGood(bool option)
+    private static void GameTalkGood(bool option)
     {
         if (option)
         {
-            if (Player.Select.TryGetScholar() && GameCanITalk())
+            if (Player.Instance.Select.TryGetScholar() && GameCanITalk())
             {
-                Player.Talk.TalkGood();
+                Player.Instance.Talk.TalkGood();
             }
         }
     }
 
-    private void GameTalkBad(bool option)
+    private static void GameTalkBad(bool option)
     {
         if (option)
         {
-            if (Player.Select.TryGetScholar() && GameCanITalk())
+            if (Player.Instance.Select.TryGetScholar() && GameCanITalk())
             {
-                Player.Talk.TalkBad();
+                Player.Instance.Talk.TalkBad();
             }
         }
     }
 
-    private void GameShout()
+    private static void GameShout()
     {
         if(GameCanITalk())
-            Player.Talk.Shout();
+            Player.Instance.Talk.Shout();
     }
 
-    private void GameExecute()
+    private static void GameExecute()
     {
-        if (Player.Select.TryGetScholar() && GameCanITalk())
+        if (Player.Instance.Select.TryGetScholar() && GameCanITalk())
         {
-            Player.Talk.Execute();
+            Player.Instance.Talk.Execute();
         }
     }
 
-    private void GameHUD()
+    private static void GameHUD()
     {
-        HUDManager.get.ControlHUD();
+        HUDManager.Instance.ControlHUD();
     }
 
-    private void GameMenu()
+    private static void GameMenu()
     {
-        Menu.get.MenuEnable(true);
-        SwitchGameInput("menu");
+        Menu.Instance.MenuEnable(true);
+        SwitchGameInput(GameplayType.Menu);
     }
 
 
@@ -318,23 +275,23 @@ public class InputManager : Singleton<InputManager>
     //Menu Input
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void MenuResume()
+    public static void MenuResume()
     {
-        if (GameManager.get.game)
+        if (GameManager.Instance.Game)
         {
-            Menu.get.MenuEnable(false);
-            SwitchGameInput(gameType_last);
+            Menu.Instance.MenuEnable(false);
+            SwitchGameInput(_gameTypeLast);
         }
     }
 
-    private void MenuEscape()
+    private static void MenuEscape()
     {
-        Menu.get.Escape();
+        Menu.Instance.Escape();
     }
 
-    private void MenuSelect()
+    private static void MenuSelect()
     {
-        Menu.get.Enter();
+        Menu.Instance.Enter();
     }
 
 
@@ -344,90 +301,25 @@ public class InputManager : Singleton<InputManager>
     //Computer Input
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void ComputerSelect()
+    public static void ComputerSelect()
     {
-        ComputerManager.get.Select();    
+        ComputerManager.Instance.Select();    
     }
 
-    private void ComputerExit()
+    private static void ComputerExit()
     {
-        if (!ComputerManager.get.end)
-        {
-            ComputerManager.get.Exit();
-            SwitchGameInput("gameplay");
-        }
+        ComputerManager.Instance.Exit();
+        SwitchGameInput(GameplayType.FirstPerson);
     }
 
-    private void ComputerFast(bool option)
+    private static void ComputerZoom(bool option)
     {
-        ComputerManager.get.fast = option;
+        ComputerManager.Instance.Zoom(option);
     }
 
-    private void ComputerZoom(bool option)
+    private static void ComputerMenu()
     {
-        ComputerManager.get.Zoom(option);
+        Menu.Instance.MenuEnable(true);
+        SwitchGameInput(GameplayType.Menu);
     }
-
-    private void ComputerMenu()
-    {
-        Menu.get.MenuEnable(true);
-        SwitchGameInput("menu");
-    }
-
-
-
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //DoorLock Input
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    private void DoorLockExit()
-    {
-        DoorLockManager.get.Exit();
-        SwitchGameInput("gameplay");
-    }
-
-    private void DoorLockZoom(bool option)
-    {
-        DoorLockManager.get.Zoom(option);
-    }
-
-    private void DoorLockMenu()
-    {
-        Menu.get.MenuEnable(true);
-        SwitchGameInput("menu");
-    }
-
-
-
-
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //DoorLock Input
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    private void ExecuteAccept()
-    {
-        ExecuteHUDController.get.Accept();
-    }
-
-    public void ExecuteBack()
-    {
-        HUDManager.get.ExecuteHUD(false);
-        SwitchGameInput("gameplay");
-    }
-
-    private void ExecuteMenu()
-    {
-        Menu.get.MenuEnable(true);
-        SwitchGameInput("menu");
-    }
-
-
-
-
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Cutscene Input
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

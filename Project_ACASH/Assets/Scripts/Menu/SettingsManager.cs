@@ -4,7 +4,7 @@ using UnityEngine;
 using Single;
 
 
-public class SettingsManager : Singleton<SettingsManager>
+public class SettingsManager : MonoSingleton<SettingsManager>
 {
     [HideInInspector]
     public string settings_menu;
@@ -161,7 +161,7 @@ public class SettingsManager : Singleton<SettingsManager>
     public void AcceptSettings()
     {
         Debug.Log("Настройки приняты!");
-        settings_menu = Menu.get.current_menu;
+        settings_menu = Menu.Instance.current_menu;
 
         foreach(string i in settings_name)
         {

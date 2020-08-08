@@ -76,7 +76,7 @@ public static class LanguageHelper
             //case SystemLanguage.Unknown: res = "en"; break;
             //case SystemLanguage.Vietnamese: res = "vi"; break;
         }
-        //		Debug.Log ("Lang: " + res);
+
         return res;
     }
 

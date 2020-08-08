@@ -10,8 +10,8 @@ public static class ActionsGiver
         Debug.Log(actions);
         int length;
 
-        if (ScholarManager.get.scholars.Length < actions.count)
-            length = ScholarManager.get.scholars.Length;
+        if (ScholarManager.Instance.scholars.Length < actions.count)
+            length = ScholarManager.Instance.scholars.Length;
         else
             length = actions.count;
 
@@ -25,7 +25,7 @@ public static class ActionsGiver
         for (int i = 0; i < length; i++)
         {
             scholars_numbs[i] = ScholarChoice(scholars_numbs);
-            s = ScholarManager.get.scholars[scholars_numbs[i]];
+            s = ScholarManager.Instance.scholars[scholars_numbs[i]];
 
             cost = actions.GetRandomCost();
 
@@ -55,7 +55,7 @@ public static class ActionsGiver
     private static int ScholarChoice(int[] busy)
     {
         bool unic;
-        int buf = ScholarManager.get.GetRandomScholarIndex();
+        int buf = ScholarManager.Instance.GetRandomScholarIndex();
 
         do
         {
@@ -66,7 +66,7 @@ public static class ActionsGiver
                 {
                     unic = false;
                     buf++;
-                    buf %= ScholarManager.get.scholars.Length;
+                    buf %= ScholarManager.Instance.scholars.Length;
                 }
             }
         }

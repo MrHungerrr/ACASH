@@ -22,8 +22,8 @@ public class ScholarLocation
 
             GoTo(place, index);
 
-            PlaceManager.get.MakeFree(this.place, this.index);
-            PlaceManager.get.MakeBusy(place, index);
+            PlaceManager.Instance.MakeFree(this.place, this.index);
+            PlaceManager.Instance.MakeBusy(place, index);
         }
         catch
         {
@@ -36,7 +36,7 @@ public class ScholarLocation
 
     private void GoTo(PlaceManager.place place, int index)
     {
-        Vector3 destination = PlaceManager.get.GetPlace(place, index);
+        Vector3 destination = PlaceManager.Instance.GetPlace(place, index);
         Scholar.Move.SetDestination(destination);
     }
 
@@ -44,14 +44,14 @@ public class ScholarLocation
     public void Teleport(PlaceManager.place place, int index)
     {
         if (this.index != -1)
-            PlaceManager.get.MakeFree(this.place, this.index);
+            PlaceManager.Instance.MakeFree(this.place, this.index);
 
         try
         {
-            PlaceManager.get.MakeBusy(place, index);
+            PlaceManager.Instance.MakeBusy(place, index);
 
-            Scholar.Move.Position(PlaceManager.get.GetPlace(place, index));
-            Scholar.Move.Rotation(PlaceManager.get.GetSightGoal(place, index));
+            Scholar.Move.Position(PlaceManager.Instance.GetPlace(place, index));
+            Scholar.Move.Rotation(PlaceManager.Instance.GetSightGoal(place, index));
         }
         catch
         {

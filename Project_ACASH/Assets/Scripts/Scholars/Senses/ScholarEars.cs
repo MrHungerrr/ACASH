@@ -31,7 +31,7 @@ public class ScholarEars
 
     private float GetHearDistance(Vector3 goal)
     {
-        return BaseGeometry.GetDistance(Scholar.Move.NavAgent, Scholar.Move.Position(), Player.get.Move.Position());
+        return BaseGeometry.GetDistance(Scholar.Move.NavAgent, Scholar.Move.Position(), Player.Instance.Move.Position());
     }
   
 

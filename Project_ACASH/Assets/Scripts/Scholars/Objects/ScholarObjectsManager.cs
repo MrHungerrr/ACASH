@@ -4,36 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using Single;
 
-public class ScholarObjectsManager : Singleton<ScholarObjectsManager>
+public class ScholarObjectsManager : MonoSingleton<ScholarObjectsManager>
 {
-
-
-    public enum obj_name
+    public enum objectType
     {
         Note,
     }
 
-    [HideInInspector]
-    public Transform object_parent;
+    public Transform ObjectContainer { get; private set; }
 
-    [HideInInspector]
-    public Dictionary<obj_name, GameObject> objects = new Dictionary<obj_name, GameObject>();
+    public IReadOnlyDictionary<objectType, GameObject> Objects => _objects;
+
+    private Dictionary<objectType, GameObject> _objects = new Dictionary<objectType, GameObject>();
 
 
-    private void Awake()
+    public void Setup()
     {
-        for(int i = 0; i < Enum.GetNames(typeof(obj_name)).Length; i++)
+        for(int i = 0; i < Enum.GetNames(typeof(objectType)).Length; i++)
         {
-            obj_name name_buf = (obj_name)i;
-            GameObject object_buf = Resources.Load("Objects/" + name_buf.ToString()) as GameObject;
+            objectType nameBuf = (objectType)i;
+            GameObject objectBuf = Resources.Load("Objects/" + nameBuf.ToString()) as GameObject;
 
-            objects.Add(name_buf, object_buf);
+            _objects.Add(nameBuf, objectBuf);
         }
     }
 
 
     public void SetLevel()
     {
-        object_parent = GameObject.FindGameObjectWithTag("Objects_Container").transform;
+        ObjectContainer = GameObject.FindGameObjectWithTag("Objects_Container").transform;
     }
 }

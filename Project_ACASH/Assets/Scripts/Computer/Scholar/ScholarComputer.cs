@@ -16,14 +16,4 @@ public class ScholarComputer : A_Computer
         Controller = GetComponent<ScholarComputerAIController>();
         Controller.Setup();
     }
-
-
-
-
-
-
-    public override void SetScholars()
-    {
-        base.SetScholars();
-    }
 }

@@ -9,28 +9,28 @@ public class ScholarObjects
 
 
     private Scholar Scholar { get; }
-    ScholarObjectsManager.obj_name object_current;
-    Transform objects_holder;
-    Transform objects_target;
+    ScholarObjectsManager.objectType objectCurrent;
+    Transform objectsHolder;
+    Transform objectsTarget;
 
     private bool holding;
 
 
     [HideInInspector]
-    public Dictionary<ScholarObjectsManager.obj_name, GameObject> objects = new Dictionary<ScholarObjectsManager.obj_name, GameObject>();
+    public Dictionary<ScholarObjectsManager.objectType, GameObject> objects = new Dictionary<ScholarObjectsManager.objectType, GameObject>();
 
 
 
     public ScholarObjects(Scholar Scholar)
     {
         holding = false;
-        objects_holder = Scholar.transform.Find("Objects");
-        SIC.Component(Scholar.gameObject, "Arm_Target_R_2", out objects_target);
+        objectsHolder = Scholar.transform.Find("Objects");
+        SIC.Component(Scholar.gameObject, "Arm_Target_R_2", out objectsTarget);
 
-        for (int i = 0; i < Enum.GetNames(typeof(ScholarObjectsManager.obj_name)).Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(ScholarObjectsManager.objectType)).Length; i++)
         {
-            ScholarObjectsManager.obj_name name_buf = (ScholarObjectsManager.obj_name)i;
-            GameObject object_buf = objects_holder.Find(name_buf.ToString()).gameObject;
+            ScholarObjectsManager.objectType name_buf = (ScholarObjectsManager.objectType)i;
+            GameObject object_buf = objectsHolder.Find(name_buf.ToString()).gameObject;
             objects.Add(name_buf, object_buf);
 
             object_buf.SetActive(false);
@@ -49,11 +49,11 @@ public class ScholarObjects
     }
 
 
-    public void Hold(ScholarObjectsManager.obj_name obj)
+    public void Hold(ScholarObjectsManager.objectType obj)
     {
         if (!holding)
         {
-            object_current = obj;
+            objectCurrent = obj;
             holding = true;
             objects[obj].SetActive(true);
         }
@@ -64,9 +64,13 @@ public class ScholarObjects
         if (holding)
         {
             holding = false;
-            objects[object_current].SetActive(false);
+            objects[objectCurrent].SetActive(false);
 
-            GameObject buf = GameObject.Instantiate(ScholarObjectsManager.get.objects[object_current], objects_target.position, objects[object_current].transform.rotation, ScholarObjectsManager.get.object_parent);
+            GameObject buf = GameObject.Instantiate
+                (ScholarObjectsManager.Instance.Objects[objectCurrent],
+                objectsTarget.position, objects[objectCurrent].transform.rotation,
+                ScholarObjectsManager.Instance.ObjectContainer
+                );
 
             buf.GetComponent<Rigidbody>().AddForce(new Vector3(UnityEngine.Random.value - 0.5f, 1f, UnityEngine.Random.value - 0.5f).normalized * UnityEngine.Random.Range(11, 15));
         }
@@ -75,11 +79,11 @@ public class ScholarObjects
 
     private void MoveObject()
     {
-        objects_holder.position = objects_target.position;
+        objectsHolder.position = objectsTarget.position;
     }
 
     private void RotateObject()
     {
-        objects_holder.rotation = objects_target.rotation;
+        objectsHolder.rotation = objectsTarget.rotation;
     }
 }

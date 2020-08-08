@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Single;
 
-public class ScholarManager : Singleton<ScholarManager>
+public class ScholarManager : MonoSingleton<ScholarManager>
 {
 
     [HideInInspector]
@@ -25,9 +25,8 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public void SetLevel()
     {
-        ExamManager.get.ChillDone.AddListener(StartPrepare);
-        ExamManager.get.PrepareDone.AddListener(StartExam);
-        ExamManager.get.ExamDone.AddListener(EndExam);
+        ExamManager.Instance.PrepareDone.AddListener(StartExam);
+        ExamManager.Instance.ExamDone.AddListener(EndExam);
 
         all_scholars = GameObject.FindObjectsOfType<Scholar>();
         List<Scholar> list = new List<Scholar>();
@@ -127,7 +126,7 @@ public class ScholarManager : Singleton<ScholarManager>
 
     public void StartPrepare()
     {
-        GameManager.get.NewScholars();
+        GameManager.Instance.NewScholars();
 
         for (int i = 0; i < scholars.Length; i++)
         {

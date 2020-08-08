@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerActions
 {
     public bool doing { get; private set; } = false;
-    private I_Interaction interact_obj;
+    private IInteraction interactObject;
 
 
     public void Update()
@@ -22,11 +22,11 @@ public class PlayerActions
 
     private void Act()
     {
-        if (Player.get.Select.selected)
+        if (Player.Instance.Select.selected)
         {
-            if (Player.get.Select.selected_obj.TryGetComponent<I_Interaction>(out interact_obj))
+            if (Player.Instance.Select.selected_obj.TryGetComponent<IInteraction>(out interactObject))
             {
-                interact_obj.Interaction();
+                interactObject.Interaction();
             }
         }
     }

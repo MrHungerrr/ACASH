@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action
+namespace Scholars
 {
-    public string name { get; }
-    public string scholar { get; }
-
-    public Action(string name, string scholar)
+    public class Action
     {
-        this.name = name;
-        this.scholar = scholar;
+        public string name { get; }
+        public string scholar { get; }
+
+        public Action(string name, string scholar)
+        {
+            this.name = name;
+            this.scholar = scholar;
+        }
     }
 }

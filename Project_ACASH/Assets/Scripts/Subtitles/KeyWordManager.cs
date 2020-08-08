@@ -6,11 +6,9 @@ public static class KeyWordManager
 
     public static Dictionary<string, int> quantity = new Dictionary<string, int>()
     {
-        //Дикий ор
         { "Shout", 4},
 
 
-        //Наезды
         { "Bull_Talking", 3},
         { "Bull_Cheating", 3},
         { "Bull_Walking", 3},
@@ -19,7 +17,6 @@ public static class KeyWordManager
         { "Bull_Walking_Sec", 3},
 
 
-        //Подшучивания
         { "Joke_Talking", 3},
         { "Joke_Cheating", 3},
         { "Joke_Walking", 3},
@@ -28,20 +25,14 @@ public static class KeyWordManager
         { "Joke_Walking_Sec", 3},
 
 
-        //Казнь
         { "Execute", 3},
-        //{ "Execute_Walking", 3},
-        //{ "Execute_Cheating", 3},
-        //{ "Execute_Talking", 3},
 
 
-        //Вопросы
         { "Question_Toilet", 1},
         { "Question_Sink", 1},
         { "Question_Air", 1},
 
 
-        //Ответы
         { "Answer", 1},
     };
 

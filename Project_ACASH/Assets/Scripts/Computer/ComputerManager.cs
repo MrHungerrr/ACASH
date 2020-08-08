@@ -7,30 +7,24 @@ using TMPro;
 using Single;
 
 
-public class ComputerManager : Singleton<ComputerManager>
+public class ComputerManager : MonoSingleton<ComputerManager>
 {
-    private float mouseSensitivity = 0.001f;
-    private float gamepadSensitivity = 0.004f;
-    private float mouseCameraSensitivity = 0.2f;
-    private float gamepadCameraSensitivity = 3f;
-    [HideInInspector]
-    public Vector2 mouseInput;
-    [HideInInspector]
-    public Vector2 mouse;
+    private const float MOUSE_SENSITIVITY = 0.001f;
+    private const float GAMEPAD_SENSITIVITY = 0.004f;
+    private const float MOUSE_CAMERA_SENSITIVITY = 0.2f;
+    private const float GAMEPAD_CAMERA_SENSITIVITY = 3f;
 
-    [HideInInspector]
+    private Vector2 _mouseInput;
+    private Vector2 _mouse;
+
+
     public TeacherComputerController CompControl { get; private set; }
-    private A_Computer[] computers;
-    private bool active = false;
-    [HideInInspector]
-    public bool fast;
 
-    [HideInInspector]
-    public bool end;
+    private A_Computer[] _computers;
+    private bool _active = false;
 
 
-    [HideInInspector]
-    public static Color[] colors = new Color[2]
+    public static readonly Color[] colors = new Color[2]
     {
         new Color(0f,0f,0f,0f),
         new Color(1f,1f,1f,0.3f),
@@ -38,45 +32,37 @@ public class ComputerManager : Singleton<ComputerManager>
 
 
 
-    public void Setup()
+    public void SetLevel()
     {
-        UserManager.get.SetUserManager();
+        UserManager.Instance.SetUserManager();
 
-        computers = GameObject.FindObjectsOfType<A_Computer>();
-        foreach(A_Computer comp in computers)
+        _computers = GameObject.FindObjectsOfType<A_Computer>();
+        foreach(A_Computer comp in _computers)
         {
             comp.Setup();
         }
     }
 
-    public void Unsetup()
+    public void UnsetLevel()
     {
         Exit();
-    }
-
-    public void SetScholars()
-    {
-        foreach (A_Computer comp in computers)
-        {
-            comp.SetScholars();
-        }
     }
 
     public void Set(TeacherComputerController comp)
     {
         CompControl = comp;
-        active = true;
-        InputManager.get.SwitchGameInput("computer");
+        _active = true;
+        InputManager.SwitchGameInput(InputManager.GameplayType.Computer);
     }
 
     public void Disable()
     {
-        active = false;
+        _active = false;
     }
 
     private void Update()
     {
-        if (active)
+        if (_active)
         {
             Move();
         }
@@ -86,46 +72,49 @@ public class ComputerManager : Singleton<ComputerManager>
     {
         if (CompControl.zoom)
         {
-            switch (InputManager.get.inputType)
+            switch (InputManager.InputType)
             {
-                case "keyboard":
+                case InputManager.Input.Keyboard:
                     {
-                        mouseInput *= mouseCameraSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
+                        _mouseInput *= MOUSE_CAMERA_SENSITIVITY * Time.deltaTime * PlayerSettings.SensetivityCoef;
                         break;
                     }
                 default:
                     {
-                        mouseInput *= gamepadCameraSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
+                        _mouseInput *= GAMEPAD_CAMERA_SENSITIVITY * Time.deltaTime * PlayerSettings.SensetivityCoef;
                         break;
                     }
             }
 
-            mouse = new Vector3(-mouseInput.y, mouseInput.x, 0);
+            _mouse = new Vector3(-_mouseInput.y, _mouseInput.x, 0);
         }
         else
         {
-            switch (InputManager.get.inputType)
+            switch (InputManager.InputType)
             {
-                case "keyboard":
+                case InputManager.Input.Keyboard:
                     {
-                        mouseInput *= mouseSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
+                        _mouseInput *= MOUSE_SENSITIVITY * Time.deltaTime * PlayerSettings.SensetivityCoef;
                         break;
                     }
                 default:
                     {
-                        mouseInput = mouseInput.normalized * gamepadSensitivity * Time.deltaTime * Player.get.Camera.coefSensitivity;
-
-                        if (fast)
-                            mouseInput *= 3f;
+                        _mouseInput = _mouseInput.normalized * GAMEPAD_SENSITIVITY * Time.deltaTime * PlayerSettings.SensetivityCoef;
                         break;
                     }
             }
 
-            mouse = new Vector3(mouseInput.x, mouseInput.y, 0);
+            _mouse = new Vector3(_mouseInput.x, _mouseInput.y, 0);
         }
 
 
-        CompControl.Move(mouse);
+        CompControl.Move(_mouse);
+    }
+
+
+    public void MouseInput(Vector2 input)
+    {
+        _mouseInput = input;
     }
 
     public void Zoom(bool option)

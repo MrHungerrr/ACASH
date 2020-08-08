@@ -1,64 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PostProcessing;
 using Single;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoSingleton<GameManager>
 {
 
-    [HideInInspector]
-    public bool game { get; private set; }
-    [HideInInspector]
-    private bool setuped = false;
-    [SerializeField]
-    private bool test;
+    public bool Game => _game;
 
-    private string setuped_level;
+    private bool _game = true;
 
-
-    private void Awake()
-    {
-        Setup();
-
-        game = false;
-        if (!test)
-        {
-            MainMenu();
-        }
-        else
-        {
-            game = true;
-            Menu.get.MenuEnable(false);
-        }
-
-        FadeController.get.Fade(false);
-    }
-
-
-    private void Setup()
-    {
-        if (!setuped)
-        {
-            setuped = true;
-            ScoreManager.get.Setup();
-            ScholarManager.get.Setup();
-            ExamManager.get.Setup();
-        }
-    }
 
 
     public void MainMenu()
     {
-        if (game)
+        if (Game)
         {
             StartCoroutine(StartMenu());
         }
         else
         {
-            Menu.get.MainMenu();
-            InputManager.get.SwitchGameInput("menu");
+            Menu.Instance.MainMenu();
+            InputManager.SwitchGameInput(InputManager.GameplayType.Menu);
         }
-
     }
 
     public void NewGame()
@@ -68,7 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Continue()
     {
-        //
+        Menu.Instance.MenuEnable(false);
     }
 
     public void Restart()
@@ -82,43 +47,43 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    public IEnumerator StartMenu()
+    private IEnumerator StartMenu()
     {
-        game = false;
+        _game = false;
 
-        FadeController.get.Fade(true);
+        FadeController.Instance.Fade(true);
 
-        while (FadeController.get.active)
+        while (FadeController.Instance.active)
             yield return new WaitForEndOfFrame();
 
-        InputManager.get.SwitchGameInput("disable");
+        InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
 
-        Menu.get.MainMenu();
+        Menu.Instance.MainMenu();
 
-        UnsetLevel();
-        LevelManager.get.UnloadLevels();
+        GeneralManager.Instance.UnsetLevel();
+        LevelManager.Instance.UnloadLevels();
 
-        InputManager.get.SwitchGameInput("menu");
+        InputManager.SwitchGameInput(InputManager.GameplayType.Menu);
 
-        FadeHUDController.get.Fade(false);
-        FadeController.get.Fade(false);
+        FadeHUDController.Instance.Fade(false);
+        FadeController.Instance.Fade(false);
     }
 
 
 
-    public IEnumerator LoadGame(LevelManager.levels level)
+    private IEnumerator LoadGame(LevelManager.levels level)
     {
-        game = true;
-        InputManager.get.SwitchGameInput("disable");
+        _game = true;
+        InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
 
-        FadeController.get.Fade(true);
+        FadeController.Instance.Fade(true);
 
-        while (FadeController.get.active)
+        while (FadeController.Instance.active)
             yield return new WaitForEndOfFrame();
 
-        Menu.get.MenuEnable(false);
+        Menu.Instance.MenuEnable(false);
 
-        LevelManager.get.Load(level);
+        LevelManager.Instance.Load(level);
 
         /* while (!LevelManager.get.IsLoad(level))
          {
@@ -129,105 +94,60 @@ public class GameManager : Singleton<GameManager>
         //END
     }
 
-    public IEnumerator ReloadGame()
+    private IEnumerator ReloadGame()
     {
-        Menu.get.MenuEnable(false);
+        Menu.Instance.MenuEnable(false);
 
-        InputManager.get.SwitchGameInput("disable");
-        FadeHUDController.get.Fade(true);
-        UnsetLevel();
+        InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
+        FadeHUDController.Instance.Fade(true);
+        GeneralManager.Instance.UnsetLevel();
 
-        while (FadeHUDController.get.active)
+        while (FadeHUDController.Instance.active)
             yield return new WaitForEndOfFrame();
 
-        LevelManager.get.Reload();
-
-        /* while (!LevelManager.get.IsLoad(level))
-         {
-             Debug.Log(LevelManager.get.IsLoad(level));
-             yield return new WaitForEndOfFrame();
-         }
-         */
-        //END
+        LevelManager.Instance.Reload();
     }
 
 
 
     public void SwitchLevel(LevelManager.levels level)
     {
-        InputManager.get.SwitchGameInput("disable");
-        FadeHUDController.get.FastFade(true);
-        UnsetLevel();
+        InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
+        FadeHUDController.Instance.FastFade(true);
 
-        LevelManager.get.LoadInstead(level);
+        GeneralManager.Instance.UnsetLevel();
+
+        LevelManager.Instance.LoadInstead(level);
     }
 
 
 
     public void StartGame()
     {
-        FadeController.get.Fade(false);
-        FadeHUDController.get.Fade(false);
-        InputManager.get.SwitchGameInput("gameplay");
+        FadeController.Instance.Fade(false);
+        FadeHUDController.Instance.Fade(false);
+        InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
     }
 
     public void StartLevel()
     {
-        //Debug.LogError("Start Level");
-        //В конце концов это можно будет убрать (Костыль на игру без меню)
-        if (!setuped)
-            Setup();
+        InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
+        FadeHUDController.Instance.FastFade(true);
+        FadeController.Instance.FastFade(false);
 
-        InputManager.get.SwitchGameInput("disable");
-        FadeHUDController.get.FastFade(true);
-        FadeController.get.FastFade(false);
-
-       StartCoroutine(SetLevel());
+        GeneralManager.Instance.SetLevel();
     }
-
-    
-
-    public IEnumerator SetLevel()
-    {
-        //Debug.LogError("SetLevel");
-        ExamManager.get.SetLevel();
-        PlaceManager.get.SetLevel();
-        ScholarObjectsManager.get.SetLevel();
-        ScholarManager.get.SetLevel();
-        ScoreManager.get.SetLevel();
-        OverwatchCameraManager.get.SetLevel();
-        LevelSettings.get.Setup();
-        ObjectManager.get.SetLevel();
-        ComputerManager.get.Setup();
-        TimeManager.get.Setup();
-        SoundManager.get.SetLevel();
-
-        if(!test)
-            A_Level.get.StartLevel();
-
-        yield return null;
-    }
-
-    public void UnsetLevel()
-    {
-        ExamManager.get.UnsetLevel();
-        ObjectManager.get.UnsetLevel();
-        SoundManager.get.UnsetLevel();
-        ComputerManager.get.Unsetup();
-    }
-
 
 
     public void StartExam()
     {
-        ExamManager.get.ResetExam();
+        ExamManager.Instance.ResetExam();
     }
 
 
     public void NewScholars()
     {
-        ScholarManager.get.NewScholars();
-        ComputerManager.get.SetScholars();
+        ScholarManager.Instance.NewScholars();
     }
 
 

@@ -3,7 +3,7 @@ using UnityEngine;
 using Single;
 using System;
 
-public class ScoreManager : Singleton<ScoreManager>
+public class ScoreManager : MonoSingleton<ScoreManager>
 {
 
     private Dictionary<scores_names, ScoreItem> scores = new Dictionary<scores_names, ScoreItem>();
@@ -85,7 +85,7 @@ public class ScoreManager : Singleton<ScoreManager>
             a.Setup();
         }
 
-        ExamManager.get.ExamDone.AddListener(FinalScore);
+        ExamManager.Instance.ExamDone.AddListener(FinalScore);
     }
 
 
@@ -117,9 +117,9 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public void FinalScore()
     {
-        int left = ScholarManager.get.GetCount(ScholarManager.Left);
-        int cheated = ScholarManager.get.GetCount(ScholarManager.Cheated);
-        int notFinished = ScholarManager.get.GetCount(ScholarManager.NotFinished);
+        int left = ScholarManager.Instance.GetCount(ScholarManager.Left);
+        int cheated = ScholarManager.Instance.GetCount(ScholarManager.Cheated);
+        int notFinished = ScholarManager.Instance.GetCount(ScholarManager.NotFinished);
 
 
         GetScore(scores_names.Left).SetCount(left);

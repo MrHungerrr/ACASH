@@ -23,6 +23,6 @@ public class ScholarInfo
         Scholar.number = number;
         this.number = number;
         Scholar.TextBox.Number(number);
-        Scholar.Desk = DeskManager.get.desks[number];
+        Scholar.Desk = DeskManager.Instance.desks[number];
     }
 }

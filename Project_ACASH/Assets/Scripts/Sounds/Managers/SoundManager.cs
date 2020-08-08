@@ -2,7 +2,7 @@
 using UnityEngine;
 using Single;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : MonoSingleton<SoundManager>
 {
 
     private A_Sound3D[] sounds;

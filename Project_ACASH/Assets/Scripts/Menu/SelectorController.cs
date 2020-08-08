@@ -31,14 +31,14 @@ public class SelectorController: MonoBehaviour, IPointerEnterHandler
         select_image = GetComponent<Image>();
 
         section.selector = this;
-        values = SettingsManager.get.settings[section.name];
+        values = SettingsManager.Instance.settings[section.name];
 
         Enable(false);
     }
 
     private void OnEnable()
     {
-        number = SettingsManager.get.settings_current[section.name];
+        number = SettingsManager.Instance.settings_current[section.name];
         Select();
     }
 
@@ -47,15 +47,15 @@ public class SelectorController: MonoBehaviour, IPointerEnterHandler
         if (u)
         {
             select_image.enabled = false;
-            SettingsManager.get.selector = this;
-            SettingsManager.get.type_of_setting = "selector";
+            SettingsManager.Instance.selector = this;
+            SettingsManager.Instance.type_of_setting = "selector";
             Arrows(true);
         }
         else
         {
             select_image.enabled = true;
-            SettingsManager.get.slider = null;
-            SettingsManager.get.type_of_setting = null;
+            SettingsManager.Instance.slider = null;
+            SettingsManager.Instance.type_of_setting = null;
             Select();
             Arrows(false);
         }
@@ -65,7 +65,7 @@ public class SelectorController: MonoBehaviour, IPointerEnterHandler
     public void Select()
     {
         text.text = values[number];
-        SettingsManager.get.settings_new[section.name] = number;
+        SettingsManager.Instance.settings_new[section.name] = number;
     }
 
 
@@ -98,6 +98,6 @@ public class SelectorController: MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (select_image.enabled)
-            Menu.get.Select(section.menu_number);
+            Menu.Instance.Select(section.menu_number);
     }
 }

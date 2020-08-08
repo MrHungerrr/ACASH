@@ -2,7 +2,7 @@
 using UnityEngine;
 using Single;
 
-public class Player : Singleton<Player>
+public class Player : MonoSingleton<Player>
 {
 
     public PlayerMove Move { get; protected set; }
@@ -38,7 +38,7 @@ public class Player : Singleton<Player>
 
     protected void Update()
     {
-        if (InputManager.get.gameType == "gameplay")
+        if (InputManager.GameType == InputManager.GameplayType.FirstPerson)
         {
             Select.Update();
             Action.Update();

@@ -19,7 +19,7 @@ public static class ScholarStressDistance
 
     private static void StressDistance(Scholar Scholar)
     {
-        if (Scholar.Senses.T_here && InputManager.get.gameType != "computer")
+        if (Scholar.Senses.T_here && InputManager.GameType != InputManager.GameplayType.Computer)
         {
 
             if (Scholar.Senses.Teacher.distance <= distance_1)
@@ -72,7 +72,7 @@ public static class ScholarStressDistance
 
     private static void StressBehavior_3(Scholar Scholar)
     {
-        if (Scholar.Senses.T_look_at_us && Scholar.Senses.T_here && InputManager.get.gameType != "computer")
+        if (Scholar.Senses.T_look_at_us && Scholar.Senses.T_here && InputManager.GameType != InputManager.GameplayType.Computer)
         {
             StressRaise_Low(Scholar);
         }

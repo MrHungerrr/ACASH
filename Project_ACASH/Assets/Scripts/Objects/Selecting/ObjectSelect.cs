@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 
-public class ObjectSelect : MonoBehaviour, I_ObjectSelect
+public class ObjectSelect : MonoBehaviour, IObjectSelect
 {
     protected static float range = 0.6f;
     protected Material[] mats;
@@ -67,7 +67,7 @@ public class ObjectSelect : MonoBehaviour, I_ObjectSelect
 
     public virtual bool CanISelect()
     {
-        if (Vector3.Distance(Player.get.transform.position, transform.position) < range && Player.get.Select.active.GiveMeChance())
+        if (Vector3.Distance(Player.Instance.transform.position, transform.position) < range && Player.Instance.Select.active.GiveMeChance)
             return true;
         else
             return false;

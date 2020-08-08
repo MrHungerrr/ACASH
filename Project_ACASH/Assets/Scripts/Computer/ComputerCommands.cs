@@ -115,7 +115,6 @@ public class ComputerCommands
                 {
                     Set(type);
                     Comp.Numpad.Enable(false);
-                    ComputerManager.get.end = true;
                     CloseProgram();
                     EnableTaskBar(false);
                     break;
@@ -236,21 +235,10 @@ public class ComputerCommands
                     Comp.Question.SetAnswer(3);
                     break;
                 }
-            case "Camera Right":
-                {
-                    Comp.Overwatch.ChangeCameraRight();
-                    break;
-                }
-            case "Camera Left":
-                {
-                    Comp.Overwatch.ChangeCameraLeft();
-                    break;
-                }
             case "Second Page Score":
                 {
-                    ScoreManager.get.Accept();
-                    LevelSettings.get.NextExam();
-                    ComputerManager.get.end = false;
+                    ScoreManager.Instance.Accept();
+                    LevelSettings.Instance.NextExam();
 
                     if (Comp.Login.loged)
                         Do("Desktop");
@@ -261,9 +249,8 @@ public class ComputerCommands
                 }
             case "Continue Score":
                 {
-                    ScoreManager.get.Accept();
-                    LevelSettings.get.NextExam();
-                    ComputerManager.get.end = false;
+                    ScoreManager.Instance.Accept();
+                    LevelSettings.Instance.NextExam();
 
                     if(Comp.Login.loged)
                         Do("Desktop");
@@ -274,9 +261,8 @@ public class ComputerCommands
                 }
             case "Restart Score":
                 {
-                    ScoreManager.get.Zeroing();
-                    LevelSettings.get.RestartExam();
-                    ComputerManager.get.end = false;
+                    ScoreManager.Instance.Zeroing();
+                    LevelSettings.Instance.RestartExam();
 
                     if (Comp.Login.loged)
                         Do("Desktop");

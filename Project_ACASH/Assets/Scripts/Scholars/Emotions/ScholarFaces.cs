@@ -10,8 +10,6 @@ public static class ScholarFaces
 
     public static void Setup()
     {
-
-        //Ищутся все места на уровне и забиваются в базу
         int emotions_count = Enum.GetNames(typeof(GetS.faces)).Length;
         GetS.faces face;
         string name;

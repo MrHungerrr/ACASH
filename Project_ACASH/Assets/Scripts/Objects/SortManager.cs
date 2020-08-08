@@ -2,7 +2,7 @@
 using Single;
 
 
-public class SortManager: Singleton<SortManager>
+public class SortManager: MonoSingleton<SortManager>
 {
     public enum TypeOfSort
     {
@@ -39,8 +39,6 @@ public class SortManager: Singleton<SortManager>
 
     public void Sort(GameObject[] objects)
     {
-        //Самая первая парта у которой самый большой x и z
-
         for (int i = 0; i < (objects.Length - 1); i++)
             for (int i2 = 0; i2 < (objects.Length - 1 - i); i2++)
             {

@@ -43,7 +43,7 @@
 
         SetCount(value);
 
-        HUDManager.get.ChangeReputationHUD(buf_rep);
+        HUDManager.Instance.ChangeReputationHUD(buf_rep);
     }
 
     public void SetCount(int value)

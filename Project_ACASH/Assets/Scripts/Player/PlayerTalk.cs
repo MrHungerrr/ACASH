@@ -50,8 +50,8 @@ public class PlayerTalk : MonoBehaviour
     {
 
 
-        if (SubtitleManager.get.act)
-            SubtitleManager.get.StopSubtitile();
+        if (SubtitleManager.Instance.act)
+            SubtitleManager.Instance.StopSubtitile();
     }
 
 
@@ -75,10 +75,10 @@ public class PlayerTalk : MonoBehaviour
 
         //Scholar[] scholars = ScholarManager.get.GetVisibleScholars();
 
-        Scholar[] scholars = ScholarManager.get.scholars;
+        Scholar[] scholars = ScholarManager.Instance.scholars;
 
 
-        SubtitleManager.get.Say(key_word);
+        SubtitleManager.Instance.Say(key_word);
 
         yield return new WaitForSeconds(0.4f);
 
@@ -88,7 +88,7 @@ public class PlayerTalk : MonoBehaviour
                 s.Conversation.Shout();
         }
 
-        while (SubtitleManager.get.act)
+        while (SubtitleManager.Instance.act)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -152,13 +152,13 @@ public class PlayerTalk : MonoBehaviour
         }
         // Подлежит изменению \\
 
-        SubtitleManager.get.Say(key_word);
+        SubtitleManager.Instance.Say(key_word);
 
         yield return new WaitForSeconds(1f);
 
         scholar.Conversation.HearTeacherTalking(strong);
 
-        while (SubtitleManager.get.act)
+        while (SubtitleManager.Instance.act)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -198,13 +198,13 @@ public class PlayerTalk : MonoBehaviour
         key_word += scholar.Question.question_key;
         key_word.Answer(answer);
 
-        SubtitleManager.get.Say(key_word);
+        SubtitleManager.Instance.Say(key_word);
 
         yield return new WaitForSeconds(1f);
 
         scholar.Conversation.HearTeacherTalking(!answer);
 
-        while (SubtitleManager.get.act)
+        while (SubtitleManager.Instance.act)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -239,14 +239,14 @@ public class PlayerTalk : MonoBehaviour
     {
         ExecuteStart.Invoke();
 
-        SubtitleManager.get.Say(key_word);
+        SubtitleManager.Instance.Say(key_word);
         scholar.Execute.Execute(key_word);
 
         scholar_execute = scholar;
 
-        SubtitleManager.get.TalkDone += ExecuteEnd;
+        SubtitleManager.Instance.TalkDone += ExecuteEnd;
 
-        while (SubtitleManager.get.act)
+        while (SubtitleManager.Instance.act)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -257,7 +257,7 @@ public class PlayerTalk : MonoBehaviour
     // Лютый костыль
     private void ExecuteEnd()
     {
-        SubtitleManager.get.TalkDone -= ExecuteEnd;
+        SubtitleManager.Instance.TalkDone -= ExecuteEnd;
 
         scholar_execute.Execute.LastWord();
 

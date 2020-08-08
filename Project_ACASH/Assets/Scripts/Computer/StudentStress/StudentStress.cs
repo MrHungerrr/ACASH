@@ -22,7 +22,7 @@ public class StudentStress : MonoBehaviour
         };
 
 
-        switch (ScholarManager.get.scholars.Length)
+        switch (ScholarManager.Instance.scholars.Length)
         {
             case 4:
                 {
@@ -78,7 +78,7 @@ public class StudentStress : MonoBehaviour
         {
             try
             {
-                cells[i].Set(ScholarManager.get.scholars[i]);
+                cells[i].Set(ScholarManager.Instance.scholars[i]);
             }
             catch
             {

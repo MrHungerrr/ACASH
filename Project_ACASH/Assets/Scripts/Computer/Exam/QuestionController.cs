@@ -2,12 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
-using Exam;
 
 public class QuestionController : MonoBehaviour
 {
     private ExamController Exam;
-    private Question question;
     private int question_number;
     private TextMeshProUGUI question_field;
     private TextMeshProUGUI[] answers = new TextMeshProUGUI[4];
@@ -34,15 +32,13 @@ public class QuestionController : MonoBehaviour
     {
         try
         {
-            question = QuestionHolder.get.questions[number];
             question_number = number;
 
-            question_field.text = question.question;
+            question_field.text = "Вопрос";
 
             for (int i = 0; i < answers.Length; i++)
             {
-                Debug.Log((i + 1) + ". " + question.answers[i]);
-                answers[i].text = (i + 1) + ". " + question.answers[i];
+                answers[i].text = (i + 1) + ". ответ #" + (i + 1);
             }
 
             SetAnswer(Exam.answers[number]);

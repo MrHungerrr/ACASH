@@ -58,7 +58,7 @@ public class VoiceManager : A_SoundBase
 
     public void Play(KeyWord key)
     {
-        string full_path = sounds_path + ScriptManager.get.voiceLanguage + '/' + key.GetMain() + '/' + key.GetFullWord();
+        string full_path = sounds_path + ScriptManager.Instance.voiceLanguage + '/' + key.GetMain() + '/' + key.GetFullWord();
 
         try 
         {

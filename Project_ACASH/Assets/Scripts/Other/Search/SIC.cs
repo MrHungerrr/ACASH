@@ -9,39 +9,35 @@ namespace Searching
 
 
         //Поиск компонентов
-        private static Transform[] Components(Transform obj, string key)
+        public static Transform[] Components(Transform obj, string tag)
         {
             List<Transform> list = new List<Transform>();
 
-            if (obj.name == key)
+            if (obj.tag == tag)
             {
                 list.Add(obj);
             }
 
             for (int i = 0; i < obj.childCount; i++)
             {
-                list.AddRange(Components(obj.GetChild(i), key));
+                list.AddRange(Components(obj.GetChild(i), tag));
             }
 
             return list.ToArray();
         }
 
-
-
-
-
-        //Фунуции для использования пользователем
-        private static void Components(Transform obj, string key, out Transform[] array)
+        //Перегрузки для GameObjects Вместо Transform
+        public static void Components(GameObject obj, string tag, out Transform[] array)
         {
-            array = Components(obj.transform, key);
+            array = Components(obj.transform, tag);
         }
 
-        private static void Components(Transform obj, string key, out GameObject[] array)
+        public static void Components(GameObject obj, string tag, out GameObject[] array)
         {
-            Transform[] buf_array = Components(obj, key);
+            Transform[] buf_array = Components(obj.transform, tag);
             List<GameObject> list = new List<GameObject>();
 
-            foreach(Transform t in buf_array)
+            foreach (Transform t in buf_array)
             {
                 list.Add(t.gameObject);
             }
@@ -51,24 +47,11 @@ namespace Searching
 
 
 
-        //Перегрузки для GameObjects Вместо Transform
-        public static void Components(GameObject obj, string key, out Transform[] array)
-        {
-            Components(obj.transform, key, out array);
-        }
-
-        public static void Components(GameObject obj, string key, out GameObject[] array)
-        {
-            Components(obj.transform, key, out array);
-        }
-
-
-
 
 
 
         //Поиск компонента
-        private static Transform Component(Transform obj, string key)
+        public static Transform Component(Transform obj, string key)
         {
             if (obj.name == key)
             {
@@ -88,29 +71,17 @@ namespace Searching
         }
 
 
-        //Фунуции для использования пользователем
-        private static void Component(Transform obj, string key, out Transform goal)
-        {
-            goal = Component(obj.transform, key);
-        }
-
-        private static void Component(Transform obj, string key, out GameObject goal)
-        {
-            goal = Component(obj.transform, key).gameObject;
-        }
-
-
 
 
         //Перегрузки для GameObjects Вместо Transform
         public static void Component(GameObject obj, string key, out GameObject goal)
         {
-            Component(obj.transform, key, out goal);
+            goal = Component(obj.transform, key).gameObject;
         }
 
         public static void Component(GameObject obj, string key, out Transform goal)
         {
-            Component(obj.transform, key, out goal);
+            goal = Component(obj.transform, key);
         }
     }
 }

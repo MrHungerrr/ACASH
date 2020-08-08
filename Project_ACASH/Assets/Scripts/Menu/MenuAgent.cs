@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Single;
 
-public class MenuAgent : Singleton<MenuAgent>
+public class MenuAgent : MonoSingleton<MenuAgent>
 {
 
     [HideInInspector]
@@ -26,17 +26,17 @@ public class MenuAgent : Singleton<MenuAgent>
         {
             case "Continue":
                 {
-                    InputManager.get.MenuResume();
+                    InputManager.MenuResume();
                     break;
                 }
             case "Restart":
                 {
-                    GameManager.get.Restart();
+                    GameManager.Instance.Restart();
                     break;
                 }
             case "Settings":
                 {
-                    if (GameManager.get.game)
+                    if (GameManager.Instance.Game)
                         Disable("Pause");
                     else
                         Disable("Main Menu");
@@ -46,29 +46,29 @@ public class MenuAgent : Singleton<MenuAgent>
                 }
             case "Main Menu":
                 {
-                    if (GameManager.get.game)
+                    if (GameManager.Instance.Game)
                         Disable("Pause");
-                    GameManager.get.MainMenu();
+                    GameManager.Instance.MainMenu();
                     break;
                 }
             case "New Game":
                 {
-                    GameManager.get.NewGame();
+                    GameManager.Instance.NewGame();
                     break;
                 }
             case "Continue Story":
                 {
-                    GameManager.get.Continue();
+                    GameManager.Instance.Continue();
                     break;
                 }
             case "Exit":
                 {
-                    GameManager.get.Quit();
+                    GameManager.Instance.Quit();
                     break;
                 }
             case "Back":
                 {
-                    Escape(Menu.get.current_menu);
+                    Escape(Menu.Instance.current_menu);
                     break;
                 }
             case "Main":
@@ -97,7 +97,7 @@ public class MenuAgent : Singleton<MenuAgent>
                 }
             case "Reset":
                 {
-                    SettingsManager.get.Reset();
+                    SettingsManager.Instance.Reset();
                     break;
                 }
 
@@ -108,57 +108,57 @@ public class MenuAgent : Singleton<MenuAgent>
 
             case "Language":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Voice Language":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Subtitles":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Sensitivity":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Accept Settings":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Volume General":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Volume Voice":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Volume Music":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Volume SFX":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Resolution":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
             case "Screen Mode":
                 {
-                    SettingsManager.get.AcceptSettings();
+                    SettingsManager.Instance.AcceptSettings();
                     break;
                 }
         }
@@ -173,13 +173,13 @@ public class MenuAgent : Singleton<MenuAgent>
         {
             case "Pause":
                 {
-                    InputManager.get.MenuResume();
+                    InputManager.MenuResume();
                     break;
                 }
             case "Settings":
                 {
                     Disable("Settings");
-                    if (GameManager.get.game)
+                    if (GameManager.Instance.Game)
                         Set("Pause");
                     else
                         Set("Main Menu");
@@ -187,33 +187,33 @@ public class MenuAgent : Singleton<MenuAgent>
                 }
             case "Main Menu":
                 {
-                    GameManager.get.Quit();
+                    GameManager.Instance.Quit();
                     break;
                 }
             case "Main":
                 {
-                    SettingsManager.get.BackUp();
+                    SettingsManager.Instance.BackUp();
                     Disable("Main");
                     Set("Settings");
                     break;
                 }
             case "Gameplay":
                 {
-                    SettingsManager.get.BackUp();
+                    SettingsManager.Instance.BackUp();
                     Disable("Gameplay");
                     Set("Settings");
                     break;
                 }
             case "Sound":
                 {
-                    SettingsManager.get.BackUp();
+                    SettingsManager.Instance.BackUp();
                     Disable("Sound");
                     Set("Settings");
                     break;
                 }
             case "Video":
                 {
-                    SettingsManager.get.BackUp();
+                    SettingsManager.Instance.BackUp();
                     Disable("Video");
                     Set("Settings");
                     break;

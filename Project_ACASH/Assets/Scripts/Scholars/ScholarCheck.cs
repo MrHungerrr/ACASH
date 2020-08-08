@@ -57,7 +57,7 @@ public class ScholarCheck
     private void CheckEnd()
     {
         if (Scholar.Senses.T_here)
-            Scholar.Move.SetRotateGoal(Player.get.transform.position);
+            Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
 
         checking = false;
     }

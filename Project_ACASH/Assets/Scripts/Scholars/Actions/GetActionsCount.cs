@@ -8,7 +8,7 @@ public static class GetActionsCount
 
     public static ActionsCount Wave(int wave)
     {
-        return Wave(wave, LevelSettings.get.actionsCount);
+        return Wave(wave, LevelSettings.Instance.actionsCount);
     }
 
     public static ActionsCount Wave(int wave, int act_count)
@@ -36,7 +36,7 @@ public static class GetActionsCount
         int quotient;
         ActionsCount act;
 
-        switch (LevelSettings.get.difficultyType)
+        switch (LevelSettings.Instance.difficultyType)
         {
             case LevelSettings.difficultyes.Easy:
                 {
@@ -66,7 +66,7 @@ public static class GetActionsCount
         int quotient;
         ActionsCount act;
 
-        switch (LevelSettings.get.difficultyType)
+        switch (LevelSettings.Instance.difficultyType)
         {
             case LevelSettings.difficultyes.Easy:
                 {
@@ -97,7 +97,7 @@ public static class GetActionsCount
         int quotient;
         ActionsCount act;
 
-        switch (LevelSettings.get.difficultyType)
+        switch (LevelSettings.Instance.difficultyType)
         {
             case LevelSettings.difficultyes.Easy:
                 {
@@ -127,7 +127,7 @@ public static class GetActionsCount
         int quotient;
         ActionsCount act;
 
-        switch (LevelSettings.get.difficultyType)
+        switch (LevelSettings.Instance.difficultyType)
         {
             case LevelSettings.difficultyes.Easy:
                 {

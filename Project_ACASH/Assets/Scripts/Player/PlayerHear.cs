@@ -24,12 +24,12 @@ public class PlayerHear
     public bool GetOcclusion(GameObject obj, string[] ignore_tags)
     {
         RaycastHit hit;
-        Vector3 direction = BaseGeometry.GetDirection(Player.get.Camera.transform.position, obj.transform.position);
+        Vector3 direction = BaseGeometry.GetDirection(Player.Instance.Camera.transform.position, obj.transform.position);
 
 
-        Debug.DrawRay(Player.get.Camera.transform.position, direction, Color.green);
+        Debug.DrawRay(Player.Instance.Camera.transform.position, direction, Color.green);
 
-        if (Physics.Raycast(Player.get.Camera.transform.position, direction, out hit, visible_layerMask))
+        if (Physics.Raycast(Player.Instance.Camera.transform.position, direction, out hit, visible_layerMask))
         {
             Debug.Log(obj.name + " sound collides with - " + hit.collider.tag);
 

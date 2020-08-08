@@ -3,7 +3,7 @@ using PlayerOptions;
 using UnityEngine;
 using Single;
 
-public abstract class A_Level : Singleton<A_Level>
+public abstract class A_Level : MonoSingleton<A_Level>
 {
 
 
