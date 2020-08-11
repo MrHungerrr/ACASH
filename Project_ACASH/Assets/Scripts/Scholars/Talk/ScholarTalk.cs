@@ -4,165 +4,110 @@ using System.Collections.Generic;
 
 public class ScholarTalk
 {
-    private Scholar Scholar;
-    public bool talking { get; private set; }
-    private string type_of_talk;
-    private Quaternion last_rotate_goal;
+    public bool Talking { get; private set; }
 
-    public KeyWord key_word;
+    private Scholar _scholar;
+    private Quaternion _lastRotateGoal;
+    private KeyWord _keyWord;
 
 
     public ScholarTalk(Scholar scholar)
     {
-        this.Scholar = scholar;
-        key_word = new KeyWord(scholar.type);
+        this._scholar = scholar;
+        _keyWord = new KeyWord("Scholar");
     }
 
 
     public void Update()
     {
-        if (talking)
+        if (Talking)
             Talk();
     }
 
 
-    public void Say(KeyWord key)
-    {
-        MakeKey(key);
-        type_of_talk = "hard_talk";
-        Scholar.Pause();
-        Scholar.Select.Selectable(false);
-        Scholar.TextBox.Say(key_word);
-        talking = true;
-        last_rotate_goal = Scholar.Move.Rotation();
-    }
+    //public void Say(KeyWord key)
+    //{
+    //    MakeKey(key);
+    //    _scholar.Pause();
+    //    _scholar.Select.Selectable(false);
+    //    _scholar.TextBox.Say(_keyWord);
+    //    Talking = true;
+    //    _lastRotateGoal = _scholar.Move.Rotation();
+    //}
 
-    public void SayWithoutStop(KeyWord key)
-    {
-        MakeKey(key);
-        type_of_talk = "talk";
-        Scholar.Select.Selectable(false);
-        Scholar.TextBox.Say(key_word);
-        talking = true;
-        last_rotate_goal = Scholar.Move.Rotation();
-    }
+    //public void SayWithoutStop(KeyWord key)
+    //{
+    //    MakeKey(key);
+    //    _scholar.Select.Selectable(false);
+    //    _scholar.TextBox.Say(_keyWord);
+    //    Talking = true;
+    //    _lastRotateGoal = _scholar.Move.Rotation();
+    //}
 
     public void SayThoughts(KeyWord key)
     {
         MakeKey(key);
-        type_of_talk = "thoughts";
-        Scholar.TextBox.Say(key_word);
-        talking = true;
+        _scholar.TextBox.Say(_keyWord);
+        Talking = true;
     }
 
     public void SayThoughts(string key)
     {
         MakeKey(key);
-        type_of_talk = "thoughts";
-        Scholar.TextBox.Say(key_word);
-        talking = true;
-    }
-
-
-
-    public void Question(KeyWord key)
-    {
-        MakeKey(key);
-        type_of_talk = "question";
-        Scholar.Select.Selectable(false);
-        Scholar.TextBox.Question(key_word);
-        talking = true;
-        last_rotate_goal = Scholar.Move.Rotation();
+        _scholar.TextBox.Say(_keyWord);
+        Talking = true;
     }
 
 
     public void MakeKey(KeyWord key)
     {
-        key_word *= key;
+        _keyWord *= key;
     }
 
     public void MakeKey(string key)
     {
         Debug.Log(key);
-        Debug.Log(key_word.GetFullWord());
-        key_word *= key;
+        Debug.Log(_keyWord.GetFullWord());
+        _keyWord *= key;
     }
 
 
 
     private void Talk()
     {
-        switch (type_of_talk)
+        //case "hard_talk":
+        //    {
+        //        if (_scholar.TextBox.IsTalking())
+        //        {
+
+        //            _scholar.Move.SetRotateGoal(Player.Instance.transform.position);
+
+        //            if (!_scholar.TextBox.act && !_scholar.Select.selectable)
+        //                _scholar.Select.Selectable(true);
+        //        }
+        //        else
+        //        {
+        //            _scholar.Move.SetRotateGoal(_lastRotateGoal);
+        //            _scholar.Continue();
+        //            Talking = false;
+
+        //            if (!_scholar.Select.selectable)
+        //                _scholar.Select.Selectable(true);
+        //        }
+        //        break;
+        //    }
+
+        if (!_scholar.TextBox.IsTalking())
         {
-            case "hard_talk":
-                {
-
-                    if (Scholar.TextBox.IsTalking())
-                    {
-
-                        Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
-
-                        if (!Scholar.TextBox.act && !Scholar.Select.selectable)
-                            Scholar.Select.Selectable(true);
-                    }
-                    else
-                    {
-                        Scholar.Move.SetRotateGoal(last_rotate_goal);
-                        Scholar.Continue();
-                        talking = false;
-
-                        if (!Scholar.Select.selectable)
-                            Scholar.Select.Selectable(true);
-                    }
-                    break;
-                }
-            case "question":
-                {
-                    if (Scholar.TextBox.IsTalking())
-                    {
-                        Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
-                    }
-                    else
-                    {
-                        Scholar.Move.SetRotateGoal(last_rotate_goal);
-                        Scholar.Select.Selectable(true);
-                        talking = false;
-                    }
-                    break;
-                }
-            case "talk":
-                {
-                    if (Scholar.TextBox.IsTalking())
-                    {
-                        Scholar.Move.SetRotateGoal(Player.Instance.transform.position);
-
-                        if (!Scholar.TextBox.act && !Scholar.Select.selectable)
-                            Scholar.Select.Selectable(true);
-                    }
-                    else
-                    {
-                        Scholar.Move.SetRotateGoal(last_rotate_goal);
-
-                        if (!Scholar.Select.selectable)
-                            Scholar.Select.Selectable(true);
-                        talking = false;
-                    }
-                    break;
-                }
-            case "thoughts":
-                {
-                    if (!Scholar.TextBox.IsTalking())
-                    {
-                        talking = false;
-                    }
-                    break;
-                }
+            Talking = false;
         }
+
     }
+    
 
 
     public void Stop()
     {
-        Scholar.TextBox.Clear();
+        _scholar.TextBox.Clear();
     }
 }

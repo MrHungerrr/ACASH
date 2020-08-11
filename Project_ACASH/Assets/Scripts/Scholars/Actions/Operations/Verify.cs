@@ -21,16 +21,6 @@ namespace Operations
         {
             switch (verify)
             {
-                case "Teacher_Is_Here":
-                    {
-                        executer.Verify(executer.VerifyTeacherIsHere, need_condition);
-                        break;
-                    }
-                case "Answer":
-                    {
-                        executer.Verify(executer.VerifyAnswer, need_condition);
-                        break;
-                    }
                 case "Toilet_Is_Free":
                     {
                         executer.Verify(executer.VerifyToiletAreFree, need_condition);

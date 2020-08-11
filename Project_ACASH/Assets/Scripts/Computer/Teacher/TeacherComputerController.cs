@@ -69,7 +69,7 @@ public class TeacherComputerController: MonoBehaviour, IInteraction
     {
         Enable(true);
 
-        Player.Instance.Action.Doing(false);
+        Player.Instance.Action.SetDoing(false);
     }
 
 
@@ -82,13 +82,13 @@ public class TeacherComputerController: MonoBehaviour, IInteraction
             FOV = normFOV;
             Cam.m_Lens.FieldOfView = FOV;
             ComputerManager.Instance.Set(this);
-            Player.Instance.Select.active.Add(this.GetType());
+            Player.Instance.Select.Disable(this.GetType());
         }
         else
         {
             moving = false;
             zooming = false;
-            Player.Instance.Select.active.Remove(this.GetType());
+            Player.Instance.Select.Enable(this.GetType());
         }
 
         active = option;

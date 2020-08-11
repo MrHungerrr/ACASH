@@ -1,4 +1,4 @@
-﻿public interface I_ActionsQueueElement
+﻿public interface IActionsQueueElement
 {
     string GetAction();
 

@@ -9,7 +9,9 @@ public class PlayerCamera : MonoBehaviour
     private CinemachineVirtualCamera _cineCam;
 
     private const float MOUSE_SENSITIVITY = 1f;
-    private const float GAMEPAD_SENSITIVITY = 8f; 
+    private const float GAMEPAD_SENSITIVITY = 8f;
+    private const float NORM_FOV = 70;
+    private const float ZOOM_FOV = 15;
 
     private Vector2 _rotateInput;
     private Vector2 _rotate;
@@ -19,14 +21,6 @@ public class PlayerCamera : MonoBehaviour
     private bool _zooming;
 
     private float _FOV;
-    private const float NORM_FOV = 70;
-    private const float ZOOM_FOV = 15;
-
-
-
-
-
-
 
 
     public void Setup(Player Player)
@@ -76,7 +70,7 @@ public class PlayerCamera : MonoBehaviour
             }
 
             transform.Rotate(Vector3.left * _rotate.y);
-            Player.Instance.Move.rotateAngle += _rotate.x;
+            Player.Instance.Move.AddRotateAngle(_rotate.x);
         }
     }
 

@@ -4,47 +4,45 @@ using System.Collections;
 
 public class PlayerSelecting
 {
-    public Reason active { get;}
 
-    private LayerMask select_layer_mask;
-    private LayerMask sight_layer_mask;
-    private float select_max_range { get; } = 2f;
+    private const float SELECT_MAX_RANGE = 2f;
+    private readonly LayerMask SELECT_LAYER_MASK;
 
 
-    public bool selected { get; private set; }
-    private IObjectSelect select;
-    public GameObject selected_obj { get; private set; }
+    public bool SelectingIsActive { get; private set; }
+    public GameObject SelectedObject { get; private set; }
+
+
+    private IObjectSelect _select;
+    private readonly Reason _reasonsToBeDisabled;
+
 
 
     public PlayerSelecting()
     {
-        active = new Reason();
+        _reasonsToBeDisabled = new Reason();
         Deselect();
 
-        select_layer_mask = LayerMask.GetMask("Selectable", "Default");
-        sight_layer_mask = LayerMask.GetMask("Sight Layer");
+        SELECT_LAYER_MASK = LayerMask.GetMask("Selectable", "Default");
     }
 
 
 
     public void Update()
     {
-
         RayCasting();
         CrossHair.Instance.SelectHair();
-
-        LookingAtScholars();
     }
 
 
     public void Enable(Type reason)
     {
-        active.Remove(reason);
+        _reasonsToBeDisabled.Remove(reason);
     }
 
     public void Disable(Type reason)
     {
-        active.Add(reason);
+        _reasonsToBeDisabled.Add(reason);
     }
 
 
@@ -55,67 +53,21 @@ public class PlayerSelecting
 
 
         //Рейкаст интерактивных объектов
-        if (Physics.Raycast(ray, out hit, select_max_range, select_layer_mask))
+        if (Physics.Raycast(ray, out hit, SELECT_MAX_RANGE, SELECT_LAYER_MASK))
         {
-            if (selected_obj != hit.collider.gameObject)
+            if (SelectedObject != hit.collider.gameObject)
             {
                 FirstLook(hit.collider.gameObject);
             }
-            else if (select != null)
+            else if (_select != null)
             {
                 CanISelect();
             }
         }
-        else if (selected && select != null)
+        else if (SelectingIsActive && _select != null)
         {
             Deselect();
         }
-
-
-
-
-
-    }
-
-    private void LookingAtScholars()
-    {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-        RaycastHit[] hits;
-        hits = Physics.RaycastAll(ray, 20, sight_layer_mask);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-
-            if (hits[i].transform != null)
-            {
-                Scholar scholar = hits[i].collider.transform.parent.GetComponent<Scholar>();
-
-                if(scholar.active)
-                    scholar.Senses.TeacherLookAtUs();
-            }
-        }
-    }
-
-
-    public bool TryGetScholar()
-    {
-        if (selected)
-        {
-            Scholar scholar;
-
-            if (selected_obj.TryGetComponent<Scholar>(out scholar))
-            {
-                if (scholar.active)
-                {
-                    Player.Instance.Talk.SetScholar(scholar);
-                    return true;
-                }
-            }
-        }
-
-        Player.Instance.Talk.ResetScholar();
-        return false;
     }
 
 
@@ -126,25 +78,25 @@ public class PlayerSelecting
 
         if (obj.layer == 9)
         {
-            selected_obj = obj;
+            SelectedObject = obj;
      
-            if (selected_obj.TryGetComponent(out select))
+            if (SelectedObject.TryGetComponent(out _select))
             {
                 CanISelect();
             }
             else
-                select = null;
+                _select = null;
         }
         else
         {
-            selected_obj = null;
-            select = null;
+            SelectedObject = null;
+            _select = null;
         }
     }
 
     private void CanISelect()
     {
-        if (select.CanISelect())
+        if (_reasonsToBeDisabled.GiveMeChance && _select.CanISelect())
         {
             Select();
         }
@@ -156,22 +108,20 @@ public class PlayerSelecting
 
     private void Select()
     {
-        if (!selected)
+        if (!SelectingIsActive)
         {
-            select.Select();
-            selected = true;
+            _select.Select();
+            SelectingIsActive = true;
         }
     }
 
     private void Deselect()
     {
-        if (selected)
+        if (SelectingIsActive)
         {
-            if (select != null)
-                select.Deselect();
-            selected = false;
+            if (_select != null)
+                _select.Deselect();
+            SelectingIsActive = false;
         }
     }
-
-
 }

@@ -1,6 +1,4 @@
 ﻿
-
-
 public static class PlayerSettings
 {
     public static float SensetivityCoef => _sensetivityCoef;

@@ -45,7 +45,6 @@ public static class SettingsBlanks
     {
         Language(SettingsManager.Instance.settings_current["Language"]);
         VoiceLanguage(SettingsManager.Instance.settings_current["Voice Language"]);
-        Subtitles(SettingsManager.Instance.settings_current["Subtitles"]);
     }
 
     private static void Language(int option)
@@ -64,14 +63,6 @@ public static class SettingsBlanks
 
         language = LanguageHelper.Get2LetterFromFullWord(language);
         ScriptManager.Instance.SwitchLanguageVoice(language);
-    }
-
-    private static void Subtitles(int option)
-    {
-        if (option == 0)
-            HUDManager.Instance.SubtitleDisable(false);
-        else
-            HUDManager.Instance.SubtitleDisable(true);
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Gameplay Settings 

@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
-using ScholarOptions;
-
 
 public class StressCell : MonoBehaviour
 {
@@ -43,42 +41,12 @@ public class StressCell : MonoBehaviour
     {
         if (active)
         {
-            test = scholar.Test.test_procent;
-            stress = (int) scholar.Stress.value;
+            test = 0;
+            stress = 0;
             //Debug.Log("Стресс чувака - " + stress/10);
             scholar_test.text = "Test:" + test + '%';
             scholar_stress.text = "Stress:" + stress + '%';
             slider.Select(stress);
-            Mood();
-        }
-    }
-
-    private void Mood()
-    {
-        if (scholar.active)
-        {
-            switch (scholar.Stress.GetMoodType())
-            {
-                case GetS.mood.Chill:
-                    {
-                        emotion.sprite = ScholarFaces.get[GetS.faces.Smile];
-                        break;
-                    }
-                case GetS.mood.Normal:
-                    {
-                        emotion.sprite = ScholarFaces.get[GetS.faces.Ussual];
-                        break;
-                    }
-                case GetS.mood.Panic:
-                    {
-                        emotion.sprite = ScholarFaces.get[GetS.faces.Upset];
-                        break;
-                    }
-            }
-        }
-        else
-        {
-            emotion.sprite = ScholarFaces.get[GetS.faces.Dead];
         }
     }
 }

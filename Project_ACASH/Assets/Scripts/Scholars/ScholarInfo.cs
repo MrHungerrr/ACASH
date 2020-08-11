@@ -20,9 +20,7 @@ public class ScholarInfo
 
     public void SetNumber(int number)
     {
-        Scholar.number = number;
         this.number = number;
         Scholar.TextBox.Number(number);
-        Scholar.Desk = DeskManager.Instance.desks[number];
     }
 }

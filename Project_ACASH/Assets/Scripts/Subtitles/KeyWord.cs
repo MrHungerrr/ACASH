@@ -2,7 +2,6 @@
 
 public class KeyWord
 {
-
     protected enum answer
     {
         Void,
@@ -10,49 +9,49 @@ public class KeyWord
         No
     }
 
-    private string main { get;}
-    protected string const_key { get; }
-    protected string key { get; set; }
-    protected answer ans { get; set; }
-    protected int number { get; set; }
-    protected string full_key { get; set; }
+    private readonly string _main;
+    private readonly string _constKey;
+    private string _key;
+    private answer _answer;
+    private int _number;
+    private string _fullKey;
 
 
 
 
     public KeyWord(string main)
     {
-        this.main = main;
-        const_key = string.Empty;
+        this._main = main;
+        _constKey = string.Empty;
         Reset();
     }
 
     public KeyWord(string main, string const_key)
     {
-        this.main = main;
-        this.const_key = const_key;
+        this._main = main;
+        this._constKey = const_key;
         Reset();
     }
 
 
     public KeyWord()
     {
-        this.main = string.Empty;
-        const_key = string.Empty;
+        this._main = string.Empty;
+        _constKey = string.Empty;
         Reset();
     }
 
     public KeyWord(KeyWord key_word)
     {
-        this.main = key_word.main;
-        this.const_key = key_word.const_key;
+        this._main = key_word._main;
+        this._constKey = key_word._constKey;
         Reset();
     }
 
     public KeyWord(KeyWord key_word, string const_key)
     {
-        this.main = key_word.main;
-        this.const_key = const_key;
+        this._main = key_word._main;
+        this._constKey = const_key;
         Reset();
     }
 
@@ -60,16 +59,16 @@ public class KeyWord
 
     protected void Plus(string word)
     {
-        if (key != string.Empty)
-            key += "_";
+        if (_key != string.Empty)
+            _key += "_";
 
-        key += word;
+        _key += word;
 
-        if (number != -1)
-            number = -1;
+        if (_number != -1)
+            _number = -1;
 
-        if (ans != answer.Void)
-            ans = answer.Void;
+        if (_answer != answer.Void)
+            _answer = answer.Void;
     }
 
     protected void Plus(KeyWord keyword)
@@ -81,40 +80,40 @@ public class KeyWord
     {
         if (option)
         {
-            ans = answer.Yes;
+            _answer = answer.Yes;
         }
         else
         {
-            ans = answer.No;
+            _answer = answer.No;
         }
     }
 
     public void Number(int number)
     {
-        this.number = number;
+        this._number = number;
     }
 
     public void Key(string word)
     {
-        key = "_" + word;
+        _key = "_" + word;
     }
 
     protected void FullKey()
     {
-        full_key = GetKey();
+        _fullKey = GetKey();
 
-        if (ans != answer.Void)
-            full_key += "_" + ans.ToString();
+        if (_answer != answer.Void)
+            _fullKey += "_" + _answer.ToString();
 
-        if (number != -1)
-            full_key += "_" + number;
+        if (_number != -1)
+            _fullKey += "_" + _number;
     }
 
     public void Reset()
     {
-        key = string.Empty;
-        number = -1;
-        ans = answer.Void;
+        _key = string.Empty;
+        _number = -1;
+        _answer = answer.Void;
     }
 
 
@@ -125,30 +124,30 @@ public class KeyWord
 
     public int GetNumber()
     {
-        return number;
+        return _number;
     }
 
     public string GetKey()
     {
-        if (const_key != string.Empty && key != string.Empty)
-            return const_key + "_" + key;
+        if (_constKey != string.Empty && _key != string.Empty)
+            return _constKey + "_" + _key;
         else
-            return const_key + key;
+            return _constKey + _key;
     }
 
     public string GetFullKey()
     {
         FullKey();
-        return full_key;
+        return _fullKey;
     }
 
     public virtual string GetFullWord()
     {
-        if (main != string.Empty)
-            return main + "_" + GetFullKey();
+        if (_main != string.Empty)
+            return _main + "_" + GetFullKey();
         else
         {
-            Debug.LogError("Ошибка в KeyWord - " + full_key);
+            Debug.LogError("Ошибка в KeyWord - " + _fullKey);
             return string.Empty;
         }
     }
@@ -157,7 +156,7 @@ public class KeyWord
 
     public string GetMain()
     {
-        return main;
+        return _main;
     }
 
 
@@ -197,8 +196,8 @@ public class KeyWord
     {
         keyword1.Reset();
         keyword1.Plus(keyword2);
-        keyword1.Number(keyword2.number);
-        keyword1.ans = keyword2.ans;
+        keyword1.Number(keyword2._number);
+        keyword1._answer = keyword2._answer;
         return keyword1;
     }
 }

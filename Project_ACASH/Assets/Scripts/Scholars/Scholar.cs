@@ -1,183 +1,153 @@
 ﻿using UnityEngine;
+using Searching;
 
 
 public class Scholar : MonoBehaviour
+#region IInitialization
+#if UNITY_EDITOR
+    ,IInitialization
+#endif
+#endregion
 {
-
-    public bool disabled;
-    //Тип ученика
-    public ScholarTypes.list scholarType;
-    [HideInInspector]
-    public string type { get; private set; }
-
-    [HideInInspector]
-    public bool active { get; private set; }
-    public int number;
+    public bool Active { get; private set; }
 
 
 
-    //Доп инструменты
-    [HideInInspector]
     public ScholarActions Action { get; private set; }
-    [HideInInspector]
-    public ScholarAnim Anim { get; private set; }
-    [HideInInspector]
+    public ScholarAnimtor Anim { get; private set; }
     public ScholarCheat Cheat { get; private set; }
-    [HideInInspector]
-    public ScholarEmotions Emotions { get; private set; }
-    [HideInInspector]
-    public ScholarMove Move { get; private set; }
-    [HideInInspector]
-    public ScholarSenses Senses { get; private set; }
-    [HideInInspector]
-    public ScholarStress Stress { get; private set; }
-    [HideInInspector]
-    public ScholarExam Test { get; private set; }
-    [HideInInspector]
-    public ScholarTextBox TextBox { get; private set; }
-    [HideInInspector]
     public ScholarTalk Talk { get; private set; }
-    [HideInInspector]
-    public ScholarComputer Desk { get; set; }
-    [HideInInspector]
-    public ScholarQuestions Question { get; private set; }
-    [HideInInspector]
-    public ScholarConverastion Conversation { get; private set; }
-    [HideInInspector]
-    public ScholarReactions Reaction { get; private set; }
-    [HideInInspector]
     public ScholarInfo Info { get; private set; }
-    [HideInInspector]
-    public ScholarView View { get; private set; }
-    [HideInInspector]
-    public ScholarSelect Select { get; private set; }
-    [HideInInspector]
     public ScholarLocation Location { get; private set; }
-    [HideInInspector]
-    public ScholarCheck Check { get; private set; }
-    [HideInInspector]
-    public ScholarExecute Execute { get; private set; }
-    [HideInInspector]
-    public ScholarAnswers Answers { get; private set; }
-    [HideInInspector]
     public ScholarObjects Objects { get; private set; }
-    [HideInInspector]
-    public ScholarSounds Sound { get; private set; }
-    [HideInInspector]
-    public ScholarBody Body { get; private set; }
-    [HideInInspector]
-    public ScholarHUD HUD { get; private set; }
+    public ScholarEmotions Emotions => _emotions;
+    public ScholarTextBox TextBox => _textBox;
+    public ScholarSelect Select => _select;
+    public ScholarSounds Sound => _sound;
+    public ScholarBody Body => _body;
+    public ScholarMove Move => _move;
+    public ScholarComputer Desk => _desk;
+    public ClassAgent ClassRoom => _classRoom;
+
+
+
+    [SerializeField]
+    private ClassAgent _classRoom;
+
+    [SerializeField]
+    private ScholarComputer _desk;
+
+    [SerializeField]
+    private ScholarTextBox _textBox;
+
+    [SerializeField]
+    private ScholarEmotions _emotions;
+
+    [SerializeField]
+    private ScholarMove _move;
+
+    [SerializeField]
+    private ScholarBody _body;
+
+    [SerializeField]
+    private ScholarSelect _select;
+
+    [SerializeField]
+    private ScholarSounds _sound;
 
 
 
 
+    #region IInitializator
+#if UNITY_EDITOR
+    public bool TryInitializate()
+    {
+        try
+        {
+            Transform buf = transform.Find("Script Holder");
 
+            _textBox = buf.GetComponent<ScholarTextBox>();
+            _emotions = buf.GetComponent<ScholarEmotions>();
+            _move = GetComponent<ScholarMove>();
+            _body = buf.GetComponent<ScholarBody>();
+            _select = GetComponent<ScholarSelect>();
+            _sound = buf.GetComponent<ScholarSounds>();
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+
+    public void SetDesk(ScholarComputer desk)
+    {
+        _desk = desk;
+    }
+
+    public void SetClass(ClassAgent classRoom)
+    {
+        _classRoom = classRoom;
+    }
+
+#endif
+    #endregion
 
 
     public virtual void Setup()
     {
-        active = false;
+        Active = false;
         this.tag = "Scholar";
 
-        Transform buf = transform.Find("Script Holder");
-
-        TextBox = buf.GetComponent<ScholarTextBox>();
         TextBox.Setup(this);
-
-        Emotions = buf.GetComponent<ScholarEmotions>();
         Emotions.Setup();
-
-        Move = GetComponent<ScholarMove>();
         Move.Setup(this);
-
-        Body = buf.GetComponent<ScholarBody>();
         Body.Setup(this);
-
-        Select = GetComponent<ScholarSelect>();
         Select.Setup(this);
-
-        Sound = buf.GetComponent<ScholarSounds>();
         Sound.Setup(this);
 
-
-
-
-        Anim = new ScholarAnim(transform.Find("Scholar").GetComponent<Animator>());
-        Question = new ScholarQuestions(this);
+        Anim = new ScholarAnimtor(transform.Find("Scholar").GetComponent<Animator>());
         Info = new ScholarInfo(this);
         Location = new ScholarLocation(this);
-        Execute = new ScholarExecute(this);
         Objects = new ScholarObjects(this);
-        Reaction = new ScholarReactions();
         Action = new ScholarActions(this);
-        HUD = new ScholarHUD(this);
-        Senses = new ScholarSenses(this);
-        Stress = new ScholarStress(this);
-        Conversation = new ScholarConverastion(this);
         Cheat = new ScholarCheat(this);
-        Check = new ScholarCheck(this);
-        View = new ScholarView(this);
-        Test = new ScholarExam(this);
     }
 
 
 
-    public virtual void SetNewType(ScholarTypes.list type)
+    public virtual void Reset()
     {
-        active = true;
-        ChangeType(type);
+        Active = true;
 
         Select.Reset();
         Emotions.Reset();
-        Execute.Reset();
-        Stress.Reset();
-        
-
         Talk = new ScholarTalk(this);
-        Answers = new ScholarAnswers();
         Cheat.Reset();
 
-        if (Desk != null)
-            Desk.ResetComputer();
+        Desk?.ResetComputer();
 
         Body.Enable();
     }
 
-    public void ResetType()
+
+
+    private void Update()
     {
-        if (scholarType == ScholarTypes.list.Random)
+        if (Active)
         {
-            int rand = Random.Range(0, ScholarTypes.length);
-            scholarType = (ScholarTypes.list)rand;
-        }
-
-        SetNewType(scholarType);
-    }
-
-
-
-    void Update()
-    {
-        if (active)
-        {
-            Test.Update();
-            Question.Update();
-            Senses.Update();
             Talk.Update();
-            Check.Update();
             Objects.Update();
-            Stress.Update();
         }
-
-        if (HUD != null)
-            HUD.Update();
     }
 
 
 
     public virtual void Continue()
     {
-        if (active)
+        if (Active)
             Action.Continue();
     }
 
@@ -197,19 +167,9 @@ public class Scholar : MonoBehaviour
         Move.Stop();
         Talk.Stop();
         Objects.ThrowOut();
-        Anim.SetAnimation(Animations.GetA.animations.Nothing);
-        active = false;
+        Anim.SetAnimation(Animations.Get.animations.Nothing);
+        Active = false;
     }
 
 
-
-
-    //========================================================================================================
-    //Изменение типа ученика
-
-    public void ChangeType(ScholarTypes.list t)
-    {
-        scholarType = t;
-        type = t.ToString();
-    }
 }

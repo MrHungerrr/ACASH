@@ -76,7 +76,7 @@ public class Door : MonoBehaviour, IInteraction
             Close();
         }
 
-        Player.Instance.Action.Doing(false);
+        Player.Instance.Action.SetDoing(false);
     }
 
 
@@ -102,7 +102,6 @@ public class Door : MonoBehaviour, IInteraction
                 TargetRotate(-90);
             }
 
-            ScholarManager.Instance.SpecialHear(doorT.position);
             Sound.Play(DoorSounds.sounds.Open);
             changing = true;
         }
@@ -173,15 +172,15 @@ public class Door : MonoBehaviour, IInteraction
         int i;
         in_range = false;
 
-        for(i = 0; i < ScholarManager.Instance.scholars.Length; i++)
+        for(i = 0; i < ScholarManager.Instance.Scholars.Length; i++)
         {
             try
             { 
-                if (Vector3.Distance(doorT.position, ScholarManager.Instance.scholars[i].transform.position) < 0.3f)
+                if (Vector3.Distance(doorT.position, ScholarManager.Instance.Scholars[i].transform.position) < 0.3f)
                 {
                     if (!open)
                     {
-                        if (Mathf.Abs(BaseGeometry.LookingAngle2D(ScholarManager.Instance.scholars[i].Move.transform, doorT.position)) < 60)
+                        if (Mathf.Abs(BaseGeometry.LookingAngle2D(ScholarManager.Instance.Scholars[i].Move.transform, doorT.position)) < 60)
                         {
                             in_range = true;
                             break;
@@ -202,7 +201,7 @@ public class Door : MonoBehaviour, IInteraction
 
         if (in_range && !open && !scholar_open)
         {
-            DoorInteract(ScholarManager.Instance.scholars[i].Move.Position());
+            DoorInteract(ScholarManager.Instance.Scholars[i].Move.Position());
 
             scholar_open = true;
         }

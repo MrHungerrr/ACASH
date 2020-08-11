@@ -54,7 +54,7 @@ public class ScholarSelect : ObjectSelect
 
     public void Selectable(bool option)
     {
-        if (Scholar.active)
+        if (Scholar.Active)
         {
             selectable = option;
 

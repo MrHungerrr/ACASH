@@ -8,7 +8,6 @@ public class Player : MonoSingleton<Player>
     public PlayerMove Move { get; protected set; }
     public PlayerSelecting Select { get; protected set; }
     public PlayerActions Action { get; protected set; }
-    public PlayerTalkControl Talk { get; protected set; }
     public PlayerCamera Camera { get; protected set; }
     public PlayerHear Hear { get; protected set; }
 
@@ -31,8 +30,6 @@ public class Player : MonoSingleton<Player>
         Select = new PlayerSelecting();
         Action = new PlayerActions();
         Hear = new PlayerHear();
-
-        Talk = GetComponent<PlayerTalkControl>();
     }
 
 

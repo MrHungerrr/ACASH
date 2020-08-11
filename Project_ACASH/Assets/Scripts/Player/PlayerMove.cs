@@ -3,39 +3,34 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-    private Rigidbody RB;
-    [HideInInspector]
-    public bool moving;
-
-
-    [HideInInspector]
-    public Vector2 moveInput;
-    private Vector3 move;
-
-    [HideInInspector]
-    public float rotateAngle;
-    private float last_rotateAngle;
-
     public enum movement
     {
         Normal,
         Run,
     }
 
-    [HideInInspector]
-    public movement type_movement;
-    private const int RB_coef = 2500;
-    private float normalSpeed = 2f;
-    private float runSpeed = 3.5f;
-    private float movementSpeed;
-    
+    public movement MovementType => _movementType;
 
 
+    private const int RB_COEF = 2500;
+    private const float NORMAL_SPEED = 2f;
+    private const float RUN_SPEED = 3.5f;
+
+    private Rigidbody _RB;
+
+    private bool _moving;
+    private float _movementSpeed;
+    private movement _movementType;
+
+    private Vector2 _moveInput;
+    private Vector3 _move;
+
+    private float _rotateAngle;
 
 
     public void Setup()
     {
-        this.RB = GetComponent<Rigidbody>();
+        this._RB = GetComponent<Rigidbody>();
         SwitchMove(movement.Normal);
     }
 
@@ -48,17 +43,17 @@ public class PlayerMove : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (move != Vector3.zero)
+        if (_move != Vector3.zero)
         {
-            moving = true;
+            _moving = true;
             PlayerMovement();
         }
         else
         {
-            moving = false;
+            _moving = false;
         }
 
-        if (rotateAngle != 0f)
+        if (_rotateAngle != 0f)
         {
             Rotate();
         }
@@ -66,30 +61,37 @@ public class PlayerMove : MonoBehaviour
 
     public void SwitchMove(movement type)
     {
-        type_movement = type;
+        _movementType = type;
 
         switch (type)
         {
             case movement.Normal:
                 {
-                    movementSpeed = normalSpeed;
+                    _movementSpeed = NORMAL_SPEED;
                     break;
                 }
             case movement.Run:
                 {
-                    movementSpeed = runSpeed;
+                    _movementSpeed = RUN_SPEED;
                     break;
                 }
         }
     }
 
+
+    public void MoveInput(Vector3 input)
+    {
+        _moveInput = input;
+    }
+
+
     private void MoveCalculate()
     {
-        if (moveInput != Vector2.zero)
+        if (_moveInput != Vector2.zero)
         {
-            Vector3 moveInput3 = moveInput.normalized;
+            Vector3 moveInput3 = _moveInput.normalized;
             moveInput3 = new Vector3(moveInput3.x, 0, moveInput3.y);
-            move = moveInput3;
+            _move = moveInput3;
 
             //Debug.Log(moveInput3 + "\n" + move);
         }
@@ -97,20 +99,26 @@ public class PlayerMove : MonoBehaviour
 
     private void PlayerMovement()
     {
-        Vector3 new_move = transform.TransformDirection(move * movementSpeed * RB_coef * Time.fixedDeltaTime);
+        Vector3 new_move = transform.TransformDirection(_move * _movementSpeed * RB_COEF * Time.fixedDeltaTime);
         //Vector3 new_position = transform.position + new_move;
 
-        RB.AddForce(new_move);
+        _RB.AddForce(new_move);
 
-        move = Vector3.zero;
+        _move = Vector3.zero;
+    }
+
+
+    public void AddRotateAngle(float angle)
+    {
+        _rotateAngle += angle;
     }
 
 
     private void Rotate()
     {
-        Quaternion rotation_goal = Quaternion.Euler(0, transform.eulerAngles.y + rotateAngle, 0);
-        RB.MoveRotation(rotation_goal);
-        rotateAngle = 0f;
+        Quaternion rotation_goal = Quaternion.Euler(0, transform.eulerAngles.y + _rotateAngle, 0);
+        _RB.MoveRotation(rotation_goal);
+        _rotateAngle = 0f;
     }
 
 
@@ -121,7 +129,7 @@ public class PlayerMove : MonoBehaviour
 
     public void Position(Vector3 position)
     {
-        RB.position = position;
+        _RB.position = position;
     }
 
 

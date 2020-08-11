@@ -25,7 +25,6 @@ public class StartupManager : MonoSingleton<StartupManager>
     {
         GeneralManager.Instance.SetLevel();
         FadeController.Instance.Fade(false);
-        FadeHUDController.Instance.Fade(false);
         InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
 
         TimeManager.Instance.SetTime(300);

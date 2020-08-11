@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using ComputerActions;
-
 
 public class ScholarComputer : A_Computer
 {

@@ -38,7 +38,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Restart()
     {
-        StartCoroutine(ReloadGame());
+
     }
 
     public void Quit()
@@ -65,7 +65,6 @@ public class GameManager : MonoSingleton<GameManager>
 
         InputManager.SwitchGameInput(InputManager.GameplayType.Menu);
 
-        FadeHUDController.Instance.Fade(false);
         FadeController.Instance.Fade(false);
     }
 
@@ -94,26 +93,11 @@ public class GameManager : MonoSingleton<GameManager>
         //END
     }
 
-    private IEnumerator ReloadGame()
-    {
-        Menu.Instance.MenuEnable(false);
-
-        InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
-        FadeHUDController.Instance.Fade(true);
-        GeneralManager.Instance.UnsetLevel();
-
-        while (FadeHUDController.Instance.active)
-            yield return new WaitForEndOfFrame();
-
-        LevelManager.Instance.Reload();
-    }
-
 
 
     public void SwitchLevel(LevelManager.levels level)
     {
         InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
-        FadeHUDController.Instance.FastFade(true);
 
         GeneralManager.Instance.UnsetLevel();
 
@@ -125,14 +109,12 @@ public class GameManager : MonoSingleton<GameManager>
     public void StartGame()
     {
         FadeController.Instance.Fade(false);
-        FadeHUDController.Instance.Fade(false);
         InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
     }
 
     public void StartLevel()
     {
         InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
-        FadeHUDController.Instance.FastFade(true);
         FadeController.Instance.FastFade(false);
 
         GeneralManager.Instance.SetLevel();

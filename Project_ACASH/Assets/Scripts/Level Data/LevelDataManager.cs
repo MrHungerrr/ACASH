@@ -6,14 +6,14 @@ using Single;
 
 public static class LevelDataManager
 {
-    public static string Path => _path;
-    private static readonly string _path = Application.dataPath + @"\LevelData";
+    public static string Path => PATH;
+    private static readonly string PATH = Application.dataPath + @"\LevelData";
 
 
     public static void Setup()
     {
-        DirectoryManager.Create(_path);
-        OverwatchData.Setup();
+        DirectoryManager.Create(Path);
+        OverwatchData.Instance.Setup();
     }
 
 
@@ -22,7 +22,7 @@ public static class LevelDataManager
 
     public static void SetLevel()
     {
-        OverwatchData.SetLevel();
+        OverwatchData.Instance.SetLevel();
     }
 
 }

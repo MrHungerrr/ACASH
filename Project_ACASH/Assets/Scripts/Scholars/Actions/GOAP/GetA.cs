@@ -6,7 +6,6 @@ namespace GOAP
 {
     public static class GetA
     {
-
         public enum cheatings
         {
             Note,
@@ -22,9 +21,5 @@ namespace GOAP
             cheking,
             post_cheating,
         }
-
-
-
-
     }
 }

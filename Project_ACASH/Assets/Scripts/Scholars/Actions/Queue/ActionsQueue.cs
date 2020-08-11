@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ActionsQueue
 {
-    public Queue<I_ActionsQueueElement> queue = new Queue<I_ActionsQueueElement>();
+    private readonly Queue<IActionsQueueElement> _queue = new Queue<IActionsQueueElement>();
 
     
     public void Add(string action)
     {
-        queue.Enqueue(new ActionsQueueElement(action));
+        _queue.Enqueue(new ActionsQueueElement(action));
     }
 
 
     public string GetAction()
     {
-        if (queue.Count > 0)
+        if (_queue.Count > 0)
         {
-            return queue.Dequeue().GetAction();
+            return _queue.Dequeue().GetAction();
         }
         else
         {
@@ -28,7 +28,7 @@ public class ActionsQueue
 
     public void Reset()
     {
-        queue.Clear();
+        _queue.Clear();
     }
 
     public string Show()
@@ -36,7 +36,7 @@ public class ActionsQueue
         string show = "";
         int i = 1;
 
-        foreach (I_ActionsQueueElement element in queue)
+        foreach (IActionsQueueElement element in _queue)
         {
             show += i + ". " + element.Show() + "\n";
             i++;

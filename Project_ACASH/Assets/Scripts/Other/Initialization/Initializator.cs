@@ -11,18 +11,24 @@ public static class Initializator
         var Initilizators = new List<IInitialization>();
 
         GameObject[] objects = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
-        IInitialization initializator;
+        IInitialization outInitilizator;
+        IInitialization[] bufInitilizators;
 
         for (int i = objects.Length - 1; i >= 0; i--)
-            if (objects[i].TryGetComponent<IInitialization>(out initializator))
+            if (objects[i].TryGetComponent<IInitialization>(out outInitilizator))
             {
-                Initilizators.Add(initializator);
+                bufInitilizators = objects[i].GetComponents<IInitialization>();
+                
+                for(int k = 0; k < bufInitilizators.Length; k++)
+                    Initilizators.Add(bufInitilizators[k]);
             }
 
-        foreach (var initializate in Initilizators)
+        for(int i = 0; i < Initilizators.Count; i++)
         {
-            if (!initializate.TryInitializate())
-                Debug.LogError($"Ошибка в Инициализации {initializate.GetType()}");
+            Debug.Log($"Инициализация {Initilizators[i].GetType()}");
+
+            if (!Initilizators[i].TryInitializate())
+                Debug.LogError($"Ошибка в Инициализации {Initilizators[i].GetType()}");
         }
     }
 }

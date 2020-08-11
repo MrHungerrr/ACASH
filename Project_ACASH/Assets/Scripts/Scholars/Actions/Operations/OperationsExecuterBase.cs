@@ -1,17 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Animations;
-using ScholarOptions;
+using Places;
 
 public abstract class OperationsExecuterBase : MonoBehaviour
 {
-    protected Scholar Scholar;
-    protected OperationsManager Manager;
+    protected Scholar _scholar;
+    protected OperationsManager _manager;
 
     public delegate bool VerifyDelegate();
-
-    [HideInInspector]
-    public bool doing;
 
     /*
     protected int actionNum;
@@ -21,32 +18,26 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     public void SetOperationsExecuter(Scholar Scholar, OperationsManager Manager)
     {
-        this.Scholar = Scholar;
-        this.Manager = Manager;
+        this._scholar = Scholar;
+        this._manager = Manager;
     }
 
 
     public void Do(string key)
     {
         Stop();
-        //Debug.Log("Я начал делать" + key);
-        doing = true;
         StartCoroutine(key);
     }
 
     public void Do(string key, int i)
     {
         Stop();
-        //Debug.Log("Я начал делать " + key);
-        doing = true;
         StartCoroutine(key, i);
     }
 
     public void Do(string key, string option)
     {
         Stop();
-        //Debug.Log("Я начал делать" + key);
-        doing = true;
         StartCoroutine(key, option);
     }
 
@@ -54,15 +45,14 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     public void Stop()
     {
-        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        _scholar.Anim.SetAnimation(Get.animations.Nothing);
         StopAllCoroutines();
     }
 
 
     protected void OperationEnd()
     {
-        doing = false;
-        Manager.OperationDone();
+        _manager.OperationDone();
     }
 
 
@@ -106,29 +96,29 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     //=========================================================================================================================================================
     //Зрение
 
-    protected void WatchTo(PlaceManager.place place, int index)
+    protected void WatchTo(Place place)
     {
-        Watch(PlaceManager.Instance.GetSightGoal(place, index));
+        Watch(place.SightGoal);
     }
 
     protected void Watch(Vector3 target)
     {
-        Scholar.Move.SetRotateGoal(target);
+        _scholar.Move.SetRotateGoal(target);
     }
 
     protected void Watch(float angle)
     {
-        Scholar.Move.SetRotateGoal(angle);
+        _scholar.Move.SetRotateGoal(angle);
     }
 
     protected void Watch(Quaternion targetRotation)
     {
-        Scholar.Move.SetRotateGoal(targetRotation);
+        _scholar.Move.SetRotateGoal(targetRotation);
     }
 
     protected bool SightIsHere()
     {
-        return !Scholar.Move.rotating;
+        return !_scholar.Move.Rotating;
     }
 
 
@@ -140,114 +130,26 @@ public abstract class OperationsExecuterBase : MonoBehaviour
     //=========================================================================================================================================================
     //Местоположение и передвижение
 
-    public void GoTo(PlaceManager.place place, int index)
+    public void GoTo(Place place)
     {
         Stop();
-        //Debug.Log("Я начал делать" + key);
-        doing = true;
-        StartCoroutine(Go_To(place, index));
-    }
-
-    public void GoTo(PlaceManager.place place)
-    {
-        int index = PlaceManager.Instance.GetRandomFreePlaceIndex(place);
-        GoTo(place, index);
+        StartCoroutine(Go_To(place));
     }
 
     protected bool IsHere()
     {
-        return !Scholar.Move.walking;
+        return !_scholar.Move.Walking;
     }
 
     protected Quaternion GetRotation()
     {
-        return Scholar.Move.Rotation();
+        return _scholar.Move.Rotation();
     }
 
     protected Vector3 GetPosition()
     {
-        return Scholar.Move.Position();
+        return _scholar.Move.Position();
     }
-
-
-
-
-
-    //=========================================================================================================================================================
-    //=========================================================================================================================================================
-    //Вопрос
-
-
-
-    protected IEnumerator Question(string question)
-    {
-        Scholar.Question.Ask(question);
-
-        while (Scholar.Question.question || Scholar.Talk.talking)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (Scholar.Question.question_answered)
-        {
-            if (Scholar.Question.answer)
-            {
-                //Учитель ответил положительно
-            }
-            else
-            {
-                //Учитель ответил отрицательно
-            }
-        }
-        else
-        {
-            //Учитель не ответил
-        }
-
-        OperationEnd();
-    }
-
-
-
-
-
-    //=========================================================================================================================================================
-    //=========================================================================================================================================================
-    // Поиск учителя
-
-
-    protected IEnumerator Check()
-    {
-        if (!Scholar.Senses.T_here)
-        {
-            Scholar.Check.StartCheck();
-
-            Debug.Log("Проверяю учителя");
-
-            while (Scholar.Check.checking)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
-
-            if (Scholar.Senses.T_here)
-            {
-                // Учитель здесь
-            }
-            else
-            {
-                // Учитель не здесь
-            }
-        }
-        else
-        {
-            // Учитель здесь
-        }
-
-        OperationEnd();
-    }
-
-
 
 
 
@@ -259,7 +161,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     protected IEnumerator Wait(int option)
     {
-        Scholar.Anim.SetAnimation(GetA.animations.Nothing);
+        _scholar.Anim.SetAnimation(Get.animations.Nothing);
         yield return new WaitForSeconds(option);
 
         OperationEnd();
@@ -276,7 +178,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     protected IEnumerator StartCheat()
     {
-        Scholar.Cheat.StartCheat();
+        _scholar.Cheat.StartCheat();
         yield return new WaitForEndOfFrame();
 
         OperationEnd();
@@ -284,7 +186,7 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     protected IEnumerator EndCheat()
     {
-        Scholar.Cheat.EndCheat();
+        _scholar.Cheat.EndCheat();
         yield return new WaitForEndOfFrame();
 
         OperationEnd();
@@ -300,79 +202,68 @@ public abstract class OperationsExecuterBase : MonoBehaviour
 
     public bool VerifyToiletAreFree()
     {
-        return PlaceManager.Instance.IsFree(PlaceManager.place.Toilet);
+        return _scholar.ClassRoom.PlaceAgent.HasFreePlace(PlaceManager.place.Toilet);
     }
 
     public bool VerifySinkAreFree()
     {
-        return PlaceManager.Instance.IsFree(PlaceManager.place.Sink);
+        return _scholar.ClassRoom.PlaceAgent.HasFreePlace(PlaceManager.place.Sink);
     }
 
     public bool VerifyOutsideAreFree()
     {
-        return PlaceManager.Instance.IsFree(PlaceManager.place.Outside);
+        return _scholar.ClassRoom.PlaceAgent.HasFreePlace(PlaceManager.place.Outside);
     }
 
-    public bool VerifyTeacherIsHere()
-    {
-        return Scholar.Senses.T_here;
-    }
-
-    public bool VerifyAnswer()
-    {
-        return Scholar.Question.answer;
-    }
 
     public void Verify(VerifyDelegate typeOfCheck, bool need_condition)
     {
         if (typeOfCheck() == need_condition)
             OperationEnd();
         else
-            Manager.ActionEnd();
+            _manager.OperationsEnd();
     }
 
-
-
-
-
-    //=========================================================================================================================================================
-    //Исключение
-
-    private IEnumerator Execute()
-    {
-        yield return new WaitForSeconds(2f);
-
-
-        if (Scholar.Execute.executed)
-        {
-            Scholar.Talk.SayWithoutStop(Scholar.Execute.execute_key);
-        }
-        else
-        {
-            Scholar.Execute.LastWord();
-        }
-    }
 
 
 
     //=========================================================================================================================================================
     // Идти домой
-    private IEnumerator Go_To(PlaceManager.place place, int index)
-    {
 
-        Scholar.Location.ChangeLocation(place, index);
+    private IEnumerator Go_Home(Place place)
+    {
+        _scholar.Location.ChangeLocation(place);
 
         while (!IsHere())
             yield return new WaitForEndOfFrame();
 
-        WatchTo(PlaceManager.place.Home, Scholar.Info.number);
-        Scholar.Body.Disable();
+        WatchTo(place);
+        _scholar.Body.Disable();
 
         yield return new WaitForEndOfFrame();
 
-        Scholar.Move.RB.isKinematic = false;
+        _scholar.Move.RB.isKinematic = false;
 
         OperationEnd();
     }
 
+
+
+
+    //=========================================================================================================================================================
+    // Идти 
+
+    protected IEnumerator Go_To(Place place)
+    {
+        GoTo(place);
+
+        yield return new WaitForEndOfFrame();
+
+        while (!IsHere())
+            yield return new WaitForEndOfFrame();
+
+        WatchTo(place);
+
+        OperationEnd();
+    }
 }

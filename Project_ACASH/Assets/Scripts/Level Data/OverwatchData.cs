@@ -1,27 +1,35 @@
 ﻿using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Single;
 
-public static class OverwatchData
+
+public class OverwatchData : MonoSingleton<OverwatchData>
 {
+    private string _path;
+    private Rect _rect;
+    private Texture2D _render;
 
-    private static readonly int WIDTH = OverwatchCameraManager.Instance.renderTextureReference.width;
-    private static readonly int HEIGHT = OverwatchCameraManager.Instance.renderTextureReference.height;
-    private static readonly Rect RECT = new Rect(0, 0, WIDTH, HEIGHT);
-    private static readonly Texture2D RENDER = new Texture2D(WIDTH, HEIGHT, TextureFormat.RGB24, false);
+    private int _index;
 
-    private static readonly string _path = LevelDataManager.Path + @"\OverwatchHistory";
-    private static int index;
-
-    public static void Setup()
+    public void Setup()
     {
+        _path = LevelDataManager.Path + @"\OverwatchHistory";
+
+        var width = OverwatchCameraManager.Instance.renderTextureReference.width;
+        var height = OverwatchCameraManager.Instance.renderTextureReference.height;
+
+        _rect = new Rect(0, 0, width, height);
+        _render = new Texture2D(width, height, TextureFormat.RGB24, false);
+
         DirectoryManager.Create(_path);
     }
 
 
-    public static void SetLevel()
+    public void SetLevel()
     {
         DirectoryManager.Clear(_path);
 
@@ -31,26 +39,37 @@ public static class OverwatchData
             DirectoryManager.Create($"{_path}/{i}");
         }
 
-        index = 0;
+        _index = 0;
 
         TakeAShots();
     }
 
 
-    public static void TakeAShots()
+
+    public void TakeAShots()
+    {
+        StartCoroutine(TakeAShot());
+    }
+   
+    public IEnumerator TakeAShot()
     {
         for (int i = 0; i < OverwatchCameraManager.Instance.CamerasHolders.Length; i++)
         {
             RenderTexture.active = OverwatchCameraManager.Instance.CamerasHolders[i].Texture;
-            RENDER.ReadPixels(RECT, 0, 0);
-            RENDER.Apply();
+            _render.ReadPixels(_rect, 0, 0);
+            yield return new WaitForEndOfFrame();
 
-            byte[] byteArray = RENDER.GetRawTextureData();
+            _render.Apply();
+            yield return new WaitForEndOfFrame();
 
-            DataReader.SaveData($"{_path}/{i}/{index}.t2D", byteArray);
+            byte[] byteArray = _render.GetRawTextureData();
+            yield return new WaitForEndOfFrame();
+
+            DataReader.SaveData($"{_path}/{i}/{_index}.t2D", byteArray);
+            yield return new WaitForEndOfFrame();
         }
 
-        index++;
+        _index++;
         ActionSchedule.Instance.AddActionInTime(5, TakeAShots);
 
         Debug.Log("ScreenShot");

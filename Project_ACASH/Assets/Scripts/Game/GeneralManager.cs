@@ -20,7 +20,7 @@ public class GeneralManager: MonoSingleton<GeneralManager>
 
     public void SetLevel()
     {
-        PlaceManager.Instance.SetLevel();
+        ClassManager.SetLevel();
         ExamManager.Instance.SetLevel();
         ScholarObjectsManager.Instance.SetLevel();
         ScholarManager.Instance.SetLevel();
@@ -31,6 +31,7 @@ public class GeneralManager: MonoSingleton<GeneralManager>
         SoundManager.Instance.SetLevel();
         ThreadTaskQueuer.SetLevel();
         LevelDataManager.SetLevel();
+
 
         //if (!test)
         //    A_Level.Instance.StartLevel();

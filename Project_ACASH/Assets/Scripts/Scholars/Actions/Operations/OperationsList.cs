@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Questions;
 using Operations;
 
 public static class OperationsList
@@ -12,11 +11,8 @@ public static class OperationsList
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Toilet_Is_Free, true),
-        new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
         new Verify(GetO.verify.Toilet_Is_Free, true),
-
-        new GoTo(PlaceManager.place.Toilet),
 
         new Special(GetO.special.Pee, 5),
         //new Operation(GetO.operation.Go_To_Desk),
@@ -29,7 +25,6 @@ public static class OperationsList
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Outside_Is_Free, true),
-        new Question(GetQ.questions.Outside),
         new Verify(GetO.verify.Answer, true),
         new Verify(GetO.verify.Outside_Is_Free, true),
 
@@ -45,7 +40,6 @@ public static class OperationsList
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Sink_Is_Free, true),
-        new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
         new Verify(GetO.verify.Sink_Is_Free, true),
 
@@ -63,7 +57,6 @@ public static class OperationsList
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Toilet_Is_Free, true),
-        new Question(GetQ.questions.Toilet),
         new Verify(GetO.verify.Answer, true),
         new Verify(GetO.verify.Toilet_Is_Free, true),
 
@@ -84,7 +77,6 @@ public static class OperationsList
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Outside_Is_Free, true),
-        new Question(GetQ.questions.Outside),
         new Verify(GetO.verify.Answer, true),
         new Verify(GetO.verify.Outside_Is_Free, true),
 
@@ -104,7 +96,6 @@ public static class OperationsList
         new Verify(GetO.verify.Teacher_Is_Here, true),
 
         new Verify(GetO.verify.Sink_Is_Free, true),
-        new Question(GetQ.questions.Sink),
         new Verify(GetO.verify.Answer, true),
         new Verify(GetO.verify.Sink_Is_Free, true),
 
@@ -122,8 +113,6 @@ public static class OperationsList
     {
         new Operation(GetO.operation.Check),
         new Verify(GetO.verify.Teacher_Is_Here, true),
-
-        new Question(GetQ.questions.Simple),
     };
 
     private static Operation[] Think_Aloud_1 = new Operation[]

@@ -3,30 +3,33 @@ using System.Collections;
 
 public class PlayerActions
 {
-    public bool doing { get; private set; } = false;
-    private IInteraction interactObject;
+
+    public bool Doing => _doing;
+
+    private bool _doing = false;
+    private IInteraction _interactObject;
 
 
     public void Update()
     {
-        if (doing)
+        if (Doing)
             Act();
     }
 
 
-    public void Doing(bool option)
+    public void SetDoing(bool option)
     {
-        doing = option;
+        _doing = option;
     }
 
 
     private void Act()
     {
-        if (Player.Instance.Select.selected)
+        if (Player.Instance.Select.SelectingIsActive)
         {
-            if (Player.Instance.Select.selected_obj.TryGetComponent<IInteraction>(out interactObject))
+            if (Player.Instance.Select.SelectedObject.TryGetComponent<IInteraction>(out _interactObject))
             {
-                interactObject.Interaction();
+                _interactObject.Interaction();
             }
         }
     }

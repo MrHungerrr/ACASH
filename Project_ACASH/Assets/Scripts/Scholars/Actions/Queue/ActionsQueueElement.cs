@@ -1,4 +1,4 @@
-﻿public class ActionsQueueElement : I_ActionsQueueElement
+﻿public class ActionsQueueElement : IActionsQueueElement
 {
     private string action;
 

@@ -21,7 +21,7 @@ public class ScoreLine
 
     public void SetScore(ScoreItem score)
     {
-        Text(score.count, score.rep);
+        Text(score.Count, score.Rep);
     }
 
 

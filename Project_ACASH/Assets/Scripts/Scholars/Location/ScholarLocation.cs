@@ -1,66 +1,62 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Places;
 
 public class ScholarLocation
 {
-    private Scholar Scholar;
+    public Place CurrentPlace => _currentPlace;
 
-    public PlaceManager.place place;
-    public int index;
+
+    private Scholar _scholar;
+    private Place _currentPlace;
 
     public ScholarLocation(Scholar Scholar)
     {
-        this.Scholar = Scholar;
-        index = -1;
+        this._scholar = Scholar;
+        _currentPlace = null;
     }
 
-    public void ChangeLocation(PlaceManager.place place, int index)
+    public void ChangeLocation(Place place)
     {
         try
         {
+            GoTo(place);
 
-
-            GoTo(place, index);
-
-            PlaceManager.Instance.MakeFree(this.place, this.index);
-            PlaceManager.Instance.MakeBusy(place, index);
+            _currentPlace?.SetBusy(false);
+            place.SetBusy(true);
         }
         catch
         {
-            Debug.LogError( "Не существующее место "+ place.ToString() + " " + index + " в ScholarLocation");
+            Debug.LogError( "Не существующее место "+ place.ToString() + " в ScholarLocation");
         }
 
-        this.place = place;
-        this.index = index;
+        _currentPlace = place;
     }
 
-    private void GoTo(PlaceManager.place place, int index)
+    private void GoTo(Place place)
     {
-        Vector3 destination = PlaceManager.Instance.GetPlace(place, index);
-        Scholar.Move.SetDestination(destination);
+        Vector3 destination = place.Destination;
+        _scholar.Move.SetDestination(destination);
     }
 
 
-    public void Teleport(PlaceManager.place place, int index)
+    public void Teleport(Place place)
     {
-        if (this.index != -1)
-            PlaceManager.Instance.MakeFree(this.place, this.index);
+        _currentPlace?.SetBusy(false);
 
         try
         {
-            PlaceManager.Instance.MakeBusy(place, index);
+            place.SetBusy(true);
 
-            Scholar.Move.Position(PlaceManager.Instance.GetPlace(place, index));
-            Scholar.Move.Rotation(PlaceManager.Instance.GetSightGoal(place, index));
+            _scholar.Move.Position(place.Destination);
+            _scholar.Move.Rotation(place.SightGoal);
         }
         catch
         {
-            Debug.LogError("Не существующее место " + place.ToString() + " " + index + " в ScholarLocation");
+            Debug.LogError("Не существующее место " + place.ToString() + " в ScholarLocation");
         }
 
-
-        this.place = place;
-        this.index = index;
+        _currentPlace = place;
     }
 
 

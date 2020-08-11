@@ -23,7 +23,6 @@ public class TimeShower : Singleton<TimeShower>
     private void ShowTime(int timeInSeconds)
     {
         var timeString = StringTime(timeInSeconds);
-        HUDController.Instance.Time(timeString);
     }
 
     private string StringTime(int t)

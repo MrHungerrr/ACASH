@@ -6,61 +6,51 @@ using TMPro;
 public class ScholarTextBox : MonoBehaviour
 {
 
-    private Scholar Scholar;
+    private Scholar _scholar;
 
-    private TextMeshPro[] textBox = new TextMeshPro[3];
-    private SliderWatch stressSlider;
-    private bool saying = false;
-    private bool question = false;
-    [HideInInspector]
-    public bool act = false;
-    private bool filled = false;
-    private float timeClear_N;
-    private float timeClear = 0;
-    private float timeUnselectable_N;
-    private float timeUnselectable = 0;
+    private bool _act = false;
+
+    private TextMeshPro[] _textBox = new TextMeshPro[3];
+    private bool _saying = false;
+    private bool _filled = false;
+    private float _timeClear_N;
+    private float _timeClear = 0;
 
 
     public void Setup(Scholar Scholar)
     {
-        this.Scholar = Scholar;
+        this._scholar = Scholar;
 
         Transform buf = Scholar.transform.Find("Scholar").Find("Scholar").Find("Spine").Find("Text Box");
-        textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();
-        textBox[1] = buf.Find("Text_1").GetComponent<TextMeshPro>();
-        textBox[2] = buf.Find("Text_2").GetComponent<TextMeshPro>();
-        stressSlider = buf.Find("Stress Slider").GetComponentInChildren<SliderWatch>();
-        stressSlider.Setup();
+        _textBox[0] = buf.Find("Text_0").GetComponent<TextMeshPro>();
+        _textBox[1] = buf.Find("Text_1").GetComponent<TextMeshPro>();
+        _textBox[2] = buf.Find("Text_2").GetComponent<TextMeshPro>();
         Clear();
     }
 
     private void Update()
     {
-        if (filled && !question)
+        if (_filled)
         {
-            if (timeClear >= timeClear_N)
+            if (_timeClear >= _timeClear_N)
             {
                 Clear();
             }
-            else if (timeUnselectable >= timeUnselectable_N)
-            {
-                timeClear += Time.deltaTime;
-            }
             else
             {
-                timeUnselectable += Time.deltaTime;
+                _timeClear += Time.deltaTime;
             }
         }
 
-        if (act)
+        if (_act)
         {
-            if (saying)
+            if (_saying)
             {
-                Scholar.Sound.Play(ScholarSounds.sounds.Talk);
+                _scholar.Sound.Play(ScholarSounds.sounds.Talk);
             }
             else
             {
-                Scholar.Sound.Stop(ScholarSounds.sounds.Talk);
+                _scholar.Sound.Stop(ScholarSounds.sounds.Talk);
             }
         }
     }
@@ -74,44 +64,37 @@ public class ScholarTextBox : MonoBehaviour
     {
         Clear();
         StartCoroutine(PlaySub(key_word));
-        timeClear_N = t;
+        _timeClear_N = t;
     }
 
-    public void Question(KeyWord key_word)
-    {
-        Clear();
-        question = true;
-        StartCoroutine(PlaySub(key_word));
-    }
 
     public void Clear()
     {
-        if (act)
+        if (_act)
         {
             StopAllCoroutines();
-            Scholar.Sound.Stop(ScholarSounds.sounds.Talk);
+            _scholar.Sound.Stop(ScholarSounds.sounds.Talk);
         }
+
         Text("");
-        act = false;
-        filled = false;
-        question = false;
-        saying = false;
-        timeClear = 0;
+        _act = false;
+        _filled = false;
+        _saying = false;
+        _timeClear = 0;
     }
 
 
 
     private IEnumerator PlaySub(KeyWord key_word)
     {
-        act = true;
+        _act = true;
         var script = ScriptManager.Instance.GetText(key_word);
 
         if (script != null)
         {
             foreach (var line in script)
             {
-
-                saying = true;
+                _saying = true;
                 int quant = line.Length;
                 for (int i = 0; i < quant; i++)
                 {
@@ -120,52 +103,41 @@ public class ScholarTextBox : MonoBehaviour
 
                     if (line[i] == ' ' && BaseMath.Probability(0.25))
                     {
-                        saying = false;
+                        _saying = false;
                         yield return new WaitForSeconds(0.15f);
-                        saying = true;
+                        _saying = true;
                     }
                     else
                     {
                         yield return new WaitForSeconds(0.05f);
                     }
                 }
-                saying = false;
-                //TextPlus(' ');
+                _saying = false;
                 yield return new WaitForSeconds(1f);
             }
         }
-        filled = true;
-        act = false;
-        yield break;
+
+        _filled = true;
+        _act = false;
     }
 
     public bool IsTalking()
     {
-        if(question)
-            return (act);
-        else
-            return (act || filled);
+        return (_act || _filled);
     }
 
     private void Text(string text)
     {
-        textBox[0].text = text;
+        _textBox[0].text = text;
     }
 
     private void TextPlus(char symbol)
     {
-        textBox[0].text += symbol;
+        _textBox[0].text += symbol;
     }
 
     public void Number(int num)
     {
-        textBox[1].text = (num+1).ToString();
+        _textBox[1].text = (num+1).ToString();
     }
-
-    public void StressLevel(int num)
-    {
-        textBox[2].text = num.ToString() + '%';
-        stressSlider.Select(num);
-    }
-
 }

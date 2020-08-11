@@ -1,35 +1,40 @@
 ﻿public class ScoreItem
 {
-    public int count;
-    public int rep;
-    public int kind;
-    private int rep_coef;
-    private int kind_coef;
+    public int Count => _count;
+    public int Rep => _rep;
+    public int Kind => _kind;
+
+    private int _count;
+    private int _rep;
+    private int _kind;
+
+    private readonly int REP_COEF;
+    private readonly int KIND_COEF;
 
     public ScoreItem(int reputation_coef, int kindness_coef)
     {
-        rep_coef = reputation_coef;
-        kind_coef = kindness_coef;
+        REP_COEF = reputation_coef;
+        KIND_COEF = kindness_coef;
         Zeroing();
     }
 
     public ScoreItem(ScoreItem item)
     {
-        rep_coef = item.rep_coef;
-        kind_coef = item.kind_coef;
-        count = item.count;
-        rep = item.rep;
-        kind = item.rep;
+        REP_COEF = item.REP_COEF;
+        KIND_COEF = item.KIND_COEF;
+        _count = item.Count;
+        _rep = item.Rep;
+        _kind = item.Kind;
     }
 
     public void Plus()
     {
-        ChangeCount(count + 1);
+        ChangeCount(Count + 1);
     }
 
     public void Minus()
     {
-        ChangeCount(count - 1);
+        ChangeCount(Count - 1);
     }
 
     public void Zeroing()
@@ -39,18 +44,16 @@
 
     public void ChangeCount(int value)
     {
-        int buf_rep = (value - count) * rep_coef;
+        int buf_rep = (value - Count) * REP_COEF;
 
         SetCount(value);
-
-        HUDManager.Instance.ChangeReputationHUD(buf_rep);
     }
 
     public void SetCount(int value)
     {
-        count = value;
-        rep = value * rep_coef;
-        kind = value * kind_coef;
+        _count = value;
+        _rep = value * REP_COEF;
+        _kind = value * KIND_COEF;
     }
 
 

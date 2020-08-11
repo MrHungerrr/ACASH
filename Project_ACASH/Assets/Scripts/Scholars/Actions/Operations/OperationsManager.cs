@@ -1,24 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Operations;
 
 public class OperationsManager
 {
-    private ScholarActions Action { get; }
-    public OperationsExecuter Executer { get; }
-
-    private string action;
-    private int operation_num;
-    private Operation[] operations;
-    public bool done { get; private set; }
+    public Action OnOperationsEnd { get; set; }
+    public bool Done { get; private set; }
 
 
-    public OperationsManager(Scholar scholar, ScholarActions action)
+    private OperationsExecuter _executer;
+    private string _action;
+    private int _operationNum;
+    private Operation[] _operations;
+
+
+
+    public OperationsManager(Scholar scholar)
     {
-        Action = action;
-        Executer = scholar.transform.Find("Script Holder").GetComponent<OperationsExecuter>();
-        Executer.SetOperationsExecuter(scholar, this);
+        _executer = scholar.transform.Find("Script Holder").GetComponent<OperationsExecuter>();
+        _executer.SetOperationsExecuter(scholar, this);
 
         Reset();
     }
@@ -27,42 +29,42 @@ public class OperationsManager
     public void SetAction(string key)
     {
         Stop();
-        done = false;
-        action = key;
-        operation_num = 0;
+        Done = false;
+        _action = key;
+        _operationNum = 0;
         try
         {
-            operations = OperationsList.operations[key];
+            _operations = OperationsList.operations[key];
             DoOperation();
         }
         catch
         {
             Debug.LogError("Несуществующий ключ - " + key);
-            ActionEnd();
+            OperationsEnd();
         }
     }
 
 
     public void Reset()
     {
-        done = true;
-        action = "";
-        operation_num = 0;
-        operations = null;
+        Done = true;
+        _action = "";
+        _operationNum = 0;
+        _operations = null;
     }
 
 
     private void DoOperation()
     {
 
-        if (operations != null && operation_num < operations.Length)
+        if (_operations != null && _operationNum < _operations.Length)
         {
-            operations[operation_num].Do(Executer);
+            _operations[_operationNum].Do(_executer);
         }
         else
         {
-            ActionEnd();
-            done = true;
+            OperationsEnd();
+            Done = true;
         }
     }
 
@@ -73,20 +75,20 @@ public class OperationsManager
 
     public void Stop()
     {
-        Executer.Stop();
+        _executer.Stop();
     }
 
     public void OperationDone()
     {
-        Debug.Log("Я сделал операцию - " + operations[operation_num].Show());
-        operation_num++;
+        Debug.Log("Я сделал операцию - " + _operations[_operationNum].Show());
+        _operationNum++;
         DoOperation();
     }
 
 
-    public void ActionEnd()
+    public void OperationsEnd()
     {
-        Action.ActionDone();
+        OnOperationsEnd?.Invoke();
     }
 
 

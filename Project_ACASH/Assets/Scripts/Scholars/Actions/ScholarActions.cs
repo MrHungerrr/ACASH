@@ -18,7 +18,8 @@ public class ScholarActions
 
     public ScholarActions(Scholar scholar)
     {
-        Operations = new OperationsManager(scholar, this);
+        Operations = new OperationsManager(scholar);
+        Operations.OnOperationsEnd += ActionDone; 
         Simple = new ActionsSimple();
         Queue = new ActionsQueue();
         Scholar = scholar;
@@ -51,7 +52,7 @@ public class ScholarActions
 
     private void NextAction()
     {
-        if (active && !Scholar.disabled)
+        if (active)
         {
             key_action = Queue.GetAction();
 
@@ -96,7 +97,7 @@ public class ScholarActions
     }
 
 
-    public void ActionDone()
+    private void ActionDone()
     {
         Debug.Log("Опа, закончилось - " + key_action);
         NextAction();
@@ -107,7 +108,7 @@ public class ScholarActions
     {
         active = true;
 
-        if(Operations.done)
+        if(Operations.Done)
             NextAction();
     }
 

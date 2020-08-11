@@ -70,9 +70,9 @@ public class CrossHair : MonoSingleton<CrossHair>
 
     public void SelectHair()
     {
-        if (Player.Instance.Select.selected)
+        if (Player.Instance.Select.SelectingIsActive)
         {
-            switch (Player.Instance.Select.selected_obj.tag)
+            switch (Player.Instance.Select.SelectedObject.tag)
             {
                 /* case "Scholar":
                      {

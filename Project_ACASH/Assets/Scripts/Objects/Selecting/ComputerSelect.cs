@@ -8,7 +8,7 @@ public class ComputerSelect : ObjectSelect
 
     public override bool CanISelect()
     {
-        if (BaseGeometry.LookingAngle2D(transform, Player.Instance.Move.Position()) < 70 && Player.Instance.Select.active.GiveMeChance)
+        if (BaseGeometry.LookingAngle2D(transform, Player.Instance.Move.Position()) < 70)
         {
             return base.CanISelect();
         }

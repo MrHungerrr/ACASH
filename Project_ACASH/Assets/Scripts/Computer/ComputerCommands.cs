@@ -235,42 +235,6 @@ public class ComputerCommands
                     Comp.Question.SetAnswer(3);
                     break;
                 }
-            case "Second Page Score":
-                {
-                    ScoreManager.Instance.Accept();
-                    LevelSettings.Instance.NextExam();
-
-                    if (Comp.Login.loged)
-                        Do("Desktop");
-                    else
-                        Do("Login");
-                    //Новый экзамен
-                    break;
-                }
-            case "Continue Score":
-                {
-                    ScoreManager.Instance.Accept();
-                    LevelSettings.Instance.NextExam();
-
-                    if(Comp.Login.loged)
-                        Do("Desktop");
-                    else
-                        Do("Login");
-                    //Новый экзамен
-                    break;
-                }
-            case "Restart Score":
-                {
-                    ScoreManager.Instance.Zeroing();
-                    LevelSettings.Instance.RestartExam();
-
-                    if (Comp.Login.loged)
-                        Do("Desktop");
-                    else
-                        Do("Login");
-                    //Новый экзамен
-                    break;
-                }
             case "Close":
                 {
                     Escape(Comp.Windows.current_window);

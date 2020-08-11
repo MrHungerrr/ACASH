@@ -43,7 +43,6 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
 
     private IEnumerator PlaySub(KeyWord key_word)
     {
-        HUDManager.Instance.SubtitleHUD(true);
         act = true;
         last_key = key_word;
 
@@ -62,8 +61,6 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
             yield return new WaitForSeconds(duration[i] - 0.05f);
             subPlay.Clear();
         }
-
-        HUDManager.Instance.SubtitleHUD(false);
 
         act = false;
 

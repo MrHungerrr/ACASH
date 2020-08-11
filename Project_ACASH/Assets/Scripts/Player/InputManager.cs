@@ -47,16 +47,14 @@ public static class InputManager
         #region First Person Gameplay
         _controls.Gameplay.Camera.performed += ctx => Player.Instance.Camera.RotateInput(ctx.ReadValue<Vector2>());
         _controls.Gameplay.Camera.canceled += ctx => Player.Instance.Camera.RotateInput(Vector2.zero);
-        _controls.Gameplay.Move.performed += ctx => Player.Instance.Move.moveInput = ctx.ReadValue<Vector2>();
-        _controls.Gameplay.Move.canceled += ctx => Player.Instance.Move.moveInput = Vector2.zero;
+        _controls.Gameplay.Move.performed += ctx => Player.Instance.Move.MoveInput(ctx.ReadValue<Vector2>());
+        _controls.Gameplay.Move.canceled += ctx => Player.Instance.Move.MoveInput(Vector2.zero);
         _controls.Gameplay.Action.started += ctx => GameAction(true);
         _controls.Gameplay.Action.canceled += ctx => GameAction(false);
         _controls.Gameplay.Zoom.started += ctx => GameZoom(true);
         _controls.Gameplay.Zoom.canceled += ctx => GameZoom(false);
         _controls.Gameplay.Run.started += ctx => GameRun(true);
         _controls.Gameplay.Run.canceled += ctx => GameRun(false);
-        _controls.Gameplay.Execute.started += ctx => GameExecute();
-        _controls.Gameplay.HUD.started += ctx => GameHUD();
         _controls.Gameplay.Menu.started += ctx => GameMenu();
         #endregion
 
@@ -174,12 +172,12 @@ public static class InputManager
 
     private static bool GameCanITalk()
     {
-        return !Player.Instance.Talk.talking && !Player.Instance.Action.doing;
+        return !Player.Instance.Action.Doing;
     }
 
     private static bool GameCanIDoAction()
     {
-        return !Player.Instance.Action.doing;
+        return !Player.Instance.Action.Doing;
     }
 
     private static void GameAction(bool option)
@@ -187,11 +185,11 @@ public static class InputManager
         if (option)
         {
             if(GameCanIDoAction())
-                Player.Instance.Action.Doing(true);
+                Player.Instance.Action.SetDoing(true);
         }
         else
         {
-            Player.Instance.Action.Doing(false);
+            Player.Instance.Action.SetDoing(false);
         }
     }
 
@@ -213,53 +211,15 @@ public static class InputManager
         {
             Player.Instance.Move.SwitchMove(PlayerMove.movement.Run);
         }
-        else if (Player.Instance.Move.type_movement == PlayerMove.movement.Run)
+        else if (Player.Instance.Move.MovementType == PlayerMove.movement.Run)
         {
             Player.Instance.Move.SwitchMove(PlayerMove.movement.Normal);
         }
     }
 
 
-    private static void GameTalkGood(bool option)
-    {
-        if (option)
-        {
-            if (Player.Instance.Select.TryGetScholar() && GameCanITalk())
-            {
-                Player.Instance.Talk.TalkGood();
-            }
-        }
-    }
 
-    private static void GameTalkBad(bool option)
-    {
-        if (option)
-        {
-            if (Player.Instance.Select.TryGetScholar() && GameCanITalk())
-            {
-                Player.Instance.Talk.TalkBad();
-            }
-        }
-    }
 
-    private static void GameShout()
-    {
-        if(GameCanITalk())
-            Player.Instance.Talk.Shout();
-    }
-
-    private static void GameExecute()
-    {
-        if (Player.Instance.Select.TryGetScholar() && GameCanITalk())
-        {
-            Player.Instance.Talk.Execute();
-        }
-    }
-
-    private static void GameHUD()
-    {
-        HUDManager.Instance.ControlHUD();
-    }
 
     private static void GameMenu()
     {
