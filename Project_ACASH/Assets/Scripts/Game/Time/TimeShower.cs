@@ -4,57 +4,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using Single;
 
-public class TimeShower : Singleton<TimeShower>
+
+
+namespace GameTime
 {
-
-
-    public void SetLevel()
+    public class TimeShower : Singleton<TimeShower>
     {
-        TimeManager.Instance.OnSecondDone += ShowTime;
-        TimeManager.Instance.OnTimeDone += ShowTime;
-    }
 
 
-    private void ShowTime()
-    {
-        ShowTime(TimeManager.Instance.TimeLeftInSec);
-    }
-
-    private void ShowTime(int timeInSeconds)
-    {
-        var timeString = StringTime(timeInSeconds);
-    }
-
-    private string StringTime(int t)
-    {
-        int minutes = (t / 60);
-        string strMinutes;
-
-        if ((minutes / 10) > 0)
+        public void SetLevel()
         {
-            strMinutes = minutes.ToString();
-        }
-        else
-        {
-            strMinutes = "0" + minutes;
+            TimeManager.Instance.OnSecondDone += ShowTime;
+            TimeManager.Instance.OnTimeDone += ShowTime;
         }
 
-        int seconds = (t % 60);
-        string strSeconds;
 
-        if ((seconds / 10) > 0)
+        private void ShowTime()
         {
-            strSeconds = seconds.ToString();
-        }
-        else
-        {
-            strSeconds = "0" + seconds;
+            ShowTime(TimeManager.Instance.TimeLeftInSec);
         }
 
-        return (strMinutes + ":" + strSeconds);
+        private void ShowTime(int timeInSeconds)
+        {
+            var timeString = StringTime(timeInSeconds);
+        }
+
+        private string StringTime(int t)
+        {
+            int minutes = (t / 60);
+            string strMinutes;
+
+            if ((minutes / 10) > 0)
+            {
+                strMinutes = minutes.ToString();
+            }
+            else
+            {
+                strMinutes = "0" + minutes;
+            }
+
+            int seconds = (t % 60);
+            string strSeconds;
+
+            if ((seconds / 10) > 0)
+            {
+                strSeconds = seconds.ToString();
+            }
+            else
+            {
+                strSeconds = "0" + seconds;
+            }
+
+            return (strMinutes + ":" + strSeconds);
+        }
     }
 }
-
 
 
 

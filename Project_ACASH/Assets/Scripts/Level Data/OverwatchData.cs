@@ -1,77 +1,57 @@
-﻿using System.Collections;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using Overwatch.Memory;
+using System.Xml.Linq;
+using System;
+using MultiTasking;
 using UnityEngine;
 using System.IO;
+using System.Xml;
 using Single;
+using System.Threading.Tasks;
 
-
-public class OverwatchData : MonoSingleton<OverwatchData>
+namespace Overwatch
 {
-    private string _path;
-    private Rect _rect;
-    private Texture2D _render;
-
-    private int _index;
-
-    public void Setup()
+    public static class OverwatchData
     {
-        _path = LevelDataManager.Path + @"\OverwatchHistory";
-
-        var width = OverwatchCameraManager.Instance.renderTextureReference.width;
-        var height = OverwatchCameraManager.Instance.renderTextureReference.height;
-
-        _rect = new Rect(0, 0, width, height);
-        _render = new Texture2D(width, height, TextureFormat.RGB24, false);
-
-        DirectoryManager.Create(_path);
-    }
+        public const int FPS = 15;
+        public const int SECONDS_IN_BUFFER = 5;
 
 
-    public void SetLevel()
-    {
-        DirectoryManager.Clear(_path);
+        private static string _path;
 
-
-        for (int i = 0; i < OverwatchCameraManager.Instance.CamerasHolders.Length; i++)
+        public static void Setup()
         {
-            DirectoryManager.Create($"{_path}/{i}");
+            _path = LevelDataManager.Path + @"\OverwatchHistory";
+            DirectoryManager.Create(_path);
         }
 
-        _index = 0;
 
-        TakeAShots();
-    }
-
-
-
-    public void TakeAShots()
-    {
-        StartCoroutine(TakeAShot());
-    }
-   
-    public IEnumerator TakeAShot()
-    {
-        for (int i = 0; i < OverwatchCameraManager.Instance.CamerasHolders.Length; i++)
+        public static void SetLevel()
         {
-            RenderTexture.active = OverwatchCameraManager.Instance.CamerasHolders[i].Texture;
-            _render.ReadPixels(_rect, 0, 0);
-            yield return new WaitForEndOfFrame();
-
-            _render.Apply();
-            yield return new WaitForEndOfFrame();
-
-            byte[] byteArray = _render.GetRawTextureData();
-            yield return new WaitForEndOfFrame();
-
-            DataReader.SaveData($"{_path}/{i}/{_index}.t2D", byteArray);
-            yield return new WaitForEndOfFrame();
+            DirectoryManager.Clear(_path);
         }
 
-        _index++;
-        ActionSchedule.Instance.AddActionInTime(5, TakeAShots);
 
-        Debug.Log("ScreenShot");
+        public static void Save(in OverwatchMemoryCell cell, in int index)
+        {
+            var path = Path(index);
+            var xElement = cell.ToXML();
+            var xDocument = new XDocument(new XDeclaration("1,0", "utf-8", "yes"), xElement);
+            xDocument.Save(path);
+        }
+
+
+        public static OverwatchMemoryCell Load(in int index)
+        {
+            var path = Path(index);
+            var xDocument = XDocument.Load(path);
+            var cell = OverwatchMemorySerializator.ReadCell(xDocument.Root);
+            return cell;
+        }
+
+
+        public static string Path(in int index)
+        {
+            return $"{_path}\\{index}.xml";
+        }
     }
 }

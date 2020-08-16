@@ -20,6 +20,21 @@ namespace Places
         }
 
 
+        private static PlaceAgent[] placeAgents;
+
+
+        public static void SetLevel()
+        {
+            placeAgents = GameObject.FindObjectsOfType<PlaceAgent>();
+
+            foreach (var placeAgent in placeAgents)
+            {
+                placeAgent.SetLevel();
+            }
+        }
+
+
+
         public static Place GetRandomFreePlace(this Place[] places)
         {
             int? index = GetRandomPlaceIndex(places);

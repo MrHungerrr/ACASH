@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Overwatch;
 using System.IO;
 using Single;
 
@@ -13,7 +14,7 @@ public static class LevelDataManager
     public static void Setup()
     {
         DirectoryManager.Create(Path);
-        OverwatchData.Instance.Setup();
+        OverwatchData.Setup();
     }
 
 
@@ -22,7 +23,7 @@ public static class LevelDataManager
 
     public static void SetLevel()
     {
-        OverwatchData.Instance.SetLevel();
+        OverwatchData.SetLevel();
     }
 
 }

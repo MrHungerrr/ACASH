@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PostProcessing;
+using Places;
+using GameTime;
 using MultiTasking;
 using Single;
+using Overwatch;
 
 public class GeneralManager: MonoSingleton<GeneralManager>
 {
@@ -20,18 +23,19 @@ public class GeneralManager: MonoSingleton<GeneralManager>
 
     public void SetLevel()
     {
-        ClassManager.SetLevel();
+        TimeManager.Instance.SetLevel();
+        ThreadTaskQueuer.SetLevel();
+        LevelDataManager.SetLevel();
+        SoundManager.Instance.SetLevel();
         ExamManager.Instance.SetLevel();
+        PlaceManager.SetLevel();
+        OverwatchManager.SetLevel();
         ScholarObjectsManager.Instance.SetLevel();
         ScholarManager.Instance.SetLevel();
+        ClassManager.SetLevel();
         OverwatchCameraManager.Instance.SetLevel();
         LevelSettings.Instance.SetLevel();
         ComputerManager.Instance.SetLevel();
-        TimeManager.Instance.SetLevel();
-        SoundManager.Instance.SetLevel();
-        ThreadTaskQueuer.SetLevel();
-        LevelDataManager.SetLevel();
-
 
         //if (!test)
         //    A_Level.Instance.StartLevel();

@@ -8,7 +8,7 @@ public static class DebugUI
     [MenuItem("Tools/Assistants/Show")]
     public static void Show()
     {
-        Initializator.Initilizate();
+        Initializator.Initializate();
 
         var assistants = new List<IDebugUI>();
 
@@ -30,7 +30,7 @@ public static class DebugUI
     [MenuItem("Tools/Assistants/Hide")]
     public static void Hide()
     {
-        Initializator.Initilizate();
+        Initializator.Initializate();
 
         var assistants = new List<IDebugUI>();
 

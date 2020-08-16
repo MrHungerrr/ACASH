@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
 public interface IInitialization
 {
-    bool TryInitializate();
+    bool AutoInitializate { get; }
+    void Initializate();
 }
-
 #endif

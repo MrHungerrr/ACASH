@@ -23,26 +23,19 @@ public class OverwatchCamera : MonoBehaviour
 
     #region Initialization
 #if UNITY_EDITOR
-    public bool TryInitializate()
-    {
-        try
-        {
-            _camera = GetComponent<Camera>();
 
-            if (String.IsNullOrEmpty(_name))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        catch
+    public bool AutoInitializate => true;
+
+    public void Initializate()
+    {
+        _camera = GetComponent<Camera>();
+
+        if (String.IsNullOrEmpty(_name))
         {
-            return false;
+            throw new Exception("Пустое имя камеры");
         }
     }
+
 #endif
     #endregion
 

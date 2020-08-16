@@ -8,23 +8,15 @@ using UnityEngine;
 
 public static class ClassManager
 {
-
-    public enum places
-    {
-
-    }
-
-
-
     private static ClassAgent[] classes;
 
     public static void SetLevel()
     {
         classes = GameObject.FindObjectsOfType<ClassAgent>();
 
-        foreach(var @class in classes)
+        foreach(var classAgent in classes)
         {
-            @class.SetLevel();
+            classAgent.SetLevel();
         }
     }
 }

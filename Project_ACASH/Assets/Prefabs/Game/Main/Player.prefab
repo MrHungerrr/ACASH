@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8985340960532470398}
   - component: {fileID: 5908480200984446060}
   - component: {fileID: 232505510615924651}
-  - component: {fileID: 6179040360908989717}
   m_Layer: 15
   m_Name: Player
   m_TagString: Player
@@ -60,10 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91cff7f10c8ce6f4ebb8c6d0495e2455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moving: 0
-  moveInput: {x: 0, y: 0}
-  rotateAngle: 0
-  type_movement: 0
 --- !u!136 &5908480200984446060
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -94,24 +89,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &6179040360908989717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6384746390446829958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616f3e69c6bbdc74abc5d31ed570c090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shout_control: 0
-  talk_good_control: 0
-  talk_bad_control: 0
-  answer_yes_control: 0
-  answer_no_control: 0
-  execute_control: 0
 --- !u!1 &6384746390683932918
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37da0a168aa75d84f89c8619ede3c3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateInput: {x: 0, y: 0}
 --- !u!114 &6384746390788808964
 MonoBehaviour:
   m_ObjectHideFlags: 0

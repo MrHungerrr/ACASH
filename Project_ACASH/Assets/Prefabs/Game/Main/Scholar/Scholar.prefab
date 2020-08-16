@@ -52,7 +52,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cff5ed13e61eb4bad3954166dd5697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabled: 0
+  _classRoom: {fileID: 0}
+  _desk: {fileID: 0}
+  _textBox: {fileID: 452895146645229196}
+  _emotions: {fileID: 7846056731448688655}
+  _move: {fileID: 9144633250537657041}
+  _body: {fileID: 7465720396364090550}
+  _select: {fileID: 762352779351247119}
+  _sound: {fileID: 4848020527900532784}
 --- !u!195 &9144633250537657039
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -132,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399591820ccd923459967205bee294a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _navAgent: {fileID: 9144633250537657039}
+  _rb: {fileID: 5008771910584964321}
 --- !u!1 &2103099822520146361
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d333652faea25a644bf40aa1bd6eb812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  act: 0
 --- !u!1 &4554843840562709347
 GameObject:
   m_ObjectHideFlags: 0

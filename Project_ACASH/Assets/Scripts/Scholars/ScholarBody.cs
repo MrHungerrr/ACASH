@@ -6,18 +6,19 @@ using Animations;
 
 public class ScholarBody : MonoBehaviour
 {
+    public Transform Head { get; private set; }
+    public Transform Body { get; private set; }
+
+
     private bool active = false;
 
-    private Transform head;
-    private Transform head_target;
+    private Transform headTarget;
+    private Transform headHeight;
+    private float headHeightTarget;
+    private bool headHeightMoving;
 
-    private Transform head_height;
-    private float head_height_target;
-    private bool head_height_moving;
-
-    private Transform body;
-    private Vector3 body_target;
-    private bool body_moving;
+    private Vector3 bodyTarget;
+    private bool bodyMoving;
 
 
 
@@ -25,12 +26,12 @@ public class ScholarBody : MonoBehaviour
     public void Setup(Scholar scholar)
     {
         active = true;
-        head = transform.parent.Find("Head");
-        head_height = head.Find("Model");
-        body = transform.parent.Find("Scholar");
-        head_target = body.Find("Scholar").Find("Spine").Find("Head Target");
+        Head = transform.parent.Find("Head");
+        headHeight = Head.Find("Model");
+        Body = transform.parent.Find("Scholar");
+        headTarget = Body.Find("Scholar").Find("Spine").Find("Head Target");
 
-        body_moving = false;
+        bodyMoving = false;
 
         PositionBody(Vector3.zero);
         PositionHeadHeight(0.04f);
@@ -40,10 +41,10 @@ public class ScholarBody : MonoBehaviour
     {
         if (active)
         {
-            if (body_moving)
+            if (bodyMoving)
                 MoveBody();
 
-            if (head_height_moving)
+            if (headHeightMoving)
                 MoveHeadHeight();
 
             MoveHead();
@@ -77,19 +78,19 @@ public class ScholarBody : MonoBehaviour
 
     public void SetBodyTarget(float height)
     {
-        body_target = new Vector3(0, height, 0);
-        body_moving = true;
+        bodyTarget = new Vector3(0, height, 0);
+        bodyMoving = true;
     }
 
 
 
     private void MoveBody()
     {
-        MoveBodyTo(body_target);
+        MoveBodyTo(bodyTarget);
 
         if (BodyOnPosition())
         {
-            body_moving = false;
+            bodyMoving = false;
         }
     }
 
@@ -101,7 +102,7 @@ public class ScholarBody : MonoBehaviour
 
     public bool BodyOnPosition()
     {
-        if (PositionBody() == body_target)
+        if (PositionBody() == bodyTarget)
         {
             return true;
         }
@@ -116,13 +117,13 @@ public class ScholarBody : MonoBehaviour
 
     public Vector3 PositionBody()
     {
-        return body.localPosition;
+        return Body.localPosition;
     }
 
 
     private void PositionBody(Vector3 set_position)
     {
-        body.localPosition = set_position;
+        Body.localPosition = set_position;
     }
 
 
@@ -142,7 +143,7 @@ public class ScholarBody : MonoBehaviour
     {
         if (!HeadOnPosition())
         {
-            Vector3 target = new Vector3(head_target.position.x, head_target.position.y, head_target.position.z);
+            Vector3 target = new Vector3(headTarget.position.x, headTarget.position.y, headTarget.position.z);
             MoveHeadTo(target);
         }
     }
@@ -150,7 +151,7 @@ public class ScholarBody : MonoBehaviour
 
     public bool HeadOnPosition()
     {
-        if (head.position == head_target.position)
+        if (Head.position == headTarget.position)
         {
             return true;
         }
@@ -164,22 +165,22 @@ public class ScholarBody : MonoBehaviour
 
     public Vector3 PositionHead()
     {
-        return head.position;
+        return Head.position;
     }
 
     public Quaternion RotationHead()
     {
-        return head.rotation;
+        return Head.rotation;
     }
 
     private void PositionHead(Vector3 set_position)
     {
-        head.position = set_position;
+        Head.position = set_position;
     }
 
     private void RotationHead(Quaternion set_rotation)
     {
-        head.rotation = set_rotation;
+        Head.rotation = set_rotation;
     }
 
 
@@ -195,19 +196,19 @@ public class ScholarBody : MonoBehaviour
 
     public void SetHeadHeightTarget(float height)
     {
-        head_height_target = height;
-        head_height_moving = true;
+        headHeightTarget = height;
+        headHeightMoving = true;
     }
 
 
 
     private void MoveHeadHeight()
     {
-        MoveHeadHeightTo(head_height_target);
+        MoveHeadHeightTo(headHeightTarget);
 
         if (HeadHeightOnPosition())
         {
-            head_height_moving = false;
+            headHeightMoving = false;
         }
     }
 
@@ -219,7 +220,7 @@ public class ScholarBody : MonoBehaviour
 
     public bool HeadHeightOnPosition()
     {
-        if (PositionHeadHeight() == head_height_target)
+        if (PositionHeadHeight() == headHeightTarget)
         {
             return true;
         }
@@ -234,12 +235,12 @@ public class ScholarBody : MonoBehaviour
 
     public float PositionHeadHeight()
     {
-        return head_height.localPosition.y;
+        return headHeight.localPosition.y;
     }
 
 
     private void PositionHeadHeight(float height)
     {
-        head_height.localPosition = new Vector3(0, height, 0);
+        headHeight.localPosition = new Vector3(0, height, 0);
     }
 }

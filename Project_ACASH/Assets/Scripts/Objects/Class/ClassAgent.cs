@@ -13,18 +13,11 @@ public class ClassAgent: MonoBehaviour
 #endregion
 {
 
-    public PlaceAgent PlaceAgent => _placeAgent;
-
-
-    [SerializeField]
-    private Scholar[] _scholars;
-
-    [SerializeField]
-    private PlaceAgent _placeAgent;
-
-
     #region Initializator
 #if UNITY_EDITOR
+
+    public bool AutoInitializate => true;
+
     private enum FillType
     {
         Hierarchy,
@@ -35,57 +28,72 @@ public class ClassAgent: MonoBehaviour
     private FillType fillType;
 
 
-    public bool TryInitializate()
+    public void Initializate()
     {
         switch (fillType)
         {
             case FillType.Hierarchy:
                 {
-                    try
-                    {
-                        _placeAgent = GetComponent<PlaceAgent>();
-                        _scholars = SIC<Scholar>.ComponentsDown(this.transform);
+                    _placeAgent = GetComponent<PlaceAgent>();
+                    _placeAgent.Initializate();
 
-                        if(!_placeAgent.TryInitializate())
-                            return false;                      
+                    _scholars = SIC<Scholar>.ComponentsDown(this.transform);
+                    ScholarInitialization();
 
-                        ScholarComputer desk;
-                        ScholarMove scholarMove;
-
-                        for(int i = 0; i< _scholars.Length; i++)
-                        {
-                            scholarMove = _scholars[i].GetComponent<ScholarMove>();
-                            scholarMove.Position(_placeAgent.Places[PlaceManager.place.DockStation][i].Destination);
-                            scholarMove.Rotation(_placeAgent.Places[PlaceManager.place.DockStation][i].SightGoal);
-
-                            desk = _placeAgent.Places[PlaceManager.place.Desk][i].GetComponent<ScholarComputer>();
-                            _scholars[i].SetDesk(desk);
-                            _scholars[i].SetClass(this);
-
-                        }
-
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-
+                    break;
                 }
             case FillType.Manual:
                 {
-                    return true;
+
+                    break;
                 }
         }
+    }
 
-        return false;
+
+    private void ScholarInitialization()
+    {
+        ScholarMove scholarMove;
+
+        for (int i = 0; i < _scholars.Length; i++)
+        {
+            scholarMove = _scholars[i].GetComponent<ScholarMove>();
+            scholarMove.Position(_placeAgent.Places[PlaceManager.place.DockStation][i].Destination);
+            scholarMove.Rotation(_placeAgent.Places[PlaceManager.place.DockStation][i].SightGoal);
+        }
     }
 
 #endif
     #endregion
 
+
+    public PlaceAgent PlaceAgent => _placeAgent;
+
+
+    [SerializeField] private Scholar[] _scholars;
+
+    [SerializeField] private PlaceAgent _placeAgent;
+
+
+
     public void SetLevel()
     {
+        ScholarSetup();
+    }
+
+
+
+
+
+    private void ScholarSetup()
+    {
+        ScholarComputer desk;
+
+        for (int i = 0; i < _scholars.Length; i++)
+        {
+            desk = _placeAgent.Places[PlaceManager.place.Desk][i].GetComponent<ScholarComputer>();
+            _scholars[i].Setup(this, desk);
+        }
     }
 
 

@@ -25,11 +25,6 @@ public class ScholarManager : MonoSingleton<ScholarManager>
         ExamManager.Instance.ExamDone.AddListener(EndExam);
 
         _scholars = GameObject.FindObjectsOfType<Scholar>();
-
-        for (int i = 0; i < _scholars.Length; i++)
-        {
-            _scholars[i].Setup();
-        }
     }
 
 
@@ -82,18 +77,18 @@ public class ScholarManager : MonoSingleton<ScholarManager>
     }
 
 
-    public Scholar[] GetScholars(Vector3 point, float range)
+    public List<Scholar> GetScholars(Vector3 point, float range)
     {
-        List<Scholar> result = new List<Scholar>();
+        List<Scholar> list = new List<Scholar>();
 
         for(int i = 0; i < Scholars.Length; i++)
         {
             float distance = Vector3.Distance(point, Scholars[i].Move.Position());
 
             if (distance <= range)
-                result.Add(Scholars[i]);
+                list.Add(Scholars[i]);
         }
 
-        return result.ToArray();
+        return list;
     }
 }

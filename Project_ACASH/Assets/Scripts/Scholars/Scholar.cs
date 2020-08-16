@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using Searching;
+using Overwatch.Watchable;
 
 
 public class Scholar : MonoBehaviour
-#region IInitialization
-#if UNITY_EDITOR
-    ,IInitialization
-#endif
-#endregion
 {
     public bool Active { get; private set; }
 
 
-
+    public ClassAgent ClassRoom { get; private set; }
+    public ScholarComputer Desk { get; private set; }
     public ScholarActions Action { get; private set; }
     public ScholarAnimtor Anim { get; private set; }
     public ScholarCheat Cheat { get; private set; }
@@ -20,84 +17,37 @@ public class Scholar : MonoBehaviour
     public ScholarInfo Info { get; private set; }
     public ScholarLocation Location { get; private set; }
     public ScholarObjects Objects { get; private set; }
+    public ScholarWatchable Watchable { get; private set; }
     public ScholarEmotions Emotions => _emotions;
     public ScholarTextBox TextBox => _textBox;
     public ScholarSelect Select => _select;
     public ScholarSounds Sound => _sound;
     public ScholarBody Body => _body;
     public ScholarMove Move => _move;
-    public ScholarComputer Desk => _desk;
-    public ClassAgent ClassRoom => _classRoom;
-
-
-
-    [SerializeField]
-    private ClassAgent _classRoom;
-
-    [SerializeField]
-    private ScholarComputer _desk;
-
-    [SerializeField]
-    private ScholarTextBox _textBox;
-
-    [SerializeField]
-    private ScholarEmotions _emotions;
-
-    [SerializeField]
-    private ScholarMove _move;
-
-    [SerializeField]
-    private ScholarBody _body;
-
-    [SerializeField]
-    private ScholarSelect _select;
-
-    [SerializeField]
-    private ScholarSounds _sound;
 
 
 
 
-    #region IInitializator
-#if UNITY_EDITOR
-    public bool TryInitializate()
+    [SerializeField] private ScholarTextBox _textBox;
+
+    [SerializeField] private ScholarEmotions _emotions;
+
+    [SerializeField] private ScholarMove _move;
+
+    [SerializeField] private ScholarBody _body;
+
+    [SerializeField] private ScholarSelect _select;
+
+    [SerializeField] private ScholarSounds _sound;
+
+
+
+
+    public virtual void Setup(ClassAgent classRoom, ScholarComputer desk)
     {
-        try
-        {
-            Transform buf = transform.Find("Script Holder");
+        ClassRoom = classRoom;
+        Desk = desk;
 
-            _textBox = buf.GetComponent<ScholarTextBox>();
-            _emotions = buf.GetComponent<ScholarEmotions>();
-            _move = GetComponent<ScholarMove>();
-            _body = buf.GetComponent<ScholarBody>();
-            _select = GetComponent<ScholarSelect>();
-            _sound = buf.GetComponent<ScholarSounds>();
-
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
-
-    public void SetDesk(ScholarComputer desk)
-    {
-        _desk = desk;
-    }
-
-    public void SetClass(ClassAgent classRoom)
-    {
-        _classRoom = classRoom;
-    }
-
-#endif
-    #endregion
-
-
-    public virtual void Setup()
-    {
         Active = false;
         this.tag = "Scholar";
 
@@ -114,6 +64,7 @@ public class Scholar : MonoBehaviour
         Objects = new ScholarObjects(this);
         Action = new ScholarActions(this);
         Cheat = new ScholarCheat(this);
+        Watchable = new ScholarWatchable(this);
     }
 
 

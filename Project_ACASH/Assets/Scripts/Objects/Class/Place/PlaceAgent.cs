@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Single;
 using Searching;
 
 namespace Places
@@ -16,31 +15,11 @@ namespace Places
     #endregion
     {
 
-        public IReadOnlyDictionary<PlaceManager.place, Place[]> Places => _places;
-
-
-        [SerializeField]
-        private Dictionary<PlaceManager.place, Place[]> _places;
-
-        [SerializeField]
-        private Place[] _desks;
-
-        [SerializeField]
-        private Place[] _toilets;
-
-        [SerializeField]
-        private Place[] _sinks;
-
-        [SerializeField]
-        private Place[] _outside;
-
-        [SerializeField]
-        private Place[] _dockStations;
-
-
-
         #region Initializator
 #if UNITY_EDITOR
+
+        public bool AutoInitializate => false;
+
         private enum FillType
         {
             Hierarchy,
@@ -51,38 +30,24 @@ namespace Places
         private FillType fillType;
 
 
-        public bool TryInitializate()
+        public void Initializate()
         {
             switch (fillType)
             {
                 case FillType.Hierarchy:
                     {
-                        try
-                        {
-                            var places = SIC<Place>.ComponentsDown(transform);
-                            SortPlaces(places);
-
-                            _places = new Dictionary<PlaceManager.place, Place[]>();
-
-                            _places.Add(PlaceManager.place.Desk, _desks);
-                            _places.Add(PlaceManager.place.Toilet, _toilets);
-                            _places.Add(PlaceManager.place.Sink, _sinks);
-                            _places.Add(PlaceManager.place.Outside, _outside);
-                            _places.Add(PlaceManager.place.DockStation, _dockStations);
-                            return true;
-                        }
-                        catch
-                        {
-                            return false;
-                        }
+                        var places = SIC<Place>.ComponentsDown(transform);
+                        SortPlaces(places);
+                        ArrayToDictionary();
+                        break;
                     }
                 case FillType.Manual:
                     {
-                        return true;
+
+                        break;
                     }
             }
 
-            return false;
         }
 
 
@@ -95,9 +60,9 @@ namespace Places
             List<Place> dockStations = new List<Place>();
 
 
-            foreach(var place in places)
+            foreach (var place in places)
             {
-                place.TryInitializate();
+                place.Initializate();
 
                 switch (place.tag)
                 {
@@ -142,6 +107,41 @@ namespace Places
 
 #endif
         #endregion
+
+        public IReadOnlyDictionary<PlaceManager.place, Place[]> Places => _places;
+
+
+        private Dictionary<PlaceManager.place, Place[]> _places;
+
+        [SerializeField] private Place[] _desks;
+
+        [SerializeField] private Place[] _toilets;
+
+        [SerializeField] private Place[] _sinks;
+
+        [SerializeField] private Place[] _outside;
+
+        [SerializeField] private Place[] _dockStations;
+
+
+
+        public void SetLevel()
+        {
+            ArrayToDictionary();
+        }
+
+
+        private void ArrayToDictionary()
+        {
+            _places = new Dictionary<PlaceManager.place, Place[]>();
+
+            _places.Add(PlaceManager.place.Desk, _desks);
+            _places.Add(PlaceManager.place.Toilet, _toilets);
+            _places.Add(PlaceManager.place.Sink, _sinks);
+            _places.Add(PlaceManager.place.Outside, _outside);
+            _places.Add(PlaceManager.place.DockStation, _dockStations);
+        }
+
 
 
 

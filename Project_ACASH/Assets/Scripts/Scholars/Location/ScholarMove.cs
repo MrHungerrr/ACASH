@@ -5,11 +5,6 @@ using UnityEngine;
 using Animations;
 
 public class ScholarMove : MonoBehaviour
-#region IInitialization
-#if UNITY_EDITOR
-    , IInitialization
-#endif
-#endregion
 {
     public Rigidbody RB => _rb;
     public NavMeshAgent NavAgent => _navAgent;
@@ -30,27 +25,6 @@ public class ScholarMove : MonoBehaviour
     private NavMeshAgent _navAgent;
     [SerializeField]
     private Rigidbody _rb;
-
-
-
-    #region IInitializator
-#if UNITY_EDITOR
-    public bool TryInitializate()
-    {
-        try
-        {
-            _rb = GetComponent<Rigidbody>();
-            _navAgent = GetComponent<NavMeshAgent>();
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-
-#endif
-    #endregion
 
 
     public void Setup(Scholar scholar)

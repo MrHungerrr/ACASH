@@ -1,14 +1,24 @@
 ﻿#if UNITY_EDITOR
+using System;
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 public static class Initializator
 {
-    [MenuItem("Tools/Initilizate")]
-    public static void Initilizate()
+    public enum mode
     {
-        var Initilizators = new List<IInitialization>();
+        Auto,
+        Manual
+    }
+
+
+
+    [MenuItem("Tools/Initilizate")]
+    public static void Initializate()
+    {
+        var Initializators = new List<IInitialization>();
 
         GameObject[] objects = Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[];
         IInitialization outInitilizator;
@@ -20,16 +30,19 @@ public static class Initializator
                 bufInitilizators = objects[i].GetComponents<IInitialization>();
                 
                 for(int k = 0; k < bufInitilizators.Length; k++)
-                    Initilizators.Add(bufInitilizators[k]);
+                    Initializators.Add(bufInitilizators[k]);
             }
 
-        for(int i = 0; i < Initilizators.Count; i++)
+        for(int i = 0; i < Initializators.Count; i++)
         {
-            Debug.Log($"Инициализация {Initilizators[i].GetType()}");
-
-            if (!Initilizators[i].TryInitializate())
-                Debug.LogError($"Ошибка в Инициализации {Initilizators[i].GetType()}");
+            if (Initializators[i].AutoInitializate)
+            {
+                Debug.Log($"Инициализация {Initializators[i].GetType()}");
+                Initializators[i].Initializate();
+            }
         }
+
+        EditorSceneManager.SaveOpenScenes();
     }
 }
 

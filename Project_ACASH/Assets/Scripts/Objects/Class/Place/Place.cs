@@ -28,18 +28,13 @@ namespace Places
 
         #region Initializator
 #if UNITY_EDITOR
-        public bool TryInitializate()
+
+        public bool AutoInitializate => false;
+
+        public void Initializate()
         {
-            try
-            {
-                _destination = SIC.Component(this.transform, "Destination").position;
-                _sightGoal = SIC.Component(this.transform, "Sight Goal").position;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            _destination = SIC.Component(this.transform, "Destination").position;
+            _sightGoal = SIC.Component(this.transform, "Sight Goal").position;
         }
 #endif
         #endregion
