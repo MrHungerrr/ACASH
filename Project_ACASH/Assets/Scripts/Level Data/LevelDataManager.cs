@@ -14,16 +14,14 @@ public static class LevelDataManager
     public static void Setup()
     {
         DirectoryManager.Create(Path);
-        OverwatchData.Setup();
+        OverwatchDataSaver.Setup();
     }
-
-
 
 
 
     public static void SetLevel()
     {
-        OverwatchData.SetLevel();
+        OverwatchDataSaver.SetLevel();
     }
 
 }

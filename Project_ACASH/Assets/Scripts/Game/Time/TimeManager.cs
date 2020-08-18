@@ -10,100 +10,56 @@ namespace GameTime
 {
     public class TimeManager : Singleton<TimeManager>
     {
-        public System.Action OnSecondDone;
-        public System.Action OnTimeDone;
+        public System.Action<float> TimeUpdater { get; set; }
+        public System.Action OnSecondDone { get; set; }
         public int TimeInSec => _timeInSec;
-        public int TimeLeftInSec => _timeGeneral - _timeInSec;
+        public Timer Timer => _timer;
 
 
-        private bool _active = false;
-
-        private int _timeGeneral;
-        private float _timePassed;
-        private float _timeLeft;
+        private float _time;
         private int _timeInSec;
+        private Timer _timer;
 
         public void SetLevel()
         {
+            TimeUpdater = null;
             OnSecondDone = null;
-            OnTimeDone = null;
-            _active = false;
+            _timer = null;
+            _time = 0;
             _timeInSec = 0;
 
             ActionPerTimeManager.Instance.SetLevel();
             ActionSchedule.Instance.SetLevel();
-            TimeShower.Instance.SetLevel();
-        }
-
-        public void Reset()
-        {
-            SetTime(_timeGeneral);
+            TimerShower.Instance.SetLevel();
         }
 
         public void Update()
         {
-            if (_active)
+            TimeUpdate();
+        }
+
+        public void SetTimer(int time)
+        {
+            _timer = new Timer(time);
+        }
+
+        private void TimeUpdate()
+        {
+            float deltaTime = UnityEngine.Time.deltaTime;
+            _time += deltaTime;
+
+            TimeUpdater(deltaTime);
+
+            if (_timeInSec != (int)_time)
             {
-                Time();
+                SecondDone();
             }
         }
-
-        public void Disable()
-        {
-            _active = false;
-        }
-
-        public void SetTime(int time)
-        {
-            _timeGeneral = time;
-            _timeLeft = _timeGeneral;
-            _timePassed = 0;
-            _timeInSec = 0;
-
-            SecondDone();
-
-            _active = true;
-        }
-
-        private void Time()
-        {
-            if (_timeLeft > 0)
-            {
-                float deltaTime = UnityEngine.Time.deltaTime;
-                _timePassed += deltaTime;
-                _timeLeft = _timeGeneral - _timePassed;
-
-                ActionPerTimeManager.Instance.Update(deltaTime);
-
-                if (_timeInSec != (int)_timePassed)
-                {
-                    SecondDone();
-                }
-            }
-            else
-            {
-                TimeDone();
-            }
-        }
-
 
         private void SecondDone()
         {
-            Debug.Log("Second Done");
-            _timeInSec = (int)_timePassed;
+            _timeInSec = (int)_time;
             OnSecondDone?.Invoke();
-        }
-
-
-        private void TimeDone()
-        {
-            _active = false;
-
-            _timeLeft = 0;
-            _timePassed = _timeGeneral;
-            _timeInSec = (int)_timePassed;
-
-            OnTimeDone?.Invoke();
         }
     }
 

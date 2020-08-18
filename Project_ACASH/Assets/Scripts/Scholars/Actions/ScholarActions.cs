@@ -96,6 +96,11 @@ public class ScholarActions
             Operations.Continue();
     }
 
+    public void Pause()
+    {
+        active = false;
+        Operations.Stop();
+    }
 
     private void ActionDone()
     {
@@ -117,11 +122,7 @@ public class ScholarActions
         active = false;
     }
 
-    public void Pause()
-    {
-        Disable();
-        Operations.Stop();
-    }
+
 
 }
 

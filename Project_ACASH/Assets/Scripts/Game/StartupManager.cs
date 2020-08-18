@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameTime;
+using GameTime.Action;
+using Overwatch;
 using MultiTasking;
 using PostProcessing;
 using Single;
@@ -27,8 +30,14 @@ public class StartupManager : MonoSingleton<StartupManager>
         GeneralManager.Instance.SetLevel();
         FadeController.Instance.Fade(false);
         InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
+        OverwatchManager.RecordStart();
 
-        TimeManager.Instance.SetTime(300);
+        Action action = () =>
+        {
+            OverwatchManager.RecordStop();
+        };
+
+        ActionSchedule.Instance.AddActionInTime(10, action);
     }
 
 

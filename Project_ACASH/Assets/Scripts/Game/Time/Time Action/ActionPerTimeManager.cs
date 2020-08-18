@@ -12,9 +12,10 @@ namespace GameTime.Action
         public void SetLevel()
         {
             _actions = new List<ActionPerTime>();
+            TimeManager.Instance.TimeUpdater += UpdateTime;
         }
 
-        public void Update(in float deltaTime)
+        private void UpdateTime(float deltaTime)
         {
             for(int i = 0; i < _actions.Count; i++)
             {

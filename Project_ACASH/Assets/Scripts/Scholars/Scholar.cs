@@ -78,7 +78,7 @@ public class Scholar : MonoBehaviour
         Talk = new ScholarTalk(this);
         Cheat.Reset();
 
-        Desk?.ResetComputer();
+        Desk.ResetComputer();
 
         Body.Enable();
     }
@@ -110,7 +110,6 @@ public class Scholar : MonoBehaviour
         Objects.ThrowOut();
     }
 
-
     public void Disable()
     {
         Select.Selectable(false);
@@ -121,6 +120,4 @@ public class Scholar : MonoBehaviour
         Anim.SetAnimation(Animations.Get.animations.Nothing);
         Active = false;
     }
-
-
 }

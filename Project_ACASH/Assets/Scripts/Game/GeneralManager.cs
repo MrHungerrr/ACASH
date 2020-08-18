@@ -19,6 +19,7 @@ public class GeneralManager: MonoSingleton<GeneralManager>
     {
         TimeManager.Instance.Update();
         ThreadTaskQueuer.Update();
+        OverwatchManager.Update();
     }
 
     public void SetLevel()

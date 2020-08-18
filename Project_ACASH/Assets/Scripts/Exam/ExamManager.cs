@@ -4,6 +4,9 @@ using UnityEngine.Events;
 using GameTime;
 using UnityEngine;
 using Single;
+using Overwatch.Watchable;
+using Overwatch;
+using Overwatch.Read;
 
 public class ExamManager : Singleton<ExamManager>
 {
@@ -17,8 +20,8 @@ public class ExamManager : Singleton<ExamManager>
 
     public bool Exam => _exam;
 
-    public UnityEvent PrepareDone = new UnityEvent();
-    public UnityEvent ExamDone = new UnityEvent();
+    public UnityEvent PrepareDone { get; } = new UnityEvent();
+    public UnityEvent ExamDone { get; }  = new UnityEvent();
 
 
     private bool _exam;
@@ -54,14 +57,13 @@ public class ExamManager : Singleton<ExamManager>
     {
         _exam = true;
         _examPart = part.Exam;
-        TimeManager.Instance.SetTime(300);
-        TimeManager.Instance.OnTimeDone += ExamDone.Invoke;
+        TimeManager.Instance.SetTimer(10);
+        TimeManager.Instance.Timer.OnTimeDone += ExamDone.Invoke;
     }
 
     private void FinishExam()
     {
         _exam = false;
         _examPart = part.Afterhours;
-        TimeManager.Instance.Disable();
     }
 }

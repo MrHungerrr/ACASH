@@ -38,7 +38,6 @@ public class ClassAgent: MonoBehaviour
                     _placeAgent.Initializate();
 
                     _scholars = SIC<Scholar>.ComponentsDown(this.transform);
-                    ScholarInitialization();
 
                     break;
                 }
@@ -48,6 +47,14 @@ public class ClassAgent: MonoBehaviour
                     break;
                 }
         }
+
+        if (_scholars.Length != _placeAgent.Places[PlaceManager.place.Desk].Length)
+            throw new Exception($"Количество учеников - {_scholars.Length}, Количество парт - {_placeAgent.Places[PlaceManager.place.Desk].Length}");
+
+        if (_scholars.Length != _placeAgent.Places[PlaceManager.place.DockStation].Length)
+            throw new Exception($"Количество учеников - {_scholars.Length}, Количество Док-станций - {_placeAgent.Places[PlaceManager.place.DockStation].Length}");
+
+        ScholarInitialization();
     }
 
 
