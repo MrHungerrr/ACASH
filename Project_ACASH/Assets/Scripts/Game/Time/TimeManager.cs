@@ -10,7 +10,6 @@ namespace GameTime
 {
     public class TimeManager : Singleton<TimeManager>
     {
-        public System.Action<float> TimeUpdater { get; set; }
         public System.Action OnSecondDone { get; set; }
         public int TimeInSec => _timeInSec;
         public Timer Timer => _timer;
@@ -22,7 +21,6 @@ namespace GameTime
 
         public void SetLevel()
         {
-            TimeUpdater = null;
             OnSecondDone = null;
             _timer = null;
             _time = 0;
@@ -48,8 +46,6 @@ namespace GameTime
             float deltaTime = UnityEngine.Time.deltaTime;
             _time += deltaTime;
 
-            TimeUpdater(deltaTime);
-
             if (_timeInSec != (int)_time)
             {
                 SecondDone();
@@ -58,6 +54,8 @@ namespace GameTime
 
         private void SecondDone()
         {
+
+            Debug.Log("Second Done!");
             _timeInSec = (int)_time;
             OnSecondDone?.Invoke();
         }

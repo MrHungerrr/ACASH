@@ -16,7 +16,7 @@ public class Door : MonoBehaviour, IInteraction
     private Quaternion commonRot;
     private Quaternion targetRot;
 
-    private DoorSounds Sound;
+    private DoorSounds _sound;
 
 
     private Transform doorT;
@@ -33,8 +33,7 @@ public class Door : MonoBehaviour, IInteraction
     {
         RB = GetComponent<Rigidbody>();
 
-        Sound = GetComponent<DoorSounds>();
-        Sound.Setup(RB.gameObject);
+        _sound = new DoorSounds(RB.gameObject);
 
         doorT = transform.parent;
         commonRot = transform.rotation;
@@ -64,7 +63,7 @@ public class Door : MonoBehaviour, IInteraction
 
 
 
-    public void Interaction()
+    public void Interact()
     {
         if (!open)
         {
@@ -75,8 +74,6 @@ public class Door : MonoBehaviour, IInteraction
         {
             Close();
         }
-
-        Player.Instance.Action.SetDoing(false);
     }
 
 
@@ -102,7 +99,7 @@ public class Door : MonoBehaviour, IInteraction
                 TargetRotate(-90);
             }
 
-            Sound.Play(DoorSounds.sounds.Open);
+            _sound.Play(DoorSounds.sounds.Open);
             changing = true;
         }
 
@@ -131,7 +128,7 @@ public class Door : MonoBehaviour, IInteraction
 
     public void Close()
     {
-        Sound.Play(DoorSounds.sounds.Close);
+        _sound.Play(DoorSounds.sounds.Close);
         targetRot = commonRot;
         open = false;
         changing = true;

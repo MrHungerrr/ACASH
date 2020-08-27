@@ -3,11 +3,12 @@ using FMODUnity;
 
 public class  FMODAudio3D: FMODAudio2D
 {
-    protected new A_Sound3D main;
+    protected new SoundHolder3D _main;
 
-    private FMOD.Studio.PARAMETER_ID volume, LPF;
+    private FMOD.Studio.PARAMETER_ID _volume, _LPF;
 
-    public FMODAudio3D(A_Sound3D main, FMOD.Studio.EventInstance sound) : base(main, sound)
+
+    public FMODAudio3D(SoundHolder3D main, FMOD.Studio.EventInstance sound) : base(main, sound)
     {
         FMOD.Studio.EventDescription description;
         sound.getDescription(out description);
@@ -17,8 +18,8 @@ public class  FMODAudio3D: FMODAudio2D
         description.getParameterDescriptionByName("Volume", out volume_d);
         description.getParameterDescriptionByName("LPF", out LPF_d);
 
-        volume = volume_d.id;
-        LPF = LPF_d.id;
+        _volume = volume_d.id;
+        _LPF = LPF_d.id;
 
         main.OcclusionUpdate += SetOcclusion;
     }
@@ -26,10 +27,9 @@ public class  FMODAudio3D: FMODAudio2D
 
     protected override void Update()
     {
-        if (playing)
+        if (IsPlaying)
         {
-
-            IsPlaying();
+            Playing();
         }
     }
 
@@ -38,13 +38,13 @@ public class  FMODAudio3D: FMODAudio2D
     {
         if (occlusion)
         {
-            sound.setParameterByID(volume, 0.75f);
-            sound.setParameterByID(LPF, 12000f);
+            _sound.setParameterByID(_volume, 0.75f);
+            _sound.setParameterByID(_LPF, 12000f);
         }
         else
         {
-            sound.setParameterByID(volume, 1);
-            sound.setParameterByID(LPF, 22000f);
+            _sound.setParameterByID(_volume, 1);
+            _sound.setParameterByID(_LPF, 22000f);
         }
     }
 }

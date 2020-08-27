@@ -5,22 +5,19 @@ using TMPro;
 
 public class TextController : MonoBehaviour
 {
-
-
-    [HideInInspector]
-    public InputFieldText input { get; private set; }
+    public InputFieldText Input { get; private set; }
 
 
     public void Setup()
     {
         Transform text = transform.Find("Text");
-        input = text.GetComponentInChildren<InputFieldText>();
-        input.SetInputField();
+        Input = text.GetComponentInChildren<InputFieldText>();
+        Input.SetInputField();
     }
 
     public void Reset()
     {
-        input.Reset();
+        Input.Reset();
     }
 
 }

@@ -3,34 +3,35 @@ using FMODUnity;
 
 public class  FMODAudioBase
 {
-    protected A_SoundBase main;
-
-    protected FMOD.Studio.EventInstance sound;
-
-    public bool active { get; private set; } = false;
-    public bool playing { get; private set; } = false;
+    public bool IsActive { get; private set; } = false;
+    public bool IsPlaying { get; private set; } = false;
 
 
+    protected SoundHolderBase _main;
 
-    public FMODAudioBase(A_SoundBase main, FMOD.Studio.EventInstance sound)
+    protected FMOD.Studio.EventInstance _sound;
+
+
+
+    public FMODAudioBase(SoundHolderBase main, FMOD.Studio.EventInstance sound)
     {
-        this.main = main;
-        this.sound = sound;
+        this._main = main;
+        this._sound = sound;
     }
 
     protected virtual void Update()
     {
-        if(playing)
+        if(IsPlaying)
         {
-            IsPlaying();
+            Playing();
         }
     }
 
 
-    protected void IsPlaying()
+    protected void Playing()
     {
         FMOD.Studio.PLAYBACK_STATE buf;
-        sound.getPlaybackState(out buf);
+        _sound.getPlaybackState(out buf);
 
         if(buf == FMOD.Studio.PLAYBACK_STATE.STOPPED)
         {
@@ -39,11 +40,11 @@ public class  FMODAudioBase
     }
 
 
-    public bool Play()
+    public void Play()
     {
-        if (!playing)
+        if (!IsPlaying)
         {
-            if (!active)
+            if (!IsActive)
             {
                 Start();
             }
@@ -51,81 +52,64 @@ public class  FMODAudioBase
             {
                 Continue();
             }
-
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 
 
     public void PlayAnyway()
     {
-        if(!Play())
+        if(IsPlaying)
         {
             Stop(true);
-            Play();
         }
+
+        Play();
     }
 
 
     protected void Start()
     {
-        sound.start();
-        playing = true;
-        active = true;
-        main.UpdateSound += Update;
+        _sound.start();
+        IsPlaying = true;
+        IsActive = true;
+        _main.UpdateSound += Update;
     }
 
-    public bool Pause()
+    public void Pause()
     {
-        if (active && playing)
+        if (IsActive && IsPlaying)
         {
-            sound.setPaused(true);
-            playing = false;
-            return true;
+            _sound.setPaused(true);
+            IsPlaying = false;
         }
-        else
-            return false;
     }
 
-    public bool Continue()
+    public void Continue()
     {
-        if (active && !playing)
+        if (IsActive && !IsPlaying)
         {
-            sound.setPaused(false);
-            playing = true;
-            return true;
+            _sound.setPaused(false);
+            IsPlaying = true;
         }
-        else
-            return false;
     }
 
-    public bool Stop(bool immediate)
+    public void Stop(bool immediate)
     {
-        if (active)
+        if (IsActive)
         {
             if (immediate)
-                sound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                _sound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             else
-                sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                _sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
             Finish();
-
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 
     protected void Finish()
     {
-        playing = false;
-        active = false;
-        main.UpdateSound -= Update;
+        IsPlaying = false;
+        IsActive = false;
+        _main.UpdateSound -= Update;
     }
 }

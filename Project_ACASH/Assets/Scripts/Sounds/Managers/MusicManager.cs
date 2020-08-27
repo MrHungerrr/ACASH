@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class MusicManager : A_Sound2D
+public sealed class MusicManager : SoundHolder2D
 {
     public enum music
     {
@@ -11,50 +11,14 @@ public class MusicManager : A_Sound2D
     }
 
 
-    //====================================================================================================
-    //Singleton
-    private static MusicManager _get;
-    private static System.Object _lock = new System.Object();
 
-    public static MusicManager get
+    public MusicManager(): base("Global/Music")
     {
-        get
-        {
-            if (_get == null)
-            {
-
-                lock (_lock)
-                {
-                    _get = FindObjectOfType<MusicManager>();
-
-                    if (FindObjectsOfType<MusicManager>().Length > 1)
-                    {
-                        Debug.LogError("Несколько Синглтонов '" + typeof(MusicManager).ToString() + "' найдено! ");
-                    }
-
-                    if (_get == null)
-                    {
-                        Debug.Log("На сцене отсутсвует " + typeof(MusicManager).ToString());
-                        return null;
-                    }
-                }
-            }
-
-            return _get;
-        }
+        SetupSounds();
     }
 
-
-    private void Awake()
+    protected override void SetupSounds()
     {
-        Setup();
-    }
-
-
-    protected void Setup()
-    {
-        base.Setup("Global/Music/");
-
         for (int i = 0; i < Enum.GetNames(typeof(music)).Length; i++)
         {
             music name = (music)i;

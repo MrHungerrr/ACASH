@@ -32,17 +32,17 @@ public class ScholarSelect : ObjectSelect
 
     public override void Select()
     {
-        for (int i = 0; i < mats.Length; i++)
+        for (int i = 0; i < _materials.Length; i++)
         {
-            mats[i].SetColor("_EmissionColor", SelectHelper.select_col);
+            _materials[i].SetColor("_EmissionColor", SelectInfo.SELECT_COL);
         }
     }
 
     public override void Deselect()
     {
-        for (int i = 0; i < mats.Length; i++)
+        for (int i = 0; i < _materials.Length; i++)
         {
-            mats[i].SetColor("_EmissionColor", SelectHelper.col);
+            _materials[i].SetColor("_EmissionColor", SelectInfo.COL);
         }
     }
 

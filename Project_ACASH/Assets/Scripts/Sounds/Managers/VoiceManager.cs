@@ -3,72 +3,34 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class VoiceManager : A_SoundBase
+public sealed class VoiceManager : SoundHolderBase
 {
-
     private FMODAudioBase voice;
 
 
-    //====================================================================================================
-    //Singleton
-    private static VoiceManager _get;
-    private static System.Object _lock = new System.Object();
-
-    public static VoiceManager get
+    public VoiceManager() : base("Voice")
     {
-        get
-        {
-            if (_get == null)
-            {
-
-                lock (_lock)
-                {
-                    _get = FindObjectOfType<VoiceManager>();
-
-                    if (FindObjectsOfType<VoiceManager>().Length > 1)
-                    {
-                        Debug.LogError("Несколько Синглтонов '" + typeof(VoiceManager).ToString() + "' найдено! ");
-                    }
-
-                    if (_get == null)
-                    {
-                        Debug.Log("На сцене отсутсвует " + typeof(VoiceManager).ToString());
-                        return null;
-                    }
-                }
-            }
-
-            return _get;
-        }
     }
 
-
-
-    private void Awake()
+    protected override void Update()
     {
-        Setup();
-    }
-
-
-    protected void Setup()
-    {
-        base.Setup("Voice/");
+        UpdateSound?.Invoke();
     }
 
 
     public void Play(KeyWord key)
     {
-        string full_path = sounds_path + ScriptManager.Instance.voiceLanguage + '/' + key.GetMain() + '/' + key.GetFullWord();
+        string fullPath = _soundPath + ScriptManager.Instance.voiceLanguage + '/' + key.GetMain() + '/' + key.GetFullWord();
 
         try 
         {
-            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(full_path);
+            FMOD.Studio.EventInstance sound = RuntimeManager.CreateInstance(fullPath);
             voice = new FMODAudio2D(this, sound);
             Play(voice);
         }
         catch
         {
-            Debug.LogError("Неправильный путь - " + full_path);
+            Debug.LogError("Неправильный путь - " + fullPath);
         }
     }
 

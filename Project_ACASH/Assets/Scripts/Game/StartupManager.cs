@@ -8,6 +8,8 @@ using Overwatch;
 using MultiTasking;
 using PostProcessing;
 using Single;
+using Computers;
+using Supervision;
 
 public class StartupManager : MonoSingleton<StartupManager>
 {
@@ -30,6 +32,7 @@ public class StartupManager : MonoSingleton<StartupManager>
         GeneralManager.Instance.SetLevel();
         FadeController.Instance.Fade(false);
         InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
+
         OverwatchManager.RecordStart();
 
         Action action = () =>
@@ -37,7 +40,14 @@ public class StartupManager : MonoSingleton<StartupManager>
             OverwatchManager.RecordStop();
         };
 
-        ActionSchedule.Instance.AddActionInTime(10, action);
+        ActionSchedule.Instance.AddActionInTime(20, action);
+
+        Action FuckingSupervision = () =>
+        {
+            SupervisionManager.Instance.SetLevel();
+        };
+
+        ActionSchedule.Instance.AddActionInTime(1, FuckingSupervision);
     }
 
 
@@ -46,12 +56,14 @@ public class StartupManager : MonoSingleton<StartupManager>
         if (!setuped)
         {
             setuped = true;
+            AudioManager.Instance.Setup();
             PostProcessManager.Setup();
             InputManager.Setup();
             LevelDataManager.Setup();
             ScholarManager.Instance.Setup();
             ScholarObjectsManager.Instance.Setup();
             ThreadTaskQueuer.Setup();
+            ComputerManager.Instance.Setup();
         }
     }
 }

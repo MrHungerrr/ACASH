@@ -122,6 +122,7 @@ public class PlayerSelecting
             if (_select != null)
                 _select.Deselect();
             SelectingIsActive = false;
+            Player.Instance.Action.Stop();
         }
     }
 }

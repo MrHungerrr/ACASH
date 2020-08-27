@@ -120,45 +120,6 @@ public static class OperationsList
         new Operation(GetO.operation.Think_Aloud),
     };
 
-    private static Operation[] Write = new Operation[]
-    {
-        //new Operation(GetO.operation.Go_To_Desk),
-        new Special(GetO.special.Think, 5),
-        new Computer(GetO.computer.Text),
-    };
-
-
-    private static Operation[] Calculate = new Operation[]
-    {
-       // new Operation(GetO.operation.Go_To_Desk),
-        new Special(GetO.special.Think, 5),
-
-        new Operation(GetO.operation.StartCheat),
-        new Computer(GetO.computer.Calculator),
-        new Operation(GetO.operation.EndCheat),
-    };
-
-    private static Operation[] Watch_Rules = new Operation[]
-    {
-        //new Operation(GetO.operation.Go_To_Desk),
-        new Special(GetO.special.Think, 5),
-        new Computer(GetO.computer.Rules),
-    };
-
-    private static Operation[] Answer = new Operation[]
-    {
-        //new Operation(GetO.operation.Go_To_Desk),
-        new Special(GetO.special.Think, 5),
-        new Computer(GetO.computer_spec.Question, Random.Range(1,4)),
-    };
-
-
-    private static Operation[] Login = new Operation[]
-    {
-        //new Operation(GetO.operation.Go_To_Desk),
-        new Computer(GetO.computer.Login),
-    };
-
     private static Operation[] Note = new Operation[]
     {
         //new Operation(GetO.operation.Go_To_Desk),
@@ -193,17 +154,12 @@ public static class OperationsList
         {"Sink_2", Sink_2},
         {"Ask_1", Ask_1},
         {"Think_Aloud_1", Think_Aloud_1},
-        {"Write", Write},
         {"Execute", Execute},
         {"Go_Home", Go_Home},
-        {"Watch_Rules", Watch_Rules},
-        {"Answer", Answer},
-        {"Cheating_Calculate_1", Calculate},
         {"Cheating_Note_1", Note},
         {"Cheating_Toilet_3", Cheating_Toilet_3},
         {"Cheating_Outside_2", Cheating_Outside_2},
         {"Cheating_Sink_2", Cheating_Sink_2},
-        {"Login", Login },
         {"Desk", Desk },
     };
 

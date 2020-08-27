@@ -5,11 +5,10 @@ using TMPro;
 
 public class ObjectSelect : MonoBehaviour, IObjectSelect
 {
-    protected static float range = 0.6f;
-    protected Material[] mats;
+    protected const float RANGE = 0.6f;
+    protected Material[] _materials;
 
-    [SerializeField]
-    public Renderer[] renderers;
+    [SerializeField] private Renderer[] _renderers;
 
 
 
@@ -29,15 +28,15 @@ public class ObjectSelect : MonoBehaviour, IObjectSelect
             list.Add(buf.material);
         }
 
-        if (renderers != null)
+        if (_renderers != null)
         {
-            for (int i = 0; i < renderers.Length; i++)
+            for (int i = 0; i < _renderers.Length; i++)
             {
-                list.Add(renderers[i].material);
+                list.Add(_renderers[i].material);
             }
         }
 
-        mats = list.ToArray();
+        _materials = list.ToArray();
 
         Deselect();
     }
@@ -47,9 +46,9 @@ public class ObjectSelect : MonoBehaviour, IObjectSelect
 
     public virtual void Select()
     {
-        for (int i = 0; i < mats.Length; i++)
+        for (int i = 0; i < _materials.Length; i++)
         {
-            mats[i].SetColor("_EmissionColor", SelectHelper.select_col);
+            _materials[i].SetColor("_EmissionColor", SelectInfo.SELECT_COL);
         }
     }
 
@@ -57,9 +56,9 @@ public class ObjectSelect : MonoBehaviour, IObjectSelect
 
     public virtual void Deselect()
     {
-        for (int i = 0; i < mats.Length; i++)
+        for (int i = 0; i < _materials.Length; i++)
         {
-            mats[i].SetColor("_EmissionColor", SelectHelper.col);
+            _materials[i].SetColor("_EmissionColor", SelectInfo.COL);
         }
     }
 
@@ -67,7 +66,7 @@ public class ObjectSelect : MonoBehaviour, IObjectSelect
 
     public virtual bool CanISelect()
     {
-        if (Vector3.Distance(Player.Instance.transform.position, transform.position) < range)
+        if (Vector3.Distance(Player.Instance.transform.position, transform.position) < RANGE)
             return true;
         else
             return false;

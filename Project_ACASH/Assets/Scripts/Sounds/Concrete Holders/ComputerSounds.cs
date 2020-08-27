@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using FMODUnity;
+using Computers;
 
-public class ComputerSounds : A_Sound3D
+
+public class ComputerSounds : SoundHolder3D
 {
-    A_Computer Computer;
+    private readonly A_Computer _computer;
 
     public enum sounds
     {
@@ -13,13 +15,14 @@ public class ComputerSounds : A_Sound3D
         Click,
     }
 
-
-    public void Setup(A_Computer Computer)
+    public ComputerSounds(A_Computer computer, GameObject soundHost) : base(soundHost, "Local/Computer")
     {
-        this.Computer = Computer;
+        _computer = computer;
+        SetupSounds();
+    }
 
-        base.Setup(gameObject, "Local/Computer/");
-
+    protected override void SetupSounds()
+    {
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;

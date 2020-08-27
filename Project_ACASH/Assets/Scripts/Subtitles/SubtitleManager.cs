@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Single;
@@ -12,7 +13,7 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
     [HideInInspector]
     public bool act;
 
-    public event ActionEvent.OnAction TalkDone;
+    public Action TalkDone;
 
 
     private void Awake()
@@ -36,7 +37,7 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
         }
 
         subPlay.Clear();
-        VoiceManager.get.Stop();
+        AudioManager.Instance.Voice.Stop();
     }
 
 
@@ -49,7 +50,7 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
         var script = ScriptManager.Instance.GetText(key_word);
         var duration = ScriptManager.Instance.GetFloat(key_word);
 
-        VoiceManager.get.Play(key_word);
+        AudioManager.Instance.Voice.Play(key_word);
 
 
         //Debug.Log("<color=#0000ff>PlaySub</color>");

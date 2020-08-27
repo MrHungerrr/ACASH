@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class NoiseManager : A_Sound2D
+public sealed class NoiseManager : SoundHolder2D
 {
     public enum sounds
     {
@@ -9,50 +9,13 @@ public class NoiseManager : A_Sound2D
     }
 
 
-
-    private static NoiseManager _get;
-    private static System.Object _lock = new System.Object();
-
-    public static NoiseManager get
+    public NoiseManager() : base("Global/Sounds")
     {
-        get
-        {
-            if (_get == null)
-            {
-                
-                lock(_lock)
-                {
-                    _get = FindObjectOfType<NoiseManager>();
-
-                    if (FindObjectsOfType<NoiseManager>().Length > 1)
-                    {
-                        Debug.LogError("Несколько Синглтонов '" + typeof(NoiseManager).ToString() + "' найдено! ");
-                    }
-
-                    if (_get == null)
-                    {
-                        Debug.Log("На сцене отсутсвует " + typeof(NoiseManager).ToString());
-                        return null;
-                    }
-                }
-            }
-
-            return _get;
-        }
+        SetupSounds();
     }
 
-
-
-    private void Awake()
+    protected override void SetupSounds()
     {
-        Setup();
-    }
-
-
-    protected void Setup()
-    {
-        base.Setup("Global/Sounds/");
-
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;

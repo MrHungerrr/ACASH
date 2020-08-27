@@ -8,7 +8,6 @@ public class DesktopController : MonoBehaviour
 
     private Image background;
     private IconUI[] icons;
-    private User user;
 
     public void Setup()
     {
@@ -24,14 +23,6 @@ public class DesktopController : MonoBehaviour
             icons[i] = iconsDest.Find("Icon_" + i).GetComponent<IconUI>();
             icons[i].Setup();
         }
-    }
-
-
-    public void SetUser(User new_user)
-    {
-        user = new_user;
-        background.sprite = new_user.background;
-        ChangeIcons(user.icons);
     }
 
 

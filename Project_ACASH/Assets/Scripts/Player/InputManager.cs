@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Single;
+using Computers;
 
 
 
@@ -67,8 +68,8 @@ public static class InputManager
         #endregion
 
         #region Computer
-        _controls.Computer.Move.performed += ctx => ComputerManager.Instance.MouseInput(ctx.ReadValue<Vector2>());
-        _controls.Computer.Move.canceled += ctx => ComputerManager.Instance.MouseInput(Vector2.zero);
+        _controls.Computer.Move.performed += ctx => ComputerControlManager.Instance.MouseInput(ctx.ReadValue<Vector2>());
+        _controls.Computer.Move.canceled += ctx => ComputerControlManager.Instance.MouseInput(Vector2.zero);
         _controls.Computer.Zoom.started += ctx => ComputerZoom(true);
         _controls.Computer.Zoom.canceled += ctx => ComputerZoom(false);
         _controls.Computer.Select.started += ctx => ComputerSelect();
@@ -184,12 +185,12 @@ public static class InputManager
     {
         if (option)
         {
-            if(GameCanIDoAction())
-                Player.Instance.Action.SetDoing(true);
+            if (GameCanIDoAction())
+                Player.Instance.Action.Act();
         }
         else
         {
-            Player.Instance.Action.SetDoing(false);
+            Player.Instance.Action.Stop();
         }
     }
 
@@ -263,18 +264,18 @@ public static class InputManager
 
     public static void ComputerSelect()
     {
-        ComputerManager.Instance.Select();    
+        ComputerControlManager.Instance.Select();
     }
 
     private static void ComputerExit()
     {
-        ComputerManager.Instance.Exit();
+        ComputerControlManager.Instance.Exit();
         SwitchGameInput(GameplayType.FirstPerson);
     }
 
     private static void ComputerZoom(bool option)
     {
-        ComputerManager.Instance.Zoom(option);
+        ComputerControlManager.Instance.Zoom(option);
     }
 
     private static void ComputerMenu()

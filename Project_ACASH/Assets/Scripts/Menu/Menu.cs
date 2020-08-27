@@ -48,7 +48,7 @@ public class Menu : MonoSingleton<Menu>
     {
         state = option;
         PostProcessActions.Instance.Blur(option);
-        SoundManager.Instance.Pause(option);
+        AudioManager.Instance.Pause(option);
 
         if (option)
         {

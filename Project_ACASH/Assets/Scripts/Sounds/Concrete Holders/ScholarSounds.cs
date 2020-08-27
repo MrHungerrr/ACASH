@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using FMODUnity;
 
-public class ScholarSounds : A_Sound3D
+public class ScholarSounds : SoundHolder3D
 {
-    Scholar Scholar;
+    private readonly Scholar _scholar;
 
 
     public enum sounds
@@ -14,11 +14,14 @@ public class ScholarSounds : A_Sound3D
         Walk,
     }
 
-    public void Setup(Scholar Scholar)
+    public ScholarSounds(Scholar scholar) : base(scholar.gameObject, "Local/Scholar")
     {
-        this.Scholar = Scholar;
-        base.Setup(Scholar.gameObject, "Local/Scholar/");
+        this._scholar = scholar;
+    }
 
+
+    protected override void SetupSounds()
+    {
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)
         {
             sounds name = (sounds)i;

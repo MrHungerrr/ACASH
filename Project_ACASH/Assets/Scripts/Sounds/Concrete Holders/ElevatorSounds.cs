@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FMODUnity;
 using Single;
 
-public class ElevatorSounds: A_Sound3D
+public class ElevatorSounds: SoundHolder3D
 {
     public enum sounds
     {
@@ -16,10 +16,13 @@ public class ElevatorSounds: A_Sound3D
 
 
 
-    public void Setup(GameObject obj)
+    public ElevatorSounds(GameObject host):base(host, "Local/Elevator/")
     {
-        base.Setup(obj, "Local/Elevator/");
+        SetupSounds();
+    }
 
+    protected override void SetupSounds()
+    {
         base.SetIgnore("Elevator");
 
         for (int i = 0; i < Enum.GetNames(typeof(sounds)).Length; i++)

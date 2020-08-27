@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Single;
 
-public class LevelManager : MonoSingleton<LevelManager>
+public class LevelManager : Singleton<LevelManager>
 {
 
     public enum levels
@@ -22,7 +23,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public bool loading = false;
     public int current_level { get; private set; }
 
-    private ActionEvent.OnAction OnLoad;
+    private Action OnLoad;
 
 
     public void Update()

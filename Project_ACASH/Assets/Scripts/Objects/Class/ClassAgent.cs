@@ -48,8 +48,8 @@ public class ClassAgent: MonoBehaviour
                 }
         }
 
-        if (_scholars.Length != _placeAgent.Places[PlaceManager.place.Desk].Length)
-            throw new Exception($"Количество учеников - {_scholars.Length}, Количество парт - {_placeAgent.Places[PlaceManager.place.Desk].Length}");
+        //if (_scholars.Length != _placeAgent.Places[PlaceManager.place.Desk].Length)
+        //    throw new Exception($"Количество учеников - {_scholars.Length}, Количество парт - {_placeAgent.Places[PlaceManager.place.Desk].Length}");
 
         if (_scholars.Length != _placeAgent.Places[PlaceManager.place.DockStation].Length)
             throw new Exception($"Количество учеников - {_scholars.Length}, Количество Док-станций - {_placeAgent.Places[PlaceManager.place.DockStation].Length}");
@@ -94,12 +94,9 @@ public class ClassAgent: MonoBehaviour
 
     private void ScholarSetup()
     {
-        ScholarComputer desk;
-
         for (int i = 0; i < _scholars.Length; i++)
         {
-            desk = _placeAgent.Places[PlaceManager.place.Desk][i].GetComponent<ScholarComputer>();
-            _scholars[i].Setup(this, desk);
+            _scholars[i].Setup(this);
         }
     }
 

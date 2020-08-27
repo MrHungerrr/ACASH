@@ -15,7 +15,7 @@ public class InteractAction : MonoBehaviour, IInteraction
         this.tag = "ActionObject";
     }
 
-    public void Interaction()
+    public void Interact()
     {
         OnInteraction.Invoke();
     }

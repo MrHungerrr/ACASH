@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Searching;
-using Overwatch.Watchable;
+using Overwatch.Memorable;
 
 
 public class Scholar : MonoBehaviour
@@ -9,7 +9,6 @@ public class Scholar : MonoBehaviour
 
 
     public ClassAgent ClassRoom { get; private set; }
-    public ScholarComputer Desk { get; private set; }
     public ScholarActions Action { get; private set; }
     public ScholarAnimtor Anim { get; private set; }
     public ScholarCheat Cheat { get; private set; }
@@ -17,11 +16,11 @@ public class Scholar : MonoBehaviour
     public ScholarInfo Info { get; private set; }
     public ScholarLocation Location { get; private set; }
     public ScholarObjects Objects { get; private set; }
-    public ScholarWatchable Watchable { get; private set; }
+    public ScholarMemorable Watchable { get; private set; }
+    public ScholarSounds Sound { get; private set; }
     public ScholarEmotions Emotions => _emotions;
     public ScholarTextBox TextBox => _textBox;
     public ScholarSelect Select => _select;
-    public ScholarSounds Sound => _sound;
     public ScholarBody Body => _body;
     public ScholarMove Move => _move;
 
@@ -38,15 +37,12 @@ public class Scholar : MonoBehaviour
 
     [SerializeField] private ScholarSelect _select;
 
-    [SerializeField] private ScholarSounds _sound;
 
 
 
-
-    public virtual void Setup(ClassAgent classRoom, ScholarComputer desk)
+    public virtual void Setup(ClassAgent classRoom)
     {
         ClassRoom = classRoom;
-        Desk = desk;
 
         Active = false;
         this.tag = "Scholar";
@@ -56,15 +52,16 @@ public class Scholar : MonoBehaviour
         Move.Setup(this);
         Body.Setup(this);
         Select.Setup(this);
-        Sound.Setup(this);
+
 
         Anim = new ScholarAnimtor(transform.Find("Scholar").GetComponent<Animator>());
+        Sound = new ScholarSounds(this);
         Info = new ScholarInfo(this);
         Location = new ScholarLocation(this);
         Objects = new ScholarObjects(this);
         Action = new ScholarActions(this);
         Cheat = new ScholarCheat(this);
-        Watchable = new ScholarWatchable(this);
+        Watchable = new ScholarMemorable(this);
     }
 
 
@@ -77,8 +74,6 @@ public class Scholar : MonoBehaviour
         Emotions.Reset();
         Talk = new ScholarTalk(this);
         Cheat.Reset();
-
-        Desk.ResetComputer();
 
         Body.Enable();
     }
