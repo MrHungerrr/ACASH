@@ -9,35 +9,18 @@ public class Scholar : MonoBehaviour
 
 
     public ClassAgent ClassRoom { get; private set; }
-    public ScholarActions Action { get; private set; }
-    public ScholarAnimtor Anim { get; private set; }
-    public ScholarCheat Cheat { get; private set; }
-    public ScholarTalk Talk { get; private set; }
     public ScholarLocation Location { get; private set; }
-    public ScholarObjects Objects { get; private set; }
     public ScholarMemorable Watchable { get; private set; }
     public ScholarSounds Sound { get; private set; }
-    public ScholarEmotions Emotions => _emotions;
-    public ScholarTextBox TextBox => _textBox;
     public ScholarSelect Select => _select;
-    public ScholarBody Body => _body;
     public ScholarMove Move => _move;
-    public ScholarInfo Info => _info;
 
 
 
-
-    [SerializeField] private ScholarTextBox _textBox;
-
-    [SerializeField] private ScholarEmotions _emotions;
 
     [SerializeField] private ScholarMove _move;
-
-    [SerializeField] private ScholarBody _body;
-
     [SerializeField] private ScholarSelect _select;
 
-    [SerializeField] private ScholarInfo _info;
 
 
 
