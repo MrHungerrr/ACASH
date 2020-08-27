@@ -42,7 +42,7 @@ public class Scholar : MonoBehaviour
 
 
 
-    public virtual void Setup(ClassAgent classRoom)
+    public virtual void Setup(ClassAgent classRoom, int number)
     {
         ClassRoom = classRoom;
 
@@ -54,7 +54,7 @@ public class Scholar : MonoBehaviour
         Move.Setup(this);
         Body.Setup(this);
         Select.Setup(this);
-        Info.Setup();
+        Info.Setup(number, "Egor", "Akimov");
 
 
         Anim = new ScholarAnimtor(transform.Find("Scholar").GetComponent<Animator>());

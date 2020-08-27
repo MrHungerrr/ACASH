@@ -12,33 +12,30 @@ namespace Overwatch.Memorable
         public Vector3 BodyPosition { get; private set; }
         public float BodyRotation { get; private set; }
         public Vector3 HeadPosition { get; private set; }
-        public Quaternion HeadRotation { get; private set; }
 
         public int AnimationId { get; private set; }
         public float AnimationTime { get; private set; }
 
 
 
-        public MemorableScholarInfo(in int id)
+        public MemorableScholarInfo(int id)
         {
             Id = id;
 
             BodyPosition = Vector3.zero;
             BodyRotation = 0;
             HeadPosition = Vector3.zero;
-            HeadRotation = Quaternion.identity;
 
             AnimationId = -1;
             AnimationTime = 0;
         }
 
 
-        public void Capture(in Vector3 bodyPosition, in float bodyRotation, in Vector3 headPosition, in Quaternion headRotation, in int animationId, in float animationTime)
+        public void Capture(in Vector3 bodyPosition, float bodyRotation, Vector3 headPosition, int animationId, float animationTime)
         {
             BodyPosition = bodyPosition;
             BodyRotation = bodyRotation;
             HeadPosition = headPosition;
-            HeadRotation = headRotation;
 
             AnimationId = animationId;
             AnimationTime = animationTime;
@@ -68,15 +65,6 @@ namespace Overwatch.Memorable
                 (float)bufferElement.Element("X"),
                 (float)bufferElement.Element("Y"),
                 (float)bufferElement.Element("Z")
-                );
-
-            bufferElement = xElement.Element("Head").Element("Rotation");
-
-            HeadRotation = new Quaternion(
-                (float)bufferElement.Element("X"),
-                (float)bufferElement.Element("Y"),
-                (float)bufferElement.Element("Z"),
-                (float)bufferElement.Element("W")
                 );
             #endregion
 
@@ -109,12 +97,6 @@ namespace Overwatch.Memorable
                             new XElement("X", HeadPosition.x),
                             new XElement("Y", HeadPosition.y),
                             new XElement("Z", HeadPosition.z)
-                            ),
-                        new XElement("Rotation",
-                            new XElement("X", HeadRotation.x),
-                            new XElement("Y", HeadRotation.y),
-                            new XElement("Z", HeadRotation.z),
-                            new XElement("W", HeadRotation.w)
                             )
                     ),
 

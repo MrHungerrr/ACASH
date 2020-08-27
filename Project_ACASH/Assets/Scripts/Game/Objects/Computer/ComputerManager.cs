@@ -14,7 +14,6 @@ namespace Computers
         public void Setup()
         {
             ComputerWindowsManager.Instance.Setup();
-            ComputerCursor.Setup();
         }
 
 

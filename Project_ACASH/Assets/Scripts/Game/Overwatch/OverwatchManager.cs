@@ -29,7 +29,7 @@ namespace Overwatch
             if (OverwatchInfo.RecordIsDone)
             {
                 OverwatchPlayer.Instance.Update();
-                OverwatchPlayerController.Instance.MyUpdate();
+                OverwatchPlayerController.Instance.Update();
             }
         }
 
@@ -42,9 +42,9 @@ namespace Overwatch
         public static void RecordStop()
         {
             OverwatchRecorder.Instance.RecordDone();
-            OverwatchInfo.StopRecord();
             MemorableManager.CutAll();
             OverwatchPlayer.Instance.Setup();
+            OverwatchInfo.StopRecord();
         }
     }
 }

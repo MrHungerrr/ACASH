@@ -11,18 +11,10 @@ namespace Computers
             Finger
         }
 
-        private static Sprite _pointer;
-        private static Sprite _finger;
 
+        [SerializeField] private Image _pointer;
+        [SerializeField] private Image _finger;
 
-        [SerializeField] private Image _image;
-
-
-        public static void Setup()
-        {
-            _pointer = Resources.Load(@"Computer\Cursor\Pointer.png") as Sprite;
-            _finger = Resources.Load(@"Computer\Cursor\Finger.png") as Sprite;
-        }
 
         public void SetLevel()
         {
@@ -51,12 +43,14 @@ namespace Computers
             {
                 case types.Pointer:
                     {
-                        _image.sprite = _pointer;
+                        _finger.enabled = false;
+                        _pointer.enabled = true;
                         break;
                     }
                 case types.Finger:
                     {
-                        _image.sprite = _finger;
+                        _finger.enabled = true;
+                        _pointer.enabled = false;
                         break;
                     }
             }

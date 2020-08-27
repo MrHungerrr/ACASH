@@ -1,4 +1,5 @@
-﻿using Single;
+﻿using Searching;
+using Single;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,7 @@ public class ClassAgentsHolder: MonoSingleton<ClassAgentsHolder>
 
     public void Initializate()
     {
-        _classes = GameObject.FindObjectsOfType<ClassAgent>().OrderBy(x => x.gameObject.name).ToArray();
-
-        for(int i = 0; i< _classes.Length; i++)
-        {
-            _classes[i].Initializate();
-        }
+        _classes = SIC<ClassAgent>.ComponentsDown(transform).OrderBy(x => x.gameObject.name).ToArray();
     }
 #endif
     #endregion

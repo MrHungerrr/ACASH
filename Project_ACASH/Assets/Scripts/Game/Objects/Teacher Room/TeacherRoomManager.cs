@@ -7,7 +7,7 @@ using Supervision;
 using Minimap;
 using Single;
 
-public class TeacherProgramsManager: Singleton<TeacherProgramsManager>
+public class TeacherRoomManager: Singleton<TeacherRoomManager>
 {
     public void SetLevel()
     {

@@ -236,6 +236,18 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &294852206 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5238529168120456737, guid: c4d999bcf224e5e40a9de76793a61a0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 740010619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0179fd845f4b9964e82da07e69cdc3fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &528672436
 Material:
   serializedVersion: 6
@@ -389,8 +401,13 @@ PrefabInstance:
     - target: {fileID: 7646130313000800310, guid: c4d999bcf224e5e40a9de76793a61a0c,
         type: 3}
       propertyPath: _classes.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7646130313000800310, guid: c4d999bcf224e5e40a9de76793a61a0c,
+        type: 3}
+      propertyPath: _classes.Array.data[0]
+      value: 
+      objectReference: {fileID: 294852206}
     - target: {fileID: 7795868563936542716, guid: c4d999bcf224e5e40a9de76793a61a0c,
         type: 3}
       propertyPath: m_LocalPosition.x

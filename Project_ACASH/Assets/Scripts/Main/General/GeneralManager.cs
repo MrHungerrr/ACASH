@@ -29,7 +29,7 @@ public class GeneralManager: MonoSingleton<GeneralManager>
         ScholarManager.Instance.SetLevel();
         ClassManager.Instance.SetLevel();
         ComputerManager.Instance.SetLevel();
-        TeacherProgramsManager.Instance.SetLevel();
+        TeacherRoomManager.Instance.SetLevel();
 
         //SupervisionManager.Instance.SetLevel();
         //if (!test)

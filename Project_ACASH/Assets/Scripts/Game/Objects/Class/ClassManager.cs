@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class ClassManager: Singleton<ClassManager>
 {
+    public ClassAgent[] Classes => _classes;
+
     private ClassAgent[] _classes;
 
     public void SetLevel()

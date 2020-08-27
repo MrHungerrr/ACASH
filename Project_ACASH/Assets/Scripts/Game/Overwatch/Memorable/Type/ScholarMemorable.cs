@@ -33,9 +33,8 @@ namespace Overwatch.Memorable
             _memorableInfo.Capture
                 (
                     _scholar.Body.Body.position,
-                    _scholar.Body.Body.rotation.eulerAngles.y,
+                    _scholar.Move.Rotation().eulerAngles.y,
                     _scholar.Body.Head.position,
-                    _scholar.Body.Head.rotation,
                     _scholar.Anim.AnimationId,
                     _scholar.Anim.AnimationTime
                 );
@@ -52,9 +51,8 @@ namespace Overwatch.Memorable
             Set((MemorableScholarInfo)info);
 
             _scholar.Body.Body.position = _memorableInfo.BodyPosition;
-            _scholar.Body.Body.rotation = Quaternion.Euler(0, _memorableInfo.BodyRotation, 0);
+            _scholar.Move.Rotation(Quaternion.Euler(0, _memorableInfo.BodyRotation, 0));
             _scholar.Body.Head.position = _memorableInfo.HeadPosition;
-            _scholar.Body.Head.rotation = _memorableInfo.HeadRotation;
             _scholar.Anim.SetAnimation(_memorableInfo.AnimationId);
             _scholar.Anim.SetTime(_memorableInfo.AnimationTime);
         }

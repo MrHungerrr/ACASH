@@ -30,7 +30,6 @@ public class StartupManager : MonoSingleton<StartupManager>
     private void FuckThisShit()
     {
         GeneralManager.Instance.SetLevel();
-        FadeController.Instance.Fade(false);
         InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
 
         OverwatchManager.RecordStart();
@@ -41,13 +40,6 @@ public class StartupManager : MonoSingleton<StartupManager>
         };
 
         ActionSchedule.Instance.AddActionInTime(20, action);
-
-        Action FuckingSupervision = () =>
-        {
-            SupervisionManager.Instance.SetLevel();
-        };
-
-        ActionSchedule.Instance.AddActionInTime(1, FuckingSupervision);
     }
 
 
@@ -64,7 +56,7 @@ public class StartupManager : MonoSingleton<StartupManager>
             ScholarObjectsManager.Instance.Setup();
             ThreadTaskQueuer.Setup();
             ComputerManager.Instance.Setup();
-            Menu.Instance.Setup();
+            MenuManager.Instance.Setup();
         }
     }
 }

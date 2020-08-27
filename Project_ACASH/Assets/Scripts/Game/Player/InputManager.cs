@@ -60,8 +60,8 @@ public static class InputManager
         #endregion
 
         #region Menu
-        _controls.Menu.Move.performed += ctx => Menu.Instance.MoveInput(ctx.ReadValue<Vector2>());
-        _controls.Menu.Move.canceled += ctx => Menu.Instance.MoveInput(Vector2.zero);
+        _controls.Menu.Move.performed += ctx => MenuManager.Instance.MoveInput(ctx.ReadValue<Vector2>());
+        _controls.Menu.Move.canceled += ctx => MenuManager.Instance.MoveInput(Vector2.zero);
         _controls.Menu.Select.started += ctx => MenuSelect();
         _controls.Menu.Escape.started += ctx => MenuEscape();
         _controls.Menu.Resume.started += ctx => MenuResume();
@@ -146,7 +146,7 @@ public static class InputManager
         if (_inputType != type)
         {
             _inputType = type;
-            Menu.Instance.InputType();
+            MenuManager.Instance.InputType();
 
             switch (type)
             {
@@ -224,7 +224,7 @@ public static class InputManager
 
     private static void GameMenu()
     {
-        Menu.Instance.Enable(true);
+        MenuManager.Instance.Enable(true);
         SwitchGameInput(GameplayType.Menu);
     }
 
@@ -240,19 +240,19 @@ public static class InputManager
     {
         if (GameManager.Instance.Game)
         {
-            Menu.Instance.Enable(false);
+            MenuManager.Instance.Enable(false);
             SwitchGameInput(_gameTypeLast);
         }
     }
 
     private static void MenuEscape()
     {
-        Menu.Instance.Escape();
+        MenuManager.Instance.Escape();
     }
 
     private static void MenuSelect()
     {
-        Menu.Instance.Enter();
+        MenuManager.Instance.Enter();
     }
 
 
@@ -280,7 +280,7 @@ public static class InputManager
 
     private static void ComputerMenu()
     {
-        Menu.Instance.Enable(true);
+        MenuManager.Instance.Enable(true);
         SwitchGameInput(GameplayType.Menu);
     }
 }

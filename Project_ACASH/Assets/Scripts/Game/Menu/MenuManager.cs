@@ -4,7 +4,7 @@ using Single;
 using PostProcessing;
 
 
-public class Menu : MonoSingleton<Menu>
+public class MenuManager : MonoSingleton<MenuManager>
 {
     private bool _isActive;
 

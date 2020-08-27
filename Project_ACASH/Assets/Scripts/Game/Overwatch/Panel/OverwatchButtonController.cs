@@ -9,21 +9,21 @@ namespace Overwatch.Panel
     {
         public void StartPlaying()
         {
-            OverwatchPlayerController.Instance.SwitchState(OverwatchPlayerController.PlayerState.Playing);
+            OverwatchPlayerController.Instance.SetState(OverwatchPlayerController.PlayerState.Playing);
             OverwatchPlayerController.Instance.SetDeltaPlaying(1);
             OverwatchPlayerController.Instance.Play();
         }
 
         public void StartForwardRewind()
         {
-            OverwatchPlayerController.Instance.SwitchState(OverwatchPlayerController.PlayerState.Rewinding);
+            OverwatchPlayerController.Instance.SetState(OverwatchPlayerController.PlayerState.Rewinding);
             OverwatchPlayerController.Instance.SetDeltaRewinding(15);
             OverwatchPlayerController.Instance.Play();
         }
 
         public void StartBackwardRewind()
         {
-            OverwatchPlayerController.Instance.SwitchState(OverwatchPlayerController.PlayerState.Rewinding);
+            OverwatchPlayerController.Instance.SetState(OverwatchPlayerController.PlayerState.Rewinding);
             OverwatchPlayerController.Instance.SetDeltaRewinding(-15);
             OverwatchPlayerController.Instance.Play();
         }

@@ -5,6 +5,7 @@ using Overwatch.Memory;
 using Overwatch.Memorable;
 using Overwatch.Read;
 using Single;
+using UnityEngine;
 using FMOD;
 
 namespace Overwatch.Player
@@ -53,6 +54,8 @@ namespace Overwatch.Player
 
         private void Remember()
         {
+            UnityEngine.Debug.Log("Remembering");
+
             int id;
             HashSet<int> enabledIndexes = new HashSet<int>();
 

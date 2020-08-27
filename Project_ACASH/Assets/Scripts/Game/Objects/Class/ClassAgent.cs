@@ -16,7 +16,7 @@ public class ClassAgent: MonoBehaviour
     #region Initializator
 #if UNITY_EDITOR
 
-    public bool AutoInitializate => false;
+    public bool AutoInitializate => true;
 
     private enum FillType
     {
@@ -62,23 +62,11 @@ public class ClassAgent: MonoBehaviour
     {
         ScholarMove scholarMove;
 
-        int scholarDelta = 0;
-
-        for(int i = 0; i < ClassAgentsHolder.Instance.Classes.Length; i++)
-        {
-            if (this == ClassAgentsHolder.Instance.Classes[i])
-                break;
-            else
-                scholarDelta += ClassAgentsHolder.Instance.Classes[i]._scholars.Length;
-        }
-
         for (int i = 0; i < _scholars.Length; i++)
         {
             scholarMove = _scholars[i].GetComponent<ScholarMove>();
             scholarMove.Position(_placeAgent.Places[PlaceManager.place.DockStation][i].Destination);
             scholarMove.Rotation(_placeAgent.Places[PlaceManager.place.DockStation][i].SightGoal);
-            _scholars[i].Info.SetNumber(scholarDelta + i);
-            _scholars[i].Info.Initializate();
         }
     }
 
@@ -89,9 +77,8 @@ public class ClassAgent: MonoBehaviour
     public PlaceAgent PlaceAgent => _placeAgent;
 
 
-    [SerializeField] private Scholar[] _scholars;
-
     [SerializeField] private PlaceAgent _placeAgent;
+    [SerializeField] private Scholar[] _scholars;
 
 
 
@@ -101,14 +88,21 @@ public class ClassAgent: MonoBehaviour
     }
 
 
-
-
-
     private void ScholarSetup()
     {
+        int scholarNumberDelta = 0;
+
+        for(int i = 0; i< ClassManager.Instance.Classes.Length; i++)
+        {
+            if (this != ClassManager.Instance.Classes[i])
+                scholarNumberDelta += ClassManager.Instance.Classes[i]._scholars.Length;
+            else
+                break;
+        }
+
         for (int i = 0; i < _scholars.Length; i++)
         {
-            _scholars[i].Setup(this);
+            _scholars[i].Setup(this, scholarNumberDelta + i);
         }
     }
 

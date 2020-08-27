@@ -42,8 +42,6 @@ namespace Overwatch.Read
 
             for (int i = _startIndex; i <= _lastIndex; i++)
             {
-                Debug.Log(i);
-
                 if (!_memory[i].IsLoaded)
                     _memory[i].Load();
 

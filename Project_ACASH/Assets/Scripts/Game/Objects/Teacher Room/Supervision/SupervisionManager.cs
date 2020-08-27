@@ -20,7 +20,7 @@ namespace Supervision
         public void SetLevel()
         {
             Cameras = SupervisionCamerasHolder.Instance.Cameras;
-            SupervisionScreens.Instance.SetCameras(Cameras);
+            SupervisionScreenController.Instance.SetLevel();
         }
     }
 }

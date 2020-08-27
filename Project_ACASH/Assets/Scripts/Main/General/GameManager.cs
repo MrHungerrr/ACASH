@@ -24,7 +24,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void Continue()
     {
-        Menu.Instance.Enable(false);
+        MenuManager.Instance.Enable(false);
     }
 
     public void Restart()
@@ -49,7 +49,7 @@ public class GameManager : MonoSingleton<GameManager>
         while (FadeController.Instance.active)
             yield return new WaitForEndOfFrame();
 
-        Menu.Instance.Enable(false);
+        MenuManager.Instance.Enable(false);
 
         LevelManager.Instance.Load(level);
 
