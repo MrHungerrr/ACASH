@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using FMODUnity;
+using AI.Scholars;
+
+
 
 public class ScholarSounds : SoundHolder3D
 {

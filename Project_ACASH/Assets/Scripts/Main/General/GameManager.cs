@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PostProcessing;
 using Single;
+using Exam;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -93,11 +94,5 @@ public class GameManager : MonoSingleton<GameManager>
     public void StartExam()
     {
         ExamManager.Instance.ResetExam();
-    }
-
-
-    public void NewScholars()
-    {
-        ScholarManager.Instance.NewScholars();
     }
 }

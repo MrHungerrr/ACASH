@@ -6,7 +6,6 @@ using Searching;
 
 namespace Places
 {
-    [RequireComponent(typeof(SortAgent))]
     public class PlaceAgent: MonoBehaviour
     #region IInitialization
 #if UNITY_EDITOR
@@ -53,11 +52,9 @@ namespace Places
 
         private void SortPlaces(Place[] places)
         {
-            List<Place> desks = new List<Place>();
             List<Place> toilets = new List<Place>();
             List<Place> sinks = new List<Place>();
             List<Place> outside = new List<Place>();
-            List<Place> dockStations = new List<Place>();
 
 
             foreach (var place in places)
@@ -66,11 +63,6 @@ namespace Places
 
                 switch (place.tag)
                 {
-                    case "Desk":
-                        {
-                            desks.Add(place);
-                            break;
-                        }
                     case "Toilet":
                         {
                             toilets.Add(place);
@@ -86,23 +78,12 @@ namespace Places
                             outside.Add(place);
                             break;
                         }
-                    case "Dock Station":
-                        {
-                            dockStations.Add(place);
-                            break;
-                        }
                 }
             }
 
-            _desks = desks.ToArray();
             _toilets = toilets.ToArray();
             _sinks = sinks.ToArray();
             _outside = outside.ToArray();
-            _dockStations = dockStations.ToArray();
-
-            var sortAgent = GetComponent<SortAgent>();
-            sortAgent.Sort(_desks);
-            sortAgent.Sort(_dockStations);
         }
 
 #endif
@@ -113,7 +94,6 @@ namespace Places
 
         private Dictionary<PlaceManager.place, Place[]> _places;
 
-        [SerializeField] private Place[] _desks;
 
         [SerializeField] private Place[] _toilets;
 
@@ -121,7 +101,6 @@ namespace Places
 
         [SerializeField] private Place[] _outside;
 
-        [SerializeField] private Place[] _dockStations;
 
 
 
@@ -135,11 +114,9 @@ namespace Places
         {
             _places = new Dictionary<PlaceManager.place, Place[]>();
 
-            _places.Add(PlaceManager.place.Desk, _desks);
             _places.Add(PlaceManager.place.Toilet, _toilets);
             _places.Add(PlaceManager.place.Sink, _sinks);
             _places.Add(PlaceManager.place.Outside, _outside);
-            _places.Add(PlaceManager.place.DockStation, _dockStations);
         }
 
 
@@ -153,7 +130,7 @@ namespace Places
             }
             catch
             {
-                throw new Exception("Выход за границы массива");
+                throw new ArgumentOutOfRangeException();
             }
         }
 

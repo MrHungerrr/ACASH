@@ -21,7 +21,7 @@ namespace Overwatch.Memory
             _info = new List<IMemorableInfo>();
         }
 
-        public void Add(IMemorableInfo info)
+        public void Add(in IMemorableInfo info)
         {
             _info.Add(info);
         }

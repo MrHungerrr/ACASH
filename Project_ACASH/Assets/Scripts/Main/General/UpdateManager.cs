@@ -9,6 +9,7 @@ using MultiTasking;
 using Single;
 using Overwatch;
 using UnityEngine.Events;
+using AI.Scholars;
 
 public class UpdateManager: MonoSingleton<UpdateManager>
 {
@@ -21,12 +22,14 @@ public class UpdateManager: MonoSingleton<UpdateManager>
         TimeManager.Instance.Update();
         ThreadTaskQueuer.Update();
         LevelManager.Instance.Update();
+        ScholarManager.Instance.Update();
         OverwatchManager.Update();
         _onUpdate?.Invoke();
     }
 
     private void FixedUpdate()
     {
+        ScholarManager.Instance.FixUpdate();
         _onFixUpdate?.Invoke();
     }
 

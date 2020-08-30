@@ -12,18 +12,16 @@ namespace Places
 #endif
     #endregion
     {
-        public Vector3 Destination => _destination;
-        public Vector3 SightGoal => _sightGoal;
+        public Vector2 Destination => _destination.position;
+        public Vector2 SightGoal => _sightGoal.position;
         public bool Busy => _busy;
 
 
-        [SerializeField]
-        private Vector3 _destination;
+        [SerializeField] private Transform _destination;
 
-        [SerializeField]
-        private Vector3 _sightGoal;
+        [SerializeField] private Transform _sightGoal;
 
-        private bool _busy;
+        private bool _busy = false;
 
 
         #region Initializator
@@ -33,13 +31,14 @@ namespace Places
 
         public void Initializate()
         {
-            _destination = SIC.Component(this.transform, "Destination").position;
-            _sightGoal = SIC.Component(this.transform, "Sight Goal").position;
+            if (_destination == null)
+                throw new ArgumentException();
+
+            if (_sightGoal == null)
+                throw new ArgumentException();
         }
 #endif
         #endregion
-
-
 
         public void SetBusy(bool option)
         {

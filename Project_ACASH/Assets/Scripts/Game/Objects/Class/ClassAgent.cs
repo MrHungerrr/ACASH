@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using Places;
 using UnityEngine;
 using Searching;
+using AI.Scholars;
+
 
 [RequireComponent(typeof(PlaceAgent))]
+[RequireComponent(typeof(SortAgent))]
 public class ClassAgent: MonoBehaviour
 #region IInitialization
 #if UNITY_EDITOR
@@ -39,6 +42,9 @@ public class ClassAgent: MonoBehaviour
 
                     _scholars = SIC<Scholar>.ComponentsDown(this.transform);
 
+                    var places = SIC<Place>.ComponentsDown(transform);
+                    SortPlaces(places);
+
                     break;
                 }
             case FillType.Manual:
@@ -51,34 +57,67 @@ public class ClassAgent: MonoBehaviour
         //if (_scholars.Length != _placeAgent.Places[PlaceManager.place.Desk].Length)
         //    throw new Exception($"Количество учеников - {_scholars.Length}, Количество парт - {_placeAgent.Places[PlaceManager.place.Desk].Length}");
 
-        if (_scholars.Length != _placeAgent.Places[PlaceManager.place.DockStation].Length)
-            throw new Exception($"Количество учеников - {_scholars.Length}, Количество Док-станций - {_placeAgent.Places[PlaceManager.place.DockStation].Length}");
+        if (_scholars.Length != _dockStations.Length)
+            throw new Exception($"Количество учеников - {_scholars.Length}, Количество Док-станций - {_dockStations.Length}");
 
-        ScholarInitialization();
+        if (_scholars.Length != _desks.Length)
+            throw new Exception($"Количество учеников - {_scholars.Length}, Количество Док-станций - {_desks.Length}");
+
+        ScholarInitialize();
     }
 
 
-    private void ScholarInitialization()
+    private void SortPlaces(Place[] places)
     {
-        ScholarMove scholarMove;
+        List<Place> desks = new List<Place>();
+        List<Place> dockStations = new List<Place>();
 
-        for (int i = 0; i < _scholars.Length; i++)
+
+        foreach (var place in places)
         {
-            scholarMove = _scholars[i].GetComponent<ScholarMove>();
-            scholarMove.Position(_placeAgent.Places[PlaceManager.place.DockStation][i].Destination);
-            scholarMove.Rotation(_placeAgent.Places[PlaceManager.place.DockStation][i].SightGoal);
+            place.Initializate();
+
+            switch (place.tag)
+            {
+                case "Desk":
+                    {
+                        desks.Add(place);
+                        break;
+                    }
+                case "Dock Station":
+                    {
+                        dockStations.Add(place);
+                        break;
+                    }
+            }
+        }
+
+        _desks = desks.ToArray();
+        _dockStations = dockStations.ToArray();
+
+        var sortAgent = GetComponent<SortAgent>();
+        sortAgent.Sort(_desks);
+        sortAgent.Sort(_dockStations);
+    }
+
+    private void ScholarInitialize()
+    {
+        for(int i = 0; i < _scholars.Length; i++)
+        {
+            _scholars[i].Move.transform.position = _dockStations[i].Destination;
         }
     }
 
 #endif
     #endregion
 
-
     public PlaceAgent PlaceAgent => _placeAgent;
 
 
     [SerializeField] private PlaceAgent _placeAgent;
     [SerializeField] private Scholar[] _scholars;
+    [SerializeField] private Place[] _desks;
+    [SerializeField] private Place[] _dockStations;
 
 
 
@@ -90,7 +129,7 @@ public class ClassAgent: MonoBehaviour
 
     private void ScholarSetup()
     {
-        int scholarNumberDelta = 0;
+        var scholarNumberDelta = 0;
 
         for(int i = 0; i< ClassManager.Instance.Classes.Length; i++)
         {
@@ -102,11 +141,19 @@ public class ClassAgent: MonoBehaviour
 
         for (int i = 0; i < _scholars.Length; i++)
         {
-            _scholars[i].Setup(this, scholarNumberDelta + i);
+            _scholars[i].Setup(this, scholarNumberDelta + i, i);
         }
     }
 
 
+    public Place GetMyDesk(Scholar scholar)
+    {
+        return _desks[scholar.Info.LocalIndex];
+    }
 
+    public Place GetMyDockStation(Scholar scholar)
+    {
+        return _dockStations[scholar.Info.LocalIndex];
+    }
 }
 

@@ -15,8 +15,6 @@ namespace Places
             Toilet,
             Sink,
             Outside,
-            Desk,
-            DockStation
         }
 
 

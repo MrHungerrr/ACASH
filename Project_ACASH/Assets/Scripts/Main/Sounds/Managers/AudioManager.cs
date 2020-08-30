@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Single;
-using UnityEngine.Events;
-using Animations;
 
 public class AudioManager : Singleton<AudioManager>
 {

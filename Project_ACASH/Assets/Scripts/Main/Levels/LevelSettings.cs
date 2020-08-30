@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using Single;
+using Exam;
 
 
-public class LevelSettings: MonoSingleton<LevelSettings>
+public class LevelSettings : MonoSingleton<LevelSettings>
 {
     public enum difficultyes
     {
@@ -23,10 +24,9 @@ public class LevelSettings: MonoSingleton<LevelSettings>
     [SerializeField]
     private nextExamMode nextExam;
 
-    [HideInInspector]
-    public UnityEvent ExamNext;
-    [HideInInspector]
-    public UnityEvent ExamOver;
+
+    public UnityEvent ExamNext { get; } = new UnityEvent();
+    public UnityEvent ExamOver { get; } = new UnityEvent();
 
 
     [Range(0,20)]
@@ -59,7 +59,7 @@ public class LevelSettings: MonoSingleton<LevelSettings>
 
     public void RestartExam()
     {
-            ExamNext.Invoke();
+        ExamNext.Invoke();
     }
 
     public void NextExam()

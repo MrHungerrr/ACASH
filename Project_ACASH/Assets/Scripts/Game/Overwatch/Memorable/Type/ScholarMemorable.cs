@@ -1,6 +1,7 @@
 ﻿using System;
 using Overwatch.Record;
 using UnityEngine;
+using AI.Scholars;
 
 
 namespace Overwatch.Memorable
@@ -28,15 +29,13 @@ namespace Overwatch.Memorable
             MemorableManager.AddWatchable(this);
         }
 
+
         public IMemorableInfo Capture()
         {
             _memorableInfo.Capture
                 (
-                    _scholar.Body.Body.position,
-                    _scholar.Move.Rotation().eulerAngles.y,
-                    _scholar.Body.Head.position,
-                    _scholar.Anim.AnimationId,
-                    _scholar.Anim.AnimationTime
+                    _scholar.Move.Position,
+                    _scholar.Sight.Angle
                 );
 
             return _memorableInfo;
@@ -50,11 +49,8 @@ namespace Overwatch.Memorable
         {
             Set((MemorableScholarInfo)info);
 
-            _scholar.Body.Body.position = _memorableInfo.BodyPosition;
-            _scholar.Move.Rotation(Quaternion.Euler(0, _memorableInfo.BodyRotation, 0));
-            _scholar.Body.Head.position = _memorableInfo.HeadPosition;
-            _scholar.Anim.SetAnimation(_memorableInfo.AnimationId);
-            _scholar.Anim.SetTime(_memorableInfo.AnimationTime);
+            _scholar.Move.SetPosition(_memorableInfo.Position);
+            _scholar.Sight.SetRotation(_memorableInfo.Rotation);
         }
 
 
@@ -65,14 +61,10 @@ namespace Overwatch.Memorable
 
         public void Fix()
         {
-            _scholar.GetComponent<Collider>().enabled = true;
-            _scholar.Move.RB.isKinematic = false;
         }
 
         public void Cut()
         {
-            _scholar.GetComponent<Collider>().enabled = false;
-            _scholar.Move.RB.isKinematic = true;
         }
     }
 }

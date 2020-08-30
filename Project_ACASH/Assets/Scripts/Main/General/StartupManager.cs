@@ -9,7 +9,7 @@ using MultiTasking;
 using PostProcessing;
 using Single;
 using Computers;
-using Supervision;
+using Exam;
 
 public class StartupManager : MonoSingleton<StartupManager>
 {
@@ -40,6 +40,8 @@ public class StartupManager : MonoSingleton<StartupManager>
         };
 
         ActionSchedule.Instance.AddActionInTime(20, action);
+
+        ExamStarter.Instance.Interact();
     }
 
 
@@ -52,8 +54,6 @@ public class StartupManager : MonoSingleton<StartupManager>
             PostProcessManager.Setup();
             InputManager.Setup();
             OverwatchManager.Setup();
-            ScholarManager.Instance.Setup();
-            ScholarObjectsManager.Instance.Setup();
             ThreadTaskQueuer.Setup();
             ComputerManager.Instance.Setup();
             MenuManager.Instance.Setup();

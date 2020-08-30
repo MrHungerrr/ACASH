@@ -9,12 +9,8 @@ namespace Overwatch.Memorable
         public MemorableManager.types type => MemorableManager.types.Scholar;
 
 
-        public Vector3 BodyPosition { get; private set; }
-        public float BodyRotation { get; private set; }
-        public Vector3 HeadPosition { get; private set; }
-
-        public int AnimationId { get; private set; }
-        public float AnimationTime { get; private set; }
+        public Vector2 Position { get; private set; }
+        public float Rotation { get; private set; }
 
 
 
@@ -22,23 +18,15 @@ namespace Overwatch.Memorable
         {
             Id = id;
 
-            BodyPosition = Vector3.zero;
-            BodyRotation = 0;
-            HeadPosition = Vector3.zero;
-
-            AnimationId = -1;
-            AnimationTime = 0;
+            Position = Vector2.zero;
+            Rotation = 0;
         }
 
 
-        public void Capture(in Vector3 bodyPosition, float bodyRotation, Vector3 headPosition, int animationId, float animationTime)
+        public void Capture(in Vector2 position, float rotation)
         {
-            BodyPosition = bodyPosition;
-            BodyRotation = bodyRotation;
-            HeadPosition = headPosition;
-
-            AnimationId = animationId;
-            AnimationTime = animationTime;
+            Position = position;
+            Rotation = rotation;
         }
 
 
@@ -46,64 +34,33 @@ namespace Overwatch.Memorable
         {
             Id = (int)xElement.Attribute("Id");
 
-            #region Body
-            var bufferElement = xElement.Element("Body").Element("Position");
+            #region Position & Rotation
+            var bufferElement = xElement.Element("Position");
 
-            BodyPosition = new Vector3(
+            Position = new Vector2(
                 (float)bufferElement.Element("X"),
-                (float)bufferElement.Element("Y"),
-                (float)bufferElement.Element("Z")
+                (float)bufferElement.Element("Y")
                 );
 
-            BodyRotation = (float) xElement.Element("Body").Element("Rotation");
+            Rotation = (float) xElement.Element("Rotation");
             #endregion
-
-            #region Head
-            bufferElement = xElement.Element("Head").Element("Position");
-
-            HeadPosition = new Vector3(
-                (float)bufferElement.Element("X"),
-                (float)bufferElement.Element("Y"),
-                (float)bufferElement.Element("Z")
-                );
-            #endregion
-
-            #region Animation
-            bufferElement = xElement.Element("Animation");
-
-            AnimationId = (int) bufferElement.Element("Id");
-            AnimationTime = (float) bufferElement.Element("Time");
-            #endregion
-
         }
 
         public XElement ConvertToXML()
         {
-            XElement xElement = new XElement
-                (
-                    "Scholar", new XAttribute("Id", Id), new XAttribute("Type", type),
+            XElement xElement = new XElement( "Scholar", 
+                
+                new XAttribute("Id", Id), new XAttribute("Type", type),
 
-                    new XElement("Body",
-                        new XElement("Position",
-                            new XElement("X", BodyPosition.x),
-                            new XElement("Y", BodyPosition.y),
-                            new XElement("Z", BodyPosition.z)
-                            ),
-                        new XElement("Rotation", BodyRotation)
+                    #region Position & Rotation
+
+                    new XElement("Position",
+                        new XElement("X", Position.x),
+                        new XElement("Y", Position.y)
                     ),
 
-                    new XElement("Head",
-                        new XElement("Position",
-                            new XElement("X", HeadPosition.x),
-                            new XElement("Y", HeadPosition.y),
-                            new XElement("Z", HeadPosition.z)
-                            )
-                    ),
-
-                    new XElement("Animation",
-                        new XElement("Id", AnimationId),
-                        new XElement("Time", AnimationTime)
-                    )
+                    new XElement("Rotation", Rotation)
+                     #endregion
                 );
 
             return xElement;

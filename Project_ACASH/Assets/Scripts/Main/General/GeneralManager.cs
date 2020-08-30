@@ -9,7 +9,8 @@ using MultiTasking;
 using Single;
 using Overwatch;
 using Computers;
-using Supervision;
+using AI.Scholars;
+using Exam;
 
 public class GeneralManager: MonoSingleton<GeneralManager>
 {
@@ -25,13 +26,12 @@ public class GeneralManager: MonoSingleton<GeneralManager>
         ExamManager.Instance.SetLevel();
         PlaceManager.SetLevel();
         OverwatchManager.SetLevel();
-        ScholarObjectsManager.Instance.SetLevel();
         ScholarManager.Instance.SetLevel();
         ClassManager.Instance.SetLevel();
         ComputerManager.Instance.SetLevel();
-        TeacherRoomManager.Instance.SetLevel();
 
-        //SupervisionManager.Instance.SetLevel();
+        //TeacherRoomManager.Instance.SetLevel();
+
         //if (!test)
         //    A_Level.Instance.StartLevel();
     }

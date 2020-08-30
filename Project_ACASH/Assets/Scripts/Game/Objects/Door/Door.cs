@@ -56,8 +56,6 @@ public class Door : MonoBehaviour, IInteraction
         {
             if (changing)
                 DoorRot();
-
-            ScholarOpen();
         }
     }
 
@@ -160,54 +158,5 @@ public class Door : MonoBehaviour, IInteraction
                 changing = false;
             }
         }
-    }
-
-
-
-    private void ScholarOpen()
-    {
-        int i;
-        in_range = false;
-
-        for(i = 0; i < ScholarManager.Instance.Scholars.Length; i++)
-        {
-            try
-            { 
-                if (Vector3.Distance(doorT.position, ScholarManager.Instance.Scholars[i].transform.position) < 0.3f)
-                {
-                    if (!open)
-                    {
-                        if (Mathf.Abs(BaseGeometry.LookingAngle2D(ScholarManager.Instance.Scholars[i].Move.transform, doorT.position)) < 60)
-                        {
-                            in_range = true;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        in_range = true;
-                        break;
-                    }
-                }
-            }
-            catch
-            {
-                in_range = false;
-            }
-        }
-
-        if (in_range && !open && !scholar_open)
-        {
-            DoorInteract(ScholarManager.Instance.Scholars[i].Move.Position());
-
-            scholar_open = true;
-        }
-        else if (!in_range && open && scholar_open)
-        {
-            Close();
-
-            scholar_open = false;
-        }
-
     }
 }

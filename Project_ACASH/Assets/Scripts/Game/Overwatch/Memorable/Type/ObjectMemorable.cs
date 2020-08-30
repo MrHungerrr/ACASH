@@ -9,14 +9,14 @@ namespace Overwatch.Memorable
     {
         public bool IsHere { get; private set; }
 
-        private readonly Object _object;
+        private readonly GameObject _object;
         private MemorableObjectInfo _memorableInfo;
 
 
-        public ObjectMemorable(Object obj)
+        public ObjectMemorable(GameObject obj)
         {
             _object = obj;
-            IsHere = _object.Renderer.enabled;
+            IsHere = true;
             StartWatch();
         }
 
@@ -43,7 +43,6 @@ namespace Overwatch.Memorable
         {
             if (IsHere != option)
             {
-                _object.Renderer.enabled = option;
                 IsHere = option;
             }
         }
@@ -64,14 +63,10 @@ namespace Overwatch.Memorable
 
         public void Fix()
         {
-            _object.RB.GetComponent<Collider>().enabled = true;
-            _object.RB.isKinematic = false;
         }
 
         public void Cut()
         {
-            _object.RB.isKinematic = true;
-            _object.RB.GetComponent<Collider>().enabled = false;
         }
     }
 }
