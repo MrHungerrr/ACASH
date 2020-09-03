@@ -10,7 +10,7 @@ namespace AI.Tools.Move
 {
     public class PathFinder
     {
-        public Action OnPathCalulated { get; set; }
+        public event Action OnPathCalulated;
         public bool ReachedEndOfPath
         {
             get

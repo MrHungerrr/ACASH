@@ -12,7 +12,7 @@ namespace AI.Tools.Move
 
     public class AIMove
     {
-        public Action OnDestinationReached { get; set; }
+        public event Action OnDestinationReached;
         public Vector2 Direction => _direction;
         public float Distance => _distance;
         public Rigidbody2D RB => _rb;

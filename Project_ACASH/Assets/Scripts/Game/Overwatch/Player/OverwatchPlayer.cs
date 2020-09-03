@@ -14,7 +14,8 @@ namespace Overwatch.Player
     {
         public bool IsLoaded => !_needToUpdate;
         public int MomentIndex => _momentIndex;
-        public Action OnEndOfMemory { get; set; }
+        public event Action OnEndOfMemory;
+
 
         private bool _needToUpdate;
 

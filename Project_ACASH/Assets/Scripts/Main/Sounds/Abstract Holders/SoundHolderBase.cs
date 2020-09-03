@@ -6,7 +6,7 @@ using System.Linq;
 
 public abstract class SoundHolderBase
 {
-    public Action UpdateSound { get; set; }
+    public event Action UpdateSound;
 
 
     protected readonly string _soundPath = "event:/";

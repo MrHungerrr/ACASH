@@ -13,7 +13,7 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
     [HideInInspector]
     public bool act;
 
-    public Action TalkDone;
+    public event Action TalkDone;
 
 
     private void Awake()

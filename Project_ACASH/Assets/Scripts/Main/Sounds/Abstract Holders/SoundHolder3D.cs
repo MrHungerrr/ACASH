@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public abstract class SoundHolder3D: SoundHolder2D
 {
-    public Action<bool> OcclusionUpdate { get; set; }
+    public event Action<bool> OcclusionUpdate;
 
 
     private readonly GameObject _host;

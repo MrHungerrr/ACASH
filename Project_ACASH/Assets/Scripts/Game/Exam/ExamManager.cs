@@ -26,8 +26,8 @@ namespace Exam
         public bool Exam => _exam;
         public part ExamPart => _examPart;
 
-        public Action OnExamStart { get; set; }
-        public Action OnExamEnd { get; set; }
+        public event Action OnExamStart;
+        public event Action OnExamEnd;
 
 
         private bool _exam;

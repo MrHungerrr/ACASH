@@ -14,7 +14,7 @@ namespace AI.Tools.Move
     public abstract class AIMoveController : MonoBehaviour
     {
         public bool IsMoving => _active;
-        public Action OnDestinationReached { get; set; }
+        public event Action OnDestinationReached;
         public Vector2 Position => _move.RB.position;
         public Vector2 Direction => _move.Direction;
 
