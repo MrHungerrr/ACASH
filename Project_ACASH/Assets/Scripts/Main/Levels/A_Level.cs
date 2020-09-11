@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using PlayerOptions;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 
 public abstract class A_Level : MonoSingleton<A_Level>
 {

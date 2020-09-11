@@ -6,15 +6,15 @@ using PostProcessing;
 using Places;
 using GameTime;
 using MultiTasking;
-using Single;
+using UnityTools.Single;
 using Overwatch;
 using UnityEngine.Events;
 using AI.Scholars;
 
 public class UpdateManager: MonoSingleton<UpdateManager>
 {
-    private Action _onUpdate;
-    private Action _onFixUpdate;
+    public event Action OnUpdate;
+    public event Action OnFixUpdate;
 
 
     private void Update()
@@ -24,33 +24,12 @@ public class UpdateManager: MonoSingleton<UpdateManager>
         LevelManager.Instance.Update();
         ScholarManager.Instance.Update();
         OverwatchManager.Update();
-        _onUpdate?.Invoke();
+        OnUpdate?.Invoke();
     }
 
     private void FixedUpdate()
     {
         ScholarManager.Instance.FixUpdate();
-        _onFixUpdate?.Invoke();
-    }
-
-
-    public void AddUpdate(Action action)
-    {
-        _onUpdate += action;
-    }
-
-    public void RemoveUpdate(Action action)
-    {
-        _onUpdate -= action;
-    }
-
-    public void AddFixUpdate(Action action)
-    {
-        _onFixUpdate += action;
-    }
-
-    public void RemoveFixUpdate(Action action)
-    {
-        _onFixUpdate -= action;
+        OnFixUpdate?.Invoke();
     }
 }

@@ -72,7 +72,7 @@ public class  FMODAudioBase
         _sound.start();
         IsPlaying = true;
         IsActive = true;
-        _main.UpdateSound += Update;
+        _main.OnUpdateSound += Update;
     }
 
     public void Pause()
@@ -110,6 +110,6 @@ public class  FMODAudioBase
     {
         IsPlaying = false;
         IsActive = false;
-        _main.UpdateSound -= Update;
+        _main.OnUpdateSound -= Update;
     }
 }

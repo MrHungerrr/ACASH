@@ -94,6 +94,7 @@ namespace AI.Tools.Move
 
         private void DestinationReached()
         {
+            Stop();
             OnDestinationReached?.Invoke();
         }
     }

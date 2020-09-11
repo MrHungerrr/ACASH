@@ -8,7 +8,7 @@ namespace GameTime
 {
     public class Timer
     {
-        public System.Action OnTimeDone { get; set; }
+        public event System.Action OnTimeDone;
         public int TimePassedInSec => _timePassed;
         public int TimeLeftInSec => _timeGeneral - _timePassed;
 

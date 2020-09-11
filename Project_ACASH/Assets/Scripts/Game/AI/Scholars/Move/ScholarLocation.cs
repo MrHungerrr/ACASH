@@ -9,6 +9,9 @@ namespace AI.Scholars
 {
     public class ScholarLocation
     {
+        public Place MyDesk => _scholar.ClassRoom.GetMyDesk(_scholar);
+        public Place MyDockStation => _scholar.ClassRoom.GetMyDockStation(_scholar);
+
         private Scholar _scholar;
         private Place _currentPlace;
 
@@ -16,14 +19,6 @@ namespace AI.Scholars
         public ScholarLocation(Scholar scholar)
         {
             _scholar = scholar;
-
-            Action LookAtPlace = () =>
-            {
-                _scholar.Sight.SetSightGoal(_currentPlace.SightGoal);
-            };
-
-            _scholar.Move.OnDestinationReached += LookAtPlace;
-
             Teleport(_scholar.ClassRoom.GetMyDockStation(_scholar));
         }
 
@@ -36,23 +31,9 @@ namespace AI.Scholars
 
             _scholar.Move.SetDestination(place.Destination);
 
-            Debug.Log("Fuck");
-
             _currentPlace = place;
             place.SetBusy(true);
             return;
-        }
-
-        public void GoToDesk()
-        {
-            var place = _scholar.ClassRoom.GetMyDesk(_scholar);
-            GoTo(place);
-        }
-
-        public void GoToDockStation()
-        {
-            var place = _scholar.ClassRoom.GetMyDockStation(_scholar);
-            GoTo(place);
         }
 
         public void Teleport(Place place)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Searching;
 
 namespace Places
 {
@@ -43,6 +42,11 @@ namespace Places
         public void SetBusy(bool option)
         {
             _busy = option;
+        }
+
+        public override string ToString()
+        {
+            return gameObject.name;
         }
     }
 }

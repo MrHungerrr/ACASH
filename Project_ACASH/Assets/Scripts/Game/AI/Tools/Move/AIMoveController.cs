@@ -38,12 +38,12 @@ namespace AI.Tools.Move
             _move.SetStopDistance(_stopDistance);
 
             _move.OnDestinationReached += PointReached;
-            _pathFinder.OnPathCalulated += PathCalculated;
+            _pathFinder.OnPathCalculated += PathCalculated;
         }
 
         public virtual void FixUpdate()
         {
-            if (_active)
+            if (_active && _pathFinder.IsPathCalculated)
             {
                 MoveCalculate();
                 _move.FixUpdate();
@@ -52,13 +52,19 @@ namespace AI.Tools.Move
 
         public virtual void SetDestination(in Vector2 destination)
         {
-            _active = false;
+            _active = true;
             _pathFinder.SetDestination(destination);
         }
 
         public void SetPosition(in Vector2 position)
         {
             _move.Teleport(position);
+        }
+
+        public void Stop()
+        {
+            _active = false;
+            _move.Stop();
         }
 
 

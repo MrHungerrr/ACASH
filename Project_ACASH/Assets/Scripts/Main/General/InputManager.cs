@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Single;
 using Computers;
 using Exam;
 
@@ -88,10 +87,7 @@ public static class InputManager
         _controls.InputType.Xbox.performed += ctx => TypeOfInput(Input.Xbox);
         #endregion
 
-
         _controls.InputType.Enable();
-
-
     }
 
 

@@ -2,8 +2,6 @@
 using System.Collections;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
-using Single;
-
 
 namespace PostProcessing
 {

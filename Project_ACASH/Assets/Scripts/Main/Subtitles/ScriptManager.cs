@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 
 
 public class ScriptManager : MonoSingleton<ScriptManager>
@@ -20,14 +20,13 @@ public class ScriptManager : MonoSingleton<ScriptManager>
 
     private void Awake()
     {
-        //var countryCode = LanguageHelper.Get2LetterISOCodeFromSystemLanguage();
         SwitchLanguageText(textLanguage);
         SwitchLanguageVoice(voiceLanguage);
     }
     
-    public string[] GetText(KeyWord key_word)
+    public string[] GetText(KeyWord keyWord)
     {
-        return GetText(KeyWordManager.GetScriptKey(key_word));
+        return GetText(keyWord.FullWorld);
     }
 
     private string[] GetText(string textKey)
@@ -43,9 +42,9 @@ public class ScriptManager : MonoSingleton<ScriptManager>
     }
 
 
-    public string GetLine(KeyWord key_word)
+    public string GetLine(KeyWord keyWord)
     {
-        return GetLine(KeyWordManager.GetScriptKey(key_word));
+        return GetLine(keyWord.FullWorld);
     }
 
     public string GetLine(string textKey)
@@ -62,9 +61,9 @@ public class ScriptManager : MonoSingleton<ScriptManager>
     }
 
 
-    public float[] GetFloat(KeyWord key_word)
+    public float[] GetFloat(KeyWord keyWord)
     {
-        return GetFloat(KeyWordManager.GetScriptKey(key_word));
+        return GetFloat(keyWord.FullWorld);
     }
 
     private float[] GetFloat(string textKey)
@@ -88,15 +87,13 @@ public class ScriptManager : MonoSingleton<ScriptManager>
         textLanguage = lang;
         string scriptFileName = resourcePath + resourceFile_script + "." + lang;
         var textAsset = Resources.Load<TextAsset>(scriptFileName);
-        var voText = JsonUtility.FromJson<SubtitleStorage>(textAsset.text);
+        var voText = JsonUtility.FromJson<TextStorage>(textAsset.text);
 
         foreach (var t in voText.lines)
         {
             lines[t.key] = t.line;
         }
     }
-
-
 
     public void SwitchLanguageVoice(string lang)
     {

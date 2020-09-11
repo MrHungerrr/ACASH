@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityTools.Single;
 using UnityEngine;
-using Single;
-using UnityEngine.UI;
-
 
 namespace Minimap
 {

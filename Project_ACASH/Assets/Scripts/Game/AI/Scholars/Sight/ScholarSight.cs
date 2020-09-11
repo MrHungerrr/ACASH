@@ -25,7 +25,6 @@ namespace AI.Scholars
 
         public void SetSightDirection(in Vector2 direction)
         {
-            Debug.Log($"Direction = {direction}");
             var angle = Vector2.Angle(Vector2.up, direction);
 
             if (direction.x > 0)
@@ -36,7 +35,6 @@ namespace AI.Scholars
 
         public void SetSightAngle(float angle)
         {
-            Debug.Log($"Angle = {angle}");
             _sightGoal = angle;
             _active = true;
         }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 
 
 
@@ -33,7 +33,7 @@ public class SubtitleManager : MonoSingleton<SubtitleManager>
         if (last_key != null)
         {
             StopAllCoroutines();
-            Debug.Log("Остановка субтитров - " + last_key.GetFullKey());
+            Debug.Log("Остановка субтитров - " + last_key.FullKey);
         }
 
         subPlay.Clear();

@@ -2,7 +2,7 @@
 using GameTime.Action;
 using System.Collections.Generic;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 
 
 
@@ -10,7 +10,7 @@ namespace GameTime
 {
     public class TimeManager : Singleton<TimeManager>
     {
-        public System.Action OnSecondDone { get; set; }
+        public event System.Action OnSecondDone;
         public int TimeInSec => _timeInSec;
         public Timer Timer => _timer;
 
@@ -54,7 +54,6 @@ namespace GameTime
 
         private void SecondDone()
         {
-
             Debug.Log("Second Done!");
             _timeInSec = (int)_time;
             OnSecondDone?.Invoke();

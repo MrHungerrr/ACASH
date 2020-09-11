@@ -34,6 +34,9 @@ namespace FMODUnity
         Switch,
         WebGL,
         Stadia,
+        Reserved_1,
+        Reserved_2,
+        Reserved_3,
         Count,
     }
 
@@ -89,8 +92,10 @@ namespace FMODUnity
     #endif
     public class Settings : ScriptableObject
     {
+        #if UNITY_EDITOR
         [SerializeField]
         bool SwitchSettingsMigration = false;
+        #endif
 
         const string SettingsAssetName = "FMODStudioSettings";
 
@@ -266,12 +271,12 @@ namespace FMODUnity
 
         public static bool HasSetting<T>(List<T> list, FMODPlatform platform) where T : PlatformSettingBase
         {
-            return list.Exists((x) => x.Platform == platform);
+            return FindSetting(list, platform) != null;
         }
 
         public static U GetSetting<T, U>(List<T> list, FMODPlatform platform, U def) where T : PlatformSetting<U>
         {
-            T t = list.Find((x) => x.Platform == platform);
+            T t = FindSetting(list, platform);
             if (t == null)
             {
                 FMODPlatform parent = GetParent(platform);
@@ -289,7 +294,7 @@ namespace FMODUnity
 
         public static void SetSetting<T, U>(List<T> list, FMODPlatform platform, U value) where T : PlatformSetting<U>, new()
         {
-            T setting = list.Find((x) => x.Platform == platform);
+            T setting = FindSetting(list, platform);
             if (setting == null)
             {
                 setting = new T();
@@ -297,6 +302,18 @@ namespace FMODUnity
                 list.Add(setting);
             }
             setting.Value = value;
+        }
+
+        private static T FindSetting<T>(List<T> settings, FMODPlatform platform) where T : PlatformSettingBase
+        {
+            for (int i = 0; i < settings.Count; ++i)
+            {
+                if (settings[i].Platform == platform)
+                {
+                    return settings[i];
+                }
+            }
+            return null;
         }
 
         public static void RemoveSetting<T>(List<T> list, FMODPlatform platform) where T : PlatformSettingBase

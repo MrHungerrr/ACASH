@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 
 public class AudioManager : Singleton<AudioManager>
 {

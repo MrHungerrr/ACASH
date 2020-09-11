@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using Single;
+using UnityTools.Single;
+
 
 
 namespace Computers

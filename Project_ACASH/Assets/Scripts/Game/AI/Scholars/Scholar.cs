@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using Searching;
 using Overwatch.Memorable;
-
+using AI.Scholars.Actions;
+using AI.Scholars.Actions.Operations;
+using AI.Scholars.Items;
 
 namespace AI.Scholars
 {
@@ -11,10 +12,11 @@ namespace AI.Scholars
 
 
         public ClassAgent ClassRoom { get; private set; }
-        public ScholarOperations Operations { get; private set; }
+        public ScholarActionsController Actions { get; private set; }
         public ScholarMemorable Memorable { get; private set; }
         public ScholarInfo Info { get; private set; }
         public ScholarLocation Location { get; private set; }
+        public ScholarItemsController Items { get; private set; }
         public ScholarMove Move => _move;
         public ScholarText Text => _text;
         public ScholarSightController Sight => _sight;
@@ -28,7 +30,7 @@ namespace AI.Scholars
 
 
 
-        public virtual void Setup(ClassAgent classRoom, int globalIndex, int localIndex)
+        public void Setup(ClassAgent classRoom, int globalIndex, int localIndex)
         {
             ClassRoom = classRoom;
 
@@ -38,16 +40,21 @@ namespace AI.Scholars
             Sight.Setup(this);
 
             Info = new ScholarInfo(this, globalIndex, localIndex);
-            Operations = new ScholarOperations(this);
+            Actions = new ScholarActionsController(this);
             Memorable = new ScholarMemorable(this);
             Location = new ScholarLocation(this);
+        }
 
+        public void Reset()
+        {
+            
         }
 
         public void MyUpdate()
         {
             if (Active)
             {
+
             }
 
             Sight.MyUpdate();
@@ -56,6 +63,17 @@ namespace AI.Scholars
         public void FixUpdate()
         {
             Move.FixUpdate();
+        }
+
+        public void SetNewScholar()
+        {
+            Info.SetFullName("Egor", "Akimov");
+            Items = new ScholarItemsController(null);
+        }
+
+        public void Pause(bool option)
+        {
+
         }
     }
 }

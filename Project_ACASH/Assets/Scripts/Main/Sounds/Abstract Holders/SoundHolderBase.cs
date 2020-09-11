@@ -6,8 +6,7 @@ using System.Linq;
 
 public abstract class SoundHolderBase
 {
-    public event Action UpdateSound;
-
+    public event Action OnUpdateSound;
 
     protected readonly string _soundPath = "event:/";
 
@@ -19,11 +18,14 @@ public abstract class SoundHolderBase
         if (path.Last() != '/')
             _soundPath += '/';
 
-        UpdateManager.Instance.AddUpdate(Update);
+        UpdateManager.Instance.OnUpdate += Update;
     }
 
 
-    protected abstract void Update();
+    protected virtual void Update()
+    {
+        OnUpdateSound?.Invoke();
+    }
 
 
     protected virtual void Play(FMODAudioBase sound)

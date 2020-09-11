@@ -59,7 +59,7 @@ public abstract class SoundHolder3D: SoundHolder2D
             OcclusionUpdate(occlusion);
             */
 
-        UpdateSound?.Invoke();
+        base.Update();
     }
 
 

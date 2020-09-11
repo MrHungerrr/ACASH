@@ -10,7 +10,8 @@ namespace AI.Tools.Move
 {
     public class PathFinder
     {
-        public event Action OnPathCalulated;
+        public event Action OnPathCalculated;
+        public bool IsPathCalculated { get; private set; }
         public bool ReachedEndOfPath
         {
             get
@@ -41,6 +42,7 @@ namespace AI.Tools.Move
 
         public void Reset()
         {
+            IsPathCalculated = false;
             _currentWaypoint = 0;
             _path = null;
         }
@@ -65,16 +67,17 @@ namespace AI.Tools.Move
         private void FindPath()
         {
             _currentWaypoint = 0;
-            _seeker.StartPath(_rb.position, _destination, OnPathCalculated);
+            _seeker.StartPath(_rb.position, _destination, SetPath);
         }
 
-        private void OnPathCalculated(Path path)
+        private void SetPath(Path path)
         {
             if (path.error)
                 throw new Exception("Хуевая сетка у А*");
 
             _path = path;
-            OnPathCalulated?.Invoke();
+            OnPathCalculated?.Invoke();
+            IsPathCalculated = true;
         }
     }
 }

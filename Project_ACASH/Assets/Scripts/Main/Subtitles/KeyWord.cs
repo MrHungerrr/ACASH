@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class KeyWord
 {
-    protected enum answer
-    {
-        Void,
-        Yes,
-        No
-    }
+    public string FullWorld => $"{_main}_{FullKey}";
+    public string FullKey => $"{Key}_{_number}";
+    public int Number => _number;
+    public string Key => GetKey();
+    public string Main => _main;
+
+
 
     private readonly string _main;
     private readonly string _constKey;
     private string _key;
-    private answer _answer;
     private int _number;
-    private string _fullKey;
 
 
 
@@ -32,7 +32,6 @@ public class KeyWord
         this._constKey = const_key;
         Reset();
     }
-
 
     public KeyWord()
     {
@@ -63,12 +62,6 @@ public class KeyWord
             _key += "_";
 
         _key += word;
-
-        if (_number != -1)
-            _number = -1;
-
-        if (_answer != answer.Void)
-            _answer = answer.Void;
     }
 
     protected void Plus(KeyWord keyword)
@@ -76,90 +69,30 @@ public class KeyWord
         Plus(keyword.GetKey());
     }
 
-    public void Answer(bool option)
-    {
-        if (option)
-        {
-            _answer = answer.Yes;
-        }
-        else
-        {
-            _answer = answer.No;
-        }
-    }
-
-    public void Number(int number)
+    public void SetNumber(int number)
     {
         this._number = number;
     }
 
-    public void Key(string word)
+    public void SetKey(string word)
     {
         _key = "_" + word;
-    }
-
-    protected void FullKey()
-    {
-        _fullKey = GetKey();
-
-        if (_answer != answer.Void)
-            _fullKey += "_" + _answer.ToString();
-
-        if (_number != -1)
-            _fullKey += "_" + _number;
     }
 
     public void Reset()
     {
         _key = string.Empty;
-        _number = -1;
-        _answer = answer.Void;
+        _number = 0;
     }
 
 
-
-
-
-
-
-    public int GetNumber()
-    {
-        return _number;
-    }
-
-    public string GetKey()
+    private string GetKey()
     {
         if (_constKey != string.Empty && _key != string.Empty)
             return _constKey + "_" + _key;
         else
             return _constKey + _key;
     }
-
-    public string GetFullKey()
-    {
-        FullKey();
-        return _fullKey;
-    }
-
-    public virtual string GetFullWord()
-    {
-        if (_main != string.Empty)
-            return _main + "_" + GetFullKey();
-        else
-        {
-            Debug.LogError("Ошибка в KeyWord - " + _fullKey);
-            return string.Empty;
-        }
-    }
-
-
-
-    public string GetMain()
-    {
-        return _main;
-    }
-
-
 
 
 
@@ -170,20 +103,25 @@ public class KeyWord
         return keyword;
     }
 
+
     public static KeyWord operator +(KeyWord keyword, int number)
     {
-        keyword.Number(number);
+        keyword.SetNumber(number);
         return keyword;
     }
 
-    //Соединяются key1 и key2
+    /// <summary>
+    /// Соединяются key1 и key2
+    /// </summary>
     public static KeyWord operator +(KeyWord keyword1, KeyWord keyword2)
     {
         keyword1.Plus(keyword2);
         return keyword1;
     }
 
-    //key заменяется word
+    /// <summary>
+    /// key заменяется word
+    /// </summary>
     public static KeyWord operator *(KeyWord keyword, string word)
     {
         keyword.Reset();
@@ -191,13 +129,14 @@ public class KeyWord
         return keyword;
     }
 
-    //key1 заменяется key2
+    /// <summary>
+    /// key1 заменяется key2
+    /// </summary>
     public static KeyWord operator *(KeyWord keyword1, KeyWord keyword2)
     {
         keyword1.Reset();
         keyword1.Plus(keyword2);
-        keyword1.Number(keyword2._number);
-        keyword1._answer = keyword2._answer;
+        keyword1.SetNumber(keyword2._number);
         return keyword1;
     }
 }

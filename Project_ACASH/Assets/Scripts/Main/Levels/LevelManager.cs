@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -122,7 +122,7 @@ public class LevelManager : Singleton<LevelManager>
     private void UnloadFast(int scene_index)
     {
         if (SceneManager.GetSceneByBuildIndex(scene_index).isLoaded)
-            SceneManager.UnloadScene(scene_index);
+            SceneManager.UnloadSceneAsync(scene_index);
     }
 
 

@@ -14,13 +14,13 @@ public sealed class VoiceManager : SoundHolderBase
 
     protected override void Update()
     {
-        UpdateSound?.Invoke();
+        base.Update();
     }
 
 
     public void Play(KeyWord key)
     {
-        string fullPath = _soundPath + ScriptManager.Instance.voiceLanguage + '/' + key.GetMain() + '/' + key.GetFullWord();
+        string fullPath = _soundPath + ScriptManager.Instance.voiceLanguage + '/' + key.Main + '/' + key.FullWorld;
 
         try 
         {

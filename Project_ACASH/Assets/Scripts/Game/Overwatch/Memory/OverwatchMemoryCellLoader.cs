@@ -39,7 +39,7 @@ namespace Overwatch.Memory
                 _cell = OverwatchDataManager.Load(_index);
                 _isLoaded = true;
 
-                UpdateManager.Instance.AddUpdate(TimeUpdate);
+                UpdateManager.Instance.OnUpdate += TimeUpdate;
             };
 
             ThreadTaskQueuer.AddTask(load);
@@ -55,7 +55,7 @@ namespace Overwatch.Memory
                 _isLoaded = true;
                 ActionAfterLoad();
 
-                UpdateManager.Instance.AddUpdate(TimeUpdate);
+                UpdateManager.Instance.OnUpdate += TimeUpdate;
             };
 
             ThreadTaskQueuer.AddTask(load);
@@ -66,7 +66,7 @@ namespace Overwatch.Memory
             _isLoaded = false;
             _cell = null;
 
-            UpdateManager.Instance.RemoveUpdate(TimeUpdate);
+            UpdateManager.Instance.OnUpdate -= TimeUpdate;
         }
 
         public void SetUsing(bool option)

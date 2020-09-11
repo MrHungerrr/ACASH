@@ -38,7 +38,7 @@ public abstract class SoundHolder2D: SoundHolderBase
 
     protected override void Update()
     {
-        UpdateSound?.Invoke();
+        base.Update();
     }
 
 

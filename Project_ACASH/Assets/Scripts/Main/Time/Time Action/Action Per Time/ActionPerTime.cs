@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace GameTime.Action
@@ -19,6 +20,13 @@ namespace GameTime.Action
         }
 
 
+        public static void Create(float perTime, System.Action action, CancellationToken cancellationToken)
+        {
+            Func<bool> disableReason = () => cancellationToken.IsCancellationRequested;
+            var actionPerTime = new ActionPerTimeWithDisable(perTime, action, disableReason);
+            ActionPerTimeManager.Instance.Add(actionPerTime);
+        }
+
         public static void Create(float perTime, System.Action action, System.Func<bool> disableReason)
         {
             var actionPerTime = new ActionPerTimeWithDisable(perTime, action, disableReason);
@@ -27,7 +35,7 @@ namespace GameTime.Action
 
         public static void Create(float perTime, System.Action action, int numberOfActions)
         {
-            var actionPerTime = new ActionPerTimeByNumber(perTime, action, numberOfActions);
+            var actionPerTime = new ActionPerTimeWithCounter(perTime, action, numberOfActions);
             ActionPerTimeManager.Instance.Add(actionPerTime);
         }
 

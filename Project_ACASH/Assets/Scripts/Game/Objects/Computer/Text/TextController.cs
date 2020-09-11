@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Searching;
 using TMPro;
 
 public class TextController : MonoBehaviour

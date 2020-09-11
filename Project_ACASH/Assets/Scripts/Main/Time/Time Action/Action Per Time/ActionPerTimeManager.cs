@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Single;
+using UnityTools.Single;
 using UnityEngine;
 
 namespace GameTime.Action
@@ -12,7 +12,7 @@ namespace GameTime.Action
         public void SetLevel()
         {
             _actions = new List<ActionPerTime>();
-            UpdateManager.Instance.AddUpdate(UpdateTime);
+            UpdateManager.Instance.OnUpdate += UpdateTime;
         }
 
         private void UpdateTime()

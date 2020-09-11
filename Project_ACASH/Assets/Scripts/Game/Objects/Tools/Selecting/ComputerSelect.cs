@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityTools.Math;
 
 public class ComputerSelect : ObjectSelect
 {

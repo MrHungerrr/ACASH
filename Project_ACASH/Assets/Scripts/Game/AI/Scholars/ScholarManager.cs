@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Single;
+using UnityTools.Single;
 using Exam;
+using AI.Scholars.Actions;
 
 namespace AI.Scholars
 {
@@ -57,7 +58,9 @@ namespace AI.Scholars
         {
             for (int i = 0; i < _scholars.Length; i++)
             {
-                _scholars[i].Operations.StartExam();
+                _scholars[i].Actions.Updater.Enable(true);
+                var action = ScholarActionsTemplates.StartExam(_scholars[i]);
+                _scholars[i].Actions.Execute(action);
             }
         }
 
@@ -65,7 +68,9 @@ namespace AI.Scholars
         {
             for (int i = 0; i < _scholars.Length; i++)
             {
-                _scholars[i].Operations.Execute();
+                _scholars[i].Actions.Reset();
+                var action = ScholarActionsTemplates.EndExam(_scholars[i]);
+                _scholars[i].Actions.Execute(action);
             }
         }
     }
