@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Minimap;
-using UnityTools.Single;
+using Vkimow.Tools.Single;
 
 public class TeacherRoomManager: Singleton<TeacherRoomManager>
 {

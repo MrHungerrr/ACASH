@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 public class SubtitleHUDController: MonoBehaviour
 {

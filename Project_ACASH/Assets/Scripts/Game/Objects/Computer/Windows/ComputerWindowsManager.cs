@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 
 namespace Computers

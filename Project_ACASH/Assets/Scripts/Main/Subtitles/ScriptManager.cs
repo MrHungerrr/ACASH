@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 
 public class ScriptManager : MonoSingleton<ScriptManager>

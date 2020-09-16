@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Tools.Single;
 using Exam;
 using AI.Scholars.Actions;
 

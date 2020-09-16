@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using UnityTools.Single;
 using PlayerOptions;
 
 public class HintController: MonoBehaviour

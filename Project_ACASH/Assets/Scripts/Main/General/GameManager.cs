@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PostProcessing;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 using Exam;
 
 public class GameManager : MonoSingleton<GameManager>

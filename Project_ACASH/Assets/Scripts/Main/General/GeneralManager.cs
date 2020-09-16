@@ -6,7 +6,7 @@ using PostProcessing;
 using Places;
 using GameTime;
 using MultiTasking;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 using Overwatch;
 using Computers;
 using AI.Scholars;

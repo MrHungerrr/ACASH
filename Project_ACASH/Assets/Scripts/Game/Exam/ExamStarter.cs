@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 using UnityEngine.Events;
 
 namespace Exam

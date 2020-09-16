@@ -48,7 +48,12 @@ namespace Overwatch.Memorable
 
         public XElement ConvertToXML()
         {
-            XElement xElement = new XElement( "Scholar", 
+            return ConvertToXML("Scholar");
+        }
+
+        public XElement ConvertToXML(string name)
+        {
+            XElement xElement = new XElement(name, 
                 
                 new XAttribute("Id", Id), new XAttribute("Type", type),
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Places;
 using UnityEngine;
-using UnityTools.Search;
+using Vkimow.Unity.Tools.Search;
 using AI.Scholars;
 
 

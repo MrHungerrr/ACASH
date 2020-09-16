@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 public class CrossHair : MonoSingleton<CrossHair>
 {

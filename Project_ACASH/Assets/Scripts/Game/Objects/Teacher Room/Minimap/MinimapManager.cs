@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 using UnityEngine;
 
 namespace Minimap

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityTools.Math;
+using Vkimow.Unity.Tools.Math;
 
 public class PlayerHear
 {

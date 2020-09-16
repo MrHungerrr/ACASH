@@ -9,7 +9,6 @@ using UnityEngine.Events;
 
 namespace AI.Tools.Move
 {
-
     public class AIMove
     {
         public event Action OnDestinationReached;

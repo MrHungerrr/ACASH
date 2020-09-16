@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using XMLSerialize;
+using Vkimow.Serializators.XML;
 
 
 namespace Overwatch.Memorable

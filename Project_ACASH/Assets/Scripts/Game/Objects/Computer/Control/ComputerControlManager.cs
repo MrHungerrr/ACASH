@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using Cinemachine;
-using UnityTools.Single;
+using Vkimow.Tools.Single;
 
 public class ComputerControlManager: Singleton<ComputerControlManager>
 {

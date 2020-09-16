@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 public class Player : MonoSingleton<Player>
 {

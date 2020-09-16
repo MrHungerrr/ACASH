@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 public class FadeController : MonoSingleton<FadeController>
 {

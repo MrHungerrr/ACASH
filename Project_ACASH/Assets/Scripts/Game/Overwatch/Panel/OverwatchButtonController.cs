@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Overwatch.Player;
-using UnityTools.Single;
+using Vkimow.Unity.Tools.Single;
 
 namespace Overwatch.Panel
 {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityTools.Single;
+using Vkimow.Tools.Single;
 
 public class LevelManager : Singleton<LevelManager>
 {
