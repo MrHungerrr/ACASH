@@ -160,7 +160,7 @@
   </Action>
   <Action Name="Cheat_Calculator" IsConnector="false">
     <Cost Type="BaseCost">
-      <Cost>10</Cost>
+      <Cost>5</Cost>
     </Cost>
     <Effect IsEmpty="false">
       <Key>Cheat</Key>
@@ -275,7 +275,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Special_Go_Wash_Hands" IsConnector="true">
+  <Action Name="Special_Go_WashHands" IsConnector="true">
     <Cost Type="BaseCost">
       <Cost>0</Cost>
     </Cost>
@@ -321,7 +321,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Pee" IsConnector="false">
+  <Action Name="Special_Pee" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -331,7 +331,7 @@
     </Effect>
     <Preconditions IsEmpty="true" />
   </Action>
-  <Action Name="Wash_Hands" IsConnector="false">
+  <Action Name="Special_WashHands" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -341,7 +341,7 @@
     </Effect>
     <Preconditions IsEmpty="true" />
   </Action>
-  <Action Name="Rest" IsConnector="false">
+  <Action Name="Special_Rest" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -351,7 +351,17 @@
     </Effect>
     <Preconditions IsEmpty="true" />
   </Action>
-  <Action Name="Go_To_Toilet" IsConnector="false">
+  <Action Name="Special_Talk" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Talk</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="GoTo_Toilet" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -366,7 +376,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Go_To_Sink" IsConnector="false">
+  <Action Name="GoTo_Sink" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -381,7 +391,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Go_To_Outside" IsConnector="false">
+  <Action Name="GoTo_Outside" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -396,7 +406,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Go_To_Desk" IsConnector="false">
+  <Action Name="GoTo_Desk" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
@@ -406,7 +416,7 @@
     </Effect>
     <Preconditions IsEmpty="true" />
   </Action>
-  <Action Name="Go_To_Dock_Station" IsConnector="false">
+  <Action Name="GoTo_DockStation" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>

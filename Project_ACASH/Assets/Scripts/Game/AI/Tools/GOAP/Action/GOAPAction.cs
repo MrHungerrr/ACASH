@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Vkimow.Serializators.XML;
 
 namespace GOAP
 {
@@ -12,29 +13,29 @@ namespace GOAP
     {
         public string Name { get; private set; }
         public bool IsConnector { get; private set; }
-        public IGOAPStateReadOnlySingle Effect => _effect;
-        public IGOAPStateReadOnlyStorage Preconditions => _preconditions;
+        public IGOAPStateReadOnlyStorage Effect => _effect;
+        public IGOAPStateReadOnlyStorageList Preconditions => _preconditions;
         public IGOAPCost Cost { get; private set; }
 
 
-        private IGOAPStateStorage _preconditions;
-        private IGOAPStateSingle _effect;
+        private IGOAPStateStorageList _preconditions;
+        private IGOAPStateStorage _effect;
 
 
         public GOAPAction(string action , bool isConnector)
         {
             Name = action;
             IsConnector = isConnector;
-            _preconditions = new GOAPStateStorage();
-            _effect = new GOAPStateSingle();
+            _preconditions = new GOAPStateStorageList();
+            _effect = new GOAPStateStorageSingle();
         }
 
         public GOAPAction(string action)
         {
             Name = action;
             IsConnector = false;
-            _preconditions = new GOAPStateStorage();
-            _effect = new GOAPStateSingle();
+            _preconditions = new GOAPStateStorageList();
+            _effect = new GOAPStateStorageSingle();
         }
 
         public void SetName(string name)
@@ -42,12 +43,12 @@ namespace GOAP
             Name = name;
         }
 
-        public IGOAPStateSingle GetEffect()
+        public IGOAPStateStorage GetEffect()
         {
             return _effect;
         }
 
-        public IGOAPStateStorage GetPreconditions()
+        public IGOAPStateStorageList GetPreconditions()
         {
             return _preconditions;
         }
@@ -57,12 +58,12 @@ namespace GOAP
             Cost = cost;
         }
 
-        public XElement ConvertToXML()
+        XElement IXMLSerializable.ConvertToXML()
         {
-            return ConvertToXML("Action");
+            return ((IXMLSerializable)this).ConvertToXML("Action");
         }
 
-        public XElement ConvertToXML(string name)
+        XElement IXMLSerializable.ConvertToXML(string name)
         {
             var xElement = new XElement(name,
                 new XAttribute("Name", Name),
@@ -75,7 +76,7 @@ namespace GOAP
             return xElement;
         }
 
-        public void ReadXML(XElement xElement)
+        void IXMLSerializable.ReadXML(XElement xElement)
         {
             Name = (string)xElement.Attribute("Name");
             IsConnector = (bool)xElement.Attribute("IsConnector");

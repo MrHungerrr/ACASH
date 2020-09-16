@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Places
+namespace Objects.Organization.Places
 {
     public sealed class Place : MonoBehaviour
     #region IInitialization
@@ -13,11 +13,11 @@ namespace Places
     {
         public Vector2 Destination => _destination.position;
         public Vector2 SightGoal => _sightGoal.position;
+        public event Action OnBusyChanged;
         public bool Busy => _busy;
 
 
         [SerializeField] private Transform _destination;
-
         [SerializeField] private Transform _sightGoal;
 
         private bool _busy = false;
@@ -42,6 +42,7 @@ namespace Places
         public void SetBusy(bool option)
         {
             _busy = option;
+            OnBusyChanged?.Invoke();
         }
 
         public override string ToString()

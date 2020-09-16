@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Objects.Organization.ClassRoom;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using Vkimow.Unity.Tools.Search;
 
-namespace Places
+namespace Objects.Organization.Places
 {
+
+    [RequireComponent(typeof(ClassAgent))]
     public class PlaceAgent: MonoBehaviour
     #region IInitialization
 #if UNITY_EDITOR
@@ -35,6 +39,7 @@ namespace Places
             {
                 case FillType.Hierarchy:
                     {
+                        _class = GetComponent<ClassAgent>();
                         var places = SIC<Place>.ComponentsDown(transform);
                         SortPlaces(places);
                         ArrayToDictionary();
@@ -91,16 +96,12 @@ namespace Places
 
         public IReadOnlyDictionary<PlaceManager.place, Place[]> Places => _places;
 
-
         private Dictionary<PlaceManager.place, Place[]> _places;
 
-
         [SerializeField] private Place[] _toilets;
-
         [SerializeField] private Place[] _sinks;
-
         [SerializeField] private Place[] _outside;
-
+        [SerializeField] private ClassAgent _class;
 
 
 
@@ -118,8 +119,6 @@ namespace Places
             _places.Add(PlaceManager.place.Sink, _sinks);
             _places.Add(PlaceManager.place.Outside, _outside);
         }
-
-
 
 
         public Place GetPlace(PlaceManager.place placeType, int index)

@@ -3,6 +3,8 @@ using Overwatch.Memorable;
 using AI.Scholars.Actions;
 using AI.Scholars.Actions.Operations;
 using AI.Scholars.Items;
+using Objects.Organization.ClassRoom;
+using AI.Scholars.GOAP;
 
 namespace AI.Scholars
 {
@@ -14,6 +16,7 @@ namespace AI.Scholars
         public ClassAgent ClassRoom { get; private set; }
         public ScholarActionsController Actions { get; private set; }
         public ScholarMemorable Memorable { get; private set; }
+        public ScholarGOAPContext GoapContext { get; private set; }
         public ScholarInfo Info { get; private set; }
         public ScholarLocation Location { get; private set; }
         public ScholarItemsController Items { get; private set; }
@@ -38,7 +41,7 @@ namespace AI.Scholars
 
             Move.Setup(this);
             Sight.Setup(this);
-
+            GoapContext = new ScholarGOAPContext();
             Info = new ScholarInfo(this, globalIndex, localIndex);
             Actions = new ScholarActionsController(this);
             Memorable = new ScholarMemorable(this);

@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PostProcessing;
-using Places;
+using Objects.Organization.Places;
 using GameTime;
 using MultiTasking;
 using Vkimow.Unity.Tools.Single;

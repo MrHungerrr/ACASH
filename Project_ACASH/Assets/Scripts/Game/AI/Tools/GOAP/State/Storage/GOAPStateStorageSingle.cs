@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Vkimow.Serializators.XML;
 
 namespace GOAP
 {
-    public class GOAPStateSingle : IGOAPStateSingle
+    public class GOAPStateStorageSingle : IGOAPStateStorage
     {
         public bool IsEmpty => !_state.HasValue;
 
@@ -94,12 +95,12 @@ namespace GOAP
 
         #region XML Serialization
 
-        public XElement ConvertToXML()
+        XElement IXMLSerializable.ConvertToXML()
         {
-            return ConvertToXML("GOAPState_Single");
+            return  ((IXMLSerializable)this).ConvertToXML("GOAPState_Single");
         }
 
-        public XElement ConvertToXML(string name)
+        XElement IXMLSerializable.ConvertToXML(string name)
         {
             var xElement = new XElement(name, new XAttribute("IsEmpty", IsEmpty));
             
@@ -111,7 +112,7 @@ namespace GOAP
             return xElement;
         }
 
-        public void ReadXML(XElement xElement)
+        void IXMLSerializable.ReadXML(XElement xElement)
         {
             if (((bool)xElement.Attribute("IsEmpty")))
                 return;

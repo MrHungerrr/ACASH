@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using GOAP;
 
-namespace AI.Scholars.Actions.GOAP
+namespace AI.Scholars.GOAP
 {
-    class ScholarGOAPContext : GOAPStateStorage
+    public class ScholarGOAPContext : GOAPStateStorageList
     {
         public ScholarGOAPContext()
         {

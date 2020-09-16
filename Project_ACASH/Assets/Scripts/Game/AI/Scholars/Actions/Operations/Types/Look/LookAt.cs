@@ -1,4 +1,4 @@
-﻿using Places;
+﻿using Objects.Organization.Places;
 using System;
 using System.Collections.Generic;
 using System.Linq;

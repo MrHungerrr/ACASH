@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Xml.Linq;
+using Vkimow.Serializators.XML;
 
 namespace GOAP.Cost
 {
@@ -64,18 +65,18 @@ namespace GOAP.Cost
 
         #region XML Serialization
 
-        public XElement ConvertToXML()
+        XElement IXMLSerializable.ConvertToXML()
         {
-            return ConvertToXML("BaseCost");
+            return ((IXMLSerializable)this).ConvertToXML("BaseCost");
         }
 
-        public XElement ConvertToXML(string name)
+        XElement IXMLSerializable.ConvertToXML(string name)
         {
             var xElement = new XElement(name, new XAttribute("Type", "BaseCost"), new XElement("Cost", _cost));
             return xElement;
         }
 
-        public void ReadXML(XElement xElement)
+        void IXMLSerializable.ReadXML(XElement xElement)
         {
             _cost = (int)xElement.Element("Cost");
         }

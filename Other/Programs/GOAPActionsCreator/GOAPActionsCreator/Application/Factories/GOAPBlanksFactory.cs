@@ -45,6 +45,7 @@ namespace Application
             GOAPBlanksManager.Instance.Add("Pee", typeof(bool));
             GOAPBlanksManager.Instance.Add("Wash_Hands", typeof(bool));
             GOAPBlanksManager.Instance.Add("Rest", typeof(bool));
+            GOAPBlanksManager.Instance.Add("Talk", typeof(bool));
         }
     }
 }

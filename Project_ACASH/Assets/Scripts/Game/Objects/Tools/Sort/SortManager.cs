@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Vkimow.Tools.Single;
-using Places;
+using Objects.Organization.Places;
 
 
 public class SortManager: Singleton<SortManager>

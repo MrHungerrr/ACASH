@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Vkimow.Serializators.XML;
 using Vkimow.Tools.Single;
 
 namespace GOAP.Cost
@@ -16,7 +17,7 @@ namespace GOAP.Cost
             {
                 case "BaseCost":
                     {
-                        var cost = new BaseCost();
+                        IGOAPCost cost = new BaseCost();
                         cost.ReadXML(xElement);
                         return cost;
                     }

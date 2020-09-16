@@ -10,15 +10,15 @@ namespace GOAP
         {
             GOAPBlanksManager.Instance.Clear();
             var xDocument = XDocument.Load($"{path}\\GoapBlanks.xml");
-            GOAPBlanksManager.Instance.ReadXML(xDocument.Root);
+            ((IXMLSerializable)GOAPBlanksManager.Instance).ReadXML(xDocument.Root);
 
             GOAPActionsManager.Instance.Clear();
             xDocument = XDocument.Load($"{path}\\GoapActions.xml");
-            GOAPActionsManager.Instance.ReadXML(xDocument.Root);
+            ((IXMLSerializable)GOAPActionsManager.Instance).ReadXML(xDocument.Root);
 
             GOAPGoalsManager.Instance.Clear();
             xDocument = XDocument.Load($"{path}\\GoapGoals.xml");
-            GOAPGoalsManager.Instance.ReadXML(xDocument.Root);
+            ((IXMLSerializable)GOAPGoalsManager.Instance).ReadXML(xDocument.Root);
         }
 
 

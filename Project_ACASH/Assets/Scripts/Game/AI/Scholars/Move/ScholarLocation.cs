@@ -1,9 +1,9 @@
-﻿using Places;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using GameTime.Action;
 using System.Threading.Tasks;
+using Objects.Organization.Places;
 
 namespace AI.Scholars
 {

@@ -11,8 +11,8 @@ namespace GOAP
     public interface IGOAPAction : IGOAPReadOnlyAction, IXMLSerializable
     {
         void SetName(string name);
-        IGOAPStateStorage GetPreconditions();
-        IGOAPStateSingle GetEffect();
+        IGOAPStateStorageList GetPreconditions();
+        IGOAPStateStorage GetEffect();
         void SetCost(IGOAPCost cost);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class GOAPStateGlobal : GOAPStateStorage
+public class GOAPStateGlobal : GOAPStateStorageList
 {
     public GOAPStateGlobal()
     {

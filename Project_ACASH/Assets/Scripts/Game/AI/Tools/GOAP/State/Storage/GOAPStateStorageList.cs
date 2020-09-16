@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Vkimow.Serializators.XML;
 
 namespace GOAP
 {
-    public class GOAPStateStorage : IGOAPStateStorage
+    public class GOAPStateStorageList : IGOAPStateStorageList
     {
         public bool IsEmpty => _states.Count == 0;
 
         private Dictionary<string, GOAPState> _states;
 
-        public GOAPStateStorage()
+        public GOAPStateStorageList()
         {
             _states = new Dictionary<string, GOAPState>();
         }
 
-        public GOAPStateStorage(IEnumerable<KeyValuePair<string, GOAPState>> states)
+        public GOAPStateStorageList(IEnumerable<KeyValuePair<string, GOAPState>> states)
         {
             _states = new Dictionary<string, GOAPState>(states.ToDictionary((x) => x.Key, (x) => x.Value));
         }
@@ -157,12 +158,12 @@ namespace GOAP
 
         #region XML Serialization
 
-        public XElement ConvertToXML()
+        XElement IXMLSerializable.ConvertToXML()
         {
-            return ConvertToXML("GOAPState_Storage");
+            return ((IXMLSerializable)this).ConvertToXML("GOAPState_Storage");
         }
 
-        public XElement ConvertToXML(string name)
+        XElement IXMLSerializable.ConvertToXML(string name)
         {
             var xElement = new XElement(name, new XAttribute("IsEmpty", IsEmpty));
 
@@ -178,7 +179,7 @@ namespace GOAP
             return xElement;
         }
 
-        public void ReadXML(XElement xMainElement)
+        void IXMLSerializable.ReadXML(XElement xMainElement)
         {
             if (((bool)xMainElement.Attribute("IsEmpty")))
                 return;

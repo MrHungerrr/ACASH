@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Vkimow.Serializators.XML;
+using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace GOAP
 {
-    public interface IGOAPStateStorage : IGOAPStateSingle, IGOAPStateReadOnlyStorage
+    public interface IGOAPStateStorage : IGOAPStateReadOnlyStorage, IXMLSerializable
     {
-        void Add(string key, object value);
-        void Add(string key, GOAPState state);
-        void Add(KeyValuePair<string, GOAPState> state);
-        void Remove(string key);
+        void Clear();
+        void Set(string key, object value);
+        void Set(string key, GOAPState state);
+        void Set(KeyValuePair<string, GOAPState> state);
     }
 }

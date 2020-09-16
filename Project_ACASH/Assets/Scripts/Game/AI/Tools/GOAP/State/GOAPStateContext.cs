@@ -1,44 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace GOAP
 {
     public class GOAPStateContext
     {
-        private static GOAPStateStorage _globalState;
-        private GOAPStateStorage _localState;
+        private IGOAPStateStorage[] _localStates;
 
-        public GOAPStateContext(GOAPStateStorage localState)
+        public GOAPStateContext(params IGOAPStateStorage[] localState)
         {
-            _localState = localState;
-        }
-
-        public static void SetGlobalState(GOAPStateStorage state)
-        {
-            _globalState = state;
+            _localStates = localState;
         }
 
         public bool Contains(KeyValuePair<string, GOAPState> state)
         {
-            if (_globalState.Contains(state))
-                return true;
+            for(int i = 0; i< _localStates.Length; i++)
+            {
+                if (_localStates[i].Contains(state))
+                    return true;
+            }
 
-            return _localState.Contains(state);
+            return false;
         }
 
 
         public void Set(KeyValuePair<string, GOAPState> state)
         {
-            if (_localState.Contains(state.Key))
+            for (int i = 0; i < _localStates.Length; i++)
             {
-                _localState.Set(state);
-                return;
-            }
-
-            if (_globalState.Contains(state.Key))
-            {
-                _globalState.Set(state);
-                return;
+                if (_localStates[i].Contains(state.Key))
+                {
+                    _localStates[i].Set(state);
+                    return;
+                }
             }
 
             throw new ArgumentException($"Отсутсвует GOAPState с Key:\"{state.Key}\"");

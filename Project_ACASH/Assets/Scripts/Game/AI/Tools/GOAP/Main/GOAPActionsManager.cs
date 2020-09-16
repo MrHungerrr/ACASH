@@ -45,12 +45,12 @@ namespace GOAP
         }
 
         #region XML Serialization
-        public XElement ConvertToXML()
+        XElement IXMLSerializable.ConvertToXML()
         {
-            return ConvertToXML("GOAPActions");
+            return ((IXMLSerializable)this).ConvertToXML("GOAPActions");
         }
 
-        public XElement ConvertToXML(string name)
+        XElement IXMLSerializable.ConvertToXML(string name)
         {
             var xElement = new XElement(name);
 
@@ -62,11 +62,11 @@ namespace GOAP
             return xElement;
         }
 
-        public void ReadXML(XElement xMainElement)
+        void IXMLSerializable.ReadXML(XElement xMainElement)
         {
             foreach(var xElement in xMainElement.Elements())
             {
-                var action = new GOAPAction("Temporary Name");
+                IGOAPAction action = new GOAPAction("Temporary Name");
                 action.ReadXML(xElement);
                 Add(action);
             }

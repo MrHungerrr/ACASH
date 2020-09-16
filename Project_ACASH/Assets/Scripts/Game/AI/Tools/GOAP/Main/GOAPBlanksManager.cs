@@ -39,12 +39,12 @@ namespace GOAP
 
 
         #region XML Serialization
-        public XElement ConvertToXML()
+        XElement IXMLSerializable.ConvertToXML()
         {
-            return ConvertToXML("GOAPBlanks");
+            return ((IXMLSerializable)this).ConvertToXML("GOAPBlanks");
         }
 
-        public XElement ConvertToXML(string name)
+        XElement IXMLSerializable.ConvertToXML(string name)
         {
             var xElement = new XElement(name);
 
@@ -57,7 +57,7 @@ namespace GOAP
             return xElement;
         }
 
-        public void ReadXML(XElement xMainElement)
+        void IXMLSerializable.ReadXML(XElement xMainElement)
         {
             foreach (var xElement in xMainElement.Elements())
             {

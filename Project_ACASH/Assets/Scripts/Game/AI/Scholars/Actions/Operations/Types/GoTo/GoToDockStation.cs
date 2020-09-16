@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Places;
+using Objects.Organization.Places;
 
 namespace AI.Scholars.Actions.Operations.Types
 {

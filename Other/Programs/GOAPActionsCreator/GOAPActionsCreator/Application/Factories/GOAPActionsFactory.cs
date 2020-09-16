@@ -37,21 +37,22 @@ namespace Application
 
         private static IGOAPAction specialGoOut = new GOAPAction("Special_Go_Out", true);
         private static IGOAPAction specialGoPee = new GOAPAction("Special_Go_Pee", true);
-        private static IGOAPAction specialGoWashHands = new GOAPAction("Special_Go_Wash_Hands", true);
+        private static IGOAPAction specialGoWashHands = new GOAPAction("Special_Go_WashHands", true);
         private static IGOAPAction specialGoAir = new GOAPAction("Special_Go_Air", true);
 
-        private static IGOAPAction pee = new GOAPAction("Pee");
-        private static IGOAPAction washHands = new GOAPAction("Wash_Hands");
-        private static IGOAPAction rest = new GOAPAction("Rest");
+        private static IGOAPAction pee = new GOAPAction("Special_Pee");
+        private static IGOAPAction washHands = new GOAPAction("Special_WashHands");
+        private static IGOAPAction rest = new GOAPAction("Special_Rest");
+        private static IGOAPAction talk = new GOAPAction("Special_Talk");
 
         //-------------------------------------------------------------------
         //GO TO
 
-        private static IGOAPAction goToToilet = new GOAPAction("Go_To_Toilet");
-        private static IGOAPAction goToSink = new GOAPAction("Go_To_Sink");
-        private static IGOAPAction goToOutside = new GOAPAction("Go_To_Outside");
-        private static IGOAPAction goToDesk = new GOAPAction("Go_To_Desk");
-        private static IGOAPAction goToDockStation = new GOAPAction("Go_To_Dock_Station");
+        private static IGOAPAction goToToilet = new GOAPAction("GoTo_Toilet");
+        private static IGOAPAction goToSink = new GOAPAction("GoTo_Sink");
+        private static IGOAPAction goToOutside = new GOAPAction("GoTo_Outside");
+        private static IGOAPAction goToDesk = new GOAPAction("GoTo_Desk");
+        private static IGOAPAction goToDockStation = new GOAPAction("GoTo_DockStation");
 
 
         public static void Create()
@@ -72,6 +73,7 @@ namespace Application
 
         private static void CreateSpecial()
         {
+            CreateSpecialActions();
             CreateSpecialGoOut();
         }
 
@@ -99,9 +101,11 @@ namespace Application
             GOAPActionsManager.Instance.Add(specialGoPee);
             GOAPActionsManager.Instance.Add(specialGoWashHands);
             GOAPActionsManager.Instance.Add(specialGoAir);
+
             GOAPActionsManager.Instance.Add(pee);
             GOAPActionsManager.Instance.Add(washHands);
             GOAPActionsManager.Instance.Add(rest);
+            GOAPActionsManager.Instance.Add(talk);
 
             GOAPActionsManager.Instance.Add(goToToilet);
             GOAPActionsManager.Instance.Add(goToSink);
@@ -160,7 +164,7 @@ namespace Application
 
         private static void CreateCheatCalculator()
         {
-            cheatCalculator.SetCost(new BaseCost(10));
+            cheatCalculator.SetCost(new BaseCost(5));
             cheatCalculator.GetEffect().Set("Cheat", true);
             cheatCalculator.GetPreconditions().Add("Items_Have_Calculator", true);
             cheatCalculator.GetPreconditions().Add("Cheat_Calculator", true);
@@ -207,6 +211,12 @@ namespace Application
             specialGoAir.GetPreconditions().Add("Rest", true);
             specialGoAir.GetPreconditions().Add("Location", "Outside");
 
+
+        }
+
+
+        private static void CreateSpecialActions()
+        {
             pee.SetCost(new BaseCost(10));
             pee.GetEffect().Set("Pee", true);
 
@@ -215,6 +225,9 @@ namespace Application
 
             rest.SetCost(new BaseCost(10));
             rest.GetEffect().Set("Rest", true);
+
+            talk.SetCost(new BaseCost(10));
+            talk.GetEffect().Set("Talk", true);
         }
 
         private static void CreateGoTo()

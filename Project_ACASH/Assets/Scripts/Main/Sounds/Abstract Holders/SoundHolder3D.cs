@@ -7,7 +7,6 @@ public abstract class SoundHolder3D: SoundHolder2D
 {
     public event Action<bool> OcclusionUpdate;
 
-
     private readonly GameObject _host;
     private string[] _ignoreTags;
     private bool _occlusion;
@@ -54,10 +53,10 @@ public abstract class SoundHolder3D: SoundHolder2D
 
     protected override void Update()
     {
-        /*
+
         if (OcclusionCalculate())
-            OcclusionUpdate(occlusion);
-            */
+            OcclusionUpdate(_occlusion);
+
 
         base.Update();
     }

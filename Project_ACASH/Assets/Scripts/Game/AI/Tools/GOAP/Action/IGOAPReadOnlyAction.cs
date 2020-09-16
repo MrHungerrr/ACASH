@@ -6,8 +6,8 @@ namespace GOAP
     public interface IGOAPReadOnlyAction
     {
         string Name { get; }
-        IGOAPStateReadOnlySingle Effect { get; }
-        IGOAPStateReadOnlyStorage Preconditions { get; }
+        IGOAPStateReadOnlyStorage Effect { get; }
+        IGOAPStateReadOnlyStorageList Preconditions { get; }
         IGOAPCost Cost { get; }
         string ToString();
     }

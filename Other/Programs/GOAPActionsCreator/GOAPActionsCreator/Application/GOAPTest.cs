@@ -10,11 +10,10 @@ namespace Application
     {
         public static void Construct(string goalKey)
         {
-            GOAPStateContext.SetGlobalState(new GOAPStateGlobal());
-            var context = new GOAPStateContext(new GOAPStateLocal());
-            var comparer = new BaseCostComparer();
+            var context = new GOAPStateContext(new GOAPStateLocal(), new GOAPStateGlobal());
+            var comparer = new BaseCostComparer(10);
 
-            var planer = new GOAPPlaner(context, comparer);
+            var planer = new GOAPPlanner(context, comparer);
             var plan = new List<GOAPAction>();
 
             if (!planer.TryGetPlan(GOAPGoalsManager.Instance.Goals[goalKey], out plan))
