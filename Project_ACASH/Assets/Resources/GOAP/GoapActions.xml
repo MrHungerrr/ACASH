@@ -49,7 +49,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Cheat_Note_Outside" IsConnector="true">
+  <Action Name="Cheat_Note_Hallway" IsConnector="true">
     <Cost Type="BaseCost">
       <Cost>0</Cost>
     </Cost>
@@ -60,7 +60,7 @@
     <Preconditions IsEmpty="false">
       <State>
         <Key>Location</Key>
-        <Value>Outside</Value>
+        <Value>Hallway</Value>
       </State>
     </Preconditions>
   </Action>
@@ -128,7 +128,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Cheat_Phone_Outside" IsConnector="true">
+  <Action Name="Cheat_Phone_Hallway" IsConnector="true">
     <Cost Type="BaseCost">
       <Cost>0</Cost>
     </Cost>
@@ -139,7 +139,7 @@
     <Preconditions IsEmpty="false">
       <State>
         <Key>Location</Key>
-        <Value>Outside</Value>
+        <Value>Hallway</Value>
       </State>
     </Preconditions>
   </Action>
@@ -207,7 +207,7 @@
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Cheat_Calculator_Outside" IsConnector="true">
+  <Action Name="Cheat_Calculator_Hallway" IsConnector="true">
     <Cost Type="BaseCost">
       <Cost>0</Cost>
     </Cost>
@@ -218,7 +218,7 @@
     <Preconditions IsEmpty="false">
       <State>
         <Key>Location</Key>
-        <Value>Outside</Value>
+        <Value>Hallway</Value>
       </State>
     </Preconditions>
   </Action>
@@ -317,7 +317,7 @@
       </State>
       <State>
         <Key>Location</Key>
-        <Value>Outside</Value>
+        <Value>Hallway</Value>
       </State>
     </Preconditions>
   </Action>
@@ -371,7 +371,7 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Places_Toilets_Are_Busy</Key>
+        <Key>Places_Toilet_Are_Busy</Key>
         <Value>false</Value>
       </State>
     </Preconditions>
@@ -386,22 +386,22 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Places_Sinks_Are_Busy</Key>
+        <Key>Places_Sink_Are_Busy</Key>
         <Value>false</Value>
       </State>
     </Preconditions>
   </Action>
-  <Action Name="GoTo_Outside" IsConnector="false">
+  <Action Name="GoTo_Hallway" IsConnector="false">
     <Cost Type="BaseCost">
       <Cost>10</Cost>
     </Cost>
     <Effect IsEmpty="false">
       <Key>Location</Key>
-      <Value>Outside</Value>
+      <Value>Hallway</Value>
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Places_Outside_Are_Busy</Key>
+        <Key>Places_Hallway_Are_Busy</Key>
         <Value>false</Value>
       </State>
     </Preconditions>

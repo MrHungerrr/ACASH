@@ -11,7 +11,7 @@ namespace GOAP
 {
     internal class GOAPPlanBuilder
     {
-        private GOAPStateContext _context;
+        private readonly GOAPStateContext _context;
 
         internal GOAPPlanBuilder(GOAPStateContext context)
         {

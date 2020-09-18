@@ -10,20 +10,44 @@ namespace GameTime
 {
     public class TimerShower : Singleton<TimerShower>
     {
+        private Timer _timer;
+
         public void SetLevel()
         {
             ShowTime(0);
         }
 
-        public void SecondDone()
+
+        public void SetTimer(Timer timer)
+        {
+            if (_timer != null)
+                ResetTimer();
+
+            _timer = timer;
+            _timer.OnTimeChanged += TimeChanged;
+            _timer.OnTimeDone += ResetTimer;
+            ShowTime();
+        }
+
+
+        private void TimeChanged()
         {
             ShowTime();
         }
 
 
+        private void ResetTimer()
+        {
+            ShowTime();
+            _timer.OnTimeDone -= ResetTimer;
+            _timer.OnTimeChanged -= TimeChanged;
+            _timer = null;
+        }
+
+
         private void ShowTime()
         {
-            ShowTime(TimeManager.Instance.Timer.TimeLeftInSec);
+            ShowTime(_timer.TimeLeftInSec);
         }
 
         private void ShowTime(int timeInSeconds)

@@ -86,13 +86,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         InputManager.SwitchGameInput(InputManager.GameplayType.Disable);
         FadeController.Instance.FastFade(false);
-
         GeneralManager.Instance.SetLevel();
-    }
-
-
-    public void StartExam()
-    {
-        ExamManager.Instance.ResetExam();
     }
 }

@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <GOAPBlanks>
   <Blank>
-    <Key>Places_Toilets_Are_Busy</Key>
+    <Key>Places_Toilet_Are_Busy</Key>
     <Type>System.Boolean</Type>
   </Blank>
   <Blank>
-    <Key>Places_Sinks_Are_Busy</Key>
+    <Key>Places_Sink_Are_Busy</Key>
     <Type>System.Boolean</Type>
   </Blank>
   <Blank>
-    <Key>Places_Outside_Are_Busy</Key>
+    <Key>Places_Hallway_Are_Busy</Key>
     <Type>System.Boolean</Type>
   </Blank>
   <Blank>

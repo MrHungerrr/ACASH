@@ -11,7 +11,7 @@ namespace GOAP.Cost
         public IGOAPCost BadCost => new BaseCost(0);
 
         private readonly int _threshold;
-        private Comparison<BaseCost> _comparation;
+        private readonly Comparison<BaseCost> _comparation;
 
         public BaseCostComparer(int threshold = Int32.MaxValue)
         {

@@ -24,7 +24,7 @@ namespace GOAP
 
         public void Clear()
         {
-            _goals.Clear();
+            _goals = new Dictionary<string, KeyValuePair<string, GOAPState>>();
         }
 
 

@@ -86,7 +86,7 @@ namespace Objects.Organization.ClassRoom
                             desks.Add(place);
                             break;
                         }
-                    case "Dock Station":
+                    case "DockStation":
                         {
                             dockStations.Add(place);
                             break;
@@ -125,7 +125,7 @@ namespace Objects.Organization.ClassRoom
 
         public void SetLevel()
         {
-            GoapContext = new ClassGOAPContext();
+            GoapContext = new ClassGOAPContext(this);
             ScholarSetup();
         }
 

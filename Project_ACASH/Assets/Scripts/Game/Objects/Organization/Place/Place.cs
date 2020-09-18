@@ -35,6 +35,23 @@ namespace Objects.Organization.Places
 
             if (_sightGoal == null)
                 throw new ArgumentException();
+
+            switch (tag)
+            {
+                case "Toilet":
+                case "Sink":
+                case "Hallway":
+                case "DockStation":
+                case "Desk":
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        throw new ArgumentException();
+                    }
+            }
+
         }
 #endif
         #endregion

@@ -18,8 +18,8 @@ namespace GOAP
         public IGOAPCost Cost { get; private set; }
 
 
-        private IGOAPStateStorageList _preconditions;
-        private IGOAPStateStorage _effect;
+        private readonly IGOAPStateStorageList _preconditions;
+        private readonly IGOAPStateStorage _effect;
 
 
         public GOAPAction(string action , bool isConnector)

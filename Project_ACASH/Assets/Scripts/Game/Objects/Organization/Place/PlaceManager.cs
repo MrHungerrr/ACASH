@@ -7,11 +7,11 @@ namespace Objects.Organization.Places
 {
     public static class PlaceManager
     {
-        public enum place
+        public enum Place
         {
             Toilet,
             Sink,
-            Outside,
+            Hallway,
         }
 
 
@@ -30,27 +30,21 @@ namespace Objects.Organization.Places
 
 
 
-        public static Place GetRandomFreePlace(this Place[] places)
+        public static Places.Place GetRandomFreePlace(this Places.Place[] places)
         {
-            int? index = GetRandomPlaceIndex(places);
-            index = GetFreePlaceIndex(places, index.Value);
-
-            if (index.HasValue)
-            {
-                return places[index.Value];
-            }
-
-            return null;
+            int index = GetRandomPlaceIndex(places);
+            index = GetFreePlaceIndex(places, index);
+            return places[index];
         }
 
 
-        private static int GetRandomPlaceIndex(Place[] places)
+        private static int GetRandomPlaceIndex(Places.Place[] places)
         {
             return UnityEngine.Random.Range(0, places.Length);
         }
 
 
-        private static int? GetFreePlaceIndex(Place[] places, int startIndex)
+        private static int GetFreePlaceIndex(Places.Place[] places, int startIndex)
         {
             int index = startIndex % places.Length;
 
@@ -67,12 +61,11 @@ namespace Objects.Organization.Places
                     index = 0;
             }
 
-            return null;
+            throw new Exception("Нет пустых мест!");
         }
 
-        public static bool HasFreePlace(this Place[] places)
+        public static bool HasFreePlace(this Places.Place[] places)
         {
-
             for(int i = 0; i< places.Length; i++)
             {
                 if (!places[i].Busy)

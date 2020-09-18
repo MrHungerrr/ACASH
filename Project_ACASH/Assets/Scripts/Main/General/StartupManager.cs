@@ -10,6 +10,9 @@ using PostProcessing;
 using Vkimow.Unity.Tools.Single;
 using Computers;
 using Exam;
+using GOAP;
+using AI.Scholars;
+using System.Threading;
 
 public class StartupManager : MonoSingleton<StartupManager>
 {
@@ -39,8 +42,8 @@ public class StartupManager : MonoSingleton<StartupManager>
             OverwatchManager.RecordStop();
         };
 
-        ActionSchedule.Instance.AddActionInTime(20, action);
-
+        ActionInTime.Create(20, action);
+        ExamManager.Instance.ResetExam(10, 0, 2);
         ExamStarter.Instance.Interact();
     }
 
@@ -57,6 +60,7 @@ public class StartupManager : MonoSingleton<StartupManager>
             ThreadTaskQueuer.Setup();
             ComputerManager.Instance.Setup();
             MenuManager.Instance.Setup();
+            ScholarManager.Instance.Setup();
         }
     }
 }

@@ -9,8 +9,10 @@ namespace AI.Scholars
 {
     public class ScholarLocation
     {
+        public event Action OnLocationChanged;
         public Place MyDesk => _scholar.ClassRoom.GetMyDesk(_scholar);
         public Place MyDockStation => _scholar.ClassRoom.GetMyDockStation(_scholar);
+        public Place CurrentPlace => _currentPlace;
 
         private Scholar _scholar;
         private Place _currentPlace;
@@ -33,7 +35,8 @@ namespace AI.Scholars
 
             _currentPlace = place;
             place.SetBusy(true);
-            return;
+
+            OnLocationChanged?.Invoke();
         }
 
         public void Teleport(Place place)
@@ -48,6 +51,8 @@ namespace AI.Scholars
 
             _currentPlace = place;
             place.SetBusy(true);
+
+            OnLocationChanged?.Invoke();
         }
     }
 }

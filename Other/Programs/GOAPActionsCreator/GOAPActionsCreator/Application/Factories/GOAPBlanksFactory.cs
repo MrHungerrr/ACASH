@@ -20,9 +20,9 @@ namespace Application
 
         private static void CreateGlobal()
         {
-            GOAPBlanksManager.Instance.Add("Places_Toilets_Are_Busy", typeof(bool));
-            GOAPBlanksManager.Instance.Add("Places_Sinks_Are_Busy", typeof(bool));
-            GOAPBlanksManager.Instance.Add("Places_Outside_Are_Busy", typeof(bool));
+            GOAPBlanksManager.Instance.Add("Places_Toilet_Are_Busy", typeof(bool));
+            GOAPBlanksManager.Instance.Add("Places_Sink_Are_Busy", typeof(bool));
+            GOAPBlanksManager.Instance.Add("Places_Hallway_Are_Busy", typeof(bool));
 
             GOAPBlanksManager.Instance.Add("Cheat", typeof(bool));
             GOAPBlanksManager.Instance.Add("Cheat_Note", typeof(bool));

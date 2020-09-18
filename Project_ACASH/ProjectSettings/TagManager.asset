@@ -9,11 +9,9 @@ TagManager:
   - Subject
   - Scholar
   - ScholarSubject
-  - ScholarDesk
   - Door
   - Sink
   - Toilet
-  - Outside
   - Camera
   - MenuTopic
   - Window
@@ -34,9 +32,10 @@ TagManager:
   - DeskScreen
   - OverwatchCamera
   - Note
-  - Dock Station
   - Supervision Camera
   - Minimap Camera
+  - DockStation
+  - Hallway
   layers:
   - Default
   - TransparentFX

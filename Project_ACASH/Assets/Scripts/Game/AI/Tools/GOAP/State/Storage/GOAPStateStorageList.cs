@@ -106,7 +106,10 @@ namespace GOAP
 
         public void Set(string key, GOAPState state)
         {
-            _states[key].SetValue(state);
+            if (_states[key].Type != state.Type)
+                throw new ArgumentException();
+
+            _states[key] = state;
         }
 
         public void Set(KeyValuePair<string, GOAPState> state)

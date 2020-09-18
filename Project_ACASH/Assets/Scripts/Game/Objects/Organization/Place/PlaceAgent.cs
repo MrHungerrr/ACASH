@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEditor.UIElements;
 using UnityEngine;
 using Vkimow.Unity.Tools.Search;
@@ -59,7 +60,7 @@ namespace Objects.Organization.Places
         {
             List<Place> toilets = new List<Place>();
             List<Place> sinks = new List<Place>();
-            List<Place> outside = new List<Place>();
+            List<Place> hallway = new List<Place>();
 
 
             foreach (var place in places)
@@ -78,9 +79,9 @@ namespace Objects.Organization.Places
                             sinks.Add(place);
                             break;
                         }
-                    case "Outside":
+                    case "Hallway":
                         {
-                            outside.Add(place);
+                            hallway.Add(place);
                             break;
                         }
                 }
@@ -88,19 +89,20 @@ namespace Objects.Organization.Places
 
             _toilets = toilets.ToArray();
             _sinks = sinks.ToArray();
-            _outside = outside.ToArray();
+            _hallway = hallway.ToArray();
         }
 
 #endif
         #endregion
 
-        public IReadOnlyDictionary<PlaceManager.place, Place[]> Places => _places;
+        public event Action<PlaceManager.Place> OnPlaceBusyChanged;
+        public IReadOnlyDictionary<PlaceManager.Place, Place[]> Places => _places;
 
-        private Dictionary<PlaceManager.place, Place[]> _places;
+        private Dictionary<PlaceManager.Place, Place[]> _places;
 
         [SerializeField] private Place[] _toilets;
         [SerializeField] private Place[] _sinks;
-        [SerializeField] private Place[] _outside;
+        [SerializeField] private Place[] _hallway;
         [SerializeField] private ClassAgent _class;
 
 
@@ -108,20 +110,35 @@ namespace Objects.Organization.Places
         public void SetLevel()
         {
             ArrayToDictionary();
+
+            for(int i = 0; i < _toilets.Length; i++)
+            {
+                _toilets[i].OnBusyChanged += () => OnPlaceBusyChanged(PlaceManager.Place.Toilet);
+            }
+
+            for (int i = 0; i < _sinks.Length; i++)
+            {
+                _sinks[i].OnBusyChanged += () => OnPlaceBusyChanged(PlaceManager.Place.Sink);
+            }
+
+            for (int i = 0; i < _hallway.Length; i++)
+            {
+                _hallway[i].OnBusyChanged += () => OnPlaceBusyChanged(PlaceManager.Place.Hallway);
+            }
         }
 
 
         private void ArrayToDictionary()
         {
-            _places = new Dictionary<PlaceManager.place, Place[]>();
+            _places = new Dictionary<PlaceManager.Place, Place[]>();
 
-            _places.Add(PlaceManager.place.Toilet, _toilets);
-            _places.Add(PlaceManager.place.Sink, _sinks);
-            _places.Add(PlaceManager.place.Outside, _outside);
+            _places.Add(PlaceManager.Place.Toilet, _toilets);
+            _places.Add(PlaceManager.Place.Sink, _sinks);
+            _places.Add(PlaceManager.Place.Hallway, _hallway);
         }
 
 
-        public Place GetPlace(PlaceManager.place placeType, int index)
+        public Place GetPlace(PlaceManager.Place placeType, int index)
         {
             try
             {
@@ -133,12 +150,22 @@ namespace Objects.Organization.Places
             }
         }
 
-        public Place GetRandomFreePlace(PlaceManager.place placeType)
+        public Place GetRandomFreePlace(string placeType)
+        {
+            PlaceManager.Place place;
+
+            if (!Enum.TryParse<PlaceManager.Place>(placeType, out place))
+                throw new InvalidEnumArgumentException($"Неверное место - \"{placeType}\"");
+
+            return GetRandomFreePlace(place);
+        }
+
+        public Place GetRandomFreePlace(PlaceManager.Place placeType)
         {
             return _places[placeType].GetRandomFreePlace();
         }
 
-        public bool HasFreePlace(PlaceManager.place placeType)
+        public bool HasFreePlace(PlaceManager.Place placeType)
         {
             return _places[placeType].HasFreePlace();
         }

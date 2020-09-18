@@ -61,19 +61,6 @@ namespace GOAP
             throw new ArgumentException();
         }
 
-        internal void SetValue(object newValue)
-        {
-            if (Type != newValue.GetType())
-                throw new InvalidCastException();
-
-            _value = newValue;
-        }
-
-        internal void SetValue(GOAPState otherState)
-        {
-            SetValue(otherState.Value);
-        }
-
 
         public override string ToString()
         {

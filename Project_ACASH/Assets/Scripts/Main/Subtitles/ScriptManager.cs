@@ -20,8 +20,8 @@ public class ScriptManager : MonoSingleton<ScriptManager>
 
     private void Awake()
     {
-        SwitchLanguageText(textLanguage);
-        SwitchLanguageVoice(voiceLanguage);
+        //SwitchLanguageText(textLanguage);
+        //SwitchLanguageVoice(voiceLanguage);
     }
     
     public string[] GetText(KeyWord keyWord)

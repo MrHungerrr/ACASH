@@ -18,7 +18,7 @@ namespace GameTime.Action
             TimeToInvoke = timeToInvoke;
         }
 
-        public void TimePassing()
+        public void SecondDone()
         {
             TimeToInvoke--;
         }

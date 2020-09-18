@@ -8,8 +8,8 @@ public class GOAPStateGlobal : GOAPStateStorageList
 {
     public GOAPStateGlobal()
     {
-        Add("Places_Toilets_Are_Busy", false);
-        Add("Places_Sinks_Are_Busy", false);
-        Add("Places_Outside_Are_Busy", false);
+        Add("Places_Toilet_Are_Busy", false);
+        Add("Places_Sink_Are_Busy", false);
+        Add("Places_Hallway_Are_Busy", false);
     }
 }

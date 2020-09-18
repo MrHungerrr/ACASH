@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace GameTime.Action
 {
-    public class ActionPerTimeManager : Singleton<ActionPerTimeManager>
+    public class TimeActionManager : Singleton<TimeActionManager>
     {
-        private List<ActionPerTime> _actions;
+        private List<ITimeAction> _actions;
 
         public void SetLevel()
         {
-            _actions = new List<ActionPerTime>();
+            _actions = new List<ITimeAction>();
             UpdateManager.Instance.OnUpdate += UpdateTime;
         }
 
@@ -23,12 +23,12 @@ namespace GameTime.Action
             }
         }
 
-        public void Add(ActionPerTime action)
+        public void Add(ITimeAction action)
         {
             _actions.Add(action);
         }
 
-        public void Remove(ActionPerTime action)
+        public void Remove(ITimeAction action)
         {
             _actions.Remove(action);
         }

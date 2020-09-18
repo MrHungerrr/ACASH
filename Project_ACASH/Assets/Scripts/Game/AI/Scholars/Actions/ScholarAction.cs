@@ -7,7 +7,7 @@ using AI.Scholars.Actions.Operations;
 
 namespace AI.Scholars.Actions
 {
-    public struct ScholarAction
+    public class ScholarAction
     {
         public IReadOnlyList<IScholarOperation> Operations => _operations;
         private readonly IScholarOperation[] _operations;

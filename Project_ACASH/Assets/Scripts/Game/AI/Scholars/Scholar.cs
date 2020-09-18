@@ -41,11 +41,12 @@ namespace AI.Scholars
 
             Move.Setup(this);
             Sight.Setup(this);
-            GoapContext = new ScholarGOAPContext();
             Info = new ScholarInfo(this, globalIndex, localIndex);
+            Items = new ScholarItemsController(this);
             Actions = new ScholarActionsController(this);
             Memorable = new ScholarMemorable(this);
             Location = new ScholarLocation(this);
+            GoapContext = new ScholarGOAPContext(this);
         }
 
         public void Reset()
@@ -71,7 +72,6 @@ namespace AI.Scholars
         public void SetNewScholar()
         {
             Info.SetFullName("Egor", "Akimov");
-            Items = new ScholarItemsController(null);
         }
 
         public void Pause(bool option)

@@ -23,13 +23,13 @@ namespace GOAP
 
         public bool TryGetBestPlan(KeyValuePair<string, GOAPState> goal, out List<GOAPAction> plan)
         {
-            var plans = new TreeDecision<GOAPAction>();
+            TreeDecision<GOAPAction> treePlans;
             plan = null;
 
-            if (!_builder.TryBuildPlans(goal, out plans))
+            if (!_builder.TryBuildPlans(goal, out treePlans))
                 return false;
 
-            plan = GetBestPlan(plans);
+            plan = GetBestPlan(treePlans);
 
             if(plan.Count == 0)
                 return false;
@@ -37,9 +37,9 @@ namespace GOAP
             return true;
         }
 
-        public bool TryGetAllPlans(KeyValuePair<string, GOAPState> goal, out IEnumerable<List<GOAPAction>> plans)
+        public bool TryGetAllPlans(KeyValuePair<string, GOAPState> goal, out List<List<GOAPAction>> plans)
         {
-            var treePlans = new TreeDecision<GOAPAction>();
+            TreeDecision<GOAPAction> treePlans;
             plans = null;
 
             if (!_builder.TryBuildPlans(goal, out treePlans))
@@ -47,40 +47,43 @@ namespace GOAP
 
             plans = GetAllPlans(treePlans);
 
-            if (plans == null || plans.Count() == 0)
+            if (plans.Count == 0)
                 return false;
 
             return true;
         }
 
 
-        private IEnumerable<List<GOAPAction>> GetAllPlans(TreeDecision<GOAPAction> plans)
+        private List<List<GOAPAction>> GetAllPlans(TreeDecision<GOAPAction> plans)
         {
             var stack = new Stack<GOAPAction>();
+            var list = new List<List<GOAPAction>>();
 
             foreach (var child in plans.Root.Children)
             {
-                foreach (var plan in Iterate(_comparer.ZeroCost, child))
-                    yield return plan;
+                Iterate(child);
             }
 
-            IEnumerable<List<GOAPAction>> Iterate(IGOAPCost previusCost, TreeElement<GOAPAction> element)
+            void Iterate(TreeElement<GOAPAction> element)
             {
-                var newCost = previusCost.GetSumWith(element.Content.Cost);
                 stack.Push(element.Content);
 
                 if (!element.HasChildren)
                 {
-                    yield return stack.ToList();
+                    list.Add(stack.ToList());
+                    stack.Pop();
+                    return;
                 }
 
                 foreach (var child in element.Children)
                 {
-                    Iterate(newCost, child);
-                }
+                    Iterate(child);
+                }          
 
                 while (stack.Pop() != element.Content) ;
             }
+
+            return list;
         }
 
         private List<GOAPAction> GetBestPlan(TreeDecision<GOAPAction> plans)
@@ -101,24 +104,15 @@ namespace GOAP
 
                 if (!element.HasChildren)
                 {
-                    Console.WriteLine();
-
                     int value = _comparer.Compare(bestCost, newCost);
 
                     if (value < 0 || (value == 0 && BaseMath.Probability(0.5f)))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-
                         bestCost = newCost;
                         bestPlan = stack.Where(x => !x.IsConnector).ToList();
                     }
 
-                    foreach (var action in stack)
-                    {
-                        Console.WriteLine($"|{action.Cost}|\t {action}");
-                    }
-
-                    Console.ResetColor();
+                    stack.Pop();
                     return;
                 }
 
@@ -127,7 +121,7 @@ namespace GOAP
                     Iterate(newCost, child);
                 }
 
-                while (stack.Pop() != element.Content) ;
+                while (stack.Pop() != element.Content);
             }
 
             return bestPlan;

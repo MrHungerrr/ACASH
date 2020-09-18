@@ -6,18 +6,18 @@ namespace GOAP
 {
     public class GOAPStateContext
     {
-        private IGOAPStateStorage[] _localStates;
+        private readonly IGOAPStateStorage[] _contexts;
 
-        public GOAPStateContext(params IGOAPStateStorage[] localState)
+        public GOAPStateContext(params IGOAPStateStorage[] contexts)
         {
-            _localStates = localState;
+            _contexts = contexts;
         }
 
         public bool Contains(KeyValuePair<string, GOAPState> state)
         {
-            for(int i = 0; i< _localStates.Length; i++)
+            for(int i = 0; i< _contexts.Length; i++)
             {
-                if (_localStates[i].Contains(state))
+                if (_contexts[i].Contains(state))
                     return true;
             }
 
@@ -27,11 +27,11 @@ namespace GOAP
 
         public void Set(KeyValuePair<string, GOAPState> state)
         {
-            for (int i = 0; i < _localStates.Length; i++)
+            for (int i = 0; i < _contexts.Length; i++)
             {
-                if (_localStates[i].Contains(state.Key))
+                if (_contexts[i].Contains(state.Key))
                 {
-                    _localStates[i].Set(state);
+                    _contexts[i].Set(state);
                     return;
                 }
             }

@@ -965,21 +965,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2714560074849582719}
     m_Modifications:
-    - target: {fileID: 649772667222528538, guid: a71605fc7865cf041bfd20a31f3f6fcc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 649772667222528538, guid: a71605fc7865cf041bfd20a31f3f6fcc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 649772667222528538, guid: a71605fc7865cf041bfd20a31f3f6fcc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 679098276735883702, guid: a71605fc7865cf041bfd20a31f3f6fcc,
         type: 3}
       propertyPath: m_Name
@@ -1038,21 +1023,6 @@ PrefabInstance:
     - target: {fileID: 679098276735883703, guid: a71605fc7865cf041bfd20a31f3f6fcc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 679098276735883703, guid: a71605fc7865cf041bfd20a31f3f6fcc,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 679098276735883703, guid: a71605fc7865cf041bfd20a31f3f6fcc,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 679098276735883703, guid: a71605fc7865cf041bfd20a31f3f6fcc,
-        type: 3}
-      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1589,16 +1559,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3639988916536237684, guid: f455da797158c8442b3614c73ab31477,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3639988916536237684, guid: f455da797158c8442b3614c73ab31477,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f455da797158c8442b3614c73ab31477, type: 3}
@@ -2438,7 +2398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8815332095259268415}
   m_Layer: 0
-  m_Name: Outside
+  m_Name: Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2695,7 +2655,8 @@ MonoBehaviour:
   _toilets:
   - {fileID: 1200480536}
   _sinks: []
-  _outside: []
+  _hallway: []
+  _class: {fileID: 5238529169551548816}
 --- !u!114 &5238529169551548819
 MonoBehaviour:
   m_ObjectHideFlags: 0

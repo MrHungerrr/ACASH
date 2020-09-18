@@ -2,76 +2,51 @@
 using UnityEngine.Events;
 using Vkimow.Unity.Tools.Single;
 using Exam;
-
+using System;
 
 public class LevelSettings : MonoSingleton<LevelSettings>
 {
-    public enum difficultyes
-    {
-        Easy,
-        Normal,
-        Hard
-    }
-
     private enum nextExamMode
     {
         Auto,
         Manual,
     }
 
+    public event Action OnExamNext;
+    public event Action OnExamOver;
 
-    public difficultyes difficultyType;
+
+
     [SerializeField]
-    private nextExamMode nextExam;
-
-
-    public UnityEvent ExamNext { get; } = new UnityEvent();
-    public UnityEvent ExamOver { get; } = new UnityEvent();
-
-
-    [Range(0,20)]
-    public int actionsCount;
+    private nextExamMode _nextExam;
 
     [SerializeField]
     [Range(0, 20)]
-    private int examsCount;
+    private int _examsCount;
 
-    private int exam_index;
+    private int _examIndex;
 
 
     public void SetLevel()
     {
-        switch(nextExam)
-        {
-            case nextExamMode.Auto:
-                {
-                    ExamNext.AddListener(ExamManager.Instance.ResetExam);
-                    break;
-                }
-            case nextExamMode.Manual:
-                {
-                    break;
-                }
-        }
-
-        exam_index = 1;
+        _examIndex = 0;
     }
 
     public void RestartExam()
     {
-        ExamNext.Invoke();
+        OnExamNext.Invoke();
     }
 
     public void NextExam()
     {
-        if (exam_index < examsCount)
+        if (_examIndex < _examsCount)
         {
-            exam_index++;
-            ExamNext.Invoke();
+            _examIndex++;
+            OnExamNext.Invoke();
         }
         else
         {
-            ExamOver.Invoke();
+            OnExamOver.Invoke();
         }
     }
 

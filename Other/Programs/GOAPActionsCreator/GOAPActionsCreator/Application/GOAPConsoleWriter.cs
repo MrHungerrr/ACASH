@@ -133,5 +133,16 @@ namespace Application
 
             table.Write();
         }
+
+
+
+        public static void WritePlan(List<GOAPAction> plan)
+        {
+            Console.WriteLine();
+            foreach (var action in plan)
+            {
+                Console.WriteLine($"|{action.Cost}|\t{action}");
+            }
+        }
     }
 }

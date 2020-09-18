@@ -1,4 +1,6 @@
 ﻿using AI.Scholars;
+using AI.Scholars.Actions;
+using AI.Scholars.Actions.Operations;
 using GOAP;
 using GOAP.Cost;
 using System;
@@ -24,6 +26,21 @@ namespace AI.Scholars.GOAP
                 throw new Exception($"{scholar} не нашел план для цели \"{goalKey}\"");
 
             return plan;
+        }
+
+
+        public ScholarAction GetPlan(Scholar scholar, string goalKey)
+        {
+            var actionsConstructor = new ScholarActionsConstructor(scholar);
+            var operations = new List<IScholarOperation>();
+            var plan = GetGOAPPlan(scholar, goalKey);
+
+            foreach(var action in plan)
+            {
+                operations.AddRange(actionsConstructor.Create(action.Name));
+            }
+
+            return new ScholarAction(operations);
         }
     }
 }

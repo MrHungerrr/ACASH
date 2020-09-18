@@ -12,22 +12,18 @@ namespace GameTime
     {
         public event System.Action OnSecondDone;
         public int TimeInSec => _timeInSec;
-        public Timer Timer => _timer;
 
 
         private float _time;
         private int _timeInSec;
-        private Timer _timer;
 
         public void SetLevel()
         {
             OnSecondDone = null;
-            _timer = null;
             _time = 0;
             _timeInSec = 0;
 
-            ActionPerTimeManager.Instance.SetLevel();
-            ActionSchedule.Instance.SetLevel();
+            TimeActionManager.Instance.SetLevel();
             TimerShower.Instance.SetLevel();
         }
 
@@ -36,15 +32,9 @@ namespace GameTime
             TimeUpdate();
         }
 
-        public void SetTimer(int time)
-        {
-            _timer = new Timer(time);
-        }
-
         private void TimeUpdate()
         {
-            float deltaTime = UnityEngine.Time.deltaTime;
-            _time += deltaTime;
+            _time += UnityEngine.Time.deltaTime;
 
             if (_timeInSec != (int)_time)
             {
@@ -59,10 +49,4 @@ namespace GameTime
             OnSecondDone?.Invoke();
         }
     }
-
 }
-
-
-
-
-

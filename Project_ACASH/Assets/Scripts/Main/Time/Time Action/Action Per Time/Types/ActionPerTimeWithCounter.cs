@@ -10,6 +10,9 @@ namespace GameTime.Action
 
         public ActionPerTimeWithCounter(float perTime, System.Action action, int numberOfActions): base(perTime, action)
         {
+            if (numberOfActions <= 0)
+                throw new ArgumentException();
+
             _numberOfActions = numberOfActions;
         }
 
@@ -18,15 +21,18 @@ namespace GameTime.Action
             _timePassed += deltaTime;
 
             if (_timePassed > TimeToPass)
-            {
-                Action();
-                _timePassed = 0;
-                _numberOfActions--;
+                Invoke();
+        }
 
-                if(_numberOfActions <= 0)
-                {
-                    Disable();
-                }
+        private void Invoke()
+        {
+            _action.Invoke();
+            _timePassed = 0;
+            _numberOfActions--;
+
+            if (_numberOfActions <= 0)
+            {
+                Disable();
             }
         }
     }

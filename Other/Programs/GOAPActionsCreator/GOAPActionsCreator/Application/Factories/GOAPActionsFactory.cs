@@ -17,19 +17,19 @@ namespace Application
         private static IGOAPAction cheatNote = new GOAPAction("Cheat_Note");
         private static IGOAPAction cheatNoteToilet = new GOAPAction("Cheat_Note_Toilet", true);
         private static IGOAPAction cheatNoteSink = new GOAPAction("Cheat_Note_Sink", true);
-        private static IGOAPAction cheatNoteOutside = new GOAPAction("Cheat_Note_Outside", true);
+        private static IGOAPAction cheatNoteHallway = new GOAPAction("Cheat_Note_Hallway", true);
         private static IGOAPAction cheatNoteDesk = new GOAPAction("Cheat_Note_Desk", true);
 
         private static IGOAPAction cheatPhone = new GOAPAction("Cheat_Phone");
         private static IGOAPAction cheatPhoneToilet = new GOAPAction("Cheat_Phone_Toilet", true);
         private static IGOAPAction cheatPhoneSink = new GOAPAction("Cheat_Phone_Sink", true);
-        private static IGOAPAction cheatPhoneOutside = new GOAPAction("Cheat_Phone_Outside", true);
+        private static IGOAPAction cheatPhoneHallway = new GOAPAction("Cheat_Phone_Hallway", true);
         private static IGOAPAction cheatPhoneDesk = new GOAPAction("Cheat_Phone_Desk", true);
 
         private static IGOAPAction cheatCalculator = new GOAPAction("Cheat_Calculator");
         private static IGOAPAction cheatCalculatorToilet = new GOAPAction("Cheat_Calculator_Toilet", true);
         private static IGOAPAction cheatCalculatorSink = new GOAPAction("Cheat_Calculator_Sink", true);
-        private static IGOAPAction cheatCalculatorOutside = new GOAPAction("Cheat_Calculator_Outside", true);
+        private static IGOAPAction cheatCalculatorHallway = new GOAPAction("Cheat_Calculator_Hallway", true);
         private static IGOAPAction cheatCalculatorDesk = new GOAPAction("Cheat_Calculator_Desk", true);
 
         //-------------------------------------------------------------------
@@ -50,7 +50,7 @@ namespace Application
 
         private static IGOAPAction goToToilet = new GOAPAction("GoTo_Toilet");
         private static IGOAPAction goToSink = new GOAPAction("GoTo_Sink");
-        private static IGOAPAction goToOutside = new GOAPAction("GoTo_Outside");
+        private static IGOAPAction goToHallway = new GOAPAction("GoTo_Hallway");
         private static IGOAPAction goToDesk = new GOAPAction("GoTo_Desk");
         private static IGOAPAction goToDockStation = new GOAPAction("GoTo_DockStation");
 
@@ -82,19 +82,19 @@ namespace Application
             GOAPActionsManager.Instance.Add(cheatNote);
             GOAPActionsManager.Instance.Add(cheatNoteToilet);
             GOAPActionsManager.Instance.Add(cheatNoteSink);
-            GOAPActionsManager.Instance.Add(cheatNoteOutside);
+            GOAPActionsManager.Instance.Add(cheatNoteHallway);
             GOAPActionsManager.Instance.Add(cheatNoteDesk);
 
             GOAPActionsManager.Instance.Add(cheatPhone);
             GOAPActionsManager.Instance.Add(cheatPhoneToilet);
             GOAPActionsManager.Instance.Add(cheatPhoneSink);
-            GOAPActionsManager.Instance.Add(cheatPhoneOutside);
+            GOAPActionsManager.Instance.Add(cheatPhoneHallway);
             GOAPActionsManager.Instance.Add(cheatPhoneDesk);
 
             GOAPActionsManager.Instance.Add(cheatCalculator);
             GOAPActionsManager.Instance.Add(cheatCalculatorToilet);
             GOAPActionsManager.Instance.Add(cheatCalculatorSink);
-            GOAPActionsManager.Instance.Add(cheatCalculatorOutside);
+            GOAPActionsManager.Instance.Add(cheatCalculatorHallway);
             GOAPActionsManager.Instance.Add(cheatCalculatorDesk);
 
             GOAPActionsManager.Instance.Add(specialGoOut);
@@ -109,7 +109,7 @@ namespace Application
 
             GOAPActionsManager.Instance.Add(goToToilet);
             GOAPActionsManager.Instance.Add(goToSink);
-            GOAPActionsManager.Instance.Add(goToOutside);
+            GOAPActionsManager.Instance.Add(goToHallway);
             GOAPActionsManager.Instance.Add(goToDesk);
             GOAPActionsManager.Instance.Add(goToDockStation);
         }
@@ -129,9 +129,9 @@ namespace Application
             cheatNoteSink.GetEffect().Set("Cheat_Note", true);
             cheatNoteSink.GetPreconditions().Add("Location", "Sink");
 
-            cheatNoteOutside.SetCost(new BaseCost(0));
-            cheatNoteOutside.GetEffect().Set("Cheat_Note", true);
-            cheatNoteOutside.GetPreconditions().Add("Location", "Outside");
+            cheatNoteHallway.SetCost(new BaseCost(0));
+            cheatNoteHallway.GetEffect().Set("Cheat_Note", true);
+            cheatNoteHallway.GetPreconditions().Add("Location", "Hallway");
 
             cheatNoteDesk.SetCost(new BaseCost(0));
             cheatNoteDesk.GetEffect().Set("Cheat_Note", true);
@@ -153,9 +153,9 @@ namespace Application
             cheatPhoneSink.GetEffect().Set("Cheat_Phone", true);
             cheatPhoneSink.GetPreconditions().Add("Location", "Sink");
 
-            cheatPhoneOutside.SetCost(new BaseCost(0));
-            cheatPhoneOutside.GetEffect().Set("Cheat_Phone", true);
-            cheatPhoneOutside.GetPreconditions().Add("Location", "Outside");
+            cheatPhoneHallway.SetCost(new BaseCost(0));
+            cheatPhoneHallway.GetEffect().Set("Cheat_Phone", true);
+            cheatPhoneHallway.GetPreconditions().Add("Location", "Hallway");
 
             cheatPhoneDesk.SetCost(new BaseCost(0));
             cheatPhoneDesk.GetEffect().Set("Cheat_Phone", true);
@@ -177,9 +177,9 @@ namespace Application
             cheatCalculatorSink.GetEffect().Set("Cheat_Calculator", true);
             cheatCalculatorSink.GetPreconditions().Add("Location", "Sink");
 
-            cheatCalculatorOutside.SetCost(new BaseCost(0));
-            cheatCalculatorOutside.GetEffect().Set("Cheat_Calculator", true);
-            cheatCalculatorOutside.GetPreconditions().Add("Location", "Outside");
+            cheatCalculatorHallway.SetCost(new BaseCost(0));
+            cheatCalculatorHallway.GetEffect().Set("Cheat_Calculator", true);
+            cheatCalculatorHallway.GetPreconditions().Add("Location", "Hallway");
 
             cheatCalculatorDesk.SetCost(new BaseCost(0));
             cheatCalculatorDesk.GetEffect().Set("Cheat_Calculator", true);
@@ -209,7 +209,7 @@ namespace Application
             specialGoAir.GetEffect().Set("Special_Go_Out", true);
             specialGoAir.GetPreconditions().Add("Want_Rest", true);
             specialGoAir.GetPreconditions().Add("Rest", true);
-            specialGoAir.GetPreconditions().Add("Location", "Outside");
+            specialGoAir.GetPreconditions().Add("Location", "Hallway");
 
 
         }
@@ -234,15 +234,15 @@ namespace Application
         {
             goToToilet.SetCost(new BaseCost(10));
             goToToilet.GetEffect().Set("Location", "Toilet");
-            goToToilet.GetPreconditions().Add("Places_Toilets_Are_Busy", false);
+            goToToilet.GetPreconditions().Add("Places_Toilet_Are_Busy", false);
 
             goToSink.SetCost(new BaseCost(10));
             goToSink.GetEffect().Set("Location", "Sink");
-            goToSink.GetPreconditions().Add("Places_Sinks_Are_Busy", false);
+            goToSink.GetPreconditions().Add("Places_Sink_Are_Busy", false);
 
-            goToOutside.SetCost(new BaseCost(10));
-            goToOutside.GetEffect().Set("Location", "Outside");
-            goToOutside.GetPreconditions().Add("Places_Outside_Are_Busy", false);
+            goToHallway.SetCost(new BaseCost(10));
+            goToHallway.GetEffect().Set("Location", "Hallway");
+            goToHallway.GetPreconditions().Add("Places_Hallway_Are_Busy", false);
 
             goToDesk.SetCost(new BaseCost(10));
             goToDesk.GetEffect().Set("Location", "Desk");

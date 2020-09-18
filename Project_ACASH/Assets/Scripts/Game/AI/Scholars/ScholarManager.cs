@@ -4,6 +4,8 @@ using UnityEngine;
 using Vkimow.Tools.Single;
 using Exam;
 using AI.Scholars.Actions;
+using System.IO;
+using GOAP;
 
 namespace AI.Scholars
 {
@@ -15,6 +17,11 @@ namespace AI.Scholars
         private Scholar[] _scholars;
 
 
+
+        public void Setup()
+        {
+            GOAPIO.Instance.Load(Path.Combine(Application.dataPath, "Resources", "GOAP"));
+        }
 
         public void SetLevel()
         {

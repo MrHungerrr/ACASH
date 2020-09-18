@@ -26,10 +26,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>87.5400162</X>
-          <Y>16.57668</Y>
+          <X>88.15049</X>
+          <Y>16.6469231</Y>
         </Position>
-        <Rotation>74.151825</Rotation>
+        <Rotation>70.56476</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -37,10 +37,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>86.27841</X>
-          <Y>16.4393845</Y>
+          <X>86.91565</X>
+          <Y>16.5075035</Y>
         </Position>
-        <Rotation>80.44836</Rotation>
+        <Rotation>77.46212</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -48,10 +48,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>84.96905</X>
-          <Y>16.3062744</Y>
+          <X>85.62925</X>
+          <Y>16.3723125</Y>
         </Position>
-        <Rotation>86.9763641</Rotation>
+        <Rotation>84.31802</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -62,7 +62,7 @@
           <X>84.2986145</X>
           <Y>16.24126</Y>
         </Position>
-        <Rotation>93.3752</Rotation>
+        <Rotation>91.0719452</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -81,10 +81,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>81.52886</X>
-          <Y>15.9912224</Y>
+          <X>82.23321</X>
+          <Y>16.05225</Y>
         </Position>
-        <Rotation>93.49411</Rotation>
+        <Rotation>93.55607</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -92,10 +92,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>80.09974</X>
-          <Y>15.8720789</Y>
+          <X>80.8175354</X>
+          <Y>15.9311676</Y>
         </Position>
-        <Rotation>93.36908</Rotation>
+        <Rotation>93.43187</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -103,10 +103,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>78.64662</X>
-          <Y>15.7567778</Y>
+          <X>79.37595</X>
+          <Y>15.8139505</Y>
         </Position>
-        <Rotation>93.24056</Rotation>
+        <Rotation>93.30542</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -114,14 +114,25 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>77.17272</X>
-          <Y>15.64936</Y>
+          <X>77.91208</X>
+          <Y>15.7019453</Y>
         </Position>
-        <Rotation>91.75479</Rotation>
+        <Rotation>92.25761</Rotation>
       </Scholar>
     </Info>
   </Moment>
   <Moment Index="11" Time="0">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>76.428894</X>
+          <Y>15.5989342</Y>
+        </Position>
+        <Rotation>91.6775055</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="12" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -132,7 +143,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="12" Time="0">
+  <Moment Index="13" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -143,7 +154,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="13" Time="0">
+  <Moment Index="14" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -154,7 +165,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="14" Time="0">
+  <Moment Index="15" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -165,7 +176,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="15" Time="0">
+  <Moment Index="16" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -176,18 +187,18 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="16" Time="0">
+  <Moment Index="17" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>68.80659</X>
-          <Y>15.19828</Y>
+          <X>68.03077</X>
+          <Y>15.1677694</Y>
         </Position>
-        <Rotation>90.90648</Rotation>
+        <Rotation>90.4771957</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="17" Time="0">
+  <Moment Index="18" Time="0">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -198,7 +209,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="18" Time="1">
+  <Moment Index="19" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -209,7 +220,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="19" Time="1">
+  <Moment Index="20" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -220,7 +231,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="20" Time="1">
+  <Moment Index="21" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -231,25 +242,14 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="21" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>61.76978</X>
-          <Y>14.9838867</Y>
-        </Position>
-        <Rotation>90.00514</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
   <Moment Index="22" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>60.1930847</X>
-          <Y>14.9525719</Y>
+          <X>60.98188</X>
+          <Y>14.9675646</Y>
         </Position>
-        <Rotation>89.88371</Rotation>
+        <Rotation>89.94495</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -257,10 +257,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>58.6130676</X>
-          <Y>14.9264431</Y>
+          <X>59.40346</X>
+          <Y>14.9388742</Y>
         </Position>
-        <Rotation>89.75686</Rotation>
+        <Rotation>89.8211441</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -279,17 +279,6 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>55.4448929</X>
-          <Y>14.8873281</Y>
-        </Position>
-        <Rotation>89.71835</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="26" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
           <X>54.6514359</X>
           <Y>14.8799944</Y>
         </Position>
@@ -297,40 +286,18 @@
       </Scholar>
     </Info>
   </Moment>
+  <Moment Index="26" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>52.2683029</X>
+          <Y>14.8632994</Y>
+        </Position>
+        <Rotation>89.5813446</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
   <Moment Index="27" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>53.0631065</X>
-          <Y>14.8680105</Y>
-        </Position>
-        <Rotation>89.61585</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="28" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>51.4731178</X>
-          <Y>14.8594065</Y>
-        </Position>
-        <Rotation>89.54644</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="29" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>49.88171</X>
-          <Y>14.853982</Y>
-        </Position>
-        <Rotation>89.47487</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="30" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -341,7 +308,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="31" Time="1">
+  <Moment Index="28" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -352,7 +319,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="32" Time="1">
+  <Moment Index="29" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -363,7 +330,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="33" Time="1">
+  <Moment Index="30" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -374,51 +341,51 @@
       </Scholar>
     </Info>
   </Moment>
+  <Moment Index="31" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>42.7075768</X>
+          <Y>14.8555546</Y>
+        </Position>
+        <Rotation>89.5473</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="32" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>41.11129</X>
+          <Y>14.8601379</Y>
+        </Position>
+        <Rotation>89.51776</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="33" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>39.51448</X>
+          <Y>14.86605</Y>
+        </Position>
+        <Rotation>89.48715</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
   <Moment Index="34" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>43.5055</X>
-          <Y>14.8537865</Y>
+          <X>37.9172249</X>
+          <Y>14.8729887</Y>
         </Position>
-        <Rotation>89.5618439</Rotation>
+        <Rotation>89.6846848</Rotation>
       </Scholar>
     </Info>
   </Moment>
   <Moment Index="35" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>41.9095039</X>
-          <Y>14.8576756</Y>
-        </Position>
-        <Rotation>89.53264</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="36" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>40.3129463</X>
-          <Y>14.8629322</Y>
-        </Position>
-        <Rotation>89.50263</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="37" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>38.7159042</X>
-          <Y>14.869483</Y>
-        </Position>
-        <Rotation>89.47125</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="38" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -429,51 +396,40 @@
       </Scholar>
     </Info>
   </Moment>
+  <Moment Index="36" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>35.52063</X>
+          <Y>14.8839064</Y>
+        </Position>
+        <Rotation>89.67805</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="37" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>33.9225044</X>
+          <Y>14.8914938</Y>
+        </Position>
+        <Rotation>89.67366</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="38" Time="1">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>32.3241158</X>
+          <Y>14.8993082</Y>
+        </Position>
+        <Rotation>89.66923</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
   <Moment Index="39" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>36.31958</X>
-          <Y>14.8802032</Y>
-        </Position>
-        <Rotation>89.68024</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="40" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>34.7216034</X>
-          <Y>14.8876705</Y>
-        </Position>
-        <Rotation>89.67586</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="41" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>33.12334</X>
-          <Y>14.8953733</Y>
-        </Position>
-        <Rotation>89.67145</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="42" Time="1">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>31.5248337</X>
-          <Y>14.9032955</Y>
-        </Position>
-        <Rotation>89.6669846</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="43" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -484,40 +440,40 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="44" Time="1">
+  <Moment Index="40" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>29.1266918</X>
-          <Y>14.9155607</Y>
+          <X>29.9261189</X>
+          <Y>14.9114227</Y>
         </Position>
-        <Rotation>89.65998</Rotation>
+        <Rotation>89.66238</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="45" Time="1">
+  <Moment Index="41" Time="1">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>27.5277157</X>
-          <Y>14.923543</Y>
+          <X>28.3272228</X>
+          <Y>14.9196</Y>
         </Position>
-        <Rotation>89.80252</Rotation>
+        <Rotation>89.79948</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="46" Time="2">
+  <Moment Index="42" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>25.9285946</X>
-          <Y>14.9311609</Y>
+          <X>26.7281723</X>
+          <Y>14.9273958</Y>
         </Position>
-        <Rotation>89.80855</Rotation>
+        <Rotation>89.80554</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="47" Time="2">
+  <Moment Index="43" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -528,7 +484,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="48" Time="2">
+  <Moment Index="44" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -539,14 +495,58 @@
       </Scholar>
     </Info>
   </Moment>
+  <Moment Index="45" Time="2">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>22.7299976</X>
+          <Y>14.9454126</Y>
+        </Position>
+        <Rotation>89.82055</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="46" Time="2">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>21.1305542</X>
+          <Y>14.95209</Y>
+        </Position>
+        <Rotation>89.82668</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="47" Time="2">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>19.5310326</X>
+          <Y>14.9584932</Y>
+        </Position>
+        <Rotation>89.83303</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="48" Time="2">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>17.9361267</X>
+          <Y>14.9875546</Y>
+        </Position>
+        <Rotation>88.76709</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
   <Moment Index="49" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>21.9302864</X>
-          <Y>14.9487867</Y>
+          <X>17.1455936</X>
+          <Y>15.0352993</Y>
         </Position>
-        <Rotation>89.82359</Rotation>
+        <Rotation>82.09612</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -554,10 +554,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>20.3308029</X>
-          <Y>14.9553251</Y>
+          <X>15.5780191</X>
+          <Y>15.1921835</Y>
         </Position>
-        <Rotation>89.82983</Rotation>
+        <Rotation>75.97132</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -565,58 +565,14 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>18.7312469</X>
-          <Y>14.9615955</Y>
+          <X>14.0280485</X>
+          <Y>15.4249277</Y>
         </Position>
-        <Rotation>89.83634</Rotation>
+        <Rotation>69.32119</Rotation>
       </Scholar>
     </Info>
   </Moment>
   <Moment Index="52" Time="2">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>17.9361267</X>
-          <Y>14.9875546</Y>
-        </Position>
-        <Rotation>86.89915</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="53" Time="2">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>16.35958</X>
-          <Y>15.1038237</Y>
-        </Position>
-        <Rotation>80.69635</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="54" Time="2">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>14.8008585</X>
-          <Y>15.2994947</Y>
-        </Position>
-        <Rotation>73.95281</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="55" Time="2">
-    <Info>
-      <Scholar Id="0" Type="Scholar">
-        <Position>
-          <X>13.2595491</X>
-          <Y>15.5677061</Y>
-        </Position>
-        <Rotation>67.5191956</Rotation>
-      </Scholar>
-    </Info>
-  </Moment>
-  <Moment Index="56" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -627,7 +583,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="57" Time="2">
+  <Moment Index="53" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -638,7 +594,7 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="58" Time="2">
+  <Moment Index="54" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -649,18 +605,18 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="59" Time="2">
+  <Moment Index="55" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>7.99885035</X>
-          <Y>16.99781</Y>
+          <X>8.737696</X>
+          <Y>16.7513256</Y>
         </Position>
-        <Rotation>59.0176659</Rotation>
+        <Rotation>59.6409</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="60" Time="2">
+  <Moment Index="56" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -671,18 +627,18 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="61" Time="2">
+  <Moment Index="57" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
           <X>5.81179762</X>
           <Y>17.8177547</Y>
         </Position>
-        <Rotation>55.0680923</Rotation>
+        <Rotation>55.3575821</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="62" Time="2">
+  <Moment Index="58" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -693,18 +649,18 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="63" Time="2">
+  <Moment Index="59" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>2.99846363</X>
-          <Y>19.1287</Y>
+          <X>3.69096756</X>
+          <Y>18.7792358</Y>
         </Position>
-        <Rotation>49.04726</Rotation>
+        <Rotation>49.5082779</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="64" Time="2">
+  <Moment Index="60" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -715,18 +671,18 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="65" Time="2">
+  <Moment Index="61" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>0.295013428</X>
-          <Y>20.6534328</Y>
+          <X>0.961264</X>
+          <Y>20.2544174</Y>
         </Position>
-        <Rotation>47.26715</Rotation>
+        <Rotation>47.70473</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="66" Time="2">
+  <Moment Index="62" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -737,40 +693,40 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="67" Time="2">
+  <Moment Index="63" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-1.667529</X>
-          <Y>21.914465</Y>
+          <X>-1.01924276</X>
+          <Y>21.4839287</Y>
         </Position>
-        <Rotation>45.96819</Rotation>
+        <Rotation>46.40011</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="68" Time="2">
+  <Moment Index="64" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-2.94702339</X>
-          <Y>22.803997</Y>
+          <X>-2.31008649</X>
+          <Y>22.3546181</Y>
         </Position>
-        <Rotation>45.10071</Rotation>
+        <Rotation>45.53554</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="69" Time="2">
+  <Moment Index="65" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-4.204401</X>
-          <Y>23.7290058</Y>
+          <X>-3.57843447</X>
+          <Y>23.2622375</Y>
         </Position>
-        <Rotation>44.2177849</Rotation>
+        <Rotation>44.662056</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="70" Time="2">
+  <Moment Index="66" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -781,62 +737,62 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="71" Time="2">
+  <Moment Index="67" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
           <X>-6.063878</X>
           <Y>25.1586227</Y>
         </Position>
-        <Rotation>45.90616</Rotation>
+        <Rotation>45.42747</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="72" Time="2">
+  <Moment Index="68" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
           <X>-7.33498955</X>
           <Y>26.0688839</Y>
         </Position>
-        <Rotation>52.06689</Rotation>
+        <Rotation>51.4421768</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="73" Time="2">
+  <Moment Index="69" Time="2">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-8.636131</X>
-          <Y>26.9354229</Y>
+          <X>-7.98192835</X>
+          <Y>26.5076065</Y>
         </Position>
-        <Rotation>58.4897041</Rotation>
+        <Rotation>57.96282</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="74" Time="3">
+  <Moment Index="70" Time="3">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
           <X>-9.297386</X>
           <Y>27.35229</Y>
         </Position>
-        <Rotation>64.68837</Rotation>
+        <Rotation>64.262825</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="75" Time="3">
+  <Moment Index="71" Time="3">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
           <X>-10.6403275</X>
           <Y>28.1526623</Y>
         </Position>
-        <Rotation>70.9511261</Rotation>
+        <Rotation>70.9631348</Rotation>
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="76" Time="3">
+  <Moment Index="72" Time="3">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
@@ -847,14 +803,58 @@
       </Scholar>
     </Info>
   </Moment>
-  <Moment Index="77" Time="3">
+  <Moment Index="73" Time="3">
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
           <X>-13.4043055</X>
           <Y>29.6109028</Y>
         </Position>
-        <Rotation>75.82214</Rotation>
+        <Rotation>76.3249</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="74" Time="3">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>-14.8241987</X>
+          <Y>30.2573071</Y>
+        </Position>
+        <Rotation>80.03175</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="75" Time="3">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>-15.5434771</X>
+          <Y>30.554533</Y>
+        </Position>
+        <Rotation>84.8788</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="76" Time="3">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>-15.8631563</X>
+          <Y>30.6866341</Y>
+        </Position>
+        <Rotation>78.40518</Rotation>
+      </Scholar>
+    </Info>
+  </Moment>
+  <Moment Index="77" Time="3">
+    <Info>
+      <Scholar Id="0" Type="Scholar">
+        <Position>
+          <X>-15.8986759</X>
+          <Y>30.701313</Y>
+        </Position>
+        <Rotation>72.24372</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -862,10 +862,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-14.1111221</X>
-          <Y>29.9420166</Y>
+          <X>-15.9026232</X>
+          <Y>30.7029438</Y>
         </Position>
-        <Rotation>79.02392</Rotation>
+        <Rotation>65.48531</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -873,10 +873,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.5434771</X>
-          <Y>30.554533</Y>
+          <X>-15.9030619</X>
+          <Y>30.703125</Y>
         </Position>
-        <Rotation>83.4431458</Rotation>
+        <Rotation>59.0710831</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -884,10 +884,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.8631563</X>
-          <Y>30.6866341</Y>
+          <X>-15.9030981</X>
+          <Y>30.70314</Y>
         </Position>
-        <Rotation>79.84291</Rotation>
+        <Rotation>52.7703247</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -895,10 +895,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.8986759</X>
-          <Y>30.701313</Y>
+          <X>-15.9031143</X>
+          <Y>30.7031479</Y>
         </Position>
-        <Rotation>73.38313</Rotation>
+        <Rotation>46.27974</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -906,10 +906,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.9016361</X>
-          <Y>30.7025356</Y>
+          <X>-15.9031153</X>
+          <Y>30.7031479</Y>
         </Position>
-        <Rotation>67.26876</Rotation>
+        <Rotation>39.79153</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -917,10 +917,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.9029522</X>
-          <Y>30.70308</Y>
+          <X>-15.9031153</X>
+          <Y>30.7031479</Y>
         </Position>
-        <Rotation>60.8997574</Rotation>
+        <Rotation>33.2522964</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -928,10 +928,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.9030981</X>
-          <Y>30.70314</Y>
+          <X>-15.9031153</X>
+          <Y>30.7031479</Y>
         </Position>
-        <Rotation>54.4629631</Rotation>
+        <Rotation>26.6590843</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -939,10 +939,10 @@
     <Info>
       <Scholar Id="0" Type="Scholar">
         <Position>
-          <X>-15.9031143</X>
+          <X>-15.9031153</X>
           <Y>30.7031479</Y>
         </Position>
-        <Rotation>47.85198</Rotation>
+        <Rotation>20.5930538</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -953,7 +953,7 @@
           <X>-15.9031153</X>
           <Y>30.7031479</Y>
         </Position>
-        <Rotation>41.17901</Rotation>
+        <Rotation>13.8205919</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -964,7 +964,7 @@
           <X>-15.9031153</X>
           <Y>30.7031479</Y>
         </Position>
-        <Rotation>34.78658</Rotation>
+        <Rotation>7.206907</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -975,7 +975,7 @@
           <X>-15.9031153</X>
           <Y>30.7031479</Y>
         </Position>
-        <Rotation>28.754797</Rotation>
+        <Rotation>5.3984437</Rotation>
       </Scholar>
     </Info>
   </Moment>
@@ -986,7 +986,7 @@
           <X>-15.9031153</X>
           <Y>30.7031479</Y>
         </Position>
-        <Rotation>21.8714428</Rotation>
+        <Rotation>5.3984437</Rotation>
       </Scholar>
     </Info>
   </Moment>

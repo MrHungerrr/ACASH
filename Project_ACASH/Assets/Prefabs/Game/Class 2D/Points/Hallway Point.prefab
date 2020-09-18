@@ -73,8 +73,8 @@ GameObject:
   - component: {fileID: 4173315798395022527}
   - component: {fileID: 8061205890200817615}
   m_Layer: 0
-  m_Name: Outside Point
-  m_TagString: Outside
+  m_Name: Hallway Point
+  m_TagString: Hallway
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe33c9672e42af54eb7b467a4cf3bec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destination: {x: 0, y: 0}
-  _sightGoal: {x: 0, y: 0}
+  _destination: {fileID: 0}
+  _sightGoal: {fileID: 0}
 --- !u!114 &8061205890200817615
 MonoBehaviour:
   m_ObjectHideFlags: 0
