@@ -1,8 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <GOAPActions>
-  <Action Name="Cheat_Note" IsConnector="false">
+  <Action Name="Basic_Item" IsConnector="true">
     <Cost Type="BaseCost">
-      <Cost>15</Cost>
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Basic</Key>
+      <Value>Item</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Desk</Value>
+      </State>
+      <State>
+        <Key>Item</Key>
+        <Value>Allowed</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Basic_Think" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Basic</Key>
+      <Value>Think</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Desk</Value>
+      </State>
+      <State>
+        <Key>Think</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Basic_Computer" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Basic</Key>
+      <Value>Computer</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Desk</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Allowed</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Basic_Any_Item" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Basic</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Basic</Key>
+        <Value>Item</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Basic_Any_Think" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Basic</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Basic</Key>
+        <Value>Think</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Basic_Any_Computer" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Basic</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Basic</Key>
+        <Value>Computer</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Cheat_Base_GoTo" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
     </Cost>
     <Effect IsEmpty="false">
       <Key>Cheat</Key>
@@ -10,78 +112,18 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Items_Have_Note</Key>
-        <Value>true</Value>
+        <Key>Location</Key>
+        <Value>Allowed</Value>
       </State>
       <State>
-        <Key>Cheat_Note</Key>
-        <Value>true</Value>
+        <Key>Item</Key>
+        <Value>Prohibited</Value>
       </State>
     </Preconditions>
   </Action>
-  <Action Name="Cheat_Note_Toilet" IsConnector="true">
+  <Action Name="Cheat_Base_Computer" IsConnector="true">
     <Cost Type="BaseCost">
       <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Note</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Toilet</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Note_Sink" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Note</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Sink</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Note_Hallway" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Note</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Hallway</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Note_Desk" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Note</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Desk</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Phone" IsConnector="false">
-    <Cost Type="BaseCost">
-      <Cost>10</Cost>
     </Cost>
     <Effect IsEmpty="false">
       <Key>Cheat</Key>
@@ -89,277 +131,14 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Items_Have_Phone</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Cheat_Phone</Key>
-        <Value>true</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Phone_Toilet" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Phone</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Toilet</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Phone_Sink" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Phone</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Sink</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Phone_Hallway" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Phone</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Hallway</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Phone_Desk" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Phone</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
         <Key>Location</Key>
         <Value>Desk</Value>
       </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Calculator" IsConnector="false">
-    <Cost Type="BaseCost">
-      <Cost>5</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
       <State>
-        <Key>Items_Have_Calculator</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Cheat_Calculator</Key>
-        <Value>true</Value>
+        <Key>Program</Key>
+        <Value>Prohibited</Value>
       </State>
     </Preconditions>
-  </Action>
-  <Action Name="Cheat_Calculator_Toilet" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Calculator</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Toilet</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Calculator_Sink" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Calculator</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Sink</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Calculator_Hallway" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Calculator</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Hallway</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Cheat_Calculator_Desk" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Cheat_Calculator</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Location</Key>
-        <Value>Desk</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Special_Go_Out" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Special</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Special_Go_Out</Key>
-        <Value>true</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Special_Go_Pee" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Special_Go_Out</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Want_Pee</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Pee</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Location</Key>
-        <Value>Toilet</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Special_Go_WashHands" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Special_Go_Out</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Want_Wash_Hands</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Wash_Hands</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Location</Key>
-        <Value>Sink</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Special_Go_Air" IsConnector="true">
-    <Cost Type="BaseCost">
-      <Cost>0</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Special_Go_Out</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="false">
-      <State>
-        <Key>Want_Rest</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Rest</Key>
-        <Value>true</Value>
-      </State>
-      <State>
-        <Key>Location</Key>
-        <Value>Hallway</Value>
-      </State>
-    </Preconditions>
-  </Action>
-  <Action Name="Special_Pee" IsConnector="false">
-    <Cost Type="BaseCost">
-      <Cost>10</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Pee</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="true" />
-  </Action>
-  <Action Name="Special_WashHands" IsConnector="false">
-    <Cost Type="BaseCost">
-      <Cost>10</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Wash_Hands</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="true" />
-  </Action>
-  <Action Name="Special_Rest" IsConnector="false">
-    <Cost Type="BaseCost">
-      <Cost>10</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Rest</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="true" />
-  </Action>
-  <Action Name="Special_Talk" IsConnector="false">
-    <Cost Type="BaseCost">
-      <Cost>10</Cost>
-    </Cost>
-    <Effect IsEmpty="false">
-      <Key>Talk</Key>
-      <Value>true</Value>
-    </Effect>
-    <Preconditions IsEmpty="true" />
   </Action>
   <Action Name="GoTo_Toilet" IsConnector="false">
     <Cost Type="BaseCost">
@@ -371,7 +150,7 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Places_Toilet_Are_Busy</Key>
+        <Key>Place_Toilet_All_Busy</Key>
         <Value>false</Value>
       </State>
     </Preconditions>
@@ -386,7 +165,7 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Places_Sink_Are_Busy</Key>
+        <Key>Place_Sink_All_Busy</Key>
         <Value>false</Value>
       </State>
     </Preconditions>
@@ -401,7 +180,7 @@
     </Effect>
     <Preconditions IsEmpty="false">
       <State>
-        <Key>Places_Hallway_Are_Busy</Key>
+        <Key>Place_Hallway_All_Busy</Key>
         <Value>false</Value>
       </State>
     </Preconditions>
@@ -422,8 +201,890 @@
     </Cost>
     <Effect IsEmpty="false">
       <Key>Location</Key>
-      <Value>Dock_Station</Value>
+      <Value>DockStation</Value>
     </Effect>
     <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="GoTo_Any_Toilet" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Toilet</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Any_Sink" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Sink</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Any_Hallway" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Hallway</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Any_Desk" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Desk</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Allow_Toilet" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Toilet_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Toilet</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Allow_Sink" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Sink_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Sink</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Allow_Hallway" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Hallway_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Hallway</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Allow_Desk" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Desk</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Prohibit_Toilet" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Toilet_Allowed</Key>
+        <Value>false</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Toilet</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Prohibit_Sink" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Sink_Allowed</Key>
+        <Value>false</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Sink</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="GoTo_Prohibit_Hallway" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Location</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Hallway_Allowed</Key>
+        <Value>false</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Hallway</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseItem_Phone" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Item</Key>
+      <Value>Phone</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Item_Phone_Have</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseItem_Any_Phone" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Item</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Item</Key>
+        <Value>Phone</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseItem_Allow_Phone" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Item</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Item_Phone_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Item</Key>
+        <Value>Phone</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseItem_Prohibit_Phone" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Item</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Item_Phone_Allowed</Key>
+        <Value>false</Value>
+      </State>
+      <State>
+        <Key>Item</Key>
+        <Value>Phone</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Calculator" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Calculator</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Dictionary" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Dictionary</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Browser" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Browser</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Rules" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Rules</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Text" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Text</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Test" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Test</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Code" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Code</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="UseProgram_Any_Calculator" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Calculator</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Any_Dictionary" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Dictionary</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Any_Browser" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Browser</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Any_Rules" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Rules</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Any_Text" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Text</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Any_Test" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Test</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Any_Code" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program</Key>
+        <Value>Code</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Calculator" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Calculator_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Calculator</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Dictionary" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Dictionary_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Dictionary</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Browser" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Browser_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Browser</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Rules" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Rules_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Rules</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Text" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Text_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Text</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Test" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Test_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Test</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Allow_Code" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Allowed</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Code_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Code</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Prohibit_Calculator" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Calculator_Allowed</Key>
+        <Value>false</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Calculator</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Prohibit_Dictionary" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Dictionary_Allowed</Key>
+        <Value>false</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Dictionary</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Prohibit_Browser" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Browser_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Browser</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Prohibit_Text" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Text_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Text</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="UseProgram_Prohibit_Code" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Program</Key>
+      <Value>Prohibited</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Program_Code_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Code</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Other_Pee" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Pee</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="Other_WashHands" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>WashHands</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="Other_Rest" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Rest</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="Other_Think" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Think</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="Other_Talk" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Talk</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="Other_Wait" IsConnector="false">
+    <Cost Type="BaseCost">
+      <Cost>10</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Wait</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="None" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>None</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="true" />
+  </Action>
+  <Action Name="End" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>End</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>DockStation</Value>
+      </State>
+      <State>
+        <Key>Wait</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Idle" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Idle</Key>
+      <Value>true</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Wait</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Distraction_Any_Computer" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Distraction</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Distraction</Key>
+        <Value>Computer</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Distraction_Any_Special" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Distraction</Key>
+      <Value>Any</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Distraction</Key>
+        <Value>Rest</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Distarction_Rest_Pee" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Distraction</Key>
+      <Value>Rest</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Toilet_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Toilet</Value>
+      </State>
+      <State>
+        <Key>Pee</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Distarction_Rest_WashHands" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Distraction</Key>
+      <Value>Rest</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Sink_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Sink</Value>
+      </State>
+      <State>
+        <Key>WashHands</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Distarction_Rest_Air" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Distraction</Key>
+      <Value>Rest</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Place_Hallway_Allowed</Key>
+        <Value>true</Value>
+      </State>
+      <State>
+        <Key>Location</Key>
+        <Value>Hallway</Value>
+      </State>
+      <State>
+        <Key>Rest</Key>
+        <Value>true</Value>
+      </State>
+    </Preconditions>
+  </Action>
+  <Action Name="Distraction_Computer" IsConnector="true">
+    <Cost Type="BaseCost">
+      <Cost>0</Cost>
+    </Cost>
+    <Effect IsEmpty="false">
+      <Key>Distraction</Key>
+      <Value>Computer</Value>
+    </Effect>
+    <Preconditions IsEmpty="false">
+      <State>
+        <Key>Location</Key>
+        <Value>Desk</Value>
+      </State>
+      <State>
+        <Key>Program</Key>
+        <Value>Allowed</Value>
+      </State>
+    </Preconditions>
   </Action>
 </GOAPActions>

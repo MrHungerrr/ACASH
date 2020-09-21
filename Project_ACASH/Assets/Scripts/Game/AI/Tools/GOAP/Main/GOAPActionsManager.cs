@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Vkimow.Tools.Single;
+using System;
 
 namespace GOAP
 {
@@ -11,37 +12,44 @@ namespace GOAP
 
         private List<IGOAPAction> _actions;
 
+        private Dictionary<KeyValuePair<string, GOAPState>, List<IGOAPReadOnlyAction>> _effectsAndActions;
+
         public GOAPActionsManager()
         {
             _actions = new List<IGOAPAction>();
+            _effectsAndActions = new Dictionary<KeyValuePair<string, GOAPState>, List<IGOAPReadOnlyAction>>();
         }
 
         public void Add(IGOAPAction action)
         {
+            var effect = ((GOAPStateStorageSingle)action.Effect).GetState();
+
+            if (!_effectsAndActions.ContainsKey(effect))
+            {
+                _effectsAndActions.Add(effect, new List<IGOAPReadOnlyAction>());
+            }
+
+            _effectsAndActions[effect].Add(action);
             _actions.Add(action);
         }
 
         public void Clear()
         {
             _actions = new List<IGOAPAction>();
+            _effectsAndActions = new Dictionary<KeyValuePair<string, GOAPState>, List<IGOAPReadOnlyAction>>();
         }
 
-        internal bool TryGetActionsWithEffect(KeyValuePair<string, GOAPState> needEffect, out List<GOAPAction> resultActions)
+        internal bool TryGetActionsWithEffect(KeyValuePair<string, GOAPState> needEffect, out List<IGOAPReadOnlyAction> needActions)
         {
-            resultActions = new List<GOAPAction>();
+            needActions = null;
 
-            foreach(GOAPAction action in _actions)
+            if (_effectsAndActions.ContainsKey(needEffect))
             {
-                if (action.Effect.Contains(needEffect))
-                {
-                    resultActions.Add(action);
-                }
+                needActions = _effectsAndActions[needEffect];
+                return true;
             }
 
-            if (resultActions.Count != 0)
-                return true;
-            else
-                return false;
+            return false;
         }
 
         #region XML Serialization

@@ -17,7 +17,6 @@ namespace AI.Scholars.Actions
         private int _actionIndex;
 
 
-
         public ScholarActionsExecuter() { }
 
         public void Reset()
@@ -26,7 +25,7 @@ namespace AI.Scholars.Actions
                 Stop();
 
             IsExecuting = false;
-            _action = default;
+            _action = null;
             _operation = null;
         }
 
@@ -66,10 +65,12 @@ namespace AI.Scholars.Actions
             _actionIndex = 0;
             _operation = _action.Operations[_actionIndex];
             IsPaused = false;
+            Debug.Log($"Setted New Action");
         }
 
         private void ExecuteOperation()
         {
+            Debug.Log($"Execute Operation \"{_operation}\"");
             _operation.OnOperationDone += OperationDone;
             _operation.Execute();
         }
@@ -80,6 +81,7 @@ namespace AI.Scholars.Actions
 
             if (_actionIndex != _action.Operations.Count)
             {
+                Debug.Log($"Getted Next Operation: \"{_action.Operations[_actionIndex]}\"");
                 _operation = _action.Operations[_actionIndex];
                 ExecuteOperation();
             }
@@ -91,7 +93,7 @@ namespace AI.Scholars.Actions
 
         private void Stop()
         {
-            Debug.Log("Stop!");
+            Debug.Log($"Stop Operation \"{_operation}\"!");
 
             _operation.OnOperationDone -= OperationDone;
             _operation.Stop();
@@ -99,8 +101,8 @@ namespace AI.Scholars.Actions
 
         private void OperationDone()
         {
-            Debug.Log("Operation Done!");
-
+            Debug.Log($"Operation \"{_operation}\" Done!");
+           
             _operation.OnOperationDone -= OperationDone;
             NextOperation();
         }

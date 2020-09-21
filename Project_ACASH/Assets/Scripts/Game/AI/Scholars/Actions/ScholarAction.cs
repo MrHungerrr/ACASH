@@ -7,7 +7,7 @@ using AI.Scholars.Actions.Operations;
 
 namespace AI.Scholars.Actions
 {
-    public class ScholarAction
+    public sealed class ScholarAction
     {
         public IReadOnlyList<IScholarOperation> Operations => _operations;
         private readonly IScholarOperation[] _operations;
@@ -21,6 +21,18 @@ namespace AI.Scholars.Actions
         public ScholarAction(IScholarOperation[] operations)
         {
             _operations = operations;
+        }
+
+        public override string ToString()
+        {
+            var text = "Actions";
+
+            foreach(var operation in _operations)
+            {
+                text += $"\n{operation}";
+            }
+
+            return text;
         }
     }
 }

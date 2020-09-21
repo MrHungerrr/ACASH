@@ -38,6 +38,15 @@ namespace GOAP
         #endregion
 
 
+        public KeyValuePair<string, GOAPState> GetState()
+        {
+            if (!_state.HasValue)
+                throw new NullReferenceException();
+
+            return _state.Value;
+        }
+
+
         public void Clear()
         {
             _state = null;

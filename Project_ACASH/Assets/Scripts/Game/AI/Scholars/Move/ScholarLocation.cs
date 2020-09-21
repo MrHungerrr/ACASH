@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameTime.Action;
 using System.Threading.Tasks;
-using Objects.Organization.Places;
+using Objects._2D.Places;
 
 namespace AI.Scholars
 {

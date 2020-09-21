@@ -6,6 +6,7 @@ using Exam;
 using AI.Scholars.Actions;
 using System.IO;
 using GOAP;
+using AI.Scholars.GOAP;
 
 namespace AI.Scholars
 {
@@ -65,9 +66,7 @@ namespace AI.Scholars
         {
             for (int i = 0; i < _scholars.Length; i++)
             {
-                _scholars[i].Actions.Updater.Enable(true);
-                var action = ScholarActionsTemplates.StartExam(_scholars[i]);
-                _scholars[i].Actions.Execute(action);
+                _scholars[i].Actions.Planner.SetGoal(ScholarGOAPPlanner.Goals.Basic);
             }
         }
 
@@ -75,9 +74,7 @@ namespace AI.Scholars
         {
             for (int i = 0; i < _scholars.Length; i++)
             {
-                _scholars[i].Actions.Reset();
-                var action = ScholarActionsTemplates.EndExam(_scholars[i]);
-                _scholars[i].Actions.Execute(action);
+                _scholars[i].Actions.Planner.SetGoal(ScholarGOAPPlanner.Goals.End);
             }
         }
     }

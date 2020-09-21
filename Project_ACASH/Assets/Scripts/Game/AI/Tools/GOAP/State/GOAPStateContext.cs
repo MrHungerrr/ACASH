@@ -6,9 +6,14 @@ namespace GOAP
 {
     public class GOAPStateContext
     {
-        private readonly IGOAPStateStorage[] _contexts;
+        private readonly IGOAPStateReadOnlyStorage[] _contexts;
 
-        public GOAPStateContext(params IGOAPStateStorage[] contexts)
+        public GOAPStateContext(List<IGOAPStateReadOnlyStorage> contexts)
+        {
+            _contexts = contexts.ToArray();
+        }
+
+        public GOAPStateContext(params IGOAPStateReadOnlyStorage[] contexts)
         {
             _contexts = contexts;
         }
@@ -22,21 +27,6 @@ namespace GOAP
             }
 
             return false;
-        }
-
-
-        public void Set(KeyValuePair<string, GOAPState> state)
-        {
-            for (int i = 0; i < _contexts.Length; i++)
-            {
-                if (_contexts[i].Contains(state.Key))
-                {
-                    _contexts[i].Set(state);
-                    return;
-                }
-            }
-
-            throw new ArgumentException($"Отсутсвует GOAPState с Key:\"{state.Key}\"");
         }
     }
 }

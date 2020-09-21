@@ -4,8 +4,32 @@
     <Key>Cheat</Key>
     <Value>true</Value>
   </Goal>
-  <Goal GoalKey="Special">
-    <Key>Special</Key>
+  <Goal GoalKey="Basic">
+    <Key>Basic</Key>
+    <Value>Any</Value>
+  </Goal>
+  <Goal GoalKey="End">
+    <Key>End</Key>
     <Value>true</Value>
+  </Goal>
+  <Goal GoalKey="Idle">
+    <Key>Idle</Key>
+    <Value>true</Value>
+  </Goal>
+  <Goal GoalKey="Distraction">
+    <Key>Distraction</Key>
+    <Value>Any</Value>
+  </Goal>
+  <Goal GoalKey="Distraction_Rest">
+    <Key>Distraction</Key>
+    <Value>Rest</Value>
+  </Goal>
+  <Goal GoalKey="Distraction_Computer">
+    <Key>Distraction</Key>
+    <Value>Computer</Value>
+  </Goal>
+  <Goal GoalKey="Distraction_Special">
+    <Key>Distraction</Key>
+    <Value>Special</Value>
   </Goal>
 </GOAPGoals>

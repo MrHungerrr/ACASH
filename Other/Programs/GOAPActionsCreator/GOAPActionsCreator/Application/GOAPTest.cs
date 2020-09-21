@@ -4,37 +4,54 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Vkimow.Tools.Extensions;
 
 namespace Application
 {
     public static class GOAPTest
     {
-        public static void Construct(string goalKey)
+        public static void ConstructAll(string goalKey)
         {
-            var context = new GOAPStateContext(new GOAPStateLocal(), new GOAPStateGlobal());
+            var context = new GOAPStateContext(GOAPConxtextFactory.ScholarContext, GOAPConxtextFactory.ClassContext);
             var comparer = new BaseCostComparer();
 
             var planer = new GOAPPlanner(context, comparer);
 
-            List<List<GOAPAction>> plans;
-            var plan = new List<GOAPAction>();
 
-
-            if (!planer.TryGetAllPlans(GOAPGoalsManager.Instance.Goals[goalKey], out plans))
-                throw new Exception("Мы проебались!");
-
-            if (!planer.TryGetBestPlan(GOAPGoalsManager.Instance.Goals[goalKey], out plan))
+            if (!planer.TryGetAllPlans(GOAPGoalsManager.Instance.Goals[goalKey], out var allPlans))
                 throw new Exception("Мы проебались!");
 
 
+            GOAPConsoleWriter.WritePlansWithBest(allPlans, comparer);
+        }
 
 
-            foreach(var p in plans)
-            {
-                GOAPConsoleWriter.WritePlan(p);
-            }
+        public static void ConstructAllBest(string goalKey)
+        {
+            var context = new GOAPStateContext(GOAPConxtextFactory.ScholarContext, GOAPConxtextFactory.ClassContext);
+            var comparer = new BaseCostComparer();
 
-            Console.ForegroundColor = ConsoleColor.Green;
+            var planer = new GOAPPlanner(context, comparer);
+
+
+            if (!planer.TryGetAllBestPlans(GOAPGoalsManager.Instance.Goals[goalKey], out var plans))
+                throw new Exception("Мы проебались!");
+
+
+            GOAPConsoleWriter.WritePlans(plans);
+        }
+
+        public static void ConstructBest(string goalKey)
+        {
+            var context = new GOAPStateContext(GOAPConxtextFactory.ScholarContext, GOAPConxtextFactory.ClassContext);
+            var comparer = new BaseCostComparer();
+
+            var planer = new GOAPPlanner(context, comparer);
+
+            if (!planer.TryGetBestPlan(GOAPGoalsManager.Instance.Goals[goalKey], out var plan))
+                throw new Exception("Мы проебались!");
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
             GOAPConsoleWriter.WritePlan(plan);
             Console.ResetColor();
         }

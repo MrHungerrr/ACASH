@@ -12,9 +12,7 @@ namespace AI.Scholars.Items
     {
         public enum Type
         {
-            Phone,
-            Calculator,
-            Note
+            Phone
         }
 
 
@@ -31,10 +29,6 @@ namespace AI.Scholars.Items
             {
                 case Type.Phone:
                     return new Phone(scholar);
-                case Type.Calculator:
-                    return new Calculator(scholar);
-                case Type.Note:
-                    return new Note(scholar);
             }
 
             throw new InvalidEnumArgumentException();

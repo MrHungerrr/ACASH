@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AI.Scholars.Actions.Operations;
 using AI.Scholars.Actions.Operations.Types;
+using AI.Scholars.Computer;
 using AI.Scholars.Items;
-using Objects.Organization.Places;
+using Objects._2D.Places;
 using Vkimow.Tools.Single;
 
 namespace AI.Scholars.Actions
@@ -32,13 +33,17 @@ namespace AI.Scholars.Actions
                     {
                         return GoTo(parameters[1]);
                     }
-                case "Cheat":
+                case "UseItem":
                     {
-                        return Cheat(parameters[1]);
+                        return UseItem(parameters[1]);
                     }
-                case "Special":
+                case "UseProgram":
                     {
-                        return Special(parameters[1]);
+                        return UseProgram(parameters[1]);
+                    }
+                case "Other":
+                    {
+                        return Other(parameters[1]);
                     }
             }
 
@@ -80,7 +85,7 @@ namespace AI.Scholars.Actions
         }
 
 
-        private List<IScholarOperation> Special(string parameter)
+        private List<IScholarOperation> Other(string parameter)
         {
             switch (parameter)
             {
@@ -107,37 +112,59 @@ namespace AI.Scholars.Actions
                     }
                 case "Talk":
                     {
-                        return null;
+                        return new List<IScholarOperation>()
+                            {
+                                new Wait(_scholar, 5f)
+                            };
+                    }
+                case "Think":
+                    {
+                        return new List<IScholarOperation>()
+                            {
+                                new Wait(_scholar, 5f)
+                            };
+                    }
+                case "Wait":
+                    {
+                        return new List<IScholarOperation>()
+                            {
+                                new Wait(_scholar, 5f)
+                            };
                     }
             }
 
             throw new Exception($"Неизвествный параметр \"{parameter}\" дейсвия \"Special\"");
         }
 
-        private List<IScholarOperation> Cheat(string parameter)
+        private List<IScholarOperation> UseItem(string parameter)
         {
-            switch (parameter)
+            ScholarItem.Type item;
+
+            if (!Enum.TryParse<ScholarItem.Type>(parameter, out item))
+                throw new Exception($"Неизвествный параметр \"{parameter}\" дейсвия \"UseItem\"");
+
+            return new List<IScholarOperation>()
             {
-                case "Note":
-                case "Phone":
-                case "Calculator":
-                    {
-                        ScholarItem.Type item;
-
-                        if (Enum.TryParse<ScholarItem.Type>(parameter, out item))
-                            break;
-
-                        return new List<IScholarOperation>()
-                            {
-                                new Take(_scholar, item),
-                                new Wait(_scholar, 5f),
-                                new Put(_scholar)
-                            };
-                    }
-            }
-
-            throw new Exception($"Неизвествный параметр \"{parameter}\" дейсвия \"Cheat\"");
+                new TakeItem(_scholar, item),
+                new UseItem(_scholar, 5f),
+                new PutItem(_scholar)
+            };
         }
 
+
+        private List<IScholarOperation> UseProgram(string parameter)
+        {
+            ScholarComputer.Program item;
+
+            if (!Enum.TryParse<ScholarComputer.Program>(parameter, out item))
+                throw new Exception($"Неизвествный параметр \"{parameter}\" дейсвия \"UseProgram\"");
+
+            return new List<IScholarOperation>()
+            {
+                new OpenProgram(_scholar, item),
+                new UseProgram(_scholar, 5f),
+                new CloseProgram(_scholar)
+            };
+        }
     }
 }

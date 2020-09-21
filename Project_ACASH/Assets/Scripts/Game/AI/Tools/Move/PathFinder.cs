@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace AI.Tools.Move
 {
@@ -25,6 +27,8 @@ namespace AI.Tools.Move
 
 
         private int _currentWaypoint;
+        private CancellationToken _cancelToken;
+        private bool _isPathRequested;
         private Vector2 _destination;
         private Rigidbody2D _rb;
         private Seeker _seeker;
@@ -47,8 +51,16 @@ namespace AI.Tools.Move
             _path = null;
         }
 
-        public void SetDestination(in Vector2 destination)
+        public async Task SetDestination(Vector2 destination, CancellationToken token)
         {
+            var task = Task.Run(async () =>
+            {
+                while (_isPathRequested) await Task.Delay(10);
+            });
+
+            await task;
+
+            _cancelToken = token;
             _destination = destination;
             FindPath();
         }
@@ -67,6 +79,7 @@ namespace AI.Tools.Move
         private void FindPath()
         {
             _currentWaypoint = 0;
+            _isPathRequested = true;
             _seeker.StartPath(_rb.position, _destination, SetPath);
         }
 
@@ -75,7 +88,11 @@ namespace AI.Tools.Move
             if (path.error)
                 throw new Exception("Хуевая сетка у А*");
 
+            if (_cancelToken.IsCancellationRequested)
+                return;
+
             _path = path;
+            _isPathRequested = false;
             OnPathCalculated?.Invoke();
             IsPathCalculated = true;
         }

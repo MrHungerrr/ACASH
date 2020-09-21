@@ -18,18 +18,18 @@ namespace Exam.Events
             _timer = timer;
         }
 
-        public void SetSchedule(int eventCount, string eventKey)
+        public void SetRandomSchedule(int eventCount, Action action)
         {
             var deltaEnd = _timer.TimeGeneral / 10;
             var scheduleTime = GetRandomEventSchedule(eventCount, _timer.TimeGeneral - deltaEnd);
-            
-            for(int i = 0; i < eventCount; i++)
-            {
-                Action action = () =>
-                {
-                    ExamEventExecuter.Instance.Execute(eventKey);
-                };
 
+            SetSchedule(scheduleTime, action);
+        }
+
+        public void SetSchedule(int[] scheduleTime, Action action)
+        {
+            for (int i = 0; i < scheduleTime.Length; i++)
+            {
                 _timer.Schedule.AddActionAtTime(scheduleTime[i], action);
             }
         }

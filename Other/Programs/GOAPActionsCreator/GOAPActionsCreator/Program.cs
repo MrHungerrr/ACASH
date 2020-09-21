@@ -11,12 +11,13 @@ class Program
     {
         Create();
 
-        GOAPTest.Construct("Cheat");
-        GOAPInspector.Check();
-
         GOAPTest.SaveLoad();
+        GOAPTest.ConstructAll("Cheat");
+        GOAPTest.ConstructBest("Cheat");
+        GOAPTest.ConstructAll("End");
+        GOAPTest.ConstructBest("End");
 
-        GOAPTest.Construct("Cheat");
+
         GOAPInspector.Check();
 
         Console.ReadKey();
@@ -27,6 +28,7 @@ class Program
     {
         GOAPBlanksFactory.Create();
         GOAPGoalsFactory.Create();
+        GOAPConxtextFactory.Create();
         GOAPActionsFactory.Create();
     }
 }

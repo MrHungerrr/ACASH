@@ -9,13 +9,18 @@ using Vkimow.Tools.Single;
 
 namespace Exam.Events
 {
-    public class ExamEventExecuter : Singleton<ExamEventExecuter>
+    public static class ExamEventExecuter
     {
-        public void Execute(string goalKey)
+        public static void Cheat()
         {
             var scholar = ScholarManager.Instance.GetRandomScholar();
-            var plan = ScholarGOAPPlanner.Instance.GetPlan(scholar, goalKey);
-            scholar.Actions.Execute(plan);
+            scholar.Actions.Planner.SetGoal(ScholarGOAPPlanner.Goals.Cheat);
+        }
+
+        public static void Distraction()
+        {
+            var scholar = ScholarManager.Instance.GetRandomScholar();
+            scholar.Actions.Planner.SetGoal(ScholarGOAPPlanner.Goals.Distraction);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace GameTime
 
         private void SecondDone()
         {
-            Debug.Log("Second Done!");
+            //Debug.Log("Second Done!");
             _timeInSec = (int)_time;
             OnSecondDone?.Invoke();
         }

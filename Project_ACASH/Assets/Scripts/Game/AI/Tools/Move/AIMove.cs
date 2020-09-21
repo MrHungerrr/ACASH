@@ -11,7 +11,6 @@ namespace AI.Tools.Move
 {
     public class AIMove
     {
-        public event Action OnDestinationReached;
         public Vector2 Direction => _direction;
         public float Distance => _distance;
         public Rigidbody2D RB => _rb;
@@ -22,7 +21,6 @@ namespace AI.Tools.Move
         private Vector2 _direction;
         private float _distance;
         private float _speed;
-        private float _stopDistance;
         private float _regularLinearDrag;
 
 
@@ -35,6 +33,11 @@ namespace AI.Tools.Move
         public void FixUpdate()
         {
             Moving();
+        }
+
+        public void Update()
+        {
+            MoveCalculate();
         }
 
         public void SetDestination(in Vector2 destination)
@@ -53,11 +56,6 @@ namespace AI.Tools.Move
             _speed = speed;
         }
 
-        public void SetStopDistance(float stopDistance)
-        {
-            _stopDistance = stopDistance;
-        }
-
 
         public void Teleport(in Vector2 position)
         {
@@ -65,36 +63,23 @@ namespace AI.Tools.Move
         }
 
 
-        public void Stop()
+        public void SlowDown()
         {
             _rb.drag *=  5;
         }
 
 
-
-        private void Moving()
+        private void MoveCalculate()
         {
             var destinationVector = _destination - _rb.position;
             _distance = destinationVector.magnitude;
             _direction = destinationVector.normalized;
-
-            if (_distance < _stopDistance)
-            {
-                DestinationReached();
-                return;
-            }
-
-            var force = _direction * Time.fixedDeltaTime * _speed;
-            _rb.AddForce(force);
-
-            Debug.Log("Moving");
         }
 
-
-        private void DestinationReached()
+        private void Moving()
         {
-            Stop();
-            OnDestinationReached?.Invoke();
+            var force = _direction * Time.fixedDeltaTime * _speed;
+            _rb.AddForce(force);
         }
     }
 }

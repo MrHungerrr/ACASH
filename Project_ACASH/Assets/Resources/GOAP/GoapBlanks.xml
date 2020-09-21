@@ -1,75 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <GOAPBlanks>
   <Blank>
-    <Key>Places_Toilet_Are_Busy</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Places_Sink_Are_Busy</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Places_Hallway_Are_Busy</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
     <Key>Cheat</Key>
     <Type>System.Boolean</Type>
   </Blank>
   <Blank>
-    <Key>Cheat_Note</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Cheat_Phone</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Cheat_Calculator</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Special</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Special_Go_Out</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Items_Have_Note</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Items_Have_Phone</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Items_Have_Calculator</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Location</Key>
+    <Key>Basic</Key>
     <Type>System.String</Type>
   </Blank>
   <Blank>
-    <Key>Want_Pee</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Want_Wash_Hands</Key>
-    <Type>System.Boolean</Type>
-  </Blank>
-  <Blank>
-    <Key>Want_Rest</Key>
-    <Type>System.Boolean</Type>
+    <Key>Distraction</Key>
+    <Type>System.String</Type>
   </Blank>
   <Blank>
     <Key>Pee</Key>
     <Type>System.Boolean</Type>
   </Blank>
   <Blank>
-    <Key>Wash_Hands</Key>
+    <Key>WashHands</Key>
     <Type>System.Boolean</Type>
   </Blank>
   <Blank>
@@ -79,5 +27,97 @@
   <Blank>
     <Key>Talk</Key>
     <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Think</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Wait</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>None</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>End</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Idle</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Calculator_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Dictionary_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Browser_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Rules_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Test_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Text_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Program_Code_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Item_Phone_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Place_Toilet_All_Busy</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Place_Sink_All_Busy</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Place_Hallway_All_Busy</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Place_Toilet_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Place_Sink_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Place_Hallway_Allowed</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Item_Phone_Have</Key>
+    <Type>System.Boolean</Type>
+  </Blank>
+  <Blank>
+    <Key>Location</Key>
+    <Type>System.String</Type>
+  </Blank>
+  <Blank>
+    <Key>Program</Key>
+    <Type>System.String</Type>
+  </Blank>
+  <Blank>
+    <Key>Item</Key>
+    <Type>System.String</Type>
   </Blank>
 </GOAPBlanks>

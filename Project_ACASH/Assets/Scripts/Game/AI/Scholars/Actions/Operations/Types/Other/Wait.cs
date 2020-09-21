@@ -7,7 +7,7 @@ namespace AI.Scholars.Actions.Operations.Types
 {
     public class Wait : ScholarOperation
     {
-        private readonly float _timeToWait;
+        protected readonly float _timeToWait;
         private float _timeLeft;
 
         public Wait(Scholar scholar, float timeToWait): base(scholar)
@@ -32,7 +32,7 @@ namespace AI.Scholars.Actions.Operations.Types
 
         protected override void OperationDone()
         {
-            Stop();
+            UpdateManager.Instance.OnUpdate -= Update;
             base.OperationDone();
         }
 
@@ -43,7 +43,7 @@ namespace AI.Scholars.Actions.Operations.Types
 
         public override string ToString()
         {
-            return $"Wait For {_timeToWait}. Left {_timeLeft}";
+            return $"Wait For {_timeToWait}";
         }
     }
 }

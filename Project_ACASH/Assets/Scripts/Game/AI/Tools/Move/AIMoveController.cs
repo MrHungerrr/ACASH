@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,10 +19,10 @@ namespace AI.Tools.Move
         public Vector2 Position => _move.RB.position;
         public Vector2 Direction => _move.Direction;
 
-
         private bool _active;
         private AIMove _move;
         private PathFinder _pathFinder;
+        private CancellationTokenSource _cancel;
 
         [SerializeField] float _pickNextWaypointDistance;
         [SerializeField] float _stopDistance;
@@ -32,28 +33,37 @@ namespace AI.Tools.Move
         {
             var rb = GetComponent<Rigidbody2D>();
             _pathFinder = new PathFinder(rb, GetComponent<Seeker>());
+            _cancel = new CancellationTokenSource();
             _move = new AIMove(rb);
 
             _move.SetSpeed(_speed);
-            _move.SetStopDistance(_stopDistance);
 
-            _move.OnDestinationReached += PointReached;
             _pathFinder.OnPathCalculated += PathCalculated;
         }
 
-        public virtual void FixUpdate()
+        public void FixUpdate()
         {
-            if (_active && _pathFinder.IsPathCalculated)
+            if (_active)
             {
-                MoveCalculate();
                 _move.FixUpdate();
             }
         }
 
-        public virtual void SetDestination(in Vector2 destination)
+        public void MyUpdate()
         {
-            _active = true;
-            _pathFinder.SetDestination(destination);
+            _move.Update();
+
+            if (_active)
+            {
+                MoveCalculate();
+            }
+        }
+
+        public void SetDestination(in Vector2 destination)
+        {
+            _cancel.Cancel();
+            _cancel = new CancellationTokenSource();
+            _pathFinder.SetDestination(destination, _cancel.Token);
         }
 
         public void SetPosition(in Vector2 position)
@@ -64,15 +74,18 @@ namespace AI.Tools.Move
         public void Stop()
         {
             _active = false;
-            _move.Stop();
+            _move.SlowDown();
         }
-
 
         private void MoveCalculate()
         {
             if (!_pathFinder.ReachedEndOfPath)
             {
                 ShouldIMoveToNext();
+            }
+            else
+            {
+                ShouldIStop();
             }
         }
 
@@ -84,10 +97,17 @@ namespace AI.Tools.Move
             }
         }
 
+        private void ShouldIStop()
+        {
+            if (_move.Distance <= _stopDistance)
+            {
+                DestinationReached();
+            }
+        }
+
 
         private void PathCalculated()
         {
-            Debug.Log("Path Calulated!");
             _active = true;
             NextPoint();
         }
@@ -99,18 +119,10 @@ namespace AI.Tools.Move
             _move.SetDestination(nextPoint);
         }
 
-        private void PointReached()
-        {
-            if (!_pathFinder.ReachedEndOfPath)
-                NextPoint();
-            else
-                DestinationReached();
-        }
-
         private void DestinationReached()
         {
             _active = false;
-            _move.Stop();
+            _move.SlowDown();
             _pathFinder.Reset();
             OnDestinationReached?.Invoke();
         }

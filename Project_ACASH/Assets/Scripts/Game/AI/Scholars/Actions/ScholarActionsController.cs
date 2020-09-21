@@ -7,28 +7,31 @@ using UnityEngine;
 
 namespace AI.Scholars.Actions
 {
-    public class ScholarActionsController
+    public sealed class ScholarActionsController
     {
-        public ScholarActionsUpdater Updater => _updater;
+        public ScholarActionsPlanner Planner => _planner;
 
-        private ScholarActionsUpdater _updater;
+
         private ScholarActionsQueue _actions;
+        private readonly ScholarActionsPlanner _planner;
         private readonly ScholarActionsExecuter _executer;
 
 
         public ScholarActionsController(Scholar scholar)
         {
-            _updater = new ScholarActionsUpdater(scholar);
+            _planner = new ScholarActionsPlanner(scholar);
             _executer = new ScholarActionsExecuter();
             _executer.OnActionDone += ActionDone;
+
             Reset();
         }
 
         public void Reset()
         {
-            _actions = new ScholarActionsQueue();
-            _updater.Enable(false);
             _executer.Reset();
+            _planner.Reset();
+            _actions = new ScholarActionsQueue();
+            ActionDone();
         }
 
 
@@ -43,7 +46,6 @@ namespace AI.Scholars.Actions
 
         public void Execute(ScholarAction action)
         {
-            Debug.Log("I'm Executing!");
             _executer.Execute(action);
         }
 
@@ -73,19 +75,16 @@ namespace AI.Scholars.Actions
 
         private void ActionDone()
         {
-            if (_updater.IsActive)
+            if (_actions.IsEmpty)
             {
-                if (_actions.IsEmpty)
-                {
-                    var action = _updater.GetSomeAction();
-                    _actions.Add(action);
-                }
+                var plan = _planner.GetNextPlan();
+                _actions.Add(plan);
             }
 
-            if (!_actions.IsEmpty)
-            {
-                NextAction();
-            }
+            if (_actions.IsEmpty)
+                throw new Exception("Пустая очередь действий");
+
+            NextAction();
         }
     }
 }

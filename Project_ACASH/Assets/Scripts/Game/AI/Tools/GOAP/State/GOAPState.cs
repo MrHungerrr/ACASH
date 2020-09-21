@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace GOAP
 {
@@ -24,9 +25,7 @@ namespace GOAP
             if (!(obj is GOAPState))
                 return false;
 
-            var goapState = (GOAPState)obj;
-
-            return Equals(goapState);
+            return Equals((GOAPState)obj);
         }
 
         public bool Equals(GOAPState other)
@@ -69,7 +68,7 @@ namespace GOAP
 
         public override int GetHashCode()
         {
-            return _value.GetHashCode() + Type.GetHashCode();
+            return _value.GetHashCode();
         }
     }
 }

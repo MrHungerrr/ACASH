@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using Overwatch.Memorable;
 using AI.Scholars.Actions;
-using AI.Scholars.Actions.Operations;
 using AI.Scholars.Items;
-using Objects.Organization.ClassRoom;
+using Objects._2D.ClassRoom;
 using AI.Scholars.GOAP;
+using AI.Scholars.Computer;
+using GOAP;
 
 namespace AI.Scholars
 {
@@ -13,10 +14,12 @@ namespace AI.Scholars
         public bool Active { get; private set; }
 
 
+
         public ClassAgent ClassRoom { get; private set; }
+        public IGOAPStateReadOnlyStorageList GoapContext { get; private set; }
+        public ScholarComputer Computer { get; private set; }
         public ScholarActionsController Actions { get; private set; }
         public ScholarMemorable Memorable { get; private set; }
-        public ScholarGOAPContext GoapContext { get; private set; }
         public ScholarInfo Info { get; private set; }
         public ScholarLocation Location { get; private set; }
         public ScholarItemsController Items { get; private set; }
@@ -37,16 +40,18 @@ namespace AI.Scholars
         {
             ClassRoom = classRoom;
 
+
             Active = true;
 
             Move.Setup(this);
             Sight.Setup(this);
+            Computer = new ScholarComputer();
             Info = new ScholarInfo(this, globalIndex, localIndex);
             Items = new ScholarItemsController(this);
-            Actions = new ScholarActionsController(this);
             Memorable = new ScholarMemorable(this);
             Location = new ScholarLocation(this);
             GoapContext = new ScholarGOAPContext(this);
+            Actions = new ScholarActionsController(this);
         }
 
         public void Reset()
@@ -61,6 +66,7 @@ namespace AI.Scholars
 
             }
 
+            Move.MyUpdate();
             Sight.MyUpdate();
         }
 

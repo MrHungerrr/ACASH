@@ -20,7 +20,7 @@ namespace Exam
         {
             Prepare,
             Exam,
-            Afterhours,
+            Afterhours
         }
 
         public bool Exam => _exam;
@@ -48,7 +48,7 @@ namespace Exam
         }
 
 
-        public void ResetExam(int examDuration, int cheatCount, int specialCount)
+        public void ResetExam(int examDuration, int cheatCount, int distractionCount)
         {
             _examTimer = new Timer(examDuration);
             _exam = false;
@@ -57,16 +57,16 @@ namespace Exam
             var scheduler = new ExamEventScheduler(_examTimer);
 
             if(cheatCount > 0)
-                scheduler.SetSchedule(cheatCount, "Cheat");
+                scheduler.SetRandomSchedule(cheatCount, ExamEventExecuter.Cheat);
 
-            if (specialCount > 0)
-                scheduler.SetSchedule(specialCount, "Special");
+            if (distractionCount > 0)
+                scheduler.SetRandomSchedule(distractionCount, ExamEventExecuter.Distraction);
         }
 
         private void StartExam()
         {
             if (_examPart != part.Prepare)
-                throw new ArgumentException();
+                throw new Exception("Запуск экзамена без этапа подготовки");
 
             _exam = true;
             _examPart = part.Exam;
@@ -80,7 +80,7 @@ namespace Exam
         private void FinishExam()
         {
             if (_examPart != part.Exam)
-                throw new ArgumentException();
+                throw new Exception("Завершение экзамена без самого экзамена");
 
             _exam = false;
             _examPart = part.Afterhours;

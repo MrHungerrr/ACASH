@@ -136,13 +136,82 @@ namespace Application
 
 
 
-        public static void WritePlan(List<GOAPAction> plan)
+        public static void WritePlan(List<IGOAPReadOnlyAction> plan)
         {
             Console.WriteLine();
             foreach (var action in plan)
             {
                 Console.WriteLine($"|{action.Cost}|\t{action}");
             }
+        }
+
+        public static void WritePlans(List<List<IGOAPReadOnlyAction>> plans)
+        {
+            Console.WriteLine();
+            foreach (var plan in plans)
+            {
+                WritePlan(plan);
+            }
+        }
+
+        public static void WritePlansWithBest(List<List<IGOAPReadOnlyAction>> plans, IGOAPCostComparer comparer)
+        {
+            Console.WriteLine();
+
+            var bestCost = comparer.BadCost;
+
+            foreach (var plan in plans)
+            {
+                IGOAPCost fullCost = comparer.ZeroCost;
+
+                foreach (var action in plan)
+                {
+                    fullCost = fullCost.GetSumWith(action.Cost);
+                }
+
+                int value = comparer.Compare(bestCost, fullCost);
+
+                if (value < 1)
+                {
+                    bestCost = fullCost;
+                }
+            }
+
+            foreach (var plan in plans)
+            {
+                IGOAPCost fullCost = comparer.ZeroCost;
+
+                foreach (var action in plan)
+                {
+                    fullCost = fullCost.GetSumWith(action.Cost);
+                }
+
+                int value = comparer.Compare(bestCost, fullCost);
+
+                if (value > 0)
+                {
+                    WritePlan(plan);
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            foreach (var plan in plans)
+            {
+                IGOAPCost fullCost = comparer.ZeroCost;
+
+                foreach (var action in plan)
+                {
+                    fullCost = fullCost.GetSumWith(action.Cost);
+                }
+
+                int value = comparer.Compare(bestCost, fullCost);
+
+                if (value == 0)
+                {
+                    WritePlan(plan);
+                }
+            }
+            Console.ResetColor();
         }
     }
 }

@@ -14,13 +14,22 @@ namespace AI.Scholars.GOAP
 {
     public class ScholarGOAPPlanner : Singleton<ScholarGOAPPlanner>
     {
-        private List<GOAPAction> GetGOAPPlan(Scholar scholar, string goalKey)
+        public enum Goals
+        {
+            Cheat,
+            Basic,
+            End,
+            Idle,
+            Distraction
+        }
+
+        private List<IGOAPReadOnlyAction> GetGOAPPlan(Scholar scholar, string goalKey)
         {
             var context = new GOAPStateContext(scholar.GoapContext, scholar.ClassRoom.GoapContext);
             var comparer = new BaseCostComparer();
             var planner = new GOAPPlanner(context, comparer);
 
-            List<GOAPAction> plan;
+            List<IGOAPReadOnlyAction> plan;
 
             if (!planner.TryGetBestPlan(GOAPGoalsManager.Instance.Goals[goalKey], out plan))
                 throw new Exception($"{scholar} не нашел план для цели \"{goalKey}\"");

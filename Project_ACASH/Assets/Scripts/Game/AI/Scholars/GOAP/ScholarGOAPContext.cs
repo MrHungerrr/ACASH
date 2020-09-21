@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AI.Scholars.Items;
 using GOAP;
-using Objects.Organization.Places;
+using Objects._2D.Places;
 
 namespace AI.Scholars.GOAP
 {
@@ -15,13 +15,11 @@ namespace AI.Scholars.GOAP
 
         public ScholarGOAPContext(Scholar scholar)
         {
-            Add("Items_Have_Note", false);
-            Add("Items_Have_Phone", false);
-            Add("Items_Have_Calculator", false);
-            Add("Location", "None");
-            Add("Want_Pee", true);
-            Add("Want_Wash_Hands", true);
-            Add("Want_Rest", true);
+            Add("Item_Phone_Have", true);
+
+            Add("Program", "None");
+            Add("Item", "None");
+            Add("Location", "DockStation");
 
             _scholar = scholar;
             scholar.Items.OnItemsChanged += ItemsChanged;

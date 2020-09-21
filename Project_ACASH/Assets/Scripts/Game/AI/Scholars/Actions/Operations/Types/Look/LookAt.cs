@@ -1,4 +1,4 @@
-﻿using Objects.Organization.Places;
+﻿using Objects._2D.Places;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace AI.Scholars.Actions.Operations.Types
 
         public override string ToString()
         {
-            return $"Look At";
+            return $"Look At {_sightTarget}";
         }
     }
 }

@@ -43,7 +43,7 @@ namespace AI.Scholars.Actions.Operations.Types
 
         public override string ToString()
         {
-            return $"Talk";
+            return $"Talk With";
         }
     }
 }

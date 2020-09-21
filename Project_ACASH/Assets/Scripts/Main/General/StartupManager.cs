@@ -35,15 +35,7 @@ public class StartupManager : MonoSingleton<StartupManager>
         GeneralManager.Instance.SetLevel();
         InputManager.SwitchGameInput(InputManager.GameplayType.FirstPerson);
 
-        OverwatchManager.RecordStart();
-
-        Action action = () =>
-        {
-            OverwatchManager.RecordStop();
-        };
-
-        ActionInTime.Create(20, action);
-        ExamManager.Instance.ResetExam(10, 0, 2);
+        ExamManager.Instance.ResetExam(15, 0, 2);
         ExamStarter.Instance.Interact();
     }
 

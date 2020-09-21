@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,7 +19,7 @@ namespace GOAP
             _context = context;
         }
 
-        internal bool TryBuildPlans(KeyValuePair<string, GOAPState> goal, out TreeDecision<GOAPAction> plans)
+        internal bool TryBuildPlans(KeyValuePair<string, GOAPState> goal, out TreeDecision<IGOAPReadOnlyAction> plans)
         {
             plans = BuildPlansToGoal(goal);
 
@@ -28,15 +29,16 @@ namespace GOAP
                 return true;
         }
 
-        private TreeDecision<GOAPAction> BuildPlansToGoal(KeyValuePair<string, GOAPState> goal)
+        private TreeDecision<IGOAPReadOnlyAction> BuildPlansToGoal(KeyValuePair<string, GOAPState> goal)
         {
-            var tree = new TreeDecision<GOAPAction>();
+            var tree = new TreeDecision<IGOAPReadOnlyAction>();
 
-            List<GOAPAction> needActions;
+            List<IGOAPReadOnlyAction> needActions;
 
             if (!GOAPActionsManager.Instance.TryGetActionsWithEffect(goal, out needActions))
+            {
                 return null;
-
+            }
 
             for (int i = 0; i < needActions.Count; i++)
             {
@@ -52,9 +54,9 @@ namespace GOAP
             return tree;
         }
 
-        private TreeDecision<GOAPAction> BuildPlansToAction(GOAPAction action)
+        private TreeDecision<IGOAPReadOnlyAction> BuildPlansToAction(IGOAPReadOnlyAction action)
         {
-            var tree = new TreeDecision<GOAPAction>();
+            var tree = new TreeDecision<IGOAPReadOnlyAction>();
             tree.AddToRoot(action);
 
             var needConditions = new List<KeyValuePair<string, GOAPState>>();
@@ -70,10 +72,12 @@ namespace GOAP
 
             foreach (var condition in needConditions)
             {
-                TreeDecision<GOAPAction> conditionTree = BuildPlansToGoal(condition);
+                TreeDecision<IGOAPReadOnlyAction> conditionTree = BuildPlansToGoal(condition);
 
                 if (conditionTree == null)
+                {
                     return null;
+                }
 
                 tree.AddToLeafs(conditionTree);
             }

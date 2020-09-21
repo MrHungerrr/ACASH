@@ -22,20 +22,30 @@ namespace GOAP
         private readonly IGOAPStateStorage _effect;
 
 
-        public GOAPAction(string action , bool isConnector)
+        internal GOAPAction(string name , bool isConnector)
         {
-            Name = action;
+            Name = name;
             IsConnector = isConnector;
             _preconditions = new GOAPStateStorageList();
             _effect = new GOAPStateStorageSingle();
         }
 
-        public GOAPAction(string action)
+        internal GOAPAction(string name)
         {
-            Name = action;
+            Name = name;
             IsConnector = false;
             _preconditions = new GOAPStateStorageList();
             _effect = new GOAPStateStorageSingle();
+        }
+
+        public static GOAPAction Create(string name)
+        {
+            return new GOAPAction(name);
+        }
+
+        public static GOAPAction CreateConnector(string name)
+        {
+            return new GOAPAction(name, true);
         }
 
         public void SetName(string name)

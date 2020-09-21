@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using GOAP.Cost;
 using Vkimow.Structures.Trees.Decision;
+using Vkimow.Tools.Extensions;
 using Vkimow.Tools.Math;
 
 
@@ -21,25 +22,41 @@ namespace GOAP
             _comparer = comparer;
         }
 
-        public bool TryGetBestPlan(KeyValuePair<string, GOAPState> goal, out List<GOAPAction> plan)
+        public bool TryGetBestPlan(KeyValuePair<string, GOAPState> goal, out List<IGOAPReadOnlyAction> plan)
         {
-            TreeDecision<GOAPAction> treePlans;
+            TreeDecision<IGOAPReadOnlyAction> treePlans;
             plan = null;
 
             if (!_builder.TryBuildPlans(goal, out treePlans))
                 return false;
 
-            plan = GetBestPlan(treePlans);
+            plan = GetSingleBestPlan(treePlans);
 
-            if(plan.Count == 0)
+            if (plan == null || plan.Count == 0)
                 return false;
 
             return true;
         }
 
-        public bool TryGetAllPlans(KeyValuePair<string, GOAPState> goal, out List<List<GOAPAction>> plans)
+        public bool TryGetAllBestPlans(KeyValuePair<string, GOAPState> goal, out List<List<IGOAPReadOnlyAction>> plans)
         {
-            TreeDecision<GOAPAction> treePlans;
+            TreeDecision<IGOAPReadOnlyAction> treePlans;
+            plans = null;
+
+            if (!_builder.TryBuildPlans(goal, out treePlans))
+                return false;
+
+            plans = GetAllBestPlans(treePlans);
+
+            if (plans.Count == 0)
+                return false;
+
+            return true;
+        }
+
+        public bool TryGetAllPlans(KeyValuePair<string, GOAPState> goal, out List<List<IGOAPReadOnlyAction>> plans)
+        {
+            TreeDecision<IGOAPReadOnlyAction> treePlans;
             plans = null;
 
             if (!_builder.TryBuildPlans(goal, out treePlans))
@@ -54,65 +71,75 @@ namespace GOAP
         }
 
 
-        private List<List<GOAPAction>> GetAllPlans(TreeDecision<GOAPAction> plans)
+        private List<List<IGOAPReadOnlyAction>> GetAllPlans(TreeDecision<IGOAPReadOnlyAction> plans)
         {
-            var stack = new Stack<GOAPAction>();
-            var list = new List<List<GOAPAction>>();
+            var currentPlan = new List<IGOAPReadOnlyAction>();
+            var allPlans = new List<List<IGOAPReadOnlyAction>>();
 
             foreach (var child in plans.Root.Children)
             {
                 Iterate(child);
             }
 
-            void Iterate(TreeElement<GOAPAction> element)
+            void Iterate(TreeElement<IGOAPReadOnlyAction> element)
             {
-                stack.Push(element.Content);
+                currentPlan.Add(element.Content);
 
                 if (!element.HasChildren)
                 {
-                    list.Add(stack.ToList());
-                    stack.Pop();
+                    allPlans.Add(new List<IGOAPReadOnlyAction>(currentPlan));
+                    currentPlan.RemoveAt(currentPlan.Count - 1);
                     return;
                 }
 
                 foreach (var child in element.Children)
                 {
                     Iterate(child);
-                }          
+                }
 
-                while (stack.Pop() != element.Content) ;
+                while (currentPlan[currentPlan.Count - 1] != element.Content)
+                {
+                    currentPlan.RemoveAt(currentPlan.Count - 1);
+                }
+
+                currentPlan.RemoveAt(currentPlan.Count - 1);
             }
 
-            return list;
+            return allPlans;
         }
 
-        private List<GOAPAction> GetBestPlan(TreeDecision<GOAPAction> plans)
+        private List<List<IGOAPReadOnlyAction>> GetAllBestPlans(TreeDecision<IGOAPReadOnlyAction> plans)
         {
             var bestCost = _comparer.BadCost;
-            var bestPlan = new List<GOAPAction>();
-            var stack = new Stack<GOAPAction>();
+            var currentPlan = new List<IGOAPReadOnlyAction>();
+            var bestPlans = new List<List<IGOAPReadOnlyAction>>();
 
             foreach (var child in plans.Root.Children)
             {
                 Iterate(_comparer.ZeroCost, child);
             }
 
-            void Iterate(IGOAPCost previusCost, TreeElement<GOAPAction> element)
+            void Iterate(IGOAPCost previusCost, TreeElement<IGOAPReadOnlyAction> element)
             {
                 var newCost = previusCost.GetSumWith(element.Content.Cost);
-                stack.Push(element.Content);
+                currentPlan.Add(element.Content);
 
                 if (!element.HasChildren)
                 {
                     int value = _comparer.Compare(bestCost, newCost);
 
-                    if (value < 0 || (value == 0 && BaseMath.Probability(0.5f)))
+                    if (value <= 0)
                     {
-                        bestCost = newCost;
-                        bestPlan = stack.Where(x => !x.IsConnector).ToList();
+                        if (value < 0)
+                        {
+                            bestCost = newCost;
+                            bestPlans = new List<List<IGOAPReadOnlyAction>>();
+                        }
+
+                        bestPlans.Add(new List<IGOAPReadOnlyAction>(currentPlan.Where(x => !x.IsConnector)));
                     }
 
-                    stack.Pop();
+                    currentPlan.RemoveAt(currentPlan.Count - 1);
                     return;
                 }
 
@@ -121,10 +148,25 @@ namespace GOAP
                     Iterate(newCost, child);
                 }
 
-                while (stack.Pop() != element.Content);
+                while (currentPlan[currentPlan.Count - 1] != element.Content)
+                {
+                    currentPlan.RemoveAt(currentPlan.Count - 1);
+                }
+
+                currentPlan.RemoveAt(currentPlan.Count - 1);
             }
 
-            return bestPlan;
+            return bestPlans;
+        }
+
+        private List<IGOAPReadOnlyAction> GetSingleBestPlan(TreeDecision<IGOAPReadOnlyAction> plans)
+        {
+            var bestPlans = GetAllBestPlans(plans);
+
+            if (bestPlans.Count == 0)
+                return null;
+
+            return bestPlans.GetRandomElement();
         }
     }
 }
