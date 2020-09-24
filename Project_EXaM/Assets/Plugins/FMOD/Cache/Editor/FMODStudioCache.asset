@@ -1,0 +1,3855 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9204185787826105599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_0
+  guid: d98f93042836fe478746157fc3c17cf3
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2600
+--- !u!114 &-9169623751961022329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_4
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_4
+  guid: 1bc5b9cc3eb46849812f83cb2c5dd3eb
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5722
+--- !u!114 &-9120781934952390056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Toilet_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Toilet_No_0
+  guid: cfbe2b57d1488e4eb353d5db8a7190c3
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2486
+--- !u!114 &-8966006561186002337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-8963095380570317151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-8911197399647873344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_4
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_4
+  guid: bf3821f3faf4fc47879d309b70fb34c9
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 26690
+--- !u!114 &-8711519235742154672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_2/Level_2_Begining_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_2/Level_2_Begining_0
+  guid: 2e5321b967d78049bc4704c1d1576d8f
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9641
+--- !u!114 &-8638677306997850267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-8520660545015972437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_0
+  guid: 11d96410cce6ff4585b9d92aae5ed72e
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 12435
+--- !u!114 &-8520379869528287487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Talking_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_1
+  guid: 882d1b91d48c6a41afcc942c7acf895a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2779
+--- !u!114 &-8515096021829121849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_1
+  guid: 7fe4dd513547414589331dddaee37e6a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4070
+--- !u!114 &-8514826415974715459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Sink_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Sink_No_0
+  guid: 9bdf4419df24294ca3fa33365b20cfb0
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2486
+--- !u!114 &-8423253091620585331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Scholar/Talk
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Scholar/Talk
+  guid: d54d624962422a4faf8a601f085ac93e
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4609119911605918880}
+  - {fileID: 800432777026196393}
+  MinDistance: 0
+  MaxDistance: 3
+  Length: 50
+--- !u!114 &-8313560576099304674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_7
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_7
+  guid: c16b5bac3bfb8f458c4f672807a085a9
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9500
+--- !u!114 &-8284200112971914706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_1
+  guid: 2d4fd517bf9bf94d968fff7ec7e65c78
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9222
+--- !u!114 &-8152682795177456343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_3
+  guid: 5fff0417fd5e8946bc4ecfb824859620
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2751
+--- !u!114 &-8149670909334799895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Computer/Click
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Computer/Click
+  guid: 7998191dd5ed2b45bf0cd4f73501dc97
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 3369680168471576392}
+  - {fileID: 3434942432773113877}
+  MinDistance: 0
+  MaxDistance: 2
+  Length: 200
+--- !u!114 &-7982419962345617416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_0
+  guid: d118e2db1735f347a75323492d0d3eb0
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6600
+--- !u!114 &-7312975267288171415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Walking_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_0
+  guid: 3592ee407ec4db4f88e40daf4f387eef
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3836
+--- !u!114 &-7082201781672091413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Elevator/Open
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Elevator/Open
+  guid: 0b82aba726c5944fb92050dc0561d207
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 8665961362414033228}
+  - {fileID: 3525146625332900827}
+  MinDistance: 0
+  MaxDistance: 5.2
+  Length: 1935
+--- !u!114 &-6956701673941177611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_1
+  guid: e48758599f5e3142a2c25fd6cfad3e35
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7284
+--- !u!114 &-6944732547702562826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_1
+  guid: 455171584d5547428c864b357d788ff7
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3808
+--- !u!114 &-6916282824902858401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Execute_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Execute_2
+  guid: 4edd45fbede66b41b745379f2112ade3
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5839
+--- !u!114 &-6811363632739793631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_3
+  guid: ddd1bfab734b04488c5ca0e1ea1252c4
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2295
+--- !u!114 &-6767410642625891383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Begining_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Begining_1
+  guid: ffc06baeb0f6434b89b92ea83d04b806
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2358
+--- !u!114 &-6761607062781333728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-6590265350707207259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Elevator/Move
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Elevator/Move
+  guid: c9e79ee03134dc49a0b3c6ede5bf4bfe
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 12000
+--- !u!114 &-6476805806513144127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_0
+  guid: 9e52d8a091bc754db1117b274a5fb5e9
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2660
+--- !u!114 &-6437727685326062580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_1
+  guid: 01614e532f3d664da2c1a9498de6fbc5
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1800
+--- !u!114 &-6283509052596398354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Talking_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_0
+  guid: fe503b1c77344a4bb55a3100fe82c732
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2315
+--- !u!114 &-6036657448007651536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_2
+  guid: b4a24619abbeaa4683e1666ac09dd311
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4400
+--- !u!114 &-5666419669224157814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Shout_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Shout_1
+  guid: 6f6bcafe4769564090c7bf76f67d159a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2700
+--- !u!114 &-5631958978353988596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-5479731498346038525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Toilet_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Toilet_Yes_0
+  guid: bc3dded4215e064a97e8fb94dc3c190b
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1722
+--- !u!114 &-5205388325879799524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Talking_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_0
+  guid: c0d383408159e24ebe152c52077f9138
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1600
+--- !u!114 &-5174017576716339887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-5150947067347782248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Talking_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_1
+  guid: b9272454e5b15646839e971d40988760
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2050
+--- !u!114 &-5106089028046329073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-4930207757765250237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Outside_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Outside_Yes_0
+  guid: 08a41f73c8d6c74b9d3538544496e92b
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1659
+--- !u!114 &-4927570397467948443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Outside_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Outside_Yes_0
+  guid: 72699a1c966b9e429e5dbe332e6c2204
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1722
+--- !u!114 &-4924082256463274615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-4892972069042255477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_9
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_9
+  guid: 75e78bd9638ca946b7a6c8f2e87c13a8
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4210
+--- !u!114 &-4575660892940185818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_2
+  guid: 8886fd146de0384ba570a8a5241ef5cd
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3120
+--- !u!114 &-4558468979360644956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Elevator/Ring
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Elevator/Ring
+  guid: d039c4d7042c8f478ade1de83b7d8475
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2764246737252363434}
+  - {fileID: 3048829722894311368}
+  MinDistance: 0
+  MaxDistance: 5.2000003
+  Length: 1936
+--- !u!114 &-4451822699567283457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_11
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_11
+  guid: 00de4e5a77ffef469233635e15768d71
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3524
+--- !u!114 &-4441293767806933612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Begining_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Begining_0
+  guid: 14c22e391b66d441bb8eff0b5ff293e4
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 16343
+--- !u!114 &-4267949582017151150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Ending_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Ending_2
+  guid: 9b50750c3454df44808a457201075a15
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 16500
+--- !u!114 &-4171722267180528808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_2
+  guid: 0811a3809e838b479050b434a9cd515d
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5800
+--- !u!114 &-4122663838618306646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Shout_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Shout_0
+  guid: 69c089a4e09f784594be4e906e7917d8
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2120
+--- !u!114 &-3931307303056372381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Sink_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Sink_Yes_0
+  guid: 94a95a3f3af8674d904587c8b3823544
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1659
+--- !u!114 &-3929039467484769883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_0
+  guid: acc5ddf0c838564f8f1c7a31d1f7ca4e
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6505
+--- !u!114 &-3893383388560193787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Work
+  m_EditorClassIdentifier: 
+  Name: Work
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-3815978734068921029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_1
+  guid: 3b7d8469b490024c9967bfd7aca7ebe1
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4360
+--- !u!114 &-3763750594338747495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_2
+  guid: 86367faa56c3ba4ca9795af33f836505
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6100
+--- !u!114 &-3639278307456195682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-3562993263609734477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-3418370098020360571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_6
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_6
+  guid: cd0b83f117fe4641ab6d21086705542a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9064
+--- !u!114 &-2869661930990250123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Walk
+  m_EditorClassIdentifier: 
+  Name: Walk
+  Min: 0
+  Max: 3
+  Default: 1
+  Exists: 1
+--- !u!114 &-2786565304281974284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_Sec_2
+  guid: d562e960ad04b14384d72029843c0f68
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3555
+--- !u!114 &-2693743157686226588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_0
+  guid: e65873edb3254f42925de8c0a261302a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3400
+--- !u!114 &-2399916529201452342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_3
+  guid: 171195a12fc6314393917062d3fdb3d3
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6603
+--- !u!114 &-2302032460386377630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_0
+  guid: 77291a4d25e74043a23b7eae7393f982
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2113
+--- !u!114 &-2096022158255604603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-1970881810879668795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Computer/Open_Window
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Computer/Open_Window
+  guid: 1efb385817f9b6408c2d359e6e737492
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -4924082256463274615}
+  - {fileID: 5288946909041133878}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1924432596972374234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Door/Open
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Door/Open
+  guid: 8d6eba30ce850546ab823dc5051c12d6
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4405681244204745962}
+  - {fileID: -886352306528450661}
+  MinDistance: 0
+  MaxDistance: 5.2000003
+  Length: 0
+--- !u!114 &-1899573012330150674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Ending_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Ending_1
+  guid: 5c356b4c42bca8449006b43451a8f6da
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3581
+--- !u!114 &-1782878798856415517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_1
+  guid: 60d1695feff27e4ab92f3523a83652ca
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5800
+--- !u!114 &-1773164505628678992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_2
+  guid: d7b00e2da70a9043b22972b69fb82aec
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3784
+--- !u!114 &-1544166800620484956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_1
+  guid: 18e1877c88e64d4eb29749c8b54c2318
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 10000
+--- !u!114 &-1495855945349004342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Toilet_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Toilet_Yes_0
+  guid: ef2a17f58fe1b84abda5017339bc95fe
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1659
+--- !u!114 &-1467198152175832420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-1460658324071804284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Computer/Hard Drive
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Computer/Hard Drive
+  guid: 441688ed9ff6f041bb68e30c287cc5a4
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 5771132610706895499}
+  - {fileID: -3893383388560193787}
+  - {fileID: 1039573627760012009}
+  MinDistance: 0
+  MaxDistance: 1.6
+  Length: 35000
+--- !u!114 &-1447011756052962026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_Sec_1
+  guid: 37f735c215e96244b979d6db0c542f3b
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4064
+--- !u!114 &-1401375122032951537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Toilet_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Toilet_No_0
+  guid: 740b93bf57d9b843a2faed50f97c5d64
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4006
+--- !u!114 &-886352306528450661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-791143993940545872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &-689852529521809036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Shout_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Shout_2
+  guid: ddfbb51fe3e48c46af8e6336f88cd0de
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4700
+--- !u!114 &-586076870108052731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_2
+  guid: 83a1c5f4b9740f45a4331dcdaaa83fa9
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2298
+--- !u!114 &-530743649930478936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_0
+  guid: e8e36aa42e08354faf53ce1c557d4d98
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3055
+--- !u!114 &-439660130082734676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Shout_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Shout_3
+  guid: 0c3cce6b3d319645ad19f21d60f70629
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3800
+--- !u!114 &-336692566147056856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Walking_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_2
+  guid: caf16c86b281934fb661ff917722f5fa
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4769
+--- !u!114 &-321848801643730389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Ending_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Ending_0
+  guid: 1a36b6b9c1bff14da46317681d3d6246
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3275
+--- !u!114 &-214380563966524274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Scholar/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Scholar/Walk
+  guid: 2e67aac33996eb4aa0238dccdfd4c201
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 992465392656308603}
+  - {fileID: -8966006561186002337}
+  MinDistance: 5
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 507045066798570291}
+  - {fileID: 6665439169087975370}
+  EditorEvents:
+  - {fileID: -4451822699567283457}
+  - {fileID: -6437727685326062580}
+  - {fileID: 4263439887443346579}
+  - {fileID: -4171722267180528808}
+  - {fileID: -4930207757765250237}
+  - {fileID: -7082201781672091413}
+  - {fileID: -439660130082734676}
+  - {fileID: -8520660545015972437}
+  - {fileID: 2762598167803072618}
+  - {fileID: -4441293767806933612}
+  - {fileID: 6455941867747931899}
+  - {fileID: -2399916529201452342}
+  - {fileID: -1544166800620484956}
+  - {fileID: -321848801643730389}
+  - {fileID: -9169623751961022329}
+  - {fileID: 913973693366086880}
+  - {fileID: 8269065304772398372}
+  - {fileID: -1970881810879668795}
+  - {fileID: 4050349717602530178}
+  - {fileID: 3212417173277515066}
+  - {fileID: 2289976017293726296}
+  - {fileID: 1067895226358977504}
+  - {fileID: 7174178557601215568}
+  - {fileID: -8284200112971914706}
+  - {fileID: 7112898950068977578}
+  - {fileID: -8711519235742154672}
+  - {fileID: -214380563966524274}
+  - {fileID: 6962263204869638555}
+  - {fileID: -7312975267288171415}
+  - {fileID: 2895212035451997801}
+  - {fileID: -1447011756052962026}
+  - {fileID: 3915974612385972452}
+  - {fileID: 5893996409421097950}
+  - {fileID: 8202668958919102958}
+  - {fileID: -3815978734068921029}
+  - {fileID: 5066892249301330712}
+  - {fileID: -1460658324071804284}
+  - {fileID: -6944732547702562826}
+  - {fileID: 6377052597383054997}
+  - {fileID: 6046506706389070721}
+  - {fileID: -6916282824902858401}
+  - {fileID: 5093447567989076574}
+  - {fileID: 6836574009649480298}
+  - {fileID: 2103671792885769178}
+  - {fileID: 8662263520637264309}
+  - {fileID: -1899573012330150674}
+  - {fileID: -8152682795177456343}
+  - {fileID: -1782878798856415517}
+  - {fileID: 8079633728135848097}
+  - {fileID: 3285965118005562262}
+  - {fileID: -4122663838618306646}
+  - {fileID: 5086458566429849827}
+  - {fileID: 3685790814116879015}
+  - {fileID: 419588190628336652}
+  - {fileID: 5224101441919223091}
+  - {fileID: 554057745068554041}
+  - {fileID: -5666419669224157814}
+  - {fileID: 3318560137344448984}
+  - {fileID: 2056926164431170280}
+  - {fileID: -4927570397467948443}
+  - {fileID: -1401375122032951537}
+  - {fileID: 2957479743847023577}
+  - {fileID: -4892972069042255477}
+  - {fileID: -2302032460386377630}
+  - {fileID: -8149670909334799895}
+  - {fileID: 6419930720103230883}
+  - {fileID: -8515096021829121849}
+  - {fileID: 5099141475243127229}
+  - {fileID: -586076870108052731}
+  - {fileID: 1516928297304494961}
+  - {fileID: -3763750594338747495}
+  - {fileID: 7188685200491202799}
+  - {fileID: -8520379869528287487}
+  - {fileID: -4575660892940185818}
+  - {fileID: 3909559280585608910}
+  - {fileID: -1924432596972374234}
+  - {fileID: 7704198353250699467}
+  - {fileID: 8835637636757792267}
+  - {fileID: -3931307303056372381}
+  - {fileID: 8788183084872516834}
+  - {fileID: 1179744186164221}
+  - {fileID: 2794067216346628588}
+  - {fileID: 5546785669769879481}
+  - {fileID: -4267949582017151150}
+  - {fileID: -8514826415974715459}
+  - {fileID: -6476805806513144127}
+  - {fileID: 1777458843997458617}
+  - {fileID: -3929039467484769883}
+  - {fileID: 7102326237289987201}
+  - {fileID: 1458436961689095389}
+  - {fileID: -6036657448007651536}
+  - {fileID: 8320028492737335406}
+  - {fileID: -5150947067347782248}
+  - {fileID: 5956194664752647363}
+  - {fileID: -5479731498346038525}
+  - {fileID: 7866879026369424747}
+  - {fileID: -8911197399647873344}
+  - {fileID: 3464466841652976455}
+  - {fileID: -5205388325879799524}
+  - {fileID: -8313560576099304674}
+  - {fileID: 7534756338197011623}
+  - {fileID: -6590265350707207259}
+  - {fileID: 4442814437375286007}
+  - {fileID: -336692566147056856}
+  - {fileID: -3418370098020360571}
+  - {fileID: 1195487995640987394}
+  - {fileID: -9120781934952390056}
+  - {fileID: -4558468979360644956}
+  - {fileID: -7982419962345617416}
+  - {fileID: 2200090726076836474}
+  - {fileID: -8423253091620585331}
+  - {fileID: -2786565304281974284}
+  - {fileID: 169568196731626044}
+  - {fileID: -1773164505628678992}
+  - {fileID: 4917746158520542655}
+  - {fileID: 7475799473757898941}
+  - {fileID: -9204185787826105599}
+  - {fileID: 140229134550725683}
+  - {fileID: 1558602385767842069}
+  - {fileID: -6811363632739793631}
+  - {fileID: -689852529521809036}
+  - {fileID: 5423036174597193624}
+  - {fileID: -6956701673941177611}
+  - {fileID: -2693743157686226588}
+  - {fileID: -530743649930478936}
+  - {fileID: 4123672459572184717}
+  - {fileID: 1026836089291368140}
+  - {fileID: -1495855945349004342}
+  - {fileID: 5321269775132232821}
+  - {fileID: 5372356620588779845}
+  - {fileID: 5036123313473104955}
+  - {fileID: 8240086272630102316}
+  - {fileID: -6283509052596398354}
+  - {fileID: -6767410642625891383}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 6665439169087975370}
+  StringsBanks:
+  - {fileID: 507045066798570291}
+  stringsBankWriteTime: 637221045490078110
+  cacheVersion: 4
+--- !u!114 &1179744186164221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Execute_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Execute_0
+  guid: 95630b024aed594eb01baed4db60e417
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5158
+--- !u!114 &140229134550725683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_Sec_0
+  guid: dbc16dae3a54064f9269ca2b7f9b6eb5
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3015
+--- !u!114 &169568196731626044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Toilet_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Toilet_No_0
+  guid: d7537829d905ff4ebaf5a6be37714be9
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2766
+--- !u!114 &419588190628336652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_4
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_4
+  guid: 6c4a58eac5772247adb187b517b72e17
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2735
+--- !u!114 &507045066798570291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  lastModified: 637221045490078110
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 6482
+  Exists: 1
+--- !u!114 &554057745068554041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Player/Steps
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Player/Steps
+  guid: 6dfb7c89fd8b4a4d8723a83ca0c268bf
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1467198152175832420}
+  - {fileID: -2869661930990250123}
+  - {fileID: 4794236952660784691}
+  MinDistance: 0
+  MaxDistance: 2
+  Length: 575
+--- !u!114 &800432777026196393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &913973693366086880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Sink_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Sink_No_0
+  guid: 1bf4aac45a0a1e4c86dfc92bdbdbd5f2
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1659
+--- !u!114 &992465392656308603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &1026836089291368140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_12
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_12
+  guid: ebea56a2cf5ec64fa48f285660b5f64f
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4603
+--- !u!114 &1039573627760012009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &1067895226358977504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Begining_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Begining_0
+  guid: 2701830a5d7aef4989af418bf353e774
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3410
+--- !u!114 &1195487995640987394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_10
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_10
+  guid: cd4b8ae722bce34db0b90d6b50477a58
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7522
+--- !u!114 &1458436961689095389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Sink_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Sink_No_0
+  guid: b2858bb04313654ca8d6174ca48c3f6d
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4184
+--- !u!114 &1516928297304494961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Computer/Fan
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Computer/Fan
+  guid: 854db3232743464cb24a7a635c40230b
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5631958978353988596}
+  - {fileID: -2096022158255604603}
+  MinDistance: 0
+  MaxDistance: 1.6
+  Length: 36216
+--- !u!114 &1558602385767842069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Walking_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_1
+  guid: ddb89e411ceb6e4e9aaac4510ccb232c
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2917
+--- !u!114 &1777458843997458617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Outside_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Outside_No_0
+  guid: 9f2d409ffc78fb47a5f813c0c226509b
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2392
+--- !u!114 &2056926164431170280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Other/Phone/Ring
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Other/Phone/Ring
+  guid: 708c686a6b2ae744b47a86417e811fdd
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3639278307456195682}
+  - {fileID: -791143993940545872}
+  MinDistance: 0
+  MaxDistance: 5.2000003
+  Length: 3000
+--- !u!114 &2103671792885769178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Sink_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Sink_Yes_0
+  guid: 5bd7ddc3317dd84cad10285ec33b8392
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4652
+--- !u!114 &2200090726076836474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_2/Level_2_Begining_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_2/Level_2_Begining_1
+  guid: d1380c22bb5e1e4d9c0ef09fe26a76bc
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9802
+--- !u!114 &2289976017293726296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_3
+  guid: 2617c5966e7f99449b1e3b300fa8cf03
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2773
+--- !u!114 &2762598167803072618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Outside_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Outside_No_0
+  guid: 145da1fb2906f24cb9ba8ab75159d9a5
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4440
+--- !u!114 &2764246737252363434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &2794067216346628588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_7
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_7
+  guid: 956a70b768659145921246511c3317f9
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4901
+--- !u!114 &2895212035451997801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Other/Atmosphere/Lamp
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Other/Atmosphere/Lamp
+  guid: 35d667f75a6ce848a1ee8522c6fcdf22
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3562993263609734477}
+  - {fileID: -6761607062781333728}
+  MinDistance: 0
+  MaxDistance: 2.6000001
+  Length: 8200
+--- !u!114 &2924833698821254866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &2957479743847023577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Mistake_Ending_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Mistake_Ending_0
+  guid: 74fc1d209244f14ab74aee3360ba66f1
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2712
+--- !u!114 &3048829722894311368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &3212417173277515066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_8
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_8
+  guid: 201bb765e5c60f4ab634e05eced80823
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4500
+--- !u!114 &3285965118005562262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_First_Room_3
+  guid: 68c3214c68cdca4590718409a49b2763
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9282
+--- !u!114 &3318560137344448984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Door/Close
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Door/Close
+  guid: 6fd2824dfb2e86459af756ff65073cf7
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8963095380570317151}
+  - {fileID: -5106089028046329073}
+  MinDistance: 0
+  MaxDistance: 5.2000003
+  Length: 0
+--- !u!114 &3369680168471576392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &3434942432773113877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &3464466841652976455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Talking_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Talking_2
+  guid: c011c675e881c049ace586d8214e8145
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3200
+--- !u!114 &3525146625332900827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &3685790814116879015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Computer/Load
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Computer/Load
+  guid: 6c43c64e24bb8244a6ffe2792ffcd6a0
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 7018653371399885664}
+  - {fileID: 2924833698821254866}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3909559280585608910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_10
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_10
+  guid: 8bc038171fcc644eae98273bb8c684dd
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2449
+--- !u!114 &3915974612385972452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Global/Sounds/Rain
+  m_EditorClassIdentifier: 
+  Path: event:/Global/Sounds/Rain
+  guid: 3841761de74b914480e2bc15dfe40b98
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 60385
+--- !u!114 &4050349717602530178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_0
+  guid: 1f5a29d7fcb856418d404f0d506e58f3
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4000
+--- !u!114 &4123672459572184717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Global/Music/Track_1
+  m_EditorClassIdentifier: 
+  Path: event:/Global/Music/Track_1
+  guid: e906f8f662b83540a9149578fa7dc3b2
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &4263439887443346579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_5
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_5
+  guid: 0301685bc89217449c8141d3560d3d59
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4923
+--- !u!114 &4405681244204745962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &4442814437375286007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Begining_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Begining_0
+  guid: ca0104a3da43414a88715b9c7cbd5008
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 27000
+--- !u!114 &4609119911605918880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &4794236952660784691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &4917746158520542655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_0
+  guid: d85889cbee596b42a701f1e877738e5d
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2859
+--- !u!114 &5036123313473104955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_First_Room_2
+  guid: f631bc9bb6d8bd449a10af20f1d71f1c
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4700
+--- !u!114 &5066892249301330712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_5
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_5
+  guid: 3b98c708890a6b48a4b86471ff6299ac
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5522
+--- !u!114 &5086458566429849827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Outside_No_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Nerd_Question_Outside_No_0
+  guid: 6b095dcbc571a44b8e3b3cae5af0417a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2766
+--- !u!114 &5093447567989076574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Outside_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Outside_Yes_0
+  guid: 4f9ac87b7bb9d24aaa9fe9a931fc5013
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5287
+--- !u!114 &5099141475243127229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Walking_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_2
+  guid: 80e4e5f69b3dcf4e845baac4c5e26d9a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2111
+--- !u!114 &5224101441919223091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_6
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_6
+  guid: 6cb8e1cbec85764d862a6f241e225d8d
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4404
+--- !u!114 &5288946909041133878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &5321269775132232821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_2
+  guid: f3575241a863cb4c99b210a50cef3770
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1714
+--- !u!114 &5372356620588779845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_5
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_5
+  guid: f4fcea6995e94f4589adf8fc9fc17fcc
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8634
+--- !u!114 &5423036174597193624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_1
+  guid: de0737dcb1a9334ca9515b9c6e1a4937
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8000
+--- !u!114 &5546785669769879481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Execute_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Execute_1
+  guid: 964a36151331924aae171190852fb92f
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5219
+--- !u!114 &5771132610706895499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &5893996409421097950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Walking_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_1
+  guid: 3936d8c9511c7e41a64e5fa86874022d
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4920
+--- !u!114 &5956194664752647363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_1
+  guid: b9e188850a144440a328a3b6fe236540
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5098
+--- !u!114 &6046506706389070721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Cheating_2
+  guid: 4a4290fef6b00e4d8469212343284760
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4100
+--- !u!114 &6377052597383054997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_2/Level_2_Ending_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_2/Level_2_Ending_0
+  guid: 471eb3011634404d9186b6db506b200a
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 86033
+--- !u!114 &6419930720103230883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_0
+  guid: 7b61f945b9f86642981d74e15a11e014
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3645
+--- !u!114 &6455941867747931899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_8
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_8
+  guid: 15de7f358538ea4b9c0fd82ed14a5058
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8375
+--- !u!114 &6665439169087975370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Build/Desktop/Master.bank
+  Name: Master
+  lastModified: 637221045489488593
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &6836574009649480298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Elevator_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Elevator_0
+  guid: 56c85d3d2f501842bc0eadc9aeb2c12c
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8638
+--- !u!114 &6962263204869638555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_Sec_1
+  guid: 32c7bfee3a67b149b33380ae6d585f5f
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3366
+--- !u!114 &7018653371399885664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &7102326237289987201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Walking_Sec_2
+  guid: b273c9834cfb1d439153f6a520cae498
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4452
+--- !u!114 &7112898950068977578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Local/Elevator/Close
+  m_EditorClassIdentifier: 
+  Path: event:/Local/Elevator/Close
+  guid: 2dea561216724d4eb2d993682fd7726b
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -5174017576716339887}
+  - {fileID: -8638677306997850267}
+  MinDistance: 0
+  MaxDistance: 5.2000003
+  Length: 1862
+--- !u!114 &7174178557601215568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_4
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_4
+  guid: 2711ae88f77cfe40a89e41feaa48efcd
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 10070
+--- !u!114 &7188685200491202799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_Sec_2
+  guid: 876dba0cfc5e074bb02812f5e105bc3d
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6395
+--- !u!114 &7475799473757898941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_9
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Mistake_Room_9
+  guid: d946bbfd5ecbae47be0ffc589691ca7e
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 4600
+--- !u!114 &7534756338197011623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_2
+  guid: c5582c89f8ad3a4292cda68ef5f26ccc
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3660
+--- !u!114 &7704198353250699467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_0
+  guid: 8fdae13675e74c48a3d33989a9322fbc
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8559
+--- !u!114 &7866879026369424747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Talking_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Talking_2
+  guid: bcffd4e70bd32846946bbf8a8143a576
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5781
+--- !u!114 &8079633728135848097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Level_1/Level_1_Mistake_Ending_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Level_1/Level_1_Mistake_Ending_1
+  guid: 66e5d94585c54243a6bd220648b6ddb3
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 3816
+--- !u!114 &8202668958919102958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Toilet_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Asshole_Question_Toilet_Yes_0
+  guid: 395c73353029634a86c94f5a7e379959
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5600
+--- !u!114 &8240086272630102316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_1
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Bull_Cheating_1
+  guid: f7edd6c047a89b4cb449de3b80d65823
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1950
+--- !u!114 &8269065304772398372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Joke_Walking_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Joke_Walking_0
+  guid: 1c894a66af49b441949248ea6a210db5
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 6016
+--- !u!114 &8320028492737335406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_2
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_1/Tutorial_1_Room_2
+  guid: b67fe85c3e37a849bc04fa4ba2b1cef0
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 8044
+--- !u!114 &8662263520637264309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_4
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Mistake_Second_Room_4
+  guid: 5bf51c10e3c0cb42927285909075ec5c
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5686
+--- !u!114 &8665961362414033228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &8788183084872516834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Sink_Yes_0
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Teacher/Teacher_Answer_Dumb_Question_Sink_Yes_0
+  guid: 95062fb77b9f294e9fc3de165fd7ce33
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1722
+--- !u!114 &8835637636757792267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_3
+  m_EditorClassIdentifier: 
+  Path: event:/Voice/ru/Tutorial_2/Tutorial_2_Second_Room_3
+  guid: 9394f52a8a35b048a65c328c52550506
+  Banks:
+  - {fileID: 6665439169087975370}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2328
