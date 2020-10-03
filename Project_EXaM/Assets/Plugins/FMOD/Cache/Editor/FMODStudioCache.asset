@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9209005182154981097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-9204185787826105599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +86,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2486
+--- !u!114 &-9083364830378420316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-8966006561186002337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +119,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8963095380570317151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +136,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8911197399647873344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +199,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-8520660545015972437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,8 +312,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 4609119911605918880}
-  - {fileID: 800432777026196393}
+  - {fileID: -9083364830378420316}
+  - {fileID: -5243116875749198681}
   MinDistance: 0
   MaxDistance: 3
   Length: 50
@@ -372,8 +406,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 3369680168471576392}
-  - {fileID: 3434942432773113877}
+  - {fileID: 4731300814725637616}
+  - {fileID: -844344545923733931}
   MinDistance: 0
   MaxDistance: 2
   Length: 200
@@ -443,11 +477,28 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 8665961362414033228}
-  - {fileID: 3525146625332900827}
+  - {fileID: 8289849586870420073}
+  - {fileID: 4865036421714714925}
   MinDistance: 0
   MaxDistance: 5.2
   Length: 1935
+--- !u!114 &-7059032191210452049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-6956701673941177611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +630,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-6590265350707207259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +746,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4400
+--- !u!114 &-5818392684691254843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-5666419669224157814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +802,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5479731498346038525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,6 +826,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1722
+--- !u!114 &-5243116875749198681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Talk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-5205388325879799524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,7 +882,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-5150947067347782248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,7 +922,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4930207757765250237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,7 +985,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-4892972069042255477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +1009,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4210
+--- !u!114 &-4733316824603188738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-4575660892940185818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,8 +1069,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 2764246737252363434}
-  - {fileID: 3048829722894311368}
+  - {fileID: 7506233490588072183}
+  - {fileID: 9093097634627366622}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 1936
@@ -1149,6 +1251,23 @@ MonoBehaviour:
   Min: 0
   Max: 2
   Default: 0
+  Exists: 0
+--- !u!114 &-3865686820121323396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 1
 --- !u!114 &-3815978734068921029
 MonoBehaviour:
@@ -1212,8 +1331,25 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3562993263609734477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 0
+--- !u!114 &-3527119462088339628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1269,7 +1405,7 @@ MonoBehaviour:
   Min: 0
   Max: 3
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-2786565304281974284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1429,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3555
+--- !u!114 &-2744332350005975367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-2693743157686226588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,6 +1469,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3400
+--- !u!114 &-2414795555698257710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &-2399916529201452342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,6 +1509,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6603
+--- !u!114 &-2393806372527491881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-2302032460386377630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,6 +1549,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2113
+--- !u!114 &-2176339985098845318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-2096022158255604603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,7 +1582,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1970881810879668795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,8 +1603,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -4924082256463274615}
-  - {fileID: 5288946909041133878}
+  - {fileID: -870219870386871070}
+  - {fileID: 4886331933083030898}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -1424,8 +1628,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 4405681244204745962}
-  - {fileID: -886352306528450661}
+  - {fileID: -2176339985098845318}
+  - {fileID: 4582147347126596521}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 0
@@ -1560,7 +1764,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1460658324071804284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1581,9 +1785,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 5771132610706895499}
-  - {fileID: -3893383388560193787}
-  - {fileID: 1039573627760012009}
+  - {fileID: -2744332350005975367}
+  - {fileID: 3742663831991692077}
+  - {fileID: -9209005182154981097}
   MinDistance: 0
   MaxDistance: 1.6
   Length: 35000
@@ -1633,6 +1837,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4006
+--- !u!114 &-1155887455921830632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fan/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &-886352306528450661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1649,6 +1870,40 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
+  Exists: 0
+--- !u!114 &-870219870386871070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
+--- !u!114 &-844344545923733931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
   Exists: 1
 --- !u!114 &-791143993940545872
 MonoBehaviour:
@@ -1666,7 +1921,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-689852529521809036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,8 +2080,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 992465392656308603}
-  - {fileID: -8966006561186002337}
+  - {fileID: 1384264998867079085}
+  - {fileID: -5818392684691254843}
   MinDistance: 5
   MaxDistance: 20
   Length: 0
@@ -1985,7 +2240,7 @@ MonoBehaviour:
   - {fileID: 6665439169087975370}
   StringsBanks:
   - {fileID: 507045066798570291}
-  stringsBankWriteTime: 637221045490078110
+  stringsBankWriteTime: 637369416908147305
   cacheVersion: 4
 --- !u!114 &1179744186164221
 MonoBehaviour:
@@ -2093,7 +2348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637221045490078110
+  lastModified: 637369416908147305
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -2119,9 +2374,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -1467198152175832420}
-  - {fileID: -2869661930990250123}
-  - {fileID: 4794236952660784691}
+  - {fileID: -3865686820121323396}
+  - {fileID: 5231035664334979547}
+  - {fileID: 6920429291464318222}
   MinDistance: 0
   MaxDistance: 2
   Length: 575
@@ -2141,7 +2396,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &913973693366086880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2181,7 +2436,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &1026836089291368140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2221,7 +2476,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &1067895226358977504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2268,6 +2523,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 7522
+--- !u!114 &1264930130179255265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &1384264998867079085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &1458436961689095389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,8 +2600,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -5631958978353988596}
-  - {fileID: -2096022158255604603}
+  - {fileID: -1155887455921830632}
+  - {fileID: -7059032191210452049}
   MinDistance: 0
   MaxDistance: 1.6
   Length: 36216
@@ -2382,8 +2671,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -3639278307456195682}
-  - {fileID: -791143993940545872}
+  - {fileID: 6532304237750000505}
+  - {fileID: 1264930130179255265}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 3000
@@ -2495,7 +2784,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &2794067216346628588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2539,8 +2828,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -3562993263609734477}
-  - {fileID: -6761607062781333728}
+  - {fileID: -3527119462088339628}
+  - {fileID: 8255780649386287630}
   MinDistance: 0
   MaxDistance: 2.6000001
   Length: 8200
@@ -2560,7 +2849,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &2957479743847023577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2600,7 +2889,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &3212417173277515066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2667,8 +2956,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -8963095380570317151}
-  - {fileID: -5106089028046329073}
+  - {fileID: -4733316824603188738}
+  - {fileID: 8287063121371037725}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 0
@@ -2688,7 +2977,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &3434942432773113877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2705,7 +2994,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &3464466841652976455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,7 +3034,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &3685790814116879015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2766,11 +3055,28 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 7018653371399885664}
-  - {fileID: 2924833698821254866}
+  - {fileID: 7462768411115787555}
+  - {fileID: -2393806372527491881}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3742663831991692077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Hard Drive/Work
+  m_EditorClassIdentifier: 
+  Name: Work
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
 --- !u!114 &3909559280585608910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,7 +3208,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &4442814437375286007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2926,6 +3232,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 27000
+--- !u!114 &4582147347126596521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &4609119911605918880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2942,6 +3265,23 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+  Exists: 0
+--- !u!114 &4731300814725637616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Click/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
   Exists: 1
 --- !u!114 &4794236952660784691
 MonoBehaviour:
@@ -2954,6 +3294,40 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/Steps/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 0
+--- !u!114 &4865036421714714925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &4886331933083030898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open_Window/Volume
   m_EditorClassIdentifier: 
   Name: Volume
   Min: 0
@@ -3121,6 +3495,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4404
+--- !u!114 &5231035664334979547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Walk
+  m_EditorClassIdentifier: 
+  Name: Walk
+  Min: 0
+  Max: 3
+  Default: 1
+  Exists: 1
 --- !u!114 &5288946909041133878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3137,7 +3528,7 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &5321269775132232821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,7 +3637,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &5893996409421097950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3385,6 +3776,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8375
+--- !u!114 &6532304237750000505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &6665439169087975370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3399,7 +3807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637221045489488593
+  lastModified: 637369416908117316
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -3426,6 +3834,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8638
+--- !u!114 &6909065410524970105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &6920429291464318222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Steps/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &6962263204869638555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3465,7 +3907,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &7102326237289987201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3509,8 +3951,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -5174017576716339887}
-  - {fileID: -8638677306997850267}
+  - {fileID: -2414795555698257710}
+  - {fileID: 6909065410524970105}
   MinDistance: 0
   MaxDistance: 5.2000003
   Length: 1862
@@ -3560,6 +4002,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6395
+--- !u!114 &7462768411115787555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Load/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &7475799473757898941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3583,6 +4042,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4600
+--- !u!114 &7506233490588072183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &7534756338197011623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3721,6 +4197,23 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1950
+--- !u!114 &8255780649386287630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lamp/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
 --- !u!114 &8269065304772398372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3744,6 +4237,40 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6016
+--- !u!114 &8287063121371037725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Close/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  Min: 0
+  Max: 1
+  Default: 1
+  Exists: 1
+--- !u!114 &8289849586870420073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Open/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
 --- !u!114 &8320028492737335406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3806,7 +4333,7 @@ MonoBehaviour:
   Min: 10
   Max: 22000
   Default: 22000
-  Exists: 1
+  Exists: 0
 --- !u!114 &8788183084872516834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3853,3 +4380,20 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2328
+--- !u!114 &9093097634627366622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ring/LPF
+  m_EditorClassIdentifier: 
+  Name: LPF
+  Min: 10
+  Max: 22000
+  Default: 22000
+  Exists: 1
